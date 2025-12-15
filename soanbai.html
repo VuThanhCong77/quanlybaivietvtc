@@ -184,6 +184,10 @@ async function savePost() {
         fileMimeType = documentFile.type;
     }
 
+    // Lấy số liệu Like/Dislike cũ (hoặc 0 nếu là bài mới)
+    let likes = post ? post.likes || 0 : 0;
+    let dislikes = post ? post.dislikes || 0 : 0;
+
     const newPost = {
         id: currentId,
         title: title,
@@ -194,8 +198,11 @@ async function savePost() {
         thumbnail: thumbnailBase64,
         fileData: fileBase64,
         fileName: fileName,
-        fileMimeType: fileMimeType
+        fileMimeType: fileMimeType,
+        likes: likes, // Giữ nguyên số liệu cũ
+        dislikes: dislikes // Giữ nguyên số liệu cũ
     };
+
 
     if (post) {
         // Chỉnh sửa bài viết
@@ -285,23 +292,40 @@ function loadDeleteList() {
 // =================================================================
 
 /**
- * Xuất dữ liệu LocalStorage thành file posts_data.json
+ * Xuất dữ liệu LocalStorage thành file posts_data.json (Bao gồm cả số liệu Like/Dislike)
  * QUAN TRỌNG: File này phải được tải lên GitHub sau khi xuất!
  */
 function backupPosts() {
-    const postsJson = localStorage.getItem("posts");
-    
-    if (!postsJson || JSON.parse(postsJson).length === 0) {
+    // 1. LẤY DỮ LIỆU BÀI VIẾT HIỆN TẠI TỪ LOCAL STORAGE CỦA ADMIN
+    let exportPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+
+    if (exportPosts.length === 0) {
         alert("Không có bài viết nào để sao lưu.");
         return;
     }
+    
+    // 2. LẤY DỮ LIỆU LIKE/DISLIKE TẠM THỜI TỪ LOCAL STORAGE CỦA NGƯỜI DÙNG
+    // Dữ liệu này được tạo ra từ post.html
+    const tempReactions = JSON.parse(localStorage.getItem('posts_data_temp') || '{}');
+    
+    // 3. HỢP NHẤT DỮ LIỆU
+    exportPosts = exportPosts.map(post => {
+        // Nếu có dữ liệu tạm thời (đang chờ xuất) cho bài viết này
+        if (tempReactions[post.id]) {
+            post.likes = tempReactions[post.id].likes;
+            post.dislikes = tempReactions[post.id].dislikes;
+        }
+        // Đảm bảo trường likes và dislikes luôn có, nếu không có dữ liệu tạm thời thì dùng số gốc (hoặc 0)
+        post.likes = post.likes || 0;
+        post.dislikes = post.dislikes || 0;
+        return post;
+    });
 
-    const postsData = JSON.parse(postsJson);
-    // Bắt buộc đặt tên file là posts_data.json để đồng bộ với code đọc
+    // 4. CHUYỂN THÀNH JSON VÀ TẢI XUỐNG
     const fileName = `posts_data.json`; 
     
     // Tạo file JSON và tự động tải xuống
-    const blob = new Blob([JSON.stringify(postsData, null, 2)], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify(exportPosts, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -312,7 +336,10 @@ function backupPosts() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    alert("Đã xuất file posts_data.json thành công! BƯỚC CUỐI CÙNG LÀ PHẢI TẢI FILE NÀY LÊN GITHUB CỦA BẠN!");
+    // 5. XÓA DỮ LIỆU TẠM THỜI SAU KHI XUẤT (đã được lưu vào file JSON)
+    localStorage.removeItem('posts_data_temp');
+
+    alert("Đã xuất file posts_data.json thành công! BƯỚC CUỐI CÙNG LÀ PHẢI TẢI FILE NÀY LÊN HOST CỦA BẠN (GitHub, Netlify...) để cập nhật bài viết và số liệu Like/Dislike vĩnh viễn.");
 }
 
 /**
