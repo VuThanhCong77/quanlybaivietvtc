@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Danh mục Bài Viết | Tên Trang</title>
+
+<style>
+/* === RESET & CƠ BẢN === */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #0a3a5a;
+  line-height: 1.6;
+}
+
+/* === HEADER CHUNG (SITE HEADER) === */
+header.site-header {
+  /* Thu gọn Header */
+  background: linear-gradient(to right, #0a7f99, #0ab3c9);
+  color: #fff;
+  padding: 15px 20px; 
+  text-align: center;
+}
+
+header.site-header h1 {
+  /* Giảm kích thước và khoảng cách cho Tiêu đề H1 */
+  font-size: 22px; 
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* === NỘI DUNG CHÍNH (MAIN CONTENT) === */
+main {
+  max-width: 900px; 
+  margin: 15px auto; 
+  padding: 20px;
+
+  /* Trang trí */
+  background-color: #f9f9ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(10, 127, 153, 0.15);
+}
+
+h2 {
+  border-left: 6px solid #0a7f99;
+  padding-left: 12px;
+  margin-top: 40px;
+}
+
+/* Giảm khoảng cách cho h2 đầu tiên trong main */
+main h2:first-of-type {
+  margin-top: 15px;
+}
+
+/* CSS cho đoạn văn bản có class justified-p */
+.justified-p {
+  text-align: justify;
+  text-indent: 2cm;
+  line-height: 1.8;
+}
+
+/* === DANH SÁCH BÀI VIẾT (POST ITEM) === */
+.post-item {
+  border-bottom: 1px solid #cde7ef;
+  padding: 20px 0;
+  display: flex; /* Bật flexbox để chứa ảnh */
+  gap: 20px;
+}
+
+.post-item:last-child {
+  border-bottom: none; 
+}
+
+.post-item .post-thumbnail {
+  width: 140px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0; 
+}
+
+.post-item-content {
+    flex-grow: 1;
+}
+
+.post-item-content h3 { margin: 0; }
+.post-item-content p { margin-top: 8px; color: #08405d; }
+
+
+/* === NÚT TRỞ VỀ (BACK HOME) === */
+.back-home {
+  display: block; 
+  width: fit-content;
+  margin: 20px auto; 
+  background: #0a7f99;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* === FOOTER === */
+footer {
+  background: #e7f5fa;
+  padding: 20px;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #074055;
+}
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+  <h1>🌸DANH MỤC BÀI VIẾT</h1> 
+</header>
+<a href="index.html"
+   style="display:inline-block; margin:6px 6px 0 6px; background:#0a7f99;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:bold;">
+   Trang chủ🚀
+</a>
+
+<main>
+  
+   <div id="list"></div>
+
+  <script>
+    const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+    const list = document.getElementById("list");
+    let hasPosts = false;
+
+    posts
+      .filter(p => p.category === "baiviet")
+      .forEach(p => {
+        hasPosts = true;
+        // KIỂM TRA: Chỉ tạo thẻ ảnh nếu có dữ liệu thumbnail (base64)
+        const thumbnailHtml = p.thumbnail 
+            ? `<img src="${p.thumbnail}" class="post-thumbnail" alt="${p.title}">` 
+            : ''; // Ẩn nếu không có ảnh đại diện
+            
+        list.innerHTML += `
+          <div class="post-item">
+            ${thumbnailHtml} <div class="post-item-content">
+                <h3>
+                  <a href="post.html?id=${p.id}">${p.title}</a>
+                </h3>
+                <small>${p.date}</small>
+                <p>${p.shortDescription}</p>
+            </div>
+          </div>`;
+      });
+      
+    if (!hasPosts) {
+        list.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Hiện tại chưa có bài viết nào.</p>';
+    }
+  </script>
+
+</main>
+
+<footer>
+  🚀 Công nghệ phục vụ phát triển, công bằng<br/>
+</footer>
+
+</body>
+</html>
