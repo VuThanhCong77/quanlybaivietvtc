@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Danh mục Bài Viết | Tên Trang</title>
+
+<style>
+/* === RESET & CƠ BẢN === */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #0a3a5a;
+  line-height: 1.6;
+}
+
+/* === HEADER CHUNG (SITE HEADER) === */
+header.site-header {
+  background: linear-gradient(to right, #0a7f99, #0ab3c9);
+  color: #fff;
+  padding: 15px 20px; 
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header.site-header h1 {
+  font-size: 22px; 
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* === NỘI DUNG CHÍNH (MAIN CONTENT) === */
+main {
+  max-width: 900px; 
+  margin: 15px auto; 
+  padding: 20px;
+  background-color: #f9f9ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1);
+}
+
+/* === ITEM BÀI VIẾT === */
+.post-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #cde7ef;
+}
+.post-item:last-child {
+    border-bottom: none;
+}
+.post-thumbnail {
+    width: 200px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+.post-item-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+}
+.post-item-content h3 a {
+    color: #0a3a5a;
+    text-decoration: none;
+}
+.post-item-content h3 a:hover {
+    color: #0a7f99;
+}
+.post-item-content small {
+    color: #888;
+    display: block;
+    margin-bottom: 10px;
+}
+.post-item-content p {
+    margin: 0;
+    color: #555;
+    text-align: justify;
+}
+
+/* === FOOTER === */
+footer {
+    background: #e7f5fa;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #074055;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .post-item {
+    flex-direction: column;
+  }
+  .post-thumbnail {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <h1>Danh mục Bài Viết</h1>
+</header>
+
+<a href="index.html"
+   style="display:inline-block; margin:6px 6px 0 6px; background:#0a7f99;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:bold;">
+   Trang chủ🚀
+</a>
+
+<main>
+    <div id="list">
+        <p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết...</p>
+    </div>
+</main>
+
+<footer>
+  🚀 Công nghệ phục vụ phát triển, công bằng<br/>
+</footer>
+
+<script>
+    const JSON_URL = 'posts_data.json'; 
+
+    async function fetchPosts() {
+        try {
+            const response = await fetch(JSON_URL);
+            if (!response.ok) {
+                console.error("Không tìm thấy file posts_data.json.");
+                return [];
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("Lỗi mạng khi tải dữ liệu bài viết:", error);
+            return [];
+        }
+    }
+
+    async function loadArticles() {
+        const list = document.getElementById("list");
+        list.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết...</p>';
+        
+        const posts = await fetchPosts();
+        
+        // Lọc bài viết có category là "baiviet"
+        const filteredPosts = posts.filter(p => p.category === "baiviet");
+        
+        if (filteredPosts.length === 0) {
+            list.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Hiện tại chưa có bài viết nào trong chuyên mục này.</p>';
+            return;
+        }
+        
+        list.innerHTML = ''; // Xóa thông báo "Đang tải"
+
+        filteredPosts.forEach(p => {
+            // Chỉ tạo thẻ ảnh nếu có dữ liệu thumbnail
+            const thumbnailHtml = p.thumbnail 
+                ? `<img src="${p.thumbnail}" class="post-thumbnail" alt="${p.title}">` 
+                : ''; 
+                
+            list.innerHTML += `
+              <div class="post-item">
+                ${thumbnailHtml} 
+                <div class="post-item-content">
+                    <h3>
+                      <a href="post.html?id=${p.id}">${p.title}</a>
+                    </h3>
+                    <small>${p.date}</small>
+                    <p>${p.shortDescription || p.content.substring(0, 200) + '...'}</p>
+                </div>
+              </div>`;
+        });
+    }
+
+    // Chạy hàm khi DOM tải xong
+    document.addEventListener('DOMContentLoaded', loadArticles);
+</script>
+</body>
+</html>
