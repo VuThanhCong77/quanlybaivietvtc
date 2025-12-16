@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>🌸Vũ Thành Công🌸</title>
+  <title>Trang cá nhân_Vũ Thành Công</title>
   
   <meta name="description" content="Nơi tổng hợp, quản lý và chia sẻ các bài viết, tin tức, tài liệu về kinh nghiệm và nét đẹp trong cuộc sống thường ngày." />
 
-  <meta property="og:title" content="Vũ Thành Công" />
-  <meta property="og:description" content="Nơi tổng hợp, quản lý và chia sẻ các bài viết, tin tức, tài liệu của Vũ Thanh Công." />
+  <meta property="og:title" content="Trang cá nhân_Vũ Thành Công" />
+  <meta property="og:description" content="Nơi tổng hợp, quản lý và chia sẻ các bài viết, tin tức, tài liệu về kinh nghiệm và nét đẹp trong cuộc sống thường ngày." />
   <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/images/hoasen.jpg" />
@@ -221,6 +221,49 @@ h2 {
     display: inline-block;
 }
 
+/* ================= SOCIAL SHARE BUTTONS (BỔ SUNG) ================= */
+.share-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.share-buttons h4 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    transition: opacity 0.3s;
+}
+
+.share-btn:hover {
+    opacity: 0.9;
+}
+
+/* Facebook Blue */
+.share-btn.facebook {
+    background-color: #1877F2; 
+}
+
+/* Zalo Green */
+.share-btn.zalo {
+    background-color: #0087FF; /* Màu xanh Zalo mới */
+}
+
+.share-btn i {
+    margin-right: 5px;
+}
 /* ================= MEDIA QUERIES (RESPONSIVE DESIGN) ================= */
 
 @media (max-width: 768px) {
@@ -284,6 +327,11 @@ h2 {
         display: block;
         margin: 5px 0;
     }
+    
+    /* 5. Share Buttons on Mobile */
+    .share-buttons {
+        justify-content: center;
+    }
 }
 </style>
 </head>
@@ -321,7 +369,28 @@ h2 {
             <span class="lotus-icon">🌸</span> Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.
         </p>
         <a href="gioithieu.html" class="nav-links a" style="background: var(--primary); display: inline-block; margin-top: 15px;">Xem chi tiết</a>
-      </div>
+        
+        <div class="share-buttons">
+            <h4>Chia sẻ:</h4>
+            <a 
+                href="https://www.facebook.com/sharer/sharer.php?u=https://vuthanhcong77.github.io/quanlybaivietvtc/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="share-btn facebook"
+            >
+                Chia sẻ Facebook
+            </a>
+            
+            <a 
+                href="https://s.zalo.me/share?url=https://vuthanhcong77.github.io/quanlybaivietvtc/&text=Trang cá nhân_Vũ Thành Công" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="share-btn zalo"
+            >
+                Chia sẻ Zalo
+            </a>
+        </div>
+        </div>
     </container>
   </section>
   
@@ -371,9 +440,7 @@ h2 {
         
         const sortedPosts = posts.sort((a, b) => b.id - a.id);
         
-        // =========================================================
-        // === ĐÃ CẬP NHẬT: THAY THẾ .slice(0, 5) BẰNG .slice(0, 8) ===
-        // =========================================================
+        // Giữ nguyên logic lấy 8 bài viết gần nhất (không phải tài liệu)
         const recentPosts = sortedPosts.filter(p => p.category !== "tailieu").slice(0, 8); 
 
         if (recentPosts.length === 0) {
