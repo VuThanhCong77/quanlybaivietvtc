@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Hướng dẫn sử dụng Trang Web Cá Nhân</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  body{
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:#f3f4f6;
+    margin:0;
+    padding:30px 10px;
+    color:#1f2937;
+  }
+  .container{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    padding:40px 50px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  }
+  h1{
+    text-align:center;
+    text-transform:uppercase;
+    color:#0f4f6d;
+    margin-bottom:35px;
+    font-size:26px;
+  }
+  h2{
+    color:#0f4f6d;
+    margin-top:35px;
+    border-left:5px solid #0f4f6d;
+    padding-left:12px;
+    font-size:20px;
+  }
+  h3{
+    margin-top:25px;
+    font-size:17px;
+    color:#374151;
+  }
+  p, li{
+    font-size:15px;
+    line-height:1.7;
+  }
+  ul{
+    margin-left:25px;
+  }
+  .note{
+    background:#f0f9ff;
+    border-left:4px solid #0284c7;
+    padding:12px 16px;
+    margin:20px 0;
+    font-size:14px;
+  }
+  .footer{
+    margin-top:40px;
+    text-align:center;
+    font-size:13px;
+    color:#6b7280;
+  }
+  @media print{
+    body{background:#fff;}
+    .container{box-shadow:none;padding:0;}
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>HƯỚNG DẪN SỬ DỤNG TRANG WEB CÁ NHÂN</h1>
+
+<h2>I. GIỚI THIỆU CHUNG</h2>
+<p>Trang web cá nhân được xây dựng nhằm giới thiệu thông tin cá nhân, chia sẻ bài viết, tin tức, tài liệu và phục vụ công tác quản trị nội dung.</p>
+<p>Website hoạt động theo mô hình trang web tĩnh, sử dụng file dữ liệu <strong>posts_data.json</strong> để lưu trữ nội dung. Có thể sử dụng offline hoặc online tùy theo cấu hình.</p>
+
+<p>Các chuyên mục chính gồm:</p>
+<ul>
+  <li>Trang Chủ</li>
+  <li>Giới thiệu</li>
+  <li>Bài viết</li>
+  <li>Tin tức</li>
+  <li>Tài liệu</li>
+  <li>Quản trị</li>
+</ul>
+
+<h2>II. CẤU TRÚC VÀ CHỨC NĂNG CÁC TRANG</h2>
+
+<h3>1. Trang Chủ (index.html)</h3>
+<p><strong>Chức năng:</strong></p>
+<ul>
+  <li>Hiển thị thông tin cá nhân ngắn gọn.</li>
+  <li>Hiển thị hình ảnh đại diện.</li>
+  <li>Tự động hiển thị tối đa 8 tin tức mới nhất từ file posts_data.json.</li>
+</ul>
+<p><strong>Cách sử dụng:</strong></p>
+<ul>
+  <li>Nhấn vào tiêu đề hoặc hình ảnh để xem chi tiết.</li>
+  <li>Nhấn “Xem tất cả Tin tức” để chuyển sang trang Tin tức.</li>
+</ul>
+
+<h3>2. Trang Giới thiệu (gioithieu.html)</h3>
+<ul>
+  <li>Trình bày tiểu sử, quá trình công tác, thành tích cá nhân.</li>
+  <li>Sử dụng menu để chuyển trang.</li>
+</ul>
+
+<h3>3. Trang Bài viết (baiviet.html)</h3>
+<ul>
+  <li>Tổng hợp các bài viết chuyên đề.</li>
+  <li>Dữ liệu lấy từ file posts_data.json.</li>
+  <li>Nhấn tiêu đề để xem chi tiết.</li>
+</ul>
+
+<h3>4. Trang Tin tức (tintuc.html)</h3>
+<ul>
+  <li>Hiển thị danh sách tin tức.</li>
+  <li>Phân biệt rõ với bài viết và tài liệu.</li>
+</ul>
+
+<h3>5. Trang Tài liệu (tailieu.html)</h3>
+<ul>
+  <li>Lưu trữ văn bản, biểu mẫu, hướng dẫn.</li>
+  <li>Không hiển thị trong Tin tức mới nhất.</li>
+</ul>
+
+<h3>6. Trang Quản trị – Soạn bài (soanbai.html)</h3>
+<ul>
+  <li>Soạn bài viết, tin tức, tài liệu.</li>
+  <li>Lưu dữ liệu tạm thời vào trình duyệt.</li>
+</ul>
+
+<div class="note">
+<strong>Lưu ý:</strong> Sau khi lưu bài, cần xuất file posts_data.json để nội dung hiển thị công khai.
+</div>
+
+<h2>III. CƠ CHẾ HIỂN THỊ DỮ LIỆU</h2>
+<ul>
+  <li>Website dùng file posts_data.json làm nguồn dữ liệu chung.</li>
+  <li>Trang Chủ hiển thị 8 bài mới nhất (không gồm tài liệu).</li>
+  <li>Bài mới hiển thị trước.</li>
+</ul>
+
+<h2>IV. SỬ DỤNG TRÊN ĐIỆN THOẠI</h2>
+<ul>
+  <li>Website tự động co giãn (Responsive).</li>
+  <li>Menu thu gọn, nội dung hiển thị 1 cột.</li>
+</ul>
+
+<h2>V. QUY TRÌNH XUẤT BẢN DỮ LIỆU (BẮT BUỘC)</h2>
+
+<h3>Bước 1: Xuất file JSON</h3>
+<ul>
+  <li>Mở trang soanbai.html</li>
+  <li>Cuộn xuống cuối trang</li>
+  <li>Nhấn “Xuất Dữ liệu (Sao lưu)”</li>
+</ul>
+
+<h3>Bước 2: Tải file lên Host</h3>
+<ul>
+  <li>Đăng nhập GitHub / Netlify / Vercel</li>
+  <li>Tải file posts_data.json mới lên</li>
+  <li>Ghi đè file cũ</li>
+</ul>
+
+<h2>VI. TÍNH NĂNG THÍCH / KHÔNG THÍCH</h2>
+<ul>
+  <li>Người dùng nhấn Thích / Không Thích.</li>
+  <li>Dữ liệu lưu tạm trong trình duyệt.</li>
+  <li>Khi xuất JSON, dữ liệu được cập nhật vĩnh viễn.</li>
+</ul>
+
+<h2>VII. BẢN QUYỀN</h2>
+<p>Website phục vụ mục đích cá nhân. Chủ sở hữu chịu trách nhiệm nội dung.</p>
+<p><strong>Khẩu hiệu:</strong> 🚀 Sức khỏe – Trí tuệ – Tự do 🌸</p>
+
+<div class="footer">
+© 2025 – Tài liệu hướng dẫn sử dụng
+</div>
+
+</div>
+</body>
+</html>
