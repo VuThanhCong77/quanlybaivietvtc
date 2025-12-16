@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ</title>
+    <style>
+        /* CSS Cơ bản */
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f4f7f9; 
+            line-height: 1.6;
+        }
+        h1 { 
+            color: #0a3a5a; 
+            text-align: center; 
+            margin-bottom: 30px; 
+            border-bottom: 2px solid #0a7f99;
+            padding-bottom: 10px;
+        }
+        .admin-link { 
+            text-align: right; 
+            margin-bottom: 20px; 
+        }
+        
+        /* Định dạng Grid cho danh sách bài viết */
+        .post-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        /* Định dạng Card Bài Viết */
+        .post-card { 
+            background: #fff; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            overflow: hidden; 
+            transition: transform 0.3s; 
+            height: 100%; /* Quan trọng để card có chiều cao bằng nhau */
+            display: flex;
+            flex-direction: column;
+            text-decoration: none; 
+            color: inherit;
+        }
+        .post-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2); 
+        }
+        .post-card img { 
+            width: 100%; 
+            height: 200px; /* Chiều cao cố định cho ảnh */
+            object-fit: cover; 
+        }
+        .post-content { 
+            padding: 15px; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .post-content h2 { 
+            margin-top: 0; 
+            font-size: 1.4em; 
+            color: #0a3a5a; 
+            line-height: 1.3;
+        }
+        .post-content p { 
+            color: #555; 
+            font-size: 0.9em; 
+            line-height: 1.5; 
+            margin-bottom: 10px; 
+            flex-grow: 1; /* Đẩy footer xuống dưới */
+        }
+        .post-footer {
+            margin-top: auto; /* Đẩy footer xuống đáy */
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        .post-content .date { 
+            font-size: 0.8em; 
+            color: #888; 
+            display: block; 
+            margin-top: 5px; 
+            font-style: italic;
+        }
+        .post-content .category { 
+            display: inline-block; 
+            background-color: #0a7f99; 
+            color: white; 
+            padding: 3px 8px; 
+            border-radius: 3px; 
+            font-size: 0.8em; 
+            margin-bottom: 10px; 
+            font-weight: bold;
+        }
+        .no-posts { 
+            text-align: center; 
+            color: #999; 
+            margin-top: 50px; 
+            grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng grid */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-link">
+        <a href="soanbai.html" style="color: #c0392b;">Trang Quản Trị / Soạn Bài</a>
+    </div>
+
+    <h1>TIN TỨC VÀ BÀI VIẾT MỚI NHẤT</h1>
+    
+    <div id="post-list" class="post-grid">
+        </div>
+    
+    <div id="loading" style="text-align: center; padding: 50px;">Đang tải bài viết...</div>
+
+    <script>
+        const JSON_URL = 'posts_data.json'; 
+        
+        async function fetchPosts() {
+            try {
+                // Ưu tiên tải file JSON từ máy chủ (nếu đã deploy)
+                const response = await fetch(JSON_URL);
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (error) {
+                console.warn("Không thể tải posts_data.json từ máy chủ. Đang thử LocalStorage.");
+            }
+            
+            // Nếu không tải được từ máy chủ, lấy từ Local Storage (dữ liệu Admin đã lưu)
+            const localPosts = localStorage.getItem("posts");
+            if (localPosts) {
+                return JSON.parse(localPosts);
+            }
+            
+            return [];
+        }
+
+        async function loadPosts() {
+            document.getElementById('loading').style.display = 'block';
+            const posts = await fetchPosts();
+            const postListDiv = document.getElementById('post-list');
+            postListDiv.innerHTML = '';
+            
+            if (posts.length === 0) {
+                postListDiv.innerHTML = '<div class="no-posts">Hiện chưa có bài viết nào được lưu trữ.</div>';
+                document.getElementById('loading').style.display = 'none';
+                return;
+            }
+
+            // 1. Sắp xếp: Bài mới nhất (ID lớn nhất) lên đầu
+            const sortedPosts = posts.sort((a, b) => b.id - a.id);
+            
+            // 2. GIỚI HẠN: Chỉ lấy 8 bài viết đầu tiên
+            const recentPosts = sortedPosts.slice(0, 8); 
+
+            recentPosts.forEach(post => {
+                // Đảm bảo có ảnh placeholder nếu không có thumbnail hoặc thumbnail là Base64
+                let thumbnailUrl = post.thumbnail;
+                if (!thumbnailUrl || thumbnailUrl.startsWith("data:")) {
+                    // Thay bằng URL ảnh placeholder nếu bạn có (VD: /images/default.jpg)
+                    thumbnailUrl = 'https://via.placeholder.com/300x200?text=Khong+co+anh'; 
+                }
+                
+                // Lấy số lượt thích (Nếu có dữ liệu tạm thời, nên bỏ qua ở trang index, dùng dữ liệu gốc cho đồng bộ)
+                const likes = post.likes || 0; 
+                
+                const postCard = `
+                    <a href="post.html?id=${post.id}" class="post-card">
+                        <img src="${thumbnailUrl}" alt="${post.title}">
+                        <div class="post-content">
+                            <span class="category">${post.category.toUpperCase()}</span>
+                            <h2>${post.title}</h2>
+                            <p>${post.shortDescription || '...'}</p>
+                            <div class="post-footer">
+                                <span class="date">${post.date} | Lượt thích: ${likes}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                postListDiv.innerHTML += postCard;
+            });
+
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', loadPosts);
+    </script>
+</body>
+</html>
