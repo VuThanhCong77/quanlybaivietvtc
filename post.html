@@ -372,7 +372,7 @@ function handleReaction(newReaction) {
 
 
 // =======================================================
-// === LOGIC TẢI DỮ LIỆU BÀI VIẾT (CẬP NHẬT) ===
+// === LOGIC TẢI DỮ LIỆU BÀI VIẾT (ĐÃ CẬP NHẬT) ===
 // =======================================================
 
 async function loadPost() {
@@ -393,6 +393,11 @@ async function loadPost() {
       return;
     }
 
+    // KHAI BÁO BIẾN DÙNG CHUNG CHO META TAGS
+    const siteTitleSuffix = " | Vũ Thành Công";
+    const baseUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
+
+
     // 1. LẤY SỐ LIỆU LIKE/DISLIKE GỐC TỪ POST & CẬP NHẬT TẠM THỜI
     currentLikes = post.likes || 0;
     currentDislikes = post.dislikes || 0;
@@ -404,17 +409,22 @@ async function loadPost() {
     }
     
     // 2. HIỂN THỊ DỮ LIỆU BÀI VIẾT
-    document.getElementById('pageTitle').innerText = post.title;
+    // CẬP NHẬT: Thêm hậu tố vào title
+    document.getElementById('pageTitle').innerText = post.title + siteTitleSuffix;
     titleElement.innerText = post.title;
     dateElement.innerText = post.date;
     
     // === CẬP NHẬT THẺ META OPEN GRAPH (QUAN TRỌNG) ===
     const currentUrl = window.location.href;
-    const thumbnail = post.thumbnail && !post.thumbnail.startsWith("data:") ? post.thumbnail : ''; // Chỉ dùng URL, loại bỏ Base64
+    const thumbnail = post.thumbnail && !post.thumbnail.startsWith("data:") ? post.thumbnail : ''; 
 
-    document.getElementById('ogTitle').content = post.title;
-    document.getElementById('ogDescription').content = post.shortDescription || post.title;
-    document.getElementById('ogImage').content = thumbnail; 
+    // CẬP NHẬT: Dùng đường dẫn tuyệt đối cho hình ảnh (Bắt buộc cho việc chia sẻ)
+    const absoluteImageUrl = thumbnail ? baseUrl + thumbnail.replace(/^\//, '') : '';
+
+
+    document.getElementById('ogTitle').content = post.title + siteTitleSuffix; // CẬP NHẬT: Thêm hậu tố vào og:title
+    document.getElementById('ogDescription').content = post.shortDescription || "Thông tin chi tiết về bài viết trên trang cá nhân.";
+    document.getElementById('ogImage').content = absoluteImageUrl; 
     document.getElementById('ogUrl').content = currentUrl;
     // === KẾT THÚC CẬP NHẬT THẺ META ===
 
