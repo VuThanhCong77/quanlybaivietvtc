@@ -1,194 +1,395 @@
 <!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Chủ</title>
-    <style>
-        /* CSS Cơ bản */
-        body { 
-            font-family: Arial, sans-serif; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 20px; 
-            background-color: #f4f7f9; 
-            line-height: 1.6;
-        }
-        h1 { 
-            color: #0a3a5a; 
-            text-align: center; 
-            margin-bottom: 30px; 
-            border-bottom: 2px solid #0a7f99;
-            padding-bottom: 10px;
-        }
-        .admin-link { 
-            text-align: right; 
-            margin-bottom: 20px; 
-        }
-        
-        /* Định dạng Grid cho danh sách bài viết */
-        .post-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-        }
-        
-        /* Định dạng Card Bài Viết */
-        .post-card { 
-            background: #fff; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-            overflow: hidden; 
-            transition: transform 0.3s; 
-            height: 100%; /* Quan trọng để card có chiều cao bằng nhau */
-            display: flex;
-            flex-direction: column;
-            text-decoration: none; 
-            color: inherit;
-        }
-        .post-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2); 
-        }
-        .post-card img { 
-            width: 100%; 
-            height: 200px; /* Chiều cao cố định cho ảnh */
-            object-fit: cover; 
-        }
-        .post-content { 
-            padding: 15px; 
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .post-content h2 { 
-            margin-top: 0; 
-            font-size: 1.4em; 
-            color: #0a3a5a; 
-            line-height: 1.3;
-        }
-        .post-content p { 
-            color: #555; 
-            font-size: 0.9em; 
-            line-height: 1.5; 
-            margin-bottom: 10px; 
-            flex-grow: 1; /* Đẩy footer xuống dưới */
-        }
-        .post-footer {
-            margin-top: auto; /* Đẩy footer xuống đáy */
-            padding-top: 10px;
-            border-top: 1px solid #eee;
-        }
-        .post-content .date { 
-            font-size: 0.8em; 
-            color: #888; 
-            display: block; 
-            margin-top: 5px; 
-            font-style: italic;
-        }
-        .post-content .category { 
-            display: inline-block; 
-            background-color: #0a7f99; 
-            color: white; 
-            padding: 3px 8px; 
-            border-radius: 3px; 
-            font-size: 0.8em; 
-            margin-bottom: 10px; 
-            font-weight: bold;
-        }
-        .no-posts { 
-            text-align: center; 
-            color: #999; 
-            margin-top: 50px; 
-            grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng grid */
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trang cá nhân</title>
+
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* ================= BIẾN MÀU ================= */
+:root {
+  --primary: #0a7f99;
+  --secondary: #0ab3c9;
+  --accent: #c0392b;
+  --text-dark: #333;
+  --bg-light: #ffffff;
+  --section-bg: #f8f9fa;
+  --shadow-light: rgba(0,0,0,.08);
+  --shadow-medium: rgba(0,0,0,.15);
+}
+
+/* ================= RESET CƠ BẢN ================= */
+body {
+  margin: 0;
+  font-family: 'Roboto', Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: block; 
+}
+
+/* ================= HEADER ================= */
+.site-header {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  padding: 15px 0;
+  color: #fff;
+  box-shadow: 0 2px 10px var(--shadow-medium);
+}
+
+.site-header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-links .active {
+    background: var(--accent); 
+}
+
+/* ================= NỘI DUNG CHÍNH & GIỚI THIỆU ================= */
+main {
+    padding: 0; /* Bỏ padding trên main để section đầu tiên sát header */
+}
+
+section {
+    padding: 40px 0;
+}
+
+h2 {
+    font-size: 24px; 
+    color: var(--primary);
+    text-align: center; 
+    margin-bottom: 30px; 
+    border-bottom: 2px solid var(--primary);
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 5px;
+}
+
+#intro-section {
+    /* Đặt section giới thiệu sát với header */
+    margin-top: 0; 
+    padding-top: 40px; 
+    padding-bottom: 30px; 
+    
+    background: var(--section-bg);
+    border-radius: 0 0 8px 8px; /* Chỉ bo góc dưới */
+    box-shadow: 0 0 15px var(--shadow-light);
+    margin: 0 auto;
+}
+#intro-section container {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding-top: 0; 
+}
+.intro-text {
+    flex: 3;
+}
+.intro-text h3 {
+    color: var(--primary); 
+    font-size: 22px; 
+    margin-top: 0; 
+    padding-bottom: 5px; 
+    border-bottom: 2px solid var(--primary); 
+    width: fit-content;
+}
+.intro-image {
+    flex: 1;
+    text-align: center;
+}
+.intro-image img {
+    max-width: 100%;
+    height: auto;
+    width: 200px; 
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--primary);
+    box-shadow: 0 5px 15px var(--shadow-medium);
+}
+.justified-p {
+    text-align: justify;
+    text-indent: 1cm;
+}
+.lotus-icon {
+    font-size: 1.2em;
+    color: var(--accent);
+    margin-right: 5px;
+}
+
+/* Recent Posts */
+#recent-posts {
+    background: var(--bg-light);
+    padding: 30px 0; /* Giảm padding trên dưới */
+    margin-top: 30px; /* Thêm khoảng cách với section giới thiệu */
+}
+
+#recent-posts-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.recent-post-item {
+    text-align: left; 
+    border: 1px solid #eee; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recent-post-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.recent-post-item img {
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover;
+}
+
+.recent-post-item h3 {
+    margin: 5px 0 10px 0; 
+    font-size: 18px;
+}
+
+.recent-post-item a {
+    color: var(--text-dark); 
+    text-decoration: none;
+}
+
+.recent-post-item a:hover {
+    color: var(--primary);
+}
+
+/* ================= FOOTER ================= */
+#footer {
+  background: var(--primary);
+  color: #fff;
+  padding: 30px 0;
+  text-align: center;
+  font-size: 14px;
+}
+.footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    opacity: 0.8;
+    display: inline-block;
+}
+
+/* ================= MEDIA QUERIES (RESPONSIVE DESIGN) ================= */
+
+@media (max-width: 768px) {
+    /* 1. Header Navigation */
+    .site-header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .logo {
+        margin-bottom: 10px;
+    }
+    .nav-links {
+        display: flex;
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 10px;
+    }
+    .nav-links a {
+        margin: 5px 10px;
+        flex-grow: 0;
+    }
+
+    /* 2. Intro Section - Chuyển sang 1 cột */
+    #intro-section {
+        border-radius: 0; /* Bỏ bo góc trên mobile */
+    }
+    #intro-section container {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+    }
+    .intro-text {
+        order: 2;
+    }
+    .intro-image {
+        order: 1;
+        margin-bottom: 20px;
+    }
+    .intro-text h3 {
+        text-align: center;
+        margin: 0 auto 15px auto;
+        width: 100%;
+        border-bottom: none; 
+    }
+    .justified-p {
+        text-align: left; 
+        text-indent: 0; 
+    }
+    
+    /* 3. Recent Posts - Chuyển sang 1 cột cho điện thoại nhỏ */
+    #recent-posts-list {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 4. Footer */
+    .footer-nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="admin-link">
-        <a href="soanbai.html" style="color: #c0392b;">Trang Quản Trị / Soạn Bài</a>
-    </div>
+<header class="site-header">
+  <container>
+    <nav>
+      <a href="index.html" class="logo">TRANG CÁ NHÂN</a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Trang Chủ</a>
+        <a href="gioithieu.html">Giới thiệu</a>
+        <a href="baiviet.html">Bài viết</a>
+        <a href="tintuc.html">Tin tức</a>
+        <a href="tailieu.html">Tài liệu</a>
+        <a href="soanbai.html" style="background: var(--accent); margin-left: 10px;">Quản trị</a>
+      </div>
+    </nav>
+  </container>
+</header>
 
-    <h1>TIN TỨC VÀ BÀI VIẾT MỚI NHẤT</h1>
-    
-    <div id="post-list" class="post-grid">
+<main>
+  <section id="intro-section">
+    <container>
+      <div class="intro-image">
+        <img src="images/anhcanhan.jpg" alt="Ảnh cá nhân" />
+      </div>
+      <div class="intro-text">
+        <h3>🌸 Về bản thân</h3>
+        <p class="justified-p">
+            <span class="lotus-icon">🌸</span>Một cậu bé sinh năm 1977 tại vùng quê Lưu Kiếm bên dòng sông Đá Bạc, lớn lên trong gia đình nông dân nghèo nhưng giàu tình nghĩa. Tuổi thơ gắn liền với ruộng đồng, lao động vất vả và khát vọng học tập để thoát nghèo. Dù khó khăn, cậu nỗ lực học hành và thi đỗ vào Trường THPT Bạch Đằng năm 1992. Sau khi tốt nghiệp năm 1995, vì hoàn cảnh gia đình, cậu tạm gác ước mơ đại học để đi làm thuê đủ nghề. Những năm tháng lao động cực nhọc đã rèn luyện ý chí, bản lĩnh và sự trung thực trong con người cậu. Năm 1998, cậu được bà con tín nhiệm giao làm kế toán hợp tác xã nhờ sự cẩn trọng và minh bạch. Năm 2004, khi xã Lưu Kỳ thành lập, cậu chuyển về công tác tại Văn phòng HĐND–UBND xã, mở ra hành trình cống hiến mới.
+        </p>
+        <p class="justified-p">
+            <span class="lotus-icon">🌸</span> Từ cán bộ văn phòng, cậu lần lượt đảm nhiệm nhiều chức vụ quan trọng của Đảng và chính quyền, để lại nhiều dấu ấn trong xây dựng nông thôn mới. Những nỗ lực của cậu được ghi nhận bằng nhiều Kỷ niệm chương, bằng khen, nhưng phần thưởng lớn nhất là niềm tin yêu của Nhân dân. Cuộc đời cậu trở thành tấm gương cho thế hệ trẻ: xuất phát điểm thấp không quyết định tương lai; ý chí, trung thực và cống hiến mới tạo ra giá trị bền vững.
+        </p>
+        <a href="gioithieu.html" class="nav-links a" style="background: var(--primary); display: inline-block; margin-top: 15px;">Xem chi tiết</a>
+      </div>
+    </container>
+  </section>
+  
+  <section id="recent-posts">
+    <container>
+        <h2>📰 TIN TỨC MỚI NHẤT</h2>
+        <div id="recent-posts-list">
+            <p style="text-align: center; font-style: italic; color: #777;">Đang tải tin tức...</p>
         </div>
-    
-    <div id="loading" style="text-align: center; padding: 50px;">Đang tải bài viết...</div>
+        <a href="tintuc.html" class="nav-links a" style="margin-top: 30px; display: block; width: fit-content; margin-left: auto; margin-right: auto; background: var(--accent);">Xem tất cả Tin tức</a>
+    </container>
+  </section>
+</main>
 
-    <script>
-        const JSON_URL = 'posts_data.json'; 
-        
-        async function fetchPosts() {
-            try {
-                // Ưu tiên tải file JSON từ máy chủ (nếu đã deploy)
-                const response = await fetch(JSON_URL);
-                if (response.ok) {
-                    return await response.json();
-                }
-            } catch (error) {
-                console.warn("Không thể tải posts_data.json từ máy chủ. Đang thử LocalStorage.");
+<footer id="footer">
+  <container>
+    <div class="footer-nav">
+        <a href="index.html">Trang Chủ</a>
+        <a href="gioithieu.html">Giới thiệu</a>
+        <a href="baiviet.html">Bài viết</a>
+        <a href="tintuc.html">Tin tức</a>
+        <a href="tailieu.html">Tài liệu</a>
+    </div>
+    <p style="margin-top: 10px;">🚀 SỨC KHỎE – TRÍ TUỆ – TỰ DO 🌸</p>
+</footer>
+
+<script>
+    const JSON_URL = 'posts_data.json'; 
+
+    async function fetchPosts() {
+        try {
+            const response = await fetch(JSON_URL);
+            if (!response.ok) {
+                document.getElementById('recent-posts-list').innerHTML = '<p style="text-align: center; color: red;">Không tìm thấy posts_data.json. Vui lòng xuất bản dữ liệu.</p>';
+                return [];
             }
-            
-            // Nếu không tải được từ máy chủ, lấy từ Local Storage (dữ liệu Admin đã lưu)
-            const localPosts = localStorage.getItem("posts");
-            if (localPosts) {
-                return JSON.parse(localPosts);
-            }
-            
+            return await response.json();
+        } catch (error) {
+            document.getElementById('recent-posts-list').innerHTML = '<p style="text-align: center; color: red;">Lỗi mạng khi tải dữ liệu bài viết.</p>';
             return [];
         }
+    }
 
-        async function loadPosts() {
-            document.getElementById('loading').style.display = 'block';
-            const posts = await fetchPosts();
-            const postListDiv = document.getElementById('post-list');
-            postListDiv.innerHTML = '';
-            
-            if (posts.length === 0) {
-                postListDiv.innerHTML = '<div class="no-posts">Hiện chưa có bài viết nào được lưu trữ.</div>';
-                document.getElementById('loading').style.display = 'none';
-                return;
-            }
+    async function loadRecentPosts() {
+        const posts = await fetchPosts();
+        const postsListDiv = document.getElementById("recent-posts-list");
+        
+        const sortedPosts = posts.sort((a, b) => b.id - a.id);
+        
+        // =========================================================
+        // === ĐÃ CẬP NHẬT: THAY THẾ .slice(0, 5) BẰNG .slice(0, 8) ===
+        // =========================================================
+        const recentPosts = sortedPosts.filter(p => p.category !== "tailieu").slice(0, 8); 
 
-            // 1. Sắp xếp: Bài mới nhất (ID lớn nhất) lên đầu
-            const sortedPosts = posts.sort((a, b) => b.id - a.id);
-            
-            // 2. GIỚI HẠN: Chỉ lấy 8 bài viết đầu tiên
-            const recentPosts = sortedPosts.slice(0, 8); 
-
-            recentPosts.forEach(post => {
-                // Đảm bảo có ảnh placeholder nếu không có thumbnail hoặc thumbnail là Base64
-                let thumbnailUrl = post.thumbnail;
-                if (!thumbnailUrl || thumbnailUrl.startsWith("data:")) {
-                    // Thay bằng URL ảnh placeholder nếu bạn có (VD: /images/default.jpg)
-                    thumbnailUrl = 'https://via.placeholder.com/300x200?text=Khong+co+anh'; 
-                }
-                
-                // Lấy số lượt thích (Nếu có dữ liệu tạm thời, nên bỏ qua ở trang index, dùng dữ liệu gốc cho đồng bộ)
-                const likes = post.likes || 0; 
-                
-                const postCard = `
-                    <a href="post.html?id=${post.id}" class="post-card">
-                        <img src="${thumbnailUrl}" alt="${post.title}">
-                        <div class="post-content">
-                            <span class="category">${post.category.toUpperCase()}</span>
-                            <h2>${post.title}</h2>
-                            <p>${post.shortDescription || '...'}</p>
-                            <div class="post-footer">
-                                <span class="date">${post.date} | Lượt thích: ${likes}</span>
-                            </div>
-                        </div>
-                    </a>
-                `;
-                postListDiv.innerHTML += postCard;
-            });
-
-            document.getElementById('loading').style.display = 'none';
+        if (recentPosts.length === 0) {
+            postsListDiv.innerHTML = '<p style="text-align: center; font-style: italic; color: #777;">Hiện chưa có bài viết nào được xuất bản.</p>';
+            return;
         }
 
-        document.addEventListener('DOMContentLoaded', loadPosts);
-    </script>
+        postsListDiv.innerHTML = ''; 
+        
+        recentPosts.forEach(p => {
+            postsListDiv.innerHTML += `
+              <div class="recent-post-item">
+                <img src="${p.thumbnail || 'placeholder_thumb.jpg'}" alt="${p.title}"> 
+                <div style="padding: 15px;">
+                  <span style="font-size: 12px; color: var(--primary); font-weight: bold;">${p.category.toUpperCase()}</span>
+                  <h3 style="margin: 5px 0 10px 0; font-size: 18px;">
+                    <a href="post.html?id=${p.id}">${p.title}</a>
+                  </h3>
+                  <small style="color: #666;">${p.date}</small>
+                </div>
+              </div>`;
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadRecentPosts);
+</script>
 </body>
 </html>
