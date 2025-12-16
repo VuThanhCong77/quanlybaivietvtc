@@ -459,25 +459,479 @@ async function loadPost() {
     }
 }
 
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title id="pageTitle">Chi tiết bài viết</title>
+
+<meta property="og:title" id="ogTitle" content="Bài viết - Đang tải...">
+<meta property="og:description" id="ogDescription" content="">
+<meta property="og:image" id="ogImage" content="">
+<meta property="og:url" id="ogUrl" content="">
+<meta property="og:type" content="article">
+<style>
+/* ========================================================= */
+/* === CÁC THAY ĐỔI CƠ BẢN VÀ LÀM NỔI BẬT TRANG CHI TIẾT === */
+/* ========================================================= */
+body {
+    font-family: 'Arial', sans-serif;
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 15px; 
+    background: #f4f7f9; 
+    line-height: 1.5; 
+    color: #333;
+}
+
+a.back-link {
+    color: #0a7f99; 
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 0;
+}
+a.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Container chính làm nổi bật nội dung - RÕ NÉT TRÊN PC */
+main#content-container {
+    background-color: #ffffff; 
+    padding: 40px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
+    margin: 20px auto 40px auto;
+}
+
+/* Định dạng Tiêu đề */
+h1#title {
+    color: #0a3a5a; 
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #0a7f99; 
+}
+small#date {
+    display: block;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 15px; 
+}
+
+/* ========================================================= */
+/* === STYLE CHO NÚT CHIA SẺ MỚI (GIỮ NGUYÊN) === */
+/* ========================================================= */
+#share-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px; 
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: opacity 0.3s;
+}
+
+.share-btn:hover {
+    opacity: 0.8;
+}
+
+.share-btn svg {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Màu sắc cụ thể cho từng nền tảng */
+#share-facebook {
+    background-color: #3b5998;
+}
+
+#share-zalo {
+    background-color: #0084ff;
+}
+/* ========================================================= */
+
+/* === STYLE CHO NÚT LIKE/DISLIKE MỚI (GIỮ NGUYÊN) === */
+#like-dislike-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    padding: 15px 0;
+    }
+
+.reaction-btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.reaction-btn.active-like {
+    background-color: #e6f7ff;
+    border-color: #0a7f99;
+    color: #0a7f99;
+    font-weight: bold;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.reaction-btn.active-dislike {
+    background-color: #fdeaea;
+    border-color: #c0392b;
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.reaction-btn svg {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    fill: currentColor; 
+}
+
+.reaction-count {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #0a3a5a;
+}
+/* ========================================================= */
+
+/* Định dạng Đoạn giới thiệu ngắn */
+#short-desc {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #eaf8ff;
+    border-left: 5px solid #0a7f99;
+    font-style: italic;
+    color: #0a3a5a;
+}
+#short-desc p { 
+    text-indent: 0 !important; 
+    text-align: left !important;
+    margin: 0;
+    line-height: 1.5 !important; /* Đảm bảo mô tả ngắn vẫn dễ đọc */
+}
+
+/* ========================================================= */
+/* === ĐỊNH DẠNG NỘI DUNG CHÍNH (CẬP NHẬT LINE-HEIGHT) === */
+/* ========================================================= */
+#content p {
+    /* Đặt line-height mặc định cho các đoạn văn nội dung */
+    line-height: 1.2; 
+    text-indent: 1.5cm; 
+    text-align: justify; 
+    margin-top: 15px; /* Khoảng cách giữa các đoạn */
+    margin-bottom: 15px;
+}
+
+/* Điều chỉnh các phần tử block khác trong nội dung */
+#content blockquote, 
+#content ul, 
+#content ol, 
+#content table {
+    line-height: 1.5; /* Giữ line-height lớn hơn cho list/table để dễ đọc */
+    text-indent: 0;
+    text-align: left;
+}
+
+/* Định dạng nút tải xuống tệp tài liệu (GIỮ NGUYÊN) */
+.download-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #2ecc71;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+.download-btn:hover {
+    background: #27ae60;
+}
+
+/* Responsive cho thiết bị di động (GIỮ NGUYÊN) */
+@media (max-width: 600px) {
+    main#content-container {
+        padding: 20px; 
+        margin: 10px 0;
+        box-shadow: none; 
+        border-radius: 0;
+    }
+    h1#title {
+        font-size: 24px;
+        padding-bottom: 10px;
+    }
+    #content p {
+        text-indent: 0; 
+        text-align: left;
+    }
+    body {
+        padding: 0;
+        line-height: 1.5;
+    }
+}
+</style>
+</head>
+<body>
+
+<div style="max-width: 1200px; margin: auto; padding: 0 35px;">
+    <a href="index.html" class="back-link">← Trang chủ</a>
+</div>
+
+<main id="content-container">
+    <h1 id="title"></h1>
+    <small id="date"></small>
+    
+    <div id="share-buttons">
+      <a href="#" id="share-zalo" class="share-btn" onclick="shareZalo(event)">
+        <svg fill="white" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M25 5c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20zm0 37c-9.39 0-17-7.61-17-17s7.61-17 17-17 17 7.61 17 17-7.61 17-17 17zm-4.7-18.4c.5-1.5.3-2.9-1-3.6-1.3-.8-3.1-1.3-4.5-1.5l1.6-.7c2-.8 3.5 1 2.8 3.1l-1.6 2.7c-1.3 2.1 2.2 4.4 4.1 2.5l1.2-.9c.7.4 1.7.3 2.3-.4l1.3-1.6c.7-.8.5-2.2-.4-2.9l-1.3-1c-.5-.4-1.3-.4-1.8 0l-1 1.3c-.3.4-1.1.2-1.3-.3l-1.4-2.6c-.6-1-.2-2.3.8-2.9 2.5-1.6 5.8 0 7.3 3.5 1.5 3.5-1.6 7-5.1 8.5-3.6 1.5-7.3 0-8.8-3.5zm11.4 0c-.5-1.5-.3-2.9 1-3.6 1.3-.8 3.1-1.3 4.5-1.5l-1.6-.7c-2-.8-3.5 1-2.8 3.1l1.6 2.7c1.3 2.1-2.2 4.4-4.1 2.5l-1.2-.9c-.7.4-1.7.3-2.3-.4l-1.3-1.6c-.7-.8-.5-2.2.4-2.9l1.3-1c.5-.4 1.3-.4 1.8 0l1 1.3c.3.4 1.1.2 1.3-.3l1.4-2.6c.6-1 .2-2.3-.8-2.9-2.5-1.6-5.8 0-7.3 3.5-1.5 3.5 1.6 7 5.1 8.5 3.6 1.5 7.3 0 8.8-3.5z"/></svg>
+        Chia sẻ Zalo
+      </a>
+      
+      <a href="#" id="share-facebook" class="share-btn" onclick="shareFacebook(event)">
+        <svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.176 3.784 9.444 8.705 10.23V15.75h-2.583v-3.41h2.583V10.1c0-2.569 1.569-3.978 3.864-3.978 1.096 0 2.035.195 2.308.28v2.66h-1.58c-1.246 0-1.488.593-1.488 1.464v1.944h2.95l-.478 3.41h-2.472v6.48C18.216 21.444 22 17.176 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Chia sẻ Facebook
+      </a>
+    </div>
+
+    <div id="like-dislike-section">
+      <div class="reaction-count">Thống kê: <span id="like-count">0</span>  lượt thích</div>
+      
+      <button class="reaction-btn" id="like-btn" onclick="handleReaction('like')">
+        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 10c0-1.87-1.39-3.41-3.21-3.61l-.64-.06C17.9 6.2 16.5 5 15.3 5H10V2H5v3H2v15h3v-3h10.3c1.2 0 2.6-1.2 3.81-1.33l.64-.06c1.82-.2 3.21-1.74 3.21-3.61v-3.8zM5 18v-3H3v3h2zm16-4.8c0 1.25-.97 2.25-2.21 2.37l-.64.06c-.3.03-.6.04-.9.04h-1.25c-.27 0-.52-.1-.7-.25l-2.73-2.31c-.13-.11-.27-.18-.42-.23-.15-.05-.31-.08-.47-.08H7V7h8.3c.73 0 1.34.42 1.63 1.05l.33.7c.07.16.2.29.35.39.15.1.33.15.51.15H20c.55 0 1 .45 1 1v3.8z"/></svg>
+       ✍ Thích
+      </button>
+      
+      <button class="reaction-btn" id="dislike-btn" onclick="handleReaction('dislike')">
+        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 14c0 1.87 1.39 3.41 3.21 3.61l.64.06c.85.09 2.25 1.2 3.45 1.33H14v3h5V21h3V6h-3v3H8.7c-1.2 0-2.6 1.2-3.81 1.33l-.64.06c-1.82.2-3.21 1.74-3.21 3.61v3.8zM19 14v3h2v-3h-2zm-16-4.8c0-1.25.97-2.25 2.21-2.37l-.64-.06c.3-.03.6-.04.9-.04h1.25c.27 0 .52.1.7.25l2.73 2.31c.13.11.27.18.42-.23.15.05.31.08.47.08H17V17h-8.3c-.73 0-1.34-.42-1.63-1.05l-.33-.7c-.07-.16-.2-.29-.35-.39-.15-.1-.33-.15-.51-.15H4c-.55 0-1-.45-1-1v-3.8z"/></svg>
+        😂 Không Thích
+      </button>
+    </div>
+
+    <div id="content"></div>
+</main>
+
+
+<script>
+// Khai báo URL của file dữ liệu chung
+const JSON_URL = 'posts_data.json'; 
+
+async function fetchPosts() {
+    try {
+        const response = await fetch(JSON_URL);
+        if (!response.ok) {
+            console.error("Không tìm thấy file posts_data.json. Đang trả về dữ liệu trống.");
+            return [];
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Lỗi mạng khi tải dữ liệu bài viết:", error);
+        return [];
+    }
+}
+
 // =======================================================
-// === CHỈNH SỬA QUAN TRỌNG: HÀM CHIA SẺ ZALO MỚI ===
+// === LOGIC XỬ LÝ LƯỢT THÍCH/KHÔNG THÍCH (GIỮ NGUYÊN) ===
+// =======================================================
+
+let currentPostId = null; 
+let currentLikes = 0; 
+let currentDislikes = 0;
+
+// Hàm lưu trạng thái phản ứng của người dùng vào Local Storage
+function saveUserReaction(reactionType) {
+    const reactions = JSON.parse(localStorage.getItem('userReactions') || '{}');
+    reactions[currentPostId] = reactionType; // 'like', 'dislike', hoặc null
+    localStorage.setItem('userReactions', JSON.stringify(reactions));
+}
+
+// Hàm lấy trạng thái phản ứng của người dùng từ Local Storage
+function getUserReaction() {
+    const reactions = JSON.parse(localStorage.getItem('userReactions') || '{}');
+    return reactions[currentPostId];
+}
+
+// Hàm cập nhật giao diện (Màu nút, bộ đếm)
+function updateReactionUI(reactionType) {
+    const likeBtn = document.getElementById('like-btn');
+    const dislikeBtn = document.getElementById('dislike-btn');
+    const likeCountSpan = document.getElementById('like-count');
+    
+    // Reset trạng thái
+    likeBtn.classList.remove('active-like');
+    dislikeBtn.classList.remove('active-dislike');
+    
+    // Cập nhật trạng thái người dùng
+    if (reactionType === 'like') {
+        likeBtn.classList.add('active-like');
+    } else if (reactionType === 'dislike') {
+        dislikeBtn.classList.add('active-dislike');
+    }
+    
+    // Cập nhật bộ đếm (Chỉ hiển thị tổng số Like)
+    likeCountSpan.innerText = currentLikes;
+}
+
+// Hàm xử lý khi người dùng nhấn nút Like/Dislike
+function handleReaction(newReaction) {
+    if (!currentPostId) return;
+
+    const currentReaction = getUserReaction();
+
+    if (newReaction === currentReaction) {
+        // 1. Nhấn lại nút đang được chọn (Hủy bỏ)
+        if (newReaction === 'like') {
+            currentLikes--;
+        } else {
+            currentDislikes--;
+        }
+        saveUserReaction(null);
+        updateReactionUI(null);
+        
+    } else {
+        // 2. Nhấn nút mới hoặc thay đổi phản ứng
+        if (currentReaction === 'like') {
+            currentLikes--; // Hủy like cũ
+        } else if (currentReaction === 'dislike') {
+            currentDislikes--; // Hủy dislike cũ
+        }
+
+        if (newReaction === 'like') {
+            currentLikes++;
+        } else {
+            currentDislikes++;
+        }
+
+        saveUserReaction(newReaction);
+        updateReactionUI(newReaction);
+    }
+    
+    // === QUAN TRỌNG: LƯU TẠM SỐ LIỆU MỚI VÀO LOCAL STORAGE ===
+    const postsData = JSON.parse(localStorage.getItem('posts_data_temp') || '{}');
+    postsData[currentPostId] = { likes: currentLikes, dislikes: currentDislikes };
+    localStorage.setItem('posts_data_temp', JSON.stringify(postsData));
+
+    alert("Cập nhật thành công! Số liệu này sẽ được lưu tạm thời. Vui lòng vào trang Quản trị (soanbai.html) để Export dữ liệu và cập nhật file posts_data.json để lưu vĩnh viễn.");
+}
+
+
+// =======================================================
+// === LOGIC TẢI DỮ LIỆU BÀI VIẾT (CẬP NHẬT) ===
+// =======================================================
+
+async function loadPost() {
+    const urlParams = new URLSearchParams(location.search);
+    const id = urlParams.get("id");
+    currentPostId = id; // Lưu ID bài viết hiện tại
+    const contentContainer = document.getElementById("content-container");
+
+    const posts = await fetchPosts();
+    const post = posts.find(p => p.id == id);
+    
+    const titleElement = document.getElementById("title");
+    const dateElement = document.getElementById("date");
+    const contentElement = document.getElementById("content");
+
+    if(!post){
+      contentContainer.innerHTML = "<p style='text-align: center; color: red;'>Bài viết không tồn tại.</p>";
+      return;
+    }
+
+    // 1. LẤY SỐ LIỆU LIKE/DISLIKE GỐC TỪ POST & CẬP NHẬT TẠM THỜI
+    currentLikes = post.likes || 0;
+    currentDislikes = post.dislikes || 0;
+    
+    const tempReactions = JSON.parse(localStorage.getItem('posts_data_temp') || '{}');
+    if (tempReactions[currentPostId]) {
+        currentLikes = tempReactions[currentPostId].likes || currentLikes;
+        currentDislikes = tempReactions[currentPostId].dislikes || currentDislikes;
+    }
+    
+    // 2. HIỂN THỊ DỮ LIỆU BÀI VIẾT
+    document.getElementById('pageTitle').innerText = post.title;
+    titleElement.innerText = post.title;
+    dateElement.innerText = post.date;
+    
+    // === CẬP NHẬT THẺ META OPEN GRAPH (QUAN TRỌNG) ===
+    const baseUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
+    const currentUrl = window.location.href;
+    const thumbnail = post.thumbnail && !post.thumbnail.startsWith("data:") ? post.thumbnail : ''; 
+    const absoluteImageUrl = thumbnail ? baseUrl + thumbnail.replace(/^\//, '') : '';
+    
+    document.getElementById('ogTitle').content = post.title + " | Vũ Thành Công";
+    document.getElementById('ogDescription').content = post.shortDescription || post.title;
+    document.getElementById('ogImage').content = absoluteImageUrl; 
+    document.getElementById('ogUrl').content = currentUrl;
+    // === KẾT THÚC CẬP NHẬT THẺ META ===
+
+
+    // 3. HIỂN THỊ TRẠNG THÁI REACTION CỦA NGƯỜI DÙNG HIỆN TẠI
+    const userReaction = getUserReaction();
+    updateReactionUI(userReaction);
+
+
+    // 4. Hiển thị đoạn mô tả ngắn (Short Description)
+    if (post.shortDescription) {
+        const shortDescDiv = document.createElement('div');
+        shortDescDiv.id = 'short-desc';
+        shortDescDiv.innerHTML = `<p>${post.shortDescription}</p>`; 
+        dateElement.after(shortDescDiv); 
+    }
+    
+    // Chèn nút chia sẻ và Reaction Section vào đúng vị trí sau Date hoặc Short Description
+    const targetElement = document.getElementById('short-desc') || dateElement;
+    targetElement.after(document.getElementById("share-buttons"));
+    document.getElementById("share-buttons").after(document.getElementById("like-dislike-section"));
+
+    // 5. Hiển thị nội dung chính
+    contentElement.innerHTML = post.content;
+    
+    // 6. Xử lý tệp tài liệu (nếu có)
+    if (post.fileData) {
+        const fileContainer = document.createElement('div');
+        fileContainer.style.marginTop = '30px';
+        fileContainer.innerHTML = `
+            <h3 style="color: #0a7f99; border-bottom: 1px solid #eee; padding-bottom: 5px;">Tệp tài liệu kèm theo</h3>
+            <p style="text-indent: 0; text-align: left;">
+                <strong style="color: #333;">${post.fileName || 'Tài liệu không tên'}</strong> 
+            </p>
+            <a href="${post.fileData}" download="${post.fileName || 'document'}" class="download-btn">
+                Tải xuống
+            </a>
+        `;
+        contentElement.appendChild(fileContainer);
+    }
+}
+
+// ... (các hàm JavaScript khác giữ nguyên)
+
+// =======================================================
+// === HOÀN NGUYÊN: HÀM CHIA SẺ ZALO VỀ PHIÊN BẢN CHUẨN ===
 // =======================================================
 function shareZalo(event) {
     event.preventDefault();
     const url = encodeURIComponent(window.location.href);
-
-    // 1. Thử dùng Deep Link (ưu tiên mở ứng dụng trên mobile)
-    const deepLink = 'zalo://share?url=' + url;
-    window.location.href = deepLink; 
-
-    // 2. Cơ chế dự phòng (fallback) nếu Deep Link thất bại
-    // Nếu ứng dụng không mở sau 500ms, nó sẽ mở giao diện web/tải ứng dụng.
-    setTimeout(function() {
-        window.open('https://zalo.me/share?url=' + url, '_blank', 'width=600,height=600');
-    }, 500); 
+    // Sử dụng đường dẫn chia sẻ web tiêu chuẩn của Zalo
+    window.open('https://zalo.me/share?url=' + url, '_blank', 'width=600,height=600');
 }
 // =======================================================
-
 
 function shareFacebook(event) {
     event.preventDefault();
@@ -491,3 +945,9 @@ document.addEventListener('DOMContentLoaded', loadPost);
 </body>
 
 </html>
+</script>
+
+</body>
+
+</html>
+
