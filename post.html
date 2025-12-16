@@ -372,7 +372,7 @@ function handleReaction(newReaction) {
 
 
 // =======================================================
-// === LOGIC TẢI DỮ LIỆU BÀI VIẾT (ĐÃ CẬP NHẬT) ===
+// === LOGIC TẢI DỮ LIỆU BÀI VIẾT (CẬP NHẬT) ===
 // =======================================================
 
 async function loadPost() {
@@ -393,11 +393,6 @@ async function loadPost() {
       return;
     }
 
-    // KHAI BÁO BIẾN DÙNG CHUNG CHO META TAGS
-    const siteTitleSuffix = " | Vũ Thành Công";
-    const baseUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
-
-
     // 1. LẤY SỐ LIỆU LIKE/DISLIKE GỐC TỪ POST & CẬP NHẬT TẠM THỜI
     currentLikes = post.likes || 0;
     currentDislikes = post.dislikes || 0;
@@ -409,21 +404,18 @@ async function loadPost() {
     }
     
     // 2. HIỂN THỊ DỮ LIỆU BÀI VIẾT
-    // CẬP NHẬT: Thêm hậu tố vào title
-    document.getElementById('pageTitle').innerText = post.title + siteTitleSuffix;
+    document.getElementById('pageTitle').innerText = post.title;
     titleElement.innerText = post.title;
     dateElement.innerText = post.date;
     
     // === CẬP NHẬT THẺ META OPEN GRAPH (QUAN TRỌNG) ===
+    const baseUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
     const currentUrl = window.location.href;
     const thumbnail = post.thumbnail && !post.thumbnail.startsWith("data:") ? post.thumbnail : ''; 
-
-    // CẬP NHẬT: Dùng đường dẫn tuyệt đối cho hình ảnh (Bắt buộc cho việc chia sẻ)
     const absoluteImageUrl = thumbnail ? baseUrl + thumbnail.replace(/^\//, '') : '';
-
-
-    document.getElementById('ogTitle').content = post.title + siteTitleSuffix; // CẬP NHẬT: Thêm hậu tố vào og:title
-    document.getElementById('ogDescription').content = post.shortDescription || "Thông tin chi tiết về bài viết trên trang cá nhân.";
+    
+    document.getElementById('ogTitle').content = post.title + " | Vũ Thành Công";
+    document.getElementById('ogDescription').content = post.shortDescription || post.title;
     document.getElementById('ogImage').content = absoluteImageUrl; 
     document.getElementById('ogUrl').content = currentUrl;
     // === KẾT THÚC CẬP NHẬT THẺ META ===
@@ -467,14 +459,26 @@ async function loadPost() {
     }
 }
 
-// Hàm chia sẻ Zalo (CẬP NHẬT: Không cần tiêu đề/ảnh, Zalo tự lấy từ Meta Tag)
+// =======================================================
+// === CHỈNH SỬA QUAN TRỌNG: HÀM CHIA SẺ ZALO MỚI ===
+// =======================================================
 function shareZalo(event) {
     event.preventDefault();
     const url = encodeURIComponent(window.location.href);
-    window.open('https://zalo.me/share?url=' + url, '_blank', 'width=600,height=600');
-}
 
-// Hàm chia sẻ Facebook (CẬP NHẬT: Dùng giao diện Sharer API để tự động lấy từ Meta Tag)
+    // 1. Thử dùng Deep Link (ưu tiên mở ứng dụng trên mobile)
+    const deepLink = 'zalo://share?url=' + url;
+    window.location.href = deepLink; 
+
+    // 2. Cơ chế dự phòng (fallback) nếu Deep Link thất bại
+    // Nếu ứng dụng không mở sau 500ms, nó sẽ mở giao diện web/tải ứng dụng.
+    setTimeout(function() {
+        window.open('https://zalo.me/share?url=' + url, '_blank', 'width=600,height=600');
+    }, 500); 
+}
+// =======================================================
+
+
 function shareFacebook(event) {
     event.preventDefault();
     const url = encodeURIComponent(window.location.href);
