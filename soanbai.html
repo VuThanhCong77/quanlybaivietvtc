@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title id="pageTitle">Soạn thảo bài viết</title>
+<style>
+/* ========================================================= */
+/* === CÁC THAY ĐỔI CƠ BẢN VÀ LÀM NỔI BẬT TRANG CHI TIẾT === */
+/* ========================================================= */
+body {font-family: Arial; max-width: 900px; margin: auto; padding: 20px;}
+h1 {color: #0a7f99;}
+label {display: block; font-weight: bold; margin-top: 15px;}
+select, input[type="text"] {width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; box-sizing: border-box; border-radius: 4px;}
+#toolbar {margin-top: 10px; padding: 10px; border: 1px solid #ccc; background: #f0f0f0; border-radius: 4px; display: flex; flex-wrap: wrap; align-items: center;} 
+#toolbar button, #toolbar select {padding: 5px 10px; margin: 3px; cursor: pointer; border: 1px solid #aaa; background: #fff; border-radius: 3px;}
+#content-area {
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    min-height: 300px; 
+    margin-top: 5px; 
+    background: #fff; 
+    line-height: 1.6; 
+    text-align: justify; 
+    max-height: 500px; 
+    overflow-y: auto;
+}
+/* FIX LỖI KHOẢNG CÁCH: Đảm bảo đoạn văn đầu tiên không có margin-top */
+#content-area p:first-child { 
+    margin-top: 0; 
+}
+
+button {padding: 10px 15px; margin-top: 15px; cursor: pointer; border: none; border-radius: 4px; font-weight: bold; transition: background 0.3s;}
+button:nth-of-type(1) {background: #2ecc71; color: white;} /* Nút Lưu */
+button:nth-of-type(2) {background: #3498db; color: white;} /* Nút Xem DS */
+#delete-list {margin-top: 30px; border: 1px solid #ddd; padding: 15px; border-radius: 4px; background: #fff;}
+#delete-list h2 {color: #0a3a5a; margin-top: 0;}
+.post-item {display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #eee;}
+.post-item:last-child {border-bottom: none;}
+.post-item button {margin: 0 5px; padding: 5px 10px; font-weight: normal;}
+.edit-btn {background: #f39c12; color: white;}
+.delete-btn {background: #e74c3c; color: white;}
+.file-upload-section {margin-top: 15px; padding: 15px; border: 1px solid #eee; border-radius: 4px; background: #f9f9f9;}
+#backup-restore-section {margin-top: 30px; padding: 20px; border: 2px solid #0a7f99; border-radius: 8px; background: #e7f5fa;}
+.backup-btn {background: #9b59b6 !important; color: white;}
+.restore-btn {background: #34495e !important; color: white;}
+</style>
+<script>
+// --- ADMIN ACCESS CONTROL (GIỮ NGUYÊN) ---
+const ADMIN_PASSWORD = "Cong@khuyen!7785"; // Mật khẩu quản trị
+const HOMEPAGE_URL = "index.html"; // Thống nhất trang chủ
+
+function checkAdmin() {
+    return sessionStorage.getItem('isAdmin') === 'true';
+}
+
+function setAdminSession() {
+    const password = prompt("Vui lòng nhập mật khẩu quản trị:");
+    if (password === ADMIN_PASSWORD) {
+        sessionStorage.setItem('isAdmin', 'true');
+        return true;
+    } else if (password !== null) {
+        alert("Mật khẩu sai.");
+    }
+    return false;
+}
+// --- END ADMIN ACCESS CONTROL ---
+
+// KIỂM TRA QUYỀN TRUY CẬP TRANG SOẠN THẢO (GIỮ NGUYÊN)
+if (!checkAdmin()) {
+    alert("Bạn cần đăng nhập để truy cập trang soạn thảo.");
+    if (setAdminSession()) {
+        location.reload(); 
+    } else {
+        location.href=HOMEPAGE_URL;
+    }
+}
+
+// Lấy ID bài viết từ URL nếu đang ở chế độ chỉnh sửa
+const urlParams = new URLSearchParams(location.search);
+const postIdToEdit = urlParams.get('id');
+
+// =================================================================
+// === CÁC HÀM ĐỊNH DẠNG (GIỮ NGUYÊN) ===
+// =================================================================
+function formatText(command, value = null) {
+    document.execCommand(command, false, value);
+    document.getElementById('content-area').focus();
+}
+
+/**
+ * Hàm mới: Thụt đầu dòng 1cm (Chỉ dòng đầu tiên của đoạn văn)
+ */
+function indentFirstLine() {
+    // 1. Lấy vùng chọn hiện tại
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+
+    // 2. Tìm thẻ block cha gần nhất (P hoặc DIV)
+    let node = selection.getRangeAt(0).startContainer;
+    if (node.nodeType === 3) { // Node.TEXT_NODE
+        node = node.parentNode;
+    }
+
+    let blockEl = node;
+    while(blockEl && blockEl.id !== 'content-area' && blockEl.nodeType === 1) {
+        // Chỉ áp dụng cho thẻ P hoặc DIV
+        if (blockEl.tagName === 'P' || blockEl.tagName === 'DIV') {
+            break;
+        }
+        blockEl = blockEl.parentNode;
+    }
+
+    // 3. Áp dụng/Hủy style text-indent cho blockEl
+    if (blockEl && blockEl.id !== 'content-area') {
+        // Nếu đã có 1cm thì chuyển về 0 (bỏ tụt đầu dòng)
+        if (blockEl.style.textIndent === '1cm') {
+            blockEl.style.textIndent = '0'; 
+        } else {
+            // Ngược lại, áp dụng 1cm
+            blockEl.style.textIndent = '1cm'; 
+        }
+    }
+    
+    document.getElementById('content-area').focus();
+}
+
+/**
+ * Hàm cũ: Áp dụng khoảng cách dòng (line-height)
+ */
+function setLineHeight(value) {
+    // Tối ưu hóa: Tìm thẻ cha P hoặc DIV để áp dụng line-height
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+
+    let parentEl = selection.focusNode;
+    while(parentEl && parentEl.contentEditable !== 'true') {
+        if (parentEl.tagName === 'P' || parentEl.tagName === 'DIV') {
+            parentEl.style.lineHeight = value;
+            document.getElementById('content-area').focus();
+            return;
+        }
+        parentEl = parentEl.parentNode;
+    }
+    
+    // Nếu không tìm thấy thẻ cha P/DIV, cố gắng dùng execCommand
+    // (Lệnh này thường không hoạt động tốt trên mọi trình duyệt)
+    document.execCommand('insertHTML', false, `<span style="line-height: ${value};">${selection.toString()}</span>`);
+    document.getElementById('content-area').focus();
+}
+
+function insertTable() {
+    // Hỏi người dùng số hàng và số cột
+    const rows = prompt("Nhập số hàng:", 3);
+    const cols = prompt("Nhập số cột:", 3);
+    
+    if (rows && cols) {
+        let tableHtml = '<table border="1" style="width:100%; border-collapse: collapse; margin: 10px 0;"><tbody>';
+        for (let i = 0; i < parseInt(rows); i++) {
+            tableHtml += '<tr>';
+            for (let j = 0; j < parseInt(cols); j++) {
+                tableHtml += `<td style="padding: 8px; border: 1px solid #ccc;">Ô ${i + 1}-${j + 1}</td>`;
+            }
+            tableHtml += '</tr>';
+        }
+        tableHtml += '</tbody></table>';
+        document.execCommand('insertHTML', false, tableHtml);
+    }
+}
+
+function insertImage() {
+    const fileInput = document.getElementById('contentImageFile');
+    fileInput.click();
+    fileInput.onchange = function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                // Chèn ảnh vào contenteditable area
+                document.execCommand('insertHTML', false, `<img src="${event.target.result}" style="max-width:100%; height:auto; display: block; margin: 10px auto;" alt="Hình ảnh bài viết">`);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+}
+
+function insertLink() {
+    const url = prompt("Nhập URL:");
+    if (url) {
+        document.execCommand('createLink', false, url);
+    }
+}
+
+
+// =================================================================
+// === LOGIC LƯU VÀ TẢI DỮ LIỆU (GIỮ NGUYÊN) ===
+// =================================================================
+
+/**
+ * Hàm đọc file và chuyển thành Base64
+ */
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        if (!file) return resolve(null);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+/**
+ * Lưu bài viết vào LocalStorage
+ */
+async function savePost() {
+    const title = document.getElementById('title').value;
+    const shortDescription = document.getElementById('shortDescription').value;
+    const category = document.getElementById('category').value;
+    const content = document.getElementById('content-area').innerHTML;
+    
+    const imageFile = document.getElementById('image').files[0]; // File input
+    const thumbnailUrl = document.getElementById('thumbnailUrl').value.trim(); // URL input
+
+    const documentFile = document.getElementById('documentFile').files[0];
+
+    if (!title || !content || !category) {
+        alert("Vui lòng điền Tiêu đề, Nội dung và Chuyên mục.");
+        return;
+    }
+
+    const currentId = document.getElementById('postId').value || Date.now();
+    let posts = JSON.parse(localStorage.getItem("posts") || "[]");
+    let post = posts.find(p => p.id == currentId);
+    
+    // Xử lý ảnh đại diện (Ưu tiên URL, sau đó mới đến Base64)
+    let finalThumbnail = post ? post.thumbnail : ''; // Lấy giá trị cũ
+
+    if (thumbnailUrl) {
+        // ƯU TIÊN 1: Nếu người dùng nhập URL, sử dụng URL đó.
+        finalThumbnail = thumbnailUrl;
+    } else if (imageFile) {
+        // ƯU TIÊN 2: Nếu người dùng chọn file và không có URL, lưu Base64 (cho local preview)
+        finalThumbnail = await fileToBase64(imageFile);
+    } 
+
+    // Xử lý file tài liệu
+    let fileBase64 = post ? post.fileData : '';
+    let fileName = post ? post.fileName : '';
+    let fileMimeType = post ? post.fileMimeType : '';
+    
+    if (documentFile) {
+        fileBase64 = await fileToBase64(documentFile);
+        fileName = documentFile.name;
+        fileMimeType = documentFile.type;
+    }
+
+    // Lấy số liệu Like/Dislike cũ (hoặc 0 nếu là bài mới)
+    let likes = post ? post.likes || 0 : 0;
+    let dislikes = post ? post.dislikes || 0 : 0;
+
+    const newPost = {
+        id: currentId,
+        title: title,
+        shortDescription: shortDescription,
+        category: category,
+        content: content,
+        date: post ? post.date : new Date().toLocaleString('vi-VN'),
+        thumbnail: finalThumbnail, // Đã được xử lý
+        fileData: fileBase64,
+        fileName: fileName,
+        fileMimeType: fileMimeType,
+        likes: likes, // Giữ nguyên số liệu cũ
+        dislikes: dislikes // Giữ nguyên số liệu cũ
+    };
+
+
+    if (post) {
+        // Chỉnh sửa bài viết
+        posts = posts.map(p => p.id == currentId ? newPost : p);
+        alert("Đã cập nhật bài viết thành công!");
+    } else {
+        // Tạo bài viết mới
+        posts.push(newPost);
+        alert("Đã lưu bài viết mới thành công!");
+    }
+
+    localStorage.setItem("posts", JSON.stringify(posts));
+    location.href = HOMEPAGE_URL; // Quay lại trang chủ sau khi lưu/cập nhật
+}
+
+/**
+ * Tải bài viết vào form khi chỉnh sửa
+ */
+function loadPostForEdit(id) {
+    const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+    const post = posts.find(p => p.id == id);
+    
+    if (!post) {
+        alert("Bài viết không tồn tại!");
+        location.href = 'soanbai.html';
+        return;
+    }
+
+    document.getElementById('postId').value = post.id;
+    document.getElementById('title').value = post.title;
+    document.getElementById('shortDescription').value = post.shortDescription;
+    document.getElementById('category').value = post.category;
+    document.getElementById('content-area').innerHTML = post.content;
+    document.getElementById('saveButton').innerText = "Cập nhật bài viết";
+    document.getElementById('pageTitle').innerText = "Chỉnh sửa bài viết";
+    
+    // Cập nhật URL ảnh đại diện nếu là URL
+    const thumbnailUrlInput = document.getElementById('thumbnailUrl');
+    // Kiểm tra nếu giá trị thumbnail không phải là Base64 (chuỗi bắt đầu bằng "data:")
+    if (post.thumbnail && !post.thumbnail.startsWith("data:")) {
+        thumbnailUrlInput.value = post.thumbnail;
+    } else {
+        thumbnailUrlInput.value = ''; // Nếu là base64, để trống ô URL
+    }
+    
+    // Hiển thị thông tin file đính kèm hiện tại
+    const fileInfoDiv = document.getElementById('currentFileInfo');
+    if (post.fileName) {
+        fileInfoDiv.innerHTML = `File hiện tại: <strong>${post.fileName}</strong>. (Chọn file mới để thay thế)`;
+    } else {
+        fileInfoDiv.innerHTML = 'Chưa có file tài liệu đính kèm.';
+    }
+}
+
+/**
+ * Xóa bài viết khỏi LocalStorage
+ */
+function deletePost(id) {
+    if (confirm("Bạn có chắc chắn muốn xóa bài viết này không?")) {
+        let posts = JSON.parse(localStorage.getItem("posts") || "[]");
+        posts = posts.filter(p => p.id != id);
+        localStorage.setItem("posts", JSON.stringify(posts));
+        loadDeleteList(); // Tải lại danh sách sau khi xóa
+    }
+}
+
+/**
+ * Tải danh sách bài viết để Sửa/Xóa
+ */
+function loadDeleteList() {
+    const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+    const listDiv = document.getElementById("delete-list-content");
+    listDiv.innerHTML = '';
+    
+    if (posts.length === 0) {
+        listDiv.innerHTML = '<p>Không có bài viết nào được lưu trữ cục bộ.</p>';
+        return;
+    }
+
+    posts.sort((a, b) => b.id - a.id) // Bài mới nhất lên đầu
+          .forEach(p => {
+        listDiv.innerHTML += `
+            <div class="post-item">
+                <span>[${p.category.toUpperCase()}] <strong>${p.title}</strong> - <small>${p.date}</small></span>
+                <div>
+                    <button onclick="location.href='soanbai.html?id=${p.id}'" class="edit-btn">✍ Sửa</button>
+                    <button onclick="deletePost(${p.id})" class="delete-btn">🗑 Xóa</button>
+                </div>
+            </div>`;
+    });
+}
+
+
+// =================================================================
+// === LOGIC SAO LƯU VÀ PHỤC HỒI DỮ LIỆU (GIỮ NGUYÊN) ===
+// =================================================================
+
+/**
+ * Xuất dữ liệu LocalStorage thành file posts_data.json (Bao gồm cả số liệu Like/Dislike)
+ */
+function backupPosts() {
+    // 1. LẤY DỮ LIỆU BÀI VIẾT HIỆN TẠI TỪ LOCAL STORAGE CỦA ADMIN
+    let exportPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+
+    if (exportPosts.length === 0) {
+        alert("Không có bài viết nào để sao lưu.");
+        return;
+    }
+    
+    // 2. LẤY DỮ LIỆU LIKE/DISLIKE TẠM THỜI TỪ LOCAL STORAGE CỦA NGƯỜI DÙNG
+    const tempReactions = JSON.parse(localStorage.getItem('posts_data_temp') || '{}');
+    
+    // 3. HỢP NHẤT DỮ LIỆU
+    exportPosts = exportPosts.map(post => {
+        if (tempReactions[post.id]) {
+            post.likes = tempReactions[post.id].likes;
+            post.dislikes = tempReactions[post.id].dislikes;
+        }
+        post.likes = post.likes || 0;
+        post.dislikes = post.dislikes || 0;
+        return post;
+    });
+
+    // 4. CHUYỂN THÀNH JSON VÀ TẢI XUỐNG
+    const fileName = `posts_data.json`; 
+    
+    const blob = new Blob([JSON.stringify(exportPosts, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    // 5. XÓA DỮ LIỆU TẠM THỜI SAU KHI XUẤT (đã được lưu vào file JSON)
+    localStorage.removeItem('posts_data_temp');
+
+    alert("Đã xuất file posts_data.json thành công! BƯỚC CUỐI CÙNG LÀ PHẢI TẢI FILE NÀY LÊN HOST CỦA BẠN (GitHub, Netlify...) để cập nhật bài viết và số liệu Like/Dislike vĩnh viễn.");
+}
+
+/**
+ * Phục hồi dữ liệu từ file JSON đã chọn vào LocalStorage
+ */
+function restorePosts() {
+    const fileInput = document.getElementById('restoreFile');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Vui lòng chọn file JSON để phục hồi.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            if (Array.isArray(data) && data.every(p => p.id && p.title && p.content)) {
+                localStorage.setItem("posts", JSON.stringify(data));
+                alert("Phục hồi dữ liệu thành công! Trang sẽ tải lại.");
+                location.reload();
+            } else {
+                alert("Cấu trúc file JSON không hợp lệ.");
+            }
+        } catch (error) {
+            alert("Lỗi khi xử lý nội dung file JSON.");
+        }
+        fileInput.value = ''; // Reset input
+    };
+    reader.readAsText(file);
+}
+
+// Chạy các hàm cần thiết khi trang tải xong
+window.onload = function() {
+    // Chỉ tải danh sách sửa/xóa sau khi đăng nhập thành công
+    if (checkAdmin()) {
+        loadDeleteList();
+        if (postIdToEdit) {
+            loadPostForEdit(postIdToEdit);
+        }
+    }
+};
+
+</script>
+</head>
+<body>
+
+<h1>SOẠN THẢO BÀI VIẾT</h1>
+
+<input type="hidden" id="postId" value="">
+
+<label for="title">Tiêu đề</label>
+<input type="text" id="title">
+
+<label for="shortDescription">Mô tả ngắn (Khoảng 200 ký tự)</label>
+<input type="text" id="shortDescription">
+
+<label for="category">Chuyên mục</label>
+<select id="category">
+    <option value="baiviet">Bài viết</option>
+    <option value="tintuc">Tin tức & Hoạt động</option>
+    <option value="tailieu">Tài liệu</option>
+    <option value="gioithieu">Giới thiệu (ít dùng)</option>
+</select>
+
+<label>Nội dung</label>
+
+<input type="file" id="contentImageFile" accept="image/*" style="display:none;">
+
+<div id="toolbar">
+  <select onchange="formatText('fontName', this.value)">
+    <option value="">Phông chữ</option>
+    <option value="Arial">Arial</option>
+    <option value="Verdana">Verdana</option>
+    <option value="Times New Roman">Times New Roman</option>
+  </select>
+  
+  <select onchange="formatText('fontSize', this.value)">
+    <option value="">Cỡ chữ</option>
+    <option value="2">Nhỏ (10pt)</option>
+    <option value="3">Vừa (12pt)</option>
+    <option value="4">Lớn (14pt)</option>
+    <option value="5">Rất lớn (18pt)</option>
+    <option value="6">Cực lớn (24pt)</option>
+  </select>
+
+  <select onchange="setLineHeight(this.value)">
+    <option value="1.6">K.cách dòng</option>
+    <option value="1.2">1.2 (ít)</option>
+    <option value="1.5">1.5 (vừa)</option>
+    <option value="2.0">2.0 (lớn)</option>
+  </select>
+
+  <button onclick="formatText('justifyLeft')">Trái</button>
+  <button onclick="formatText('justifyCenter')">Giữa</button>
+  <button onclick="formatText('justifyRight')">Phải</button>
+  <button onclick="formatText('justifyFull')">Đều</button>
+  
+  <button onclick="formatText('outdent')">← Bỏ Lề Khối</button> 
+  <button onclick="formatText('indent')">→ Thụt Lề Khối</button>
+  
+  <button onclick="indentFirstLine()">Tụt đầu dòng 1cm</button>
+  
+  <button onclick="insertTable()">Chèn Bảng</button>
+  <button onclick="insertImage()">Chèn ảnh</button>
+  <button onclick="insertLink()">Chèn Link</button>
+  
+  <button onclick="formatText('bold')">B</button>
+  <button onclick="formatText('italic')">I</button>
+  <button onclick="formatText('underline')">U</button>
+</div>
+
+<div id="content-area" contenteditable="true">
+  Bắt đầu soạn thảo nội dung tại đây...
+</div>
+
+<div class="file-upload-section">
+    <label for="thumbnailUrl" style="font-weight: bold; color: #c0392b;">URL Ảnh Đại Diện Công Khai (Ưu tiên cho chia sẻ)</label>
+    <input type="text" id="thumbnailUrl" placeholder="Ví dụ: /images/post-1234.jpg">
+
+    <p class="warning-share" style="color: #c0392b; font-size: 13px; margin-top: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #f9caca; background-color: #fff0f0; border-radius: 4px;">
+        ⚠️ **QUAN TRỌNG:** Nếu bạn điền URL ở trên, hệ thống sẽ ưu tiên lưu URL này vào file JSON. Nếu không có URL, bạn có thể TẢI FILE TỪ MÁY LÊN để xem trước cục bộ (nhưng sẽ không hiển thị khi chia sẻ Zalo/Facebook).
+    </p>
+
+    <label for="image" style="margin-top: 10px;">Hoặc Tải file ảnh (chỉ để xem trước cục bộ)</label>
+    <input type="file" id="image" accept="image/*">
+    <label for="documentFile" style="font-weight: bold; color: #0a7f99; margin-top: 25px;">Tệp Tài liệu (PDF, Word...) - Chỉ dành cho Chuyên mục "Tài liệu"</label>
+    <div id="currentFileInfo" style="margin-bottom: 8px; font-style: italic;"></div>
+    <input type="file" id="documentFile" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+</div>
+
+<button onclick="savePost()" id="saveButton">Lưu bài</button>
+
+<button onclick="location.href = HOMEPAGE_URL">Trang chủ</button>
+
+<div id="backup-restore-section">
+    <h3>Sao lưu & Phục hồi Dữ liệu</h3>
+    <button onclick="backupPosts()" class="backup-btn">💾 Xuất Dữ liệu (Sao lưu)</button>
+    <input type="file" id="restoreFile" style="display:none;" accept=".json" onchange="restorePosts()">
+    <button onclick="document.getElementById('restoreFile').click()" class="restore-btn">🔄 Nhập Dữ liệu (Phục hồi)</button>
+    <p style="font-size: 12px; color: red; margin-top: 10px;">LƯU Ý: Nếu bạn muốn bài viết xuất hiện công khai trên Internet, bạn BẮT BUỘC phải tải file **posts_data.json** (vừa xuất) lên HOST sau khi hoàn thành mọi chỉnh sửa.</p>
+</div>
+
+<div id="delete-list">
+    <h2>Danh sách Bài viết đã Lưu Cục Bộ</h2>
+    <div id="delete-list-content">
+        <p>Đang tải danh sách...</p>
+    </div>
+</div>
+
+</body>
+
+</html>
