@@ -3,41 +3,73 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Danh mục Bài Viết | Tên Trang</title>
+<title>Danh mục Bài viết | Tên Trang</title>
 
 <style>
 /* === RESET & CƠ BẢN === */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #ffffff;
-  color: #0a3a5a;
-  line-height: 1.6;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #0a3a5a;
+    line-height: 1.6;
 }
 
 /* === HEADER CHUNG (SITE HEADER) === */
 header.site-header {
-  background: linear-gradient(to right, #0a7f99, #0ab3c9);
-  color: #fff;
-  padding: 15px 20px; 
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(to right, #0a7f99, #0ab3c9);
+    color: #fff;
+    padding: 15px 20px; 
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 header.site-header h1 {
-  font-size: 22px; 
-  margin: 0;
-  line-height: 1.2;
+    font-size: 22px; 
+    margin: 0;
+    line-height: 1.2;
 }
 
 /* === NỘI DUNG CHÍNH (MAIN CONTENT) === */
 main {
-  max-width: 900px; 
-  margin: 15px auto; 
-  padding: 20px;
-  background-color: #f9f9ff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1);
+    max-width: 900px; 
+    margin: 15px auto; 
+    padding: 20px;
+    background-color: #f9f9ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1);
+}
+
+/* ======================================= */
+/* CSS BỔ SUNG: CONTROL PANEL VÀ STATS */
+/* ======================================= */
+.control-panel {
+    display: flex;
+    justify-content: flex-end; /* Đẩy các ô sang bên phải */
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cde7ef;
+}
+
+#search-input {
+    padding: 8px 12px;
+    border: 1px solid #0ab3c9;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 250px; /* Chiều rộng ô tìm kiếm */
+}
+
+#stats-box {
+    background-color: #0ab3c9;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    flex-shrink: 0; /* Ngăn không cho ô bị co lại */
 }
 
 /* === ITEM BÀI VIẾT === */
@@ -91,13 +123,20 @@ footer {
 
 /* MOBILE */
 @media (max-width: 768px) {
-  .post-item {
-    flex-direction: column;
-  }
-  .post-thumbnail {
-    width: 100%;
-    height: auto;
-  }
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #search-input {
+        width: auto;
+    }
+    .post-item {
+        flex-direction: column;
+    }
+    .post-thumbnail {
+        width: 100%;
+        height: auto;
+    }
 }
 </style>
 </head>
@@ -105,26 +144,36 @@ footer {
 <body>
 
 <header class="site-header">
-  <h1>Danh mục Bài Viết</h1>
+    <h1>Bài viết</h1>
 </header>
 
-<a href="index.html"
-   style="display:inline-block; margin:6px 6px 0 6px; background:#0a7f99;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:bold;">
-   Trang chủ🚀
-</a>
-
 <main>
+<a href="index.html" class="back-link">Trang chủ 🚀</a>
+
+    <div class="control-panel">
+        <input type="text" id="search-input" placeholder="Tìm kiếm theo tiêu đề bài viết..." />
+        
+        <div id="stats-box">
+            Tổng cộng: <span id="post-count">0</span> bài
+        </div>
+    </div>
+    
     <div id="list">
         <p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết...</p>
     </div>
 </main>
 
 <footer>
-  🚀 Công nghệ phục vụ phát triển, công bằng<br/>
+    🚀 Công nghệ phục vụ phát triển, công bằng<br/>
 </footer>
 
 <script>
-    const JSON_URL = 'posts_data.json'; 
+    const JSON_URL = 'posts_data.json';
+    const listContainer = document.getElementById("list");
+    const searchInput = document.getElementById("search-input");
+    const postCountSpan = document.getElementById("post-count");
+    
+    let allPosts = []; // Lưu trữ toàn bộ dữ liệu bài viết đã tải
 
     async function fetchPosts() {
         try {
@@ -133,47 +182,85 @@ footer {
                 console.error("Không tìm thấy file posts_data.json.");
                 return [];
             }
-            return await response.json();
+            // Lọc và chỉ lấy các bài có category là "baiviet"
+            const data = await response.json();
+            return data.filter(p => p.category === "baiviet");
         } catch (error) {
             console.error("Lỗi mạng khi tải dữ liệu bài viết:", error);
             return [];
         }
     }
 
+    function renderArticles(postsToRender) {
+        listContainer.innerHTML = ''; // Xóa nội dung cũ
+
+        if (postsToRender.length === 0) {
+            listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Không tìm thấy bài viết nào phù hợp.</p>';
+            return;
+        }
+
+        postsToRender.forEach(p => {
+            const thumbnailHtml = p.thumbnail
+                ? `<img src="${p.thumbnail}" class="post-thumbnail" alt="${p.title}">`
+                : '';
+                
+            listContainer.innerHTML += `
+                <div class="post-item">
+                    ${thumbnailHtml} 
+                    <div class="post-item-content">
+                        <h3>
+                            <a href="post.html?id=${p.id}">${p.title}</a>
+                        </h3>
+                        <small>${p.date}</small>
+                        <p>${p.shortDescription || p.content.substring(0, 200) + '...'}</p>
+                    </div>
+                </div>`;
+        });
+    }
+    
+    // Hàm Thống kê (Cập nhật số lượng bài viết)
+    function updateStats(count) {
+        postCountSpan.textContent = count;
+    }
+
+    // Hàm Tìm kiếm
+    function searchArticles() {
+        const query = searchInput.value.trim().toLowerCase();
+        
+        if (query === "") {
+            // Nếu ô tìm kiếm trống, hiển thị tất cả
+            renderArticles(allPosts);
+            updateStats(allPosts.length);
+            return;
+        }
+
+        // Lọc bài viết dựa trên tiêu đề
+        const filtered = allPosts.filter(p => 
+            p.title.toLowerCase().includes(query)
+        );
+
+        renderArticles(filtered);
+        updateStats(filtered.length);
+    }
+    
+    // Hàm tải chính
     async function loadArticles() {
-        const list = document.getElementById("list");
-        list.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết...</p>';
+        listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết...</p>';
         
-        const posts = await fetchPosts();
+        allPosts = await fetchPosts();
         
-        // Lọc bài viết có category là "baiviet"
-        const filteredPosts = posts.filter(p => p.category === "baiviet");
-        
-        if (filteredPosts.length === 0) {
-            list.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Hiện tại chưa có bài viết nào trong chuyên mục này.</p>';
+        if (allPosts.length === 0) {
+            listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Hiện tại chưa có bài viết nào trong chuyên mục này.</p>';
+            updateStats(0);
             return;
         }
         
-        list.innerHTML = ''; // Xóa thông báo "Đang tải"
-
-        filteredPosts.forEach(p => {
-            // Chỉ tạo thẻ ảnh nếu có dữ liệu thumbnail
-            const thumbnailHtml = p.thumbnail 
-                ? `<img src="${p.thumbnail}" class="post-thumbnail" alt="${p.title}">` 
-                : ''; 
-                
-            list.innerHTML += `
-              <div class="post-item">
-                ${thumbnailHtml} 
-                <div class="post-item-content">
-                    <h3>
-                      <a href="post.html?id=${p.id}">${p.title}</a>
-                    </h3>
-                    <small>${p.date}</small>
-                    <p>${p.shortDescription || p.content.substring(0, 200) + '...'}</p>
-                </div>
-              </div>`;
-        });
+        // Hiển thị tất cả bài viết ban đầu
+        renderArticles(allPosts);
+        updateStats(allPosts.length);
+        
+        // Gắn sự kiện tìm kiếm khi người dùng gõ
+        searchInput.addEventListener('input', searchArticles);
     }
 
     // Chạy hàm khi DOM tải xong

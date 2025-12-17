@@ -11,6 +11,40 @@ body { margin: 0; font-family: Arial, sans-serif; background: #ffffff; color: #0
 header.site-header { background: linear-gradient(to right, #0a7f99, #0ab3c9); color: #fff; padding: 15px 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
 header.site-header h1 { font-size: 24px; margin: 0; line-height: 1.2; }
 main { max-width: 900px; margin: auto; padding: 20px; background-color: #f9f9ff; border-radius: 12px; box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); }
+
+/* ======================================= */
+/* CSS BỔ SUNG: CONTROL PANEL VÀ STATS */
+/* ======================================= */
+.control-panel {
+    display: flex;
+    justify-content: flex-end; /* Đẩy các ô sang bên phải */
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cde7ef;
+}
+
+#search-input {
+    padding: 8px 12px;
+    border: 1px solid #0ab3c9;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 250px; /* Chiều rộng ô tìm kiếm */
+}
+
+#stats-box {
+    background-color: #0ab3c9;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    flex-shrink: 0; /* Ngăn không cho ô bị co lại */
+}
+
+/* === ITEM TÀI LIỆU === */
 .file-item { border-bottom: 1px solid #cde7ef; padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
 .file-item:last-child { border-bottom: none; }
 .file-info { max-width: 75%; }
@@ -20,6 +54,26 @@ main { max-width: 900px; margin: auto; padding: 20px; background-color: #f9f9ff;
 .file-info p { margin-top: 6px; font-size: 14px; color: #08405d; }
 .download-btn { padding: 8px 16px; background: #0a7f99; color: #fff; text-decoration: none; border-radius: 6px; font-size: 14px; transition: background 0.3s; }
 .download-btn:hover { background: #0a99aa; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #search-input {
+        width: auto;
+    }
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .file-info {
+        max-width: 100%;
+    }
+}
+
 footer { background: #e7f5fa; padding: 20px; margin-top: 40px; text-align: center; font-size: 14px; color: #074055; }
 </style>
 </head>
@@ -27,34 +81,42 @@ footer { background: #e7f5fa; padding: 20px; margin-top: 40px; text-align: cente
 <body>
 
 <header class="site-header">
-  <h1>KHO TÀI LIỆU</h1>
+    <h1>KHO TÀI LIỆU</h1>
 </header>
 
-<a href="index.html"
-   style="display:inline-block; margin:6px 6px 0 6px; background:#0a7f99;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:bold;">
-   Trang chủ🚀
-</a>
+<main>
+ <a href="index.html" class="back-link">Trang chủ 🚀 </a>
+ <a href="vanban/HDsudung.html" class="back-link"> Hướng dẫn sử dụng 🚀 </a>
+ <a href="vanban/Y tuong hay.pdf" class="back-link"> Ý tưởng hay 🚀 </a>
+ <a href="https://ubkttw.vn/" class="back-link"> UBKT TW 🚀 </a>
+ <a href="https://dangcongsan.vn/" class="back-link"> Đảng CSVN 🚀 </a>
+ <a href="https://daotaotructuyen.haiphong.gov.vn/" class="back-link"> Kỹ năng số 🚀 </a>
+ <a href="https://dcs.vn/page/loginApp" class="back-link"> Văn phòng số 🚀</a>
 
-  <a href="vanban/HDsudung.html"
-   style="display:inline-block; margin:6px 6px 0 6px; background:#0a7f99;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:bold;">
-   Hướng dẫn sử dụng🚀
-</a>
+    <div class="control-panel">
+        <input type="text" id="search-input" placeholder="Tìm kiếm tài liệu theo tiêu đề..." />
+        
+        <div id="stats-box">
+            Tổng tài liệu: <span id="document-count">0</span> file
+        </div>
+    </div>
 
-  <a href="vanban/Y tuong hay.pdf"
-   style="display:inline-block; margin:6px 6px 0 6px; background:#0a7f99;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:bold;">
-   Ý tưởng hay🚀
-</a>
-  
-<main id="document-list">
-  <p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>
+    <div id="document-list-container">
+        <p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>
+    </div>
 </main>
 
 <footer>
-  🚀 Công nghệ phục vụ sự phát triển, công bằng và tự do<br/>
+    🚀 Công nghệ phục vụ sự phát triển, công bằng<br/>
 </footer>
 
 <script>
-    const JSON_URL = 'posts_data.json'; 
+    const JSON_URL = 'posts_data.json';
+    const listContainer = document.getElementById("document-list-container");
+    const searchInput = document.getElementById("search-input");
+    const documentCountSpan = document.getElementById("document-count");
+    
+    let allDocuments = []; // Lưu trữ toàn bộ dữ liệu tài liệu đã lọc
 
     async function fetchPosts() {
         try {
@@ -63,42 +125,89 @@ footer { background: #e7f5fa; padding: 20px; margin-top: 40px; text-align: cente
                 console.error("Không tìm thấy file posts_data.json.");
                 return [];
             }
-            return await response.json();
+            const data = await response.json();
+            
+            // Lọc: category là "tailieu" VÀ có dữ liệu file (fileData)
+            return data.filter(p => p.category === "tailieu" && p.fileData);
         } catch (error) {
             console.error("Lỗi mạng khi tải dữ liệu bài viết:", error);
             return [];
         }
     }
 
-    async function loadDocuments() {
-        const mainContent = document.getElementById("document-list");
+    function renderDocuments(postsToRender) {
+        listContainer.innerHTML = ''; // Xóa nội dung cũ
 
-        const posts = await fetchPosts();
-
-        // Lọc bài viết có category là "tailieu" VÀ có dữ liệu file (fileData)
-        const documentPosts = posts.filter(p => p.category === "tailieu" && p.fileData); 
-        
-        if (documentPosts.length === 0) {
-            mainContent.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tài liệu nào.</p>';
+        if (postsToRender.length === 0) {
+            const message = searchInput.value.trim() === '' 
+                ? 'Hiện chưa có tài liệu nào.' 
+                : 'Không tìm thấy tài liệu nào phù hợp với từ khóa.';
+            listContainer.innerHTML = `<p style="text-align: center; color: #888; padding: 20px;">${message}</p>`;
             return;
         }
-        
-        mainContent.innerHTML = ''; 
 
-        documentPosts.forEach(p => {
-            mainContent.innerHTML += `
+        postsToRender.forEach(p => {
+            // Đảm bảo tên file để tải xuống không rỗng
+            const downloadFileName = p.fileName || p.title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.pdf';
+
+            listContainer.innerHTML += `
                 <div class="file-item">
                     <div class="file-info">
                         <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
                         <p>${p.shortDescription || 'Không có mô tả ngắn.'}</p>
                     </div>
-                    <a class="download-btn" href="${p.fileData}" download="${p.fileName || 'document'}">Tải xuống</a>
+                    <a class="download-btn" href="${p.fileData}" download="${downloadFileName}">Tải xuống</a>
                 </div>
             `;
         });
     }
+    
+    // Hàm Thống kê
+    function updateStats(count) {
+        documentCountSpan.textContent = count;
+    }
 
-    // Chạy hàm khi trang tải xong
+    // Hàm Tìm kiếm
+    function searchDocuments() {
+        const query = searchInput.value.trim().toLowerCase();
+        
+        if (query === "") {
+            // Nếu ô tìm kiếm trống, hiển thị tất cả
+            renderDocuments(allDocuments);
+            updateStats(allDocuments.length);
+            return;
+        }
+
+        // Lọc tài liệu dựa trên tiêu đề
+        const filtered = allDocuments.filter(p => 
+            p.title.toLowerCase().includes(query)
+        );
+
+        renderDocuments(filtered);
+        updateStats(filtered.length);
+    }
+    
+    // Hàm tải chính
+    async function loadDocuments() {
+        listContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
+        
+        allDocuments = await fetchPosts();
+        
+        if (allDocuments.length === 0) {
+            listContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tài liệu nào.</p>';
+            updateStats(0);
+            return;
+        }
+        
+        // Hiển thị tất cả tài liệu ban đầu
+        renderDocuments(allDocuments);
+        updateStats(allDocuments.length);
+        
+        // Gắn sự kiện tìm kiếm khi người dùng gõ
+        searchInput.addEventListener('input', searchDocuments);
+    }
+
+    // Chạy hàm khi DOM tải xong
     document.addEventListener('DOMContentLoaded', loadDocuments);
 </script>
 </body>
