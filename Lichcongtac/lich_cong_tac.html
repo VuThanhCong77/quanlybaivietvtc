@@ -2,168 +2,157 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ thống Lịch tông tác</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Lịch Công Tác</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f7f6; padding: 20px; color: #333; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        h2 { color: #1a73e8; text-align: center; }
+        :root { --primary: #1a73e8; --success: #28a745; --danger: #dc3545; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
+        .container { max-width: 950px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: var(--primary); text-align: center; margin-top: 0; }
         
-        .form-box { background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; }
-        .input-row { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        input { padding: 12px; border: 1px solid #ccc; border-radius: 5px; flex: 1; min-width: 200px; font-size: 16px; }
+        .control-panel { background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        input { padding: 12px; border: 1px solid #ccc; border-radius: 6px; flex: 1; min-width: 250px; font-size: 15px; }
         
         .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
-        button { padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; }
-        .btn-add { background: #28a745; flex: 2; }
-        .btn-add:hover { background: #218838; }
-        .btn-export { background: #007bff; flex: 1; }
+        button { padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; }
+        .btn-add { background: var(--success); flex: 2; }
+        .btn-export { background: var(--primary); flex: 1; }
         .btn-import { background: #6c757d; flex: 1; }
-        .btn-del { background: #dc3545; padding: 5px 10px; font-size: 12px; }
+        .btn-del { background: var(--danger); padding: 6px 12px; font-size: 12px; border-radius: 4px; }
 
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #eee; padding: 12px; text-align: left; }
-        th { background: #1a73e8; color: white; }
-        .urgent { color: red; font-weight: bold; animation: blink 1s infinite; background: #fff0f0; }
-        @keyframes blink { 50% { opacity: 0.3; } }
+        th { background: var(--primary); color: white; position: sticky; top: 0; }
+        tr:nth-child(even) { background: #fafafa; }
+        .urgent { color: white; font-weight: bold; animation: pulse 1.5s infinite; background: var(--danger) !important; }
+        @keyframes pulse { 0% { background-color: #dc3545; } 50% { background-color: #ff4d4d; } 100% { background-color: #dc3545; } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h2>📅 QUẢN LÝ LỊCH CÔNG TÁC</h2>
-    <a href="../Lichcongtac/HDlichcongtac.html">🌸 Hướng dẫn sử dụng</a>
     
-    <div class="form-box">
-        <div class="input-row">
-            <input type="text" id="inpViec" placeholder="Nội dung công việc (ví dụ: Họp Đảng ủy)...">
+    <div class="control-panel">
+        <div class="input-group">
+            <input type="text" id="inpViec" placeholder="Nội dung công việc...">
             <input type="datetime-local" id="inpGio">
         </div>
         <div class="btn-group">
-            <button class="btn-add" onclick="xuLyThem()">➕ THÊM LỊCH MỚI</button>
-            <button class="btn-export" onclick="xuLyXuat()">💾 SAO LƯU (FILE)</button>
-            <button class="btn-import" onclick="document.getElementById('fileDauVao').click()">📂 PHỤC HỒI</button>
-            <input type="file" id="fileDauVao" style="display:none" onchange="xuLyNhap(event)">
+            <button class="btn-add" onclick="themLich()">➕ THÊM LỊCH MỚI</button>
+            <button class="btn-export" onclick="xuatDuPhong()">💾 SAO LƯU</button>
+            <button class="btn-import" onclick="document.getElementById('fileIn').click()">📂 PHỤC HỒI</button>
+            <input type="file" id="fileIn" style="display:none" onchange="nhapDuPhong(event)">
         </div>
     </div>
 
-    <table>
+    <div id="msg" style="text-align:center; font-weight:bold; margin-bottom:10px;"></div>
+
+    <table id="mainTable">
         <thead>
             <tr>
                 <th>Thời Gian</th>
-                <th>Công Việc</th>
+                <th>Nội Dung</th>
                 <th>Trạng Thái (Nhắc 6h)</th>
-                <th>Xóa</th>
+                <th>Hành Động</th>
             </tr>
         </thead>
-        <tbody id="danhSachLich"></tbody>
+        <tbody id="renderBody"></tbody>
     </table>
 </div>
 
-<audio id="chuongBao" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+<audio id="audioAlert" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
 
 <script>
-    // 1. Khởi tạo dữ liệu (Lấy từ bộ nhớ máy hoặc dùng mặc định)
-    let dsLich = JSON.parse(localStorage.getItem('LICH_APP_2025')) || [];
+    // Dữ liệu mặc định từ file PDF của bạn
+    const defaultData = [
+        { id: 1, v: "Giao ban với TT ĐU", g: "2025-10-06T08:00" },
+        { id: 2, v: "Đại hội MTTQ; Đại hội Phụ nữ", g: "2025-10-14T07:30" },
+        { id: 3, v: "Bí thư đối thoại với Nhân dân", g: "2025-11-06T08:00" },
+        { id: 4, v: "Họp HĐND phường", g: "2025-12-15T07:30" }
+    ];
 
-    // 2. Hàm Thêm Lịch (Đã sửa lỗi không nhấn được)
-    function xuLyThem() {
-        const viec = document.getElementById('inpViec').value.trim();
-        const gio = document.getElementById('inpGio').value;
+    let dataList = JSON.parse(localStorage.getItem('GH_LICH_2025')) || defaultData;
 
-        if (!viec || !gio) {
-            alert("Vui lòng nhập đầy đủ: 1. Nội dung công việc và 2. Ngày giờ cụ thể!");
-            return;
-        }
-
-        const mucMoi = { id: Date.now(), v: viec, g: gio };
-        dsLich.push(mucMoi);
+    function render() {
+        const body = document.getElementById('renderBody');
+        const now = new Date();
+        body.innerHTML = '';
         
-        // Xóa trắng ô nhập sau khi thêm thành công
-        document.getElementById('inpViec').value = "";
-        document.getElementById('inpGio').value = "";
-        
-        luuVaHienThi();
-    }
+        // Sắp xếp lịch
+        dataList.sort((a, b) => new Date(a.g) - new Date(b.g));
 
-    // 3. Hàm Xóa Lịch
-    function xuLyXoa(id) {
-        if(confirm("Bạn có chắc chắn muốn xóa lịch này không?")) {
-            dsLich = dsLich.filter(item => item.id !== id);
-            luuVaHienThi();
-        }
-    }
+        let hasUrgent = false;
 
-    // 4. Hàm Sao Lưu (Xuất file .json)
-    function xuLyXuat() {
-        if(dsLich.length === 0) return alert("Không có dữ liệu để sao lưu!");
-        const dataStr = JSON.stringify(dsLich, null, 2);
-        const blob = new Blob([dataStr], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'du_phong_lich_cong_tac.json';
-        link.click();
-    }
+        dataList.forEach(item => {
+            const date = new Date(item.g);
+            const diff = (date - now) / 3600000;
+            let status = "Đang chờ";
+            let cls = "";
 
-    // 5. Hàm Phục Hồi (Nhập file)
-    function xuLyNhap(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                const data = JSON.parse(e.target.result);
-                if (Array.isArray(data)) {
-                    dsLich = data;
-                    luuVaHienThi();
-                    alert("Đã phục hồi dữ liệu thành công!");
-                }
-            } catch (err) { alert("File không đúng định dạng dự phòng!"); }
-        };
-        reader.readAsText(file);
-    }
-
-    // 6. Lưu vào bộ nhớ và vẽ lại bảng
-    function luuVaHienThi() {
-        localStorage.setItem('LICH_APP_2025', JSON.stringify(dsLich));
-        
-        const tbody = document.getElementById('danhSachLich');
-        tbody.innerHTML = '';
-        const bayGio = new Date();
-
-        // Sắp xếp theo thời gian
-        dsLich.sort((a, b) => new Date(a.g) - new Date(b.g));
-
-        dsLich.forEach(item => {
-            const thoiDiem = new Date(item.g);
-            const diffHours = (thoiDiem - bayGio) / (1000 * 60 * 60);
-            
-            let trangThai = "Đang chờ";
-            let lopCSS = "";
-
-            if (diffHours < 0) {
-                trangThai = "Đã qua";
-            } else if (diffHours <= 6) {
-                trangThai = "⚠️ NHẮC (Dưới 6h)";
-                lopCSS = "urgent";
-                document.getElementById('chuongBao').play().catch(()=>{});
+            if (diff < 0) {
+                status = "Đã qua";
+            } else if (diff <= 6) {
+                status = "⚠️ SẮP ĐẾN GIỜ!";
+                cls = "urgent";
+                hasUrgent = true;
             }
 
-            tbody.innerHTML += `
-                <tr>
-                    <td><b>${thoiDiem.toLocaleString('vi-VN')}</b></td>
+            body.innerHTML += `
+                <tr class="${cls}">
+                    <td><b>${date.toLocaleString('vi-VN')}</b></td>
                     <td>${item.v}</td>
-                    <td class="${lopCSS}">${trangThai}</td>
-                    <td><button class="btn-del" onclick="xuLyXoa(${item.id})">Xóa</button></td>
-                </tr>
-            `;
+                    <td>${status}</td>
+                    <td><button class="btn-del" onclick="xoaLich(${item.id})">Xóa</button></td>
+                </tr>`;
         });
+
+        if (hasUrgent) {
+            document.getElementById('audioAlert').play().catch(() => {});
+        }
+        localStorage.setItem('GH_LICH_2025', JSON.stringify(dataList));
     }
 
-    // Chạy cập nhật tự động mỗi phút
-    setInterval(luuVaHienThi, 60000);
-    luuVaHienThi();
-</script>
+    function themLich() {
+        const v = document.getElementById('inpViec').value;
+        const g = document.getElementById('inpGio').value;
+        if (!v || !g) return alert("Vui lòng nhập đủ nội dung và thời gian!");
+        
+        dataList.push({ id: Date.now(), v: v, g: g });
+        document.getElementById('inpViec').value = '';
+        document.getElementById('inpGio').value = '';
+        render();
+    }
 
+    function xoaLich(id) {
+        if(confirm("Xóa mục này?")) {
+            dataList = dataList.filter(i => i.id !== id);
+            render();
+        }
+    }
+
+    function xuatDuPhong() {
+        const blob = new Blob([JSON.stringify(dataList)], {type: 'application/json'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'backup_lich.json';
+        a.click();
+    }
+
+    function nhapDuPhong(e) {
+        const reader = new FileReader();
+        reader.onload = (el) => {
+            try {
+                const json = JSON.parse(el.target.result);
+                if(Array.isArray(json)) { dataList = json; render(); alert("Đã cập nhật!"); }
+            } catch(err) { alert("File không hợp lệ!"); }
+        };
+        reader.readAsText(e.target.files[0]);
+    }
+
+    setInterval(render, 60000);
+    render();
+</script>
 </body>
 </html>
