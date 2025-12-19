@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lịch công tác</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #e9ecef; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        h2 { color: #0d6efd; text-align: center; }
+        .form-group, .backup-group { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
+        input[type="text"], input[type="datetime-local"] { padding: 10px; border: 1px solid #ddd; border-radius: 5px; flex: 1; }
+        button { padding: 10px 15px; cursor: pointer; border: none; border-radius: 5px; font-weight: bold; }
+        .btn-add { background: #198754; color: white; }
+        .btn-export { background: #0dcaf0; color: white; }
+        .btn-import { background: #6c757d; color: white; }
+        .btn-delete { background: #dc3545; color: white; padding: 5px; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #dee2e6; padding: 12px; text-align: left; }
+        th { background-color: #0d6efd; color: white; }
+        .status-alert { color: #d93025; font-weight: bold; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+<header class="site-header">
+  <container>
+    <nav>
+      <a href="../Lichcongtac/HDlichcongtac.html">🌸 Hướng dẫn sử dụng</a>
+       </div>
+    </nav>
+  </container>
+</header>
+
+<div class="container">
+    <h2>📅 Lịch công tác 🌸 Vũ Thành Công</h2>
+    
+    <div class="form-group">
+        <input type="text" id="eventTitle" placeholder="Nội dung công việc...">
+        <input type="datetime-local" id="eventTime">
+        <button class="btn-add" onclick="addEvent()">➕ Thêm Lịch</button>
+    </div>
+
+    <div class="backup-group">
+        <span>Bảo vệ dữ liệu:</span>
+        <button class="btn-export" onclick="exportData()">💾 Xuất file dự phòng</button>
+        <input type="file" id="importFile" style="display:none" onchange="importData(event)">
+        <button class="btn-import" onclick="document.getElementById('importFile').click()">📂 Phục hồi từ file</button>
+    </div>
+
+    <div id="status-summary" style="text-align: center; margin-bottom: 15px;"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Thời gian</th>
+                <th>Sự kiện</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody id="event-table"></tbody>
+    </table>
+</div>
+
+<audio id="alarmSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+<script>
+    // Khởi tạo dữ liệu từ PDF hoặc từ bộ nhớ [cite: 1, 10, 24, 38]
+    let events = JSON.parse(localStorage.getItem('mySchedule_2025')) || [
+        { title: "Giao ban Thường trực Đảng ủy", time: "2025-10-06T08:00" }, [cite: 21]
+        { title: "Đại hội MTTQ", time: "2025-10-14T07:30" }, [cite: 21]
+        { title: "Tổng kết công tác kiểm tra", time: "2025-11-24T08:00" } [cite: 35]
+    ];
+
+    function addEvent() {
+        const title = document.getElementById('eventTitle').value;
+        const time = document.getElementById('eventTime').value;
+        if (!title || !time) return alert("Vui lòng nhập đủ thông tin!");
+        events.push({ title, time });
+        saveAndRefresh();
+        document.getElementById('eventTitle').value = '';
+    }
+
+    // CHỨC NĂNG XUẤT FILE (DỰ PHÒNG)
+    function exportData() {
+        const dataStr = JSON.stringify(events, null, 2);
+        const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+        const exportFileDefaultName = 'du_phong_lich_2025.json';
+
+        const linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
+    }
+
+    // CHỨC NĂNG NHẬP FILE (PHỤC HỒI)
+    function importData(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const importedEvents = JSON.parse(e.target.result);
+                if (Array.isArray(importedEvents)) {
+                    events = importedEvents;
+                    saveAndRefresh();
+                    alert("Đã phục hồi dữ liệu thành công!");
+                }
+            } catch (err) {
+                alert("File không đúng định dạng!");
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    function deleteEvent(index) {
+        if(confirm("Xóa lịch này?")) {
+            events.splice(index, 1);
+            saveAndRefresh();
+        }
+    }
+
+    function saveAndRefresh() {
+        localStorage.setItem('mySchedule_2025', JSON.stringify(events));
+        renderTable();
+    }
+
+    function renderTable() {
+        const tableBody = document.getElementById('event-table');
+        const now = new Date();
+        tableBody.innerHTML = '';
+        let alertCount = 0;
+
+        events.sort((a, b) => new Date(a.time) - new Date(b.time));
+
+        events.forEach((ev, index) => {
+            const eventDate = new Date(ev.time);
+            const diffHours = (eventDate - now) / (1000 * 60 * 60);
+            let status = diffHours < 0 ? "Đã qua" : "Đang chờ";
+            let statusClass = "";
+
+            if (diffHours > 0 && diffHours <= 6) {
+                status = "⚠️ NHẮC (Dưới 6h)";
+                statusClass = "status-alert";
+                alertCount++;
+                document.getElementById('alarmSound').play().catch(() => {});
+            }
+
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${eventDate.toLocaleString('vi-VN')}</td>
+                    <td>${ev.title}</td>
+                    <td class="${statusClass}">${status}</td>
+                    <td><button class="btn-delete" onclick="deleteEvent(${index})">Xóa</button></td>
+                </tr>`;
+        });
+        document.getElementById('status-summary').innerHTML = `Số lịch sắp tới cần nhắc: <b>${alertCount}</b>`;
+    }
+
+    setInterval(renderTable, 60000);
+    renderTable();
+</script>
+
+</body>
+</html>

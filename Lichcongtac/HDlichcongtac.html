@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn sử dụng lịch công tác</title>
+    <style>
+        :root { --primary: #1a73e8; --secondary: #34a853; --warning: #d93025; --bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: var(--bg); padding: 40px 20px; }
+        .guide-container { max-width: 850px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h1 { color: var(--primary); text-align: center; border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
+        h2 { color: var(--primary); margin-top: 30px; display: flex; align-items: center; }
+        h2::before { content: "📍"; margin-right: 10px; }
+        .step { background: #fff; border-left: 4px solid var(--secondary); padding: 15px 20px; margin: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .step-number { font-weight: bold; color: var(--secondary); font-size: 1.2em; }
+        code { background: #eee; padding: 2px 6px; border-radius: 4px; font-family: Consolas, monospace; }
+        .note { background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 8px; margin: 20px 0; }
+        .urgent-text { color: var(--warning); font-weight: bold; }
+        .btn-demo { display: inline-block; padding: 8px 15px; border-radius: 5px; background: #ddd; font-size: 0.9em; margin-top: 5px; }
+        img.demo-img { width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; margin: 15px 0; }
+    </style>
+</head>
+<body>
+
+<div class="guide-container">
+    <h1>🌸 CẨM NANG SỬ DỤNG PHẦN MỀM LỊCH CÔNG TÁC</h1>
+
+    <p style="text-align: center; font-style: italic;">Phần mềm quản lý công việc cá nhân, tự động nhắc nhở trước 06 giờ và hỗ trợ sao lưu dữ liệu.</p>
+
+    <h2>1. Cách cài đặt file vào máy tính</h2>
+    <div class="step">
+        <p><span class="step-number">Bước 1:</span> Chuẩn bị mã nguồn (Code) đã được cung cấp.</p>
+        <p><span class="step-number">Bước 2:</span> Mở <strong>Notepad</strong> trên máy tính, dán mã vào.</p>
+        <p><span class="step-number">Bước 3:</span> Chọn <code>File > Save As</code>. Đặt tên là <code>lich_2025.html</code>. Tại mục <strong>Encoding</strong>, hãy chọn <strong>UTF-8</strong> để không bị lỗi font chữ tiếng Việt.</p>
+    </div>
+
+    <h2>2. Cách thêm và cập nhật lịch mới</h2>
+    <p>Phần mềm cho phép bạn nhập không giới hạn các cuộc họp phát sinh:</p>
+    <ul>
+        <li><strong>Nội dung:</strong> Ghi tên cuộc họp, địa điểm (Ví dụ: <i>Họp chi bộ tại TDP 9</i>).</li>
+        <li><strong>Thời gian:</strong> Chọn đúng ngày và giờ bắt đầu.</li>
+        <li>Sau khi nhấn <strong>"Thêm Lịch"</strong>, danh sách sẽ tự động sắp xếp theo thứ tự thời gian gần nhất lên trên.</li>
+    </ul>
+
+    <h2>3. Cơ chế nhắc nhở 06 giờ</h2>
+    <p>Đây là tính năng quan trọng nhất của phần mềm:</p>
+    <div class="step" style="border-left-color: var(--warning);">
+        <p>Khi thời gian hiện tại cách giờ họp <strong>dưới 6 tiếng</strong>:</p>
+        <ul>
+            <li>Dòng trạng thái chuyển sang màu đỏ và nhấp nháy: <span class="urgent-text">⚠️ NHẮC (Dưới 6h)</span>.</li>
+            <li>Âm thanh báo động "Beep" sẽ phát ra mỗi khi trang web cập nhật (1 phút/lần).</li>
+        </ul>
+        <p><i>* Lưu ý: Bạn cần nhấn chuột 1 lần vào trang web sau khi mở để trình duyệt kích hoạt quyền phát âm thanh.</i></p>
+    </div>
+
+    <h2>4. Sao lưu để tránh mất dữ liệu</h2>
+    <div class="note">
+        <strong>⚠️ Chú ý:</strong> Nếu bạn xóa lịch sử duyệt web hoặc dùng phần mềm dọn rác, dữ liệu có thể bị mất. Hãy dùng chức năng sao lưu:
+    </div>
+    <ol>
+        <li>Nhấn <strong>"Xuất file dự phòng"</strong>: File <code>.json</code> sẽ tải về máy. Hãy cất file này ở ổ D hoặc gửi vào Email.</li>
+        <li>Nếu dữ liệu bị trống: Nhấn <strong>"Phục hồi"</strong> và chọn lại file đã lưu để lấy lại toàn bộ lịch cũ.</li>
+    </ol>
+
+    <h2>5. Mẹo sử dụng hiệu quả</h2>
+    <ul>
+        <li><strong>Ghim tab:</strong> Chuột phải vào tab trang web trên trình duyệt và chọn "Ghim" (Pin) để lịch luôn nằm ở góc màn hình.</li>
+        <li><strong>Xóa lịch cũ:</strong> Khi cuộc họp kết thúc, hãy nhấn nút <strong>Xóa</strong> để danh sách luôn gọn gàng, dễ nhìn.</li>
+    </ul>
+
+    <p style="text-align: center; margin-top: 50px; color: #999; font-size: 0.8em;">&copy; 2025 - Phần mềm hỗ trợ công tác Đảng và Chính quyền</p>
+</div>
+
+</body>
+</html>
