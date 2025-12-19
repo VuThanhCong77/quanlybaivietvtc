@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Trang Văn bản Chuyên môn</title>
+
+<style>
+:root {
+    --primary: #0a7f99;
+    --secondary: #0ab3c9;
+    --accent: #c0392b;
+    --bg-main: #f9f9ff;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #0a3a5a;
+    line-height: 1.6;
+    padding-top: 160px;
+    scroll-behavior: smooth;
+}
+
+/* HEADER */
+header.page-header {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header.page-header h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+/* SEARCH FIXED */
+#fixed-search-area {
+    position: fixed;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    padding: 10px 0;
+}
+
+/* LINK NHANH */
+.back-link {
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: bold;
+}
+.back-link:hover { text-decoration: underline; }
+
+#search-container-wrapper {
+    max-width: 700px;
+    margin: 10px auto 0;
+    padding: 0 15px;
+}
+
+#search-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#search-input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--secondary);
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.btn-action {
+    padding: 10px 15px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-nav {
+    width: 40px;
+    height: 40px;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+}
+.btn-nav:disabled { background: #ccc; cursor: not-allowed; }
+
+#search-results {
+    margin-top: 8px;
+    padding: 5px 15px;
+    background: #e9f7f9;
+    border-radius: 6px;
+    display: none;
+}
+
+/* MAIN */
+main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 30px;
+    background: var(--bg-main);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+h2 {
+    color: var(--primary);
+    border-left: 5px solid var(--primary);
+    padding-left: 15px;
+    margin-top: 0;
+}
+
+mark {
+    background: yellow;
+    padding: 0 2px;
+}
+mark.current-match {
+    background: orange;
+    font-weight: bold;
+}
+
+/* BACK TO TOP */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    z-index: 1002;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 13px;
+    color: #666;
+}
+</style>
+</head>
+
+<body>
+
+<header class="page-header">
+    <h1>🌸 VĂN BẢN CHUYÊN MÔN 🌸</h1>
+</header>
+
+<div id="fixed-search-area">
+    <a href="index.html" class="back-link">🏠 Trang chủ</a>
+    <a href="vanban/qd69.html" class="back-link">🚀 Quy định 69</a>
+    <a href="vanban/dieuledang.html" class="back-link">🚀 Điều lệ Đảng</a>
+
+    <div id="search-container-wrapper">
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Nhập từ khóa tìm kiếm..." />
+            <button id="prev-match" class="btn-nav" disabled>↑</button>
+            <button id="next-match" class="btn-nav" disabled>↓</button>
+            <button id="search-button" class="btn-action">Tìm</button>
+        </div>
+        <div id="search-results">
+            <span id="match-count"></span>
+        </div>
+    </div>
+</div>
+
+<main>
+    <h2 id="content-title">Đang tải...</h2>
+    <div id="text-content">Đang tải nội dung...</div>
+</main>
+
+<button id="backToTop">▲</button>
+
+<footer>
+    <p>🚀 SỨC KHỎE – TRÍ TUỆ – TỰ DO 🌸</p>
+</footer>
+
+<script>
+let matches = [];
+let currentIndex = -1;
+const contentArea = document.getElementById("text-content");
+let originalHTML = "";
+
+/* ESCAPE REGEX */
+function escapeRegex(text) {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/* LOAD CONTENT */
+fetch("content.json")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("content-title").innerHTML = data.title;
+    contentArea.innerHTML = data.content;
+    originalHTML = data.content;
+  })
+  .catch(() => {
+    contentArea.innerHTML = "Không tải được nội dung.";
+  });
+
+/* SEARCH */
+document.getElementById("search-button").onclick = () => {
+    const term = document.getElementById("search-input").value.trim();
+    if (!term) return;
+
+    const regex = new RegExp(`(${escapeRegex(term)})`, "gi");
+    contentArea.innerHTML = originalHTML.replace(regex, "<mark>$1</mark>");
+    matches = contentArea.querySelectorAll("mark");
+    currentIndex = -1;
+
+    if (matches.length) {
+        document.getElementById("search-results").style.display = "block";
+        document.getElementById("prev-match").disabled = false;
+        document.getElementById("next-match").disabled = false;
+        goNext();
+    } else {
+        alert("Không tìm thấy!");
+    }
+};
+
+/* ENTER SEARCH */
+document.getElementById("search-input").addEventListener("keypress", e => {
+    if (e.key === "Enter") document.getElementById("search-button").click();
+});
+
+/* NAV */
+function updateMatch() {
+    matches.forEach(m => m.classList.remove("current-match"));
+    const el = matches[currentIndex];
+    el.classList.add("current-match");
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    document.getElementById("match-count").innerText =
+        `Kết quả: ${currentIndex + 1}/${matches.length}`;
+}
+
+function goNext() {
+    currentIndex = (currentIndex + 1) % matches.length;
+    updateMatch();
+}
+function goPrev() {
+    currentIndex = (currentIndex - 1 + matches.length) % matches.length;
+    updateMatch();
+}
+
+document.getElementById("next-match").onclick = goNext;
+document.getElementById("prev-match").onclick = goPrev;
+
+/* BACK TO TOP */
+const topBtn = document.getElementById("backToTop");
+window.onscroll = () => {
+    topBtn.style.display =
+        document.documentElement.scrollTop > 300 ? "block" : "none";
+};
+topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+</script>
+
+</body>
+</html>
