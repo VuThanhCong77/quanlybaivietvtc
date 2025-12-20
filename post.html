@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chi tiết bài viết</title>
 
 <!-- OPEN GRAPH -->
@@ -14,7 +14,7 @@
 
 <style>
 body{
-    font-family: Arial, sans-serif;
+    font-family:Arial, sans-serif;
     background:#f4f7f9;
     max-width:1200px;
     margin:auto;
@@ -28,24 +28,31 @@ main{
     border-radius:8px;
     box-shadow:0 4px 20px rgba(0,0,0,.15)
 }
-h1{color:#0a3a5a;border-bottom:3px solid #0a7f99;padding-bottom:10px}
-small{color:#777;display:block;margin:10px 0 20px}
+h1{
+    color:#0a3a5a;
+    border-bottom:3px solid #0a7f99;
+    padding-bottom:10px
+}
+small{display:block;color:#777;margin:10px 0 20px}
 
 .share-btn{
-    background:#1877f2;color:#fff;border:none;
-    padding:8px 14px;border-radius:6px;
-    cursor:pointer;font-weight:bold
+    background:#1877f2;
+    color:#fff;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold
 }
 
-/* LIKE / DISLIKE */
-#like-dislike{
+#reaction-box{
     display:flex;
     align-items:center;
     gap:15px;
     margin:20px 0;
     padding:15px 0;
     border-top:1px solid #eee;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid #eee
 }
 .reaction-btn{
     padding:6px 14px;
@@ -90,7 +97,8 @@ small{color:#777;display:block;margin:10px 0 20px}
 
     <button class="share-btn" onclick="shareFacebook()">🔗 Chia sẻ Facebook</button>
 
-    <div id="like-dislike">
+    <!-- THỐNG KÊ & PHẢN ỨNG -->
+    <div id="reaction-box">
         <div class="reaction-count">
             👍 <span id="like-count">0</span> |
             👎 <span id="dislike-count">0</span>
@@ -107,12 +115,13 @@ small{color:#777;display:block;margin:10px 0 20px}
 </main>
 
 <script>
+/* ================== CẤU HÌNH ================== */
 const JSON_URL = 'posts_data.json';
 let currentPostId = null;
 let currentLikes = 0;
 let currentDislikes = 0;
 
-/* SHARE FACEBOOK */
+/* ================== CHIA SẺ ================== */
 function shareFacebook(){
     if(!currentPostId) return;
     const url = `https://vuthanhcong77.github.io/quanlybaivietvtc/share/share-${currentPostId}.html`;
@@ -122,24 +131,29 @@ function shareFacebook(){
     );
 }
 
-/* LOAD DATA */
-async function fetchPosts(){
-    try{
-        const r = await fetch(JSON_URL);
-        return r.ok ? r.json() : [];
-    }catch{
-        return [];
+/* ================== THỐNG KÊ ================== */
+function savePostStatistics(){
+    const stats = JSON.parse(localStorage.getItem('postStatistics') || '{}');
+    stats[currentPostId] = {
+        likes: currentLikes,
+        dislikes: currentDislikes
+    };
+    localStorage.setItem('postStatistics', JSON.stringify(stats));
+}
+
+function loadPostStatistics(){
+    const stats = JSON.parse(localStorage.getItem('postStatistics') || '{}');
+    if(stats[currentPostId]){
+        currentLikes = stats[currentPostId].likes || 0;
+        currentDislikes = stats[currentPostId].dislikes || 0;
     }
 }
 
-/* LOCAL STORAGE */
+/* ================== PHẢN ỨNG NGƯỜI DÙNG ================== */
 function saveUserReaction(type){
     const data = JSON.parse(localStorage.getItem('userReactions') || '{}');
-    if(type === null){
-        delete data[currentPostId];
-    }else{
-        data[currentPostId] = type;
-    }
+    if(type === null) delete data[currentPostId];
+    else data[currentPostId] = type;
     localStorage.setItem('userReactions', JSON.stringify(data));
 }
 
@@ -148,7 +162,7 @@ function getUserReaction(){
     return data[currentPostId] || null;
 }
 
-/* UPDATE UI */
+/* ================== GIAO DIỆN ================== */
 function updateReactionUI(type){
     document.getElementById('like-count').textContent = currentLikes;
     document.getElementById('dislike-count').textContent = currentDislikes;
@@ -160,41 +174,39 @@ function updateReactionUI(type){
     if(type === 'dislike') dislikeBtn.classList.add('active-dislike');
 }
 
-/* HANDLE LIKE / DISLIKE */
+/* ================== XỬ LÝ LIKE / DISLIKE ================== */
 function handleReaction(type){
-    if(!currentPostId){
-        alert("Không xác định được bài viết!");
-        return;
-    }
+    if(!currentPostId) return;
 
     const current = getUserReaction();
 
     if(type === current){
-        if(type === 'like') currentLikes = Math.max(0, currentLikes - 1);
-        if(type === 'dislike') currentDislikes = Math.max(0, currentDislikes - 1);
+        if(type === 'like') currentLikes--;
+        if(type === 'dislike') currentDislikes--;
         saveUserReaction(null);
-        updateReactionUI(null);
-        return;
+    }else{
+        if(current === 'like') currentLikes--;
+        if(current === 'dislike') currentDislikes--;
+
+        if(type === 'like') currentLikes++;
+        if(type === 'dislike') currentDislikes++;
+
+        saveUserReaction(type);
     }
 
-    if(current === 'like') currentLikes = Math.max(0, currentLikes - 1);
-    if(current === 'dislike') currentDislikes = Math.max(0, currentDislikes - 1);
-
-    if(type === 'like') currentLikes++;
-    if(type === 'dislike') currentDislikes++;
-
-    saveUserReaction(type);
-    updateReactionUI(type);
+    savePostStatistics();        // <<< HÀM THỐNG KÊ
+    updateReactionUI(getUserReaction());
 }
 
-/* LOAD POST */
+/* ================== LOAD BÀI VIẾT ================== */
 async function loadPost(){
     const id = new URLSearchParams(location.search).get('id');
     if(!id) return;
 
     currentPostId = id;
 
-    const posts = await fetchPosts();
+    const res = await fetch(JSON_URL);
+    const posts = await res.json();
     const post = posts.find(p => p.id == id);
     if(!post) return;
 
@@ -205,15 +217,12 @@ async function loadPost(){
     currentLikes = post.likes || 0;
     currentDislikes = post.dislikes || 0;
 
+    loadPostStatistics();        // <<< ĐỌC THỐNG KÊ
     updateReactionUI(getUserReaction());
 
-    const base = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
     ogTitle.content = post.title;
     ogDescription.content = post.shortDescription || post.title;
     ogUrl.content = location.href;
-    if(post.thumbnail){
-        ogImage.content = base + post.thumbnail.replace(/^\//,'');
-    }
 }
 
 document.addEventListener('DOMContentLoaded', loadPost);
