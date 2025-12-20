@@ -167,6 +167,8 @@ let currentDislikes = 0;
 /* ===== CHIA SẺ FACEBOOK ===== */
 function shareFacebook() {
     const id = new URLSearchParams(location.search).get("id");
+    if (!id) return;
+
     const shareUrl = `https://vuthanhcong77.github.io/quanlybaivietvtc/share/share-${id}.html`;
 
     window.open(
@@ -187,37 +189,55 @@ async function fetchPosts() {
 }
 
 function saveUserReaction(type) {
-    const r = JSON.parse(localStorage.getItem('userReactions') || '{}');
-    r[currentPostId] = type;
-    localStorage.setItem('userReactions', JSON.stringify(r));
+    const data = JSON.parse(localStorage.getItem('userReactions') || '{}');
+    data[currentPostId] = type;
+    localStorage.setItem('userReactions', JSON.stringify(data));
 }
 
 function getUserReaction() {
-    const r = JSON.parse(localStorage.getItem('userReactions') || '{}');
-    return r[currentPostId];
+    const data = JSON.parse(localStorage.getItem('userReactions') || '{}');
+    return data[currentPostId] || null;
 }
 
+/* ===== SỬA LỖI CỐT LÕI: KHAI BÁO DOM ĐÚNG ===== */
 function updateReactionUI(type) {
+    const likeBtn = document.getElementById('like-btn');
+    const dislikeBtn = document.getElementById('dislike-btn');
+    const likeCount = document.getElementById('like-count');
+
+    if (!likeBtn || !dislikeBtn || !likeCount) return;
+
     likeBtn.classList.remove('active-like');
     dislikeBtn.classList.remove('active-dislike');
-    if (type === 'like') likeBtn.classList.add('active-like');
-    if (type === 'dislike') dislikeBtn.classList.add('active-dislike');
-    document.getElementById('like-count').innerText = currentLikes;
+
+    if (type === 'like') {
+        likeBtn.classList.add('active-like');
+    } else if (type === 'dislike') {
+        dislikeBtn.classList.add('active-dislike');
+    }
+
+    likeCount.innerText = currentLikes;
 }
 
 function handleReaction(type) {
+    if (!currentPostId) return;
+
     const current = getUserReaction();
+
     if (type === current) {
         if (type === 'like') currentLikes--;
-        else currentDislikes--;
+        if (type === 'dislike') currentDislikes--;
         saveUserReaction(null);
         updateReactionUI(null);
         return;
     }
+
     if (current === 'like') currentLikes--;
     if (current === 'dislike') currentDislikes--;
+
     if (type === 'like') currentLikes++;
     if (type === 'dislike') currentDislikes++;
+
     saveUserReaction(type);
     updateReactionUI(type);
 }
@@ -225,25 +245,28 @@ function handleReaction(type) {
 async function loadPost() {
     const id = new URLSearchParams(location.search).get('id');
     currentPostId = id;
+
     const posts = await fetchPosts();
     const post = posts.find(p => p.id == id);
     if (!post) return;
 
-    title.innerText = post.title;
-    date.innerText = post.date;
-    content.innerHTML = post.content;
+    document.getElementById('title').innerText = post.title;
+    document.getElementById('date').innerText = post.date;
+    document.getElementById('content').innerHTML = post.content;
 
     currentLikes = post.likes || 0;
     currentDislikes = post.dislikes || 0;
     updateReactionUI(getUserReaction());
 
-    /* ===== OPEN GRAPH ===== */
+    /* ===== OPEN GRAPH (PHỤC VỤ SEO, KHÔNG PHỤ THUỘC FACEBOOK) ===== */
     const baseUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
-    ogTitle.content = post.title + " | Vũ Thành Công";
-    ogDescription.content = post.shortDescription || post.title;
-    ogUrl.content = location.href;
-    if (post.thumbnail) {
-        ogImage.content = baseUrl + post.thumbnail.replace(/^\//,'');
+    document.getElementById('ogTitle').content = post.title + " | Vũ Thành Công";
+    document.getElementById('ogDescription').content = post.shortDescription || post.title;
+    document.getElementById('ogUrl').content = location.href;
+
+    if (post.thumbnail && !post.thumbnail.startsWith("data:")) {
+        document.getElementById('ogImage').content =
+            baseUrl + post.thumbnail.replace(/^\//,'');
     }
 }
 
@@ -252,4 +275,3 @@ document.addEventListener('DOMContentLoaded', loadPost);
 
 </body>
 </html>
-
