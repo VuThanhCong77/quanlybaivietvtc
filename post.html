@@ -3,150 +3,104 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title id="pageTitle">Chi tiết bài viết</title>
+<title>Chi tiết bài viết</title>
 
-<!-- ===== OPEN GRAPH ===== -->
-<meta property="og:title" id="ogTitle" content="Bài viết">
-<meta property="og:description" id="ogDescription" content="">
-<meta property="og:image" id="ogImage" content="">
-<meta property="og:url" id="ogUrl" content="">
+<!-- OPEN GRAPH -->
+<meta property="og:title" id="ogTitle">
+<meta property="og:description" id="ogDescription">
+<meta property="og:image" id="ogImage">
+<meta property="og:url" id="ogUrl">
 <meta property="og:type" content="article">
 
 <style>
-body {
+body{
     font-family: Arial, sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    background: #f4f7f9;
-    color: #333;
+    background:#f4f7f9;
+    max-width:1200px;
+    margin:auto;
+    padding:0 15px;
+}
+a.back-link{color:#0a7f99;text-decoration:none}
+main{
+    background:#fff;
+    padding:40px;
+    margin:20px 0;
+    border-radius:8px;
+    box-shadow:0 4px 20px rgba(0,0,0,.15)
+}
+h1{color:#0a3a5a;border-bottom:3px solid #0a7f99;padding-bottom:10px}
+small{color:#777;display:block;margin:10px 0 20px}
+
+.share-btn{
+    background:#1877f2;color:#fff;border:none;
+    padding:8px 14px;border-radius:6px;
+    cursor:pointer;font-weight:bold
 }
 
-a.back-link {
-    color: #0a7f99;
-    text-decoration: none;
-    display: inline-block;
-    padding: 10px 0;
+/* LIKE / DISLIKE */
+#like-dislike{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin:20px 0;
+    padding:15px 0;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
 }
-
-main#content-container {
-    background: #fff;
-    padding: 40px;
-    margin: 20px auto 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,.15);
+.reaction-btn{
+    padding:6px 14px;
+    border-radius:20px;
+    border:1px solid #ccc;
+    background:#f9f9f9;
+    cursor:pointer
 }
-
-h1#title {
-    font-size: 32px;
-    color: #0a3a5a;
-    border-bottom: 3px solid #0a7f99;
-    padding-bottom: 15px;
+.active-like{
+    background:#e6f7ff;
+    border-color:#0a7f99;
+    color:#0a7f99;
+    font-weight:bold
 }
-
-small#date {
-    display: block;
-    color: #888;
-    margin: 10px 0 20px;
+.active-dislike{
+    background:#fdeaea;
+    border-color:#c0392b;
+    color:#c0392b;
+    font-weight:bold
 }
+.reaction-count{font-weight:bold}
 
-/* ===== SHARE ===== */
-.share-btn {
-    background: #1877f2;
-    color: #fff;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
+#content p{
+    text-indent:1.5cm;
+    text-align:justify;
+    margin:15px 0
 }
-
-/* ===== LIKE / DISLIKE ===== */
-#like-dislike-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 0;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    margin: 20px 0;
-}
-
-.reaction-btn {
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    background: #f9f9f9;
-}
-
-.active-like {
-    background: #e6f7ff;
-    border-color: #0a7f99;
-    color: #0a7f99;
-    font-weight: bold;
-}
-
-.active-dislike {
-    background: #fdeaea;
-    border-color: #c0392b;
-    color: #c0392b;
-    font-weight: bold;
-}
-
-.reaction-count {
-    font-weight: bold;
-}
-
-/* ===== CONTENT ===== */
-#content p {
-    text-indent: 1.5cm;
-    text-align: justify;
-    margin: 15px 0;
-}
-
-@media (max-width:600px) {
-    main#content-container {
-        padding: 20px;
-        box-shadow: none;
-    }
-    #content p {
-        text-indent: 0;
-        text-align: left;
-    }
+@media(max-width:600px){
+    main{padding:20px;box-shadow:none}
+    #content p{text-indent:0;text-align:left}
 }
 </style>
 </head>
 
 <body>
 
-<div style="max-width:1200px;margin:auto;padding:0 35px;">
-    <a href="index.html" class="back-link">← Trang chủ</a>
-</div>
+<a href="index.html" class="back-link">← Trang chủ</a>
 
-<main id="content-container">
+<main>
     <h1 id="title"></h1>
     <small id="date"></small>
 
-    <!-- SHARE -->
     <button class="share-btn" onclick="shareFacebook()">🔗 Chia sẻ Facebook</button>
 
-   <main id="content-container">
-    <h1 id="title"></h1>
-    <small id="date"></small>
-    
-    <div id="like-dislike-section">
-      <div class="reaction-count">Thống kê: <span id="like-count">0</span>  lượt thích</div>
-      
-      <button class="reaction-btn" id="like-btn" onclick="handleReaction('like')">
-        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 10c0-1.87-1.39-3.41-3.21-3.61l-.64-.06C17.9 6.2 16.5 5 15.3 5H10V2H5v3H2v15h3v-3h10.3c1.2 0 2.6-1.2 3.81-1.33l.64-.06c1.82-.2 3.21-1.74 3.21-3.61v-3.8zM5 18v-3H3v3h2zm16-4.8c0 1.25-.97 2.25-2.21 2.37l-.64.06c-.3.03-.6.04-.9.04h-1.25c-.27 0-.52-.1-.7-.25l-2.73-2.31c-.13-.11-.27-.18-.42-.23-.15-.05-.31-.08-.47-.08H7V7h8.3c.73 0 1.34.42 1.63 1.05l.33.7c.07.16.2.29.35.39.15.1.33.15.51.15H20c.55 0 1 .45 1 1v3.8z"/></svg>
-       ✍ Thích
-      </button>
-      
-      <button class="reaction-btn" id="dislike-btn" onclick="handleReaction('dislike')">
-        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 14c0 1.87 1.39 3.41 3.21 3.61l.64.06c.85.09 2.25 1.2 3.45 1.33H14v3h5V21h3V6h-3v3H8.7c-1.2 0-2.6 1.2-3.81 1.33l-.64.06c-1.82.2-3.21 1.74-3.21 3.61v3.8zM19 14v3h2v-3h-2zm-16-4.8c0-1.25.97-2.25 2.21-2.37l-.64-.06c.3-.03.6-.04.9-.04h1.25c.27 0 .52.1.7.25l2.73 2.31c.13.11.27.18.42-.23.15.05.31.08.47.08H17V17h-8.3c-.73 0-1.34-.42-1.63-1.05l-.33-.7c-.07-.16-.2-.29-.35-.39-.15-.1-.33-.15-.51-.15H4c-.55 0-1-.45-1-1v-3.8z"/></svg>
-        😂 Không Thích
-      </button>
+    <div id="like-dislike">
+        <div class="reaction-count">
+            👍 <span id="like-count">0</span> |
+            👎 <span id="dislike-count">0</span>
+        </div>
+
+        <button id="like-btn" class="reaction-btn"
+                onclick="handleReaction('like')">👍 Thích</button>
+
+        <button id="dislike-btn" class="reaction-btn"
+                onclick="handleReaction('dislike')">👎 Không thích</button>
     </div>
 
     <div id="content"></div>
@@ -158,103 +112,107 @@ let currentPostId = null;
 let currentLikes = 0;
 let currentDislikes = 0;
 
-/* ===== SHARE FACEBOOK ===== */
-function shareFacebook() {
-    const id = new URLSearchParams(location.search).get("id");
-    if (!id) return;
-    const url = `https://vuthanhcong77.github.io/quanlybaivietvtc/share/share-${id}.html`;
+/* SHARE FACEBOOK */
+function shareFacebook(){
+    if(!currentPostId) return;
+    const url = `https://vuthanhcong77.github.io/quanlybaivietvtc/share/share-${currentPostId}.html`;
     window.open(
         `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
         "_blank","width=600,height=450"
     );
 }
 
-/* ===== DATA ===== */
-async function fetchPosts() {
-    try {
-        const res = await fetch(JSON_URL);
-        return res.ok ? res.json() : [];
-    } catch {
+/* LOAD DATA */
+async function fetchPosts(){
+    try{
+        const r = await fetch(JSON_URL);
+        return r.ok ? r.json() : [];
+    }catch{
         return [];
     }
 }
 
-/* ===== LOCAL STORAGE ===== */
-function saveUserReaction(type) {
+/* LOCAL STORAGE */
+function saveUserReaction(type){
     const data = JSON.parse(localStorage.getItem('userReactions') || '{}');
-    data[currentPostId] = type;
+    if(type === null){
+        delete data[currentPostId];
+    }else{
+        data[currentPostId] = type;
+    }
     localStorage.setItem('userReactions', JSON.stringify(data));
 }
 
-function getUserReaction() {
+function getUserReaction(){
     const data = JSON.parse(localStorage.getItem('userReactions') || '{}');
     return data[currentPostId] || null;
 }
 
-/* ===== UI UPDATE ===== */
-function updateReactionUI(type) {
-    const likeBtn = document.getElementById('like-btn');
-    const dislikeBtn = document.getElementById('dislike-btn');
+/* UPDATE UI */
+function updateReactionUI(type){
+    document.getElementById('like-count').textContent = currentLikes;
+    document.getElementById('dislike-count').textContent = currentDislikes;
 
     likeBtn.classList.remove('active-like');
     dislikeBtn.classList.remove('active-dislike');
 
-    if (type === 'like') likeBtn.classList.add('active-like');
-    if (type === 'dislike') dislikeBtn.classList.add('active-dislike');
-
-    document.getElementById('like-count').textContent = currentLikes;
-    document.getElementById('dislike-count').textContent = currentDislikes;
+    if(type === 'like') likeBtn.classList.add('active-like');
+    if(type === 'dislike') dislikeBtn.classList.add('active-dislike');
 }
 
-/* ===== HANDLE REACTION ===== */
-function handleReaction(type) {
-    if (!currentPostId) return;
+/* HANDLE LIKE / DISLIKE */
+function handleReaction(type){
+    if(!currentPostId){
+        alert("Không xác định được bài viết!");
+        return;
+    }
 
     const current = getUserReaction();
 
-    if (type === current) {
-        if (type === 'like') currentLikes--;
-        if (type === 'dislike') currentDislikes--;
+    if(type === current){
+        if(type === 'like') currentLikes = Math.max(0, currentLikes - 1);
+        if(type === 'dislike') currentDislikes = Math.max(0, currentDislikes - 1);
         saveUserReaction(null);
         updateReactionUI(null);
         return;
     }
 
-    if (current === 'like') currentLikes--;
-    if (current === 'dislike') currentDislikes--;
+    if(current === 'like') currentLikes = Math.max(0, currentLikes - 1);
+    if(current === 'dislike') currentDislikes = Math.max(0, currentDislikes - 1);
 
-    if (type === 'like') currentLikes++;
-    if (type === 'dislike') currentDislikes++;
+    if(type === 'like') currentLikes++;
+    if(type === 'dislike') currentDislikes++;
 
     saveUserReaction(type);
     updateReactionUI(type);
 }
 
-/* ===== LOAD POST ===== */
-async function loadPost() {
+/* LOAD POST */
+async function loadPost(){
     const id = new URLSearchParams(location.search).get('id');
+    if(!id) return;
+
     currentPostId = id;
 
     const posts = await fetchPosts();
     const post = posts.find(p => p.id == id);
-    if (!post) return;
+    if(!post) return;
 
-    document.getElementById('title').innerText = post.title;
-    document.getElementById('date').innerText = post.date;
-    document.getElementById('content').innerHTML = post.content;
+    title.textContent = post.title;
+    date.textContent = post.date;
+    content.innerHTML = post.content;
 
     currentLikes = post.likes || 0;
     currentDislikes = post.dislikes || 0;
 
     updateReactionUI(getUserReaction());
 
-    const baseUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
-    ogTitle.content = post.title + " | Vũ Thành Công";
+    const base = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
+    ogTitle.content = post.title;
     ogDescription.content = post.shortDescription || post.title;
     ogUrl.content = location.href;
-
-    if (post.thumbnail) {
-        ogImage.content = baseUrl + post.thumbnail.replace(/^\//,'');
+    if(post.thumbnail){
+        ogImage.content = base + post.thumbnail.replace(/^\//,'');
     }
 }
 
@@ -263,4 +221,3 @@ document.addEventListener('DOMContentLoaded', loadPost);
 
 </body>
 </html>
-
