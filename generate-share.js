@@ -25,9 +25,11 @@ posts.forEach(post => {
 
     const title = post.title || "Bài viết";
     const description = post.shortDescription || post.title || "";
-    const image = post.thumbnail
-        ? BASE_URL + post.thumbnail.replace(/^\//, "")
-        : BASE_URL + "images/default.jpg";
+    let image = BASE_URL + "images/default.jpg";
+
+if (post.thumbnail && !post.thumbnail.startsWith("data:")) {
+    image = BASE_URL + post.thumbnail.replace(/^\//, "");
+}
 
     const shareHtml = `<!doctype html>
 <html lang="vi">
@@ -63,3 +65,4 @@ function escapeHtml(text) {
 }
 
 console.log("🎯 Hoàn thành sinh file chia sẻ Facebook.");
+
