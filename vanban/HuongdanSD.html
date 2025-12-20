@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm nang vận hành Hệ thống Website VTC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .nav-link:hover { color: #22d3ee; background: rgba(255,255,255,0.05); }
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        .admin-badge { background: #ef4444; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <aside class="w-full md:w-80 bg-slate-900 text-white p-6 sticky top-0 h-screen hidden md:block z-50 shadow-2xl">
+            <div class="mb-10 text-center">
+                <div class="w-20 h-20 bg-cyan-500 rounded-2xl mx-auto flex items-center justify-center mb-4 rotate-3 shadow-lg shadow-cyan-500/50">
+                    <i class="fas fa-rocket text-3xl"></i>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight">VTC SYSTEM v3.0</h2>
+                <p class="text-slate-500 text-xs mt-1">Hệ thống quản trị nội dung tĩnh</p>
+            </div>
+            
+            <nav class="space-y-1">
+                <a href="#lich" class="nav-link flex items-center p-3 rounded-xl transition"><i class="fas fa-calendar-check w-8 text-cyan-400"></i> Lịch Công Tác</a>
+                <a href="#blog" class="nav-link flex items-center p-3 rounded-xl transition"><i class="fas fa-newspaper w-8 text-blue-400"></i> Blog & Tin Tức</a>
+                <a href="#van-ban" class="nav-link flex items-center p-3 rounded-xl transition"><i class="fas fa-file-contract w-8 text-amber-400"></i> Văn Bản Pháp Quy</a>
+                <a href="#facebook" class="nav-link flex items-center p-3 rounded-xl transition"><i class="fab fa-facebook w-8 text-indigo-400"></i> SEO & Chia sẻ</a>
+                <a href="#gioi-thieu" class="nav-link flex items-center p-3 rounded-xl transition"><i class="fas fa-id-card w-8 text-rose-400"></i> Trang Cá Nhân</a>
+                <a href="#cau-hinh" class="nav-link flex items-center p-3 rounded-xl transition"><i class="fas fa-tools w-8 text-emerald-400"></i> Cấu Hình Chung</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6 md:p-16 max-w-6xl">
+            <header class="mb-12">
+                <span class="text-cyan-600 font-bold tracking-widest text-xs uppercase">Tài liệu hướng dẫn</span>
+                <h1 class="text-5xl font-black text-slate-900 mt-2 mb-4">Vận hành Website chuyên nghiệp</h1>
+                <p class="text-slate-500 text-lg max-w-2xl">Hệ thống này được thiết kế để hoạt động mà không cần Database phức tạp, giúp bạn dễ dàng quản lý thông tin chỉ với các file dữ liệu nhẹ nhàng.</p>
+            </header>
+
+            <section id="lich" class="mb-20 scroll-mt-10">
+                <div class="flex items-center mb-8">
+                    <h2 class="text-3xl font-bold">1. Hệ thống Lịch công tác</h2>
+                    <span class="ml-4 admin-badge">CÓ PHÂN QUYỀN</span>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-bold text-lg mb-4 text-cyan-700 underline decoration-cyan-300">Quản trị & Đăng nhập</h3>
+                            <ul class="space-y-3 text-sm text-slate-600">
+                                <li><i class="fas fa-key mr-2"></i> Mật khẩu Admin mặc định là: <b>123</b></li>
+                                <li><i class="fas fa-lock mr-2"></i> Chế độ <b>User</b>: Chỉ xem, không thể xóa hoặc thêm lịch.</li>
+                                <li><i class="fas fa-lock-open mr-2"></i> Chế độ <b>Admin</b>: Hiển thị nút "Xóa", "Thêm" và "Nhập/Xuất" dữ liệu.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-4 text-cyan-700 underline decoration-cyan-300">Tính năng đặc biệt</h3>
+                            <ul class="space-y-3 text-sm text-slate-600">
+                                <li><i class="fas fa-bell mr-2"></i> <b>Cảnh báo đỏ:</b> Công việc sắp đến hạn (trong vòng 1 giờ) sẽ tự động đổi sang màu đỏ rực.</li>
+                                <li><i class="fas fa-volume-up mr-2"></i> <b>Âm thanh:</b> Hệ thống tự động phát tiếng chuông báo động khi có việc khẩn.</li>
+                                <li><i class="fas fa-database mr-2"></i> <b>Sao lưu:</b> Sử dụng nút "Xuất file" để tải về <code>backup_lich.json</code>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blog" class="mb-20 scroll-mt-10">
+                <h2 class="text-3xl font-bold mb-8 flex items-center"><i class="fas fa-newspaper mr-3 text-blue-500"></i> 2. Blog, Tin Tức & Tài Liệu</h2>
+                <div class="bg-blue-50 border-l-8 border-blue-500 p-8 rounded-xl shadow-inner">
+                    <p class="font-bold text-blue-900 mb-4">Quy trình đăng bài (soanbai.html):</p>
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1 bg-white p-5 rounded-lg">
+                            <span class="text-blue-500 font-black text-2xl">01.</span>
+                            <p class="text-sm mt-2 font-medium">Chọn chuyên mục (Tin tức/Bài viết/Tài liệu) và soạn thảo nội dung chuyên nghiệp với bộ công cụ Editor có sẵn.</p>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-lg">
+                            <span class="text-blue-500 font-black text-2xl">02.</span>
+                            <p class="text-sm mt-2 font-medium">Bấm <b>"Lưu bài"</b> để tải xuống file <code>posts_data.json</code>. Ghi đè file này vào thư mục web.</p>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-lg">
+                            <span class="text-blue-500 font-black text-2xl">03.</span>
+                            <p class="text-sm mt-2 font-medium">Hệ thống tại <code>post.html</code> sẽ tự động hiển thị số liệu <b>Like/Dislike</b> và nút chia sẻ Facebook.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="van-ban" class="mb-20 scroll-mt-10">
+                <h2 class="text-3xl font-bold mb-8 flex items-center"><i class="fas fa-file-signature mr-3 text-amber-500"></i> 3. Văn Bản Chuyên Môn</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-6 border rounded-2xl bg-white shadow-sm">
+                        <h4 class="font-bold mb-2">Trang Hiển Thị</h4>
+                        <p class="text-xs text-slate-500"><code>vanban.html</code> tự động load dữ liệu từ <code>content.json</code>.</p>
+                    </div>
+                    <div class="p-6 border rounded-2xl bg-white shadow-sm">
+                        <h4 class="font-bold mb-2">Trang Quản Trị</h4>
+                        <p class="text-xs text-slate-500">Sử dụng <code>admin.html</code> để nhập nội dung văn bản mới và cập nhật tiêu đề trang.</p>
+                    </div>
+                    <div class="p-6 border rounded-2xl bg-white shadow-sm">
+                        <h4 class="font-bold mb-2">Tìm kiếm thông minh</h4>
+                        <p class="text-xs text-slate-500">Tự động bôi vàng (Highlight) từ khóa tìm kiếm và cuộn trang đến vị trí đó.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="facebook" class="mb-20 scroll-mt-10">
+                <h2 class="text-3xl font-bold mb-8 flex items-center"><i class="fab fa-facebook-square mr-3 text-indigo-500"></i> 4. SEO & Chia sẻ Mạng xã hội</h2>
+                <div class="bg-indigo-900 text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold mb-4">Cơ chế hiển thị ảnh đại diện (Thumbnail)</h3>
+                        <p class="text-indigo-200 text-sm mb-6 leading-relaxed">
+                            Để Facebook hiện đúng <b>Hình ảnh</b> và <b>Tiêu đề</b> khi bạn dán link, bạn cần chạy script tự động để tạo các file "mồi" (Bridge files) trong thư mục <code>share/</code>.
+                        </p>
+                        <div class="bg-black/40 p-4 rounded-xl border border-indigo-400/30">
+                            <p class="text-xs font-mono text-indigo-300 mb-2">// Thực thi lệnh tại thư mục gốc:</p>
+                            <code class="text-yellow-400 font-mono text-sm">node generate-share.js</code>
+                        </div>
+                        <p class="text-xs mt-4 text-indigo-300 italic">* Lưu ý: Facebook chỉ hiển thị ảnh nếu website đã được đẩy lên môi trường Internet (như GitHub Pages).</p>
+                    </div>
+                    <i class="fab fa-facebook absolute -right-10 -bottom-10 text-[150px] opacity-10"></i>
+                </div>
+            </section>
+
+            <footer class="mt-20 pt-10 border-t flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm">
+                <p>&copy; 2025 Bản quyền thuộc về Vũ Thành Công.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="index.html" class="hover:text-cyan-500">Về Trang Chủ</a>
+                    <span>|</span>
+                    <a href="gioithieu.html" class="hover:text-cyan-500">Giới Thiệu</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+</body>
+</html>
