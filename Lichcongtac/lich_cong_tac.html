@@ -1,182 +1,164 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Lịch Công Tác</title>
-    <style>
-        :root { --primary: #1a73e8; --success: #28a745; --danger: #dc3545; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
-        .container { max-width: 950px; margin: auto; background: white; padding: 6px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h2 { color: var(--primary); text-align: center; margin-top: 0; }
-        
-        .control-panel { background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; }
-        .input-group { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        input { padding: 12px; border: 1px solid #ccc; border-radius: 6px; flex: 1; min-width: 250px; font-size: 15px; }
-        
-        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
-        button { padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; }
-        .btn-add { background: var(--success); flex: 2; }
-        .btn-export { background: var(--primary); flex: 1; }
-        .btn-import { background: #6c757d; flex: 1; }
-        .btn-del { background: var(--danger); padding: 6px 12px; font-size: 12px; border-radius: 4px; }
+<meta charset="UTF-8">
+<title>Lịch công tác – Phân quyền</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #eee; padding: 12px; text-align: center; }
-        th { background: var(--primary); color: white; position: sticky; top: 0; }
-        tr:nth-child(even) { background: #fafafa; }
-        .urgent { color: white; font-weight: bold; animation: pulse 1.5s infinite; background: var(--danger) !important; }
-        @keyframes pulse { 0% { background-color: #dc3545; } 50% { background-color: #ff4d4d; } 100% { background-color: #dc3545; } }
-    </style>
+<style>
+body { font-family: Segoe UI, Tahoma; background:#f0f2f5; padding:20px; }
+.container { max-width:960px; margin:auto; background:#fff; padding:15px; border-radius:10px; }
+h2 { text-align:center; color:#1a73e8; margin-top:0; }
+.hidden { display:none; }
+button { padding:8px 14px; border:none; border-radius:6px; color:#fff; cursor:pointer; }
+.add { background:#28a745; }
+.del { background:#dc3545; }
+.exp { background:#1a73e8; }
+.imp { background:#6c757d; }
+table { width:100%; border-collapse:collapse; margin-top:10px; }
+th,td { border:1px solid #ddd; padding:8px; text-align:center; }
+th { background:#1a73e8; color:#fff; }
+</style>
 </head>
+
 <body>
 
 <div class="container">
-    <h2>📅LỊCH CÔNG TÁC</h2>
-    <div id="ngayHienTai" style="text-align:right; font-style:italic; margin-bottom:10px; color: #b30000; font-weight: bold; font-style: italic;"></div>
-    <a href="../index.html" class="back-link">🌸Trang chủ </a>
-    <a href="../Lichcongtac/HDlichcongtac.html">🌸Hướng dẫn sử dụng</a>
-  
-    <div class="control-panel">
-        <div class="input-group">
-            <input type="text" id="inpViec" placeholder="Nội dung công việc...">
-            <input type="datetime-local" id="inpGio">
-        </div>
-        <div class="btn-group">
-            <button class="btn-add" onclick="themLich()">➕ THÊM LỊCH MỚI</button>
-            <button class="btn-export" onclick="xuatDuPhong()">💾 SAO LƯU</button>
-            <button class="btn-import" onclick="document.getElementById('fileIn').click()">📂 PHỤC HỒI</button>
-            <input type="file" id="fileIn" style="display:none" onchange="nhapDuPhong(event)">
-        </div>
-    </div>
 
-    <div id="msg" style="text-align:center; font-weight:bold; margin-bottom:10px;"></div>
+<h2>📅 LỊCH CÔNG TÁC</h2>
 
-    <table id="mainTable">
-        <thead>
-            <tr>
-                <th>Thời gian</th>
-                <th>Nội dung</th>
-                <th>Trạng thái</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody id="renderBody"></tbody>
-    </table>
+<!-- ĐĂNG NHẬP -->
+<div id="loginBox">
+    <b>Đăng nhập:</b><br><br>
+    <select id="role">
+        <option value="">-- Chọn vai trò --</option>
+        <option value="admin">Quản trị</option>
+        <option value="user">Cán bộ</option>
+        <option value="view">Xem</option>
+    </select>
+    <input type="password" id="pass" placeholder="Mật khẩu">
+    <button onclick="login()" class="add">Đăng nhập</button>
 </div>
 
-<audio id="audioAlert" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+<!-- HỆ THỐNG -->
+<div id="mainBox" class="hidden">
+
+<div id="userInfo" style="margin-bottom:10px;font-weight:bold"></div>
+
+<input id="inpViec" placeholder="Nội dung công việc">
+<input type="datetime-local" id="inpGio">
+
+<br><br>
+
+<button id="btnAdd" onclick="themLich()" class="add">➕ Thêm</button>
+<button id="btnExport" onclick="xuat()" class="exp">💾 Sao lưu</button>
+<button id="btnImport" onclick="fileIn.click()" class="imp">📂 Phục hồi</button>
+<input type="file" id="fileIn" hidden onchange="nhap(event)">
+
+<table>
+<thead>
+<tr>
+<th>Thời gian</th>
+<th>Nội dung</th>
+<th>Hành động</th>
+</tr>
+</thead>
+<tbody id="body"></tbody>
+</table>
+
+</div>
+</div>
 
 <script>
-  
-    let dataList = JSON.parse(localStorage.getItem('GH_LICH_2025')) || defaultData;
+// ===== TÀI KHOẢN =====
+const USERS = {
+    admin: "123456",
+    user: "123456",
+    view: "123456"
+};
 
-    function render() {
-        const body = document.getElementById('renderBody');
-        const now = new Date();
-        body.innerHTML = '';
-        
-        // Sắp xếp lịch
-        dataList.sort((a, b) => new Date(a.g) - new Date(b.g));
+let role = sessionStorage.getItem("ROLE");
+let data = JSON.parse(localStorage.getItem("LICH_CT")) || [];
 
-        let hasUrgent = false;
-
-        dataList.forEach(item => {
-            const date = new Date(item.g);
-            const diff = (date - now) / 3600000;
-            let status = "Đang chờ";
-            let cls = "";
-
-            if (diff < 0) {
-                status = "Đã qua";
-            } else if (diff <= 6) {
-                status = "⚠️ SẮP ĐẾN GIỜ!";
-                cls = "urgent";
-                hasUrgent = true;
-            }
-
-            body.innerHTML += `
-                <tr class="${cls}">
-                    <td><b>${date.toLocaleString('vi-VN')}</b></td>
-                    <td>${item.v}</td>
-                    <td>${status}</td>
-                    <td><button class="btn-del" onclick="xoaLich(${item.id})">Xóa</button></td>
-                </tr>`;
-        });
-
-        if (hasUrgent) {
-            document.getElementById('audioAlert').play().catch(() => {});
-        }
-        localStorage.setItem('GH_LICH_2025', JSON.stringify(dataList));
-    }
-
-    function themLich() {
-        const v = document.getElementById('inpViec').value;
-        const g = document.getElementById('inpGio').value;
-        if (!v || !g) return alert("Vui lòng nhập đủ nội dung và thời gian!");
-        
-        dataList.push({ id: Date.now(), v: v, g: g });
-        document.getElementById('inpViec').value = '';
-        document.getElementById('inpGio').value = '';
-        render();
-    }
-
-    function xoaLich(id) {
-        if(confirm("Xóa mục này?")) {
-            dataList = dataList.filter(i => i.id !== id);
-            render();
-        }
-    }
-
-    function xuatDuPhong() {
-        const blob = new Blob([JSON.stringify(dataList)], {type: 'application/json'});
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'backup_lich.json';
-        a.click();
-    }
-
-    function nhapDuPhong(e) {
-        const reader = new FileReader();
-        reader.onload = (el) => {
-            try {
-                const json = JSON.parse(el.target.result);
-                if(Array.isArray(json)) { dataList = json; render(); alert("Đã cập nhật!"); }
-            } catch(err) { alert("File không hợp lệ!"); }
-        };
-        reader.readAsText(e.target.files[0]);
-    }
-
-    setInterval(render, 60000);
-    render();
-
-    function hienNgayDayDu() {
-    const d = new Date();
-    const thu = d.toLocaleDateString('vi-VN', { weekday: 'long' });
-    const ngay = d.getDate();
-    const thang = d.getMonth() + 1;
-    const nam = d.getFullYear();
-    return `${thu}, ngày ${ngay} tháng ${thang} năm ${nam}`;
+// ===== ĐĂNG NHẬP =====
+function login(){
+    const r = roleSelect.value = document.getElementById("role").value;
+    const p = document.getElementById("pass").value;
+    if(USERS[r] !== p) return alert("Sai thông tin!");
+    sessionStorage.setItem("ROLE", r);
+    role = r;
+    init();
 }
 
-document.getElementById("ngayHienTai").innerText = hienNgayDayDu();
+// ===== KHỞI TẠO =====
+function init(){
+    loginBox.classList.add("hidden");
+    mainBox.classList.remove("hidden");
+    userInfo.innerText = "Quyền đang sử dụng: " + role.toUpperCase();
+
+    if(role === "view"){
+        btnAdd.disabled = true;
+        btnExport.disabled = true;
+        btnImport.disabled = true;
+        inpViec.disabled = true;
+        inpGio.disabled = true;
+    }
+
+    if(role === "user"){
+        btnImport.disabled = true;
+    }
+
+    render();
+}
+
+if(role) init();
+
+// ===== RENDER =====
+function render(){
+    body.innerHTML = "";
+    data.forEach(i=>{
+        body.innerHTML += `
+        <tr>
+            <td>${new Date(i.g).toLocaleString("vi-VN")}</td>
+            <td>${i.v}</td>
+            <td>${role==="admin"?`<button class="del" onclick="xoa(${i.id})">Xóa</button>`:""}</td>
+        </tr>`;
+    });
+    localStorage.setItem("LICH_CT", JSON.stringify(data));
+}
+
+// ===== NGHIỆP VỤ =====
+function themLich(){
+    if(!inpViec.value || !inpGio.value) return alert("Thiếu thông tin");
+    data.push({id:Date.now(), v:inpViec.value, g:inpGio.value});
+    inpViec.value=""; inpGio.value="";
+    render();
+}
+
+function xoa(id){
+    if(confirm("Xóa?")){
+        data = data.filter(i=>i.id!==id);
+        render();
+    }
+}
+
+function xuat(){
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(new Blob([JSON.stringify(data)]));
+    a.download="backup.json";
+    a.click();
+}
+
+function nhap(e){
+    const r=new FileReader();
+    r.onload=ev=>{
+        data=JSON.parse(ev.target.result);
+        render();
+        alert("Đã phục hồi");
+    };
+    r.readAsText(e.target.files[0]);
+}
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
