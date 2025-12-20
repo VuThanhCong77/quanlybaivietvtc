@@ -9,16 +9,16 @@
         main { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .back-link { text-decoration: none; color: #007bff; display: inline-block; margin-bottom: 20px; }
         
-        /* CSS cho hệ thống Reaction */
-        #reaction-box { margin: 20px 0; padding: 15px; border-top: 1px solid #eee; display: flex; gap: 10px; align-items: center; }
-        .reaction-btn { padding: 8px 15px; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; background: white; transition: 0.3s; }
+        #reaction-box { margin: 20px 0; padding: 15px; border-top: 1px solid #eee; display: flex; gap: 15px; align-items: center; }
+        .reaction-btn { padding: 8px 15px; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; background: white; transition: 0.2s; }
+        .reaction-btn:hover { background: #f0f0f0; }
         
         /* Màu sắc khi nút được kích hoạt */
-        .active-like { background: #e3f2fd; border-color: #2196f3; color: #2196f3; font-weight: bold; }
-        .active-dislike { background: #ffebee; border-color: #f44336; color: #f44336; font-weight: bold; }
+        .active-like { background: #2196f3 !important; color: white !important; border-color: #1976d2; font-weight: bold; }
+        .active-dislike { background: #f44336 !important; color: white !important; border-color: #d32f2f; font-weight: bold; }
         
         #content img { max-width: 100%; height: auto; border-radius: 5px; }
-        .share-btn { background: #1877f2; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+        .share-btn { background: #1877f2; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -49,35 +49,29 @@ let currentPostId = null;
 let currentLikes = 0;
 let currentDislikes = 0;
 
-// Khai báo DOM sau khi trang đã sẵn sàng
 const dom = {
-    get likeCount() { return document.getElementById('like-count') },
-    get dislikeCount() { return document.getElementById('dislike-count') },
-    get likeBtn() { return document.getElementById('like-btn') },
-    get dislikeBtn() { return document.getElementById('dislike-btn') },
-    get title() { return document.getElementById('title') },
-    get date() { return document.getElementById('date') },
-    get content() { return document.getElementById('content') }
+    likeCount: document.getElementById('like-count'),
+    dislikeCount: document.getElementById('dislike-count'),
+    likeBtn: document.getElementById('like-btn'),
+    dislikeBtn: document.getElementById('dislike-btn'),
+    title: document.getElementById('title'),
+    date: document.getElementById('date'),
+    content: document.getElementById('content')
 };
 
-/* ================== XỬ LÝ DỮ LIỆU LOCAL ================== */
+/* ================== QUẢN LÝ DỮ LIỆU ================== */
+
+// Lưu trạng thái Like/Dislike của User (để biết họ đã nhấn chưa)
 function getUserReaction() {
     const data = JSON.parse(localStorage.getItem('userReactions') || '{}');
     return data[currentPostId] || null;
 }
 
+// Lưu tổng số lượng thống kê vào máy người dùng
 function savePostStatistics() {
     const stats = JSON.parse(localStorage.getItem('postStatistics') || '{}');
     stats[currentPostId] = { likes: currentLikes, dislikes: currentDislikes };
     localStorage.setItem('postStatistics', JSON.stringify(stats));
-}
-
-function loadPostStatistics() {
-    const stats = JSON.parse(localStorage.getItem('postStatistics') || '{}');
-    if (stats[currentPostId]) {
-        currentLikes = stats[currentPostId].likes;
-        currentDislikes = stats[currentPostId].dislikes;
-    }
 }
 
 /* ================== GIAO DIỆN ================== */
@@ -102,13 +96,16 @@ function handleReaction(type) {
     const current = reactions[currentPostId] || null;
 
     if (type === current) {
+        // Nếu nhấn lại cái cũ -> Bỏ chọn (Trừ đi)
         if (type === 'like') currentLikes--;
         if (type === 'dislike') currentDislikes--;
         delete reactions[currentPostId];
     } else {
+        // Nếu đang like mà chuyển sang dislike (hoặc ngược lại)
         if (current === 'like') currentLikes--;
         if (current === 'dislike') currentDislikes--;
 
+        // Cộng vào cái mới
         if (type === 'like') currentLikes++;
         if (type === 'dislike') currentDislikes++;
         reactions[currentPostId] = type;
@@ -135,17 +132,24 @@ async function loadPost() {
             return;
         }
 
+        // Hiển thị nội dung
         dom.title.textContent = post.title;
         dom.date.textContent = post.date;
         dom.content.innerHTML = post.content;
 
-        currentLikes = post.likes || 0;
-        currentDislikes = post.dislikes || 0;
+        // XỬ LÝ SỐ LIỆU: Ưu tiên LocalStorage hơn JSON
+        const stats = JSON.parse(localStorage.getItem('postStatistics') || '{}');
+        if (stats[currentPostId]) {
+            currentLikes = stats[currentPostId].likes;
+            currentDislikes = stats[currentPostId].dislikes;
+        } else {
+            currentLikes = post.likes || 0;
+            currentDislikes = post.dislikes || 0;
+        }
 
-        loadPostStatistics();
         updateReactionUI();
     } catch (e) {
-        console.error("Lỗi:", e);
+        console.error("Lỗi tải dữ liệu:", e);
     }
 }
 
