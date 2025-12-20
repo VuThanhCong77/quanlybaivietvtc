@@ -33,6 +33,7 @@
 
 <div class="container">
     <h2>📅LỊCH CÔNG TÁC</h2>
+    <div id="ngayHienTai" style="text-align:right; font-style:italic; margin-bottom:10px;"></div>
     <a href="../index.html" class="back-link">🌸Trang chủ </a>
     <a href="../Lichcongtac/HDlichcongtac.html">🌸Hướng dẫn sử dụng</a>
   
@@ -148,9 +149,21 @@
 
     setInterval(render, 60000);
     render();
+
+    function hienNgayDayDu() {
+    const d = new Date();
+    const thu = d.toLocaleDateString('vi-VN', { weekday: 'long' });
+    const ngay = d.getDate();
+    const thang = d.getMonth() + 1;
+    const nam = d.getFullYear();
+    return `${thu}, ngày ${ngay} tháng ${thang} năm ${nam}`;
+}
+
+document.getElementById("ngayHienTai").innerText = hienNgayDayDu();
 </script>
 </body>
 </html>
+
 
 
 
