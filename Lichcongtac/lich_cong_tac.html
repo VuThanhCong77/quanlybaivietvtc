@@ -35,8 +35,7 @@
     <h2>📅LỊCH CÔNG TÁC</h2>
     <a href="../index.html" class="back-link">🌸Trang chủ </a>
     <a href="../Lichcongtac/HDlichcongtac.html">🌸Hướng dẫn sử dụng</a>
-    <a href="Data()">🌸Ngày</a>
-    
+     
     <div class="control-panel">
         <div class="input-group">
             <input type="text" id="inpViec" placeholder="Nội dung công việc...">
@@ -68,14 +67,7 @@
 <audio id="audioAlert" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
 
 <script>
-    // Dữ liệu mặc định từ file PDF của bạn
-    const defaultData = [
-        { id: 1, v: "Giao ban với TT ĐU", g: "2025-10-06T08:00" },
-        { id: 2, v: "Đại hội MTTQ; Đại hội Phụ nữ", g: "2025-10-14T07:30" },
-        { id: 3, v: "Bí thư đối thoại với Nhân dân", g: "2025-11-06T08:00" },
-        { id: 4, v: "Họp HĐND phường", g: "2025-12-15T07:30" }
-    ];
-
+  
     let dataList = JSON.parse(localStorage.getItem('GH_LICH_2025')) || defaultData;
 
     function render() {
@@ -159,6 +151,7 @@
 </script>
 </body>
 </html>
+
 
 
 
