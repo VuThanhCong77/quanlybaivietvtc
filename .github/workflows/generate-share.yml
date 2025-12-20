@@ -1,35 +1,94 @@
-name: Auto generate share pages
+/**
+ * =====================================================
+ * SCRIPT SINH FILE CHIA SẺ FACEBOOK TỰ ĐỘNG (OPEN GRAPH)
+ * Sử dụng nội bộ – Chuẩn hóa triển khai thực tế
+ * =====================================================
+ */
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - posts_data.json
-      - generate-share.js
+const fs = require("fs");
+const path = require("path");
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+// ====== CẤU HÌNH CHUNG ======
+const BASE_URL = "https://vuthanhcong77.github.io/quanlybaivietvtc/";
+const POSTS_FILE = "posts_data.json";
+const SHARE_DIR = "share";
+const DEFAULT_IMAGE = BASE_URL + "images/default.jpg";
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: true
+// ====== TẠO THƯ MỤC SHARE ======
+if (!fs.existsSync(SHARE_DIR)) {
+    fs.mkdirSync(SHARE_DIR, { recursive: true });
+}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+// ====== ĐỌC DỮ LIỆU BÀI VIẾT ======
+let posts = [];
+try {
+    posts = JSON.parse(fs.readFileSync(POSTS_FILE, "utf8"));
+} catch (err) {
+    console.error("❌ Lỗi đọc posts_data.json:", err.message);
+    process.exit(1);
+}
 
-      - name: Generate share pages
-        run: node generate-share.js
+// ====== HÀM ESCAPE HTML ======
+function escapeHtml(text) {
+    return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
 
-      - name: Commit and push generated files
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add share
-          git commit -m "Auto generate share pages" || echo "No changes to commit"
-          git push
+// ====== SINH FILE SHARE ======
+posts.forEach(post => {
+    if (!post.id) return;
+
+    const title = post.title || "Bài viết";
+    const description =
+        post.shortDescription ||
+        post.description ||
+        post.title ||
+        "Bài viết trên hệ thống quản lý nội dung";
+
+    // Xử lý ảnh đại diện
+    let image = DEFAULT_IMAGE;
+    if (post.thumbnail && !post.thumbnail.startsWith("data:")) {
+        image = BASE_URL + post.thumbnail.replace(/^\//, "");
+    }
+
+    const shareUrl = `${BASE_URL}share/share-${post.id}.html`;
+    const redirectUrl = `../post.html?id=${post.id}`;
+
+    const shareHtml = `<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>${escapeHtml(title)}</title>
+
+<!-- ===== OPEN GRAPH / FACEBOOK ===== -->
+<meta property="og:title" content="${escapeHtml(title)}">
+<meta property="og:description" content="${escapeHtml(description)}">
+<meta property="og:image" content="${image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="${shareUrl}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Quản lý bài viết VTC">
+
+<!-- ===== REDIRECT ===== -->
+<meta http-equiv="refresh" content="0; url=${redirectUrl}">
+</head>
+
+<body>
+<p>Đang chuyển hướng tới bài viết…</p>
+<p>
+    <a href="${redirectUrl}">Nhấn vào đây nếu trình duyệt không tự chuyển</a>
+</p>
+</body>
+</html>`;
+
+    const filePath = path.join(SHARE_DIR, `share-${post.id}.html`);
+    fs.writeFileSync(filePath, shareHtml, "utf8");
+
+    console.log(`✔ Đã tạo file chia sẻ: ${filePath}`);
+});
+
+console.log("🎯 HOÀN THÀNH: Sinh file chia sẻ Facebook thành công.");
