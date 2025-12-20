@@ -35,7 +35,16 @@
     <h2>📅LỊCH CÔNG TÁC</h2>
     <a href="../index.html" class="back-link">🌸Trang chủ </a>
     <a href="../Lichcongtac/HDlichcongtac.html">🌸Hướng dẫn sử dụng</a>
-     
+
+function hienNgayDayDu() {
+    return new Date().toLocaleDateString('vi-VN', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+    
     <div class="control-panel">
         <div class="input-group">
             <input type="text" id="inpViec" placeholder="Nội dung công việc...">
@@ -151,6 +160,7 @@
 </script>
 </body>
 </html>
+
 
 
 
