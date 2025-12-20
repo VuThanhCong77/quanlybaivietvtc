@@ -213,8 +213,16 @@ function nhap(e){
 }
 
 // ===== NGÀY HIỆN TẠI =====
-document.getElementById("ngayHienTai").innerText =
-new Date().toLocaleDateString("vi-VN",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+function hienNgayDayDu() {
+    const d = new Date();
+    const thu = d.toLocaleDateString('vi-VN', { weekday: 'long' });
+    const ngay = d.getDate();
+    const thang = d.getMonth() + 1;
+    const nam = d.getFullYear();
+    return `${thu}, ngày ${ngay} tháng ${thang} năm ${nam}`;
+}
+
+document.getElementById("ngayHienTai").innerText = hienNgayDayDu();
 
 // Tự cập nhật mỗi phút
 setInterval(render,60000);
@@ -222,3 +230,4 @@ setInterval(render,60000);
 
 </body>
 </html>
+
