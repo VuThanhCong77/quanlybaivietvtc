@@ -7,17 +7,30 @@
 
 <style>
 body { font-family: Segoe UI, Tahoma; background:#f0f2f5; padding:20px; }
-.container { max-width:960px; margin:auto; background:#fff; padding:15px; border-radius:10px; }
+.container { max-width:960px; margin:auto; background:#fff; padding:12px; border-radius:10px; }
 h2 { text-align:center; color:#1a73e8; margin-top:0; }
 .hidden { display:none; }
-button { padding:8px 14px; border:none; border-radius:6px; color:#fff; cursor:pointer; }
+
+button { padding:8px 16px; border:none; border-radius:6px; color:#fff; cursor:pointer; }
 .add { background:#28a745; }
 .del { background:#dc3545; }
 .exp { background:#1a73e8; }
 .imp { background:#6c757d; }
+.logout { background:#ff9800; float:right; }
+
 table { width:100%; border-collapse:collapse; margin-top:10px; }
 th,td { border:1px solid #ddd; padding:8px; text-align:center; }
 th { background:#1a73e8; color:#fff; }
+
+.urgent {
+    background:#dc3545 !important;
+    color:#fff;
+    font-weight:bold;
+    animation:pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0%{opacity:1} 50%{opacity:.7} 100%{opacity:1}
+}
 </style>
 </head>
 
@@ -26,6 +39,11 @@ th { background:#1a73e8; color:#fff; }
 <div class="container">
 
 <h2>📅 LỊCH CÔNG TÁC</h2>
+
+<div id="ngayHienTai" style="text-align:right; color:#b30000; font-weight:bold; margin-bottom:6px;"></div>
+
+<a href="../index.html">🌸 Trang chủ</a>
+<a href="../Lichcongtac/HDlichcongtac.html">🌸 Hướng dẫn sử dụng</a>
 
 <!-- ĐĂNG NHẬP -->
 <div id="loginBox">
@@ -43,7 +61,10 @@ th { background:#1a73e8; color:#fff; }
 <!-- HỆ THỐNG -->
 <div id="mainBox" class="hidden">
 
-<div id="userInfo" style="margin-bottom:10px;font-weight:bold"></div>
+<div style="overflow:hidden;margin-bottom:10px">
+    <div id="userInfo" style="font-weight:bold;float:left"></div>
+    <button onclick="logout()" class="logout">🚪 Đăng xuất</button>
+</div>
 
 <input id="inpViec" placeholder="Nội dung công việc">
 <input type="datetime-local" id="inpGio">
@@ -60,6 +81,7 @@ th { background:#1a73e8; color:#fff; }
 <tr>
 <th>Thời gian</th>
 <th>Nội dung</th>
+<th>Trạng thái</th>
 <th>Hành động</th>
 </tr>
 </thead>
@@ -69,11 +91,13 @@ th { background:#1a73e8; color:#fff; }
 </div>
 </div>
 
+<audio id="alertSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+
 <script>
 // ===== TÀI KHOẢN =====
 const USERS = {
-    admin: "123456",
-    user: "123456",
+    admin: "Cong&khuyen7785",
+    user: "Cong&khuyen7785",
     view: "123456"
 };
 
@@ -82,12 +106,22 @@ let data = JSON.parse(localStorage.getItem("LICH_CT")) || [];
 
 // ===== ĐĂNG NHẬP =====
 function login(){
-    const r = roleSelect.value = document.getElementById("role").value;
+    const r = roleSelect = document.getElementById("role").value;
     const p = document.getElementById("pass").value;
-    if(USERS[r] !== p) return alert("Sai thông tin!");
+    if(!r || !p) return alert("Vui lòng nhập đủ thông tin");
+    if(USERS[r] !== p) return alert("Sai mật khẩu");
+
     sessionStorage.setItem("ROLE", r);
     role = r;
     init();
+}
+
+// ===== ĐĂNG XUẤT =====
+function logout(){
+    if(confirm("Đăng xuất khỏi hệ thống?")){
+        sessionStorage.removeItem("ROLE");
+        location.reload();
+    }
 }
 
 // ===== KHỞI TẠO =====
@@ -97,33 +131,52 @@ function init(){
     userInfo.innerText = "Quyền đang sử dụng: " + role.toUpperCase();
 
     if(role === "view"){
-        btnAdd.disabled = true;
-        btnExport.disabled = true;
-        btnImport.disabled = true;
-        inpViec.disabled = true;
-        inpGio.disabled = true;
+        btnAdd.disabled = btnExport.disabled = btnImport.disabled = true;
+        inpViec.disabled = inpGio.disabled = true;
     }
-
     if(role === "user"){
         btnImport.disabled = true;
     }
-
     render();
 }
 
 if(role) init();
 
-// ===== RENDER =====
+// ===== RENDER + CẢNH BÁO 6 GIỜ =====
 function render(){
     body.innerHTML = "";
+    const now = new Date();
+    let coCanhBao = false;
+
+    data.sort((a,b)=>new Date(a.g)-new Date(b.g));
+
     data.forEach(i=>{
+        const tg = new Date(i.g);
+        const diff = (tg - now) / 3600000;
+        let trangThai = "Đang chờ";
+        let cls = "";
+
+        if(diff < 0){
+            trangThai = "Đã qua";
+        } else if(diff <= 6){
+            trangThai = "⚠️ Còn dưới 6 giờ";
+            cls = "urgent";
+            coCanhBao = true;
+        }
+
         body.innerHTML += `
-        <tr>
-            <td>${new Date(i.g).toLocaleString("vi-VN")}</td>
+        <tr class="${cls}">
+            <td>${tg.toLocaleString("vi-VN")}</td>
             <td>${i.v}</td>
+            <td>${trangThai}</td>
             <td>${role==="admin"?`<button class="del" onclick="xoa(${i.id})">Xóa</button>`:""}</td>
         </tr>`;
     });
+
+    if(coCanhBao){
+        document.getElementById("alertSound").play().catch(()=>{});
+    }
+
     localStorage.setItem("LICH_CT", JSON.stringify(data));
 }
 
@@ -136,7 +189,7 @@ function themLich(){
 }
 
 function xoa(id){
-    if(confirm("Xóa?")){
+    if(confirm("Xóa lịch này?")){
         data = data.filter(i=>i.id!==id);
         render();
     }
@@ -144,8 +197,8 @@ function xoa(id){
 
 function xuat(){
     const a=document.createElement("a");
-    a.href=URL.createObjectURL(new Blob([JSON.stringify(data)]));
-    a.download="backup.json";
+    a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)]));
+    a.download="backup_lich.json";
     a.click();
 }
 
@@ -154,10 +207,17 @@ function nhap(e){
     r.onload=ev=>{
         data=JSON.parse(ev.target.result);
         render();
-        alert("Đã phục hồi");
+        alert("Phục hồi thành công");
     };
     r.readAsText(e.target.files[0]);
 }
+
+// ===== NGÀY HIỆN TẠI =====
+document.getElementById("ngayHienTai").innerText =
+new Date().toLocaleDateString("vi-VN",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+
+// Tự cập nhật mỗi phút
+setInterval(render,60000);
 </script>
 
 </body>
