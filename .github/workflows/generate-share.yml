@@ -1,0 +1,35 @@
+name: Auto generate share pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - posts_data.json
+      - generate-share.js
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Generate share pages
+        run: node generate-share.js
+
+      - name: Commit and push generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add share
+          git commit -m "Auto generate share pages" || echo "No changes to commit"
+          git push
