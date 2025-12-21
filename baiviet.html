@@ -191,33 +191,27 @@ footer {
         }
     }
 
-    function renderArticles(postsToRender) {
-        listContainer.innerHTML = ''; // Xóa nội dung cũ
+  function renderArticles(posts) {
+    listContainer.innerHTML = "";
+    // Chỉ lấy bài viết thuộc đúng category (ví dụ: 'baiviet' hoặc 'tintuc')
+    // Ở file baiviet.html lọc 'baiviet', ở file tintuc.html lọc 'tintuc'
+    const filteredPosts = posts.filter(p => p.category === 'baiviet'); 
 
-        if (postsToRender.length === 0) {
-            listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Không tìm thấy bài viết nào phù hợp.</p>';
-            return;
-        }
-
-        postsToRender.forEach(p => {
-            const thumbnailHtml = p.thumbnail
-                ? `<img src="${p.thumbnail}" class="post-thumbnail" alt="${p.title}">`
-                : '';
+    filteredPosts.forEach(p => {
+        const div = document.createElement('div');
+        div.className = "post-card";
+        div.innerHTML = `
+            <img src="${p.thumbnail || 'images/default-thumb.jpg'}" alt="${p.title}">
+            <div class="post-card-content">
+                <h3>${p.title}</h3>
+                <p>${p.shortDescription || ''}</p>
+                <a href="post.html?id=${p.id}" style="color: #0a7f99; font-weight: bold;">Xem chi tiết →</a>
+            </div>
+        `;
+        listContainer.appendChild(div);
+    });
+}
                 
-            listContainer.innerHTML += `
-                <div class="post-item">
-                    ${thumbnailHtml} 
-                    <div class="post-item-content">
-                        <h3>
-                            <a href="post.html?id=${p.id}">${p.title}</a>
-                        </h3>
-                        <small>${p.date}</small>
-                        <p>${p.shortDescription || p.content.substring(0, 200) + '...'}</p>
-                    </div>
-                </div>`;
-        });
-    }
-    
     // Hàm Thống kê (Cập nhật số lượng bài viết)
     function updateStats(count) {
         postCountSpan.textContent = count;

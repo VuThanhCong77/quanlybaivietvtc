@@ -145,6 +145,55 @@
         // Lưu ý: Thực tế bạn cần gọi API PHP để update vào file JSON/Database ở đây
         console.log(`Đã gửi vote ${type} cho bài viết ID: ${postId}`);
     }
+
+
+    async function loadPost() {
+        try {
+            const response = await fetch('posts_data.json');
+            const data = await response.json();
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+
+            // Sửa lỗi: Đảm bảo so sánh ID dưới dạng chuỗi
+            const post = data.find(p => String(p.id) === String(postId));
+
+            if (post) {
+                // Hiển thị nội dung
+                document.getElementById('dynamic-title').innerText = post.title;
+                document.getElementById('post-title').innerText = post.title;
+                
+                // Sửa lỗi: Dùng post.thumbnail thay vì post.image
+                const postImg = document.getElementById('post-img');
+                if (post.thumbnail) {
+                    postImg.src = post.thumbnail;
+                    postImg.style.display = 'block';
+                }
+
+                document.getElementById('post-content').innerHTML = post.content;
+
+                // Cập nhật thẻ Meta cho trình duyệt
+                document.getElementById('og-title').content = post.title;
+                document.getElementById('og-image').content = window.location.origin + '/' + post.thumbnail;
+                document.getElementById('og-url').content = window.location.href;
+                
+                // Trích đoạn mô tả từ nội dung (bỏ qua thẻ HTML)
+                const plainText = post.content.replace(/<[^>]*>?/gm, '').substring(0, 150);
+                document.getElementById('og-desc').content = post.shortDescription || plainText;
+
+            } else {
+                document.querySelector('.main-content').innerHTML = `
+                    <div class="text-center py-5">
+                        <h2 class="text-danger">Rất tiếc! Bài viết không tồn tại.</h2>
+                        <a href="index.html" class="btn btn-primary mt-3">Quay về trang chủ</a>
+                    </div>`;
+            }
+        } catch (error) {
+            console.error("Lỗi tải dữ liệu:", error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPost);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

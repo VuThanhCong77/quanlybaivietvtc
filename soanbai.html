@@ -182,24 +182,36 @@ function fileToBase64(file) {
     });
 }
 
-/**
- * Lưu bài viết vào LocalStorage
- */
-async function savePost() {
+function savePost() {
+    const id = document.getElementById('editPostId').value || Date.now().toString();
     const title = document.getElementById('title').value;
-    const shortDescription = document.getElementById('shortDescription').value;
     const category = document.getElementById('category').value;
-    const content = document.getElementById('content-area').innerHTML;
+    const content = editor.innerHTML;
+    const imageUrl = document.getElementById('imageUrl').value; // Link ảnh
+
+    // Tạo đối tượng bài viết chuẩn
+    const newPost = {
+        id: id,
+        title: title,
+        category: category,
+        content: content,
+        thumbnail: imageUrl, // ĐỒNG BỘ: Luôn dùng thumbnail
+        shortDescription: editor.innerText.substring(0, 150).replace(/\n/g, ' ') + "..."
+    };
+
+    // Code xử lý lưu (vào localStorage hoặc mảng tạm)
+    console.log("Dữ liệu đã chuẩn hóa:", newPost);
     
-    const imageFile = document.getElementById('image').files[0]; // File input
-    const thumbnailUrl = document.getElementById('thumbnailUrl').value.trim(); // URL input
-
-    const documentFile = document.getElementById('documentFile').files[0];
-
-    if (!title || !content || !category) {
-        alert("Vui lòng điền Tiêu đề, Nội dung và Chuyên mục.");
-        return;
-    }
+    // TỰ ĐỘNG TẠO CODE CHO FILE CHIA SẺ (Copy cái này để tạo file .html nếu muốn hiện ảnh FB/Zalo)
+    const shareHtmlCode = `
+    <meta property="og:title" content="${title}">
+    <meta property="og:image" content="${window.location.origin}/${imageUrl}">
+    <meta http-equiv="refresh" content="0; url=../post.html?id=${id}">
+    `;
+    console.log("Mã file chia sẻ tham khảo:", shareHtmlCode);
+    
+    alert("Đã chuẩn hóa dữ liệu bài viết! Hãy xuất JSON để cập nhật vào posts_data.json");
+}
 
     const currentId = document.getElementById('postId').value || Date.now();
     let posts = JSON.parse(localStorage.getItem("posts") || "[]");

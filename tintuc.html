@@ -177,34 +177,26 @@ footer {
             }
         }
 
-        function renderNews(postsToRender) {
-            newsListContainer.innerHTML = ''; // Xóa nội dung cũ
+        function renderArticles(posts) {
+    listContainer.innerHTML = "";
+    // Chỉ lấy bài viết thuộc đúng category (ví dụ: 'baiviet' hoặc 'tintuc')
+    // Ở file baiviet.html lọc 'baiviet', ở file tintuc.html lọc 'tintuc'
+    const filteredPosts = posts.filter(p => p.category === 'baiviet'); 
 
-            if (postsToRender.length === 0) {
-                const message = searchInput.value.trim() === '' 
-                    ? 'Hiện chưa có tin tức nào.' 
-                    : 'Không tìm thấy tin tức nào phù hợp với từ khóa.';
-                newsListContainer.innerHTML = `<p style="text-align: center; color: #888; padding: 20px;">${message}</p>`;
-                return;
-            }
-
-            postsToRender.forEach(p => {
-                const thumbnailSrc = p.thumbnail || 'placeholder_thumb.jpg'; // Sử dụng placeholder nếu không có ảnh
-                    
-                newsListContainer.innerHTML += `
-                    <div class="news-item">
-                        <img src="${thumbnailSrc}" alt="${p.title}" /> 
-                        <div class="news-content">
-                            <h3>
-                                <a href="post.html?id=${p.id}">${p.title}</a>
-                            </h3>
-                            <small>${p.date}</small>
-                            <p>${p.shortDescription || p.content.substring(0,150)}...</p> 
-                        </div>
-                    </div>`;
-            });
-        }
-        
+    filteredPosts.forEach(p => {
+        const div = document.createElement('div');
+        div.className = "post-card";
+        div.innerHTML = `
+            <img src="${p.thumbnail || 'images/default-thumb.jpg'}" alt="${p.title}">
+            <div class="post-card-content">
+                <h3>${p.title}</h3>
+                <p>${p.shortDescription || ''}</p>
+                <a href="post.html?id=${p.id}" style="color: #0a7f99; font-weight: bold;">Xem chi tiết →</a>
+            </div>
+        `;
+        listContainer.appendChild(div);
+    });
+}
         // Hàm Thống kê (Cập nhật số lượng tin tức)
         function updateStats(count) {
             newsCountSpan.textContent = count;
