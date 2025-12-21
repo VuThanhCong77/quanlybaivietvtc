@@ -3,41 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="dynamic-title">Đang tải bài viết...</title>
+    <title id="dynamic-title">Chi tiết bài viết</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body { background-color: #f8f9fa; font-family: sans-serif; }
-        .main-content { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); min-height: 400px; }
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; }
+        .main-content { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .post-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; display: none; }
-        #view-content img { max-width: 100%; height: auto; } /* Đảm bảo ảnh trong nội dung không bị tràn */
+        .btn-facebook { background-color: #1877F2; color: white; border-radius: 50px; padding: 10px 25px; font-weight: 600; border: none; transition: 0.3s; }
+        .btn-facebook:hover { background-color: #145dbf; color: white; }
+        #view-content { line-height: 1.8; color: #444; font-size: 1.1rem; }
+        #view-content img { max-width: 100%; height: auto; border-radius: 8px; }
     </style>
 </head>
 <body>
 
 <div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-lg-9">
+        <div class="col-lg-8">
             <div class="main-content" id="post-container">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Chi tiết</li>
+                        <li class="breadcrumb-item active">Bài viết</li>
                     </ol>
                 </nav>
 
-                <h1 id="view-title" class="fw-bold mb-3">Đang tải...</h1>
+                <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
                 
                 <div class="text-muted mb-4 small">
                     <i class="fas fa-calendar-alt me-1"></i> <span id="view-date"></span>
+                    <span class="ms-3"><i class="fas fa-user me-1"></i> <span id="view-author">Admin</span></span>
                 </div>
 
                 <img id="view-image" src="" alt="" class="post-img shadow-sm">
 
-                <div id="view-content" class="lh-lg fs-5">
-                    </div>
+                <div id="view-content" class="mb-5"></div>
+
+                <hr>
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button onclick="shareFB()" class="btn-facebook shadow-sm">
+                        <i class="fab fa-facebook-f me-2"></i> Chia sẻ lên Facebook
+                    </button>
+                    <a href="index.html" class="text-decoration-none"><i class="fas fa-arrow-left"></i> Quay lại</a>
+                </div>
             </div>
         </div>
     </div>
@@ -46,52 +57,53 @@
 <script>
     async function loadPost() {
         try {
-            // 1. Lấy ID từ URL (ví dụ: post.html?id=1)
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
 
             if (!postId) {
-                document.getElementById('view-title').innerText = "Thiếu ID bài viết trên URL!";
+                document.getElementById('view-title').innerText = "Vui lòng cung cấp ID bài viết!";
                 return;
             }
 
-            // 2. Tải dữ liệu từ file JSON
-            // Lưu ý: Phải chạy trên Live Server hoặc Hosting để fetch hoạt động
             const response = await fetch('posts_data.json');
-            if (!response.ok) throw new Error("Không thể tải file posts_data.json");
-            
             const data = await response.json();
             
-            // 3. Tìm bài viết khớp ID (so sánh dạng chuỗi để chính xác tuyệt đối)
+            // Tìm bài viết theo ID
             const post = data.find(p => String(p.id) === String(postId));
 
             if (post) {
-                // Đổ dữ liệu vào giao diện dựa trên file JSON bạn gửi
+                // Đổ dữ liệu vào giao diện
                 document.title = post.title;
                 document.getElementById('view-title').innerText = post.title;
-                document.getElementById('view-date').innerText = post.date || "Không có ngày";
-                
-                // Hiển thị ảnh từ trường 'thumbnail'
+                document.getElementById('view-date').innerText = post.date || "Không xác định";
+                document.getElementById('view-author').innerText = post.author || "Admin";
+
+                // QUAN TRỌNG: Dùng .description thay vì .content
+                document.getElementById('view-content').innerHTML = post.description || "Bài viết này chưa có nội dung.";
+
+                // Hiển thị ảnh dùng .thumbnail
                 const imgElement = document.getElementById('view-image');
                 if (post.thumbnail) {
                     imgElement.src = post.thumbnail;
                     imgElement.style.display = 'block';
                 }
-
-                // Hiển thị nội dung từ trường 'description'
-                document.getElementById('view-content').innerHTML = post.description;
-
             } else {
-                document.getElementById('post-container').innerHTML = `<h2 class="text-danger">Bài viết (ID: ${postId}) không tồn tại!</h2>`;
+                document.getElementById('post-container').innerHTML = `<h2 class="text-danger text-center">Bài viết không tồn tại!</h2>`;
             }
         } catch (error) {
             console.error("Lỗi:", error);
-            document.getElementById('post-container').innerHTML = `
-                <div class="alert alert-danger">
-                    <strong>Lỗi kết nối!</strong> Có thể bạn đang mở file trực tiếp từ thư mục. 
-                    Hãy sử dụng <b>Live Server</b> trong VS Code để chạy trang web.
+            document.getElementById('view-content').innerHTML = `
+                <div class="alert alert-warning">
+                    <b>Lỗi:</b> Không thể đọc file dữ liệu. <br>
+                    Hãy đảm bảo bạn đang dùng <b>Live Server</b> và file <b>posts_data.json</b> nằm cùng thư mục.
                 </div>`;
         }
+    }
+
+    // Hàm chia sẻ Facebook
+    function shareFB() {
+        const url = window.location.href;
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, 'fb-share', 'width=580,height=400');
     }
 
     document.addEventListener('DOMContentLoaded', loadPost);
