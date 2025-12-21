@@ -305,64 +305,59 @@ text-decoration:none;
 </footer>
 
 <script>
-const JSON_URL='posts_data.json';
+const JSON_URL = 'posts_data.json';
 
-async function fetchPosts(){
-try{
-const r=await fetch(JSON_URL);
-if(!r.ok) return [];
-return await r.json();
-}catch{return []}
+async function fetchPosts() {
+    try {
+        const r = await fetch(JSON_URL);
+        if (!r.ok) return [];
+        return await r.json();
+    } catch (e) {
+        console.error("Lỗi fetch:", e);
+        return [];
+    }
 }
 
-async function loadRecentPosts(){
-const posts=await fetchPosts();
-const box=document.getElementById("recent-posts-list");
+async function loadRecentPosts() {
+    const posts = await fetchPosts();
+    const box = document.getElementById("recent-posts-list");
 
-const valid=posts.filter(p=>p.category==="tintuc"||p.category==="baiviet")
-.sort((a,b)=>b.id-a.id)
-.slice(0,8);
+    // Lọc các bài viết thuộc danh mục tintuc hoặc baiviet
+    const valid = posts.filter(p => p.category === "tintuc" || p.category === "baiviet")
+        .sort((a, b) => b.id - a.id)
+        .slice(0, 8);
 
-if(!valid.length){
-box.innerHTML='<p style="text-align:center;color:#777">Chưa có dữ liệu.</p>';
-return;
+    if (!valid.length) {
+        box.innerHTML = '<p style="text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
+        return;
+    }
+
+    box.innerHTML = '';
+    valid.forEach(p => {
+        // SỬA LỖI TẠI ĐÂY: 
+        // 1. Dùng p.thumbnail thay vì p.image (khớp với file JSON)
+        // 2. Link bài viết truyền id chuẩn
+        box.innerHTML += `
+        <div class="recent-post-item">
+            <img src="${p.thumbnail || 'images/hoasen.jpg'}" alt="${p.title}">
+            <div style="padding:15px">
+                <strong>${p.category === "tintuc" ? "TIN TỨC" : "BÀI VIẾT"}</strong>
+                <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
+                <small>${p.date || ""}</small>
+            </div>
+        </div>`;
+    });
 }
 
-box.innerHTML='';
-valid.forEach(p=>{
-box.innerHTML+=`
-<div class="recent-post-item">
-<img src="${p.thumbnail||'images/hoasen.jpg'}">
-<div style="padding:15px">
-<strong>${p.category==="tintuc"?"TIN TỨC":"BÀI VIẾT"}</strong>
-<h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
-<small>${p.date||""}</small>
-</div>
-</div>`;
-});
+document.addEventListener('DOMContentLoaded', loadRecentPosts);
+
+function shareFacebook() {
+    window.open(
+        'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href),
+        'facebook-share-dialog',
+        'width=800,height=600'
+    );
 }
-
-document.addEventListener('DOMContentLoaded',loadRecentPosts);
-
-function shareFacebook(){
-window.open(
-'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
-'_blank','width=600,height=400'
-);
-}
-const CONFIG_URL = 'site_config.json';
-
-async function loadRunningText(){
-  try{
-    const res = await fetch(CONFIG_URL);
-    if(!res.ok) return;
-    const config = await res.json();
-    document.getElementById('runningText').innerText =
-      config.runningText || '';
-  }catch(e){}
-}
-
-document.addEventListener('DOMContentLoaded', loadRunningText);
 </script>
 
 </body>
