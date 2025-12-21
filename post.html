@@ -3,76 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title id="dynamic-title">Đang tải bài viết...</title>
     
-    <meta property="og:type" content="article" />
-    <meta property="og:title" id="og-title" content="" />
-    <meta property="og:description" id="og-desc" content="" />
-    <meta property="og:image" id="og-image" content="" />
-    <meta property="og:url" id="og-url" content="" />
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root { --primary-color: #007bff; }
-        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f8f9fa; font-family: sans-serif; }
         .main-content { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); min-height: 400px; }
-        .post-img { width: 100%; max-height: 500px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; display: none; }
-        .sidebar-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-        .btn-facebook { background-color: #1877F2; color: white; border-radius: 50px; padding: 10px 25px; font-weight: 600; border: none; }
-        .reaction-box { display: flex; align-items: center; gap: 20px; border-top: 1px solid #eee; padding-top: 20px; margin-top: 30px; }
-        .reaction-btn { border: none; background: #f0f2f5; padding: 10px 20px; border-radius: 50px; transition: 0.3s; cursor: pointer; }
-        .count-num { font-weight: bold; margin-left: 5px; }
+        .post-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; display: none; }
+        #view-content img { max-width: 100%; height: auto; } /* Đảm bảo ảnh trong nội dung không bị tràn */
     </style>
 </head>
 <body>
 
 <div class="container my-5">
-    <div class="row">
-        <div class="col-lg-8">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
             <div class="main-content" id="post-container">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Chi tiết bài viết</li>
+                        <li class="breadcrumb-item active">Chi tiết</li>
                     </ol>
                 </nav>
 
-                <h1 id="view-title" class="fw-bold mb-3 mt-2">Loading...</h1>
+                <h1 id="view-title" class="fw-bold mb-3">Đang tải...</h1>
                 
-                <div class="d-flex align-items-center text-muted mb-4 small">
-                    <span class="me-3"><i class="fas fa-user-edit me-1"></i> <span id="view-author">Tác giả</span></span>
-                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> <span id="view-date">Ngày đăng</span></span>
+                <div class="text-muted mb-4 small">
+                    <i class="fas fa-calendar-alt me-1"></i> <span id="view-date"></span>
                 </div>
 
-                <img id="view-image" src="" alt="Post Cover" class="post-img shadow-sm">
+                <img id="view-image" src="" alt="" class="post-img shadow-sm">
 
-                <div id="view-content" class="lh-lg text-secondary fs-5 mb-5">
+                <div id="view-content" class="lh-lg fs-5">
                     </div>
-
-                <div class="reaction-box flex-wrap justify-content-between">
-                    <div class="d-flex gap-3">
-                        <button class="reaction-btn" onclick="handleVote('likes')">
-                            <i class="fas fa-thumbs-up"></i> Thích <span id="count-likes" class="count-num">0</span>
-                        </button>
-                    </div>
-                    <button onclick="shareFB()" class="btn-facebook shadow-sm">
-                        <i class="fab fa-facebook-f me-2"></i> Chia sẻ Facebook
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div class="sidebar-card">
-                <h5 class="fw-bold mb-3 border-bottom pb-2">Về tác giả</h5>
-                <p id="side-author-info" class="text-muted">Thông tin tác giả đang được cập nhật...</p>
-            </div>
-            <div class="sidebar-card">
-                <h5 class="fw-bold mb-3 border-bottom pb-2">Quảng cáo</h5>
-                <div class="bg-light p-5 text-center rounded">Không gian quảng cáo</div>
             </div>
         </div>
     </div>
@@ -81,84 +46,56 @@
 <script>
     async function loadPost() {
         try {
-            // 1. Lấy ID từ URL (ví dụ: post.html?id=2)
+            // 1. Lấy ID từ URL (ví dụ: post.html?id=1)
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
 
             if (!postId) {
-                showError("Không tìm thấy ID bài viết trong đường dẫn!");
+                document.getElementById('view-title').innerText = "Thiếu ID bài viết trên URL!";
                 return;
             }
 
             // 2. Tải dữ liệu từ file JSON
+            // Lưu ý: Phải chạy trên Live Server hoặc Hosting để fetch hoạt động
             const response = await fetch('posts_data.json');
-            if (!response.ok) throw new Error("Không thể tải file dữ liệu JSON");
+            if (!response.ok) throw new Error("Không thể tải file posts_data.json");
             
             const data = await response.json();
             
-            // 3. Tìm bài viết khớp ID (so sánh chuỗi)
+            // 3. Tìm bài viết khớp ID (so sánh dạng chuỗi để chính xác tuyệt đối)
             const post = data.find(p => String(p.id) === String(postId));
 
             if (post) {
-                renderPost(post);
+                // Đổ dữ liệu vào giao diện dựa trên file JSON bạn gửi
+                document.title = post.title;
+                document.getElementById('view-title').innerText = post.title;
+                document.getElementById('view-date').innerText = post.date || "Không có ngày";
+                
+                // Hiển thị ảnh từ trường 'thumbnail'
+                const imgElement = document.getElementById('view-image');
+                if (post.thumbnail) {
+                    imgElement.src = post.thumbnail;
+                    imgElement.style.display = 'block';
+                }
+
+                // Hiển thị nội dung từ trường 'description'
+                document.getElementById('view-content').innerHTML = post.description;
+
             } else {
-                showError(`Bài viết có ID "${postId}" không tồn tại trên hệ thống.`);
+                document.getElementById('post-container').innerHTML = `<h2 class="text-danger">Bài viết (ID: ${postId}) không tồn tại!</h2>`;
             }
         } catch (error) {
             console.error("Lỗi:", error);
-            showError("Có lỗi xảy ra khi kết nối với máy chủ dữ liệu.");
+            document.getElementById('post-container').innerHTML = `
+                <div class="alert alert-danger">
+                    <strong>Lỗi kết nối!</strong> Có thể bạn đang mở file trực tiếp từ thư mục. 
+                    Hãy sử dụng <b>Live Server</b> trong VS Code để chạy trang web.
+                </div>`;
         }
     }
 
-    function renderPost(post) {
-        // Hiển thị nội dung văn bản
-        document.getElementById('view-title').innerText = post.title;
-        document.getElementById('view-author').innerText = post.author || "Admin";
-        document.getElementById('view-date').innerText = post.date || "Chưa cập nhật";
-        document.getElementById('view-content').innerHTML = post.description; // Dùng description từ JSON
-        document.getElementById('side-author-info').innerText = "Bài viết được viết bởi " + (post.author || "Admin");
-
-        // Xử lý hình ảnh
-        const imgElement = document.getElementById('view-image');
-        if (post.thumbnail) {
-            imgElement.src = post.thumbnail;
-            imgElement.style.display = 'block';
-        }
-
-        // Cập nhật thẻ Meta cho trình duyệt
-        document.title = post.title;
-        document.getElementById('dynamic-title').innerText = post.title;
-        document.getElementById('og-title').content = post.title;
-        document.getElementById('og-image').content = window.location.origin + '/' + post.thumbnail;
-        document.getElementById('og-url').content = window.location.href;
-        
-        // Tạo mô tả ngắn cho Meta tag
-        const shortDesc = post.description.replace(/<[^>]*>?/gm, '').substring(0, 150) + "...";
-        document.getElementById('og-desc').content = shortDesc;
-    }
-
-    function showError(message) {
-        document.getElementById('post-container').innerHTML = `
-            <div class="text-center py-5">
-                <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                <h2 class="text-danger">${message}</h2>
-                <a href="index.html" class="btn btn-primary mt-3">Quay về trang chủ</a>
-            </div>`;
-    }
-
-    function shareFB() {
-        const url = window.location.href;
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, 'share-fb', 'width=600,height=400');
-    }
-
-    function handleVote(type) {
-        alert("Cảm ơn bạn đã đánh giá bài viết!");
-    }
-
-    // Chạy hàm khi trang đã tải xong
     document.addEventListener('DOMContentLoaded', loadPost);
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
