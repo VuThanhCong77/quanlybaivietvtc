@@ -306,14 +306,45 @@ text-decoration:none;
 
 <script>
 const JSON_URL = 'posts_data.json';
+const CONFIG_URL = 'site_config.json'; // Đường dẫn đến file cấu hình
 
+// HÀM 1: TẢI VÀ HIỂN THỊ DÒNG CHỮ CHẠY
+async function loadSiteConfig() {
+    try {
+        const response = await fetch(CONFIG_URL);
+        if (!response.ok) return;
+        
+        const config = await response.json();
+        const marquee = document.getElementById("runningText");
+        const container = document.querySelector(".running-text");
+
+        if (config.enable) {
+            // Hiển thị nội dung
+            marquee.innerText = config.runningText;
+            
+            // Cài đặt tốc độ chạy
+            marquee.setAttribute("scrollamount", config.speed || 5);
+            
+            // Áp dụng màu sắc từ file JSON
+            container.style.backgroundColor = config.bgColor;
+            container.style.color = config.textColor;
+        } else {
+            // Nếu enable là false thì ẩn cả dòng chữ chạy đi
+            container.style.display = "none";
+        }
+    } catch (e) {
+        console.error("Lỗi tải cấu hình chữ chạy:", e);
+    }
+}
+
+// HÀM 2: TẢI BÀI VIẾT (Giữ nguyên logic của bạn nhưng tối ưu hơn)
 async function fetchPosts() {
     try {
         const r = await fetch(JSON_URL);
         if (!r.ok) return [];
         return await r.json();
     } catch (e) {
-        console.error("Lỗi fetch:", e);
+        console.error("Lỗi fetch posts:", e);
         return [];
     }
 }
@@ -322,7 +353,6 @@ async function loadRecentPosts() {
     const posts = await fetchPosts();
     const box = document.getElementById("recent-posts-list");
 
-    // Lọc các bài viết thuộc danh mục tintuc hoặc baiviet
     const valid = posts.filter(p => p.category === "tintuc" || p.category === "baiviet")
         .sort((a, b) => b.id - a.id)
         .slice(0, 8);
@@ -334,29 +364,26 @@ async function loadRecentPosts() {
 
     box.innerHTML = '';
     valid.forEach(p => {
-        // SỬA LỖI TẠI ĐÂY: 
-        // 1. Dùng p.thumbnail thay vì p.image (khớp với file JSON)
-        // 2. Link bài viết truyền id chuẩn
         box.innerHTML += `
         <div class="recent-post-item">
             <img src="${p.thumbnail || 'images/hoasen.jpg'}" alt="${p.title}">
             <div style="padding:15px">
-                <strong>${p.category === "tintuc" ? "TIN TỨC" : "BÀI VIẾT"}</strong>
-                <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
+                <strong style="color:var(--primary)">${p.category === "tintuc" ? "TIN TỨC" : "BÀI VIẾT"}</strong>
+                <h3><a href="post.html?id=${p.id}" style="text-decoration:none;color:#333">${p.title}</a></h3>
                 <small>${p.date || ""}</small>
             </div>
         </div>`;
     });
 }
 
-document.addEventListener('DOMContentLoaded', loadRecentPosts);
+// GỌI CẢ 2 HÀM KHI TRANG TẢI XONG
+document.addEventListener('DOMContentLoaded', () => {
+    loadSiteConfig(); // Chạy dòng chữ
+    loadRecentPosts(); // Chạy bài viết
+});
 
 function shareFacebook() {
-    window.open(
-        'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href),
-        'facebook-share-dialog',
-        'width=800,height=600'
-    );
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), 'facebook-share-dialog', 'width=800,height=600');
 }
 </script>
 
