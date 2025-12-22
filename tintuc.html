@@ -158,93 +158,73 @@
     </div>
 
     <script>
-        const JSON_URL = 'posts_data.json';
-        const newsListContainer = document.getElementById("news-list");
-        const searchInput = document.getElementById("search-input");
-        const newsCountSpan = document.getElementById("news-count");
+        <script>
+    const JSON_URL = 'posts_data.json';
+    const newsListContainer = document.getElementById("news-list");
+    const searchInput = document.getElementById("search-input");
+    const newsCountSpan = document.getElementById("news-count");
+    
+    let allNews = []; 
+
+    async function fetchPosts() {
+        try {
+            const response = await fetch(JSON_URL);
+            if (!response.ok) throw new Error("Không thể tải file JSON");
+            const data = await response.json();
+            // SỬA: Khớp chính xác với "tin-tuc" trong file JSON của bạn
+            return data.filter(p => p.category === "tin-tuc");
+        } catch (error) {
+            console.error("Lỗi:", error);
+            return [];
+        }
+    }
+
+    // SỬA: Đổi tên thành renderNews để sửa lỗi ReferenceError
+    function renderNews(posts) {
+        newsListContainer.innerHTML = ""; // SỬA: Dùng đúng biến newsListContainer
         
-        let allNews = []; 
-
-        async function fetchPosts() {
-            try {
-                const response = await fetch(JSON_URL);
-                if (!response.ok) {
-                    console.error("Không tìm thấy file posts_data.json.");
-                    return [];
-                }
-                const data = await response.json();
-                // Chỉnh sửa: Sử dụng đúng category "tin-tuc" từ posts_data.json
-                return data.filter(p => p.category === "tin-tuc");
-            } catch (error) {
-                console.error("Lỗi mạng khi tải dữ liệu tin tức:", error);
-                return [];
-            }
+        if (posts.length === 0) {
+            newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Không có tin tức nào để hiển thị.</p>';
+            return;
         }
 
-        // Chỉnh sửa: Đổi tên hàm thành renderNews để khắc phục lỗi "ReferenceError"
-        function renderNews(posts) {
-            newsListContainer.innerHTML = "";
-            
-            if (posts.length === 0) {
-                newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Không tìm thấy tin tức nào.</p>';
-                return;
-            }
+        posts.forEach(p => {
+            const div = document.createElement('div');
+            div.className = "news-item";
+            div.innerHTML = `
+                <img src="${p.thumbnail || 'images/default-thumb.jpg'}" alt="${p.title}">
+                <div class="news-content">
+                    <small>${p.date || 'Tin tức'}</small>
+                    <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
+                    <p>${p.shortDescription || ''}</p>
+                    <a href="post.html?id=${p.id}" style="color: #0a7f99; font-weight: bold;">Xem chi tiết →</a>
+                </div>
+            `;
+            newsListContainer.appendChild(div);
+        });
+    }
 
-            posts.forEach(p => {
-                const div = document.createElement('div');
-                div.className = "news-item";
-                div.innerHTML = `
-                    <img src="${p.thumbnail || 'images/default-thumb.jpg'}" alt="${p.title}">
-                    <div class="news-content">
-                        <small>${p.date || 'Ngày đăng'}</small>
-                        <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
-                        <p>${p.shortDescription || ''}</p>
-                        <a href="post.html?id=${p.id}" style="color: #0a7f99; font-weight: bold;">Xem chi tiết →</a>
-                    </div>
-                `;
-                newsListContainer.appendChild(div);
-            });
-        }
+    function updateStats(count) {
+        newsCountSpan.textContent = count;
+    }
 
-        function updateStats(count) {
-            newsCountSpan.textContent = count;
-        }
+    function searchNews() {
+        const query = searchInput.value.trim().toLowerCase();
+        const filtered = allNews.filter(p => p.title.toLowerCase().includes(query));
+        renderNews(filtered);
+        updateStats(filtered.length);
+    }
+    
+    async function loadNews() {
+        newsListContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
+        allNews = await fetchPosts();
+        renderNews(allNews);
+        updateStats(allNews.length);
+        searchInput.addEventListener('input', searchNews);
+    }
 
-        function searchNews() {
-            const query = searchInput.value.trim().toLowerCase();
-            
-            if (query === "") {
-                renderNews(allNews);
-                updateStats(allNews.length);
-                return;
-            }
-
-            const filtered = allNews.filter(p => 
-                p.title.toLowerCase().includes(query)
-            );
-
-            renderNews(filtered);
-            updateStats(filtered.length);
-        }
-        
-        async function loadNews() {
-            newsListContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
-            
-            allNews = await fetchPosts();
-            
-            if (allNews.length === 0) {
-                newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tin tức nào.</p>';
-                updateStats(0);
-                return;
-            }
-            
-            renderNews(allNews);
-            updateStats(allNews.length);
-            
-            searchInput.addEventListener('input', searchNews);
-        }
-
-        document.addEventListener('DOMContentLoaded', loadNews);
+    document.addEventListener('DOMContentLoaded', loadNews);
+</script>
     </script>
 </main>
 
