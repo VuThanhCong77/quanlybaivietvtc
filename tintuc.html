@@ -1,135 +1,140 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tin tức & Hoạt động | Tên Trang</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tin tức & Hoạt động | Tên Trang</title>
 
-<style>
-/* === RESET & CƠ BẢN === */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #ffffff;
-    color: #0a3a5a;
-    line-height: 1.6;
-}
-header.site-header {
-    background: linear-gradient(to right, #0a7f99, #0ab3c9);
-    color: #fff;
-    padding: 15px 20px; 
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-header.site-header h1 {
-    font-size: 24px;
-    margin: 0; 
-    line-height: 1.2;
-}
-main {
-    max-width: 900px;
-    margin: 15px auto; 
-    padding: 20px;
-    background-color: #f9f9ff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); 
-}
+    <style>
+        /* === RESET & CƠ BẢN === */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #0a3a5a;
+            line-height: 1.6;
+        }
+        header.site-header {
+            background: linear-gradient(to right, #0a7f99, #0ab3c9);
+            color: #fff;
+            padding: 15px 20px; 
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header.site-header h1 {
+            font-size: 24px;
+            margin: 0; 
+            line-height: 1.2;
+        }
+        main {
+            max-width: 900px;
+            margin: 15px auto; 
+            padding: 20px;
+            background-color: #f9f9ff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); 
+        }
 
-/* ======================================= */
-/* CSS BỔ SUNG: CONTROL PANEL VÀ STATS */
-/* ======================================= */
-.control-panel {
-    display: flex;
-    justify-content: flex-end; /* Đẩy các ô sang bên phải */
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #cde7ef;
-}
+        /* === CONTROL PANEL === */
+        .control-panel {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #cde7ef;
+        }
 
-#search-input {
-    padding: 8px 12px;
-    border: 1px solid #0ab3c9;
-    border-radius: 5px;
-    font-size: 14px;
-    width: 250px; /* Chiều rộng ô tìm kiếm */
-}
+        #search-input {
+            padding: 8px 12px;
+            border: 1px solid #0ab3c9;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 250px;
+        }
 
-#stats-box {
-    background-color: #0ab3c9;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    flex-shrink: 0; /* Ngăn không cho ô bị co lại */
-}
+        #stats-box {
+            background-color: #0ab3c9;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            flex-shrink: 0;
+        }
 
-/* === ITEM TIN TỨC === */
-.news-item {
-    padding: 20px 0;
-    border-bottom: 1px solid #cde7ef;
-    display: flex;
-    gap: 20px;
-}
-.news-item:last-child {
-    border-bottom: none;
-}
-.news-item img {
-    width: 160px;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 6px;
-    flex-shrink: 0; 
-}
-.news-content h3 {
-    margin: 0;
-}
-.news-content h3 a {
-    color: #0a3a5a;
-    text-decoration: none;
-}
-.news-content h3 a:hover {
-    color: #0a7f99;
-}
-.news-content small {
-    color: #888;
-    display: block;
-    margin-bottom: 5px;
-}
-.news-content p {
-    margin-top: 8px;
-    color: #08405d;
-}
-footer {
-    background: #e7f5fa;
-    padding: 20px;
-    margin-top: 40px;
-    text-align: center;
-    font-size: 14px;
-    color: #074055;
-}
+        /* === ITEM TIN TỨC === */
+        .news-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #cde7ef;
+            display: flex;
+            gap: 20px;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-item img {
+            width: 160px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex-shrink: 0; 
+        }
+        .news-content h3 {
+            margin: 0;
+        }
+        .news-content h3 a {
+            color: #0a3a5a;
+            text-decoration: none;
+        }
+        .news-content h3 a:hover {
+            color: #0a7f99;
+        }
+        .news-content small {
+            color: #888;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .news-content p {
+            margin-top: 8px;
+            color: #08405d;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: #0a7f99;
+            font-weight: bold;
+        }
+        footer {
+            background: #e7f5fa;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #074055;
+        }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    .control-panel {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    #search-input {
-        width: auto;
-    }
-    .news-item {
-        flex-direction: column;
-    }
-    .news-item img {
-        width: 100%;
-        height: auto;
-    }
-}
-</style>
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            #search-input {
+                width: auto;
+            }
+            .news-item {
+                flex-direction: column;
+            }
+            .news-item img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -139,11 +144,10 @@ footer {
 </header>
 
 <main>
-<a href="index.html" class="back-link">Trang chủ 🚀</a>
+    <a href="index.html" class="back-link">Trang chủ 🚀</a>
 
     <div class="control-panel">
         <input type="text" id="search-input" placeholder="Tìm kiếm tin tức theo tiêu đề..." />
-        
         <div id="stats-box">
             Tổng tin tức: <span id="news-count">0</span> bài
         </div>
@@ -154,95 +158,93 @@ footer {
     </div>
 
     <script>
-        <script>
-    const JSON_URL = 'posts_data.json';
-    const newsListContainer = document.getElementById("news-list");
-    const searchInput = document.getElementById("search-input");
-    const newsCountSpan = document.getElementById("news-count");
-    
-    let allNews = []; 
+        const JSON_URL = 'posts_data.json';
+        const newsListContainer = document.getElementById("news-list");
+        const searchInput = document.getElementById("search-input");
+        const newsCountSpan = document.getElementById("news-count");
+        
+        let allNews = []; 
 
-    async function fetchPosts() {
-        try {
-            const response = await fetch(JSON_URL);
-            if (!response.ok) {
-                console.error("Không tìm thấy file posts_data.json.");
+        async function fetchPosts() {
+            try {
+                const response = await fetch(JSON_URL);
+                if (!response.ok) {
+                    console.error("Không tìm thấy file posts_data.json.");
+                    return [];
+                }
+                const data = await response.json();
+                // Chỉnh sửa: Sử dụng đúng category "tin-tuc" từ posts_data.json
+                return data.filter(p => p.category === "tin-tuc");
+            } catch (error) {
+                console.error("Lỗi mạng khi tải dữ liệu tin tức:", error);
                 return [];
             }
-            const data = await response.json();
-            // Lọc các bài có category là "tintuc"
-            return data.filter(p => p.category === "tintuc");
-        } catch (error) {
-            console.error("Lỗi mạng khi tải dữ liệu tin tức:", error);
-            return [];
-        }
-    }
-
-    // ĐỔI TÊN THÀNH renderNews ĐỂ KHỚP VỚI LỖI TRÊN HÌNH
-    function renderNews(posts) {
-        newsListContainer.innerHTML = ""; // Sử dụng đúng biến newsListContainer
-        
-        if (posts.length === 0) {
-            newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Không tìm thấy kết quả phù hợp.</p>';
-            return;
         }
 
-        posts.forEach(p => {
-            const div = document.createElement('div');
-            div.className = "news-item"; // Đổi class cho khớp với CSS của bạn (.news-item)
-            div.innerHTML = `
-                <img src="${p.thumbnail || 'images/default-thumb.jpg'}" alt="${p.title}">
-                <div class="news-content">
-                    <small>ID: ${p.id}</small>
-                    <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
-                    <p>${p.shortDescription || ''}</p>
-                    <a href="post.html?id=${p.id}" style="color: #0a7f99; font-weight: bold;">Xem chi tiết →</a>
-                </div>
-            `;
-            newsListContainer.appendChild(div);
-        });
-    }
+        // Chỉnh sửa: Đổi tên hàm thành renderNews để khắc phục lỗi "ReferenceError"
+        function renderNews(posts) {
+            newsListContainer.innerHTML = "";
+            
+            if (posts.length === 0) {
+                newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Không tìm thấy tin tức nào.</p>';
+                return;
+            }
 
-    function updateStats(count) {
-        newsCountSpan.textContent = count;
-    }
+            posts.forEach(p => {
+                const div = document.createElement('div');
+                div.className = "news-item";
+                div.innerHTML = `
+                    <img src="${p.thumbnail || 'images/default-thumb.jpg'}" alt="${p.title}">
+                    <div class="news-content">
+                        <small>${p.date || 'Ngày đăng'}</small>
+                        <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
+                        <p>${p.shortDescription || ''}</p>
+                        <a href="post.html?id=${p.id}" style="color: #0a7f99; font-weight: bold;">Xem chi tiết →</a>
+                    </div>
+                `;
+                newsListContainer.appendChild(div);
+            });
+        }
 
-    function searchNews() {
-        const query = searchInput.value.trim().toLowerCase();
+        function updateStats(count) {
+            newsCountSpan.textContent = count;
+        }
+
+        function searchNews() {
+            const query = searchInput.value.trim().toLowerCase();
+            
+            if (query === "") {
+                renderNews(allNews);
+                updateStats(allNews.length);
+                return;
+            }
+
+            const filtered = allNews.filter(p => 
+                p.title.toLowerCase().includes(query)
+            );
+
+            renderNews(filtered);
+            updateStats(filtered.length);
+        }
         
-        if (query === "") {
+        async function loadNews() {
+            newsListContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
+            
+            allNews = await fetchPosts();
+            
+            if (allNews.length === 0) {
+                newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tin tức nào.</p>';
+                updateStats(0);
+                return;
+            }
+            
             renderNews(allNews);
             updateStats(allNews.length);
-            return;
+            
+            searchInput.addEventListener('input', searchNews);
         }
 
-        const filtered = allNews.filter(p => 
-            p.title.toLowerCase().includes(query)
-        );
-
-        renderNews(filtered);
-        updateStats(filtered.length);
-    }
-    
-    async function loadNews() {
-        newsListContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
-        
-        allNews = await fetchPosts();
-        
-        if (allNews.length === 0) {
-            newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tin tức nào.</p>';
-            updateStats(0);
-            return;
-        }
-        
-        renderNews(allNews);
-        updateStats(allNews.length);
-        
-        searchInput.addEventListener('input', searchNews);
-    }
-
-    document.addEventListener('DOMContentLoaded', loadNews);
-</script>
+        document.addEventListener('DOMContentLoaded', loadNews);
     </script>
 </main>
 
