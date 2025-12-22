@@ -276,6 +276,28 @@ function hienNgayDayDu(){
 }
 document.getElementById("ngayHienTai").innerText=hienNgayDayDu();
 setInterval(render,60000);
+
+async function loadDataFromURL() {
+    const URL_RAW = "https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/Lichcongtac/backup_lich.json";
+    try {
+        const response = await fetch(URL_RAW);
+        if (response.ok) {
+            const remoteData = await response.json();
+            data = remoteData; // Gán dữ liệu tải về vào biến data
+            render(); // Hiển thị lên bảng
+            console.log("Đã tải dữ liệu từ GitHub");
+        }
+    } catch (error) {
+        console.error("Không thể tải dữ liệu tự động:", error);
+    }
+}
+
+// Gọi hàm này trong phần init()
+function init(){
+    // ... các code cũ của bạn ...
+    loadDataFromURL(); // Thêm dòng này
+    render();
+}
 </script>
 
 </body>
