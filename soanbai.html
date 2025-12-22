@@ -4,29 +4,14 @@
 <meta charset="utf-8">
 <title id="pageTitle">Soạn thảo bài viết</title>
 <style>
-/* CSS GỐC */
+/* CSS GIỮ NGUYÊN THEO BẢN GỐC CỦA BẠN */
 body {font-family: Arial; max-width: 900px; margin: auto; padding: 20px; background-color: #f4f7f8;}
 h1 {color: #0a7f99; text-align: center;}
 label {display: block; font-weight: bold; margin-top: 15px;}
 select, input[type="text"] {width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; box-sizing: border-box; border-radius: 4px;}
-
 #toolbar {margin-top: 10px; padding: 10px; border: 1px solid #ccc; background: #f0f0f0; border-radius: 4px; display: flex; flex-wrap: wrap; align-items: center;} 
 #toolbar button, #toolbar select {padding: 5px 10px; margin: 3px; cursor: pointer; border: 1px solid #aaa; background: #fff; border-radius: 3px;}
-
-#content-area {
-    border: 1px solid #ccc; 
-    padding: 15px; 
-    min-height: 350px; 
-    margin-top: 5px; 
-    background: #fff; 
-    line-height: 1.6; 
-    text-align: justify; 
-    max-height: 600px; 
-    overflow-y: auto;
-    border-radius: 4px;
-}
-#content-area p:first-child { margin-top: 0; }
-
+#content-area {border: 1px solid #ccc; padding: 15px; min-height: 350px; margin-top: 5px; background: #fff; line-height: 1.6; text-align: justify; max-height: 600px; overflow-y: auto; border-radius: 4px;}
 button {padding: 10px 15px; margin-top: 15px; cursor: pointer; border: none; border-radius: 4px; font-weight: bold; transition: background 0.3s;}
 #saveButton {background: #2ecc71; color: white;} 
 .home-btn {background: #3498db; color: white;}
@@ -86,19 +71,17 @@ button {padding: 10px 15px; margin-top: 15px; cursor: pointer; border: none; bor
   <button onclick="insertLink()">Chèn Link</button>
 </div>
 
-<div id="content-area" contenteditable="true">
-  Bắt đầu soạn thảo...
-</div>
+<div id="content-area" contenteditable="true">Bắt đầu soạn thảo...</div>
 
 <input type="file" id="contentImageFile" accept="image/*" style="display:none;">
 
 <div class="file-upload-section">
-    <label for="thumbnailUrl" style="color: #c0392b;">URL Ảnh Đại Diện (Ưu tiên cho Facebook/Zalo)</label>
+    <label for="thumbnailUrl" style="color: #c0392b;">URL Ảnh Đại Diện (Dành cho hiển thị bài viết)</label>
     <input type="text" id="thumbnailUrl" placeholder="Ví dụ: images/photo.jpg">
     <div class="warning-share">
-        ⚠️ <b>LƯU Ý:</b> Nên dùng URL ảnh để chia sẻ mạng xã hội đẹp hơn. Nếu không có URL, hãy chọn file ảnh bên dưới (chỉ xem được cục bộ).
+        ⚠️ <b>LƯU Ý:</b> Nên dùng URL ảnh để chia sẻ mạng xã hội đẹp hơn.
     </div>
-    <label>Hoặc Tải file ảnh</label>
+    <label>Hoặc Tải file ảnh đại diện</label>
     <input type="file" id="image" accept="image/*">
     
     <label style="color: #0a7f99; margin-top: 25px;">Tệp Tài liệu (PDF, Word...)</label>
@@ -111,14 +94,14 @@ button {padding: 10px 15px; margin-top: 15px; cursor: pointer; border: none; bor
 
 <div id="backup-restore-section">
     <h3>Quản lý Dữ liệu Hệ thống</h3>
-    <button onclick="backupPosts()" class="backup-btn">💾 Xuất file JSON (Sao lưu)</button>
+    <button onclick="backupPosts()" class="backup-btn">💾 Xuất file JSON (Để cập nhật Website)</button>
     <input type="file" id="restoreFile" style="display:none;" accept=".json" onchange="restorePosts()">
-    <button onclick="document.getElementById('restoreFile').click()" class="restore-btn">🔄 Nhập file JSON (Phục hồi)</button>
-    <p style="font-size: 12px; color: red; margin-top: 10px;">* Sau khi Lưu, bạn phải Xuất file JSON và tải lên Host để cập nhật trang chủ.</p>
+    <button onclick="document.getElementById('restoreFile').click()" class="restore-btn">🔄 Nhập file JSON (Để sửa tiếp)</button>
+    <p style="font-size: 12px; color: red; margin-top: 10px;">* Sau khi Lưu, nhấn "Xuất file JSON" và đổi tên thành <b>posts_data.json</b> để tải lên host.</p>
 </div>
 
 <div id="delete-list">
-    <h2>Danh sách bài viết đã lưu</h2>
+    <h2>Danh sách bài viết đã lưu tạm</h2>
     <div id="delete-list-content">Đang tải...</div>
 </div>
 
@@ -126,9 +109,7 @@ button {padding: 10px 15px; margin-top: 15px; cursor: pointer; border: none; bor
 const ADMIN_PASSWORD = "Cong&khuyen7785";
 const HOMEPAGE_URL = "index.html";
 
-// KIỂM TRA QUYỀN
 function checkAdmin() { return sessionStorage.getItem('isAdmin') === 'true'; }
-
 if (!checkAdmin()) {
     const pass = prompt("Nhập mật khẩu quản trị:");
     if (pass === ADMIN_PASSWORD) {
@@ -139,7 +120,6 @@ if (!checkAdmin()) {
     }
 }
 
-// ĐỊNH DẠNG VĂN BẢN
 function formatText(cmd, val = null) {
     document.execCommand(cmd, false, val);
     document.getElementById('content-area').focus();
@@ -193,7 +173,6 @@ function insertLink() {
     if (url) document.execCommand('createLink', false, url);
 }
 
-// XỬ LÝ LƯU DỮ LIỆU
 function fileToBase64(file) {
     return new Promise((resolve, reject) => {
         if (!file) resolve(null);
@@ -204,20 +183,24 @@ function fileToBase64(file) {
     });
 }
 
+// HÀM LƯU CHÍNH - ĐÃ ĐỒNG BỘ TRƯỜNG DESCRIPTION
 async function savePost() {
     const id = document.getElementById('postId').value || Date.now().toString();
     const title = document.getElementById('title').value;
     const shortDesc = document.getElementById('shortDescription').value;
     const category = document.getElementById('category').value;
-    const content = document.getElementById('content-area').innerHTML;
+    const contentHtml = document.getElementById('content-area').innerHTML;
     const thumbUrl = document.getElementById('thumbnailUrl').value;
     const imgFile = document.getElementById('image').files[0];
     const docFile = document.getElementById('documentFile').files[0];
 
-    if (!title || !content) { alert("Thiếu tiêu đề hoặc nội dung!"); return; }
+    if (!title || !contentHtml || contentHtml === "Bắt đầu soạn thảo...") { 
+        alert("Thiếu tiêu đề hoặc nội dung!"); 
+        return; 
+    }
 
     let posts = JSON.parse(localStorage.getItem("posts") || "[]");
-    let oldPost = posts.find(p => p.id == id);
+    let oldPost = posts.find(p => String(p.id) === String(id));
 
     let finalThumb = oldPost ? oldPost.thumbnail : '';
     if (thumbUrl) finalThumb = thumbUrl;
@@ -234,35 +217,41 @@ async function savePost() {
     }
 
     const newPost = {
-        id, title, category, content,
+        id: id,
+        title: title,
+        category: category,
+        description: contentHtml, // Đồng bộ với trang chi tiết
         shortDescription: shortDesc || (document.getElementById('content-area').innerText.substring(0, 150) + "..."),
-        date: oldPost ? oldPost.date : new Date().toLocaleString('vi-VN'),
+        date: oldPost ? oldPost.date : new Date().toLocaleDateString('vi-VN'),
+        author: "Admin", // Mặc định là Admin
         thumbnail: finalThumb,
-        fileData: fileB64, fileName: fName, fileMimeType: fMime,
+        fileData: fileB64, 
+        fileName: fName, 
+        fileMimeType: fMime,
         likes: oldPost ? oldPost.likes : 0,
         dislikes: oldPost ? oldPost.dislikes : 0
     };
 
-    if (oldPost) posts = posts.map(p => p.id == id ? newPost : p);
+    if (oldPost) posts = posts.map(p => String(p.id) === String(id) ? newPost : p);
     else posts.push(newPost);
 
     localStorage.setItem("posts", JSON.stringify(posts));
-    alert("Đã lưu thành công!");
-    location.href = HOMEPAGE_URL;
+    alert("Đã lưu thành công vào bộ nhớ trình duyệt! Hãy nhấn 'Xuất file JSON' để cập nhật web.");
+    loadDeleteList();
 }
 
 function loadPostForEdit(id) {
     const posts = JSON.parse(localStorage.getItem("posts") || "[]");
-    const p = posts.find(x => x.id == id);
+    const p = posts.find(x => String(x.id) === String(id));
     if (!p) return;
 
     document.getElementById('postId').value = p.id;
     document.getElementById('title').value = p.title;
     document.getElementById('shortDescription').value = p.shortDescription;
     document.getElementById('category').value = p.category;
-    document.getElementById('content-area').innerHTML = p.content;
+    document.getElementById('content-area').innerHTML = p.description || p.content;
     if (p.thumbnail && !p.thumbnail.startsWith('data:')) document.getElementById('thumbnailUrl').value = p.thumbnail;
-    if (p.fileName) document.getElementById('currentFileInfo').innerText = "File: " + p.fileName;
+    if (p.fileName) document.getElementById('currentFileInfo').innerText = "Tệp đính kèm hiện tại: " + p.fileName;
     document.getElementById('saveButton').innerText = "Cập nhật bài viết";
 }
 
@@ -276,16 +265,16 @@ function loadDeleteList() {
                 <span>[${p.category}] ${p.title}</span>
                 <div>
                     <button class="edit-btn" onclick="location.href='soanbai.html?id=${p.id}'">Sửa</button>
-                    <button class="delete-btn" onclick="deletePost(${p.id})">Xóa</button>
+                    <button class="delete-btn" onclick="deletePost('${p.id}')">Xóa</button>
                 </div>
             </div>`;
     });
 }
 
 function deletePost(id) {
-    if (confirm("Xóa bài này?")) {
+    if (confirm("Xóa bài này khỏi danh sách tạm?")) {
         let posts = JSON.parse(localStorage.getItem("posts") || "[]");
-        localStorage.setItem("posts", JSON.stringify(posts.filter(p => p.id != id)));
+        localStorage.setItem("posts", JSON.stringify(posts.filter(p => String(p.id) !== String(id))));
         loadDeleteList();
     }
 }
@@ -305,7 +294,7 @@ function restorePosts() {
         const reader = new FileReader();
         reader.onload = (e) => {
             localStorage.setItem("posts", e.target.result);
-            alert("Đã phục hồi!");
+            alert("Đã phục hồi dữ liệu từ file JSON!");
             location.reload();
         };
         reader.readAsText(file);
