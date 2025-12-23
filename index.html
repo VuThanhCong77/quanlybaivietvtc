@@ -27,12 +27,10 @@
 --section:#f8f9fa;
 }
 
-body{
-margin:0;
-font-family:'Roboto',Arial,sans-serif;
-background:var(--bg);
-color:#333;
-line-height:1.6;
+body {
+  margin: 0;
+  padding-top: 150px;
+  font-family: Arial, sans-serif;
 }
 
 container{
@@ -43,6 +41,27 @@ display:block;
 }
 
 /* HEADER */
+header.page-header a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 6px;
+  font-weight: 500;
+}
+
+header.page-header a:hover {
+  text-decoration: underline;
+}
+
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: #fff;
+  z-index: 999;
+}
+
 .site-header{
 background:linear-gradient(to right,var(--primary),var(--secondary));
 padding:15px 0;
@@ -132,6 +151,10 @@ color:#0303ef;
 font-size:15px;
 padding:6px 0;
 border-bottom:1px solid #f1d18a;
+position: fixed;
+top: 80px;   /* ngay dưới header */
+width: 100%;
+z-index: 998;
 }
 
 .running-text marquee{
@@ -273,7 +296,7 @@ text-decoration:none;
 <p class="justified">
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.
 </p>
-</div>
+  </div>
 </container>
 </section>
 
@@ -295,12 +318,6 @@ text-decoration:none;
 
 <footer>
 <container>
-<a href="index.html">🏠 | </a>
-<a href="gioithieu.html">Giới thiệu | </a>
-<a href="baiviet.html">Bài viết | </a>
-<a href="tintuc.html">Tin tức | </a>
-<a href="tailieu.html">Tài liệu | </a>
-<a href="vanban.html">Văn bản</a>
 <p>🚀 SỨC KHỎE – TRÍ TUỆ – TỰ DO 🌸</p>
 </container>
 </footer>
@@ -390,15 +407,3 @@ function shareFacebook() {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

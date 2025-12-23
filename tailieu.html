@@ -7,10 +7,44 @@
 
 <style>
 /* === RESET & CƠ BẢN === */
-body { margin: 0; font-family: Arial, sans-serif; background: #ffffff; color: #0a3a5a; line-height: 1.6; }
-header.site-header { background: linear-gradient(to right, #0a7f99, #0ab3c9); color: #fff; padding: 15px 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
-header.site-header h1 { font-size: 24px; margin: 0; line-height: 1.2; }
-main { max-width: 900px; margin: auto; padding: 20px; background-color: #f9f9ff; border-radius: 12px; box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); }
+body {
+  margin: 0;
+  padding-top: 110px;   /* Đẩy nội dung xuống dưới header */
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #0a3a5a;
+  line-height: 1.6;
+}
+
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  background: linear-gradient(to right, #0a7f99, #0ab3c9);
+  color: #fff;
+  padding: 12px 20px;
+  text-align: center;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 999;
+}
+
+header.site-header h1 { 
+font-size: 24px; 
+margin: 0; 
+line-height: 1.2; 
+}
+
+main { 
+max-width: 900px; 
+margin: auto; 
+padding: 20px; 
+background-color: #f9f9ff; 
+border-radius: 12px; 
+box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); 
+}
 
 /* ======================================= */
 /* CSS BỔ SUNG: CONTROL PANEL VÀ STATS */
@@ -86,7 +120,6 @@ footer { background: #e7f5fa; padding: 20px; margin-top: 40px; text-align: cente
 <a href="gioithieu.html">Giới thiệu | </a>
 <a href="baiviet.html">Bài viết | </a>
 <a href="tintuc.html">Tin tức | </a>
-<a href="tailieu.html">Tài liệu | </a>
 <a href="vanban.html">Văn bản</a>
 </header>
 
@@ -112,12 +145,6 @@ footer { background: #e7f5fa; padding: 20px; margin-top: 40px; text-align: cente
 </main>
 
 <footer>
-<a href="index.html">🏠 | </a>
-<a href="gioithieu.html">Giới thiệu | </a>
-<a href="baiviet.html">Bài viết | </a>
-<a href="tintuc.html">Tin tức | </a>
-<a href="tailieu.html">Tài liệu | </a>
-<a href="vanban.html">Văn bản</a>
 <p>🚀 SỨC KHỎE – TRÍ TUỆ – TỰ DO 🌸</p>
 </footer>
 
