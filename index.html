@@ -7,7 +7,6 @@
 
 <meta name="description" content="Nơi tổng hợp, quản lý và chia sẻ các bài viết, tin tức, tài liệu về kinh nghiệm và cuộc sống." />
 
-<!-- OPEN GRAPH -->
 <meta property="og:title" content="Trang cá nhân – Vũ Thành Công">
 <meta property="og:description" content="Chia sẻ tin tức, bài viết, tài liệu và kinh nghiệm cuộc sống.">
 <meta property="og:type" content="website">
@@ -29,7 +28,7 @@
 
 body {
   margin: 0;
-  padding-top: 150px;
+  /* Đã bỏ padding-top cố định để tránh khoảng trắng thừa trên PC */
   font-family: Arial, sans-serif;
 }
 
@@ -40,18 +39,7 @@ padding:0 15px;
 display:block;
 }
 
-/* HEADER */
-header.page-header a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 6px;
-  font-weight: 500;
-}
-
-header.page-header a:hover {
-  text-decoration: underline;
-}
-
+/* HEADER CẢI TIẾN */
 header.site-header {
   position: fixed;
   top: 0;
@@ -60,12 +48,11 @@ header.site-header {
   background: linear-gradient(to right, var(--primary), var(--secondary));
   color: #fff;
   z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.site-header{
-background:linear-gradient(to right,var(--primary),var(--secondary));
-padding:15px 0;
-color:#fff;
+.header-main {
+  padding: 15px 0;
 }
 
 .site-header nav{
@@ -121,6 +108,7 @@ background:var(--accent);
 display:none;
 position:absolute;
 top:40px;
+right: 0; /* Đảm bảo menu không bị tràn lề phải */
 background:#fff;
 min-width:170px;
 box-shadow:0 4px 12px rgba(0,0,0,.15);
@@ -144,33 +132,27 @@ background:#f2f2f2;
 display:block;
 }
 
-/* ===== DÒNG CHỮ CHẠY ===== */
+/* ===== DÒNG CHỮ CHẠY ĐÃ SỬA ===== */
 .running-text{
 background:#fff3cd;
 color:#0303ef;
 font-size:15px;
 padding:6px 0;
 border-bottom:1px solid #f1d18a;
-position: fixed;
-top: 80px;   /* ngay dưới header */
 width: 100%;
-z-index: 998;
 }
 
 .running-text marquee{
 font-weight:500;
+vertical-align: middle;
 }
 
 /* INTRO */
 #intro-section{
 background:var(--section);
 padding:40px 0;
-}
-
-#intro-section container{
-display:flex;
-gap:30px;
-align-items:center;
+/* Đẩy nội dung xuống để không bị Header che mất */
+margin-top: 140px; 
 }
 
 .intro-image img{
@@ -184,6 +166,12 @@ border:5px solid var(--primary);
 .justified{
 text-align:justify;
 text-indent:1cm;
+}
+
+#intro-section container{
+display:flex;
+gap:30px;
+align-items:center;
 }
 
 /* POSTS */
@@ -232,17 +220,22 @@ text-align:center;
 padding:25px 0;
 }
 
-footer a{
-color:#fff;
-margin:0 8px;
-text-decoration:none;
-}
-
 /* RESPONSIVE */
 @media(max-width:768px){
-.site-header nav{flex-direction:column;align-items:flex-start}
-#intro-section container{flex-direction:column}
-.justified{text-indent:0}
+    .site-header nav{
+        flex-direction:column;
+        gap: 10px;
+    }
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    #intro-section{
+        margin-top: 220px; /* Tăng khoảng cách cho Mobile */
+    }
+    #intro-section container{flex-direction:column}
+    .justified{text-indent:0}
 }
 </style>
 </head>
@@ -250,112 +243,102 @@ text-decoration:none;
 <body>
 
 <header class="site-header">
-<container>
-<nav>
-<a href="index.html" class="logo">
-<img src="images/logo.png" alt="Logo">
-<span>🌸VŨ THÀNH CÔNG🌸</span>
-</a>
+    <div class="header-main">
+        <container>
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="Logo">
+                    <span>🌸VŨ THÀNH CÔNG🌸</span>
+                </a>
 
-<div class="nav-links">
-<a href="Lichcongtac/lich_cong_tac.html">Lịch công tác</a>
-<div class="dropdown">
-<button class="dropbtn">Nội dung ▾</button>
-<div class="dropdown-content">
-<a href="gioithieu.html">Giới thiệu</a>
-<a href="baiviet.html">Bài viết</a>
-<a href="tintuc.html">Tin tức</a>
-<a href="tailieu.html">Tài liệu</a>
-<a href="vanban.html">Văn bản</a>
-</div>
-</div>
-
-<a href="soanbai.html" style="background:var(--accent)">Quản trị</a>
-</div>
-</nav>
-</container>
+                <div class="nav-links">
+                    <a href="Lichcongtac/lich_cong_tac.html">📅Lịch</a>
+                    <div class="dropdown">
+                        <button class="dropbtn">📁Nội dung ▾</button>
+                        <div class="dropdown-content">
+                            <a href="gioithieu.html">Giới thiệu</a>
+                            <a href="baiviet.html">Bài viết</a>
+                            <a href="tintuc.html">Tin tức</a>
+                            <a href="tailieu.html">Tài liệu</a>
+                            <a href="vanban.html">Văn bản</a>
+                        </div>
+                    </div>
+                    <a href="soanbai.html" style="background:var(--accent)">Quản trị</a>
+                </div>
+            </nav>
+        </container>
+    </div>
+    
+    <div class="running-text" id="runningTextContainer">
+        <marquee id="runningText">Đang tải cấu hình...</marquee>
+    </div>
 </header>
 
-<!-- DÒNG CHỮ CHẠY -->
-<div class="running-text">
-  <marquee id="runningText">Đang tải...</marquee>
-</div>
-
 <main>
+    <section id="intro-section">
+        <container>
+            <div class="intro-image">
+                <img src="images/hoasen.jpg" alt="Ảnh cá nhân">
+            </div>
+            <div>
+                <h3>🌸 ĐÔI NÉT TẢN MẠN</h3>
+                <p class="justified">
+                    🌸 Một cậu bé sinh năm 1977 tại vùng quê Lưu Kiếm bên dòng sông Đá Bạc, lớn lên trong gia đình nông dân nghèo nhưng giàu tình nghĩa. Tuổi thơ gắn liền với ruộng đồng, lao động vất vả và khát vọng học tập để thoát nghèo. Dù khó khăn, cậu nỗ lực học hành và thi đỗ vào Trường THPT Bạch Đằng năm 1992. Sau khi tốt nghiệp năm 1995, vì hoàn cảnh gia đình, cậu tạm gác ước mơ đại học để đi làm thuê đủ nghề. Những năm tháng lao động cực nhọc đã rèn luyện ý chí, bản lĩnh và sự trung thực trong con người cậu. Năm 1998, cậu được bà con tín nhiệm giao làm kế toán hợp tác xã nhờ sự cẩn trọng và minh bạch. Năm 2004, khi xã Lưu Kỳ thành lập, cậu chuyển về công tác tại Văn phòng HĐND–UBND xã, mở ra hành trình cống hiến mới.
+                </p>
+                <p class="justified">
+                    🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.
+                </p>
+            </div>
+        </container>
+    </section>
 
-<section id="intro-section">
-<container>
-<div class="intro-image">
-<img src="images/hoasen.jpg" alt="Ảnh cá nhân">
-</div>
-<div>
-<h3>🌸 ĐÔI NÉT TẢN MẠN</h3>
-<p class="justified">
-🌸 Một cậu bé sinh năm 1977 tại vùng quê Lưu Kiếm bên dòng sông Đá Bạc, lớn lên trong gia đình nông dân nghèo nhưng giàu tình nghĩa. Tuổi thơ gắn liền với ruộng đồng, lao động vất vả và khát vọng học tập để thoát nghèo. Dù khó khăn, cậu nỗ lực học hành và thi đỗ vào Trường THPT Bạch Đằng năm 1992. Sau khi tốt nghiệp năm 1995, vì hoàn cảnh gia đình, cậu tạm gác ước mơ đại học để đi làm thuê đủ nghề. Những năm tháng lao động cực nhọc đã rèn luyện ý chí, bản lĩnh và sự trung thực trong con người cậu. Năm 1998, cậu được bà con tín nhiệm giao làm kế toán hợp tác xã nhờ sự cẩn trọng và minh bạch. Năm 2004, khi xã Lưu Kỳ thành lập, cậu chuyển về công tác tại Văn phòng HĐND–UBND xã, mở ra hành trình cống hiến mới.
-</p>
-<p class="justified">
-🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.
-</p>
-  </div>
-</container>
-</section>
-
-<section id="recent-posts">
-<container>
-<h2 style="text-align:center;color:var(--primary)">📰 TIN TỨC MỚI NHẤT</h2>
-
-<div class="share-buttons">
-<a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
-</div>
-
-<div id="recent-posts-list">
-<p style="text-align:center;color:#777">Đang tải tin tức...</p>
-</div>
-</container>
-</section>
-
+    <section id="recent-posts">
+        <container>
+            <h2 style="text-align:center;color:var(--primary)">📰 TIN TỨC MỚI NHẤT</h2>
+            <div class="share-buttons">
+                <a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
+            </div>
+            <div id="recent-posts-list">
+                <p style="text-align:center;color:#777">Đang tải tin tức...</p>
+            </div>
+        </container>
+    </section>
 </main>
 
 <footer>
-<container>
-<p>🚀 SỨC KHỎE – TRÍ TUỆ – TỰ DO 🌸</p>
-</container>
+    <container>
+        <p>🚀 SỨC KHỎE – TRÍ TUỆ – TỰ DO 🌸</p>
+    </container>
 </footer>
 
 <script>
 const JSON_URL = 'posts_data.json';
-const CONFIG_URL = 'site_config.json'; // Đường dẫn đến file cấu hình
+const CONFIG_URL = 'site_config.json';
 
-// HÀM 1: TẢI VÀ HIỂN THỊ DÒNG CHỮ CHẠY
 async function loadSiteConfig() {
     try {
         const response = await fetch(CONFIG_URL);
-        if (!response.ok) return;
+        if (!response.ok) throw new Error("Không tải được config");
         
         const config = await response.json();
         const marquee = document.getElementById("runningText");
-        const container = document.querySelector(".running-text");
+        const container = document.getElementById("runningTextContainer");
 
         if (config.enable) {
-            // Hiển thị nội dung
             marquee.innerText = config.runningText;
-            
-            // Cài đặt tốc độ chạy
             marquee.setAttribute("scrollamount", config.speed || 5);
-            
-            // Áp dụng màu sắc từ file JSON
-            container.style.backgroundColor = config.bgColor;
-            container.style.color = config.textColor;
+            container.style.backgroundColor = config.bgColor || "#fff3cd";
+            container.style.color = config.textColor || "#0303ef";
+            container.style.display = "block";
         } else {
-            // Nếu enable là false thì ẩn cả dòng chữ chạy đi
             container.style.display = "none";
         }
     } catch (e) {
         console.error("Lỗi tải cấu hình chữ chạy:", e);
+        document.getElementById("runningTextContainer").style.display = "none";
     }
 }
 
-// HÀM 2: TẢI BÀI VIẾT (Giữ nguyên logic của bạn nhưng tối ưu hơn)
 async function fetchPosts() {
     try {
         const r = await fetch(JSON_URL);
@@ -394,10 +377,9 @@ async function loadRecentPosts() {
     });
 }
 
-// GỌI CẢ 2 HÀM KHI TRANG TẢI XONG
 document.addEventListener('DOMContentLoaded', () => {
-    loadSiteConfig(); // Chạy dòng chữ
-    loadRecentPosts(); // Chạy bài viết
+    loadSiteConfig();
+    loadRecentPosts();
 });
 
 function shareFacebook() {
