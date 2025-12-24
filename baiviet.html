@@ -262,25 +262,28 @@ footer {
     
     // Hàm tải chính
     async function loadArticles() {
-        listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết...</p>';
-        
-        allPosts = await fetchPosts();
-        
-        if (allPosts.length === 0) {
-            listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Hiện tại chưa có bài viết nào trong chuyên mục này.</p>';
-            updateStats(0);
-            return;
-        }
-        
-        // Hiển thị tất cả bài viết ban đầu
-        renderArticles(allPosts);
-        updateStats(allPosts.length);
-        
-        // Gắn sự kiện tìm kiếm khi người dùng gõ
-        searchInput.addEventListener('input', searchArticles);
-    }
+    listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết...</p>';
+    
+    allPosts = await fetchPosts();
 
-    // Chạy hàm khi DOM tải xong
+    // ✅ SẮP XẾP: BÀI VIẾT MỚI NHẤT LÊN TRÊN
+    allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    if (allPosts.length === 0) {
+        listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Hiện tại chưa có bài viết nào trong chuyên mục này.</p>';
+        updateStats(0);
+        return;
+    }
+    
+    // Hiển thị tất cả bài viết ban đầu
+    renderArticles(allPosts);
+    updateStats(allPosts.length);
+    
+    // Gắn sự kiện tìm kiếm khi người dùng gõ
+    searchInput.addEventListener('input', searchArticles);
+}
+
+  // Chạy hàm khi DOM tải xong
     document.addEventListener('DOMContentLoaded', loadArticles);
 </script>
 </body>
