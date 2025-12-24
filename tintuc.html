@@ -251,24 +251,27 @@ footer {
         }
         
         // Hàm tải chính
-        async function loadNews() {
-            newsListContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
-            
-            allNews = await fetchPosts();
-            
-            if (allNews.length === 0) {
-                newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tin tức nào.</p>';
-                updateStats(0);
-                return;
-            }
-            
-            // Hiển thị tất cả tin tức ban đầu
-            renderNews(allNews);
-            updateStats(allNews.length);
-            
-            // Gắn sự kiện tìm kiếm khi người dùng gõ
-            searchInput.addEventListener('input', searchNews);
-        }
+async function loadNews() {
+    newsListContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
+    
+    allNews = await fetchPosts();
+
+    // ✅ SẮP XẾP: BÀI MỚI NHẤT LÊN TRÊN
+    allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    if (allNews.length === 0) {
+        newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tin tức nào.</p>';
+        updateStats(0);
+        return;
+    }
+    
+    // Hiển thị tất cả tin tức ban đầu
+    renderNews(allNews);
+    updateStats(allNews.length);
+    
+    // Gắn sự kiện tìm kiếm khi người dùng gõ
+    searchInput.addEventListener('input', searchNews);
+}
 
         // Chạy hàm khi DOM tải xong
         document.addEventListener('DOMContentLoaded', loadNews);
