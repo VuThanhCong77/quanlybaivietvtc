@@ -120,7 +120,7 @@ function logout() {
 }
 
 function init() {
-    userInfo.innerText = "Chế độ: " + (role === "view" ? "Người xem" : role.toUpperCase());
+    userInfo.innerText = "Chế độ: " + (role === "view" ? "Xem" : role.toUpperCase());
 
     // Nếu là admin hoặc user, hiện vùng điều khiển
     if (role === "admin" || role === "user") {
@@ -225,5 +225,6 @@ setInterval(render, 60000);
 </body>
 
 </html>
+
 
 
