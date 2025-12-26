@@ -149,8 +149,10 @@ vertical-align: middle;
 
 /* INTRO */
 #intro-section{
-background:var(--section);
-padding:40px 0;
+    background:var(--section);
+    padding:40px 0;
+    margin-top: 0; /* sửa từ 140px → 0 */
+}
 /* Đẩy nội dung xuống để không bị Header che mất */
 margin-top: 140px; 
 }
@@ -222,9 +224,8 @@ padding:25px 0;
 
 /* RESPONSIVE */
 @media(max-width:768px){
-    .site-header nav{
-        flex-direction:column;
-        gap: 10px;
+    #intro-section{
+        margin-top: 0;
     }
     .nav-links {
         width: 100%;
@@ -272,6 +273,18 @@ padding:25px 0;
 </header>
 
 <main>
+<section id="recent-posts">
+        <container>
+            <h2 style="text-align:center;color:var(--primary)">📰 TIN TỨC MỚI NHẤT</h2>
+            <div class="share-buttons">
+                <a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
+            </div>
+            <div id="recent-posts-list">
+                <p style="text-align:center;color:#777">Đang tải tin tức...</p>
+            </div>
+        </container>
+    </section>
+  
     <section id="intro-section">
         <container>
             <div class="intro-image">
@@ -312,18 +325,7 @@ padding:25px 0;
         </container>
     </section>
 
-    <section id="recent-posts">
-        <container>
-            <h2 style="text-align:center;color:var(--primary)">📰 TIN TỨC MỚI NHẤT</h2>
-            <div class="share-buttons">
-                <a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
-            </div>
-            <div id="recent-posts-list">
-                <p style="text-align:center;color:#777">Đang tải tin tức...</p>
-            </div>
-        </container>
-    </section>
-</main>
+    </main>
 
 <footer>
     <container>
@@ -410,6 +412,7 @@ function shareFacebook() {
 </body>
 
 </html>
+
 
 
 
