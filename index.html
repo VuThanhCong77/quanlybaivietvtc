@@ -7,8 +7,8 @@
 
 <meta name="description" content="Nơi tổng hợp, quản lý và chia sẻ các bài viết, tin tức, tài liệu về kinh nghiệm và cuộc sống." />
 
-<meta property="og:title" content="🌸 Trang cá nhân 🌸 Vũ Thành Công">
-<meta property="og:description" content="Chia sẻ tin tức, bài viết, tài liệu và nét đẹp cuộc sống.">
+<meta property="og:title" content="Trang cá nhân – Vũ Thành Công">
+<meta property="og:description" content="Chia sẻ tin tức, bài viết, tài liệu và kinh nghiệm cuộc sống.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
 <meta property="og:image" content="images/hoasen.jpg">
@@ -36,6 +36,7 @@ container{
 max-width:1280px;
 margin:auto;
 padding:0 6px;
+display:block;
 }
 
 /* HEADER CẢI TIẾN */
@@ -148,18 +149,10 @@ vertical-align: middle;
 
 /* INTRO */
 #intro-section{
-    background:var(--section);
-    padding:20px 0;
-    margin-top: 0; /* sửa từ 140px → 0 */
-}
-  
-#intro-section h3:first-child{
-    margin-top: 0;
-}
-}  
+background:var(--section);
+padding:40px 0;
 /* Đẩy nội dung xuống để không bị Header che mất */
-main{
-  margin-top: 150px;
+margin-top: 140px; 
 }
 
 .intro-image img{
@@ -229,9 +222,9 @@ padding:25px 0;
 
 /* RESPONSIVE */
 @media(max-width:768px){
-    #intro-section{
-        margin-top: 0;
-        padding-top: 15px;
+    .site-header nav{
+        flex-direction:column;
+        gap: 10px;
     }
     .nav-links {
         width: 100%;
@@ -239,7 +232,7 @@ padding:25px 0;
         flex-wrap: wrap;
     }
     #intro-section{
-        margin-top: 100px; /* Tăng khoảng cách cho Mobile */
+        margin-top: 220px; /* Tăng khoảng cách cho Mobile */
     }
     #intro-section container{flex-direction:column}
     .justified{text-indent:0}
@@ -255,13 +248,13 @@ padding:25px 0;
             <nav>
                 <a href="index.html" class="logo">
                     <img src="images/logo.png" alt="Logo">
+                    <span>🌸VŨ THÀNH CÔNG🌸</span>
                 </a>
+
                 <div class="nav-links">
-                  <span>🌸VŨ THÀNH CÔNG🌸</span>
-                    <a href="Lichcongtac/lich_cong_tac.html">📅</a>
-                    <a href="gioithieu.html">✍️</a>
+                    <a href="Lichcongtac/lich_cong_tac.html">📅Lịch</a>
                     <div class="dropdown">
-                    <button class="dropbtn">|📁Nội dung|▾</button>
+                        <button class="dropbtn">📁Nội dung ▾</button>
                         <div class="dropdown-content">
                             <a href="gioithieu.html">Giới thiệu</a>
                             <a href="baiviet.html">Bài viết</a>
@@ -279,18 +272,6 @@ padding:25px 0;
 </header>
 
 <main>
-<section id="recent-posts">
-       <container>
-            <h2 style="text-align:center;color:var(--primary)">🌸TIN TỨC MỚI NHẤT</h2>
-            <div class="share-buttons">
-                <a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
-            </div>
-            <div id="recent-posts-list">
-                <p style="text-align:center;color:#777">Đang tải tin tức...</p>
-            </div>
-        </container>
-    </section>
-  
     <section id="intro-section">
         <container>
             <div class="intro-image">
@@ -299,30 +280,30 @@ padding:25px 0;
             <div>
 <h3>🌸Ý tưởng hay “8 Quy tắc vàng”🌸 ngày 23/4/2013</h3>
 <p class="justified">
-  1. Tâm: tịnh, sáng🌸“Tâm” ở đây là tâm trí, nội tâm của con người. “Tịnh” là trạng thái an yên, không xao động; “sáng” là sự minh mẫn, trong trẻo. Khi giữ tâm tịnh và sáng, con người dễ sống hài hòa, đưa ra quyết định sáng suốt và tránh bị chi phối bởi cảm xúc tiêu cực.</p> 
+  1. Tâm: tịnh, sáng🌸“Tâm” ở đây là tâm trí, nội tâm của con người. “Tịnh” là trạng thái an yên, không xao động; “sáng” là sự minh mẫn, trong trẻo. Khi giữ tâm tịnh và sáng, con người dễ sống hài hòa, đưa ra quyết định sáng suốt và tránh bị chi phối bởi cảm xúc tiêu cực.<p> 
 <p class="justified">
-  2. Ăn vừa đủ🌸Ăn uống điều độ giúp cơ thể khỏe mạnh, tránh dư thừa, tránh bệnh tật. Ăn vừa đủ là không quá no, không bỏ bữa; đảm bảo cân bằng dinh dưỡng để duy trì thể lực và tinh thần.</p> 
+  2. Ăn vừa đủ🌸Ăn uống điều độ giúp cơ thể khỏe mạnh, tránh dư thừa, tránh bệnh tật. Ăn vừa đủ là không quá no, không bỏ bữa; đảm bảo cân bằng dinh dưỡng để duy trì thể lực và tinh thần.<p> 
 <p class="justified">
-    3. Ngủ vừa giấc (6–8 giờ/ngày)  🌸Giấc ngủ đủ giúp cơ thể phục hồi năng lượng, tái tạo tế bào, cải thiện trí nhớ và cảm xúc. 6–8 giờ là mức khoa học khuyến nghị để cơ thể hoạt động tối ưu.</p> 
+    3. Ngủ vừa giấc (6–8 giờ/ngày)  🌸Giấc ngủ đủ giúp cơ thể phục hồi năng lượng, tái tạo tế bào, cải thiện trí nhớ và cảm xúc. 6–8 giờ là mức khoa học khuyến nghị để cơ thể hoạt động tối ưu.<p> 
 <p class="justified">
-      4. Làm đúng lịch🌸Làm việc đúng thời điểm, đúng tiến độ giúp tăng hiệu quả, tránh áp lực và giảm mệt mỏi. Đây cũng là thói quen tạo nên sự chuyên nghiệp.</p> 
+      4. Làm đúng lịch🌸Làm việc đúng thời điểm, đúng tiến độ giúp tăng hiệu quả, tránh áp lực và giảm mệt mỏi. Đây cũng là thói quen tạo nên sự chuyên nghiệp.<p> 
 <p class="justified">
-        5. Chơi đúng giờ🌸Giải trí cần thiết cho tinh thần nhưng phải có giới hạn. Chơi đúng giờ giúp cân bằng cuộc sống mà không ảnh hưởng đến công việc hay sức khỏe.</p> 
+        5. Chơi đúng giờ🌸Giải trí cần thiết cho tinh thần nhưng phải có giới hạn. Chơi đúng giờ giúp cân bằng cuộc sống mà không ảnh hưởng đến công việc hay sức khỏe.<p> 
 <p class="justified">
-          6. Học đúng cách 🌸“Học đúng cách” nghĩa là học có phương pháp, có mục tiêu, biết chọn lọc thông tin và áp dụng vào thực tiễn. Học đúng cách giúp tiếp thu hiệu quả, tránh học đối phó, đồng thời phát triển tư duy và kỹ năng bền vững.</p> 
+          6. Học đúng cách 🌸“Học đúng cách” nghĩa là học có phương pháp, có mục tiêu, biết chọn lọc thông tin và áp dụng vào thực tiễn. Học đúng cách giúp tiếp thu hiệu quả, tránh học đối phó, đồng thời phát triển tư duy và kỹ năng bền vững.<p> 
 <p class="justified">
-            7. Vui là chính  🌸Giữ tinh thần lạc quan, vui vẻ giúp giảm căng thẳng, cải thiện sức khỏe tâm lý và thu hút năng lượng tích cực.</p> 
+            7. Vui là chính  🌸Giữ tinh thần lạc quan, vui vẻ giúp giảm căng thẳng, cải thiện sức khỏe tâm lý và thu hút năng lượng tích cực.<p> 
 <p class="justified">
-              8. Quan hệ đều (Quan hệ xã hội)🌸Các mối quan hệ xã hội cần được duy trì ở mức hài hòa, không quá khép kín cũng không quá lệ thuộc. Quan hệ đều đặn giúp tinh thần thoải mái, mở rộng tư duy và tăng sự kết nối.</p>
+              8. Quan hệ đều (Quan hệ xã hội)🌸Các mối quan hệ xã hội cần được duy trì ở mức hài hòa, không quá khép kín cũng không quá lệ thuộc. Quan hệ đều đặn giúp tinh thần thoải mái, mở rộng tư duy và tăng sự kết nối.<p>
 <h3>🌸Để làm gì?</h3> 
 <p class="justified">
-                1) Giữ gìn sức khỏe (1, 2, 3)🌸Cảm xúc ổn định, ăn uống điều độ và ngủ đủ giấc là ba trụ cột quan trọng nhất cho sức khỏe thể chất và tinh thần.</p> 
+                1) Giữ gìn sức khỏe (1, 2, 3)🌸Cảm xúc ổn định, ăn uống điều độ và ngủ đủ giấc là ba trụ cột quan trọng nhất cho sức khỏe thể chất và tinh thần.<p> 
 <p class="justified">
-                  2) Làm việc hiệu quả (4, 5)🌸Làm việc đúng lịch và giải trí đúng giờ tạo nên nhịp sinh hoạt khoa học, giúp tập trung tốt hơn và tránh kiệt sức.</p> 
+                  2) Làm việc hiệu quả (4, 5)🌸Làm việc đúng lịch và giải trí đúng giờ tạo nên nhịp sinh hoạt khoa học, giúp tập trung tốt hơn và tránh kiệt sức.<p> 
 <p class="justified">
-                    3) Trí tuệ phát triển (6, 7)🌸Học có phương pháp, có mục tiêu, biết chọn lọc thông tin và giữ tinh thần vui vẻ góp phần hình thành tư duy tích cực, khả năng nâng cao trí tuệ.</p> 
+                    3) Trí tuệ phát triển (6, 7)🌸Học có phương pháp, có mục tiêu, biết chọn lọc thông tin và giữ tinh thần vui vẻ góp phần hình thành tư duy tích cực, khả năng nâng cao trí tuệ.<p> 
 <p class="justified">
-                      4) Mọi người mến yêu (8)🌸Khi có mối quan hệ xã hội hài hòa, con người dễ dàng nhận được sự yêu quý, hỗ trợ và đồng hành trong cuộc sống. 
+                      4) Mọi người mến yêu (8)🌸Khi có mối quan hệ xã hội hài hòa, con người dễ dàng nhận được sự yêu quý, hỗ trợ và đồng hành trong cuộc sống.<p>   
 </p>
 <p class="justified">
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.
@@ -331,7 +312,18 @@ padding:25px 0;
         </container>
     </section>
 
-    </main>
+    <section id="recent-posts">
+        <container>
+            <h2 style="text-align:center;color:var(--primary)">📰 TIN TỨC MỚI NHẤT</h2>
+            <div class="share-buttons">
+                <a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
+            </div>
+            <div id="recent-posts-list">
+                <p style="text-align:center;color:#777">Đang tải tin tức...</p>
+            </div>
+        </container>
+    </section>
+</main>
 
 <footer>
     <container>
@@ -418,23 +410,6 @@ function shareFacebook() {
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
