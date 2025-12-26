@@ -150,9 +150,14 @@ vertical-align: middle;
 /* INTRO */
 #intro-section{
     background:var(--section);
-    padding:40px 0;
+    padding:20px 0;
     margin-top: 0; /* sửa từ 140px → 0 */
 }
+  
+#intro-section h3:first-child{
+    margin-top: 0;
+}
+  
 /* Đẩy nội dung xuống để không bị Header che mất */
 margin-top: 140px; 
 }
@@ -226,6 +231,7 @@ padding:25px 0;
 @media(max-width:768px){
     #intro-section{
         margin-top: 0;
+        padding-top: 15px;
     }
     .nav-links {
         width: 100%;
@@ -414,6 +420,7 @@ function shareFacebook() {
 </body>
 
 </html>
+
 
 
 
