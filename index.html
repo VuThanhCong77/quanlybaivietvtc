@@ -162,8 +162,8 @@ main{
   padding-top: 50px;
 }
 .intro-image img{
-width:200px;
-height:200px;
+width:150px;
+height:150px;
 border-radius:50%;
 object-fit:cover;
 border:5px solid var(--primary);
@@ -179,7 +179,19 @@ display:flex;
 gap:30px;
 align-items:center;
 }
+/* 1. Thu hẹp cột ảnh: Cho phép nó chiếm ít không gian hơn */
+.intro-image {
+    flex: 0 0 220px; /* Không giãn, không co, cố định chiều rộng khoảng 220px */
+    display: flex;
+    flex-direction: column; /* Xếp chồng các ảnh nếu có nhiều ảnh */
+    gap: 10px;
+    align-items: center;
+}
 
+/* 2. Mở rộng cột chữ: Chiếm toàn bộ phần còn lại */
+.intro-image + div {
+    flex: 1;
+}
 /* POSTS */
 #recent-posts{
 padding:40px 0;
@@ -415,6 +427,7 @@ function shareFacebook() {
 </body>
 
 </html>
+
 
 
 
