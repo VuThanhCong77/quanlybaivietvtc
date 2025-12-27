@@ -41,6 +41,29 @@
                 <img id="view-image" src="" alt="" class="post-img shadow-sm">
 
                 <div id="view-content" class="mb-5"></div>
+<hr class="my-4">
+
+<section id="gop-y" class="mt-4">
+    <h5 class="fw-bold mb-3">
+        <i class="fas fa-comment-dots me-2"></i>Góp ý bài viết
+    </h5>
+
+    <div class="mb-3">
+        <input id="gy-ten" class="form-control"
+               placeholder="Họ và tên (không bắt buộc)">
+    </div>
+
+    <div class="mb-3">
+        <textarea id="gy-noidung" class="form-control" rows="4"
+                  placeholder="Nội dung góp ý..." required></textarea>
+    </div>
+
+    <button class="btn btn-success" onclick="guiGopY()">
+        <i class="fas fa-paper-plane me-1"></i>Gửi góp ý
+    </button>
+
+    <div id="gy-thongbao" class="mt-3 text-muted small"></div>
+</section>
 
                 <hr>
                 <div class="d-flex justify-content-between align-items-center mt-4">
@@ -55,6 +78,8 @@
 </div>
 
 <script>
+let currentPost = null;
+
     async function loadPost() {
         try {
             const urlParams = new URLSearchParams(window.location.search);
@@ -86,8 +111,10 @@
                 if (post.thumbnail) {
                     imgElement.src = post.thumbnail;
                     imgElement.style.display = 'block';
+currentPost = post;
                 }
-            } else {
+            } 
+else {
                 document.getElementById('post-container').innerHTML = `<h2 class="text-danger text-center">Bài viết không tồn tại!</h2>`;
             }
         } catch (error) {
@@ -107,11 +134,41 @@
     }
 
     document.addEventListener('DOMContentLoaded', loadPost);
+function guiGopY() {
+    const noiDung = document.getElementById("gy-noidung").value.trim();
+
+    if (!noiDung) {
+        document.getElementById("gy-thongbao").innerText =
+            "Vui lòng nhập nội dung góp ý.";
+        return;
+    }
+
+    const data = {
+        postId: currentPost?.id || "",
+        tieuDe: currentPost?.title || document.title,
+        ten: document.getElementById("gy-ten").value,
+        noiDung: noiDung,
+        thoiGian: new Date().toISOString(),
+        url: window.location.href
+    };
+
+    fetch(https://script.google.com/macros/s/AKfycbzb_ovIs2kZto3vuHVPATt1Iq0Uvb0GiQo3hvCm_FAcjRgfaTPyjTG0Qir4ECEkyOE8-g/exec, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(() => {
+        document.getElementById("gy-thongbao").innerText =
+            "Góp ý đã được gửi. Xin trân trọng cảm ơn!";
+        document.getElementById("gy-noidung").value = "";
+    })
+    .catch(() => {
+        document.getElementById("gy-thongbao").innerText =
+            "Không gửi được góp ý. Vui lòng thử lại.";
+    });
+}
+
 </script>
 
 </body>
 
 </html>
-
-
-
