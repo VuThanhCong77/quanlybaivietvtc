@@ -16,7 +16,13 @@
         .btn-facebook:hover { background-color: #145dbf; color: white; }
         #view-content { line-height: 1.8; color: #444; font-size: 1.1rem; }
         #view-content img { max-width: 100%; height: auto; border-radius: 8px; }
-    </style>
+    .huongdan-gopy{
+    margin-top:3px;
+    font-size:10px;
+    color:#777;
+    font-style:italic;
+			}
+	</style>
 </head>
 <body>
 
@@ -144,7 +150,9 @@ function guiGopY() {
             "Vui lòng nhập nội dung góp ý.";
         return;
     }
-
+<div class="huongdan-gopy">
+  Vui lòng góp ý đúng nội dung, ngắn gọn, mang tính xây dựng; sử dụng ngôn ngữ lịch sự và chịu trách nhiệm về nội dung đã gửi. Xin cảm ơn!
+</div>
     const data = {
         postId: currentPost?.id || "",
         tieuDe: currentPost?.title || document.title,
@@ -178,3 +186,4 @@ function guiGopY() {
 </body>
 
 </html>
+
