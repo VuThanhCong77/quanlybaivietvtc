@@ -1,7 +1,8 @@
 {
-  "name": "Trang cá nhân",
-  "short_name": "Trang cá nhân",
-  "start_url": "/index.html",
+  "name": "Trang cá nhân Vũ Thành Công",
+  "short_name": "Trang tôi",
+  "start_url": "/quanlybaivietvtc/index.html",
+  "scope": "/quanlybaivietvtc/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0d6efd",
