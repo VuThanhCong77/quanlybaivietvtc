@@ -34,7 +34,7 @@ th{ background:#1a73e8; color:#fff; }
 <div class="container">
     <div class="title-wrap">
         <img src="images/logo.png" alt="Logo">
-        <div class="title-text">LỊCH CÔNG TÁC</div>
+        <div class="title-text">Lịch công tác</div>
         <img src="images/hoadao.png" alt="Icon">
     </div>
 
@@ -50,10 +50,9 @@ th{ background:#1a73e8; color:#fff; }
     <hr>
 
     <div id="loginBox" class="hidden" style="background:#eee; padding:15px; border-radius:8px; margin-bottom:15px;">
-        <b>Đăng nhập dành cho Cán bộ/Quản trị:</b><br><br>
+        <b>Đăng nhập dành cho  Quản trị:</b><br><br>
         <select id="role">
             <option value="admin">Quản trị</option>
-            <option value="user">Cán bộ</option>
         </select>
         <input type="password" id="pass" placeholder="Mật khẩu">
         <button onclick="login()" class="add">Xác nhận</button>
@@ -166,8 +165,13 @@ function render() {
         
         // Chỉ hiện nút Xóa cho Quản trị
         if (role === "admin") {
-            htmlRow += `<td><button class="del" onclick="xoa(${i.id})">Xóa</button></td>`;
-        } else if (role === "user") {
+    htmlRow += `
+    <td>
+        <button class="exp" onclick="sua(${i.id})">✏️ Sửa</button>
+        <button class="del" onclick="xoa(${i.id})">Xóa</button>
+    </td>`;
+}
+        else if (role === "user") {
             htmlRow += `<td>-</td>`;
         }
 
@@ -225,6 +229,7 @@ setInterval(render, 60000);
 </body>
 
 </html>
+
 
 
 
