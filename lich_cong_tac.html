@@ -6,14 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* CSS GIỮ NGUYÊN NHƯ BẢN CỦA BẠN */
 body{ font-family:Segoe UI,Tahoma; background:#f0f2f5; padding:20px; }
 .container{ max-width:960px; margin:auto; background:#fff; padding:12px; border-radius:10px; }
 .hidden{display:none}
 .title-wrap{ display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:4px; }
 .title-wrap img{ height:42px; }
-.title-text{ font-size:26px; font-weight:bold; color:#1a73e8; }
-button{ padding:8px 16px; border:none; border-radius:6px; color:#fff; cursor:pointer; margin: 2px;}
+.title-text{ font-size:20px; font-weight:bold; color:#1a73e8; }
+button{ padding:8px 16px; border:none; border-radius:6px; color:#fff; cursor:pointer; margin:2px;}
 .add{background:#28a745}
 .del{background:#dc3545}
 .exp{background:#1a73e8}
@@ -25,7 +24,7 @@ th,td{ border:1px solid #ddd; padding:8px; text-align:center; }
 th{ background:#1a73e8; color:#fff; }
 .urgent{ background:#dc3545 !important; color:#fff; font-weight:bold; animation:pulse 1.5s infinite; }
 @keyframes pulse{ 0%{opacity:1} 50%{opacity:.7} 100%{opacity:1} }
-#adminControls { border: 1px dashed #ccc; padding: 10px; margin-bottom: 10px; border-radius: 8px; background: #f9f9f9; }
+#adminControls { border:1px dashed #ccc; padding:10px; margin-bottom:10px; border-radius:8px; background:#f9f9f9; }
 </style>
 </head>
 
@@ -33,16 +32,16 @@ th{ background:#1a73e8; color:#fff; }
 
 <div class="container">
     <div class="title-wrap">
-        <img src="hoamai.jpg" alt="Logo">
+        <img src="images/logo.jpg" alt="Logo">
         <div class="title-text">LỊCH CÔNG TÁC</div>
-        <img src="hoadao.jpg" alt="Icon">
+        <img src="images/hoadao.jpg" alt="Icon">
     </div>
 
     <div id="ngayHienTai" style="text-align:right;color:#b30000;font-weight:bold;margin-bottom:6px"></div>
 
-    <div style="margin-bottom: 10px;">
-        <a href="../index.html">🏠Trang chủ</a> |
-        <a href="../Lichcongtac/HDlichcongtac.html">📘Hướng dẫn</a>
+    <div style="margin-bottom:10px;">
+        <a href="index.html">🏠Trang chủ</a> |
+        <a href="Lichcongtac/HDlichcongtac.html">📘Hướng dẫn</a>
         <button id="btnShowLogin" onclick="toggleLoginBox()" class="login-btn" style="float:right">🔐 Đăng nhập Quản trị</button>
         <button id="btnLogout" onclick="logout()" class="logout hidden">🚪 Đăng xuất</button>
     </div>
@@ -66,10 +65,10 @@ th{ background:#1a73e8; color:#fff; }
         <div id="adminControls" class="hidden">
             <input id="inpViec" placeholder="Nội dung công việc" style="width:60%; padding:5px;">
             <input type="datetime-local" id="inpGio" style="padding:5px;">
-            <button id="btnAdd" onclick="themLich()" class="add">➕ Thêm</button>
+            <button onclick="themLich()" class="add">➕ Thêm</button>
             <br><br>
-            <button id="btnExport" onclick="xuat()" class="exp">💾 Sao lưu</button>
-            <button id="btnImport" onclick="fileIn.click()" class="imp">📂 Phục hồi</button>
+            <button onclick="xuat()" class="exp">💾 Sao lưu</button>
+            <button onclick="fileIn.click()" class="imp">📂 Phục hồi</button>
             <input type="file" id="fileIn" hidden onchange="nhap(event)">
         </div>
 
@@ -95,133 +94,135 @@ const USERS = {
     user: "Cong&khuyen7785"
 };
 
-// Mặc định là 'view' nếu chưa có phiên đăng nhập
-let role = sessionStorage.getItem("ROLE") || "view"; 
+let role = sessionStorage.getItem("ROLE") || "view";
 let data = JSON.parse(localStorage.getItem("LICH_CT")) || [];
 
-function toggleLoginBox() {
-    const box = document.getElementById("loginBox");
-    box.classList.toggle("hidden");
+function toggleLoginBox(){
+    loginBox.classList.toggle("hidden");
 }
 
-function login() {
-    const r = document.getElementById("role").value;
-    const p = document.getElementById("pass").value;
+function login(){
+    const r = roleSel.value;
+    const p = pass.value;
     if (USERS[r] !== p) return alert("Sai mật khẩu");
     sessionStorage.setItem("ROLE", r);
     location.reload();
 }
 
-function logout() {
-    if (confirm("Đăng xuất khỏi hệ thống?")) {
+function logout(){
+    if(confirm("Đăng xuất khỏi hệ thống?")){
         sessionStorage.removeItem("ROLE");
         location.reload();
     }
 }
 
-function init() {
+function init(){
     userInfo.innerText = "Chế độ: " + (role === "view" ? "Xem" : role.toUpperCase());
 
-    // Nếu là admin hoặc user, hiện vùng điều khiển
-    if (role === "admin" || role === "user") {
-        document.getElementById("adminControls").classList.remove("hidden");
-        document.getElementById("colHanhDong").classList.remove("hidden");
-        document.getElementById("btnLogout").classList.remove("hidden");
-        document.getElementById("btnShowLogin").classList.add("hidden");
+    if(role === "admin" || role === "user"){
+        adminControls.classList.remove("hidden");
+        colHanhDong.classList.remove("hidden");
+        btnLogout.classList.remove("hidden");
+        btnShowLogin.classList.add("hidden");
     }
-    
-    // User không được phục hồi file
-    if (role === "user") {
-        document.getElementById("btnImport").style.display = "none";
+    if(role === "user"){
+        document.querySelector(".imp").style.display = "none";
     }
-
     render();
 }
 
-function render() {
+function render(){
     body.innerHTML = "";
     const now = new Date();
     let coCanhBao = false;
 
-    data.sort((a, b) => new Date(a.g) - new Date(b.g));
+    data.sort((a,b)=> new Date(a.g)-new Date(b.g));
 
-    data.forEach(i => {
+    data.forEach(i=>{
         const tg = new Date(i.g);
-        const diff = (tg - now) / 3600000;
-        let trangThai = "Đang chờ";
-        let cls = "";
+        const diff = (tg-now)/3600000;
+        let trangThai="Đang chờ", cls="";
 
-        if (diff < 0) {
-            trangThai = "Đã qua";
-        } else if (diff <= 6) {
-            trangThai = "⚠️ Sắp diễn ra";
-            cls = "urgent";
-            coCanhBao = true;
-        }
+        if(diff<0) trangThai="Đã qua";
+        else if(diff<=6){ trangThai="⚠️ Sắp diễn ra"; cls="urgent"; coCanhBao=true; }
 
-        let htmlRow = `<tr class="${cls}">
+        let row = `<tr class="${cls}">
             <td>${tg.toLocaleString("vi-VN")}</td>
             <td>${i.v}</td>
             <td>${trangThai}</td>`;
-        
-        // Chỉ hiện nút Xóa cho Quản trị
-        if (role === "admin") {
-            htmlRow += `<td><button class="del" onclick="xoa(${i.id})">Xóa</button></td>`;
-        } else if (role === "user") {
-            htmlRow += `<td>-</td>`;
-        }
 
-        htmlRow += `</tr>`;
-        body.innerHTML += htmlRow;
+        if(role==="admin"){
+            row+=`<td>
+                <button class="exp" onclick="sua(${i.id})">✏️ Sửa</button>
+                <button class="del" onclick="xoa(${i.id})">Xóa</button>
+            </td>`;
+        }else if(role==="user"){
+            row+=`<td>-</td>`;
+        }
+        row+="</tr>";
+        body.innerHTML+=row;
     });
 
-    if (coCanhBao && role !== "view") {
-        document.getElementById("alertSound").play().catch(() => {});
+    if(coCanhBao && role!=="view"){
+        alertSound.play().catch(()=>{});
     }
-    localStorage.setItem("LICH_CT", JSON.stringify(data));
+    localStorage.setItem("LICH_CT",JSON.stringify(data));
 }
 
-function themLich() {
-    if (!inpViec.value || !inpGio.value) return alert("Thiếu thông tin");
-    data.push({ id: Date.now(), v: inpViec.value, g: inpGio.value });
-    inpViec.value = ""; inpGio.value = "";
+function themLich(){
+    if(!inpViec.value||!inpGio.value) return alert("Thiếu thông tin");
+    data.push({id:Date.now(),v:inpViec.value,g:inpGio.value});
+    inpViec.value=""; inpGio.value="";
     render();
 }
 
-function xoa(id) {
-    if (confirm("Xóa lịch này?")) {
-        data = data.filter(i => i.id !== id);
+function sua(id){
+    const item = data.find(i=>i.id===id);
+    if(!item) return;
+
+    const v = prompt("Sửa nội dung:", item.v);
+    if(v===null) return;
+
+    const g = prompt("Sửa thời gian (YYYY-MM-DDTHH:MM):", item.g);
+    if(g===null) return;
+
+    item.v = v.trim();
+    item.g = g;
+    render();
+}
+
+function xoa(id){
+    if(confirm("Xóa lịch này?")){
+        data=data.filter(i=>i.id!==id);
         render();
     }
 }
 
-function xuat() {
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)]));
-    a.download = "backup_lich.json";
+function xuat(){
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)]));
+    a.download="backup_lich.json";
     a.click();
 }
 
-function nhap(e) {
-    const r = new FileReader();
-    r.onload = ev => {
-        data = JSON.parse(ev.target.result);
+function nhap(e){
+    const r=new FileReader();
+    r.onload=ev=>{
+        data=JSON.parse(ev.target.result);
         render();
         alert("Phục hồi thành công");
     };
     r.readAsText(e.target.files[0]);
 }
 
-function hienNgayDayDu() {
-    const d = new Date();
-    return d.toLocaleDateString("vi-VN", { weekday: "long", year: 'numeric', month: 'long', day: 'numeric' });
+function hienNgayDayDu(){
+    return new Date().toLocaleDateString("vi-VN",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
 }
 
-document.getElementById("ngayHienTai").innerText = hienNgayDayDu();
+ngayHienTai.innerText=hienNgayDayDu();
 init();
-setInterval(render, 60000);
+setInterval(render,60000);
 </script>
 
 </body>
-
 </html>
