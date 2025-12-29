@@ -1,68 +1,55 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<!-- Favicon -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>👤 Trang cá nhân</title>
+
+<!-- Favicon & PWA -->
 <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png">
-<!-- Android -->
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png">
-<!-- iOS -->
 <link rel="apple-touch-icon" sizes="180x180" href="icons/icon180.png">
-<!-- PWA -->
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0d6efd">
-	
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>👤Trang cá nhân</title>
-
-<meta name="description" content="📊Nơi tổng hợp, quản lý và chia sẻ các bài viết, tin tức, tài liệu về kinh nghiệm và cuộc sống." />
-
-<meta property="og:title" content="👤Trang cá nhân 🧠Vũ Thành Công">
-<meta property="og:description" content="🍀Chia sẻ tin tức, bài viết, tài liệu và nét đẹp cuộc sống.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
-<meta property="og:image" content="images/hoasen.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta name="theme-color" content="#0a7f99">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
 :root{
 --primary:#0a7f99;
 --secondary:#0ab3c9;
 --accent:#c0392b;
---bg:#ffffff;
 --section:#f8f9fa;
 }
 
-body {
-  margin: 0;
-  /* Đã bỏ padding-top cố định để tránh khoảng trắng thừa trên PC */
-  font-family: Arial, sans-serif;
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#fff;
 }
 
-container{
+/* CONTAINER */
+.container{
 max-width:1280px;
 margin:auto;
-padding:0 6px;
-display:block;
+padding:0 10px;
 }
 
-/* HEADER CẢI TIẾN */
-header.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(to right, var(--primary), var(--secondary));
-  color: #fff;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* HEADER */
+.site-header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:linear-gradient(to right,var(--primary),var(--secondary));
+color:#fff;
+z-index:1000;
+box-shadow:0 2px 6px rgba(0,0,0,.15);
 }
 
-.header-main {
-  padding: 6px 0;
+.header-main{
+padding:8px 0;
 }
 
 .site-header nav{
@@ -75,102 +62,105 @@ align-items:center;
 display:flex;
 align-items:center;
 gap:10px;
-font-size:20px;
-font-weight:700;
 color:#fff;
 text-decoration:none;
+font-size:18px;
+font-weight:bold;
 }
 
-.logo img{height:40px}
+.logo img{height:38px}
 
-/* MENU */
-.nav-links{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.nav-links a,
-.dropbtn{
-color:#fff;
-text-decoration:none;
-padding:8px 12px;
-border-radius:4px;
+.menu-toggle{
 background:none;
 border:none;
+font-size:18px;
+color:#fff;
 cursor:pointer;
-font-size:15px;
 }
 
-.nav-links a:hover,
-.dropbtn:hover{
-background:rgba(255,255,255,0.2);
-}
-
-.nav-links .active{
-background:var(--accent);
-}
-
-/* DROPDOWN */
-.dropdown{position:relative}
-
-.dropdown-content{
-display:none;
-position:absolute;
-top:40px;
-right: 0; /* Đảm bảo menu không bị tràn lề phải */
-background:#fff;
-min-width:170px;
-box-shadow:0 4px 12px rgba(0,0,0,.15);
-border-radius:6px;
-z-index:1000;
-}
-
-.dropdown-content a{
-display:block;
-padding:10px 14px;
-color:#333;
-text-decoration:none;
-font-size:14px;
-}
-
-.dropdown-content a:hover{
-background:#f2f2f2;
-}
-
-.dropdown:hover .dropdown-content{
-display:block;
-}
-
-/* ===== DÒNG CHỮ CHẠY ĐÃ SỬA ===== */
+/* CHỮ CHẠY */
 .running-text{
 background:#fff3cd;
 color:#0303ef;
-font-size:15px;
+font-size:14px;
 padding:6px 0;
-border-bottom:1px solid #f1d18a;
-width: 100%;
+border-top:1px solid rgba(255,255,255,.3);
 }
 
-.running-text marquee{
-font-weight:500;
-vertical-align: middle;
+/* MENU CHÍNH */
+.main-menu{
+position:fixed;
+top:10px;
+left:10;
+width:100%;
+max-width:360px;
+background:#fff;
+box-shadow:4px 0 20px rgba(0,0,0,.25);
+display:none;
+z-index:2000;
 }
 
-/* INTRO */
-#intro-section h2:first-child{
-margin-top: 0;
+.menu-item,
+.menu-title{
+padding:14px 16px;
+border-bottom:1px solid #eee;
+font-size:16px;
+color:#0a3a5a;
+text-decoration:none;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:pointer;
 }
-  #intro-section h3:first-child{
-margin-top: 0;
+
+.menu-title.has-sub{
+background:#eef9fb;
+font-weight:600;
 }
+
+.submenu{
+display:none;
+background:#f9fcfd;
+}
+
+.submenu a{
+display:block;
+padding:12px 32px;
+font-size:15px;
+color:#0a3a5a;
+border-bottom:1px solid #eee;
+text-decoration:none;
+}
+
+.arrow{
+transition:transform .25s ease;
+}
+
+.menu-group.active .arrow{
+transform:rotate(180deg);
+}
+
+/* MAIN */
+main{
+padding-top:150px;
+}
+
 #intro-section{
 background:var(--section);
-padding:20px 0;
-
+padding:30px 0;
 }
-main{
-  padding-top: 50px;
+
+#intro-section .container{
+    display:flex;
+    flex-direction: column; /* ⬅️ QUAN TRỌNG */
+    gap:20px;
+}
+
+.intro-image{
+    display:flex;
+    gap:10px;
+    justify-content:center; /* căn giữa */
+    flex-wrap:wrap;
 }
 
 .intro-image img{
@@ -178,7 +168,7 @@ width:150px;
 height:150px;
 border-radius:50%;
 object-fit:cover;
-border:5px solid var(--primary);
+border:4px solid var(--primary);
 }
 
 .justified{
@@ -186,23 +176,6 @@ text-align:justify;
 text-indent:1cm;
 }
 
-#intro-section .container{
-    display:flex;
-    gap:30px;
-    align-items:center;
-}
-/* 1. Thu hẹp cột ảnh: Cho phép nó chiếm ít không gian hơn */
-.intro-image {
-    display: flex;
-    flex-direction: row; /* ✅ XẾP NGANG */
-    gap: 10px;
-    align-items: center;
-}
-
-/* 2. Mở rộng cột chữ: Chiếm toàn bộ phần còn lại */
-.intro-image + div {
-    flex: 1;
-}
 /* POSTS */
 #recent-posts{
 padding:40px 0;
@@ -215,30 +188,16 @@ gap:20px;
 }
 
 .recent-post-item{
+background:#fff;
 border-radius:8px;
 overflow:hidden;
 box-shadow:0 2px 10px rgba(0,0,0,.08);
-background:#fff;
 }
 
 .recent-post-item img{
 width:100%;
 height:180px;
 object-fit:cover;
-}
-
-/* SHARE */
-.share-buttons{
-text-align:center;
-margin-bottom:20px;
-}
-
-.share-buttons a{
-background:#1877f2;
-color:#fff;
-padding:6px 12px;
-border-radius:4px;
-text-decoration:none;
 }
 
 /* FOOTER */
@@ -273,62 +232,86 @@ padding:25px 0;
 
 <body>
 
+<!-- HEADER -->
 <header class="site-header">
-    <div class="header-main">
-        <container>
-            <nav>
-                <a href="index.html" class="logo">
-                    <img src="images/logo.png" alt="Logo">
-<span>VŨ THÀNH CÔNG</span>
-                </a>
-                <div class="nav-links"
-
-  <!-- MENU GỘP -->
-  <div class="dropdown">
-    <button class="dropbtn">☰ Menu ▾</button>
-    <div class="dropdown-content">
-<a href="gioithieu.html"> 🏛Giới thiệu</a>
-<a href="baiviet.html">✍Bài viết</a>
-<a href="tintuc.html">📢Tin tức</a>
-<a href="tailieu.html">📚Tài liệu</a>
-<a href="vanban.html">📄Văn bản</a>
-<a href="suckhoe.html">❤️Sức khỏe</a>
+  <div class="header-main">
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="Logo">
+          <span>VŨ THÀNH CÔNG</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle">☰ MENU</button>
+      </nav>
     </div>
   </div>
-            </nav>
-        </container>
-    </div>
-    
-    <div class="running-text" id="runningTextContainer">
-        <marquee id="runningText">Đang tải cấu hình...</marquee>
-    </div>
+  <div class="running-text" id="runningTextContainer">
+    <marquee id="runningText">Đang tải cấu hình...</marquee>
+  </div>
 </header>
 
+<!-- MENU -->
+<nav class="main-menu" id="mainMenu">
+  <a href="index.html" class="menu-item">🏠 Trang chủ</a>
+
+  <div class="menu-group">
+    <div href="gioithieu.html" class="menu-title">🏛 Giới thiệu</div>
+  </div>
+
+  <div class="menu-group">
+    <div class="menu-title has-sub">
+      📄 Văn bản <span class="arrow">▾</span>
+    </div>
+    <div class="submenu">
+      <a href="vanban/HuongdanSD.html">📘Hướng dẫn</a>
+      <a href="vanban/qd69.html">📜Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕Điều lệ Đảng</a>
+    </div>
+  </div>
+
+<div class="menu-group">
+    <div class="menu-title has-sub">
+      🖥 Liên kết <span class="arrow">▾</span>
+    </div>
+    <div class="submenu">
+       	 <a href="https://dangcongsan.vn/">🔴Đảng CSVN</a>
+   	 <a href="https://ubkttw.vn/">🔍UBKT TW</a>
+   	 <a href="https://chinhphu.vn//">🏢Chính phủ</a>
+ 	 <a href="https://daotaotructuyen.haiphong.gov.vn/">💻Kỹ năng số</a>
+	 <a href="https://dcs.vn/page/loginApp">🖥Văn phòng số</a>
+	 <a href="https://bandoso.haiphong.gov.vn/">🏞Bản đồ Hải phòng</a>
+    </div>
+  </div>
+
+
+  <a href="baiviet.html" class="menu-item">✍ Bài viết</a>
+  <a href="tintuc.html" class="menu-item">📢 Tin tức</a>
+  <a href="suckhoe.html" class="menu-item">❤️ Sức khỏe</a>
+  <a href="lich_cong_tac.html" class="menu-item">📅 Lịch công tác</a>
+</nav>
+
+<!-- MAIN -->
 <main>
-<a href="lich_cong_tac.html"> 📅 Lịch</a>
-  <section id="recent-posts">
-     <container>
-             <div class="share-buttons">
-<h2 style="color:#0303ef;font-weight:bold">
- <a> 📝 TIN TỨC MỚI NHẤT 📢</a>
-              <a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
-  </h2>
-            </div>
-            <div id="recent-posts-list">
-                <p style="text-align:center;color:#777">Đang tải tin tức...</p>
-            </div>
-        </container>
-    </section>
-    <section id="intro-section">
-        <container>
-            <div class="intro-image">
-  	<img src="images/anhdaidien.jpg" alt="Ảnh đại diện">
-    <img src="images/hoasen.jpg" alt="Hoa sen">
-		<img src="images/hoadao.jpg" alt="Hoa đào">
-		<img src="images/hoamai.jpg" alt="Hoa mai">
-            </div>
-            <div>
-<h3 style="color:#0303ef;font-weight:bold">🌸Ý tưởng hay “8 Quy tắc vàng”📅 ngày 23/4/2013</h3>
+
+<section id="recent-posts">
+  <div class="container">
+    <h2 style="color:#0303ef;font-weight:bold">📝 TIN TỨC MỚI NHẤT 📢</h2>
+    <div id="recent-posts-list">
+      <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
+    </div>
+  </div>
+</section>
+
+<section id="intro-section">
+  <div class="container">
+    <div class="intro-image">
+      <img src="images/anhdaidien.jpg">
+      <img src="images/hoasen.jpg">
+      <img src="images/hoadao.jpg">
+      <img src="images/hoamai.jpg">
+    </div>
+    <div>
+<h3 style="color:#0303ef;font-weight:bold">🧠 Ý tưởng hay “8 Quy tắc vàng” ⏰ngày 23/4/2013</h3>
 <p class="justified">
   1. Tâm: tịnh, sáng🌸“Tâm” ở đây là tâm trí, nội tâm của con người. “Tịnh” là trạng thái an yên, không xao động; “sáng” là sự minh mẫn, trong trẻo. Khi giữ tâm tịnh và sáng, con người dễ sống hài hòa, đưa ra quyết định sáng suốt và tránh bị chi phối bởi cảm xúc tiêu cực.</p> 
 <p class="justified">
@@ -345,7 +328,7 @@ padding:25px 0;
  7. Vui là chính  🌸Giữ tinh thần lạc quan, vui vẻ giúp giảm căng thẳng, cải thiện sức khỏe tâm lý và thu hút năng lượng tích cực.</p> 
 <p class="justified">
  8. Quan hệ đều (Quan hệ xã hội)🌸Các mối quan hệ xã hội cần được duy trì ở mức hài hòa, không quá khép kín cũng không quá lệ thuộc. Quan hệ đều đặn giúp tinh thần thoải mái, mở rộng tư duy và tăng sự kết nối.</p>
-<h3>🌸Để làm gì?</h3> 
+<h3 style="color:#0303ef;font-weight:bold">❤️ 🎯 🧠 🤝 Để làm gì?</h3> 
 <p class="justified">
  1) Giữ gìn sức khỏe (1, 2, 3)🌸Cảm xúc ổn định, ăn uống điều độ và ngủ đủ giấc là ba trụ cột quan trọng nhất cho sức khỏe thể chất và tinh thần.</p> 
 <p class="justified">
@@ -356,70 +339,104 @@ padding:25px 0;
 4) Mọi người mến yêu (8)🌸Khi có mối quan hệ xã hội hài hòa, con người dễ dàng nhận được sự yêu quý, hỗ trợ và đồng hành trong cuộc sống.</p>   
 <p class="justified">
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.</p>
-            </div>
-        </container>
-    </section>
-    </main>
+<a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <footer>
-    <container>
-        <p>❤️SỨC KHỎE 🧠TRÍ TUỆ 🕊TỰ DO</p>
-    </container>
+  <div class="container">
+    <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🕊 TỰ DO</p>
+  </div>
 </footer>
 
 <script>
-const JSON_URL = 'posts_data.json';
+const menuToggle=document.getElementById("menuToggle");
+const mainMenu=document.getElementById("mainMenu");
+
+menuToggle.onclick=e=>{
+e.stopPropagation();
+mainMenu.style.display=mainMenu.style.display==="block"?"none":"block";
+};
+
+document.addEventListener("click",()=>mainMenu.style.display="none");
+mainMenu.onclick=e=>e.stopPropagation();
+
+/* MENU CẤP 2 */
+document.querySelectorAll(".menu-title.has-sub").forEach(title=>{
+title.onclick=()=>{
+document.querySelectorAll(".submenu").forEach(s=>{
+if(s!==title.nextElementSibling) s.style.display="none";
+});
+document.querySelectorAll(".menu-group").forEach(g=>{
+if(g!==title.parentElement) g.classList.remove("active");
+});
+
+const group=title.parentElement;
+const submenu=title.nextElementSibling;
+group.classList.toggle("active");
+submenu.style.display=submenu.style.display==="block"?"none":"block";
+};
+});
+
 const CONFIG_URL = 'site_config.json';
 
 async function loadSiteConfig() {
-    try {
-        const response = await fetch(CONFIG_URL);
-        if (!response.ok) throw new Error("Không tải được config");
-        
-        const config = await response.json();
-        const marquee = document.getElementById("runningText");
-        const container = document.getElementById("runningTextContainer");
+  try {
+    const res = await fetch(CONFIG_URL);
+    if (!res.ok) throw new Error("Không tải được config");
 
-        if (config.enable) {
-            marquee.innerText = config.runningText;
-            marquee.setAttribute("scrollamount", config.speed || 5);
-            container.style.backgroundColor = config.bgColor || "#fff3cd";
-            container.style.color = config.textColor || "#0303ef";
-            container.style.display = "block";
-        } else {
-            container.style.display = "none";
-        }
-    } catch (e) {
-        console.error("Lỗi tải cấu hình chữ chạy:", e);
-        document.getElementById("runningTextContainer").style.display = "none";
+    const config = await res.json();
+    const marquee = document.getElementById("runningText");
+    const container = document.getElementById("runningTextContainer");
+
+    if (config.enable) {
+      marquee.innerText = config.runningText;
+      marquee.setAttribute("scrollamount", config.speed || 5);
+      container.style.backgroundColor = config.bgColor || "#fff3cd";
+      container.style.color = config.textColor || "#0303ef";
+      container.style.display = "block";
+    } else {
+      container.style.display = "none";
     }
+  } catch (e) {
+    console.error("Lỗi tải chữ chạy:", e);
+    document.getElementById("runningTextContainer").style.display = "none";
+  }
 }
 
+document.addEventListener("DOMContentLoaded", loadSiteConfig);
+
+const JSON_URL = 'posts_data.json';
+
 async function fetchPosts() {
-    try {
-        const r = await fetch(JSON_URL);
-        if (!r.ok) return [];
-        return await r.json();
-    } catch (e) {
-        console.error("Lỗi fetch posts:", e);
-        return [];
-    }
+  try {
+    const res = await fetch(JSON_URL);
+    if (!res.ok) throw new Error("Không tải được posts");
+    return await res.json();
+  } catch (e) {
+    console.error("Lỗi tải tin:", e);
+    return [];
+  }
 }
 
 async function loadRecentPosts() {
-    const posts = await fetchPosts();
-    const box = document.getElementById("recent-posts-list");
+  const posts = await fetchPosts();
+  const box = document.getElementById("recent-posts-list");
 
-    const valid = posts.filter(p => p.category === "tintuc" || p.category === "baiviet")
-        .sort((a, b) => b.id - a.id)
-        .slice(0, 8);
+  const valid = posts
+    .filter(p => p.category === "tintuc" || p.category === "baiviet")
+    .sort((a,b) => b.id - a.id)
+    .slice(0,8);
 
-    if (!valid.length) {
-        box.innerHTML = '<p style="text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
-        return;
-    }
+  if (!valid.length) {
+    box.innerHTML = '<p style="text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
+    return;
+  }
 
-    box.innerHTML = '';
+box.innerHTML = '';
     valid.forEach(p => {
         box.innerHTML += `
         <div class="recent-post-item">
@@ -444,48 +461,4 @@ function shareFacebook() {
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
