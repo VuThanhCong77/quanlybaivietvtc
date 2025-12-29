@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>❤️Sức khỏe | Tên Trang</title>
+
+<style>
+/* === RESET & CƠ BẢN === */
+body {
+  margin: 0;
+  padding-top: 110px;
+  font-family: Arial, sans-serif;
+}
+
+/* === HEADER CHUNG (SITE HEADER) === */
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  background: linear-gradient(to right, #0a7f99, #0ab3c9);
+  color: #fff;
+  padding: 12px 20px;
+  text-align: center;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 999;
+}
+
+header.site-header h1 {
+    font-size: 22px; 
+    margin: 0;
+    line-height: 1.2;
+}
+.site-header a {
+    color: #ffffff !important; /* Đổi màu chữ thành trắng */
+    text-decoration: none;     /* (Tùy chọn) Bỏ gạch chân dưới chân chữ */
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) để người dùng biết đó là link */
+.site-header a:hover {
+    color: #cccccc; /* Chuyển sang màu xám nhẹ khi di chuột */
+}
+  
+/* === NỘI DUNG CHÍNH (MAIN CONTENT) === */
+main {
+    max-width: 900px; 
+    margin: 15px auto; 
+    padding: 20px;
+    background-color: #f9f9ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1);
+}
+
+/* ======================================= */
+/* CSS BỔ SUNG: CONTROL PANEL VÀ STATS */
+/* ======================================= */
+.control-panel {
+    display: flex;
+    justify-content: flex-end; /* Đẩy các ô sang bên phải */
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cde7ef;
+}
+
+#search-input {
+    padding: 8px 12px;
+    border: 1px solid #0ab3c9;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 250px; /* Chiều rộng ô tìm kiếm */
+}
+
+#stats-box {
+    background-color: #0ab3c9;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    flex-shrink: 0; /* Ngăn không cho ô bị co lại */
+}
+
+/* === ITEM Sức khỏe === */
+.post-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #cde7ef;
+}
+.post-item:last-child {
+    border-bottom: none;
+}
+.post-thumbnail {
+    width: 200px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+.post-item-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+}
+.post-item-content h3 a {
+    color: #0a3a5a;
+    text-decoration: none;
+}
+.post-item-content h3 a:hover {
+    color: #0a7f99;
+}
+.post-item-content small {
+    color: #888;
+    display: block;
+    margin-bottom: 10px;
+}
+.post-item-content p {
+    margin: 0;
+    color: #555;
+    text-align: justify;
+}
+
+/* === FOOTER === */
+footer {
+    background: #e7f5fa;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #074055;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #search-input {
+        width: auto;
+    }
+    .post-item {
+        flex-direction: column;
+    }
+    .post-thumbnail {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <h1>❤️Sức khỏe</h1>
+<a href="index.html">🏠 | </a>
+<a href="gioithieu.html">🏛Giới thiệu</a>
+<a href="baiviet.html">✍Bài viết</a>
+<a href="tintuc.html">📢Tin tức</a>
+<a href="tailieu.html">📚Tài liệu</a>
+<a href="vanban.html">📄Văn bản</a>
+</header>
+
+<main>
+    <div class="control-panel">
+        <input type="text" id="search-input" placeholder="Tìm kiếm theo tiêu đề sức khỏe..." />
+       
+        <div id="stats-box">
+            📊Tổng cộng: <span id="post-count">0</span> bài
+        </div>
+    </div>
+    
+    <div id="list">
+        <p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết về sức khỏe...</p>
+    </div>
+</main>
+
+<footer>
+<p>❤️SỨC KHỎE 🧠TRÍ TUỆ 🕊TỰ DO</p>
+</footer>
+<script>
+const listContainer = document.getElementById("list");
+const searchInput = document.getElementById("search-input");
+const postCountSpan = document.getElementById("post-count");
+
+let allPosts = [];
+
+/* === ĐỌC FILE JSON CỐ ĐỊNH (LOCALHOST) === */
+fetch("posts_data.json")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Không đọc được posts_data.json");
+        }
+        return response.json();
+    })
+    .then(data => {
+        allPosts = data.filter(p => p.category === "suckhoe");
+        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderArticles(allPosts);
+        updateStats(allPosts.length);
+    })
+    .catch(err => {
+        listContainer.innerHTML =
+            "<p style='color:red;text-align:center'>❌ Không thể tải dữ liệu về sức khỏe</p>";
+        console.error(err);
+    });
+
+function renderArticles(posts) {
+    listContainer.innerHTML = "";
+
+    if (posts.length === 0) {
+        listContainer.innerHTML =
+            "<p style='text-align:center;font-style:italic;'>Không có dữ liệu sức khỏe.</p>";
+        return;
+    }
+
+    posts.forEach(p => {
+        listContainer.innerHTML += `
+        <div class="post-item">
+            ${p.thumbnail ? `<img src="${p.thumbnail}" class="post-thumbnail">` : ""}
+            <div class="post-item-content">
+                <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
+                <small>${p.date}</small>
+                <p>${p.shortDescription || p.content.substring(0, 200) + "..."}</p>
+            </div>
+        </div>`;
+    });
+}
+
+function updateStats(count) {
+    postCountSpan.textContent = count;
+}
+
+/* === TÌM KIẾM === */
+searchInput.addEventListener("input", () => {
+    const q = searchInput.value.toLowerCase().trim();
+    const filtered = allPosts.filter(p =>
+        p.title.toLowerCase().includes(q)
+    );
+    renderArticles(filtered);
+    updateStats(filtered.length);
+});
+</script>
+
+
+</body>
+</html>
