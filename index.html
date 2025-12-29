@@ -186,16 +186,15 @@ text-align:justify;
 text-indent:1cm;
 }
 
-#intro-section container{
-display:flex;
-gap:30px;
-align-items:center;
+#intro-section .container{
+    display:flex;
+    gap:30px;
+    align-items:center;
 }
 /* 1. Thu hẹp cột ảnh: Cho phép nó chiếm ít không gian hơn */
 .intro-image {
-    flex: 0 0 220px; /* Không giãn, không co, cố định chiều rộng khoảng 220px */
     display: flex;
-    flex-direction: column; /* Xếp chồng các ảnh nếu có nhiều ảnh */
+    flex-direction: row; /* ✅ XẾP NGANG */
     gap: 10px;
     align-items: center;
 }
@@ -439,6 +438,7 @@ function shareFacebook() {
 </body>
 
 </html>
+
 
 
 
