@@ -1,9 +1,7 @@
 {
   "enable": true,
-  "runningText": "🌸 Chào mừng bạn đến với Trang cá nhân của Vũ Thành Công 🌸 Nơi chia sẻ tri thức, kinh nghiệm và giá trị sống tích cực 🌸 Chúc mừng năm mới 2026: BÌNH AN - THỊNH VƯỢNG - HẠNH PHÚC 🌿",
-  "speed": 3,
+  "runningText": "Chào mừng bạn đến với Trang thông tin điện tử – chia sẻ tri thức, sức khỏe và cuộc sống.",
+  "speed": 5,
   "bgColor": "#fff3cd",
   "textColor": "#0303ef"
 }
-
-
