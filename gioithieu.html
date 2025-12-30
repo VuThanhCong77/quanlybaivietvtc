@@ -6,6 +6,82 @@
 <title>🏛Giới thiệu về bản thân</title>
 
 <style>
+/* ===== MENU MOBILE ===== */
+.menu-btn{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Overlay */
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 998;
+  transition: .3s;
+}
+.menu-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menu chính */
+.nav-menu{
+  position: fixed;
+  top: 0;
+  left: -280px;              /* Ẩn bên trái */
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0,0,0,.15);
+  padding-top: 60px;
+  z-index: 999;
+  transition: .3s;
+}
+
+/* Khi mở */
+.nav-menu.active{
+  left: 0;
+}
+
+.nav-item{
+  border-bottom: 1px solid #eee;
+}
+
+.nav-link{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  color: #0a3a5a;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* ===== MENU CẤP 2 ===== */
+.sub-menu{
+  display: none;
+  background: #f5f9fb;
+}
+.sub-menu a{
+  display: block;
+  padding: 10px 30px;
+  font-size: 14px;
+  color: #0a5c7a;
+  text-decoration: none;
+}
+
+/* Chỉ xổ khi click */
+.nav-item.open > .sub-menu{
+  display: block;
+}
+
   #intro-section h2:first-child{
     margin-top: 0;
 }
@@ -21,18 +97,28 @@
 
   /* ===== HEADER (Đã loại bỏ ảnh) ===== */
   header.page-header {
-  position: fixed;
+    position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* Giữ tiêu đề ở giữa */
 
   background: linear-gradient(to right, #0a7f99, #0ab3c9);
   color: #fff;
-  padding: 6px;
-  text-align: center;
-
+  padding: 0 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   z-index: 999;
+}
+
+/* Nút Menu cố định bên trái */
+.menu-btn{
+  position: absolute;
+  left: 12px;
+  font-size: 22px;
 }
   
   /* Giảm kích thước font và tighten spacing cho tiêu đề H1 */
@@ -109,13 +195,45 @@ header.page-header a:hover {
 
 <header class="page-header">
   <h1>🏛Giới thiệu</h1>
-<a href="index.html">🏠 </a>
-<a href="baiviet.html">✍Bài viết</a>
-<a href="tintuc.html">📢Tin tức</a>
-<a href="tailieu.html">📚Tài liệu</a>
-<a href="vanban.html">📄Văn bản</a>
-<a href="suckhoe.html">❤️Sức khỏe</a>
+<button class="menu-btn" id="menuBtn">☰ Menu</button>
 </header>
+
+<!-- OVERLAY -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- MENU -->
+<nav class="nav-menu" id="navMenu">
+
+  <div class="nav-item">
+    <a class="nav-link" href="index.html">🏠 Trang chủ</a>
+  </div>
+
+ <div class="nav-item">
+    <a class="nav-link" href="gioithieu.html">🏛Giới thiệu</a>
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
+    <div class="sub-menu">
+   <a href="vanban.html">📖Nội dung văn bản</a>
+      <a href="vanban/qd69.html">📜Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕Điều lệ Đảng</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="baiviet.html">✍ Bài viết</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="tintuc.html">📢 Tin tức</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a>
+  </div>
+
+</nav>
 
 <main>
    <h2><img src="images/hoadao.png" alt="Trang chủ" style="height:56px; vertical-align:middle; margin-left:36px;">
@@ -170,6 +288,33 @@ TƯ DUY & TRIẾT LÝ SỐNG🌸</h2>
   <p class="justified-p">
     <span class="lotus-icon">🌸</span> "Hạnh phúc không phải là đứng trên đỉnh cao danh vọng, mà là được nhìn thấy quê hương thay da đổi thịt và nụ cười bình yên của những người mình yêu thương."
   </p>
+
+<script>
+/* ===== MENU MOBILE ===== */
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+/* Mở menu */
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.add("active");
+  menuOverlay.classList.add("active");
+});
+
+/* Đóng menu khi click overlay */
+menuOverlay.addEventListener("click", () => {
+  navMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+});
+
+/* ===== MENU CẤP 2 ===== */
+document.querySelectorAll(".nav-item .toggle").forEach(toggle => {
+  toggle.addEventListener("click", () => {
+    toggle.parentElement.classList.toggle("open");
+  });
+});
+
+</script>
 </main>
 
 <footer>

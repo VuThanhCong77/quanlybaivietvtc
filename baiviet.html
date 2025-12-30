@@ -3,9 +3,85 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>✍Danh mục Bài viết | Tên Trang</title>
+<title>✍Bài viết | Tên Trang</title>
 
 <style>
+/* ===== MENU MOBILE ===== */
+.menu-btn{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Overlay */
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 998;
+  transition: .3s;
+}
+.menu-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menu chính */
+.nav-menu{
+  position: fixed;
+  top: 0;
+  left: -280px;              /* Ẩn bên trái */
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0,0,0,.15);
+  padding-top: 60px;
+  z-index: 999;
+  transition: .3s;
+}
+
+/* Khi mở */
+.nav-menu.active{
+  left: 0;
+}
+
+.nav-item{
+  border-bottom: 1px solid #eee;
+}
+
+.nav-link{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  color: #0a3a5a;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* ===== MENU CẤP 2 ===== */
+.sub-menu{
+  display: none;
+  background: #f5f9fb;
+}
+.sub-menu a{
+  display: block;
+  padding: 10px 30px;
+  font-size: 14px;
+  color: #0a5c7a;
+  text-decoration: none;
+}
+
+/* Chỉ xổ khi click */
+.nav-item.open > .sub-menu{
+  display: block;
+}
+
 /* === RESET & CƠ BẢN === */
 body {
   margin: 0;
@@ -19,14 +95,24 @@ header.site-header {
   top: 0;
   left: 0;
   width: 100%;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* Giữ tiêu đề ở giữa */
 
   background: linear-gradient(to right, #0a7f99, #0ab3c9);
   color: #fff;
-  padding: 12px 20px;
-  text-align: center;
-
+  padding: 0 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   z-index: 999;
+}
+
+/* Nút Menu cố định bên trái */
+.menu-btn{
+  position: absolute;
+  left: 12px;
+  font-size: 22px;
 }
 
 header.site-header h1 {
@@ -159,18 +245,50 @@ footer {
 
 <header class="site-header">
   <h1>✍Bài viết</h1>
-  <a href="index.html">🏠 | </a>
-<a href="gioithieu.html"> 🏛Giới thiệu</a>
-<a href="tintuc.html">📢Tin tức</a>
-<a href="tailieu.html">📚Tài liệu</a>
-<a href="vanban.html">📄Văn bản</a>
-<a href="suckhoe.html">❤️Sức khỏe</a>
+<button class="menu-btn" id="menuBtn">☰ Menu</button>
 </header>
+
+<!-- OVERLAY -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- MENU -->
+<nav class="nav-menu" id="navMenu">
+
+  <div class="nav-item">
+    <a class="nav-link" href="index.html">🏠 Trang chủ</a>
+  </div>
+
+ <div class="nav-item">
+    <a class="nav-link" href="gioithieu.html">🏛Giới thiệu</a>
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
+    <div class="sub-menu">
+   <a href="vanban.html">📖Nội dung văn bản</a>
+      <a href="vanban/qd69.html">📜Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕Điều lệ Đảng</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="baiviet.html">✍ Bài viết</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="tintuc.html">📢 Tin tức</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a>
+  </div>
+
+</nav>
 
 <main>
     <div class="control-panel">
         <input type="text" id="search-input" placeholder="Tìm kiếm theo tiêu đề bài viết..." />
-        
+       
         <div id="stats-box">
             📊Tổng cộng: <span id="post-count">0</span> bài
         </div>
@@ -184,108 +302,94 @@ footer {
 <footer>
 <p>❤️SỨC KHỎE 🧠TRÍ TUỆ 🕊TỰ DO</p>
 </footer>
-
 <script>
-    const JSON_URL = 'posts_data.json';
-    const listContainer = document.getElementById("list");
-    const searchInput = document.getElementById("search-input");
-    const postCountSpan = document.getElementById("post-count");
-    
-    let allPosts = []; // Lưu trữ toàn bộ dữ liệu bài viết đã tải
+const listContainer = document.getElementById("list");
+const searchInput = document.getElementById("search-input");
+const postCountSpan = document.getElementById("post-count");
 
-    async function fetchPosts() {
-        try {
-            const response = await fetch(JSON_URL);
-            if (!response.ok) {
-                console.error("Không tìm thấy file posts_data.json.");
-                return [];
-            }
-            // Lọc và chỉ lấy các bài có category là "baiviet"
-            const data = await response.json();
-            return data.filter(p => p.category === "baiviet");
-        } catch (error) {
-            console.error("Lỗi mạng khi tải dữ liệu bài viết:", error);
-            return [];
+let allPosts = [];
+
+/* === ĐỌC FILE JSON CỐ ĐỊNH (LOCALHOST) === */
+fetch("posts_data.json")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Không đọc được posts_data.json");
         }
-    }
+        return response.json();
+    })
+    .then(data => {
+        allPosts = data.filter(p => p.category === "baiviet");
+        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderArticles(allPosts);
+        updateStats(allPosts.length);
+    })
+    .catch(err => {
+        listContainer.innerHTML =
+            "<p style='color:red;text-align:center'>❌ Không thể tải dữ liệu bài viết</p>";
+        console.error(err);
+    });
 
-    function renderArticles(postsToRender) {
-        listContainer.innerHTML = ''; // Xóa nội dung cũ
+function renderArticles(posts) {
+    listContainer.innerHTML = "";
 
-        if (postsToRender.length === 0) {
-            listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Không tìm thấy bài viết nào phù hợp.</p>';
-            return;
-        }
-
-        postsToRender.forEach(p => {
-            const thumbnailHtml = p.thumbnail
-                ? `<img src="${p.thumbnail}" class="post-thumbnail" alt="${p.title}">`
-                : '';
-                
-            listContainer.innerHTML += `
-                <div class="post-item">
-                    ${thumbnailHtml} 
-                    <div class="post-item-content">
-                        <h3>
-                            <a href="post.html?id=${p.id}">${p.title}</a>
-                        </h3>
-                        <small>${p.date}</small>
-                        <p>${p.shortDescription || p.content.substring(0, 200) + '...'}</p>
-                    </div>
-                </div>`;
-        });
-    }
-    
-    // Hàm Thống kê (Cập nhật số lượng bài viết)
-    function updateStats(count) {
-        postCountSpan.textContent = count;
-    }
-
-    // Hàm Tìm kiếm
-    function searchArticles() {
-        const query = searchInput.value.trim().toLowerCase();
-        
-        if (query === "") {
-            // Nếu ô tìm kiếm trống, hiển thị tất cả
-            renderArticles(allPosts);
-            updateStats(allPosts.length);
-            return;
-        }
-
-        // Lọc bài viết dựa trên tiêu đề
-        const filtered = allPosts.filter(p => 
-            p.title.toLowerCase().includes(query)
-        );
-
-        renderArticles(filtered);
-        updateStats(filtered.length);
-    }
-    
-    // Hàm tải chính
-    async function loadArticles() {
-    listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Đang tải bài viết...</p>';
-    
-    allPosts = await fetchPosts();
-
-    // ✅ SẮP XẾP: BÀI VIẾT MỚI NHẤT LÊN TRÊN
-    allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-    
-    if (allPosts.length === 0) {
-        listContainer.innerHTML = '<p style="text-align: center; margin-top: 30px; font-style: italic;">Hiện tại chưa có bài viết nào trong chuyên mục này.</p>';
-        updateStats(0);
+    if (posts.length === 0) {
+        listContainer.innerHTML =
+            "<p style='text-align:center;font-style:italic;'>Không có bài viết.</p>";
         return;
     }
-    
-    // Hiển thị tất cả bài viết ban đầu
-    renderArticles(allPosts);
-    updateStats(allPosts.length);
-    
-    // Gắn sự kiện tìm kiếm khi người dùng gõ
-    searchInput.addEventListener('input', searchArticles);
+
+    posts.forEach(p => {
+        listContainer.innerHTML += `
+        <div class="post-item">
+            ${p.thumbnail ? `<img src="${p.thumbnail}" class="post-thumbnail">` : ""}
+            <div class="post-item-content">
+                <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
+                <small>${p.date}</small>
+                <p>${p.shortDescription || p.content.substring(0, 200) + "..."}</p>
+            </div>
+        </div>`;
+    });
 }
 
-  // Chạy hàm khi DOM tải xong
-    document.addEventListener('DOMContentLoaded', loadArticles);
+function updateStats(count) {
+    postCountSpan.textContent = count;
+}
+
+/* === TÌM KIẾM === */
+searchInput.addEventListener("input", () => {
+    const q = searchInput.value.toLowerCase().trim();
+    const filtered = allPosts.filter(p =>
+        p.title.toLowerCase().includes(q)
+    );
+    renderArticles(filtered);
+    updateStats(filtered.length);
+});
+
+/* ===== MENU MOBILE ===== */
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+/* Mở menu */
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.add("active");
+  menuOverlay.classList.add("active");
+});
+
+/* Đóng menu khi click overlay */
+menuOverlay.addEventListener("click", () => {
+  navMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+});
+
+/* ===== MENU CẤP 2 ===== */
+document.querySelectorAll(".nav-item .toggle").forEach(toggle => {
+  toggle.addEventListener("click", () => {
+    toggle.parentElement.classList.toggle("open");
+  });
+});
 </script>
+
+
 </body>
 </html>
