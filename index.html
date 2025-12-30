@@ -40,7 +40,7 @@ padding:0 10px;
 .site-header{
 position:fixed;
 top:0;
-left:0;
+right:0;
 width:100%;
 background:linear-gradient(to right,var(--primary),var(--secondary));
 color:#fff;
@@ -69,6 +69,10 @@ font-weight:bold;
 }
 
 .logo img{height:38px}
+
+.logo{
+  flex-wrap: nowrap;
+}
 
 .menu-toggle{
 background:none;
@@ -210,22 +214,140 @@ padding:25px 0;
 
 /* RESPONSIVE */
 @media (max-width: 768px){
-    .intro-image{
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
-  main{
-    padding-top: 130px;
+  .intro-image{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .justified{
+    text-indent:0;
   }
 }
+ 
+/* === FIX HIỂN THỊ MENU NGANG – GIỮ NGUYÊN CẤU TRÚC CŨ === */
+
+.nav-links {
+    display: flex !important;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links > a,
+.nav-links > .dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+/* Dropdown xổ xuống */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: #fff;
+    z-index: 9999;
+}
+
+/* Hover thì xổ */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Tránh bị cắt */
+nav, header {
+    overflow: visible !important;
+}
+
   .nav-links {
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
     }
-       #intro-section container{flex-direction:column}
+
+.nav-links {
+    flex-wrap: nowrap;
+}
+
+    #intro-section container{flex-direction:column}
     .justified{text-indent:0}
+}
+
+/* MENU NGANG DESKTOP */
+.desktop-scroll-menu{
+  background:#f1f8fb;
+  border-top:1px solid #e0e0e0;
+  border-bottom:1px solid #e0e0e0;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+
+.scroll-menu-inner{
+  display:flex;
+  gap:8px;
+  padding:8px 10px;
+}
+
+.scroll-menu-inner a{
+  flex:0 0 auto;
+  padding:8px 14px;
+  background:#fff;
+  border-radius:20px;
+  text-decoration:none;
+  color:#0a3a5a;
+  font-size:14px;
+  font-weight:500;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  transition:all .25s ease;
+}
+
+.scroll-menu-inner a:hover{
+  background:var(--primary);
+  color:#fff;
+}
+
+/* ẨN MENU NGANG TRÊN MOBILE */
+@media (max-width: 991px){
+  .desktop-scroll-menu{
+    display:none;
+  }
+}
+
+/* CHỈ HIỆN MENU NGANG TRÊN DESKTOP */
+@media (min-width: 992px){
+  main{
+    padding-top:180px; /* bù chiều cao header + menu */
+  }
+}
+
+/* MENU NGANG DƯỚI HEADER */
+.nav-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  padding:8px 0;
+  background: rgba(10,177,199,0.12);
+  }
+
+.nav-links a{
+  text-decoration:none;
+  color:#FFFFFF;
+  font-weight:500;
+}
+
+/* ẨN MENU NGANG TRÊN MOBILE */
+@media (max-width: 991px){
+  .nav-links{
+    display:none;
+  }
+}
+
+/* ÉP TÊN HIỂN THỊ 1 DÒNG */
+.logo span{
+  white-space: nowrap;   /* không xuống dòng */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;      /* có thể chỉnh 160–220 tùy ý */
 }
 </style>
 </head>
@@ -237,11 +359,20 @@ padding:25px 0;
   <div class="header-main">
     <div class="container">
       <nav>
+<div class="nav-links">
+  <a href="lich_cong_tac.html">📅 Lịch</a>
+  <a href="gioithieu.html">🏛 Giới thiệu</a>
+  <a href="vanban.html">📄 Văn bản</a>
+  <a href="baiviet.html">✍ Bài viết</a>
+  <a href="tintuc.html">📢 Tin tức</a>
+  <a href="suckhoe.html">❤️ Sức khỏe</a>
+</div>
+
         <a href="index.html" class="logo">
           <img src="images/hoamai.jpg" alt="hoamai">
           <span>VŨ THÀNH CÔNG</span>
         </a>
-        <button id="menuToggle" class="menu-toggle">☰ MENU</button>
+        <button id="menuToggle" class="menu-toggle">☰📕</button>
       </nav>
     </div>
   </div>
@@ -249,7 +380,6 @@ padding:25px 0;
     <marquee id="runningText">Đang tải cấu hình...</marquee>
   </div>
 </header>
-
 <!-- MENU -->
 <nav class="main-menu" id="mainMenu">
   <a href="index.html" class="menu-item">🏠 Trang chủ</a>
@@ -352,6 +482,30 @@ padding:25px 0;
 </footer>
 
 <script>
+const slider = document.querySelector('.desktop-scroll-menu');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+if(slider){
+  slider.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+
+  slider.addEventListener('mouseleave', () => isDown = false);
+  slider.addEventListener('mouseup', () => isDown = false);
+
+  slider.addEventListener('mousemove', e => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    slider.scrollLeft = scrollLeft - walk;
+  });
+}
+
 const menuToggle=document.getElementById("menuToggle");
 const mainMenu=document.getElementById("mainMenu");
 
@@ -461,9 +615,3 @@ function shareFacebook() {
 
 </body>
 </html>
-
-
-
-
-
-
