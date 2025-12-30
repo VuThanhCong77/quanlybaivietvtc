@@ -8,11 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Trang tin tức của tôi" />
-    <meta property="og:description" content="Cập nhật tin tức mới nhất từ hệ thống quản lý bài viết." />
-    <meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/default.jpg" />
-    <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/" />
+   <!-- Open Graph chuẩn cho Facebook & Zalo -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trang thông tin tổng hợp">
+<meta property="og:description" content="Cập nhật thông tin, bài viết mới nhất từ hệ thống.">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/hoasen.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
+
 
     <style>
         body { background-color: #2E8B57; font-family: 'Arial', sans-serif; }
@@ -125,12 +129,20 @@ async function loadPost() {
 
 function shareFB() {
     const url = window.location.href;
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, 'fb-share', 'width=580,height=400');
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      'fb-share',
+      'width=580,height=400'
+    );
 }
 
 function shareZalo() {
     const url = window.location.href;
-    window.open(`https://sp.zalo.me/share/base?url=${encodeURIComponent(url)}`, 'zalo-share', 'width=580,height=450');
+    window.open(
+      `https://sp.zalo.me/share/base?url=${encodeURIComponent(url)}`,
+      'zalo-share',
+      'width=580,height=450'
+    );
 }
 
 function guiGopY() {
