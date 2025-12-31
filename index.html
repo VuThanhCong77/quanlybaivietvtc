@@ -326,6 +326,7 @@ nav, header {
   align-items:center;
   gap:20px;
   padding:8px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
   background: rgba(10,177,199,0.12);
   }
 
@@ -349,6 +350,32 @@ nav, header {
   text-overflow: ellipsis;
   max-width: 180px;      /* có thể chỉnh 160–220 tùy ý */
 }
+
+.icon-menu{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Chữ mặc định ẩn */
+.icon-menu .menu-text{
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #078FA3;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Hover thì hiện chữ */
+.icon-menu:hover .menu-text{
+  opacity: 1;
+  visibility: visible;
+}
+
 </style>
 </head>
 
@@ -366,12 +393,13 @@ nav, header {
        <button id="menuToggle" class="menu-toggle">☰📕</button>
 		 </nav>  
 <div class="nav-links">
-  <a href="lich_cong_tac.html">|➜📅|</a>
-  <a href="gioithieu.html">|➜🏛|</a>
-  <a href="vanban.html">|➜📄|</a>
-  <a href="baiviet.html">|➜✍|</a>
-  <a href="tintuc.html">|➜📢|</a>
-  <a href="suckhoe.html">|➜❤️|</a>
+<a href="lich_cong_tac.html" class="icon-menu">|➜📅|<span class="menu-text">Lịch tháng</span></a>
+<a href="gioithieu.html" class="icon-menu">|➜🏛|<span class="menu-text">Giới thiệu</span></a>
+<a href="vanban.html" class="icon-menu">|➜📄|<span class="menu-text">Văn bản</span></a>
+<a href="baiviet.html" class="icon-menu">|➜✍|<span class="menu-text">Bài viết</span></a>
+<a href="tintuc.html" class="icon-menu">|➜📢|<span class="menu-text">Tin tức</span></a>
+<a href="suckhoe.html" class="icon-menu">|➜❤️|<span class="menu-text">Sức khỏe</span></a>
+
 </div>
 </div>
 </div>
@@ -476,7 +504,7 @@ nav, header {
 
 <footer>
   <div class="container">
-    <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🕊 TỰ DO</p>
+    <p>❤️SỨC KHỎE 🧠TRÍ TUỆ  🌸HẠNH PHÚC</p>
   </div>
 </footer>
 
