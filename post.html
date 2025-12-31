@@ -119,6 +119,7 @@ async function loadPost() {
             document.getElementById('view-content').innerHTML = post.description || "";
 
     countViews(post.id);
+    syncViews(post);
 
             const imgElement = document.getElementById('view-image');
             if (post.thumbnail) {
@@ -198,6 +199,27 @@ function countViews(postId) {
 
     localStorage.setItem(key, views);
     document.getElementById('view-count').innerText = views;
+}
+
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxMGsejIQFUwlLrNJ6VysLadTh3uy3-YpJkouVr37byUmfAzefUifu-p1iwS_Uy4Wabew/exec";
+
+function syncViews(post) {
+  fetch(VIEW_API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      postId: post.id,
+      title: post.title,
+      url: window.location.href
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.views !== undefined) {
+      document.getElementById("view-count").innerText = data.views;
+    }
+  })
+  .catch(err => console.error("Lỗi đồng bộ lượt xem", err));
 }
 </script>
 </body>
