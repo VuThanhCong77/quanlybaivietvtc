@@ -42,7 +42,13 @@
                 </nav>
 
                 <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
-                
+
+<div class="text-muted mb-2 small" id="post-views">
+    <i class="fas fa-eye me-1"></i>
+    <span id="view-count">0</span> lượt xem
+</div>
+      
+
                 <div class="text-muted mb-4 small">
                     <i class="fas fa-calendar-alt me-1"></i> <span id="view-date"></span>
                     <span class="ms-3"><i class="fas fa-user me-1"></i> <span id="view-author">Admin</span></span>
@@ -112,6 +118,8 @@ async function loadPost() {
             document.getElementById('view-author').innerText = post.author || "Admin";
             document.getElementById('view-content').innerHTML = post.description || "";
 
+    countViews(post.id);
+
             const imgElement = document.getElementById('view-image');
             if (post.thumbnail) {
                 // Tự động chuyển link GitHub thành link Raw nếu cần
@@ -175,10 +183,23 @@ function guiGopY() {
 }
 
 document.addEventListener('DOMContentLoaded', loadPost);
+
+function countViews(postId) {
+    if (!postId) return;
+
+    const key = 'views_post_' + postId;
+    let views = localStorage.getItem(key);
+
+    if (!views) {
+        views = 1;
+    } else {
+        views = parseInt(views) + 1;
+    }
+
+    localStorage.setItem(key, views);
+    document.getElementById('view-count').innerText = views;
+}
 </script>
 </body>
 
 </html>
-
-
-
