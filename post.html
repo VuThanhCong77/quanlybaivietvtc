@@ -118,8 +118,7 @@ async function loadPost() {
             document.getElementById('view-author').innerText = post.author || "Admin";
             document.getElementById('view-content').innerHTML = post.description || "";
 
-    countViews(post.id);
-    syncViews(post);
+     syncViews(post);
 
             const imgElement = document.getElementById('view-image');
             if (post.thumbnail) {
@@ -185,44 +184,29 @@ function guiGopY() {
 
 document.addEventListener('DOMContentLoaded', loadPost);
 
-function countViews(postId) {
-    if (!postId) return;
 
-    const key = 'views_post_' + postId;
-    let views = localStorage.getItem(key);
-
-    if (!views) {
-        views = 1;
-    } else {
-        views = parseInt(views) + 1;
-    }
-
-    localStorage.setItem(key, views);
-    document.getElementById('view-count').innerText = views;
-}
-
-const VIEW_API = "https://script.google.com/macros/s/AKfycbxW5XXLUEQsdhc_Yrwlu2-GGOLL89flbxdykPVV7Cu59GGCPohoDHp24DxGBYEIMuWD/exec";
+cconst VIEW_API = "https://script.google.com/macros/s/AKfycbxW5XXLUEQsdhc_Yrwlu2-GGOLL89flbxdykPVV7Cu59GGCPohoDHp24DxGBYEIMuWD/exec";
 
 function syncViews(post) {
   fetch(VIEW_API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      postId: post.id,
+      postId: String(post.id),
       title: post.title,
       url: window.location.href
     })
   })
   .then(res => res.json())
   .then(data => {
-    if (data.views !== undefined) {
+    if (data && data.views !== undefined) {
       document.getElementById("view-count").innerText = data.views;
     }
   })
   .catch(err => console.error("Lỗi đồng bộ lượt xem", err));
 }
+
 </script>
 </body>
-
 
 </html>
