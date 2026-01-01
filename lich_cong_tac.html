@@ -90,8 +90,8 @@ th{ background:#1a73e8; color:#fff; }
 
 <script>
 const USERS = {
-    admin: "Cong&khuyen7785",
-    user: "Cong&khuyen7785"
+    admin: "Congkhuyen@",
+    user: "Congkhuyen@"
 };
 
 let role = sessionStorage.getItem("ROLE") || "view";
@@ -102,18 +102,16 @@ function toggleLoginBox(){
 }
 
 function login(){
-    const r = roleSel.value;
-    const p = pass.value;
-    if (USERS[r] !== p) return alert("Sai mật khẩu");
+    const r = document.getElementById("role").value; // ✅ đúng ID
+    const p = document.getElementById("pass").value;
+
+    if (USERS[r] !== p) {
+        alert("Sai mật khẩu");
+        return;
+    }
+
     sessionStorage.setItem("ROLE", r);
     location.reload();
-}
-
-function logout(){
-    if(confirm("Đăng xuất khỏi hệ thống?")){
-        sessionStorage.removeItem("ROLE");
-        location.reload();
-    }
 }
 
 function init(){
@@ -226,3 +224,4 @@ setInterval(render,60000);
 
 </body>
 </html>
+
