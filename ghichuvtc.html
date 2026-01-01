@@ -44,7 +44,7 @@ button,select,input{
 <div id="login">
     <h3>🔒 Truy cập trang soạn thảo</h3>
     <input type="password" id="pass" placeholder="Nhập mật khẩu">
-    <button onclick="login()">Vào</button>
+    <button onclick="login()">Đăng nhập</button>
 </div>
 
 <!-- TRÌNH SOẠN -->
@@ -88,15 +88,59 @@ button,select,input{
 </div>
 
 <div id="content" contenteditable="true">
-    <p class="doan">Nhập nội dung tại đây...</p>
+    <p class="doan"> 📖 </p>
 </div>
 
 <br>
+<button onclick="saveNote()">💾 Lưu</button>
 <button onclick="exportPDF()">📄 Xuất PDF</button>
-
+<button onclick="logout()">🔐 Đăng xuất</button>
 </div>
 
 <script>
+/* LƯU GHI CHÚ */
+function saveNote(){
+    const data = {
+        tieude: document.getElementById("tieude").value,
+        nguoisoan: document.getElementById("nguoisoan").value,
+        ngay: document.getElementById("ngay").value,
+        noidung: document.getElementById("content").innerHTML
+    };
+    localStorage.setItem("ghichu_saved", JSON.stringify(data));
+    alert("Đã lưu ghi chú");
+}
+
+/* TẢI LẠI GHI CHÚ SAU KHI ĐĂNG NHẬP */
+function loadNote(){
+    const saved = localStorage.getItem("ghichu_saved");
+    if(saved){
+        const data = JSON.parse(saved);
+        document.getElementById("tieude").value = data.tieude || "";
+        document.getElementById("nguoisoan").value = data.nguoisoan || "";
+        document.getElementById("ngay").value = data.ngay || "";
+        document.getElementById("content").innerHTML = data.noidung || "";
+    }
+}
+
+/* ĐĂNG XUẤT */
+function logout(){
+    document.getElementById("editor").style.display="none";
+    document.getElementById("login").style.display="block";
+}
+
+/* GỌI TẢI SAU KHI ĐĂNG NHẬP */
+const oldLogin = login;
+login = function(){
+    const pw = document.getElementById("pass").value;
+    if(pw === "123456"){
+        document.getElementById("login").style.display="none";
+        document.getElementById("editor").style.display="block";
+        loadNote();
+    }else{
+        alert("Sai mật khẩu");
+    }
+}
+
 function login(){
     const pw = document.getElementById("pass").value;
     if(pw === "123456"){
