@@ -94,7 +94,7 @@ const USERS = {
     user: "Congkhuyen@"
 };
 
-let role = sessionStorage.getItem("ROLE") || "view";
+let role = "view";
 let data = JSON.parse(localStorage.getItem("LICH_CT")) || [];
 
 function toggleLoginBox(){
@@ -115,7 +115,8 @@ function login(){
 }
 
 function init(){
-    userInfo.innerText = "Chế độ: " + (role === "view" ? "Xem" : role.toUpperCase());
+   role = sessionStorage.getItem("ROLE") || "view"; // ← DÒNG BẮT BUỘC 
+   userInfo.innerText = "Chế độ: " + (role === "view" ? "Xem" : role.toUpperCase());
 
     if(role === "admin" || role === "user"){
         adminControls.classList.remove("hidden");
@@ -134,7 +135,7 @@ function render(){
     const now = new Date();
     let coCanhBao = false;
 
-    data.sort((a,b)=> new Date(a.g)-new Date(b.g));
+    data.sort((a,b)=> new Date(b.g) - new Date(a.g));
 
     data.forEach(i=>{
         const tg = new Date(i.g);
@@ -212,6 +213,13 @@ function nhap(e){
     };
     r.readAsText(e.target.files[0]);
 }
+function logout(){
+    if(confirm("Đăng xuất khỏi hệ thống?")){
+        sessionStorage.clear();        // ← DÒNG BẮT BUỘC
+        role = "view";                 // ← RESET TRẠNG THÁI
+        location.replace(location.href); // ← LOAD SẠCH
+    }
+}
 
 function hienNgayDayDu(){
     return new Date().toLocaleDateString("vi-VN",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
@@ -224,4 +232,3 @@ setInterval(render,60000);
 
 </body>
 </html>
-
