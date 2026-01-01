@@ -44,14 +44,15 @@ button,select,input{
 <div id="login">
     <h3>🔒 Truy cập trang soạn thảo</h3>
     <input type="password" id="pass" placeholder="Nhập mật khẩu">
-    <button onclick="login()">Đăng nhập</button>
+    <button onclick="login()">Mở</button>
+    <a class="nav-link" href="index.html">🏠</a>
 </div>
 
 <!-- TRÌNH SOẠN -->
 <div id="editor" style="display:none">
 
 <h3 style="text-align:center">SOẠN GHI CHÚ</h3>
-<a class="nav-link" href="index.html">|🏠|</a>
+<a class="nav-link" href="index.html">🏠 </a>
 <label>Tiêu đề:</label>
 <input id="tieude" style="width:100%"><br>
 
@@ -94,7 +95,7 @@ button,select,input{
 <br>
 <button onclick="saveNote()">💾 Lưu</button>
 <button onclick="exportPDF()">📄 Xuất PDF</button>
-<button onclick="logout()">🔐 Đăng xuất</button>
+<button onclick="logout()">🔐 Khoá</button>
 </div>
 
 <script>
@@ -226,4 +227,5 @@ function exportPDF(){
 
 </body>
 </html>
+
 
