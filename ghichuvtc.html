@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Soạn ghi chú bảo mật</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body{
+    font-family:"Times New Roman",serif;
+    background:#f2f2f2;
+    padding:20px;
+}
+#login,#editor{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:6px;
+}
+#content{
+    border:1px solid #ccc;
+    min-height:300px;
+    padding:20px;
+    margin-top:10px;
+}
+.doan{
+    text-indent:2em;
+    text-align:justify;
+}
+button,select,input{
+    margin:4px;
+    padding:6px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ĐĂNG NHẬP -->
+<div id="login">
+    <h3>🔒 Truy cập trang soạn thảo</h3>
+    <input type="password" id="pass" placeholder="Nhập mật khẩu">
+    <button onclick="login()">Vào</button>
+</div>
+
+<!-- TRÌNH SOẠN -->
+<div id="editor" style="display:none">
+
+<h3 style="text-align:center">SOẠN GHI CHÚ</h3>
+<a class="nav-link" href="index.html">|🏠|</a>
+<label>Tiêu đề:</label>
+<input id="tieude" style="width:100%"><br>
+
+<label>Người soạn:</label>
+<input id="nguoisoan">
+
+<label>Ngày:</label>
+<input id="ngay" type="date"><br>
+
+<!-- THANH CÔNG CỤ -->
+<div>
+    <select onchange="exec('fontName',this.value)">
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Arial">Arial</option>
+        <option value="Tahoma">Tahoma</option>
+    </select>
+
+    <select onchange="exec('fontSize',this.value)">
+        <option value="3">16</option>
+        <option value="4">18</option>
+        <option value="5">20</option>
+    </select>
+
+    <button onclick="exec('bold')"><b>B</b></button>
+    <button onclick="exec('italic')"><i>I</i></button>
+    <button onclick="exec('underline')"><u>U</u></button>
+
+    <button onclick="exec('justifyLeft')">⬅</button>
+    <button onclick="exec('justifyCenter')">↔</button>
+    <button onclick="exec('justifyRight')">➡</button>
+    <button onclick="exec('justifyFull')">☰</button>
+
+    <button onclick="indent()">↳ Thụt dòng</button>
+</div>
+
+<div id="content" contenteditable="true">
+    <p class="doan">Nhập nội dung tại đây...</p>
+</div>
+
+<br>
+<button onclick="exportPDF()">📄 Xuất PDF</button>
+
+</div>
+
+<script>
+function login(){
+    const pw = document.getElementById("pass").value;
+    if(pw === "123456"){
+        document.getElementById("login").style.display="none";
+        document.getElementById("editor").style.display="block";
+    }else{
+        alert("Sai mật khẩu");
+    }
+}
+
+function exec(cmd,val=null){
+    document.execCommand(cmd,false,val);
+}
+
+function indent(){
+    document.execCommand("insertHTML",false,'<p class="doan"></p>');
+}
+
+function exportPDF(){
+
+    // Đổ dữ liệu sang vùng in
+    document.getElementById("p_tieude").innerText =
+        document.getElementById("tieude").value;
+
+    document.getElementById("p_nguoisoan").innerText =
+        document.getElementById("nguoisoan").value;
+
+    document.getElementById("p_ngay").innerText =
+        document.getElementById("ngay").value;
+
+    document.getElementById("p_noidung").innerHTML =
+        document.getElementById("content").innerHTML;
+
+    const printDiv = document.getElementById("printArea");
+    printDiv.style.display = "block";
+
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF("p", "mm", "a4");
+
+    // Căn lề (mm)
+    const marginTop = 10;
+    const marginBottom = 10;
+    const marginLeft = 20;
+    const marginRight = 10;
+
+    const pageWidth = 210;
+    const pageHeight = 297;
+
+    const contentWidth = pageWidth - marginLeft - marginRight;
+
+    html2canvas(printDiv, { scale: 2 }).then(canvas => {
+
+        const img = canvas.toDataURL("image/png");
+        const imgHeight = canvas.height * contentWidth / canvas.width;
+
+        let positionY = marginTop;
+        let remainingHeight = imgHeight;
+
+        // Trang đầu
+        pdf.addImage(
+            img,
+            "PNG",
+            marginLeft,
+            positionY,
+            contentWidth,
+            imgHeight
+        );
+
+        pdf.save("ghichu.pdf");
+        printDiv.style.display = "none";
+    });
+}
+</script>
+
+<div id="printArea" style="display:none; padding:20px; font-family:'Times New Roman'; font-size: 14px"> 
+    <h3 id="p_tieude" style="text-align:center"></h3>
+    <p><b>Người soạn:</b> <span id="p_nguoisoan"></span> - 
+    <b>Ngày:</b> <span id="p_ngay"></span></p>
+    <hr>
+    <div id="p_noidung"></div>
+</div>
+
+</body>
+</html>
