@@ -119,6 +119,7 @@ async function loadPost() {
             document.getElementById('view-content').innerHTML = post.description || "";
 
      syncViews(post);
+     countViews(post.id);
 
             const imgElement = document.getElementById('view-image');
             if (post.thumbnail) {
@@ -184,7 +185,8 @@ function guiGopY() {
 
 document.addEventListener('DOMContentLoaded', loadPost);
 
-const VIEW_API = "https://script.google.com/macros/s/AKfycbxW5XXLUEQsdhc_Yrwlu2-GGOLL89flbxdykPVV7Cu59GGCPohoDHp24DxGBYEIMuWD/exec";
+
+const VIEW_API = "https://script.google.com/macros/s/AKfycbzx_eob_VoJegCxIiCN_SMECwZlOetY0UjNhszIJv0znZWfk_zi3gPYPAprXzgtFHOB/exec";
 
 function syncViews(post) {
   fetch(VIEW_API, {
@@ -205,9 +207,22 @@ function syncViews(post) {
   .catch(err => console.error("Lỗi đồng bộ lượt xem", err));
 }
 
+function countViews(postId) {
+    if (!postId) return;
+
+    const key = 'views_post_' + postId;
+    let views = localStorage.getItem(key);
+
+    if (!views) {
+        views = 1;
+    } else {
+        views = parseInt(views) + 1;
+    }
+
+    localStorage.setItem(key, views);
+    document.getElementById('view-count').innerText = views;
+}
 </script>
 </body>
 
-
 </html>
-
