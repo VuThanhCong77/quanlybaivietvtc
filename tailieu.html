@@ -5,18 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>📚Kho Tài Liệu | Tên Trang</title>
 
-<!-- Google Analytics GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V4F395VKJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7V4F395VKJ', {
-    anonymize_ip: true
-  });
-</script>
-
 <style>
 /* ===== MENU MOBILE ===== */
 .menu-btn{
@@ -145,12 +133,30 @@ line-height: 1.2;
 }
   
 main { 
-max-width: 900px; 
+max-width: 1280px; 
 margin: auto; 
 padding: 20px; 
 background-color: #f9f9ff; 
 border-radius: 12px; 
 box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); 
+}
+
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+@media (max-width: 991px) {
+    .post-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
 }
 
 /* ======================================= */
@@ -188,7 +194,7 @@ box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1);
 /* === ITEM TÀI LIỆU === */
 .file-item { border-bottom: 1px solid #cde7ef; padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
 .file-item:last-child { border-bottom: none; }
-.file-info { max-width: 75%; }
+.file-info { max-width: 70%; }
 .file-info h3 { margin: 0; font-size: 18px; }
 .file-info h3 a { color: #0a3a5a; text-decoration: none; }
 .file-info h3 a:hover { color: #0a7f99; }
@@ -262,7 +268,7 @@ footer { background: #e7f5fa; padding: 20px; margin-top: 40px; text-align: cente
     <a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a>
   </div>
 
-    <div class="nav-item">
+  <div class="nav-item">
     <a class="nav-link" href="tailieu.html">📁 Tài liệu</a>
    </div>
 </nav>
@@ -276,9 +282,11 @@ footer { background: #e7f5fa; padding: 20px; margin-top: 40px; text-align: cente
         </div>
     </div>
 
-    <div id="document-list-container">
-        <p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>
-    </div>
+<div id="document-list-container" class="post-list">
+   <div class="file-item">...</div>
+   <div class="file-item">...</div>
+</div>
+
 </main>
 
 <footer>

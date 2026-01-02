@@ -5,18 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>📢Tin tức & Hoạt động | Tên Trang</title>
 
-<!-- Google Analytics GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V4F395VKJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7V4F395VKJ', {
-    anonymize_ip: true
-  });
-</script>
-
 <style>
 /* ===== MENU MOBILE ===== */
 .menu-btn{
@@ -142,12 +130,24 @@ header.site-header h1 {
 }
   
 main {
-    max-width: 900px;
+    max-width: 1280px;
     margin: 15px auto; 
     padding: 20px;
     background-color: #f9f9ff;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); 
+}
+
+.news-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+}
+
+@media (max-width: 991px) {
+    .news-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ======================================= */
@@ -244,6 +244,19 @@ footer {
         height: auto;
     }
 }
+
+.post-item {
+    padding: 14px 16px;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    background: #fff;
+}
+
+@media (max-width: 991px) {
+    .post-list {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 </head>
 
@@ -290,7 +303,7 @@ footer {
     <a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a>
   </div>
 
-    <div class="nav-item">
+  <div class="nav-item">
     <a class="nav-link" href="tailieu.html">📁 Tài liệu</a>
    </div>
 </nav>
@@ -304,9 +317,11 @@ footer {
         </div>
     </div>
     
-    <div id="news-list">
-        <p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>
-    </div>
+<div id="news-list" class="news-list">
+    <p style="text-align:center; color:#aaa; padding:20px;">
+        Đang tải dữ liệu...
+    </p>
+</div>
 
     <script>
         const JSON_URL = 'posts_data.json';
