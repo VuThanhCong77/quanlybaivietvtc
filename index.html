@@ -626,7 +626,7 @@ async function loadRecentPosts() {
   const box = document.getElementById("recent-posts-list");
 
   const valid = posts
-    .filter(p => p.category === "tintuc" || p.category === "baiviet")
+    .filter(p => p.category === "tintuc" || p.category === "baiviet" || p.category === "suckhoe")
     .sort((a,b) => b.id - a.id)
     .slice(0,8);
 
@@ -661,6 +661,7 @@ function shareFacebook() {
 
 </body>
 </html>
+
 
 
 
