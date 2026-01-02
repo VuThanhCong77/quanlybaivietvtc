@@ -16,6 +16,13 @@
   gtag('config', 'G-7V4F395VKJ', {
     anonymize_ip: true
   });
+	<span>Lượt xem: <b id="viewCount">0</b></span>
+
+<script>
+  let views = localStorage.getItem("homeViews");
+  views = views ? Number(views) + 1 : 1;
+  localStorage.setItem("homeViews", views);
+  document.getElementById("viewCount").innerText = views;
 </script>
 
 <!-- Favicon & PWA -->
@@ -667,6 +674,7 @@ function shareFacebook() {
 
 </body>
 </html>
+
 
 
 
