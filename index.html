@@ -17,8 +17,7 @@
     anonymize_ip: true
   });
 	<span>Lượt xem: <b id="viewCount">0</b></span>
-
-<script>
+		
   let views = localStorage.getItem("homeViews");
   views = views ? Number(views) + 1 : 1;
   localStorage.setItem("homeViews", views);
@@ -674,6 +673,7 @@ function shareFacebook() {
 
 </body>
 </html>
+
 
 
 
