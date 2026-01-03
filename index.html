@@ -471,6 +471,10 @@ nav, header {
 
 <!-- MAIN -->
 <main>
+<p>
+  📊 Tổng số bài viết đã đăng:
+  <strong id="tong-bai-viet">0</strong>
+</p>
 
 <section id="recent-posts">
   <div class="container">
@@ -676,6 +680,23 @@ function shareFacebook() {
   }
   localStorage.setItem("home_views", views);
   document.getElementById("viewCount").innerText = views;
+
+async function tongTatCaBaiViet() {
+    try {
+        const response = await fetch('posts_data.json');
+        const posts = await response.json();
+        return posts.length;
+    } catch (e) {
+        console.error("Không đọc được dữ liệu bài viết", e);
+        return 0;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const tong = await tongTatCaBaiViet();
+    document.getElementById("tong-bai-viet").innerText = tong;
+});
 </script>
 </body>
 </html>
+
