@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>🌸🌸🌸</title>
+
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V4F395VKJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7V4F395VKJ', {
+    anonymize_ip: true
+  });
+	
+</script>
+
+<!-- Favicon & PWA -->
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon180.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a7f99">
+
+<style>
+:root{
+--primary:#0a7f99;
+--secondary:#0ab3c9;
+--accent:#c0392b;
+--section:#f8f9fa;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#fff;
+}
+
+/* CONTAINER */
+.container{
+max-width:1280px;
+margin:auto;
+padding:0 10px;
+}
+
+/* HEADER */
+.site-header{
+position:fixed;
+top:0;
+right:0;
+width:100%;
+background:linear-gradient(to right,var(--primary),var(--secondary));
+color:#fff;
+z-index:1200;
+box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+
+.header-main{
+padding:8px 0;
+}
+
+.site-header nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+color:#fff;
+text-decoration:none;
+font-size:18px;
+font-weight:bold;
+}
+
+.logo img{height:38px}
+
+.logo{
+  flex-wrap: nowrap;
+}
+
+.menu-toggle{
+background:none;
+border:none;
+font-size:18px;
+color:#fff;
+cursor:pointer;
+}
+
+/* CHỮ CHẠY */
+.running-text{
+background:#fff3cd;
+color:#0303ef;
+font-size:18px;
+padding:6px 0;
+border-top:1px solid rgba(255,255,255,.3);
+}
+/* ĐẨY CHỮ CHẠY XUỐNG DƯỚI MENU NGANG */
+.running-text{
+  margin-top: 24px;   /* có thể chỉnh 12–22px tùy mắt nhìn */
+}
+
+	
+/* MENU CHÍNH */
+.main-menu{
+position:fixed;
+top: 0;
+right: 0;
+width:100%;
+max-width:360px;
+background:#fff;
+box-shadow:4px 0 20px rgba(0,0,0,.25);
+display:none;
+z-index:2000;
+}
+
+.menu-item,
+.menu-title{
+padding:14px 16px;
+border-bottom:1px solid #eee;
+font-size:16px;
+color:#0a3a5a;
+text-decoration:none;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:pointer;
+}
+
+.menu-title.has-sub{
+background:#eef9fb;
+font-weight:600;
+}
+
+.submenu{
+display:none;
+background:#f9fcfd;
+}
+
+.submenu a{
+display:block;
+padding:12px 32px;
+font-size:15px;
+color:#0a3a5a;
+border-bottom:1px solid #eee;
+text-decoration:none;
+}
+
+.arrow{
+transition:transform .25s ease;
+}
+
+.menu-group.active .arrow{
+transform:rotate(180deg);
+}
+
+/* MAIN */
+main{
+padding-top:150px;
+}
+
+#intro-section{
+background:var(--section);
+padding:30px 0;
+}
+
+#intro-section .container{
+    display:flex;
+    flex-direction: column; /* ⬅️ QUAN TRỌNG */
+    gap:20px;
+}
+
+.intro-image{
+    display:flex;
+    gap:10px;
+    justify-content:center; /* căn giữa */
+    flex-wrap:wrap;
+}
+
+.intro-image img{
+width:150px;
+height:150px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid var(--primary);
+}
+
+.justified{
+text-align:justify;
+text-indent:1cm;
+}
+
+/* POSTS */
+#recent-posts{
+padding:40px 0;
+}
+
+#recent-posts-list{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.recent-post-item{
+background:#fff;
+border-radius:8px;
+overflow:hidden;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.recent-post-item img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+/* FOOTER */
+footer{
+background:var(--primary);
+color:#fff;
+text-align:center;
+padding:25px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px){
+  .intro-image{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .justified{
+    text-indent:0;
+  }
+}
+ 
+/* === FIX HIỂN THỊ MENU NGANG – GIỮ NGUYÊN CẤU TRÚC CŨ === */
+
+.nav-links {
+    display: flex !important;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links > a,
+.nav-links > .dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+/* Dropdown xổ xuống */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: #fff;
+    z-index: 9999;
+}
+
+/* Hover thì xổ */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Tránh bị cắt */
+nav, header {
+    overflow: visible !important;
+}
+
+  .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+.nav-links {
+    flex-wrap: nowrap;
+}
+
+    #intro-section container{flex-direction:column}
+    .justified{text-indent:0}
+}
+
+/* MENU NGANG DESKTOP */
+.desktop-scroll-menu{
+  background:#f1f8fb;
+  border-top:1px solid #e0e0e0;
+  border-bottom:1px solid #e0e0e0;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+
+.scroll-menu-inner{
+  display:flex;
+  gap:8px;
+  padding:6px 6px;
+}
+
+.scroll-menu-inner a{
+  flex:0 0 auto;
+  padding:8px 14px;
+  background:#fff;
+  border-radius:20px;
+  text-decoration:none;
+  color:#0a3a5a;
+  font-size:14px;
+  font-weight:500;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  transition:all .25s ease;
+}
+
+.scroll-menu-inner a:hover{
+  background:var(--primary);
+  color:#fff;
+}
+
+/* ẨN MENU NGANG TRÊN MOBILE */
+@media (max-width: 991px){
+  .desktop-scroll-menu{
+    display:none;
+  }
+}
+
+/* CHỈ HIỆN MENU NGANG TRÊN DESKTOP */
+@media (min-width: 992px){
+  main{
+    padding-top:180px; /* bù chiều cao header + menu */
+  }
+}
+
+/* MENU NGANG DƯỚI HEADER */
+.nav-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  padding:8px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  background: rgba(10,177,199,0.12);
+  }
+
+.nav-links a{
+  text-decoration:none;
+  color:#FFFFFF;
+  font-weight:500;
+}
+
+/* ẨN MENU NGANG TRÊN MOBILE */
+@media (max-width: 991px){
+  .nav-links{
+    display:none;
+  }
+}
+
+/* ÉP TÊN HIỂN THỊ 1 DÒNG */
+.logo span{
+  white-space: nowrap;   /* không xuống dòng */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;      /* có thể chỉnh 160–220 tùy ý */
+}
+
+.icon-menu{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Chữ mặc định ẩn */
+.icon-menu .menu-text{
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #078FA3;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Hover thì hiện chữ */
+.icon-menu:hover .menu-text{
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-link-white {
+    color: #ffffff !important;
+}
+
+.bang-zon-text {
+    width: 100%;
+    background: linear-gradient(90deg, #b40000, #d10000);
+    padding: 6px 6px;
+    text-align: center;
+    border-bottom: 4px solid #ffd700;
+}
+
+.bang-zon-text p {
+    margin: 0;
+    color: #ffd700;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.bang-zon-text p {
+    white-space: nowrap;      /* KHÔNG cho xuống dòng */
+    overflow: hidden;         /* Ẩn phần tràn */
+    text-overflow: ellipsis;  /* … nếu màn hình quá nhỏ */
+}
+@media (max-width: 768px) {
+    .bang-zon-text p {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+<div class="bang-zon-text">
+    <p>
+       🌸 Chúc mừng năm mới 2026
+    </p>
+</div>
+
+
+  <div class="header-main">
+  <div class="container">
+      <nav>
+          <a href="index.html" class="logo">
+          <img src="images/hoamai.jpg" alt="hoamai">
+          <span>VŨ THÀNH CÔNG</span>
+        </a>
+       <button id="menuToggle" class="menu-toggle">☰📕</button>
+		 </nav>  
+<div class="nav-links">
+<a href="gioithieu.html" class="icon-menu">|🏛|<span class="menu-text">Giới thiệu</span></a>
+<a href="vanban.html" class="icon-menu">|📄|<span class="menu-text">Văn bản</span></a>
+<a href="baiviet.html" class="icon-menu">|✍|<span class="menu-text">Bài viết</span></a>
+<a href="tintuc.html" class="icon-menu">|📢|<span class="menu-text">Tin tức</span></a>
+<a href="suckhoe.html" class="icon-menu">|❤️|<span class="menu-text">Sức khỏe</span></a>
+<a href="tailieu.html" class="icon-menu">|📁|<span class="menu-text">Tài liệu</span></a>
+</div>
+</div>
+</div>
+  <div class="running-text" id="runningTextContainer">
+    <marquee id="runningText">Đang tải cấu hình...</marquee>
+  </div>
+</header>
+<!-- MENU -->
+<nav class="main-menu" id="mainMenu">
+  <a href="index.html" class="menu-item">🏠 Trang chủ</a>
+  <a href="gioithieu.html" class="menu-title">🏛 Giới thiệu</a>
+
+  <div class="menu-group">
+    <div class="menu-title has-sub">
+      📄 Văn bản <span class="arrow">▾</span>
+    </div>
+    <div class="submenu">
+      <a href="vanban.html">📖 Nội dung văn bản</a>
+      <a href="vanban/HuongdanSD.html">📘 Hướng dẫn</a>
+      <a href="vanban/qd69.html">📜 Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
+	  <a href="qlvbcq.html">📕 Đảng ủy cơ quan</a>
+    </div>
+  </div>
+
+<div class="menu-group">
+    <div class="menu-title has-sub">
+      🖥 Liên kết <span class="arrow">▾</span>
+    </div>
+    <div class="submenu">
+       	 <a href="https://dangcongsan.vn/">🔴 Đảng CSVN</a>
+   	 <a href="https://ubkttw.vn/">🔍 UBKT TW</a>
+   	 <a href="https://chinhphu.vn//">🏢 Chính phủ</a>
+     <a href="https://dichvucong.gov.vn/p/home/dvc-trang-chu.html">🧾Dịch vụ công</a>
+ 	 <a href="https://daotaotructuyen.haiphong.gov.vn/">💻 Kỹ năng số</a>
+	 <a href="https://xacthuctaptrung.dcs.vn/sso/login?appCode=dhtn&service=https://dhtn.dcs.vn/app-view/theme/admin-ex/pages/main.zul">💻 Văn phòng số</a>
+	 <a href="https://dcs.vn/page/loginApp">🖥 Ứng dụng của Đảng</a>
+	 <a href="https://bandoso.haiphong.gov.vn/">🏞 Bản đồ Hải phòng</a>
+    </div>
+  </div>
+
+
+  <a href="baiviet.html" class="menu-item">✍ Bài viết</a>
+  <a href="tintuc.html" class="menu-item">📢 Tin tức</a>
+  <a href="suckhoe.html" class="menu-item">❤️ Sức khỏe</a>
+  <a href="tailieu.html" class="menu-item">📁 Tài liệu</a>
+  <a href="lich_cong_tac.html" class="menu-item">📅 Xem lịch</a>
+    <a href="danhsachbaiviet.html" class="menu-item">📖 Danh sách bài viết</a>
+</nav>
+
+<!-- MAIN -->
+<main>
+	
+<section id="recent-posts">
+  <div class="container">
+    <h2 style="color:#0303ef;font-weight:bold">📝 TIN TỨC MỚI NHẤT 📢</h2>
+    <div id="recent-posts-list">
+      <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
+    </div>
+  </div>
+</section>
+<p>
+  📊 Tổng số bài viết đã đăng:
+  <strong id="tong-bai-viet">0</strong>
+</p>
+	
+<section id="intro-section">
+  <div class="container">
+    <div class="intro-image">
+      <img src="images/anhdaidien.jpg">
+      <img src="images/hoasen.jpg">
+      <img src="images/hoadao.jpg">
+      <img src="images/hoamai.jpg">
+    </div>
+    <div>
+<h3 style="color:#0303ef;font-weight:bold">🧠 Ý tưởng hay “8 Quy tắc vàng” ⏰ngày 23/4/2013</h3>
+<p class="justified">
+  1. Tâm: tịnh, sáng🌸“Tâm” ở đây là tâm trí, nội tâm của con người. “Tịnh” là trạng thái an yên, không xao động; “sáng” là sự minh mẫn, trong trẻo. Khi giữ tâm tịnh và sáng, con người dễ sống hài hòa, đưa ra quyết định sáng suốt và tránh bị chi phối bởi cảm xúc tiêu cực.</p> 
+<p class="justified">
+  2. Ăn vừa đủ🌸Ăn uống điều độ giúp cơ thể khỏe mạnh, tránh dư thừa, tránh bệnh tật. Ăn vừa đủ là không quá no, không bỏ bữa; đảm bảo cân bằng dinh dưỡng để duy trì thể lực và tinh thần.</p> 
+<p class="justified">
+ 3. Ngủ vừa giấc (6–8 giờ/ngày)  🌸Giấc ngủ đủ giúp cơ thể phục hồi năng lượng, tái tạo tế bào, cải thiện trí nhớ và cảm xúc. 6–8 giờ là mức khoa học khuyến nghị để cơ thể hoạt động tối ưu.</p> 
+<p class="justified">
+ 4. Làm đúng lịch🌸Làm việc đúng thời điểm, đúng tiến độ giúp tăng hiệu quả, tránh áp lực và giảm mệt mỏi. Đây cũng là thói quen tạo nên sự chuyên nghiệp.</p> 
+<p class="justified">
+ 5. Chơi đúng giờ🌸Giải trí cần thiết cho tinh thần nhưng phải có giới hạn. Chơi đúng giờ giúp cân bằng cuộc sống mà không ảnh hưởng đến công việc hay sức khỏe.</p> 
+<p class="justified">
+ 6. Học đúng cách 🌸“Học đúng cách” nghĩa là học có phương pháp, có mục tiêu, biết chọn lọc thông tin và áp dụng vào thực tiễn. Học đúng cách giúp tiếp thu hiệu quả, tránh học đối phó, đồng thời phát triển tư duy và kỹ năng bền vững.</p> 
+<p class="justified">
+ 7. Vui là chính  🌸Giữ tinh thần lạc quan, vui vẻ giúp giảm căng thẳng, cải thiện sức khỏe tâm lý và thu hút năng lượng tích cực.</p> 
+<p class="justified">
+ 8. Quan hệ đều (Quan hệ xã hội)🌸Các mối quan hệ xã hội cần được duy trì ở mức hài hòa, không quá khép kín cũng không quá lệ thuộc. Quan hệ đều đặn giúp tinh thần thoải mái, mở rộng tư duy và tăng sự kết nối.</p>
+<h3 style="color:#0303ef;font-weight:bold">❤️ 🎯 🧠 🤝 Để làm gì?</h3> 
+<p class="justified">
+ 1) Giữ gìn sức khỏe (1, 2, 3)🌸Cảm xúc ổn định, ăn uống điều độ và ngủ đủ giấc là ba trụ cột quan trọng nhất cho sức khỏe thể chất và tinh thần.</p> 
+<p class="justified">
+ 2) Làm việc hiệu quả (4, 5)🌸Làm việc đúng lịch và giải trí đúng giờ tạo nên nhịp sinh hoạt khoa học, giúp tập trung tốt hơn và tránh kiệt sức.</p> 
+<p class="justified">
+ 3) Trí tuệ phát triển (6, 7)🌸Học có phương pháp, có mục tiêu, biết chọn lọc thông tin và giữ tinh thần vui vẻ góp phần hình thành tư duy tích cực, khả năng nâng cao trí tuệ.</p> 
+<p class="justified">
+4) Mọi người mến yêu (8)🌸Khi có mối quan hệ xã hội hài hòa, con người dễ dàng nhận được sự yêu quý, hỗ trợ và đồng hành trong cuộc sống.</p>   
+<p class="justified">
+🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.</p>
+<a href="#" onclick="shareFacebook()">Chia sẻ Facebook</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>❤️SỨC KHỎE 🧠TRÍ TUỆ  🌸HẠNH PHÚC</p>
+	<a class="nav-link nav-link-white" href="https://luukiem.haiphong.gov.vn/">
+    🖥 Cổng TTĐT phường Lưu Kiếm, Hải Phòng
+</a>
+ </div>
+	<p style="font-size:13px;opacity:0.7">
+  👁️ Lượt truy cập: <span id="viewCount">0</span>
+	</p>
+</footer>
+
+<script>
+const slider = document.querySelector('.desktop-scroll-menu');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+if(slider){
+  slider.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+
+  slider.addEventListener('mouseleave', () => isDown = false);
+  slider.addEventListener('mouseup', () => isDown = false);
+
+  slider.addEventListener('mousemove', e => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    slider.scrollLeft = scrollLeft - walk;
+  });
+}
+
+const menuToggle=document.getElementById("menuToggle");
+const mainMenu=document.getElementById("mainMenu");
+
+menuToggle.onclick=e=>{
+e.stopPropagation();
+mainMenu.style.display=mainMenu.style.display==="block"?"none":"block";
+};
+
+document.addEventListener("click",()=>mainMenu.style.display="none");
+mainMenu.onclick=e=>e.stopPropagation();
+
+/* MENU CẤP 2 */
+document.querySelectorAll(".menu-title.has-sub").forEach(title=>{
+title.onclick=()=>{
+document.querySelectorAll(".submenu").forEach(s=>{
+if(s!==title.nextElementSibling) s.style.display="none";
+});
+document.querySelectorAll(".menu-group").forEach(g=>{
+if(g!==title.parentElement) g.classList.remove("active");
+});
+
+const group=title.parentElement;
+const submenu=title.nextElementSibling;
+group.classList.toggle("active");
+submenu.style.display=submenu.style.display==="block"?"none":"block";
+};
+});
+
+const CONFIG_URL = 'site_config.json';
+
+async function loadSiteConfig() {
+  try {
+    const res = await fetch(CONFIG_URL);
+    if (!res.ok) throw new Error("Không tải được config");
+
+    const config = await res.json();
+    const marquee = document.getElementById("runningText");
+    const container = document.getElementById("runningTextContainer");
+
+    if (config.enable) {
+      marquee.innerText = config.runningText;
+      marquee.setAttribute("scrollamount", config.speed || 5);
+      container.style.backgroundColor = config.bgColor || "#fff3cd";
+      container.style.color = config.textColor || "#0303ef";
+      container.style.display = "block";
+    } else {
+      container.style.display = "none";
+    }
+  } catch (e) {
+    console.error("Lỗi tải chữ chạy:", e);
+    document.getElementById("runningTextContainer").style.display = "none";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadSiteConfig);
+
+const JSON_URL = 'posts_data.json';
+
+async function fetchPosts() {
+  try {
+    const res = await fetch(JSON_URL);
+    if (!res.ok) throw new Error("Không tải được posts");
+    return await res.json();
+  } catch (e) {
+    console.error("Lỗi tải tin:", e);
+    return [];
+  }
+}
+
+async function loadRecentPosts() {
+  const posts = await fetchPosts();
+  const box = document.getElementById("recent-posts-list");
+
+  const valid = posts
+    .filter(p => p.category === "tintuc" || p.category === "baiviet" || p.category === "suckhoe")
+    .sort((a,b) => b.id - a.id)
+    .slice(0,8);
+
+  if (!valid.length) {
+    box.innerHTML = '<p style="text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
+    return;
+  }
+
+box.innerHTML = '';
+    valid.forEach(p => {
+        box.innerHTML += `
+        <div class="recent-post-item">
+            <img src="${p.thumbnail || 'images/hoasen.jpg'}" alt="${p.title}">
+            <div style="padding:15px">
+                <strong style="color:var(--primary)">${p.category === "tintuc" ? "TIN TỨC" : "BÀI VIẾT"}</strong>
+                <h3><a href="post.html?id=${p.id}" style="text-decoration:none;color:#333">${p.title}</a></h3>
+                <small>${p.date || ""}</small>
+            </div>
+        </div>`;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadSiteConfig();
+    loadRecentPosts();
+});
+
+function shareFacebook() {
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), 'facebook-share-dialog', 'width=800,height=600');
+}
+
+  let views = localStorage.getItem("home_views");
+  if (!views) {
+    views = 1;
+  } else {
+    views = parseInt(views) + 1;
+  }
+  localStorage.setItem("home_views", views);
+  document.getElementById("viewCount").innerText = views;
+
+async function tongTatCaBaiViet() {
+    try {
+        const response = await fetch('posts_data.json');
+        const posts = await response.json();
+        return posts.length;
+    } catch (e) {
+        console.error("Không đọc được dữ liệu bài viết", e);
+        return 0;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const tong = await tongTatCaBaiViet();
+    document.getElementById("tong-bai-viet").innerText = tong;
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

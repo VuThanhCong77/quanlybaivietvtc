@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🏛Giới thiệu về bản thân</title>
+
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V4F395VKJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7V4F395VKJ', {
+    anonymize_ip: true
+  });
+</script>
+
+<style>
+/* ===== MENU MOBILE ===== */
+.menu-btn{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Overlay */
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 998;
+  transition: .3s;
+}
+.menu-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menu chính */
+.nav-menu{
+  position: fixed;
+  top: 0;
+  left: -280px;              /* Ẩn bên trái */
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0,0,0,.15);
+  padding-top: 60px;
+  z-index: 999;
+  transition: .3s;
+}
+
+/* Khi mở */
+.nav-menu.active{
+  left: 0;
+}
+
+.nav-item{
+  border-bottom: 1px solid #eee;
+}
+
+.nav-link{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  color: #0a3a5a;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* ===== MENU CẤP 2 ===== */
+.sub-menu{
+  display: none;
+  background: #f5f9fb;
+}
+.sub-menu a{
+  display: block;
+  padding: 10px 30px;
+  font-size: 14px;
+  color: #0a5c7a;
+  text-decoration: none;
+}
+
+/* Chỉ xổ khi click */
+.nav-item.open > .sub-menu{
+  display: block;
+}
+
+  #intro-section h2:first-child{
+    margin-top: 0;
+}
+
+  body {
+  margin: 0;
+  padding-top: 120px;   /* Đẩy nội dung xuống dưới header */
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #0a3a5a;
+  line-height: 1.6;
+  }
+
+  /* ===== HEADER (Đã loại bỏ ảnh) ===== */
+  header.page-header {
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* Giữ tiêu đề ở giữa */
+
+  background: linear-gradient(to right, #0a7f99, #0ab3c9);
+  color: #fff;
+  padding: 0 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 999;
+}
+
+/* Nút Menu cố định bên trái */
+.menu-btn{
+  position: absolute;
+  left: 12px;
+  font-size: 22px;
+}
+  
+  /* Giảm kích thước font và tighten spacing cho tiêu đề H1 */
+  header.page-header h1 {
+    font-size: 20px;
+    margin: 0;
+    line-height: 1.0;
+  }
+header.page-header a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 6px;
+  font-weight: 500;
+}
+
+header.page-header a:hover {
+  text-decoration: underline;
+}
+
+  /* ===== CONTENT ===== */
+  main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 10px auto; 
+    
+    /* Trang trí cho Main sống động hơn */
+    background: #f9f9ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1);
+  }
+  
+  .back-link {
+    display: inline-block; 
+    margin-bottom: 20px;
+    color: #0a7f99;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  h2 {
+    color: #0a7f99;
+    border-bottom: 2px solid #0a7f99;
+    padding-bottom: 5px;
+    margin-top: 30px;
+  }
+  
+  .justified-p {
+    text-align: justify;
+    text-indent: 1cm;
+    margin-bottom: 15px;
+  }
+  
+  .lotus-icon {
+    font-size: 1.2em;
+    color: #c0392b; /* Màu đỏ nổi bật */
+    margin-right: 5px;
+  }
+  
+  /* === FOOTER === */
+  footer {
+    background: #e7f5fa;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #074055;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>🏛Giới thiệu</h1>
+<a class="nav-link" href="index.html">|🏠|</a>
+<button class="menu-btn" id="menuBtn">☰ Menu</button>
+</header>
+
+<!-- OVERLAY -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- MENU -->
+<nav class="nav-menu" id="navMenu">
+
+  <div class="nav-item">
+    <a class="nav-link" href="index.html">🏠 Trang chủ</a>
+  </div>
+
+ <div class="nav-item">
+    <a class="nav-link" href="gioithieu.html">🏛Giới thiệu</a>
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
+    <div class="sub-menu">
+   <a href="vanban.html">📖Nội dung văn bản</a>
+      <a href="vanban/qd69.html">📜Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕Điều lệ Đảng</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="baiviet.html">✍ Bài viết</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="tintuc.html">📢 Tin tức</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a>
+  </div>
+
+    <div class="nav-item">
+    <a class="nav-link" href="tailieu.html">📁 Tài liệu</a>
+   </div>
+</nav>
+
+<main>
+   <h2><img src="images/hoadao.png" alt="Trang chủ" style="height:56px; vertical-align:middle; margin-left:36px;">
+CÂU CHUYỆN VỀ MỘT CON NGƯỜI BÊN DÒNG SÔNG ĐÁ BẠC🌱</h2>
+  <p class="justified-p">
+        <span class="lotus-icon">🌸</span> Giữa miền quê Lưu Kiếm hiền hòa, nơi dòng sông Đá Bạc quanh năm lặng lẽ chở phù sa bồi đắp cho những cánh đồng xanh mướt, có một câu chuyện đời người bình dị mà sâu sắc. Đó là câu chuyện về một con người sinh ra từ gian khó, lớn lên bằng ý chí và trưởng thành trong niềm tin yêu của Nhân dân. Câu chuyện ấy không ồn ào, không phô trương, nhưng đủ sức lay động bởi sự bền bỉ, chân thành và trách nhiệm với quê hương.
+    </p>
+
+    <p class="justified-p">
+        <span class="lotus-icon">🌸</span> Mùa hè năm 1977, khi đất nước vừa bước ra khỏi chiến tranh, đời sống còn bộn bề thiếu thốn, một cậu bé cất tiếng khóc chào đời trong một gia đình thuần nông ven sông Đá Bạc. Tuổi thơ của cậu gắn liền với ruộng đồng, với dáng mẹ tảo tần gánh gồng sớm hôm, dáng cha lặng lẽ “bán mặt cho đất, bán lưng cho trời”. Gian khó không làm cậu chùn bước, trái lại, sớm hun đúc trong cậu ý thức vươn lên bằng con đường học tập và lao động chân chính.
+    </p>
+    
+    <p class="justified-p">
+        <span class="lotus-icon">🌸</span> Những buổi trưa hè chăn trâu ngoài bãi sông, những chiều tắm mát dưới dòng nước quê, cậu bé ấy không chỉ lớn lên về thể chất mà còn nuôi dưỡng một ước mơ thầm lặng: phải học để đổi thay cuộc đời và góp phần làm điều gì đó có ích cho mảnh đất đã sinh ra mình. Ước mơ ấy theo cậu suốt những năm tháng miệt mài đèn sách, từ trường làng đến khi thi đỗ Trường THPT Bạch Đằng năm 1992. Ba năm cấp ba là chuỗi ngày vừa học, vừa lao động phụ giúp gia đình, chiếc xe đạp cũ theo cậu trên những con đường làng quen thuộc, còn ngọn đèn dầu thắp sáng những đêm học bài đến khuya.
+    </p>
+
+    <p class="justified-p">
+        <span class="lotus-icon">🌸</span> Năm 1995, tốt nghiệp phổ thông, hoàn cảnh gia đình chưa cho phép tiếp tục con đường đại học. Cậu gác lại ước mơ riêng, trở về quê làm lao động tự do. Không quản nhọc nhằn, ai thuê gì làm nấy, từ cuốc đất, vác bao đến đội đá, cậu lấy mồ hôi và nghị lực làm vốn sống. Chính những tháng ngày lam lũ ấy đã rèn giũa cho cậu bản lĩnh vững vàng, tinh thần chịu trách nhiệm và thái độ sống không khuất phục trước nghịch cảnh.
+    </p>
+
+    <p class="justified-p">
+        <span class="lotus-icon">🌸</span> Sự trung thực, cẩn trọng và tận tâm trong công việc dần được bà con ghi nhận. Năm 1998, khi hợp tác xã nông thôn chuyển mình, cậu được tín nhiệm giao nhiệm vụ kế toán. Những trang sổ sách rõ ràng, minh bạch không chỉ thể hiện năng lực mà còn phản ánh một nhân cách đáng tin cậy. Đến năm 2004, khi xã Lưu Kỳ được thành lập, cậu chính thức bước vào con đường công tác tại Văn phòng HĐND – UBND xã, mở ra một chặng đường cống hiến mới cho quê hương.
+    </p>
+
+    <p class="justified-p">
+        <span class="lotus-icon">🌸</span> Từ một cán bộ văn phòng mẫn cán, cậu tích cực tham gia công tác Đoàn, chăm lo phong trào thanh niên, rồi đảm nhận vai trò Chủ tịch Công đoàn, gắn bó và bảo vệ quyền lợi cho cán bộ, người lao động. Sự tận tụy, trách nhiệm và tinh thần vì cộng đồng đã đưa cậu lần lượt đảm nhiệm nhiều cương vị quan trọng: Phó Chủ tịch, Chủ tịch HĐND xã; Phó Bí thư Thường trực, Bí thư Đảng ủy; Chủ tịch UBND xã và sau này là Phó Chủ tịch UBND phường Lưu Kiếm khi địa phương sáp nhập, phát triển theo hướng đô thị. Ở bất kỳ vị trí nào, dấu ấn để lại vẫn là sự đổi thay cụ thể: hạ tầng khang trang, trường trạm được đầu tư, đời sống Nhân dân ngày càng ổn định và bình yên.
+    </p>
+
+    <p class="justified-p">
+        <span class="lotus-icon">🌸</span> Những đóng góp thầm lặng ấy được ghi nhận bằng nhiều Kỷ niệm chương, bằng khen của các tổ chức, đoàn thể và chính quyền các cấp. Nhưng hơn tất cả, phần thưởng lớn nhất đối với người con của dòng Đá Bạc chính là niềm tin của Nhân dân, là nụ cười an yên trên những con đường làng, là sự đổi thay từng ngày của quê hương.
+    </p>
+
+    <p class="justified-p">
+        <span class="lotus-icon">🌸</span> Hôm nay, dù đã trải qua nhiều cương vị, người đàn ông ấy vẫn giữ trọn nét mộc mạc, chân chất của người nông dân năm xưa. Cuộc đời ông như dòng sông Đá Bạc: lặng lẽ, bền bỉ, vững chãi trước ghềnh đá và không ngừng bồi đắp phù sa cho đời. Câu chuyện ấy không chỉ là hành trình của một cá nhân, mà còn là thông điệp gửi đến thế hệ mai sau: xuất phát điểm không quyết định giá trị con người; chính ý chí, lòng trung thực và tình yêu quê hương mới làm nên một cuộc đời có ý nghĩa.
+    </p>
+
+   <h2><img src="images/hoadao.png" alt="Trang chủ" style="height:72px; vertical-align:middle; margin-left:36px;">
+TƯ DUY & TRIẾT LÝ SỐNG🌸</h2>
+  
+  <p class="justified-p">
+    <span class="lotus-icon">🌸</span> Tôi xem trọng việc xây dựng các mối quan hệ tốt đẹp, nuôi dưỡng sự chân thành và tình yêu thương trong mọi tương tác. Mục tiêu lớn hơn là mong mỏi một xã hội an bình, ổn định và phát triển, nơi con người sống trong tình thương yêu và sự quý mến lẫn nhau.
+  </p>
+  
+  <p class="justified-p">
+    <span class="lotus-icon">🌸</span> Tôi tin vào việc phát triển nhận thức tự nhiên bên trong mỗi người. Từ đó, ta có thể sống một cuộc đời trọn vẹn, không bị giới hạn hay trói buộc bởi bất kỳ quy tắc hay quy định cứng nhắc nào. Tự do đích thực nằm trong sự hiểu biết và tình yêu thương vô điều kiện. Đó là con đường dẫn đến hạnh phúc cá nhân và sự hài hòa cộng đồng.
+  </p>
+  
+  <p class="justified-p">
+    <span class="lotus-icon">🌸</span> Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.
+  </p>
+  
+  <p class="justified-p">
+    <span class="lotus-icon">🌸</span> "Hạnh phúc không phải là đứng trên đỉnh cao danh vọng, mà là được nhìn thấy quê hương thay da đổi thịt và nụ cười bình yên của những người mình yêu thương."
+  </p>
+
+<script>
+/* ===== MENU MOBILE ===== */
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+/* Mở menu */
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.add("active");
+  menuOverlay.classList.add("active");
+});
+
+/* Đóng menu khi click overlay */
+menuOverlay.addEventListener("click", () => {
+  navMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+});
+
+/* ===== MENU CẤP 2 ===== */
+document.querySelectorAll(".nav-item .toggle").forEach(toggle => {
+  toggle.addEventListener("click", () => {
+    toggle.parentElement.classList.toggle("open");
+  });
+});
+
+</script>
+</main>
+
+<footer>
+ <p>❤️SỨC KHỎE 🧠TRÍ TUỆ  🌸HẠNH PHÚC</p>
+ <p>🏛 Địa chỉ: TDP Lưu Kỳ 1, phường Lưu Kiếm, Tp Hải Phòng</p>
+</footer>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

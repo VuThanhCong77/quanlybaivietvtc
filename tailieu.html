@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>📚Kho Tài Liệu | Tên Trang</title>
+
+<style>
+/* ===== MENU MOBILE ===== */
+.menu-btn{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Overlay */
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 998;
+  transition: .3s;
+}
+.menu-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menu chính */
+.nav-menu{
+  position: fixed;
+  top: 0;
+  left: -280px;              /* Ẩn bên trái */
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0,0,0,.15);
+  padding-top: 60px;
+  z-index: 999;
+  transition: .3s;
+}
+
+/* Khi mở */
+.nav-menu.active{
+  left: 0;
+}
+
+.nav-item{
+  border-bottom: 1px solid #eee;
+}
+
+.nav-link{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  color: #0a3a5a;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* ===== MENU CẤP 2 ===== */
+.sub-menu{
+  display: none;
+  background: #f5f9fb;
+}
+.sub-menu a{
+  display: block;
+  padding: 10px 30px;
+  font-size: 14px;
+  color: #0a5c7a;
+  text-decoration: none;
+}
+
+/* Chỉ xổ khi click */
+.nav-item.open > .sub-menu{
+  display: block;
+}
+
+/* === RESET & CƠ BẢN === */
+body {
+  margin: 0;
+  padding-top: 110px;   /* Đẩy nội dung xuống dưới header */
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #0a3a5a;
+  line-height: 1.6;
+}
+
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* Giữ tiêu đề ở giữa */
+
+  background: linear-gradient(to right, #0a7f99, #0ab3c9);
+  color: #fff;
+  padding: 0 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 999;
+}
+
+/* Nút Menu cố định bên trái */
+.menu-btn{
+  position: absolute;
+  left: 12px;
+  font-size: 22px;
+}
+
+header.site-header h1 { 
+font-size: 24px; 
+margin: 0; 
+line-height: 1.2; 
+}
+.site-header a {
+    color: #ffffff !important; /* Đổi màu chữ thành trắng */
+    text-decoration: none;     /* (Tùy chọn) Bỏ gạch chân dưới chân chữ */
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) để người dùng biết đó là link */
+.site-header a:hover {
+    color: #cccccc; /* Chuyển sang màu xám nhẹ khi di chuột */
+}
+  
+main { 
+max-width: 1280px; 
+margin: auto; 
+padding: 20px; 
+background-color: #f9f9ff; 
+border-radius: 12px; 
+box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); 
+}
+
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+@media (max-width: 991px) {
+    .post-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+/* ======================================= */
+/* CSS BỔ SUNG: CONTROL PANEL VÀ STATS */
+/* ======================================= */
+.control-panel {
+    display: flex;
+    justify-content: flex-end; /* Đẩy các ô sang bên phải */
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cde7ef;
+}
+
+#search-input {
+    padding: 8px 12px;
+    border: 1px solid #0ab3c9;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 250px; /* Chiều rộng ô tìm kiếm */
+}
+
+#stats-box {
+    background-color: #0ab3c9;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    flex-shrink: 0; /* Ngăn không cho ô bị co lại */
+}
+
+/* === ITEM TÀI LIỆU === */
+.file-item { border-bottom: 1px solid #cde7ef; padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
+.file-item:last-child { border-bottom: none; }
+.file-info { max-width: 70%; }
+.file-info h3 { margin: 0; font-size: 18px; }
+.file-info h3 a { color: #0a3a5a; text-decoration: none; }
+.file-info h3 a:hover { color: #0a7f99; }
+.file-info p { margin-top: 6px; font-size: 14px; color: #08405d; }
+.download-btn { padding: 8px 16px; background: #0a7f99; color: #fff; text-decoration: none; border-radius: 6px; font-size: 14px; transition: background 0.3s; }
+.download-btn:hover { background: #0a99aa; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #search-input {
+        width: auto;
+    }
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .file-info {
+        max-width: 100%;
+    }
+}
+
+footer { background: #e7f5fa; padding: 20px; margin-top: 40px; text-align: center; font-size: 14px; color: #074055; }
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <h1>📚Tài liệu</h1>
+<a class="nav-link" href="index.html">|🏠|</a>
+<button class="menu-btn" id="menuBtn">☰ Menu</button>
+</header>
+
+<!-- OVERLAY -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- MENU -->
+<nav class="nav-menu" id="navMenu">
+
+  <div class="nav-item">
+    <a class="nav-link" href="index.html">🏠 Trang chủ</a>
+  </div>
+
+ <div class="nav-item">
+    <a class="nav-link" href="gioithieu.html">🏛Giới thiệu</a>
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
+    <div class="sub-menu">
+   <a href="vanban.html">📖Nội dung văn bản</a>
+      <a href="vanban/qd69.html">📜Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕Điều lệ Đảng</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="baiviet.html">✍ Bài viết</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="tintuc.html">📢 Tin tức</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a>
+  </div>
+
+  <div class="nav-item">
+    <a class="nav-link" href="tailieu.html">📁 Tài liệu</a>
+   </div>
+</nav>
+
+<main>
+     <div class="control-panel">
+        <input type="text" id="search-input" placeholder="Tìm kiếm tài liệu theo tiêu đề..." />
+        
+        <div id="stats-box">
+            📊Tổng tài liệu: <span id="document-count">0</span> file
+        </div>
+    </div>
+
+<div id="document-list-container" class="post-list">
+   <div class="file-item">...</div>
+   <div class="file-item">...</div>
+</div>
+
+</main>
+
+<footer>
+ <p>❤️SỨC KHỎE 🧠TRÍ TUỆ  🌸HẠNH PHÚC</p>
+</footer>
+
+<script>
+    const JSON_URL = 'posts_data.json';
+    const listContainer = document.getElementById("document-list-container");
+    const searchInput = document.getElementById("search-input");
+    const documentCountSpan = document.getElementById("document-count");
+    
+    let allDocuments = []; // Lưu trữ toàn bộ dữ liệu tài liệu đã lọc
+
+    async function fetchPosts() {
+        try {
+            const response = await fetch(JSON_URL);
+            if (!response.ok) {
+                console.error("Không tìm thấy file posts_data.json.");
+                return [];
+            }
+            const data = await response.json();
+            
+            // Lọc: category là "tailieu" VÀ có dữ liệu file (fileData)
+            return data.filter(p => p.category === "tailieu" && p.fileData);
+        } catch (error) {
+            console.error("Lỗi mạng khi tải dữ liệu bài viết:", error);
+            return [];
+        }
+    }
+
+    function renderDocuments(postsToRender) {
+        listContainer.innerHTML = ''; // Xóa nội dung cũ
+
+        if (postsToRender.length === 0) {
+            const message = searchInput.value.trim() === '' 
+                ? 'Hiện chưa có tài liệu nào.' 
+                : 'Không tìm thấy tài liệu nào phù hợp với từ khóa.';
+            listContainer.innerHTML = `<p style="text-align: center; color: #888; padding: 20px;">${message}</p>`;
+            return;
+        }
+
+        postsToRender.forEach(p => {
+            // Đảm bảo tên file để tải xuống không rỗng
+            const downloadFileName = p.fileName || p.title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.pdf';
+
+            listContainer.innerHTML += `
+                <div class="file-item">
+                    <div class="file-info">
+                        <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
+                        <p>${p.shortDescription || 'Không có mô tả ngắn.'}</p>
+                    </div>
+                    <a class="download-btn" href="${p.fileData}" download="${downloadFileName}">Tải xuống</a>
+                </div>
+            `;
+        });
+    }
+    
+    // Hàm Thống kê
+    function updateStats(count) {
+        documentCountSpan.textContent = count;
+    }
+
+    // Hàm Tìm kiếm
+    function searchDocuments() {
+        const query = searchInput.value.trim().toLowerCase();
+        
+        if (query === "") {
+            // Nếu ô tìm kiếm trống, hiển thị tất cả
+            renderDocuments(allDocuments);
+            updateStats(allDocuments.length);
+            return;
+        }
+
+        // Lọc tài liệu dựa trên tiêu đề
+        const filtered = allDocuments.filter(p => 
+            p.title.toLowerCase().includes(query)
+        );
+
+        renderDocuments(filtered);
+        updateStats(filtered.length);
+    }
+    
+    // Hàm tải chính
+    async function loadDocuments() {
+        listContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
+        
+        allDocuments = await fetchPosts();
+        
+        if (allDocuments.length === 0) {
+            listContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tài liệu nào.</p>';
+            updateStats(0);
+            return;
+        }
+        
+        // Hiển thị tất cả tài liệu ban đầu
+        renderDocuments(allDocuments);
+        updateStats(allDocuments.length);
+        
+        // Gắn sự kiện tìm kiếm khi người dùng gõ
+        searchInput.addEventListener('input', searchDocuments);
+    }
+
+    // Chạy hàm khi DOM tải xong
+    document.addEventListener('DOMContentLoaded', loadDocuments);
+
+/* ===== MENU MOBILE ===== */
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+/* Mở menu */
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.add("active");
+  menuOverlay.classList.add("active");
+});
+
+/* Đóng menu khi click overlay */
+menuOverlay.addEventListener("click", () => {
+  navMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+});
+
+/* ===== MENU CẤP 2 ===== */
+document.querySelectorAll(".nav-item .toggle").forEach(toggle => {
+  toggle.addEventListener("click", () => {
+    toggle.parentElement.classList.toggle("open");
+  });
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸Hướng dẫn sử dụng & vận hành Website VTC</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body{font-family:Inter,Arial,Tahoma}
+.note{background:#fff7ed;border-left:6px solid #0303ef;padding:16px;border-radius:12px}
+.tip{background:#ecfeff;border-left:6px solid #06b6d4;padding:16px;border-radius:12px}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+<div class="max-w-6xl mx-auto p-6 md:p-12">
+<header class="mb-12">
+<span class="text-cyan-600 font-bold tracking-widest text-xs uppercase">🌸TÀI LIỆU</span> <a href="../index.html" class="btn-home-fixed">➤🏠 </a>
+<h1 class="text-4xl md:text-3xl font-black mt-3 mb-4">🌸HƯỚNG DẪN SỬ DỤNG WEBSITE</h1>
+<p class="text-slate-600 max-w-3xl">
+Tài liệu này hướng dẫn đầy đủ, chi tiết và thống nhất việc khai thác, quản trị và vận hành Website VTC – 
+hệ thống website tĩnh phục vụ công tác thông tin, tuyên truyền, quản lý lịch công tác và lưu trữ dữ liệu điện tử.
+</p>
+</header>
+
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-4">I. MỤC ĐÍCH, PHẠM VI SỬ DỤNG</h2>
+<ul class="list-disc pl-6 text-slate-700 space-y-2">
+<li>Làm tài liệu hướng dẫn chính thức cho người sử dụng và người quản trị Website.</li>
+<li>Bảo đảm sử dụng Website thống nhất, an toàn, hiệu quả, đúng mục đích.</li>
+<li>Áp dụng cho toàn bộ các phân hệ: Trang chủ, Lịch công tác, Blog – Tin tức, Văn bản, Tài liệu, Quản trị.</li>
+</ul>
+</section>
+
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-4">II. CẤU TRÚC TỔNG THỂ WEBSITE</h2>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-white p-6 rounded-2xl shadow-sm">
+<h3 class="font-bold mb-2">1. Trang công khai</h3>
+<ul class="text-sm space-y-1">
+<li>Trang chủ</li>
+<li>Giới thiệu</li>
+<li>Bài viết</li>
+<li>Tin tức</li>
+<li>Tài liệu</li>
+<li>Văn bản</li>
+</ul>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm">
+<h3 class="font-bold mb-2">2. Trang quản trị</h3>
+<ul class="text-sm space-y-1">
+<li>Lịch công tác (phân quyền)</li>
+<li>Soạn và cập nhật bài viết</li>
+<li>Nhập – xuất dữ liệu JSON</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-4">III. HƯỚNG DẪN SỬ DỤNG LỊCH CÔNG TÁC</h2>
+<div class="bg-white p-6 rounded-2xl shadow-sm space-y-4">
+<p><b>1. Đăng nhập:</b> Người dùng truy cập trang Lịch công tác. Hệ thống mặc định có 2 chế độ:</p>
+<ul class="list-disc pl-6 text-sm">
+<li><b>User:</b> Chỉ xem lịch, không chỉnh sửa.</li>
+<li><b>Admin:</b> Có quyền thêm, sửa, xóa, sao lưu và phục hồi dữ liệu.</li>
+</ul>
+<p><b>2. Thêm công việc:</b> Nhập đầy đủ nội dung, thời gian, ghi chú → bấm <i>Thêm</i>.</p>
+<p><b>3. Cảnh báo:</b> Công việc sắp đến hạn sẽ tự động hiển thị màu đỏ và phát âm thanh cảnh báo.</p>
+</div>
+<div class="note mt-4 text-sm">
+<b>Lưu ý:</b> Khuyến nghị định kỳ sử dụng chức năng <b>Xuất file</b> để sao lưu dữ liệu lịch công tác.
+</div>
+</section>
+
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-4">IV. BLOG – TIN TỨC – TÀI LIỆU</h2>
+<div class="bg-white p-6 rounded-2xl shadow-sm space-y-4">
+<p><b>Bước 1:</b> Truy cập trang <code>soanbai.html</code>.</p>
+<p><b>Bước 2:</b> Chọn chuyên mục, nhập tiêu đề, nội dung, hình ảnh đại diện.</p>
+<p><b>Bước 3:</b> Bấm <b>Lưu bài</b> → tải file <code>posts_data.json</code>.</p>
+<p><b>Bước 4:</b> Ghi đè file này vào thư mục gốc của Website.</p>
+</div>
+<div class="tip mt-4 text-sm">
+<b>Mẹo:</b> Nội dung bài viết nên ngắn gọn, rõ ý, tiêu đề không quá 80 ký tự để hiển thị tốt trên Facebook.
+</div>
+</section>
+
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-4">V. VĂN BẢN, TÀI LIỆU CHUYÊN MÔN</h2>
+<div class="bg-white p-6 rounded-2xl shadow-sm space-y-3 text-sm">
+<p>– Dữ liệu văn bản được quản lý tập trung bằng file JSON.</p>
+<p>– Trang hiển thị tự động phân loại, hỗ trợ tìm kiếm và làm nổi bật từ khóa.</p>
+<p>– Người quản trị chịu trách nhiệm kiểm tra tính chính xác, hợp pháp của văn bản.</p>
+</div>
+</section>
+
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-4">VI. SEO – CHIA SẺ MẠNG XÃ HỘI</h2>
+<div class="bg-white p-6 rounded-2xl shadow-sm text-sm space-y-3">
+<p>– Website đã tích hợp thẻ Open Graph để chia sẻ Facebook.</p>
+<p>– Khi cần hiển thị đúng ảnh và tiêu đề, thực hiện sinh file chia sẻ theo hướng dẫn kỹ thuật.</p>
+<p>– Chỉ kiểm tra hiển thị sau khi Website đã được đưa lên Internet.</p>
+</div>
+</section>
+
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-4">VII. TRÁCH NHIỆM VÀ LƯU Ý</h2>
+<ul class="list-disc pl-6 text-slate-700 space-y-2">
+<li>Người quản trị chịu trách nhiệm toàn bộ nội dung đăng tải.</li>
+<li>Không đăng tải thông tin sai sự thật, trái quy định pháp luật.</li>
+<li>Thường xuyên sao lưu dữ liệu trước khi chỉnh sửa.</li>
+</ul>
+</section>
+
+<footer class="pt-10 border-t text-center text-slate-500 text-sm">
+<p>2025 – Hệ thống Website VTC | Biên soạn & vận hành: Vũ Thành Công</p>
+<a href="../index.html" class="hover:text-cyan-500">Về Trang Chủ  | </a>
+<a href="../gioithieu.html" class="hover:text-cyan-500">Giới Thiệu</a>
+</footer>
+</div>
+
+</body>
+</html>

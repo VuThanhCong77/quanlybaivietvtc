@@ -1,0 +1,10 @@
+node gen-og.js
+git add .
+git commit -m "Generate OG files"
+git push
+
+➡️ Khi có bài mới:
+
+Chỉ cần cập nhật posts_data.json
+
+Chạy lại node gen-og.js

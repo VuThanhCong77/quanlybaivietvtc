@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="dynamic-title">Chi tiết bài viết</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+   <!-- Open Graph chuẩn cho Facebook & Zalo -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="❤️SỨC KHỎE🧠TRÍ TUỆ 🌸HẠNH PHÚC">
+<meta property="og:description" content="🌱 Hãy cập nhật giá trị sống tích cực">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/hoasen.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
+
+
+    <style>
+#backToTop{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background-color: #198754;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    display: none;
+    z-index: 999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+#backToTop:hover{
+    background-color: #146c43;
+}
+
+        body { background-color: #2E8B57; font-family: 'Arial', sans-serif; }
+        .main-content { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .post-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; display: none; }
+        .btn-facebook { background-color: #1877F2; color: white; border-radius: 50px; padding: 10px 25px; font-weight: 600; border: none; transition: 0.3s; }
+        .btn-zalo { background-color: #0068ff; color: white; border-radius: 50px; padding: 10px 25px; font-weight: 600; border: none; }
+        #view-content { line-height: 1.8; color: #444; font-size: 1.1rem; }
+        .huongdan-gopy { margin-top:3px; font-size:13px; color:#0303ef; font-style:italic; }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="main-content" id="post-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Bài viết</li>
+                    </ol>
+                </nav>
+
+                <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
+
+<div class="text-muted mb-2 small" id="post-views">
+    <i class="fas fa-eye me-1"></i>
+    <span id="view-count">0</span> lượt xem
+</div>
+      
+
+                <div class="text-muted mb-4 small">
+                    <i class="fas fa-calendar-alt me-1"></i> <span id="view-date"></span>
+                    <span class="ms-3"><i class="fas fa-user me-1"></i> <span id="view-author">Admin</span></span>
+                </div>
+
+                <img id="view-image" src="" alt="" class="post-img shadow-sm">
+
+                <div id="view-content" class="mb-5"></div>
+
+                <hr class="my-4">
+
+                <section id="gop-y" class="mt-4">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-comment-dots me-2"></i>Góp ý bài viết</h5>
+                    <div class="mb-3">
+                        <input id="gy-ten" class="form-control" placeholder="Họ và tên (không bắt buộc)">
+                    </div>
+                    <div class="mb-3">
+                        <textarea id="gy-noidung" class="form-control" rows="4" placeholder="Nội dung góp ý..." required></textarea>
+                    </div>
+                    <div class="huongdan-gopy">Vui lòng góp ý đúng nội dung, mang tính xây dựng, xin trân trọng cảm ơn!</div>
+                    <button class="btn btn-success mt-2" onclick="guiGopY()"><i class="fas fa-paper-plane me-1"></i>Gửi góp ý</button>
+                    <div id="gy-thongbao" class="mt-3 text-muted small"></div>
+                </section>
+
+                <hr>
+                
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div>
+                        <button onclick="shareFB()" class="btn-facebook shadow-sm me-2">
+                            <i class="fab fa-facebook-f me-2"></i>
+                        </button>
+<button onclick="copyLink()" class="btn btn-secondary shadow-sm">
+    <i class="fas fa-link me-2"></i>Chia sẻ
+</button>
+                    </div>
+                    <a href="index.html" class="text-decoration-none"><i class="fas fa-arrow-left"></i> 🏠</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentPost = null;
+
+async function loadPost() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+
+        if (!postId) {
+            document.getElementById('view-title').innerText = "Thiếu ID bài viết!";
+            return;
+        }
+
+        const response = await fetch('posts_data.json');
+        const data = await response.json();
+        
+        // Tìm bài viết
+        const post = data.find(p => String(p.id) === String(postId));
+
+        if (post) {
+            currentPost = post; // Gán ngay lập tức
+            document.title = post.title;
+            document.getElementById('view-title').innerText = post.title;
+            document.getElementById('view-date').innerText = post.date || "Không xác định";
+            document.getElementById('view-author').innerText = post.author || "Admin";
+            document.getElementById('view-content').innerHTML = post.description || "";
+
+     syncViews(post);
+     countViews(post.id);
+
+            const imgElement = document.getElementById('view-image');
+            if (post.thumbnail) {
+                // Tự động chuyển link GitHub thành link Raw nếu cần
+                let finalImg = post.thumbnail.replace('github.com', 'raw.githubusercontent.com').replace('/tree/', '/');
+                imgElement.src = finalImg;
+                imgElement.style.display = 'block';
+            }
+        } else {
+            document.getElementById('post-container').innerHTML = `<h2 class="text-danger">Bài viết không tồn tại!</h2>`;
+        }
+    } catch (error) {
+        console.error("Lỗi load bài viết:", error);
+    }
+}
+
+function shareFB() {
+    const url = window.location.href;
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      'fb-share',
+      'width=580,height=400'
+    );
+}
+
+function copyLink() {
+    if (!currentPost) return;
+
+    const link =
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/posts/" +
+        currentPost.id +
+        ".html";
+
+    // Cách chuẩn (trình duyệt hiện đại)
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(link).then(() => {
+            alert("Đã sao chép liên kết bài viết. Vui lòng dán vào Zalo để chia sẻ.");
+        });
+    } else {
+        // Fallback cho trình duyệt cũ
+        const tempInput = document.createElement("input");
+        tempInput.value = link;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+
+        alert("Đã sao chép liên kết bài viết. Vui lòng dán vào Zalo để chia sẻ.");
+    }
+}
+
+function guiGopY() {
+    const noiDung = document.getElementById("gy-noidung").value.trim();
+    if (!noiDung) {
+        alert("Vui lòng nhập nội dung!");
+        return;
+    }
+
+    const data = {
+        postId: currentPost?.id || "",
+        tieuDe: currentPost?.title || document.title,
+        ten: document.getElementById("gy-ten").value || "Ẩn danh",
+        noiDung: noiDung,
+        thoiGian: new Date().toLocaleString('vi-VN'),
+        url: window.location.href
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbzb_ovIs2kZto3vuHVPATt1Iq0Uvb0GiQo3hvCm_FAcjRgfaTPyjTG0Qir4ECEkyOE8-g/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+    .then(() => {
+        document.getElementById("gy-thongbao").innerText = "Gửi thành công!";
+        document.getElementById("gy-noidung").value = "";
+    })
+    .catch(() => alert("Có lỗi xảy ra!"));
+}
+
+document.addEventListener('DOMContentLoaded', loadPost);
+
+
+const VIEW_API = "https://script.google.com/macros/s/AKfycbzx_eob_VoJegCxIiCN_SMECwZlOetY0UjNhszIJv0znZWfk_zi3gPYPAprXzgtFHOB/exec";
+
+function syncViews(post) {
+  fetch(VIEW_API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      postId: String(post.id),
+      title: post.title,
+      url: window.location.href
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data && data.views !== undefined) {
+      document.getElementById("view-count").innerText = data.views;
+    }
+  })
+  .catch(err => console.error("Lỗi đồng bộ lượt xem", err));
+}
+
+function countViews(postId) {
+    if (!postId) return;
+
+    const key = 'views_post_' + postId;
+    let views = localStorage.getItem(key);
+
+    if (!views) {
+        views = 1;
+    } else {
+        views = parseInt(views) + 1;
+    }
+
+    localStorage.setItem(key, views);
+    document.getElementById('view-count').innerText = views;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const backToTopBtn = document.getElementById("backToTop");
+
+    if (!backToTopBtn) return;
+
+    window.addEventListener("scroll", function () {
+        if (document.documentElement.scrollTop > 300 || document.body.scrollTop > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+
+    backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+});
+</script>
+<button id="backToTop" title="Về đầu trang">
+    <i class="fas fa-arrow-up"></i>
+</button>
+</body>
+
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách bài viết đã đăng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+#backToTop{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background-color: #005bac;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+#backToTop:hover{
+    background-color: #003f7f;
+}
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background:#f4f6f8;
+            padding:20px;
+        }
+
+        h1{
+            text-align:center;
+            color:#003366;
+            margin-bottom:20px;
+            text-transform:uppercase;
+        }
+
+        .search-box{
+            max-width:420px;
+            margin:0 auto 20px auto;
+        }
+
+        .search-box input{
+            width:100%;
+            padding:6px 6px;
+            border:1px solid #cfd8dc;
+            border-radius:6px;
+            font-size:14px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:#ffffff;
+        }
+
+        th, td{
+            border:1px solid #cfd8dc;
+            padding:6px;
+            text-align:center;
+        }
+
+        thead{
+            background:#005bac;
+            color:#ffffff;
+        }
+
+        td.title{
+            text-align:left;
+        }
+
+        td.title a{
+            text-decoration:none;
+            color:#003366;
+            font-weight:500;
+        }
+
+        td.title a:hover{
+            text-decoration:underline;
+            color:#005bac;
+        }
+
+        tbody tr:nth-child(even){
+            background:#f2f7fb;
+        }
+
+        tbody tr:hover{
+            background:#e6f0fa;
+        }
+
+        .note{
+            text-align:center;
+            font-size:14px;
+            color:#666;
+            margin-top:6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Danh sách bài viết đã đăng</h1>
+<a class="nav-link" href="index.html">🏠 Trang chủ</a>
+
+<div class="search-box">
+    <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="🔍 Nhập từ khóa tìm theo tiêu đề..."
+        onkeyup="filterPosts()"
+    >
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Số TT</th>
+            <th>Ngày đăng</th>
+            <th>Tiêu đề</th>
+        </tr>
+    </thead>
+    <tbody id="postTable">
+        <!-- JS sinh dữ liệu -->
+    </tbody>
+</table>
+
+<div class="note">
+    Nhập từ khóa để tìm nhanh bài viết theo tiêu đề
+</div>
+
+<script>
+let allPosts = [];
+
+async function loadPostList(){
+    try{
+        const response = await fetch('posts_data.json');
+        allPosts = await response.json();
+
+        // Sắp xếp theo ngày đăng (mới → cũ)
+        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        renderTable(allPosts);
+    }catch(err){
+        console.error("Lỗi tải danh sách bài viết:", err);
+    }
+}
+
+function renderTable(posts){
+    const tbody = document.getElementById("postTable");
+    tbody.innerHTML = "";
+
+    posts.forEach((post, index) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${post.date ? new Date(post.date).toLocaleDateString('vi-VN') : ''}</td>
+            <td class="title">
+		<a href="./post.html?id=${post.id}">
+    		${post.title}
+		</a>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+function filterPosts(){
+    const keyword = document.getElementById("searchInput").value.toLowerCase();
+
+    const filtered = allPosts.filter(post =>
+        post.title && post.title.toLowerCase().includes(keyword)
+    );
+
+    renderTable(filtered);
+}
+
+document.addEventListener("DOMContentLoaded", loadPostList);
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const backToTopBtn = document.getElementById("backToTop");
+    if (!backToTopBtn) return;
+
+    window.addEventListener("scroll", function () {
+        if (document.documentElement.scrollTop > 300 || document.body.scrollTop > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+
+    backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+});
+</script>
+
+<button id="backToTop" title="Về đầu trang">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+</body>
+</html>
