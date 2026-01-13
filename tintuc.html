@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>📢Tin tức & Hoạt động | Tên Trang</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📢 Tin tức & Hoạt động | Tên Trang</title>
+
+<!-- CSS layout chung -->
+<link rel="stylesheet" href="layout.css">
 
 <style>
 /* ===== MENU MOBILE ===== */
@@ -34,7 +37,7 @@
 .nav-menu{
   position: fixed;
   top: 0;
-  left: -280px;              /* Ẩn bên trái */
+  left: -280px;
   width: 260px;
   height: 100%;
   background: #ffffff;
@@ -43,15 +46,9 @@
   z-index: 999;
   transition: .3s;
 }
+.nav-menu.active{ left: 0; }
 
-/* Khi mở */
-.nav-menu.active{
-  left: 0;
-}
-
-.nav-item{
-  border-bottom: 1px solid #eee;
-}
+.nav-item{ border-bottom: 1px solid #eee; }
 
 .nav-link{
   display: flex;
@@ -76,386 +73,206 @@
   color: #0a5c7a;
   text-decoration: none;
 }
+.nav-item.open > .sub-menu{ display: block; }
 
-/* Chỉ xổ khi click */
-.nav-item.open > .sub-menu{
-  display: block;
+/* ===== RIÊNG TRANG TIN TỨC ===== */
+.news-list{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
 }
 
-/* === RESET & CƠ BẢN === */
-body {
-  margin: 0;
-  padding-top: 110px;
-  font-family: Arial, sans-serif;
-}
-
-header.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 45px;
-
+.control-panel{
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center;   /* Giữ tiêu đề ở giữa */
-
-  background: linear-gradient(to right, #0a7f99, #0ab3c9);
-  color: #fff;
-  padding: 0 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  z-index: 999;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cde7ef;
 }
 
-/* Nút Menu cố định bên trái */
-.menu-btn{
-  position: absolute;
-  left: 12px;
-  font-size: 22px;
+#search-input{
+  padding: 8px 12px;
+  border: 1px solid #0ab3c9;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 250px;
 }
 
-header.site-header h1 {
-    font-size: 24px;
-    margin: 0; 
-    line-height: 1.2;
-}
-.site-header a {
-    color: #ffffff !important; /* Đổi màu chữ thành trắng */
-    text-decoration: none;     /* (Tùy chọn) Bỏ gạch chân dưới chân chữ */
-}
-
-/* Hiệu ứng khi di chuột vào (Hover) để người dùng biết đó là link */
-.site-header a:hover {
-    color: #cccccc; /* Chuyển sang màu xám nhẹ khi di chuột */
-}
-  
-main {
-    max-width: 1280px;
-    margin: 15px auto; 
-    padding: 20px;
-    background-color: #f9f9ff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(10, 127, 153, 0.1); 
+#stats-box{
+  background-color: #0ab3c9;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
-.news-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 26px;
+.news-item{
+  padding: 20px 0;
+  border-bottom: 1px solid #cde7ef;
+  display: flex;
+  gap: 20px;
+}
+.news-item:last-child{ border-bottom: none; }
+
+.news-item img{
+  width: 160px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
 }
 
-@media (max-width: 991px) {
-    .news-list {
-        grid-template-columns: 1fr;
-    }
+.news-content h3{
+  margin: 0;
+}
+.news-content h3 a{
+  color: #0a3a5a;
+  text-decoration: none;
+}
+.news-content h3 a:hover{ color: #0a7f99; }
+
+.news-content small{
+  color: #888;
+  display: block;
+  margin-bottom: 5px;
+}
+.news-content p{
+  margin-top: 8px;
+  color: #08405d;
 }
 
-/* ======================================= */
-/* CSS BỔ SUNG: CONTROL PANEL VÀ STATS */
-/* ======================================= */
-.control-panel {
-    display: flex;
-    justify-content: flex-end; /* Đẩy các ô sang bên phải */
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #cde7ef;
+@media (max-width: 991px){
+  .news-list{ grid-template-columns: 1fr; }
 }
-
-#search-input {
-    padding: 8px 12px;
-    border: 1px solid #0ab3c9;
-    border-radius: 5px;
-    font-size: 14px;
-    width: 250px; /* Chiều rộng ô tìm kiếm */
-}
-
-#stats-box {
-    background-color: #0ab3c9;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    flex-shrink: 0; /* Ngăn không cho ô bị co lại */
-}
-
-/* === ITEM TIN TỨC === */
-.news-item {
-    padding: 20px 0;
-    border-bottom: 1px solid #cde7ef;
-    display: flex;
-    gap: 20px;
-}
-.news-item:last-child {
-    border-bottom: none;
-}
-.news-item img {
-    width: 160px;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 6px;
-    flex-shrink: 0; 
-}
-.news-content h3 {
-    margin: 0;
-}
-.news-content h3 a {
-    color: #0a3a5a;
-    text-decoration: none;
-}
-.news-content h3 a:hover {
-    color: #0a7f99;
-}
-.news-content small {
-    color: #888;
-    display: block;
-    margin-bottom: 5px;
-}
-.news-content p {
-    margin-top: 8px;
-    color: #08405d;
-}
-footer {
-    background: #e7f5fa;
-    padding: 20px;
-    margin-top: 40px;
-    text-align: center;
-    font-size: 14px;
-    color: #074055;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-    .control-panel {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    #search-input {
-        width: auto;
-    }
-    .news-item {
-        flex-direction: column;
-    }
-    .news-item img {
-        width: 100%;
-        height: auto;
-    }
-}
-
-.post-item {
-    padding: 14px 16px;
-    border: 1px solid #e6e6e6;
-    border-radius: 4px;
-    background: #fff;
-}
-
-@media (max-width: 991px) {
-    .post-list {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 768px){
+  .control-panel{ flex-direction: column; align-items: stretch; }
+  #search-input{ width: auto; }
+  .news-item{ flex-direction: column; }
+  .news-item img{ width: 100%; height: auto; }
 }
 </style>
 </head>
 
 <body>
 
-<header class="site-header">
-    <h1>📢Tin tức</h1>
-<a class="nav-link" href="index.html">|🏠|</a>
-<button class="menu-btn" id="menuBtn">☰ Menu</button>
+<!-- HEADER CHUẨN -->
+<header class="page-header">
+  <h1>📢 Tin tức</h1>
+  <a href="index.html">|🏠|</a>
+  <button class="menu-btn" id="menuBtn">☰</button>
 </header>
 
-<!-- OVERLAY -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<!-- MENU -->
 <nav class="nav-menu" id="navMenu">
-
-  <div class="nav-item">
-    <a class="nav-link" href="index.html">🏠 Trang chủ</a>
-  </div>
-
- <div class="nav-item">
-    <a class="nav-link" href="gioithieu.html">🏛Giới thiệu</a>
-  </div>
+  <div class="nav-item"><a class="nav-link" href="index.html">🏠 Trang chủ</a></div>
+  <div class="nav-item"><a class="nav-link" href="gioithieu.html">🏛 Giới thiệu</a></div>
 
   <div class="nav-item">
     <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
     <div class="sub-menu">
-   <a href="vanban.html">📖Nội dung văn bản</a>
-      <a href="vanban/qd69.html">📜Quy định 69</a>
-      <a href="vanban/dieuledang.html">📕Điều lệ Đảng</a>
+      <a href="vanban.html">📖 Nội dung văn bản</a>
+      <a href="vanban/qd69.html">📜 Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
     </div>
   </div>
 
-  <div class="nav-item">
-    <a class="nav-link" href="baiviet.html">✍ Bài viết</a>
-  </div>
-
-  <div class="nav-item">
-    <a class="nav-link" href="tintuc.html">📢 Tin tức</a>
-  </div>
-
-  <div class="nav-item">
-    <a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a>
-  </div>
-
-  <div class="nav-item">
-    <a class="nav-link" href="tailieu.html">📁 Tài liệu</a>
-   </div>
+  <div class="nav-item"><a class="nav-link" href="baiviet.html">✍ Bài viết</a></div>
+  <div class="nav-item"><a class="nav-link" href="tintuc.html">📢 Tin tức</a></div>
+  <div class="nav-item"><a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a></div>
+  <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
 </nav>
 
+<div class="page-wrapper">
+
 <main>
-    <div class="control-panel">
-        <input type="text" id="search-input" placeholder="Tìm kiếm tin tức theo tiêu đề..." />
-        
-        <div id="stats-box">
-            📊Tổng tin tức: <span id="news-count">0</span> bài
-        </div>
+  <div class="control-panel">
+    <input type="text" id="search-input" placeholder="Tìm kiếm tin tức theo tiêu đề...">
+    <div id="stats-box">
+      📊 Tổng tin tức: <span id="news-count">0</span> bài
     </div>
-    
-<div id="news-list" class="news-list">
-    <p style="text-align:center; color:#aaa; padding:20px;">
-        Đang tải dữ liệu...
-    </p>
-</div>
+  </div>
 
-    <script>
-        const JSON_URL = 'posts_data.json';
-        const newsListContainer = document.getElementById("news-list");
-        const searchInput = document.getElementById("search-input");
-        const newsCountSpan = document.getElementById("news-count");
-        
-        let allNews = []; // Lưu trữ toàn bộ dữ liệu tin tức đã tải
-
-        async function fetchPosts() {
-            try {
-                const response = await fetch(JSON_URL);
-                if (!response.ok) {
-                    console.error("Không tìm thấy file posts_data.json.");
-                    return [];
-                }
-                // Lọc và chỉ lấy các bài có category là "tintuc"
-                const data = await response.json();
-                return data.filter(p => p.category === "tintuc");
-            } catch (error) {
-                console.error("Lỗi mạng khi tải dữ liệu tin tức:", error);
-                return [];
-            }
-        }
-
-        function renderNews(postsToRender) {
-            newsListContainer.innerHTML = ''; // Xóa nội dung cũ
-
-            if (postsToRender.length === 0) {
-                const message = searchInput.value.trim() === '' 
-                    ? 'Hiện chưa có tin tức nào.' 
-                    : 'Không tìm thấy tin tức nào phù hợp với từ khóa.';
-                newsListContainer.innerHTML = `<p style="text-align: center; color: #888; padding: 20px;">${message}</p>`;
-                return;
-            }
-
-            postsToRender.forEach(p => {
-                const thumbnailSrc = p.thumbnail || 'placeholder_thumb.jpg'; // Sử dụng placeholder nếu không có ảnh
-                    
-                newsListContainer.innerHTML += `
-                    <div class="news-item">
-                        <img src="${thumbnailSrc}" alt="${p.title}" /> 
-                        <div class="news-content">
-                            <h3>
-                                <a href="post.html?id=${p.id}">${p.title}</a>
-                            </h3>
-                            <small>${p.date}</small>
-                            <p>${p.shortDescription || p.content.substring(0,150)}...</p> 
-                        </div>
-                    </div>`;
-            });
-        }
-        
-        // Hàm Thống kê (Cập nhật số lượng tin tức)
-        function updateStats(count) {
-            newsCountSpan.textContent = count;
-        }
-
-        // Hàm Tìm kiếm
-        function searchNews() {
-            const query = searchInput.value.trim().toLowerCase();
-            
-            if (query === "") {
-                // Nếu ô tìm kiếm trống, hiển thị tất cả
-                renderNews(allNews);
-                updateStats(allNews.length);
-                return;
-            }
-
-            // Lọc tin tức dựa trên tiêu đề
-            const filtered = allNews.filter(p => 
-                p.title.toLowerCase().includes(query)
-            );
-
-            renderNews(filtered);
-            updateStats(filtered.length);
-        }
-        
-        // Hàm tải chính
-async function loadNews() {
-    newsListContainer.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Đang tải dữ liệu...</p>';
-    
-    allNews = await fetchPosts();
-
-    // ✅ SẮP XẾP: BÀI MỚI NHẤT LÊN TRÊN
-    allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
-    
-    if (allNews.length === 0) {
-        newsListContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Hiện chưa có tin tức nào.</p>';
-        updateStats(0);
-        return;
-    }
-    
-    // Hiển thị tất cả tin tức ban đầu
-    renderNews(allNews);
-    updateStats(allNews.length);
-    
-    // Gắn sự kiện tìm kiếm khi người dùng gõ
-    searchInput.addEventListener('input', searchNews);
-}
-
-        // Chạy hàm khi DOM tải xong
-        document.addEventListener('DOMContentLoaded', loadNews);
-
-/* ===== MENU MOBILE ===== */
-const menuBtn = document.getElementById("menuBtn");
-const navMenu = document.getElementById("navMenu");
-const menuOverlay = document.getElementById("menuOverlay");
-
-/* Mở menu */
-menuBtn.addEventListener("click", () => {
-  navMenu.classList.add("active");
-  menuOverlay.classList.add("active");
-});
-
-/* Đóng menu khi click overlay */
-menuOverlay.addEventListener("click", () => {
-  navMenu.classList.remove("active");
-  menuOverlay.classList.remove("active");
-});
-
-/* ===== MENU CẤP 2 ===== */
-document.querySelectorAll(".nav-item .toggle").forEach(toggle => {
-  toggle.addEventListener("click", () => {
-    toggle.parentElement.classList.toggle("open");
-  });
-});
-
-    </script>
+  <div id="news-list" class="news-list">
+    <p style="text-align:center;color:#aaa;padding:20px;">Đang tải dữ liệu...</p>
+  </div>
 </main>
 
 <footer>
- <p>❤️SỨC KHỎE 🧠TRÍ TUỆ  🌸HẠNH PHÚC</p>
+  ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
 </footer>
+
+</div>
+
+<script>
+const JSON_URL='posts_data.json';
+const newsListContainer=document.getElementById("news-list");
+const searchInput=document.getElementById("search-input");
+const newsCountSpan=document.getElementById("news-count");
+let allNews=[];
+
+async function fetchPosts(){
+  const res=await fetch(JSON_URL);
+  const data=await res.json();
+  return data.filter(p=>p.category==="tintuc");
+}
+
+function renderNews(posts){
+  newsListContainer.innerHTML="";
+  if(!posts.length){
+    newsListContainer.innerHTML="<p style='text-align:center;color:#888;padding:20px;'>Không có dữ liệu.</p>";
+    return;
+  }
+  posts.forEach(p=>{
+    newsListContainer.innerHTML+=`
+    <div class="news-item">
+      <img src="${p.thumbnail||'placeholder_thumb.jpg'}">
+      <div class="news-content">
+        <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
+        <small>${p.date}</small>
+        <p>${p.shortDescription||p.content.substring(0,150)+"..."}</p>
+      </div>
+    </div>`;
+  });
+}
+
+async function loadNews(){
+  allNews=await fetchPosts();
+  allNews.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  renderNews(allNews);
+  newsCountSpan.textContent=allNews.length;
+}
+
+searchInput.addEventListener("input",()=>{
+  const q=searchInput.value.toLowerCase();
+  const f=allNews.filter(p=>p.title.toLowerCase().includes(q));
+  renderNews(f);
+  newsCountSpan.textContent=f.length;
+});
+
+document.addEventListener("DOMContentLoaded",loadNews);
+
+/* MENU */
+const menuBtn=document.getElementById("menuBtn");
+const navMenu=document.getElementById("navMenu");
+const menuOverlay=document.getElementById("menuOverlay");
+
+menuBtn.onclick=()=>{
+  navMenu.classList.add("active");
+  menuOverlay.classList.add("active");
+};
+menuOverlay.onclick=()=>{
+  navMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+};
+
+document.querySelectorAll(".toggle").forEach(t=>{
+  t.onclick=()=>t.parentElement.classList.toggle("open");
+});
+</script>
 
 </body>
 </html>
