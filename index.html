@@ -44,7 +44,7 @@ background:#fff;
 
 /* CONTAINER */
 .container{
-max-width:1280px;
+max-width:1800px;
 margin:auto;
 padding:0 10px;
 }
@@ -694,7 +694,7 @@ async function loadRecentPosts() {
   const valid = posts
     .filter(p => p.category === "tintuc" || p.category === "baiviet" || p.category === "suckhoe")
     .sort((a,b) => b.id - a.id)
-    .slice(0,8);
+    .slice(0,6);
 
   if (!valid.length) {
     box.innerHTML = '<p style="text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
