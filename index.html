@@ -48,6 +48,16 @@ max-width:1800px;
 margin:auto;
 padding:0 10px;
 }
+main {
+  padding: 12px;
+  max-width: 1800px;
+  margin: 10px auto;
+ 
+  background: rgba(255,255,255,0.100); /* trong suốt */
+  backdrop-filter: blur(2px);         /* mờ nền sau */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
 
 /* HEADER */
 .site-header{
@@ -694,7 +704,7 @@ async function loadRecentPosts() {
   const valid = posts
     .filter(p => p.category === "tintuc" || p.category === "baiviet" || p.category === "suckhoe")
     .sort((a,b) => b.id - a.id)
-    .slice(0,6);
+    .slice(0,5);
 
   if (!valid.length) {
     box.innerHTML = '<p style="text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
