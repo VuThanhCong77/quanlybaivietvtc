@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vũ Thành Công 🌸</title>
+<title>🌸</title>
 
 <meta property="og:title" content="8 Quy tắc vàng cho cuộc sống hạnh phúc">
 <meta property="og:description" content="Sức khỏe – Trí tuệ – Hạnh phúc">
@@ -19,7 +19,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-7V4F395VKJ', { anonymize_ip: true });
 </script>
-	
+
 <!-- Favicon & PWA -->
 <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png">
@@ -34,13 +34,42 @@ gtag('config', 'G-7V4F395VKJ', { anonymize_ip: true });
   --secondary:#0ab3c9;
 }
 
-/* RESET */
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#fff;
-  color:#0a3a5a;
+/* 1. Body chứa ảnh nền */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #0a3a5a;
+
+  /* Ảnh nền toàn trang */
+  background: url('images/bg-trangchu.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* 2. Page wrapper trong suốt */
+.page-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background: transparent; /* trong suốt để thấy ảnh nền */
+}
+
+/* 3. Header bán trong suốt để chữ nổi bật */
+.site-header {
+  background: rgba(10, 127, 153, 0.85); /* gradient có thể dùng alpha để bán trong suốt */
+  color: #fff;
+}
+
+/* 4. Main trong suốt hoặc bán trong suốt */
+main {
+  padding: 190px 12px 20px;
+  background: rgba(255, 255, 255, 0.85); /* bán trong suốt để chữ đọc dễ */
+}
+
+/* 5. Footer bán trong suốt */
+footer {
+  background: rgba(10, 127, 153, 0.85);
+  color: #fff;
+  text-align: center;
+  padding: 25px 12px;
 }
 
 /* ===============================
@@ -49,7 +78,7 @@ body{
 .page-wrapper{
   max-width:var(--max-width);
   margin:0 auto;
-  background:#fff;
+  background:transparent;
 }
 
 /* CONTAINER CHỈ ĐỆM */
@@ -165,7 +194,7 @@ nav{
    =============================== */
 main{
   padding:190px 12px 20px;
-  background:#f9f9ff;
+  background:rgba(255,255,255,0.85);
 }
 
 /* BÀI VIẾT */
@@ -286,6 +315,87 @@ footer a{color:#fff;text-decoration:none}
   transition:transform .25s;
 }
 
+/* ===============================
+   CANH MÀU CHỮ NỔI TRÊN ẢNH NỀN
+   =============================== */
+
+/* CHỮ TOÀN TRANG */
+body{
+  color:#0f172a; /* xanh đen dễ đọc */
+}
+
+/* HEADER */
+.site-header{
+  background:rgba(10,127,153,.9);
+}
+.site-header,
+.site-header a{
+  color:#ffffff;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+
+/* MENU */
+.nav-links a,
+.logo span{
+  color:#ffffff;
+  font-weight:600;
+}
+
+/* MAIN – nền mờ */
+main{
+  background:rgba(255,255,255,.88);
+  color:#1f2937;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+/* TIÊU ĐỀ */
+h1,h2,h3{
+  color:#0a3a5a;
+  text-shadow:0 1px 1px rgba(255,255,255,.6);
+}
+
+/* ĐOẠN VĂN */
+p{
+  color:#1f2937;
+  line-height:1.75;
+}
+
+/* ĐOẠN QUAN TRỌNG */
+.justified{
+  background:rgba(255,255,255,.75);
+  padding:10px 14px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+/* CARD BÀI VIẾT */
+.news-card{
+  background:rgba(255,255,255,.95);
+}
+.news-body h3 a{
+  color:#0a3a5a;
+}
+.news-body h3 a:hover{
+  color:#0a7f99;
+}
+
+/* FOOTER */
+footer{
+  background:rgba(10,127,153,.9);
+  color:#ffffff;
+}
+footer a{
+  color:#ffd700;
+}
+
+/* CHỮ CHẠY */
+.running-text{
+  background:rgba(255,243,205,.95);
+  color:#1e40af;
+  font-weight:600;
+  text-shadow:0 1px 1px rgba(255,255,255,.6);
+}
+
 </style>
 </head>
 
@@ -380,8 +490,8 @@ footer a{color:#fff;text-decoration:none}
   📊 Tổng số bài viết đã đăng:
   <strong id="tong-bai-viet">0</strong>
 </p>
-	
-  <div class="container">
+
+<div class="container">
    <h3 style="color:#0303ef;font-weight:bold">🧠 Ý tưởng hay “8 Quy tắc vàng” ⏰ngày 23/4/2013</h3>
 <p class="justified">
   1. Tâm: tịnh, sáng🌸“Tâm” ở đây là tâm trí, nội tâm của con người. “Tịnh” là trạng thái an yên, không xao động; “sáng” là sự minh mẫn, trong trẻo. Khi giữ tâm tịnh và sáng, con người dễ sống hài hòa, đưa ra quyết định sáng suốt và tránh bị chi phối bởi cảm xúc tiêu cực.</p> 
