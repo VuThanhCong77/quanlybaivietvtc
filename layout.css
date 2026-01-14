@@ -136,37 +136,37 @@ main{
 
 /* Trang chủ */
 .page-title.index::before{
-  background-image: url("../images/logo.png");
+  background-image: url("images/logo.png");
 }
 
 /* Giới thiệu */
 .page-title.gioithieu::before{
-  background-image: url("../images/logo.png");
+  background-image: url("images/logo.png");
 }
 
 /* Tin tức */
 .page-title.tintuc::before{
-  background-image: url("../images/hoadao.png");
+  background-image: url("images/hoadao.png");
 }
 
 /* Bài viết */
 .page-title.baiviet::before{
-  background-image: url("../images/hoadao.png");
+  background-image: url("images/hoadao.png");
 }
 
 /* Sức khỏe */
 .page-title.suckhoe::before{
-  background-image: url("../images/hoadao.png");
+  background-image: url("images/hoadao.png");
 }
 
 /* Tài liệu */
 .page-title.tailieu::before{
-  background-image: url("../images/hoadao.png");
+  background-image: url("images/hoadao.png");
 }
 
 /* Văn bản */
 .page-title.vanban::before{
-  background-image: url("../images/hoadao.png");
+  background-image: url("images/hoadao.png");
 }
 
 /* Khối ảnh đặt giữa nội dung */
@@ -214,4 +214,5 @@ footer{
     height: 32px;
   }
 }
+
 
