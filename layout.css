@@ -102,7 +102,7 @@ body{
    MAIN
    =============================== */
 main{
-  padding: 15px;
+  padding: 6px;
   background: var(--bg-main);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -186,8 +186,8 @@ main{
    FOOTER
    =============================== */
 footer{
-  margin-top: 40px;
-  padding: 25px 15px;
+  margin-top: 10px;
+  padding: 20px 10px;
   text-align: center;
   font-size: 13px;
   color: hsl(61, 90%, 51%);

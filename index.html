@@ -197,7 +197,7 @@ nav{
    MAIN – CÙNG CHIỀU NGANG
    =============================== */
 main{
-  padding:190px 12px 20px;
+   padding: 110px 6px 10px;
   background:rgba(255,255,255,0.85);
 }
 
@@ -400,6 +400,23 @@ footer a{
   text-shadow:0 1px 1px rgba(255,255,255,.6);
 }
 
+.welcome-bar {
+  padding: 10px 0;
+  margin-bottom: 2px;   /* THU HẸP KHOẢNG CÁCH */
+  font-weight: 800;
+}
+
+.current-time {
+  text-align: left;
+  font-size: 14px;
+  color: hsla(60, 100%, 100%, 0.889);
+  margin-bottom: 6px;  /* khoảng cách hợp lý trước Tin tức */
+ }
+
+main{
+  padding-top: 2cm;
+}
+
 </style>
 </head>
 
@@ -438,6 +455,8 @@ footer a{
 <div id="running-text-wrapper" class="running-text" style="display:none;">
   <div id="running-text" class="marquee"></div>
 </div>
+
+<div class="current-time" id="currentTime"></div>
 
 </header>
 
@@ -699,6 +718,27 @@ function shareFacebook() {
     "width=600,height=450"
   );
 }
+</script>
+
+<script>
+function updateTime() {
+  const now = new Date();
+
+  const days = [
+    "Chủ Nhật", "Thứ Hai", "Thứ Ba",
+    "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"
+  ];
+
+  const dayName = days[now.getDay()];
+  const date = now.toLocaleDateString("vi-VN");
+  const time = now.toLocaleTimeString("vi-VN");
+
+  document.getElementById("currentTime").innerText =
+    `${dayName}, ngày ${date} | ${time}`;
+}
+
+updateTime();
+setInterval(updateTime, 1000);
 </script>
 
 </body>
