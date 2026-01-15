@@ -217,9 +217,15 @@ footer{
 /* ===============================
    RESPONSIVE
    =============================== */
+/* Desktop */
+.page-wrapper{
+  padding-top: calc(var(--header-height) + var(--sub-height) + 6px);
+}
+
+/* Mobile */
 @media (max-width: 768px){
   .page-wrapper{
-    padding-top: calc(var(--header-height) + var(--sub-height) + 30px);
+    padding-top: calc(var(--header-height) + 3px);
   }
 }
 
