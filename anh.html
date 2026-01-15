@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>📷 Thư viện ảnh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS DÙNG CHUNG -->
+  <link rel="stylesheet" href="layout.css">
+
+<style>
+/* ===============================
+   MENU CHÍNH
+   =============================== */
+
+.nav-menu{
+  position: fixed;
+  top: calc(var(--header-height) + var(--sub-height));
+  right: 12px;
+  right: auto;
+
+  width: 260px;
+
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  padding: 10px 0;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  z-index: 1001;
+}
+
+.nav-menu.open{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-item{
+  padding: 6px 16px;
+}
+
+.nav-link{
+  display: block;
+  color: #0a3a5a;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.nav-link:hover{
+  color: var(--primary);
+}
+
+/* SUB MENU */
+.sub-menu{
+  display: none;
+  padding-left: 16px;
+}
+
+.sub-menu.open{
+  display: block;
+}
+
+/* ===============================
+   OVERLAY
+   =============================== */
+
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1000;
+}
+
+.menu-overlay.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+</style>
+</head>
+
+<body>
+
+  <!-- ================= HEADER FIXED ================= -->
+  <header class="page-header">
+    <button class="menu-btn" aria-label="Mở menu">☰</button>
+
+    <h1 class="page-title anh">
+      <a href="anh.html">Thư viện ảnh</a>
+    </h1>
+
+    <a href="index.html" title="Trang chủ">🏠</a>
+  </header>
+
+  <!-- ================= SUB FIXED (ĐỂ TRỐNG CŨNG ĐƯỢC) ================= -->
+  <div class="sub-fixed"></div>
+
+  <!-- ================= OVERLAY + MENU ================= -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <nav class="nav-menu" id="navMenu">
+    <div class="nav-item">
+      <a class="nav-link" href="index.html">🏠 Trang chủ</a>
+    </div>
+
+    <div class="nav-item">
+      <a class="nav-link" href="gioithieu.html">🏛 Giới thiệu</a>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-link toggle">📄 Văn bản ▾</div>
+      <div class="sub-menu">
+        <a href="vanban.html">📖 Nội dung</a>
+        <a href="vanban/qd69.html">📜 Quy định 69</a>
+        <a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a class="nav-link" href="baiviet.html">✍ Bài viết</a>
+    </div>
+
+    <div class="nav-item">
+      <a class="nav-link" href="tintuc.html">📢 Tin tức</a>
+    </div>
+
+    <div class="nav-item">
+      <a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a>
+    </div>
+
+    <div class="nav-item">
+      <a class="nav-link" href="tailieu.html">📁 Tài liệu</a>
+    </div>
+  </nav>
+
+  <!-- ================= KHUNG TRỤC CHUNG ================= -->
+  <div class="page-wrapper">
+
+    <!-- ================= MAIN ================= -->
+    <main>
+
+      <h2 class="page-title baiviet">Thư viện ảnh</h2>
+
+      <section class="photo-grid">
+
+        <article class="photo-item">
+          <img src="images/thuvienanh (1).jpg" alt="Ảnh đại diện">
+          <p class="photo-note">Tổng kết phong trào thi đua năm 2025</p>
+        </article>
+
+        <article class="photo-item">
+          <img src="images/thuvienanh (2).jpg" alt="Hoa đào">
+          <p class="photo-note">Đại hội Đảng bộ phường lần thứ nhất</p>
+        </article>
+
+        <article class="photo-item">
+          <img src="images/thuvienanh (3).jpg" alt="Hoa mai">
+          <p class="photo-note">Tổng kết phong trào thi đua năm 2025</p>
+        </article>
+
+        <article class="photo-item">
+          <img src="images/thuvienanh (4).jpg" alt="Hoa sen">
+          <p class="photo-note">Tổng kết phong trào thi đua năm 2025</p>
+        </article>
+
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      Trang thông tin hình ảnh
+    </footer>
+
+  </div>
+
+  <!-- ================= JAVASCRIPT MENU ================= -->
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const navMenu = document.getElementById('navMenu');
+    const overlay = document.getElementById('menuOverlay');
+    const toggles = document.querySelectorAll('.nav-link.toggle');
+
+    // Mở / đóng menu chính
+    menuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      overlay.classList.toggle('show');
+    });
+
+    // Đóng menu khi bấm nền tối
+    overlay.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      overlay.classList.remove('show');
+    });
+
+    // Toggle submenu
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        toggle.nextElementSibling.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

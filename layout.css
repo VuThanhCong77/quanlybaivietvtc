@@ -34,18 +34,12 @@ body{
 /* RESET */
 *{ box-sizing: border-box; }
 
-body{
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: #0a3a5a;
-  line-height: 1.6;
-}
-
 /* ===============================
    KHUNG CHUNG
    =============================== */
 .page-wrapper{
   max-width: var(--max-width);
+  width: 100%;
   margin: 0 auto;
   position: relative;
   padding-top: calc(var(--header-height) + var(--sub-height) + 6px);
@@ -189,6 +183,11 @@ main{
   background-image: url("images/hoadao.png");
 }
 
+/* Trang anh */
+.page-title.anh::before{
+  background-image: url("images/anhdaidien.jpg");
+}
+
 /* Khối ảnh đặt giữa nội dung */
 .img-giua{
     text-align: center;
@@ -234,5 +233,32 @@ footer{
     height: 32px;
   }
 }
+/* ===============================
+   TRANG ẢNH
+   =============================== */
 
+.photo-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
 
+.photo-item{
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.photo-item img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.photo-note{
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
