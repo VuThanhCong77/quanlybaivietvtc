@@ -12,7 +12,6 @@
 /* ===============================
    MENU CHÍNH
    =============================== */
-
 .nav-menu{
   position: fixed;
   top: calc(var(--header-height) + var(--sub-height));
@@ -143,90 +142,53 @@
   <!-- ================= KHUNG TRỤC CHUNG ================= -->
   <div class="page-wrapper">
 
-    <!-- ================= MAIN ================= -->
-    <main>
+  <main>
+    <h2>Thư viện ảnh</h2>
 
-      <h2>Thư viện ảnh</h2>
+    <!-- KHUNG SINH ẢNH TỰ ĐỘNG -->
+    <section class="photo-grid" id="photoGrid"></section>
+  </main>
 
-      <section class="photo-grid">
-        
-	<article class="photo-item">
-          <img src="images/12A (1).jpg" alt="Ảnh đại diện">
-          <p class="photo-note">Kỷ niệm 30 năm ngày ra trường</p>
-        </article>
+  <footer>Trang thông tin hình ảnh</footer>
 
-	<article class="photo-item">
-          <img src="images/12A (2).jpg" alt="Ảnh đại diện">
-          <p class="photo-note">Kỷ niệm 30 năm ngày ra trường</p>
-        </article>
+</div>
 
-	<article class="photo-item">
-          <img src="images/12A (3).jpg" alt="Ảnh đại diện">
-          <p class="photo-note">Kỷ niệm 30 năm ngày ra trường</p>
-        </article>
+<!-- ================= SCRIPT SINH NỘI DUNG ================= -->
+<script>
+fetch('photos.json')
+  .then(res => res.json())
+  .then(data => {
+    const grid = document.getElementById('photoGrid');
 
-	<article class="photo-item">
-          <img src="images/12A (4).jpg" alt="Ảnh đại diện">
-          <p class="photo-note">Kỷ niệm 30 năm ngày ra trường</p>
-        </article>
+    data.forEach(item => {
+      const article = document.createElement('article');
+      article.className = 'photo-item';
 
-        <article class="photo-item">
-          <img src="images/thuvienanh (1).jpg" alt="Ảnh đại diện">
-          <p class="photo-note">Tổng kết phong trào thi đua năm 2025</p>
-        </article>
+      article.innerHTML = `
+        <img src="${item.img}" alt="">
+        <p class="photo-note">${item.note}</p>
+      `;
 
-        <article class="photo-item">
-          <img src="images/thuvienanh (2).jpg" alt="Hoa đào">
-          <p class="photo-note">Đại hội Đảng bộ phường lần thứ nhất</p>
-        </article>
-
-        <article class="photo-item">
-          <img src="images/thuvienanh (3).jpg" alt="Hoa mai">
-          <p class="photo-note">Tổng kết phong trào thi đua năm 2025</p>
-        </article>
-
-        <article class="photo-item">
-          <img src="images/thuvienanh (4).jpg" alt="Hoa sen">
-          <p class="photo-note">Tổng kết phong trào thi đua năm 2025</p>
-        </article>
-
-      </section>
-    </main>
-
-    <!-- ================= FOOTER ================= -->
-    <footer>
-      Trang thông tin hình ảnh
-    </footer>
-
-  </div>
-
-  <!-- ================= JAVASCRIPT MENU ================= -->
-  <script>
-    const menuBtn = document.querySelector('.menu-btn');
-    const navMenu = document.getElementById('navMenu');
-    const overlay = document.getElementById('menuOverlay');
-    const toggles = document.querySelectorAll('.nav-link.toggle');
-
-    // Mở / đóng menu chính
-    menuBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      overlay.classList.toggle('show');
+      grid.appendChild(article);
     });
+  });
 
-    // Đóng menu khi bấm nền tối
-    overlay.addEventListener('click', () => {
-      navMenu.classList.remove('open');
-      overlay.classList.remove('show');
-    });
+<!-- ================= SCRIPT MENU ================= -->
 
-    // Toggle submenu
-    toggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        toggle.nextElementSibling.classList.toggle('open');
-      });
-    });
-  </script>
+const menuBtn = document.querySelector('.menu-btn');
+const navMenu = document.getElementById('navMenu');
+const overlay = document.getElementById('menuOverlay');
+
+menuBtn.onclick = () => {
+  navMenu.classList.toggle('open');
+  overlay.classList.toggle('show');
+};
+
+overlay.onclick = () => {
+  navMenu.classList.remove('open');
+  overlay.classList.remove('show');
+};
+</script>
 
 </body>
 </html>
-
