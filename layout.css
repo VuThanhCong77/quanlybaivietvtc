@@ -29,7 +29,7 @@ body{
   max-width: var(--max-width);
   margin: 0 auto;
   position: relative;
-  padding-top: calc(var(--header-height) + var(--sub-height) + 15px);
+  padding-top: calc(var(--header-height) + var(--sub-height) + 6px);
 }
 
 /* ===============================
@@ -102,6 +102,7 @@ body{
    MAIN
    =============================== */
 main{
+  margin-top: 10px;
   padding: 6px;
   background: var(--bg-main);
   border-radius: 12px;
@@ -172,14 +173,14 @@ main{
 /* Khối ảnh đặt giữa nội dung */
 .img-giua{
     text-align: center;
-    margin: 30px 0;
+    margin: 3px 3px;
 }
 
 /* Ảnh trong bài viết */
 .img-giua img{
     max-width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 /* ===============================
@@ -187,7 +188,7 @@ main{
    =============================== */
 footer{
   margin-top: 10px;
-  padding: 20px 10px;
+  padding: 6px 6px;
   text-align: center;
   font-size: 13px;
   color: hsl(61, 90%, 51%);
