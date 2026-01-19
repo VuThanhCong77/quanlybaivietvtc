@@ -8,7 +8,7 @@
 <!-- Open Graph chuẩn cho Facebook & Zalo -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="❤️SỨC KHỎE🧠TRÍ TUỆ 🌸HẠNH PHÚC">
-<meta property="og:description" content="🌱 Hãy cập nhật giá trị sống tích cực">
+<meta property="og:description" content="🌱 Giá trị sống tích cực">
 <meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/hoasen.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -139,7 +139,7 @@ nav{
    MAIN – CÙNG CHIỀU NGANG
    =============================== */
 main{
-   padding: 110px 6px 10px;
+   padding: 110px 6px 6px;
   background:rgba(255,255,255,0.85);
 }
 
@@ -167,7 +167,7 @@ footer a{color:#fff;text-decoration:none}
   max-width: 1200px;
   margin: 0 auto;
   padding: 3px 3px;
-  background: #0a3a5a;
+  background: hsl(204, 88%, 39%);
   color: #fff;
   text-align: center;
 }
@@ -361,12 +361,12 @@ footer a{
 .current-time {
   text-align: left;
   font-size: 14px;
-  color: lab(87.98% -83.93 83.48);
+  color: lch(2.89% 26.24 305.86);
   margin-bottom: 6px;  /* khoảng cách hợp lý trước Tin tức */
  }
 
 main{
-  padding-top: 2cm;
+  padding-top: 0.5cm;
 }
 
 /* ===============================
@@ -387,7 +387,7 @@ main{
 /* SIDEBAR */
 .sidebar{
   position: sticky;
-  top: 140px; /* thấp hơn header */
+  top: 130px; /* thấp hơn header */
 }
 
 /* HỘP TRONG SIDEBAR */
@@ -477,7 +477,6 @@ main{
 
 <body>
 <div class="page-wrapper">
-
 <header class="site-header">
     <div class="header-main">
     <div class="container">
@@ -503,12 +502,6 @@ main{
 	</div>
     </div>
   </div>
-
-<div id="running-text-wrapper" class="running-text" style="display:none;">
-  <div id="running-text" class="marquee"></div>
-</div>
-
-<div class="current-time" id="currentTime"></div>
 
 </header>
 
@@ -546,7 +539,6 @@ main{
     </div>
   </div>
 
-
   <a href="baiviet.html" class="menu-item">✍ Bài viết</a>
   <a href="tintuc.html" class="menu-item">📢 Tin tức</a>
   <a href="anh.html" class="menu-item">📷 Thư viện ảnh</a>
@@ -558,6 +550,11 @@ main{
 
 <main>
 <div class="main-layout">
+<div id="running-text-wrapper" class="running-text" style="display:none;">
+  <div id="running-text" class="marquee"></div>
+</div>
+
+<div class="current-time" id="currentTime"></div>
 
     <!-- CỘT TRÁI: NỘI DUNG CHÍNH -->
     <div class="main-content">
@@ -567,7 +564,6 @@ main{
         <img src="anhvietbai/daihoi14.jpg" alt="">
 </a>
     </div>
-
 
  <!-- ẢNH 3 -->
     <div class="img-giua"> 
@@ -631,10 +627,6 @@ main{
     📘 Facebook
   </button>
 
-  <button class="share-btn zalo" onclick="shareZalo()">
-    💬 Zalo
-  </button>
-
   <button class="share-btn copy" onclick="copyLink(this)">
     🔗 Copy link
   </button>
@@ -654,7 +646,8 @@ main{
 
       <!-- Khối ảnh -->
       <div class="side-box">
-        <h3>📷 Thư viện ảnh</h3>
+	<h3><a href="anh.html">📷 Thư viện ảnh</a></h3>
+       
   <div class="img-giua">
 	<a href="https://dangcongsan.vn">
 	 <img src="tinanh/tinanh (7).jpg" alt="">
