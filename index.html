@@ -372,6 +372,70 @@ footer a{
 main{
   padding-top: 2cm;
 }
+
+/* ===============================
+   BỐ CỤC MAIN 2 CỘT
+   =============================== */
+
+.main-layout{
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* trái rộng – phải hẹp */
+  gap: 20px;
+}
+
+/* CỘT TRÁI */
+.main-content{
+  min-width: 0;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position: sticky;
+  top: 140px; /* thấp hơn header */
+}
+
+/* HỘP TRONG SIDEBAR */
+.side-box{
+  background: rgba(255,255,255,.85);
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.1);
+  margin-bottom: 16px;
+}
+
+.side-box h3{
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #0a3a5a;
+}
+
+/* ẢNH SIDEBAR */
+.side-box img{
+  width: 100%;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+
+/* LINK */
+.side-box ul{
+  padding-left: 18px;
+}
+.side-box a{
+  text-decoration: none;
+  color: #0a7f99;
+}
+
+@media(max-width: 900px){
+  .main-layout{
+    grid-template-columns: 1fr; /* về 1 cột */
+  }
+
+  .sidebar{
+    position: static;
+    background: rgba(240,248,255,.9);
+  }
+}
+
 </style>
 </head>
 
@@ -453,10 +517,14 @@ main{
   <a href="suckhoe.html" class="menu-item">❤️ Sức khỏe</a>
   <a href="tailieu.html" class="menu-item">📁 Tài liệu</a>
   <a href="lich_cong_tac.html" class="menu-item">📅 Xem lịch</a>
-    <a href="danhsachbaiviet.html" class="menu-item">📖 Danh sách bài viết</a>
+  <a href="danhsachbaiviet.html" class="menu-item">📖 Danh sách bài viết</a>
 </nav>
 
 <main>
+<div class="main-layout">
+
+    <!-- CỘT TRÁI: NỘI DUNG CHÍNH -->
+    <div class="main-content">
 
  <!-- ẢNH 3 -->
     <div class="img-giua"> 
@@ -520,7 +588,45 @@ main{
          padding:8px 14px;border-radius:6px;cursor:pointer;">
   📤 Chia sẻ Facebook
 </button>
-</main>
+</div> <!-- ĐÓNG .container -->
+</div> <!-- ✅ ĐÓNG .main-content -->
+
+ 
+    <!-- CỘT PHẢI: SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- Khối ảnh -->
+      <div class="side-box">
+        <h3>📷 Thư viện ảnh</h3>
+        <img src="tinanh/tinanh (7).jpg" alt="">
+        <img src="tinanh/tinanh (6).jpg" alt="">
+<img src="tinanh/tinanh (8).jpg" alt="">
+<img src="tinanh/tinanh (9).jpg" alt="">
+
+<img src="tinanh/tinanh (1).jpg" alt="">
+<img src="tinanh/tinanh (2).jpg" alt="">
+<img src="tinanh/tinanh (3).jpg" alt="">
+<img src="tinanh/tinanh (4).jpg" alt="">
+<img src="tinanh/tinanh (5).jpg" alt="">
+<img src="tinanh/tinanh (10).jpg" alt="">
+<img src="tinanh/bandoluukiem.jpg" alt="">
+
+      </div>
+
+      <!-- Khối liên kết -->
+      <div class="side-box">
+        <h3>🔗 Liên kết nhanh</h3>
+        <ul>
+	  <li><a href="vanban/dieuledang.html">Điều lệ Đảng</a></li>
+          <li><a href="danhsachbaiviet.html">Danh sách bài viết</a></li>
+          <li><a href="https://dichvucong.gov.vn/p/home/dvc-trang-chu.html">Dịch vụ công</a></li>
+	  <li><a href="https://bandoso.haiphong.gov.vn/">Bản đồ Hải phòng</a></li>
+          </ul>
+      </div>
+    </aside>
+
+  </div>
+ </main>
 
 <footer class="site-footer">
         <div class="img-giua">
