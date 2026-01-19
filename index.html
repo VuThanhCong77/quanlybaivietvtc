@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>🌸</title>
 
-<meta property="og:title" content="Quy tắc vàng cho cuộc sống hạnh phúc">
+<meta property="og:title" content="Vũ Thành Công">
 <meta property="og:description" content="Sức khỏe – Trí tuệ – Hạnh phúc">
-<meta property="og:image" content="https://tenmiencuaban/images/hoasen.jpg">
-<meta property="og:url" content="https://tenmiencuaban/trang-hien-tai.html">
+<meta property="og:image"
+content="https://vuthanhcong77.github.io/quanlybaivietvtc/images/hoasen.jpg">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html">
 <meta property="og:type" content="article">
 
 <!-- CSS DÙNG CHUNG -->
@@ -525,6 +526,13 @@ main{
 
     <!-- CỘT TRÁI: NỘI DUNG CHÍNH -->
     <div class="main-content">
+<!-- ẢNH 4 -->
+    <div class="img-giua">
+	<a href="https://dangcongsan.vn"> 
+        <img src="anhvietbai/daihoi14.jpg" alt="">
+</a>
+    </div>
+
 
  <!-- ẢNH 3 -->
     <div class="img-giua"> 
@@ -588,6 +596,19 @@ main{
          padding:8px 14px;border-radius:6px;cursor:pointer;">
   📤 Chia sẻ Facebook
 </button>
+
+<button onclick="copyLinkZalo()"
+  style="background:#0068ff;color:#fff;border:none;
+         padding:8px 14px;border-radius:6px;
+         cursor:pointer;font-weight:600;">
+  📋 Sao chép link (Zalo)
+</button>
+
+<span id="copyStatus"
+  style="margin-left:8px;color:green;font-weight:600;display:none;">
+  ✔ Đã sao chép
+</span>
+
 </div> <!-- ĐÓNG .container -->
 </div> <!-- ✅ ĐÓNG .main-content -->
 
@@ -822,6 +843,33 @@ function updateTime() {
 
 updateTime();
 setInterval(updateTime, 1000);
+</script>
+
+<script>
+function copyLinkZalo() {
+  const url = "https://vuthanhcong77.github.io/quanlybaivietvtc/index.html"
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(url).then(() => {
+      showCopyStatus();
+    });
+  } else {
+    // fallback cho trình duyệt cũ
+    const input = document.createElement("input");
+    input.value = url;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand("copy");
+    document.body.removeChild(input);
+    showCopyStatus();
+  }
+}
+
+function showCopyStatus(){
+  const status = document.getElementById("copyStatus");
+  status.style.display = "inline";
+  setTimeout(()=> status.style.display="none", 2000);
+}
 </script>
 
 </body>
