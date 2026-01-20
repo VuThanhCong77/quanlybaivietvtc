@@ -693,6 +693,12 @@ main{
 	  <li><a href="https://bandoso.haiphong.gov.vn/">Bản đồ Hải phòng</a></li>
           </ul>
       </div>
+
+<div class="side-box">
+  <h3>📊 Đang online: <strong id="onlineCount">1</strong></h3>
+  <p>👁 Tổng lượt xem: <strong id="viewCount">0</strong></p>
+</div>
+
     </aside>
 
   </div>
@@ -892,6 +898,37 @@ function copyLink(btn){
       alert("Không copy được link!");
     });
 }
+</script>
+
+<script>
+(function(){
+  const KEY = "vtc77_online_users";
+  const TIMEOUT = 90 * 1000; // 90 giây coi là còn online
+
+  const now = Date.now();
+  let users = JSON.parse(localStorage.getItem(KEY) || "[]");
+
+  // loại bỏ lượt cũ
+  users = users.filter(t => now - t < TIMEOUT);
+
+  // thêm lượt hiện tại
+  users.push(now);
+
+  localStorage.setItem(KEY, JSON.stringify(users));
+
+  const el = document.getElementById("onlineCount");
+  if(el) el.innerText = users.length;
+})();
+</script>
+<script>
+(function(){
+  const VIEW_KEY = "vtc77_total_views";
+  let views = parseInt(localStorage.getItem(VIEW_KEY) || "0");
+  views++;
+  localStorage.setItem(VIEW_KEY, views);
+  const el = document.getElementById("viewCount");
+  if(el) el.innerText = views;
+})();
 </script>
 
 </body>
