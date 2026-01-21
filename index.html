@@ -9,10 +9,11 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="❤️SỨC KHỎE🧠TRÍ TUỆ 🌸HẠNH PHÚC">
 <meta property="og:description" content="🌱 Giá trị sống tích cực">
-<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/hoasen.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/vutrong.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
+
 
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="layout.css">
@@ -25,10 +26,12 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-7V4F395VKJ', { anonymize_ip: true });
 </script>
+
 <!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
-href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192" 
-href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180" 
-href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> <meta name="theme-color" content="#0a7f99">
+href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
 <style>
 :root{
   --max-width:1200px;
@@ -475,6 +478,43 @@ main{
   }
 }
 
+/* ===============================
+   NÚT LÊN ĐẦU TRANG
+   =============================== */
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: all .25s ease;
+}
+
+#backToTop:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  #backToTop{
+    right: 12px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
 </style>
 </head>
 
@@ -484,8 +524,8 @@ main{
     <div class="header-main">
     <div class="container">
       <nav>
-        <a href="index.html" class="logo">
-          <img src="images/hoasen.jpg">
+        <a href="vanban/vutrong.html" class="logo">
+          <img src="images/vutrong.jpg">
           <span>VŨ THÀNH CÔNG</span>
  	</a>
 	  <a href="gioithieu.html" class="logo">
@@ -937,6 +977,31 @@ function copyLink(btn){
   const el = document.getElementById("viewCount");
   if(el) el.innerText = views;
 })();
+</script>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+/* ===============================
+   BACK TO TOP – TỰ ĐỘNG
+   =============================== */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
 </script>
 
 </body>
