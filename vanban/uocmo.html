@@ -7,11 +7,9 @@
 <!-- THẺ CHIA SẺ MẠNG XÃ HỘI -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="🌱 Ước mơ bên dòng sông quê">
-<meta property="og:description" content="Một câu chuyện hồi ký – chính luận về hành trình học tập, lao động và khát vọng cống hiến.">
+<meta property="og:description" content="Một câu chuyện hồi ký về hành trình học tập, lao động và khát vọng cống hiến.">
 <meta property="og:url" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/vanban/uocmo.html">
 <meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/images/hoadao.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="../layout.css">
@@ -117,27 +115,25 @@
 	<p class="justified-p">Từ góc nhìn của hiện tại, tôi nhận thấy quá trình trưởng thành của bản thân là kết quả của sự tương tác lâu dài giữa hoàn cảnh kinh tế – xã hội, môi trường giáo dục và mạng lưới quan hệ con người. Những năm tháng lam lũ không làm phai nhạt ước mơ ban đầu, mà trái lại còn giúp tôi tái định hình nó theo hướng chín chắn, thực tế và gắn bó hơn với lợi ích chung. Ước mơ học tập và cống hiến vì quê hương vì thế không chỉ là khát vọng cá nhân, mà dần trở thành một định hướng giá trị mang tính chính luận: tri thức phải gắn với lao động, với đời sống và với trách nhiệm xã hội.</p>
 	<p class="justified-p">Vì vậy, không chỉ là câu chuyện riêng của một cá nhân xuất thân từ làng quê, mà còn là sự chiêm nghiệm về con đường đi lên của con người trong những điều kiện còn nhiều khó khăn. Từ bãi sông quê nghèo khó nhưng giàu nghĩa tình, tôi tin rằng mỗi nỗ lực học tập, mỗi giọt mồ hôi lao động đều góp phần tạo nên nền tảng cho sự đổi thay bền vững. Và chính từ những trải nghiệm đó, tôi luôn tâm niệm rằng: chỉ khi tri thức được đặt trong mối quan hệ hữu cơ với thực tiễn và trách nhiệm cộng đồng, nó mới thực sự phát huy giá trị lâu dài đối với cá nhân và xã hội.</p>
 </div>
+
 <div class="share-box">
   <span>🔗 Chia sẻ:</span>
 
   <a class="share-btn fb"
-     href="https://www.facebook.com/sharer/sharer.php?u=https://tenmiencuaban/baiviet/uocmo.html"
-     target="_blank">
+     href="#"
+     onclick="shareFacebook(); return false;">
      Facebook
   </a>
 
-  <a class="share-btn zalo"
-     href="https://zalo.me/share?url=https://tenmiencuaban/baiviet/uocmo.html"
-     target="_blank">
-     Zalo
-  </a>
-
-  <button class="share-btn copy" onclick="copyLink()">Sao chép link</button>
+  <button class="share-btn copy" onclick="copyLink()">
+     Sao chép link
+  </button>
 </div>
 
 <a href="../gioithieu.html">👉 Giới thiệu</a>
 <!-- NÚT LÊN ĐẦU TRANG -->
 <button id="backToTop" title="Lên đầu trang">⬆</button>
+
 <script>
 const btn = document.getElementById("backToTop");
 
@@ -157,8 +153,15 @@ btn.addEventListener("click", function(){
     behavior: "smooth"
   });
 });
-</script>
-<script>
+
+function shareFacebook(){
+  const url = encodeURIComponent(window.location.href);
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    '_blank'
+  );
+}
+
 function copyLink(){
   navigator.clipboard.writeText(window.location.href);
   alert("Đã sao chép đường dẫn bài viết!");

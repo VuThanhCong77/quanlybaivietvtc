@@ -7,11 +7,9 @@
 <!-- THẺ CHIA SẺ MẠNG XÃ HỘI -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="🌿 Hạnh phúc là gì?">
-<meta property="og:description" content="Hạnh phúc không phải là có nhiều, mà là biết đủ; không phải là đi tìm, mà là biết nhận ra.">
+<meta property="og:description" content="Hạnh phúc không phải là có nhiều, mà là biết đủ...">
 <meta property="og:url" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/vanban/hanhphuc.html">
-<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/images/hoamai.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/images/hoadao.jpg">
 
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="../layout.css">
@@ -116,27 +114,25 @@
 <p class="justified-p">Lại có câu chuyện về hoa và rác. Hoa, dù đẹp đến đâu, bảy ngày rồi cũng thành rác. Còn rác, nếu biết ủ, biết vun trồng, ba tháng sau lại hóa thành hoa. Đời người cũng vậy. Điều hôm nay ta chán chường, nếu biết nhìn khác đi, biết chăm chút, rồi cũng có ngày nở hương. Còn những gì ta đang nâng niu, nếu coi là hiển nhiên, sẽ sớm phai tàn.</p>
 <p class="justified-p">Vậy nên, hạnh phúc không phải là có nhiều, mà là biết đủ; không phải là đi tìm, mà là biết nhận ra. Khi con người biết dừng lại một chút, cúi xuống nhìn cuộc đời bằng ánh mắt dịu dàng hơn, thì hạnh phúc – hóa ra – vẫn luôn ở đó, bình dị như bát cơm nóng, như tiếng gọi thân quen, như một ngày bình thường trôi qua trong yên ổn ❤️</p>
 </div>
+
 <div class="share-box">
   <span>🔗 Chia sẻ:</span>
 
   <a class="share-btn fb"
-     href="https://www.facebook.com/sharer/sharer.php?u=https://tenmiencuaban/baiviet/uocmo.html"
-     target="_blank">
+     href="#"
+     onclick="shareFacebook(); return false;">
      Facebook
   </a>
 
-  <a class="share-btn zalo"
-     href="https://zalo.me/share?url=https://tenmiencuaban/baiviet/uocmo.html"
-     target="_blank">
-     Zalo
-  </a>
-
-  <button class="share-btn copy" onclick="copyLink()">Sao chép link</button>
+  <button class="share-btn copy" onclick="copyLink()">
+     Sao chép link
+  </button>
 </div>
 
 <a href="../gioithieu.html">👉 Giới thiệu</a>
 <!-- NÚT LÊN ĐẦU TRANG -->
 <button id="backToTop" title="Lên đầu trang">⬆</button>
+
 <script>
 const btn = document.getElementById("backToTop");
 
@@ -156,13 +152,19 @@ btn.addEventListener("click", function(){
     behavior: "smooth"
   });
 });
-</script>
-<script>
+
+function shareFacebook(){
+  const url = encodeURIComponent(window.location.href);
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    '_blank'
+  );
+}
+
 function copyLink(){
   navigator.clipboard.writeText(window.location.href);
   alert("Đã sao chép đường dẫn bài viết!");
 }
 </script>
-
 </body>
 </html>
