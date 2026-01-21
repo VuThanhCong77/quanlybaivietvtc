@@ -6,9 +6,9 @@
 
 <!-- THẺ CHIA SẺ MẠNG XÃ HỘI -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="🌿 Hạnh phúc là gì?">
-<meta property="og:description" content="Hạnh phúc không phải là có nhiều, mà là biết đủ...">
-<meta property="og:url" content="https://github.com/VuThanhCong77/quanlybaivietvtc/edit/main/vanban/hanhphuc.html">
+<meta property="og:title" content="TIÊU ĐỀ BÀI VIẾT">
+<meta property="og:description" content="MÔ TẢ NỘI DUNG BÀI VIẾT">
+<meta property="og:url" content="https://github.com/VuThanhCong77/quanlybaivietvtc/edit/main/vanban/TEN FILE.html">
 <meta property="og:image" content="https://github.com/VuThanhCong77/quanlybaivietvtc/blob/main/images/hoamai.jpg">
 
 <!-- CSS DÙNG CHUNG -->
@@ -26,7 +26,7 @@
   line-height:1.8;
 }
 
-.article h1{
+.article h2{
   text-align:center;
   color:#0b4ea2;
   font-size: 20px;
@@ -94,13 +94,51 @@
   background: #6b7280;
 }
 
+/* GỌN KHOẢNG CÁCH HEADER – BÀI VIẾT */
+.page-header{
+  margin-bottom: 10px;
+}
+
+/* KHỐI BÀI VIẾT */
+.article{
+  margin:15px auto 25px;
+  padding:25px 45px;
+}
+
+/* TIÊU ĐỀ */
+.article h2{
+  margin-bottom: 6px;
+}
+
+/* THÔNG TIN TÁC GIẢ */
+.article > div{
+  margin-bottom: 12px;
+}
+
+/* FOOTER */
+footer{
+  margin-top: 15px;
+  padding: 10px 0;
+}
+footer p{
+  margin: 0;
+}
+
 </style>
 </head>
 
 <body>
-<a href="../index.html">🏠 Trang chủ</a>
+<div class="page-wrapper">
+
+<header class="page-header">
+  <h1 class="page-title gioithieu">
+<a href="../gioithieu.html">Giới thiệu </a>
+</h1>
+  <a href="../index.html"> 🏠</a>
+</header>
+
 <div class="article">
-  <h1>🌿 Hạnh phúc là gì?</h1>
+  <h2>🌿 Hạnh phúc là gì?</h2>
 
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 21/01/2026
@@ -113,12 +151,9 @@
 <p class="justified-p">Người xưa kể câu chuyện về tờ giấy trắng. Trên tờ giấy ấy có mây, rồi mưa đổ xuống, cây cối lớn lên, bác công nhân ra đồng làm việc, cánh đồng lúa trổ bông, nuôi sống bác, nuôi cả bố mẹ bác. Tất cả được sưởi ấm bởi ánh mặt trời. Nhìn vậy mới hiểu: hạnh phúc của một con người không tách rời trời đất, không đứng riêng lẻ, mà là kết quả của bao mối liên hệ âm thầm và bền bỉ.</p>
 <p class="justified-p">Lại có câu chuyện về hoa và rác. Hoa, dù đẹp đến đâu, bảy ngày rồi cũng thành rác. Còn rác, nếu biết ủ, biết vun trồng, ba tháng sau lại hóa thành hoa. Đời người cũng vậy. Điều hôm nay ta chán chường, nếu biết nhìn khác đi, biết chăm chút, rồi cũng có ngày nở hương. Còn những gì ta đang nâng niu, nếu coi là hiển nhiên, sẽ sớm phai tàn.</p>
 <p class="justified-p">Vậy nên, hạnh phúc không phải là có nhiều, mà là biết đủ; không phải là đi tìm, mà là biết nhận ra. Khi con người biết dừng lại một chút, cúi xuống nhìn cuộc đời bằng ánh mắt dịu dàng hơn, thì hạnh phúc – hóa ra – vẫn luôn ở đó, bình dị như bát cơm nóng, như tiếng gọi thân quen, như một ngày bình thường trôi qua trong yên ổn ❤️</p>
-</div>
 
 <div class="share-box">
-  <span>🔗 Chia sẻ:</span>
-
-  <a class="share-btn fb"
+   <a class="share-btn fb"
      href="#"
      onclick="shareFacebook(); return false;">
      Facebook
@@ -129,7 +164,12 @@
   </button>
 </div>
 
-<a href="../gioithieu.html">👉 Giới thiệu</a>
+</div>
+<footer>
+  <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+  </footer>
+</div>
+
 <!-- NÚT LÊN ĐẦU TRANG -->
 <button id="backToTop" title="Lên đầu trang">⬆</button>
 
@@ -168,8 +208,3 @@ function copyLink(){
 </script>
 </body>
 </html>
-
-
-
-
-
