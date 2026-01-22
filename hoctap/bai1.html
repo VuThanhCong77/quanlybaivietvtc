@@ -6,12 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+h1, h2, h3, h4 {
+font-size: 18px;
+}
+
     body {
         font-family: Arial, Helvetica, sans-serif;
         background: #f4f6f9;
         margin: 0;
         padding: 20px;
-        line-height: 1.7;
+        line-height: 1;
     }
 
     .container {
@@ -25,7 +29,7 @@
     h1 {
         text-align: center;
         color: #0b5394;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
 
     h2 {
@@ -75,6 +79,44 @@
         color: #666;
         margin-top: 40px;
     }
+
+/* ===============================
+   NÚT LÊN ĐẦU TRANG
+   =============================== */
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: all .25s ease;
+}
+
+#backToTop:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  #backToTop{
+    right: 12px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
 </style>
 </head>
 
@@ -190,5 +232,30 @@ Mở một website bất kỳ và nhận xét: có đăng nhập không? Nội d
 Tài liệu học tập cá nhân – Bài 1
 </footer>
 </div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+/* ===============================
+   BACK TO TOP – TỰ ĐỘNG
+   =============================== */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
 </body>
 </html>

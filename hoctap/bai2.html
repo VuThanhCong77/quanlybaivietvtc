@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài 2 – Server, Client và Trình duyệt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+h1, h2, h3, h4 {
+font-size: 18px;
+}
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f9;
+        margin: 0;
+        padding: 20px;
+        line-height: 1;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: #ffffff;
+        padding: 30px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #0b5394;
+        margin-bottom: 10px;
+ 	    }
+
+    h2 {
+        color: #0b5394;
+        border-left: 5px solid #0b5394;
+        padding-left: 10px;
+        margin-top: 30px;
+    }
+
+    h3 {
+        color: #333;
+        margin-top: 20px;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    ul, ol {
+        margin-left: 20px;
+    }
+
+    .note {
+        background: #eef3fb;
+        border-left: 5px solid #0b5394;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .important {
+        background: #fde9d9;
+        border-left: 5px solid #e69138;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .task {
+        background: #fff3cd;
+        border-left: 5px solid #f0ad4e;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    footer {
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        margin-top: 40px;
+    }
+/* ===============================
+   NÚT LÊN ĐẦU TRANG
+   =============================== */
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: all .25s ease;
+}
+
+#backToTop:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  #backToTop{
+    right: 12px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+<a href="../hoctap.html">📖 Học tập</a>
+<h1>BÀI 2  
+<br>SERVER – CLIENT – TRÌNH DUYỆT & VAI TRÒ TỪNG THÀNH PHẦN</h1>
+
+<h2>I. MỤC TIÊU BÀI HỌC</h2>
+<ul>
+    <li>Hiểu rõ khái niệm Server và Client</li>
+    <li>Biết trình duyệt là gì và làm được những gì</li>
+    <li>Hiểu mô hình Client – Server trong thực tế</li>
+</ul>
+
+<h2>II. CLIENT LÀ GÌ?</h2>
+
+<h3>1. Định nghĩa</h3>
+<p>
+Client là thiết bị hoặc phần mềm của người dùng dùng để gửi yêu cầu và nhận kết quả từ Server.
+</p>
+
+<h3>2. Ví dụ Client</h3>
+<ul>
+    <li>Máy tính cá nhân</li>
+    <li>Điện thoại</li>
+    <li>Trình duyệt Chrome, Edge, Firefox</li>
+</ul>
+
+<div class="note">
+<b>Ghi nhớ:</b><br>
+Client là phía “người dùng”, không lưu trữ website.
+</div>
+
+<h2>III. SERVER LÀ GÌ?</h2>
+
+<h3>1. Định nghĩa</h3>
+<p>
+Server là máy tính chuyên dụng, hoạt động liên tục 24/7, dùng để lưu trữ và cung cấp dữ liệu cho Client khi có yêu cầu.
+</p>
+
+<h3>2. Server làm những việc gì?</h3>
+<ul>
+    <li>Lưu file website (HTML, CSS, JS, hình ảnh)</li>
+    <li>Xử lý yêu cầu</li>
+    <li>Trả dữ liệu về cho Client</li>
+</ul>
+
+<div class="important">
+<b>Lưu ý:</b><br>
+Server không có màn hình để “xem web”, Server chỉ xử lý và trả dữ liệu.
+</div>
+
+<h2>IV. TRÌNH DUYỆT LÀ GÌ?</h2>
+
+<h3>1. Khái niệm</h3>
+<p>
+Trình duyệt là phần mềm giúp Client gửi yêu cầu đến Server và hiển thị kết quả trả về.
+</p>
+
+<h3>2. Trình duyệt hiểu được gì?</h3>
+<ul>
+    <li>HTML – cấu trúc</li>
+    <li>CSS – trình bày</li>
+    <li>JavaScript – tương tác</li>
+</ul>
+
+<div class="note">
+<b>Kết luận:</b><br>
+Không có trình duyệt → không xem được website.
+</div>
+
+<h2>V. MÔ HÌNH CLIENT – SERVER</h2>
+
+<ol>
+    <li>Client mở trình duyệt</li>
+    <li>Nhập địa chỉ website</li>
+    <li>Trình duyệt gửi yêu cầu đến Server</li>
+    <li>Server xử lý và gửi dữ liệu</li>
+    <li>Trình duyệt hiển thị cho người dùng</li>
+</ol>
+
+<h2>VI. WEBSITE TĨNH VÀ VAI TRÒ SERVER</h2>
+
+<ul>
+    <li>Server chỉ gửi file HTML, CSS, JS</li>
+    <li>Không xử lý dữ liệu phức tạp</li>
+    <li>Phù hợp học nền tảng</li>
+</ul>
+
+<h2>VII. KẾT LUẬN CỐT LÕI</h2>
+
+<div class="important">
+✔ Client là người yêu cầu<br>
+✔ Server là nơi lưu trữ và cung cấp<br>
+✔ Trình duyệt là cầu nối hiển thị<br>
+✔ Client – Server là mô hình nền tảng của Internet
+</div>
+
+<h2>VIII. BÀI TẬP</h2>
+
+<div class="task">
+<b>Bài tập 1:</b><br>
+Trình bày bằng lời của đồng chí: Server khác Client ở điểm nào?
+</div>
+
+<div class="task">
+<b>Bài tập 2:</b><br>
+Khi mất Internet, vì sao không truy cập được website?
+</div>
+
+<footer>
+Tài liệu học tập cá nhân – Bài 2
+</footer>
+
+</div>
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+/* ===============================
+   BACK TO TOP – TỰ ĐỘNG
+   =============================== */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+</body>
+</html>
