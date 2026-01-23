@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 7 - JavaScript vòng lặp và điều kiện</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+h1, h2{
+font-size: 18px;
+}
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0d6efd;
+            text-align: center;
+        }
+        h2 {
+            color: #198754;
+            margin-top: 30px;
+        }
+        pre {
+            background: #f1f1f1;
+            padding: 15px;
+            border-left: 5px solid #0d6efd;
+            overflow-x: auto;
+        }
+        button {
+            padding: 10px 20px;
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #084298;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+/* ===============================
+   NÚT LÊN ĐẦU TRANG
+   =============================== */
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: all .25s ease;
+}
+
+#backToTop:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  #backToTop{
+    right: 12px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+    </style>
+</head>
+<body>
+<div class="container">
+<a href="../hoctap.html">📖 Học tập</a>
+
+    <h1>BÀI 7: CẤU TRÚC ĐIỀU KIỆN VÀ VÒNG LẶP</h1>
+
+    <h2>1. Cấu trúc điều kiện (if)</h2>
+    <pre>
+if (điều_kiện) {
+    // lệnh thực hiện
+} else {
+    // lệnh khác
+}
+    </pre>
+
+    <h3>Ví dụ:</h3>
+    <pre>
+var tuoi = 20;
+if (tuoi >= 18) {
+    console.log("Đủ tuổi");
+} else {
+    console.log("Chưa đủ tuổi");
+}
+    </pre>
+
+    <h2>2. Toán tử so sánh</h2>
+    <ul>
+        <li>== : bằng</li>
+        <li>!= : khác</li>
+        <li>&gt; , &lt; , &gt;= , &lt;=</li>
+    </ul>
+
+    <h2>3. Vòng lặp for</h2>
+    <pre>
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+    </pre>
+
+    <button onclick="chayVongLap()">Chạy vòng lặp</button>
+    <div id="ketqua" class="result"></div>
+
+    <script>
+        function chayVongLap() {
+            let kq = "";
+            for (let i = 1; i <= 5; i++) {
+                kq += "Số: " + i + "<br>";
+            }
+            document.getElementById("ketqua").innerHTML = kq;
+        }
+    </script>
+
+    <h2>4. Vòng lặp while</h2>
+    <pre>
+let i = 1;
+while (i <= 3) {
+    console.log(i);
+    i++;
+}
+    </pre>
+
+    <h2>5. Bài thực hành</h2>
+    <ol>
+        <li>Viết chương trình kiểm tra số chẵn/lẻ</li>
+        <li>Dùng vòng lặp in ra các số từ 1 đến 10</li>
+        <li>Kiểm tra tuổi để thông báo đủ/không đủ điều kiện</li>
+    </ol>
+
+    <h2>6. Ghi nhớ</h2>
+    <ul>
+        <li>Điều kiện giúp chương trình ra quyết định</li>
+        <li>Vòng lặp giúp xử lý công việc lặp lại</li>
+        <li>Đây là tư duy cốt lõi của lập trình</li>
+    </ul>
+
+    <p style="text-align:center; margin-top:40px; font-style:italic;">
+        Hoàn thành Bài 7 là đồng chí đã tư duy như một lập trình viên ✔
+    </p>
+</div>
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+/* ===============================
+   BACK TO TOP – TỰ ĐỘNG
+   =============================== */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+</body>
+</html>
