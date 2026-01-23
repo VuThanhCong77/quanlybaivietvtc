@@ -549,6 +549,32 @@ main{
   "jobTitle": "Cán bộ",
   "description": "Vũ Thành Công là tác giả và quản trị nội dung trang thông tin điện tử, nơi chia sẻ bài viết, văn bản, tư liệu phục vụ học tập và công tác."
 }
+
+#btnChangeBg,
+#btnDefaultBg{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 16px;
+  background: #0a7f99;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 3000;
+  font-size: 14px;
+}
+
+/* nút mặc định đặt lệch trái */
+#btnDefaultBg{
+  right: 130px;
+  background: #6c757d;
+}
+
+#btnDefaultBg:hover{
+  background: #5a6268;
+}
+
 </script>
 
 </head>
@@ -1049,6 +1075,44 @@ backToTop.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+</script>
+
+<button id="btnChangeBg">Đổi nền</button>
+<button id="btnDefaultBg">Nền mặc định</button>
+
+<script>
+const bgList = [
+  'anhnen/bg-2.jpg',
+  'anhnen/bg-3.jpg',
+  'anhnen/bg-4.jpg',
+  'anhnen/bg-5.jpg',
+  'anhnen/bg-6.jpg'
+];
+
+function setBackground(img){
+  document.body.style.background =
+    `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
+     url("${img}") center / cover no-repeat fixed`;
+}
+
+// Load nền đã lưu
+let bgIndex = localStorage.getItem("bgIndex");
+if(bgIndex !== null){
+  setBackground(bgList[bgIndex]);
+}
+
+// Nút đổi nền
+document.getElementById("btnChangeBg").onclick = function(){
+  bgIndex = bgIndex === null ? 1 : (Number(bgIndex) + 1) % bgList.length;
+  setBackground(bgList[bgIndex]);
+  localStorage.setItem("bgIndex", bgIndex);
+};
+
+// Nút nền mặc định
+document.getElementById("btnDefaultBg").onclick = function(){
+  document.body.style.background = "";
+  localStorage.removeItem("bgIndex");
+};
 </script>
 
 </body>
