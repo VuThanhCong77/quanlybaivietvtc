@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 5 - JavaScript thao tác với HTML (DOM)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+h1, h2 {
+font-size: 18px;
+}
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0b5ed7;
+            text-align: center;
+        }
+        h2 {
+            color: #198754;
+            margin-top: 30px;
+        }
+        pre {
+            background: #f1f1f1;
+            padding: 15px;
+            border-left: 5px solid #0b5ed7;
+            overflow-x: auto;
+        }
+        button {
+            padding: 10px 20px;
+            background: #0b5ed7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #084298;
+        }
+        .box {
+            padding: 15px;
+            margin-top: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+/* ===============================
+   NÚT LÊN ĐẦU TRANG
+   =============================== */
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: all .25s ease;
+}
+
+#backToTop:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  #backToTop{
+    right: 12px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+<a href="../hoctap.html">📖 Học tập</a>
+    <h1>BÀI 5: JAVASCRIPT THAO TÁC VỚI HTML (DOM)</h1>
+
+    <h2>1. DOM là gì?</h2>
+    <p>
+        DOM (Document Object Model) là mô hình đối tượng của tài liệu HTML.
+        JavaScript thông qua DOM có thể:
+    </p>
+    <ul>
+        <li>Thay đổi nội dung HTML</li>
+        <li>Thay đổi thuộc tính HTML</li>
+        <li>Thay đổi CSS</li>
+        <li>Bắt và xử lý sự kiện người dùng</li>
+    </ul>
+
+    <h2>2. Truy cập phần tử HTML</h2>
+    <pre>
+document.getElementById("id");
+document.getElementsByClassName("class");
+document.getElementsByTagName("tag");
+    </pre>
+
+    <h3>Ví dụ:</h3>
+    <div id="demo" class="box">Nội dung ban đầu</div>
+    <button onclick="doiNoiDung()">Đổi nội dung</button>
+
+    <script>
+        function doiNoiDung() {
+            document.getElementById("demo").innerHTML = "Nội dung đã được thay đổi!";
+        }
+    </script>
+
+    <h2>3. Thay đổi CSS bằng JavaScript</h2>
+    <pre>
+element.style.color = "red";
+element.style.fontSize = "20px";
+    </pre>
+
+    <button onclick="doiMau()">Đổi màu chữ</button>
+
+    <script>
+        function doiMau() {
+            var el = document.getElementById("demo");
+            el.style.color = "red";
+            el.style.fontSize = "22px";
+        }
+    </script>
+
+    <h2>4. Xử lý sự kiện (Event)</h2>
+    <p>Sự kiện là các hành động của người dùng như: click, nhập liệu, di chuột...</p>
+
+    <pre>
+<button onclick="ham()">Bấm</button>
+    </pre>
+
+    <button onclick="thongBao()">Hiển thị thông báo</button>
+
+    <script>
+        function thongBao() {
+            alert("Bạn vừa bấm nút!");
+        }
+    </script>
+
+    <h2>5. Bài thực hành</h2>
+    <ol>
+        <li>Tạo một nút đổi màu nền trang</li>
+        <li>Tạo nút ẩn / hiện một đoạn văn</li>
+        <li>Tạo nút tăng giảm cỡ chữ</li>
+    </ol>
+
+    <h2>6. Ghi nhớ</h2>
+    <ul>
+        <li>JavaScript làm cho website trở nên động</li>
+        <li>DOM là cầu nối giữa JS và HTML</li>
+        <li>Học DOM là bước rất quan trọng để làm web thực tế</li>
+    </ul>
+
+    <p style="text-align:center; margin-top:40px; font-style:italic;">
+        Hoàn thành Bài 5 là đồng chí đã bước vào thế giới Web động 🚀
+    </p>
+</div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+/* ===============================
+   BACK TO TOP – TỰ ĐỘNG
+   =============================== */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 4 - JavaScript cơ bản</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #0b5394;
+	    font-size: 18px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 4px;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        .note {
+            background: #e7f3ff;
+            border-left: 4px solid #0b5394;
+            padding: 10px;
+        }
+
+/* ===============================
+   NÚT LÊN ĐẦU TRANG
+   =============================== */
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: all .25s ease;
+}
+
+#backToTop:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  #backToTop{
+    right: 12px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+<a href="../hoctap.html">📖 Học tập</a>
+
+<h1>BÀI 4: JAVASCRIPT CƠ BẢN</h1>
+
+<h2>1. JavaScript là gì?</h2>
+<p>
+JavaScript là ngôn ngữ lập trình chạy trên trình duyệt, giúp website <b>tương tác</b> với người dùng.
+Nếu HTML là khung nhà, CSS là trang trí, thì JavaScript là <b>hành động</b>.
+</p>
+
+<h2>2. JavaScript dùng để làm gì?</h2>
+<ul>
+    <li>Xử lý sự kiện (bấm nút, nhập dữ liệu)</li>
+    <li>Thay đổi nội dung trang web</li>
+    <li>Kiểm tra dữ liệu người dùng nhập</li>
+    <li>Tạo hiệu ứng động, thông báo</li>
+</ul>
+
+<h2>3. Cách nhúng JavaScript vào HTML</h2>
+<p><b>Cách 1:</b> Viết trực tiếp trong thẻ <code>&lt;script&gt;</code></p>
+<pre>
+&lt;script&gt;
+    alert("Xin chào JavaScript!");
+&lt;/script&gt;
+</pre>
+
+<p><b>Cách 2:</b> Dùng file riêng <code>.js</code></p>
+<pre>
+&lt;script src="script.js"&gt;&lt;/script&gt;
+</pre>
+
+<h2>4. Biến (Variable)</h2>
+<pre>
+let ten = "Cong";
+let tuoi = 30;
+</pre>
+
+<h2>5. Hàm (Function)</h2>
+<pre>
+function chaoHoi() {
+    alert("Chào mừng bạn học JavaScript!");
+}
+</pre>
+
+<h2>6. Sự kiện (Event)</h2>
+<button onclick="chaoHoi()">Bấm vào tôi</button>
+
+<script>
+function chaoHoi() {
+    alert("Chào mừng bạn đến với JavaScript!");
+}
+</script>
+
+<h2>7. Bài tập thực hành</h2>
+<ol>
+    <li>Tạo nút bấm hiển thị thông báo chào mừng</li>
+    <li>Tạo biến lưu họ tên và hiển thị ra màn hình</li>
+    <li>Thử thay đổi nội dung một đoạn văn bằng JavaScript</li>
+</ol>
+
+<div class="note">
+<b>Ghi nhớ:</b> JavaScript là nền tảng quan trọng để học tiếp các framework và lập trình web nâng cao.
+</div>
+
+<p><i>Kết thúc Bài 4</i></p>
+</div>
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+/* ===============================
+   BACK TO TOP – TỰ ĐỘNG
+   =============================== */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+</body>
+</html>
