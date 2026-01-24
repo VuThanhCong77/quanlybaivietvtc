@@ -5,12 +5,12 @@ html, body{
 body{
   margin: 0;
   font-family: Arial, sans-serif;
-  color: #0a3a5a;
+  color: #0721ca;
   line-height: 1.6;
 
   /* ẢNH NỀN CHUNG TOÀN SITE */
     background:
-    url("anhnen/bg-1.jpg") center / cover no-repeat fixed;
+     url("anhnen/bg-1.jpg") center / cover no-repeat fixed;
 }
 
 /* ==================================================
@@ -22,7 +22,7 @@ body{
   --header-height: 45px;
   --sub-height: 65px;
 
-  --primary: #0a7f99;
+  --primary: #061fc5;
   --secondary: #0ab3c9;
   --bg-main: #f9f9ff;
 }
@@ -206,7 +206,7 @@ footer{
   text-align: center;
   font-size: 13px;
   color: hsl(61, 90%, 51%);
-  background: #0893d8;
+  background: hwb(223 15% 7%);
   border-top: 1px solid #e5e7eb;
 }
 
@@ -264,4 +264,3 @@ footer{
   color: #333;
   line-height: 1.5;
 }
-
