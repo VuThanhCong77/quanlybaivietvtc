@@ -819,13 +819,12 @@ main{
   </div>
  </main>
 
-<footer class="site-footer">
-        <div class="img-giua">
-		<a href="https://luukiem.haiphong.gov.vn/">
-        <img src="images/trangchu2.jpg" alt="Hoa mai">
-		</a>
-    </div>
-</footer>
+ <footer class="site-footer">
+ <p><button id="btnChangeBg">Đổi nền</button>
+ <button id="btnDefaultBg">Nền mặc định</button></p>
+ <p><a href="https://luukiem.haiphong.gov.vn/">Trang TTĐT phường Lưu Kiếm </a>
+ <a href="https://www.facebook.com/?locale=vi_VN">🌸 Facebook</a></p>
+ </footer>
 
 <script>
 const menuToggle=document.getElementById("menuToggle");
@@ -889,10 +888,11 @@ async function loadRecentPosts(){
     .filter(p =>
       p.category === "tintuc" ||
       p.category === "baiviet" ||
-      p.category === "suckhoe"
+      p.category === "suckhoe" ||
+      p.category === "anh" 
     )
     .sort((a,b) => b.id - a.id)
-    .slice(0,6);
+    .slice(0,12);
 
   if(!valid.length){
     box.innerHTML =
@@ -1070,9 +1070,6 @@ backToTop.addEventListener("click", () => {
   });
 });
 </script>
-
-<button id="btnChangeBg">Đổi nền</button>
-<button id="btnDefaultBg">Nền mặc định</button>
 
 <script>
 const bgList = [
