@@ -269,12 +269,12 @@ footer{
    =============================== */
 
 .news-title{
-  font-size: 22px;
+  font-size: 16px;
   font-weight: bold;
   color: #b30000;
   border-bottom: 3px solid #b30000;
-  padding-bottom: 6px;
-  margin-bottom: 16px;
+  padding-bottom: 3px;
+  margin-bottom: 6px;
   text-transform: uppercase;
 }
 
@@ -287,7 +287,7 @@ footer{
 .news-item{
   display: flex;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 /* ẢNH */
@@ -301,11 +301,11 @@ footer{
 
 /* TIÊU ĐỀ */
 .news-item a{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: #222;
   text-decoration: none;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .news-item a:hover{

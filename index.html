@@ -197,7 +197,7 @@ footer a{color:#fff;text-decoration:none}
   background:#fff;
   border-radius:12px;
   overflow:hidden;          /* QUAN TRỌNG */
-  box-shadow:0 6px 16px rgba(0,0,0,.08);
+  box-shadow:0 6px 12px rgba(0,0,0,.08);
   display:flex;
   flex-direction:column;
 }
@@ -212,11 +212,11 @@ footer a{color:#fff;text-decoration:none}
 
 /* NỘI DUNG */
 .news-body{
-  padding:14px 16px;
+  padding:6px 6px;
 }
 
 .news-type{
-  font-size:12px;
+  font-size:14px;
   font-weight:bold;
   color:#0a7f99;
   display:block;
@@ -231,7 +231,7 @@ footer a{color:#fff;text-decoration:none}
 }
 
 .news-body time{
-  font-size:12px;
+  font-size:14px;
   color:hsl(220, 98%, 47%);
 }
 
@@ -346,6 +346,12 @@ p{
 .news-body h3 a:hover{
   color:#0a7f99;
 }
+.news-list{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
 
 /* FOOTER */
 footer{
@@ -372,10 +378,10 @@ footer a{
 
 .current-time {
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   color: #3030ef;
   margin-bottom: 6px;  /* khoảng cách hợp lý trước Tin tức */
- }
+}
 
 main{
   padding-top: 0.5cm;
@@ -547,7 +553,7 @@ main{
     "https://github.com/VuThanhCong77"
   ],
   "jobTitle": "Cán bộ",
-  "description": "Vũ Thành Công là tác giả và quản trị nội dung trang thông tin điện tử, nơi chia sẻ bài viết, văn bản, tư liệu phục vụ học tập và công tác."
+  "description": "Vũ Thành Công là tác giả và quản trị nội dung trang thông tin điện tử, nơi chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp thường này; nơi truyền cảm hứng và năng lượng sống tích cực."
 }
 
 #btnChangeBg,
@@ -680,7 +686,7 @@ main{
     Vũ Thành Công 
   </h1>
 <p class="justified"; style="color:#074090">
-    Chào mừng đã đến với trang thông tin điện tử; nơi chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp; nơi truyền cảm hứng và năng lượng sống tích cực: ❤️Sức khỏe 🧠Trí tuệ  🌸Hạnh phúc
+    Trang chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp thường này; nơi truyền cảm hứng và năng lượng sống tích cực.
 </p>
 </div>
 
@@ -794,8 +800,6 @@ main{
 </div>
 <img src="tinanh/tinanh (2).jpg" alt="">
 <img src="tinanh/tinanh (3).jpg" alt="">
-<img src="tinanh/tinanh (4).jpg" alt="">
-<img src="tinanh/tinanh (5).jpg" alt="">
 <img src="tinanh/tinanh (10).jpg" alt="">
 <img src="tinanh/cdluuky.jpg" alt="">
 <img src="tinanh/cdluukiem.jpg" alt="">
@@ -889,8 +893,7 @@ async function loadRecentPosts(){
     .filter(p =>
       p.category === "tintuc" ||
       p.category === "baiviet" ||
-      p.category === "suckhoe" ||
-      p.category === "anh"
+      p.category === "suckhoe"
     )
     .sort((a,b) => b.id - a.id)
     .slice(0,12);   // mẫu ảnh chỉ cần 4–5 tin
@@ -906,7 +909,7 @@ async function loadRecentPosts(){
   valid.forEach(p=>{
     box.insertAdjacentHTML("beforeend", `
       <div class="news-item">
-        <img src="${p.thumbnail || 'images/hoasen.jpg'}" alt="">
+        <img src="${p.thumbnail || 'images/vutrong.jpg'}" alt="">
         <div>
           <a href="post.html?id=${p.id}">
             ${p.title}
