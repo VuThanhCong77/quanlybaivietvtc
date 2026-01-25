@@ -264,3 +264,61 @@ footer{
   color: #333;
   line-height: 1.5;
 }
+/* ===============================
+   TIN TỨC MỚI NHẤT (INDEX)
+   =============================== */
+
+.news-title{
+  font-size: 22px;
+  font-weight: bold;
+  color: #b30000;
+  border-bottom: 3px solid #b30000;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+/* BỎ GRID – CHUYỂN SANG LIST */
+.news-list{
+  display: block;
+}
+
+/* MỖI DÒNG TIN */
+.news-item{
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+/* ẢNH */
+.news-item img{
+  width: 110px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* TIÊU ĐỀ */
+.news-item a{
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.news-item a:hover{
+  color: #b30000;
+  text-decoration: underline;
+}
+
+/* MOBILE */
+@media (max-width: 600px){
+  .news-item img{
+    width: 90px;
+    height: 65px;
+  }
+}
+
+

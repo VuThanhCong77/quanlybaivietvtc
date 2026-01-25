@@ -687,8 +687,8 @@ main{
 <section id="recent-posts">
   <div class="container">
     <h2 style="color:#0303ef;font-weight:bold">📝 Tin tức mới nhất</h2>
-    <div id="recent-posts-list" class="news-grid">
-      <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
+    <div id="recent-posts-list" class="news-list">
+    <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
     </div>
   </div>
 </section>
@@ -792,7 +792,6 @@ main{
 	🌿 Hạnh phúc là gì?
 	</a>
 </div>
-<img src="tinanh/VTC.jpg" alt="">
 <img src="tinanh/tinanh (2).jpg" alt="">
 <img src="tinanh/tinanh (3).jpg" alt="">
 <img src="tinanh/tinanh (4).jpg" alt="">
@@ -865,7 +864,7 @@ document.querySelectorAll(".menu-title.has-sub").forEach(title => {
 
 <script>
 /* ===============================
-   LOAD BÀI VIẾT MỚI NHẤT
+   LOAD BÀI VIẾT MỚI NHẤT (DẠNG LIST)
    =============================== */
 
 const JSON_URL = 'posts_data.json';
@@ -891,14 +890,14 @@ async function loadRecentPosts(){
       p.category === "tintuc" ||
       p.category === "baiviet" ||
       p.category === "suckhoe" ||
-      p.category === "anh" 
+      p.category === "anh"
     )
     .sort((a,b) => b.id - a.id)
-    .slice(0,12);
+    .slice(0,12);   // mẫu ảnh chỉ cần 4–5 tin
 
   if(!valid.length){
     box.innerHTML =
-      '<p style="grid-column:1/-1;text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
+      '<p style="text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
     return;
   }
 
@@ -906,24 +905,18 @@ async function loadRecentPosts(){
 
   valid.forEach(p=>{
     box.insertAdjacentHTML("beforeend", `
-      <article class="news-card">
+      <div class="news-item">
         <img src="${p.thumbnail || 'images/hoasen.jpg'}" alt="">
-        <div class="news-body">
-          <span class="news-type">
-            ${p.category === "tintuc" ? "TIN TỨC" : "BÀI VIẾT"}
-          </span>
-          <h3>
-            <a href="post.html?id=${p.id}">
-              ${p.title}
-            </a>
-          </h3>
-          <time>${p.date || ""}</time>
+        <div>
+          <a href="post.html?id=${p.id}">
+            ${p.title}
+          </a>
+          <div class="news-date">${p.date || ""}</div>
         </div>
-      </article>
+      </div>
     `);
   });
 }
-
 
 /* ===============================
    TỔNG SỐ BÀI VIẾT
