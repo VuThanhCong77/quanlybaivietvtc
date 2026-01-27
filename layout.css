@@ -38,7 +38,7 @@ body{
   width: 100%;
   margin: 0 auto;
   position: relative;
-  }
+ }
 
 /* ===============================
    HEADER – FIXED – CÙNG TRỤC
@@ -212,6 +212,11 @@ footer{
 /* ===============================
    RESPONSIVE
    =============================== */
+/* Desktop */
+.page-wrapper{
+  padding-top: 34px;
+}
+
 /* Mobile */
 @media (max-width: 768px){
   .page-wrapper{
@@ -399,6 +404,7 @@ footer{
 .main-content{
   padding-top: 10px;
 }
+
 /* ===============================
    MAIN 2 CỘT TRONG CÙNG MAIN
    =============================== */
@@ -427,7 +433,6 @@ footer{
     margin-top: 12px;
   }
 }
-
 
 
 
