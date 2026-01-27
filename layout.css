@@ -38,8 +38,7 @@ body{
   width: 100%;
   margin: 0 auto;
   position: relative;
-  padding-top: calc(var(--header-height) + 6px);
-}
+  }
 
 /* ===============================
    HEADER – FIXED – CÙNG TRỤC
@@ -213,11 +212,6 @@ footer{
 /* ===============================
    RESPONSIVE
    =============================== */
-/* Desktop */
-.page-wrapper{
-  padding-top: calc(var(--header-height) + var(--sub-height) + 6px);
-}
-
 /* Mobile */
 @media (max-width: 768px){
   .page-wrapper{
@@ -405,10 +399,6 @@ footer{
 .main-content{
   padding-top: 10px;
 }
-/* TRANG CÓ THANH PHỤ CỐ ĐỊNH */
-.has-sub-fixed .page-wrapper{
-  padding-top: calc(var(--header-height) + var(--sub-height) + 6px);
-}
 /* ===============================
    MAIN 2 CỘT TRONG CÙNG MAIN
    =============================== */
@@ -437,6 +427,7 @@ footer{
     margin-top: 12px;
   }
 }
+
 
 
 
