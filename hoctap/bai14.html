@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 14 - Dự án Web Hoàn chỉnh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+h1,h2 {
+font-size: 18px;
+}
+/* ===============================
+   NÚT LÊN ĐẦU TRANG
+   =============================== */
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: all .25s ease;
+}
+
+#backToTop:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  #backToTop{
+    right: 12px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background:#f7f7f7;
+        }
+        h1,h2,h3{
+            color:#8b0000;
+        }
+        section{
+            background:#fff;
+            padding:20px;
+            margin-bottom:20px;
+            border-radius:6px;
+            box-shadow:0 0 6px rgba(0,0,0,0.1);
+        }
+        code{
+            background:#eee;
+            padding:4px 6px;
+            border-radius:4px;
+            display:inline-block;
+        }
+        pre{
+            background:#272822;
+            color:#f8f8f2;
+            padding:15px;
+            overflow:auto;
+            border-radius:6px;
+        }
+        ul li{
+            margin-bottom:6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+<a href="../hoctap.html">📖 Học tập</a>
+
+<h1>BÀI 14: THỰC HÀNH DỰ ÁN WEB HOÀN CHỈNH</h1>
+
+<section>
+    <h2>I. Mục tiêu bài học</h2>
+    <ul>
+        <li>Tổng hợp kiến thức HTML, CSS, JavaScript đã học</li>
+        <li>Xây dựng một website quản lý nội dung đơn giản</li>
+        <li>Rèn tư duy tổ chức mã nguồn và dữ liệu</li>
+    </ul>
+</section>
+
+<section>
+    <h2>II. Mô tả dự án</h2>
+    <p>Xây dựng <strong>Website Quản lý danh sách công việc</strong> với các chức năng:</p>
+    <ul>
+        <li>Thêm công việc mới</li>
+        <li>Hiển thị danh sách</li>
+        <li>Đánh dấu hoàn thành</li>
+        <li>Lưu dữ liệu bằng <code>localStorage</code></li>
+    </ul>
+</section>
+
+<section>
+    <h2>III. Cấu trúc thư mục đề xuất</h2>
+    <pre>
+project/
+│── index.html
+│── style.css
+│── script.js
+    </pre>
+</section>
+
+<section>
+    <h2>IV. Mẫu HTML (index.html)</h2>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Quản lý công việc&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Danh sách công việc&lt;/h1&gt;
+
+    &lt;input type="text" id="taskInput" placeholder="Nhập công việc..."&gt;
+    &lt;button onclick="addTask()"&gt;Thêm&lt;/button&gt;
+
+    &lt;ul id="taskList"&gt;&lt;/ul&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+</section>
+
+<section>
+    <h2>V. Gợi ý JavaScript (script.js)</h2>
+    <pre>
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function render(){
+    const ul = document.getElementById("taskList");
+    ul.innerHTML = "";
+    tasks.forEach((t,i)=>{
+        const li = document.createElement("li");
+        li.textContent = t;
+        ul.appendChild(li);
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function addTask(){
+    const input = document.getElementById("taskInput");
+    if(input.value.trim() !== ""){
+        tasks.push(input.value);
+        input.value = "";
+        render();
+    }
+}
+
+render();
+    </pre>
+</section>
+
+<section>
+    <h2>VI. Yêu cầu tự hoàn thiện</h2>
+    <ul>
+        <li>Bổ sung CSS cho giao diện đẹp hơn</li>
+        <li>Thêm nút xóa công việc</li>
+        <li>Thêm trạng thái hoàn thành</li>
+    </ul>
+</section>
+
+<section>
+    <h2>VII. Kết luận</h2>
+    <p>
+        Bài 14 là bước chuyển từ <strong>học từng kỹ thuật</strong> sang 
+        <strong>vận dụng tổng hợp</strong>. Hoàn thành tốt bài này đồng nghĩa
+        đồng chí đã nắm vững nền tảng lập trình web căn bản.
+    </p>
+</section>
+</div>
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+/* ===============================
+   BACK TO TOP – TỰ ĐỘNG
+   =============================== */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+</body>
+</html>

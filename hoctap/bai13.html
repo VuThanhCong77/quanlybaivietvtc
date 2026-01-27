@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài 13 - Ứng dụng quản lý hoàn chỉnh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  font-family:Arial;
+  background:#f5f7fa;
+  padding:20px;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  background:#fff;
+  padding:20px;
+  border-radius:6px;
+}
+h1,h2{color:#0b5394}
+input,button{
+  padding:8px;
+  margin:5px 0;
+}
+button{cursor:pointer}
+ul{list-style:none;padding:0}
+li{
+  background:#eef2f5;
+  margin:6px 0;
+  padding:8px;
+  border-radius:4px;
+}
+.done{
+  text-decoration: line-through;
+  color:#888;
+}
+.action button{
+  margin-left:5px;
+}
+.note{
+  background:#fffbe6;
+  border-left:4px solid #f0c000;
+  padding:10px;
+  margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>BÀI 13: ỨNG DỤNG QUẢN LÝ HOÀN CHỈNH</h1>
+
+<div class="note">
+<strong>Mục tiêu:</strong> Ứng dụng quản lý có trạng thái, lưu dữ liệu lâu dài.
+</div>
+
+<h2>1. Thêm nhiệm vụ</h2>
+<input type="text" id="noidung" placeholder="Nhập nhiệm vụ">
+<button onclick="them()">Thêm</button>
+
+<h2>2. Danh sách nhiệm vụ</h2>
+<ul id="danhsach"></ul>
+
+</div>
+
+<script>
+let ds = JSON.parse(localStorage.getItem("tasks")) || [];
+let indexSua = -1;
+
+hienThi();
+
+function them(){
+  let nd = document.getElementById("noidung").value;
+  if(nd===""){
+    alert("Chưa nhập nội dung");
+    return;
+  }
+
+  if(indexSua === -1){
+    ds.push({
+      ten: nd,
+      hoanthanh: false
+    });
+  }else{
+    ds[indexSua].ten = nd;
+    indexSua = -1;
+  }
+
+  luu();
+  document.getElementById("noidung").value="";
+  hienThi();
+}
+
+function hienThi(){
+  let ul = document.getElementById("danhsach");
+  ul.innerHTML="";
+
+  ds.forEach(function(item,i){
+    let li = document.createElement("li");
+    li.className = item.hoanthanh ? "done" : "";
+    li.innerHTML = `
+      ${i+1}. ${item.ten}
+      <span class="action">
+        <button onclick="danhDau(${i})">
+          ${item.hoanthanh ? "Bỏ hoàn thành" : "Hoàn thành"}
+        </button>
+        <button onclick="sua(${i})">Sửa</button>
+        <button onclick="xoa(${i})">Xóa</button>
+      </span>
+    `;
+    ul.appendChild(li);
+  });
+}
+
+function danhDau(i){
+  ds[i].hoanthanh = !ds[i].hoanthanh;
+  luu();
+  hienThi();
+}
+
+function sua(i){
+  document.getElementById("noidung").value = ds[i].ten;
+  indexSua = i;
+}
+
+function xoa(i){
+  if(confirm("Xóa nhiệm vụ này?")){
+    ds.splice(i,1);
+    luu();
+    hienThi();
+  }
+}
+
+function luu(){
+  localStorage.setItem("tasks", JSON.stringify(ds));
+}
+</script>
+
+</body>
+</html>
