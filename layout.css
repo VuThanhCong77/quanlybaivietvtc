@@ -285,8 +285,8 @@ footer{
 /* MỖI DÒNG TIN */
 .news-item{
   display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
 /* ẢNH */
