@@ -140,14 +140,21 @@
   </nav>
 
   <!-- ================= KHUNG TRỤC CHUNG ================= -->
-  <div class="page-wrapper">
+<div class="page-wrapper">
+<main class="main-content">
+<div class="main-grid">
+    <!-- CỘT TRÁI -->
+<section class="content-left">
 
-  <main>
     <h2>Thư viện ảnh</h2>
 
     <!-- KHUNG SINH ẢNH TỰ ĐỘNG -->
     <section class="photo-grid" id="photoGrid"></section>
-  </main>
+  </section>
+ <!-- CỘT PHẢI -->
+    <aside class="content-right" id="sidebar-container"></aside>
+  </div>
+</main>
 
   <footer>Trang thông tin hình ảnh</footer>
 
@@ -188,6 +195,14 @@ overlay.onclick = () => {
   navMenu.classList.remove('open');
   overlay.classList.remove('show');
 };
+</script>
+
+<script>
+fetch("sidebar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("sidebar-container").innerHTML = data;
+  });
 </script>
 
 </body>

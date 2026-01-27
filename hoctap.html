@@ -154,7 +154,13 @@ footer p{
   <a href="index.html"> 🏠</a>
 </header>
 
-<div class="article">
+<div class="page-wrapper">
+<main class="main-content">
+<div class="main-grid">
+    <!-- CỘT TRÁI -->
+<section class="content-left">
+
+  <div class="article">
   <h2>CHƯƠNG TRÌNH HỌC TẬP</h2>
   <div style="color:#0303ef;font-weight:bold">
   </div>
@@ -191,8 +197,14 @@ footer p{
      Sao chép link
   </button>
 </div>
-
 </div>
+
+</section>
+ <!-- CỘT PHẢI -->
+    <aside class="content-right" id="sidebar-container"></aside>
+  </div>
+</main>
+
 <footer>
   <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
   </footer>
@@ -234,6 +246,15 @@ function copyLink(){
   alert("Đã sao chép đường dẫn bài viết!");
 }
 </script>
+
+<script>
+fetch("sidebar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("sidebar-container").innerHTML = data;
+  });
+</script>
+
 </body>
 </html>
 

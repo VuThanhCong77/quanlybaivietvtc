@@ -126,7 +126,12 @@ h2{
   <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
 </nav>
 
-<main>
+<div class="page-wrapper">
+<main class="main-content">
+<div class="main-grid">
+    <!-- CỘT TRÁI -->
+<section class="content-left">
+
  <h2><img src="images/vutrong.jpg" alt="Trang chủ" style="height:56px; vertical-align:middle; margin-left:36px;">
 CÂU CHUYỆN VỀ MỘT CON NGƯỜI BÊN DÒNG SÔNG ĐÁ BẠC🌱</h2>
   <p class="justified-p">
@@ -207,6 +212,10 @@ TƯ DUY & TRIẾT LÝ SỐNG🌸</h2>
 
     </div>
 
+</section>
+ <!-- CỘT PHẢI -->
+    <aside class="content-right" id="sidebar-container"></aside>
+  </div>
 </main>
 
 <footer>
@@ -227,6 +236,14 @@ overlay.onclick=()=>{ navMenu.classList.remove("active"); overlay.classList.remo
 document.querySelectorAll(".toggle").forEach(t=>{
   t.onclick=()=>t.parentElement.classList.toggle("open");
 });
+</script>
+
+<script>
+fetch("sidebar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("sidebar-container").innerHTML = data;
+  });
 </script>
 
 </body>

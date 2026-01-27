@@ -590,8 +590,8 @@ main{
           <span> 成 功</span>
  	</a>
 	  <a href="gioithieu.html" class="logo">
-	      <img src="tinanh/codang.png">
-		  <img src="images/co.png">
+	     <img src="tinanh/codang.png">
+	     <img src="images/co.png">
 	     <span>Giới thiệu</span>
           </a>
         <button id="menuToggle" class="menu-toggle">☰</button>
@@ -753,79 +753,9 @@ main{
 </div> <!-- ĐÓNG .container -->
 </div> <!-- ✅ ĐÓNG .main-content -->
 
- 
-    <!-- CỘT PHẢI: SIDEBAR -->
-    <aside class="sidebar">
-
-      <!-- Khối ảnh -->
-      <div class="side-box">
-	<h3><a href="anh.html">📷 Tin ảnh</a></h3>
-       
-  <div class="img-giua">
-	<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1765945315658.html">
-	 <img src="images/BacHo.jpg" alt="">
-	CT Hồ Chí Minh người thầy vĩ đại
-	</a>
+        <!-- CỘT PHẢI -->
+    <aside class="content-right" id="sidebar-container"></aside>
  </div>
-
-  <div class="img-giua">
-	<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1768997707164.html">
-	 <img src="tinanh/d96.jpg" alt="">
-	Chặng đường vẻ vang của Đảng
-	</a>
- </div>
-
- <div class="img-giua">
-	<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1767950981269.html">
-        <img src="tinanh/tinanh (6).jpg" alt="">
-	Đơn vị bầu cử phường Lưu Kiếm
-	</a>
- </div>
-
-   <div class="img-giua">
-	<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1767861140417.html">
-        <img src="tinanh/tinanh (8).jpg" alt="">
-	Đảng bộ phường Lưu Kiếm 2025
-	</a>
-    </div>
-<div class="img-giua">
-	<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1765764379994.html">
-	<img src="tinanh/tinanh (9).jpg" alt="">
-	Quê hương Lưu Kiếm anh hùng
-	</a>
-</div>
-<div class="img-giua">
-	<a href="vanban/hanhphuc.html">
-	<img src="tinanh/tinanh (1).jpg" alt="">
-	🌿 Hạnh phúc là gì?
-	</a>
-</div>
-<img src="tinanh/tinanh (2).jpg" alt="">
-<img src="tinanh/tinanh (3).jpg" alt="">
-<img src="tinanh/tinanh (10).jpg" alt="">
-<img src="tinanh/cdluuky.jpg" alt="">
-<img src="tinanh/cdluukiem.jpg" alt="">
-      </div>
-
-      <!-- Khối liên kết -->
-      <div class="side-box">
-        <h3>🔗 Liên kết nhanh</h3>
-        <ul>
-	  <li><a href="vanban/dieuledang.html">Điều lệ Đảng</a></li>
-          <li><a href="danhsachbaiviet.html">Danh sách bài viết</a></li>
-          <li><a href="https://dichvucong.gov.vn/p/home/dvc-trang-chu.html">Dịch vụ công</a></li>
-	  <li><a href="https://bandoso.haiphong.gov.vn/">Bản đồ Hải phòng</a></li>
-          </ul>
-      </div>
-
-<div class="side-box">
-  <h3>📊 Đang online: <strong id="onlineCount">1</strong></h3>
-  <p>👁 Tổng lượt xem: <strong id="viewCount">0</strong></p>
-</div>
-
-    </aside>
-
-  </div>
  </main>
 
  <footer class="site-footer">
@@ -1104,6 +1034,13 @@ document.getElementById("btnDefaultBg").onclick = function(){
   document.body.style.background = "";
   localStorage.removeItem("bgIndex");
 };
+</script>
+<script>
+fetch("sidebar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("sidebar-container").innerHTML = data;
+  });
 </script>
 
 </body>

@@ -71,12 +71,6 @@
 .nav-item.open > .sub-menu{ display: block; }
 
 /* ===== RIÊNG TRANG SỨC KHỎE ===== */
-.post-list{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
 .control-panel{
   display: flex;
   justify-content: flex-end;
@@ -188,9 +182,12 @@
 </nav>
 
 <div class="page-wrapper">
+<main class="main-content">
+<div class="main-grid">
+    <!-- CỘT TRÁI -->
+<section class="content-left">
 
-<main>
-  <div class="control-panel">
+    <div class="control-panel">
     <input type="text" id="search-input" placeholder="Tìm kiếm theo tiêu đề sức khỏe...">
     <div id="stats-box">📊 Tổng cộng: <span id="post-count">0</span> bài</div>
   </div>
@@ -198,12 +195,14 @@
   <div id="list" class="post-list">
     <p style="text-align:center;">Đang tải bài viết...</p>
   </div>
+ </section>
+ <!-- CỘT PHẢI -->
+    <aside class="content-right" id="sidebar-container"></aside>
+  </div>
 </main>
-
 <footer>
   ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
 </footer>
-
 </div>
 
 <script>
@@ -263,6 +262,14 @@ menuOverlay.onclick=()=>{
 document.querySelectorAll(".toggle").forEach(t=>{
   t.onclick=()=>t.parentElement.classList.toggle("open");
 });
+</script>
+
+<script>
+fetch("sidebar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("sidebar-container").innerHTML = data;
+  });
 </script>
 
 </body>
