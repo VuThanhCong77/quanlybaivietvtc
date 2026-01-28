@@ -101,6 +101,88 @@ mark.current-match{
   display: none;
   z-index: 1200;
 }
+/* ===============================
+   SEARCH KHÔNG CỐ ĐỊNH – ĐI THEO MAIN
+   =============================== */
+.sub-fixed{
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  width: 100%;
+  background: transparent;
+  z-index: auto;
+ }
+
+.sub-fixed{
+  margin: 10px auto 12px;
+}
+
+/* ===============================
+   MŨI TÊN ĐIỀU HƯỚNG CƠ ĐỘNG
+   =============================== */
+.content-wrapper{
+  position: relative;
+}
+
+.nav-floating{
+  position: absolute;
+  top: 120px;
+  right: -52px; /* đẩy ra ngoài main */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 768px){
+  .nav-floating{
+    right: -46px;
+    top: 100px;
+  }
+}
+
+/* ===============================
+   CĂN SEARCH GIỮA THEO MÀN HÌNH
+   (BỎ ẢNH HƯỞNG PAGE-WRAPPER)
+   =============================== */
+.sub-fixed{
+  position: relative;
+  width: 100vw;                 /* chiếm toàn màn hình */
+  left: 50%;
+  transform: translateX(-5%);  /* kéo về giữa viewport */
+  margin: 12px 0 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search-container{
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   MŨI TÊN LUÔN HIỆN TRÊN MÀN HÌNH
+   =============================== */
+.nav-floating{
+  position: fixed;
+  right: 14px;
+  top: 45%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1200;
+}
+
+@media (max-width: 768px){
+  .nav-floating{
+    right: 8px;
+  }
+}
+
 </style>
 </head>
 
@@ -115,12 +197,10 @@ mark.current-match{
 
 <!-- THANH SEARCH CỐ ĐỊNH -->
 <div class="sub-fixed">
-  <div id="search-container">
-    <input id="search-input" type="text" placeholder="Nhập từ khóa tìm kiếm…">
-    <button id="prev-match" class="btn-nav" disabled>↑</button>
-    <button id="next-match" class="btn-nav" disabled>↓</button>
-    <button id="search-button" class="btn-action">Tìm</button>
-  </div>
+<div id="search-container">
+  <input id="search-input" type="text" placeholder="Nhập từ khóa tìm kiếm…">
+  <button id="search-button" class="btn-action">Tìm</button>
+</div>
   <div id="search-results">
     <span id="match-count"></span>
   </div>
@@ -131,6 +211,11 @@ mark.current-match{
   <h2 id="doc-title"></h2>
   <div id="doc-content"></div>
 </main>
+
+<div class="nav-floating">
+  <button id="prev-match-2" class="btn-nav">↑</button>
+  <button id="next-match-2" class="btn-nav">↓</button>
+</div>
 
 <button id="backToTop">▲</button>
 
@@ -148,8 +233,6 @@ mark.current-match{
 const contentArea = document.getElementById('content-body');
 const searchInput = document.getElementById('search-input');
 const btnSearch = document.getElementById('search-button');
-const btnNext = document.getElementById('next-match');
-const btnPrev = document.getElementById('prev-match');
 const resultBox = document.getElementById('search-results');
 const matchCount = document.getElementById('match-count');
 
@@ -201,8 +284,6 @@ btnSearch.onclick = () => {
   index = -1;
 
   if (matches.length) {
-    btnNext.disabled = false;
-    btnPrev.disabled = false;
     resultBox.style.display = 'block';
     goNext();
   } else {
@@ -215,9 +296,7 @@ function resetSearch() {
   contentArea.innerHTML = originalHTML;
   matches = [];
   index = -1;
-  btnNext.disabled = true;
-  btnPrev.disabled = true;
-  resultBox.style.display = 'none';
+ resultBox.style.display = 'none';
   matchCount.innerText = '';
 }
 
@@ -245,8 +324,6 @@ function goPrev() {
   updateView();
 }
 
-btnNext.onclick = goNext;
-btnPrev.onclick = goPrev;
 
 /* BACK TO TOP */
 const topBtn = document.getElementById('backToTop');
@@ -283,6 +360,9 @@ fetch('qd69.json')
       '<p style="color:red">❌ Không tải được nội dung văn bản</p>';
     console.error(err);
   });
+
+document.getElementById('next-match-2').onclick = goNext;
+document.getElementById('prev-match-2').onclick = goPrev;
 
 </script>
 
