@@ -163,11 +163,6 @@ main{
   background-image: url("images/hoadao.png");
 }
 
-/* Sức khỏe */
-.page-title.suckhoe::before{
-  background-image: url("images/hoadao.png");
-}
-
 /* Tài liệu */
 .page-title.tailieu::before{
   background-image: url("images/hoadao.png");
@@ -433,6 +428,7 @@ footer{
     margin-top: 12px;
   }
 }
+
 
 
 
