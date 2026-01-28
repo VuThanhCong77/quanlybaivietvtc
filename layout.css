@@ -428,6 +428,40 @@ footer{
     margin-top: 12px;
   }
 }
+/* ===============================
+   THU HẸP KHOẢNG CÁCH MOBILE
+   Chữ chạy – Thời gian – Banner
+   =============================== */
+@media (max-width: 768px) {
+
+  /* Khối chữ chạy */
+  #running-text-wrapper {
+    margin-bottom: 3px !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Dòng thời gian */
+  .current-time {
+    margin-top: 2px !important;
+    margin-bottom: 3px !important;
+    line-height: 1.2;
+  }
+
+  /* Ảnh chúc mừng năm mới */
+  .img-giua {
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+  }
+
+  .img-giua img {
+    display: block;
+    margin: 0 auto;
+  }
+.current-time {
+  font-size: 14px;
+}
+
+}
 
 
 
