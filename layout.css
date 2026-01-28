@@ -388,16 +388,16 @@ footer{
    =============================== */
 
 .page-header{
-  margin-bottom: 4px !important;
+  margin-bottom: 3px !important;
   padding-bottom: 6px;
 }
 
 .content-wrapper{
-  margin-top: 4px !important;
+  margin-top: 3px !important;
 }
 
 .main-content{
-  padding-top: 10px;
+  padding-top: 3px;
 }
 
 /* ===============================
@@ -436,21 +436,21 @@ footer{
 
   /* Khối chữ chạy */
   #running-text-wrapper {
-    margin-bottom: 3px !important;
+    margin-bottom: 0 !important;
     padding-bottom: 0 !important;
   }
 
   /* Dòng thời gian */
   .current-time {
-    margin-top: 2px !important;
-    margin-bottom: 3px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     line-height: 1.2;
   }
 
   /* Ảnh chúc mừng năm mới */
   .img-giua {
-    margin-top: 3px !important;
-    margin-bottom: 3px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
 
   .img-giua img {

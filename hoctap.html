@@ -17,6 +17,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ===== MENU MOBILE (GIỮ NGUYÊN) ===== */
+.menu-btn{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 998;
+  transition: .3s;
+}
+.menu-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-menu{
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0,0,0,.15);
+  padding-top: 60px;
+  z-index: 999;
+  transition: .3s;
+}
+.nav-menu.active{ left: 0; }
+
+.nav-item{ border-bottom: 1px solid #eee; }
+
+.nav-link{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  color: #0a3a5a;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* MENU CẤP 2 */
+.sub-menu{ display: none; background: #f5f9fb; }
+.sub-menu a{
+  display: block;
+  padding: 10px 30px;
+  font-size: 14px;
+  color: #0a5c7a;
+  text-decoration: none;
+}
+.nav-item.open > .sub-menu{ display: block; }
+
 /* CSS RIÊNG CHO BÀI VIẾT */
 .article{
   max-width:1200px;
@@ -152,7 +213,28 @@ footer p{
 <a href="hoctap.html">📖 Học tập </a>
 </h1>
   <a href="index.html"> 🏠</a>
+<button class="menu-btn" id="menuBtn">☰</button>
 </header>
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="nav-menu" id="navMenu">
+  <div class="nav-item"><a class="nav-link" href="index.html">🏠 Trang chủ</a></div>
+  <div class="nav-item"><a class="nav-link" href="gioithieu.html">🏛 Giới thiệu</a></div>
+  <div class="nav-item"><a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a></div>
+  <div class="nav-item"><a class="nav-link" href="hoctap.html">📖 Học tập</a></div>
+  <div class="nav-item"><a class="nav-link" href="baiviet.html">✍ Bài viết</a></div>
+  <div class="nav-item"><a class="nav-link" href="tintuc.html">📢 Tin tức</a></div>
+  <div class="nav-item"><a class="nav-link" href="anh.html">📷 Thư viện ảnh</a></div>
+  <div class="nav-item">
+    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
+    <div class="sub-menu">
+      <a href="vanban.html">📖 Nội dung văn bản</a>
+      <a href="vanban/qd69.html">📜 Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
+    </div>
+  </div>
+  <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
+</nav>
 
 <div class="page-wrapper">
 <main class="main-content">
@@ -254,6 +336,40 @@ fetch("sidebar.html")
   .then(data => {
     document.getElementById("sidebar-container").innerHTML = data;
   });
+</script>
+<script>
+// ===== MENU MOBILE HOẠT ĐỘNG =====
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
+const overlay = document.getElementById("menuOverlay");
+
+// Mở menu
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// Đóng menu khi bấm ra ngoài
+overlay.addEventListener("click", () => {
+  navMenu.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+// Đóng menu khi bấm vào link
+document.querySelectorAll(".nav-link:not(.toggle)").forEach(link => {
+link.addEventListener("click", () => {
+    navMenu.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+});
+
+// ===== MENU CẤP 2 (Văn bản) =====
+document.querySelectorAll(".toggle").forEach(toggle => {
+  toggle.addEventListener("click", function (e) {
+    e.stopPropagation(); // chặn sự kiện lan ra ngoài
+    this.parentElement.classList.toggle("open");
+  });
+});
 </script>
 
 </body>
