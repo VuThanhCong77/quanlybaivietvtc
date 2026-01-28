@@ -435,7 +435,7 @@ footer{
 
   /* Chữ chạy */
   #running-text-wrapper{
-    margin: 3px 0 !important;
+    margin: 0px 0 !important;
     padding: 0 !important;
   }
 
@@ -474,5 +474,3 @@ footer{
     display: none !important;
   }
 }
-
-
