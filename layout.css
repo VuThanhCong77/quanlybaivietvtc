@@ -429,43 +429,40 @@ footer{
   }
 }
 /* ===============================
-   THU HẸP KHOẢNG CÁCH MOBILE
-   Chữ chạy – Thời gian – Banner
+   ÉP GỌN KHOẢNG CÁCH TRANG INDEX (MOBILE)
    =============================== */
-@media (max-width: 768px) {
+@media (max-width: 768px){
 
-  /* Khối chữ chạy */
-  #running-text-wrapper {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+  /* Chữ chạy */
+  #running-text-wrapper{
+    margin: 3px 0 !important;
+    padding: 0 !important;
   }
 
   /* Dòng thời gian */
-  .current-time {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    line-height: 1.2;
+  .current-time{
+    margin: 3px 0 !important;
+    padding: 0 !important;
+    line-height: 1.3;
   }
 
-  /* Ảnh chúc mừng năm mới */
-  .img-giua {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+  /* Banner chúc mừng */
+  .img-giua{
+    margin: 3px 0 !important;
+    padding: 0 !important;
   }
 
-  .img-giua img {
+  .img-giua img{
     display: block;
     margin: 0 auto;
   }
-.current-time {
-  font-size: 14px;
-}
+
+  /* Khối tiêu đề + mô tả */
+  .intro-box,
+  .intro-box h2,
+  .intro-box p{
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+  }
 
 }
-
-
-
-
-
-
-
