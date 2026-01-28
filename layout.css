@@ -466,3 +466,13 @@ footer{
   }
 
 }
+/* ===============================
+   ẨN DÒNG THỜI GIAN TRÊN MOBILE
+   =============================== */
+@media (max-width: 768px){
+  .current-time{
+    display: none !important;
+  }
+}
+
+
