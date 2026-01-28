@@ -16,7 +16,9 @@ body{
 /* ==================================================
    LAYOUT CHUNG TOÀN WEBSITE
    ================================================== */
-
+h1, h2,h3,h4,h5,h6 {
+font-size: 16px;
+}
 :root{
   --max-width: 1200px;
   --header-height: 45px;
@@ -474,3 +476,4 @@ footer{
     display: none !important;
   }
 }
+
