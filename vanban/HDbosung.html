@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hướng dẫn sử dụng</title>
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="../layout.css">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<style>
+body{
+	font-family:Arial,Helvetica,sans-serif;
+	margin:0;padding:0;
+	line-height:1.2;color:#222
+}
+.container{
+	max-width:1000px;
+	margin:30px auto;
+	background:#fff;
+	border-radius:10px;
+ 	padding:40px 50px;
+	box-shadow:0 4px 15px rgba(0,0,0,.08)
+}
+
+h1,h2,h3{
+	color:#0a7f99;
+	 padding: 8px 16px;
+}
+h1{
+	text-align:center;
+	margin-top:12px
+}
+h2{
+	border-left:5px solid #0a7f99;
+	padding-left:20px
+	 margin-top:6px;
+}
+  h3{
+    margin-top:0px;
+}
+code,pre{
+	background:#f1f5f9;
+	padding:6px 10px;
+	border-radius:6px;
+	display:block;overflow-x:auto
+}
+.note{
+	background:#e8f6fa;
+	padding:15px;
+	border-left:5px solid #0ab3c9;
+	margin:15px 0
+}
+.warning{
+	background:#fff7ed;
+	padding:15px;
+	border-left:5px solid #f59e0b;
+	margin:15px 0
+}
+footer{
+	text-align:center;
+	margin-top:40px;
+	font-size:13px;
+}
+
+/* ===============================
+   NÚT LÊN ĐẦU TRANG
+   =============================== */
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: all .25s ease;
+}
+
+#backToTop:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  #backToTop{
+    right: 12px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+/* ===============================
+   TẠO NỀN TRANG DỄ ĐỌC NỘI DUNG
+   =============================== */
+.article{
+  position: relative;
+  z-index: 1;
+}
+
+/* LỚP PHỦ NỀN DƯỚI CHỮ */
+.article::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(255,255,255,0.95); /* lớp phủ */
+  border-radius: 12px;
+
+  z-index: -1;
+}
+/* CHỐNG TRÀN CHỮ – ÁP DỤNG CHUNG */
+p, li, td, th, a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  padding-left:20px
+  }
+
+/* Riêng link dài (URL) */
+a {
+  display: inline-block;
+  max-width: 100%;
+}
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+  .container {
+    padding: 16px;
+  }
+
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+<header class="page-header">
+  <h1 class="page-title gioithieu">
+<a href="HuongdanSD.html">Hướng dẫn chung</a></h1>
+<a href="chitietHD.html">📘 Hướng dẫn chi tiết</a></h1>
+</header>
+<div class="article">
+
+<h1>HƯỚNG DẪN CẬP NHẬT DỮ LIỆU</h1>
+<p style="text-align:center"><b>Thay đổi chữ chạy trang Index & cập nhật nội dung Trang Văn bản</b></p>
+
+<h2>I. Thay đổi chữ chạy trên trang Index</h2>
+
+<h3>1. Mục đích</h3>
+<p>Phần chữ chạy dùng để thông báo nhanh các nội dung nổi bật như: chủ trương, sự kiện, thông báo quan trọng… Việc thay đổi được thực hiện thông qua file cấu hình, không cần chỉnh sửa mã HTML.</p>
+
+<h3>2. Các file liên quan</h3>
+<ul>
+<li><b>index.html</b> – Trang chủ hiển thị</li>
+<li><b>site_config.json</b> – File cấu hình chữ chạy</li>
+</ul>
+
+<h3>3. Cách thay đổi nội dung chữ chạy</h3>
+<ol>
+<li>Mở file <b>site_config.json</b></li>
+<li>Tìm dòng:</li>
+</ol>
+<pre>"marquee_text": "Nội dung chữ chạy hiện tại"</pre>
+<p>Thay nội dung trong dấu ngoặc kép bằng nội dung mới.</p>
+<pre>"marquee_text": "Nhiệt liệt chào mừng kỷ niệm ngày thành lập phường Lưu Kiếm"</pre>
+<p>Lưu file và tải lại trang <b>index.html</b> để xem kết quả.</p>
+
+<div class="note">
+<b>Lưu ý:</b><br>
+– Không xóa dấu ngoặc kép<br>
+– Không xuống dòng trong nội dung chữ chạy<br>
+– Tránh ký tự đặc biệt lạ
+</div>
+
+<h2>II. Cập nhật nội dung Trang Văn bản</h2>
+
+<h3>1. Mục đích</h3>
+<p>Trang Văn bản dùng để hiển thị các quy định, hướng dẫn, văn bản chuyên môn. Nội dung được quản lý riêng thông qua file JSON.</p>
+
+<h3>2. Các file liên quan</h3>
+<ul>
+<li><b>vanban.html</b> – Trang hiển thị văn bản</li>
+<li><b>admin.html</b> – Trang chỉnh sửa nội dung</li>
+<li><b>content.json</b> – File lưu nội dung văn bản</li>
+</ul>
+
+<h3>3. Các bước cập nhật nội dung</h3>
+<ol>
+<li>Mở file <b>admin.html</b></li>
+<li>Nhập <b>Tiêu đề trang</b></li>
+<li>Nhập <b>Nội dung văn bản</b> (có thể sử dụng HTML)</li>
+</ol>
+
+<pre>&lt;p&gt;Quy định số 296-QĐ/TW ban hành ngày...&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Điều 1.&lt;/b&gt; Phạm vi điều chỉnh...&lt;/p&gt;</pre>
+
+<ol start="4">
+<li>Bấm nút <b>“Tạo / Cập nhật file content.json”</b></li>
+<li>Ghi đè file <b>content.json</b> vào thư mục chứa <b>vanban.html</b></li>
+<li>Mở lại trang <b>vanban.html</b> để kiểm tra</li>
+</ol>
+
+<div class="warning">
+<b>Lưu ý khi nhập nội dung:</b><br>
+– Không chèn thẻ &lt;script&gt;<br>
+– Nên dùng &lt;p&gt;, &lt;b&gt;, &lt;br&gt;<br>
+– Có thể soạn trong Word rồi dán vào, sau đó chỉnh lại cho gọn
+</div>
+
+<h2>III. Một số lỗi thường gặp</h2>
+<ul>
+<li><b>Không hiển thị nội dung:</b> kiểm tra file content.json đã ghi đè đúng chưa</li>
+<li><b>Chữ chạy không đổi:</b> kiểm tra đã lưu site_config.json và tải lại trang</li>
+</ul>
+
+<h2>IV. Kết luận</h2>
+<p>Hệ thống quản lý nội dung website được thiết kế đơn giản, dễ sử dụng, không yêu cầu kiến thức lập trình, phù hợp vận hành lâu dài cho cổng thông tin, tuyên truyền và văn bản chuyên môn.</p>
+
+</div>
+<footer>
+  <p>📘 ĐỊNH HƯỚNG ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+  </footer>
+</div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+/* ===============================
+   BACK TO TOP – TỰ ĐỘNG
+   =============================== */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+</body>
+</html>
