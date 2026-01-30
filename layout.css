@@ -469,14 +469,7 @@ footer{
   }
 
 }
-/* ===============================
-   ẨN DÒNG THỜI GIAN TRÊN MOBILE
-   =============================== */
-@media (max-width: 768px){
-  .current-time{
-    display: none !important;
-  }
-}
+
 .video-sidebar {
   position: relative;
   width: 100%;
@@ -522,3 +515,4 @@ footer{
   border: none;
   border-radius: 8px;
 }
+
