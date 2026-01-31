@@ -477,8 +477,6 @@ main{
 }
 
 /* Màu từng nút */
-.share-btn.fb{ background:#1877f2; }
-.share-btn.zalo{ background:#0068ff; }
 .share-btn.copy{ background:#0a7f99; }
 
 /* Mobile gọn hơn */
@@ -752,12 +750,8 @@ main{
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.</p>
 
   <div class="share-group">
-  <button class="share-btn fb" onclick="shareFacebook()">
-    📘 Facebook
-  </button>
-
   <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link
+    🔗 Copy link chia sẻ
   </button>
 </div>
 
@@ -933,24 +927,6 @@ setInterval(updateTime, 1000);
 </script>
 
 <script>
-function shareFacebook(){
-  const url = encodeURIComponent(window.location.href);
-  window.open(
-    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-    "_blank",
-    "width=600,height=450"
-  );
-}
-
-function shareZalo(){
-  const url = encodeURIComponent(window.location.href);
-  window.open(
-    `https://zalo.me/share?url=${url}`,
-    "_blank",
-    "width=600,height=450"
-  );
-}
-
 function copyLink(btn){
   navigator.clipboard.writeText(window.location.href)
     .then(()=>{

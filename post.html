@@ -58,10 +58,35 @@ font-family: 'Arial', sans-serif;
  }
         .main-content { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .post-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; display: none; }
-        .btn-facebook { background-color: #1877F2; color: white; border-radius: 50px; padding: 10px 25px; font-weight: 600; border: none; transition: 0.3s; }
-        .btn-zalo { background-color: #0068ff; color: white; border-radius: 50px; padding: 10px 25px; font-weight: 600; border: none; }
         #view-content { line-height: 1.8; color: #444; font-size: 1.1rem; }
         .huongdan-gopy { margin-top:3px; font-size:13px; color:#0303ef; font-style:italic; }
+
+/* ===============================
+   NÚT COPY – TRANG BÀI VIẾT CHI TIẾT
+   =============================== */
+.post-copy-btn{
+  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  color: #ffffff;
+  border: none;
+  border-radius: 22px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.18);
+  transition: all .25s ease;
+}
+
+.post-copy-btn:hover{
+  background: linear-gradient(135deg, #086b80, #099fb8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.28);
+}
+
+.post-copy-btn.copied{
+  background: linear-gradient(135deg, #198754, #28a745);
+}
+
     </style>
 </head>
 <body>
@@ -111,17 +136,17 @@ font-family: 'Arial', sans-serif;
 
                 <hr>
                 
-                <div class="d-flex justify-content-between align-items-center mt-4">
-                    <div>
-                        <button onclick="shareFB()" class="btn-facebook shadow-sm me-2">
-                            <i class="fab fa-facebook-f me-2"></i>
-                        </button>
-<button onclick="copyLink()" class="btn btn-secondary shadow-sm">
-    <i class="fas fa-link me-2"></i>Chia sẻ
+<div class="d-flex justify-content-between align-items-center mt-4">
+    <div>
+        <button onclick="copyLink(this)" class="post-copy-btn shadow-sm">
+  🔗 Copy link chia sẻ
 </button>
-                    </div>
-                    <a href="index.html" class="text-decoration-none"><i class="fas fa-arrow-left"></i> 🏠</a>
-                </div>
+    </div>
+    <a href="index.html" class="text-decoration-none">
+        <i class="fas fa-arrow-left"></i> 🏠
+    </a>
+</div>
+
             </div>
         </div>
     </div>
@@ -172,39 +197,23 @@ async function loadPost() {
     }
 }
 
-function shareFB() {
+function copyLink(btn){
     const url = window.location.href;
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-      'fb-share',
-      'width=580,height=400'
-    );
-}
 
-function copyLink() {
-    if (!currentPost) return;
+    navigator.clipboard.writeText(url)
+      .then(()=>{
+        const oldText = btn.innerText;
+        btn.classList.add("copied");
+        btn.innerText = "✅ Đã sao chép";
 
-    const link =
-        "https://vuthanhcong77.github.io/quanlybaivietvtc/posts/" +
-        currentPost.id +
-        ".html";
-
-    // Cách chuẩn (trình duyệt hiện đại)
-    if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(link).then(() => {
-            alert("Đã sao chép liên kết bài viết. Vui lòng dán vào Zalo để chia sẻ.");
-        });
-    } else {
-        // Fallback cho trình duyệt cũ
-        const tempInput = document.createElement("input");
-        tempInput.value = link;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
-
-        alert("Đã sao chép liên kết bài viết. Vui lòng dán vào Zalo để chia sẻ.");
-    }
+        setTimeout(()=>{
+          btn.classList.remove("copied");
+          btn.innerText = oldText;
+        }, 1800);
+      })
+      .catch(()=>{
+        alert("Không copy được liên kết!");
+      });
 }
 
 function guiGopY() {
