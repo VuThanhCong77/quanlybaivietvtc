@@ -198,13 +198,18 @@ async function loadPost() {
 }
 
 function copyLink(btn){
-    const url = window.location.href;
+    if (!currentPost) return;
 
-    navigator.clipboard.writeText(url)
+    const link =
+      "https://vuthanhcong77.github.io/quanlybaivietvtc/posts/" +
+      currentPost.id +
+      ".html";
+
+    navigator.clipboard.writeText(link)
       .then(()=>{
         const oldText = btn.innerText;
         btn.classList.add("copied");
-        btn.innerText = "✅ Đã sao chép";
+        btn.innerText = "✅ Đã sao chép link chia sẻ";
 
         setTimeout(()=>{
           btn.classList.remove("copied");
