@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chi tiết bài viết</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fa;
+    padding: 20px;
+}
+
+h1 {
+    color: #0b5394;
+}
+
+.article {
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="article">
+    <h1 id="title"></h1>
+    <p><small id="date"></small></p>
+    <div id="content"></div>
+
+    <a href="bai19.html">← Quay lại danh sách</a>
+</div>
+
+<script>
+// ===== LẤY ID TỪ URL =====
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+// ===== ĐỌC DỮ LIỆU =====
+let posts = JSON.parse(localStorage.getItem("posts18")) || [];
+const post = posts.find(p => p.id == id);
+
+// ===== HIỂN THỊ =====
+if (post) {
+    document.getElementById("title").textContent = post.title;
+    document.getElementById("date").textContent = post.date;
+    document.getElementById("content").textContent = post.content;
+} else {
+    document.getElementById("title").textContent = "Không tìm thấy bài viết";
+}
+</script>
+
+</body>
+</html>

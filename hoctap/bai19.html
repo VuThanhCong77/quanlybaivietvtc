@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài 19 – Danh sách bài viết</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+h1, h2, h3, h4 {
+font-size: 18px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fa;
+    padding: 20px;
+}
+
+h1 {
+    color: #0b5394;
+}
+
+.article {
+    background: #fff;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+a {
+    text-decoration: none;
+    color: #0b5394;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+<a href="../hoctap.html">📖 Học tập</a>
+<h1>DANH SÁCH BÀI VIẾT</h1>
+<div id="posts"></div>
+
+<script>
+let posts = JSON.parse(localStorage.getItem("posts18")) || [];
+const box = document.getElementById("posts");
+
+if (posts.length === 0) {
+    box.innerHTML = "<p>Chưa có bài viết nào.</p>";
+}
+
+posts.forEach(post => {
+    box.innerHTML += `
+        <div class="article">
+            <a href="Bai_19_2.html?id=${post.id}">
+                ${post.title}
+            </a>
+            <p><small>${post.date}</small></p>
+        </div>
+    `;
+});
+</script>
+</body>
+</html>
