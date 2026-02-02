@@ -566,6 +566,45 @@ main{
   background: linear-gradient(135deg, #28a745, #5dd879);
 }
 
+/* ===============================
+   NÚT THEO DÕI
+   =============================== */
+.follow-box{
+  margin: 12px 0;
+}
+
+.follow-btn{
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff9800, #ffc107);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.2);
+  transition: all .2s ease;
+}
+
+.follow-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.3);
+}
+
+.action-bar {
+  display: flex;
+  justify-content: center;      /* căn giữa cả hàng */
+  align-items: center;
+  gap: 10px;                    /* khoảng cách giữa các nút */
+  margin: 15px 0;
+  flex-wrap: wrap;              /* mobile thì tự xuống dòng nếu chật */
+}
+
+/* đảm bảo các div con không chiếm cả dòng */
+.action-bar > div {
+  display: flex;
+}
+
 </style>
 	<script type="application/ld+json">
 {
@@ -607,6 +646,18 @@ main{
   background: #5a6268;
 }
 
+</script>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "c2bbcb22-429e-4679-8bb1-865ca61d92f6",
+      notifyButton: {
+        enable: false
+      }
+    });
+  });
 </script>
 
 </head>
@@ -778,6 +829,13 @@ main{
 <p class="justified">
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.</p>
 
+<div class="action-bar">
+<div class="follow-box">
+  <button id="followBtn" class="follow-btn">
+    🔔 Theo dõi
+  </button>
+</div>
+
 	<div class="like-box">
   <button id="likeBtn" class="like-btn">
     👍 Thích <span id="likeCount">0</span>
@@ -786,8 +844,9 @@ main{
 
   <div class="share-group">
   <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link chia sẻ
+    🔗 Copy link
   </button>
+</div>
 </div>
 
 <span id="copyStatus"
@@ -1097,6 +1156,15 @@ fetch("sidebar.html")
     btn.classList.add("liked");
   });
 })();
+</script>
+<script>
+document.getElementById("followBtn").addEventListener("click", function () {
+  if (!window.OneSignal) return;
+
+  OneSignal.push(function () {
+    OneSignal.showSlidedownPrompt();
+  });
+});
 </script>
 
 </body>
