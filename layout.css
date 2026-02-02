@@ -238,7 +238,7 @@ footer{
 
 .photo-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: 1fr; /* CHỈ 1 CỘT */
   gap: 16px;
 }
 
@@ -515,4 +515,5 @@ footer{
   border: none;
   border-radius: 8px;
 }
+
 
