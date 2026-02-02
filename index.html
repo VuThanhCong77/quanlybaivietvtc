@@ -593,10 +593,10 @@ main{
 
 .action-bar {
   display: flex;
-  justify-content: center;      /* căn giữa cả hàng */
+  justify-content: left;      /* căn giữa cả hàng */
   align-items: center;
-  gap: 10px;                    /* khoảng cách giữa các nút */
-  margin: 15px 0;
+  gap: 3px;                    /* khoảng cách giữa các nút */
+  margin: 3px 0;
   flex-wrap: wrap;              /* mobile thì tự xuống dòng nếu chật */
 }
 
@@ -783,6 +783,12 @@ main{
     </iframe>
   </div>
 </section>
+<div class="action-bar">
+<div class="follow-box">
+  <button id="followBtn" class="follow-btn">
+    🔔 Theo dõi
+  </button>
+</div>
 	
 <div class="welcome-box">
   <h1 style="color:#0303ef;font-weight:bold">
@@ -790,6 +796,7 @@ main{
       style="height:22px; vertical-align:middle; margin-left:22px;">
     Vũ Thành Công 
   </h1>
+</div>
 <p class="justified"; style="color:#074090">
     Trang chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp; nơi truyền cảm hứng và năng lượng sống tích cực.
 </p>
@@ -846,14 +853,7 @@ main{
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.</p>
 
 <div class="action-bar">
-
-<div class="follow-box">
-  <button id="followBtn" class="follow-btn">
-    🔔 Theo dõi
-  </button>
-</div>
-
-	<div class="like-box">
+<div class="like-box">
   <button id="likeBtn" class="like-btn">
     👍 Thích <span id="likeCount">0</span>
   </button>
@@ -861,7 +861,7 @@ main{
 
   <div class="share-group">
   <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link
+    🔗 Copy link chia sẻ
   </button>
 </div>
 </div>
