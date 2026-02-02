@@ -604,6 +604,22 @@ main{
 .action-bar > div {
   display: flex;
 }
+.follow-btn {
+  background: #eaeaea;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* TRẠNG THÁI ĐÃ THEO DÕI */
+.follow-btn.followed {
+  background: #c62828;      /* đỏ đậm – rất dễ nhận biết */
+  color: #fff;
+  border-color: #c62828;
+}
 
 </style>
 	<script type="application/ld+json">
@@ -830,6 +846,7 @@ main{
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.</p>
 
 <div class="action-bar">
+
 <div class="follow-box">
   <button id="followBtn" class="follow-btn">
     🔔 Theo dõi
@@ -1157,6 +1174,7 @@ fetch("sidebar.html")
   });
 })();
 </script>
+
 <script>
 document.getElementById("followBtn").addEventListener("click", function () {
   if (!window.OneSignal) return;
@@ -1164,6 +1182,24 @@ document.getElementById("followBtn").addEventListener("click", function () {
   OneSignal.push(function () {
     OneSignal.showSlidedownPrompt();
   });
+});
+</script>
+
+<script>
+const followBtn = document.getElementById("followBtn");
+
+if (localStorage.getItem("followed") === "true") {
+  followBtn.classList.add("followed");
+  followBtn.innerHTML = "🔕 Đã theo dõi";
+}
+
+followBtn.addEventListener("click", function () {
+  const isFollowed = this.classList.toggle("followed");
+  localStorage.setItem("followed", isFollowed);
+
+  this.innerHTML = isFollowed
+    ? "🔕 Đã theo dõi"
+    : "🔔 Theo dõi";
 });
 </script>
 
