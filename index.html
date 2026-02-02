@@ -537,6 +537,35 @@ main{
   margin-top: 0;
 }
 
+	/* ===============================
+   NÚT THÍCH
+   =============================== */
+.like-box{
+  margin: 12px 0;
+}
+
+.like-btn{
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff4d4d, #ff7a7a);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.2);
+  transition: all .2s ease;
+}
+
+.like-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.3);
+}
+
+.like-btn.liked{
+  background: linear-gradient(135deg, #28a745, #5dd879);
+}
+
 </style>
 	<script type="application/ld+json">
 {
@@ -748,6 +777,12 @@ main{
 4) Mọi người mến yêu (8)🌸Khi có mối quan hệ xã hội hài hòa, con người dễ dàng nhận được sự yêu quý, hỗ trợ và đồng hành trong cuộc sống.</p>   
 <p class="justified">
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.</p>
+
+	<div class="like-box">
+  <button id="likeBtn" class="like-btn">
+    👍 Thích <span id="likeCount">0</span>
+  </button>
+</div>
 
   <div class="share-group">
   <button class="share-btn copy" onclick="copyLink(this)">
@@ -1037,6 +1072,31 @@ fetch("sidebar.html")
   .then(data => {
     document.getElementById("sidebar-container").innerHTML = data;
   });
+</script>
+<script>
+(function(){
+  const KEY = "vtc77_like_index"; // key riêng cho trang index
+  const btn = document.getElementById("likeBtn");
+  const countEl = document.getElementById("likeCount");
+
+  if(!btn || !countEl) return;
+
+  let data = JSON.parse(localStorage.getItem(KEY) || '{"count":0,"liked":false}');
+
+  countEl.innerText = data.count;
+  if(data.liked) btn.classList.add("liked");
+
+  btn.addEventListener("click", ()=>{
+    if(data.liked) return; // mỗi thiết bị chỉ thích 1 lần
+
+    data.count++;
+    data.liked = true;
+
+    localStorage.setItem(KEY, JSON.stringify(data));
+    countEl.innerText = data.count;
+    btn.classList.add("liked");
+  });
+})();
 </script>
 
 </body>
