@@ -54,6 +54,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
+<div class="page-wrapper">
 <header class="page-header">
 <button class="menu-btn" onclick="location.href='../index.html'">🏠</button>
   VĂN BẢN PDF
@@ -72,12 +73,19 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   <iframe id="pdfViewer" src="pdf/hdbc2631.pdf"></iframe>
 </div>
 
+<div id="pdfArea"></div>
+
+<footer>
+  <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+  </footer>
+</div>
+
 <script>
   function loadPDF(file) {
     document.getElementById("pdfViewer").src = file;
   }
 
- function isMobile() {
+function isMobile() {
     return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   }
 
@@ -111,4 +119,3 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
 </body>
 </html>
-
