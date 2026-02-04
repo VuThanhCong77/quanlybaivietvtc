@@ -982,7 +982,7 @@ async function loadRecentPosts(){
       p.category === "suckhoe"
     )
     .sort((a,b) => b.id - a.id)
-    .slice(0,12);   // mẫu ảnh chỉ cần 4–5 tin
+    .slice(0,18);   // Số lượng tin mới
 
   if(!valid.length){
     box.innerHTML =
