@@ -627,6 +627,27 @@ main{
   border-radius: 10px;
 }
 
+/* ===============================
+   KHUNG TIN TỨC MỚI – CUỘN TRONG
+   =============================== */
+.news-box{
+  max-height: 360px;          /* chiều cao khung */
+  overflow-y: auto;           /* cho phép cuộn */
+  border: 2px solid #0a7f99;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(255,255,255,0.9);
+}
+
+/* thanh cuộn đẹp hơn */
+.news-box::-webkit-scrollbar{
+  width: 6px;
+}
+.news-box::-webkit-scrollbar-thumb{
+  background: #0a7f99;
+  border-radius: 6px;
+}
+
 </style>
 	<script type="application/ld+json">
 {
@@ -809,9 +830,13 @@ main{
 <section id="recent-posts">
   <div class="container">
     <h2 style="color:#0303ef;font-weight:bold">📝 Tin tức mới nhất</h2>
+
+	<div class="news-box">
     <div id="recent-posts-list" class="news-list">
     <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
     </div>
+    </div>
+	  
   </div>
 </section>
 <p>
@@ -1204,6 +1229,27 @@ followBtn.addEventListener("click", function () {
   this.innerHTML = isFollowed
     ? "🔕 Đã theo dõi"
     : "🔔 Theo dõi";
+});
+</script>
+
+<script>
+function autoScrollNews(){
+  const box = document.querySelector(".news-box");
+  if(!box) return;
+
+  let step = 1;
+
+  setInterval(()=>{
+    box.scrollTop += step;
+
+    if (box.scrollTop + box.clientHeight >= box.scrollHeight) {
+      box.scrollTop = 0; // quay lại đầu
+    }
+  }, 80); // tốc độ cuộn
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  setTimeout(autoScrollNews, 1500); // đợi load xong tin
 });
 </script>
 
