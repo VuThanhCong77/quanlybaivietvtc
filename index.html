@@ -53,7 +53,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
 /* CONTAINER CHỈ ĐỆM */
 .container{
-  padding:0 6px;
+  padding:0 8px;
 }
 
 /* ===============================
@@ -71,7 +71,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   transform:translateX(-50%);
   width:100%;
   max-width:var(--max-width);
-  background:linear-gradient(to right,var(--primary),var(--secondary));
+  background: hsl(202, 98%, 23%);
   color:#fff;
   z-index:1200;
   box-shadow:0 2px 6px rgba(0,0,0,.15);
@@ -184,7 +184,7 @@ footer a{color:#fff;text-decoration:none}
   max-width: 1200px;
   margin: 0 auto;
   padding: 3px 3px;
-  background: hsl(250, 99%, 40%);
+  background: hsl(202, 98%, 23%);
   color: #fff;
   text-align: center;
 }
@@ -299,7 +299,7 @@ body{
 
 /* HEADER */
 .site-header{
-  background:rgba(5, 14, 173, 0.9);
+  background:rgba(1, 86, 112, 0.9);
 }
 .site-header,
 .site-header a{
@@ -604,15 +604,6 @@ main{
 .action-bar > div {
   display: flex;
 }
-.follow-btn {
-  background: #eaeaea;
-  color: #333;
-  border: 1px solid #ccc;
-  padding: 10px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
 
 /* TRẠNG THÁI ĐÃ THEO DÕI */
 .follow-btn.followed {
@@ -782,6 +773,12 @@ main{
 </nav>
 
 <main>
+<!-- LAYOUT CHIA CỘT -->
+  <div class="main-layout">
+
+ <!-- CỘT TRÁI -->
+  <div class="main-content">
+
 <!-- CỤM THÔNG TIN ĐẦU TRANG (NẰM NGOÀI LAYOUT CỘT) -->
   <div class="top-info-block">
 
@@ -798,11 +795,6 @@ main{
     </div>
 
 </div>
-<!-- LAYOUT CHIA CỘT -->
-  <div class="main-layout">
-
- <!-- CỘT TRÁI -->
-  <div class="main-content">
 		
 <div class="action-bar">
 <div class="follow-box">
@@ -852,6 +844,7 @@ main{
   <strong id="tong-bai-viet">0</strong>
 </p>
 
+<div class="container">
   <!-- ẢNH 1 -->
     <div class="img-giua">
 		<a href="suckhoe.html">
@@ -859,45 +852,36 @@ main{
 		</a>
     </div>
 
-<div class="container">
-   <h3 style="color:#0303ef;font-weight:bold">🧠 Vũ Thành Công: Ý tưởng hay “8 Quy tắc vàng” ⏰ngày 23/4/2013</h3>
-<p class="justified">
-  1. Tâm: tịnh, sáng🌸“Tâm” ở đây là tâm trí, nội tâm của con người. “Tịnh” là trạng thái an yên, không xao động; “sáng” là sự minh mẫn, trong trẻo. Khi giữ tâm tịnh và sáng, con người dễ sống hài hòa, đưa ra quyết định sáng suốt và tránh bị chi phối bởi cảm xúc tiêu cực.</p> 
-<p class="justified">
-  2. Ăn vừa đủ🌸Ăn uống điều độ giúp cơ thể khỏe mạnh, tránh dư thừa, tránh bệnh tật. Ăn vừa đủ là không quá no, không bỏ bữa; đảm bảo cân bằng dinh dưỡng để duy trì thể lực và tinh thần.</p> 
-<p class="justified">
- 3. Ngủ vừa giấc (6–8 giờ/ngày)  🌸Giấc ngủ đủ giúp cơ thể phục hồi năng lượng, tái tạo tế bào, cải thiện trí nhớ và cảm xúc. 6–8 giờ là mức khoa học khuyến nghị để cơ thể hoạt động tối ưu.</p> 
-<p class="justified">
- 4. Làm đúng lịch🌸Làm việc đúng thời điểm, đúng tiến độ giúp tăng hiệu quả, tránh áp lực và giảm mệt mỏi. Đây cũng là thói quen tạo nên sự chuyên nghiệp.</p> 
-<p class="justified">
- 5. Chơi đúng giờ🌸Giải trí cần thiết cho tinh thần nhưng phải có giới hạn. Chơi đúng giờ giúp cân bằng cuộc sống mà không ảnh hưởng đến công việc hay sức khỏe.</p> 
-<p class="justified">
- 6. Học đúng cách 🌸“Học đúng cách” nghĩa là học có phương pháp, có mục tiêu, biết chọn lọc thông tin và áp dụng vào thực tiễn. Học đúng cách giúp tiếp thu hiệu quả, tránh học đối phó, đồng thời phát triển tư duy và kỹ năng bền vững.</p> 
-<p class="justified">
- 7. Vui là chính  🌸Giữ tinh thần lạc quan, vui vẻ giúp giảm căng thẳng, cải thiện sức khỏe tâm lý và thu hút năng lượng tích cực.</p> 
-<p class="justified">
- 8. Quan hệ đều (Quan hệ xã hội)🌸Các mối quan hệ xã hội cần được duy trì ở mức hài hòa, không quá khép kín cũng không quá lệ thuộc. Quan hệ đều đặn giúp tinh thần thoải mái, mở rộng tư duy và tăng sự kết nối.</p>
-<h3 style="color:#0303ef;font-weight:bold">🎯 Để làm gì?</h3> 
-<p class="justified">
- 1) Giữ gìn sức khỏe (1, 2, 3)🌸Cảm xúc ổn định, ăn uống điều độ và ngủ đủ giấc là ba trụ cột quan trọng nhất cho sức khỏe thể chất và tinh thần.</p> 
-<p class="justified">
- 2) Làm việc hiệu quả (4, 5)🌸Làm việc đúng lịch và giải trí đúng giờ tạo nên nhịp sinh hoạt khoa học, giúp tập trung tốt hơn và tránh kiệt sức.</p> 
-<p class="justified">
- 3) Trí tuệ phát triển (6, 7)🌸Học có phương pháp, có mục tiêu, biết chọn lọc thông tin và giữ tinh thần vui vẻ góp phần hình thành tư duy tích cực, khả năng nâng cao trí tuệ.</p> 
-<p class="justified">
-4) Mọi người mến yêu (8)🌸Khi có mối quan hệ xã hội hài hòa, con người dễ dàng nhận được sự yêu quý, hỗ trợ và đồng hành trong cuộc sống.</p>   
-<p class="justified">
-🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.</p>
-
-<!-- ẢNH CUỐI TRANG -->
+<!-- ẢNH 2 -->
     <div class="img-giua">
 	<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1767950981269.html"> 
         <img src="tinanh/26baucu.jpg" alt="">
-<div style="font-size:13px;color:#3030ef;margin-top:6px;">
+<div style="font-size:13px;color:#3030ef;margin-top:6px;text-decoration:none;">
     Khu vực bỏ phiếu tại phường Lưu Kiếm
   </div>
 	</a>
       </div>
+
+<!-- ẢNH 3-->
+<div class="img-giua">
+<a href="vanban/ytuonghay.html"> 
+ <img src="anhvietbai/ytuonghay.jpg" alt="">
+ <div style="font-size:13px;color:#3030ef;margin-top:6px;text-decoration:none;">
+    Ý tưởng hay "8 Quy tắc vàng"
+  </div>
+</a>
+</div>
+
+<!-- ẢNH 4-->
+<div class="img-giua">
+<a href="vanban/chuyendoixanhhp.html"> 
+ <img src="anhvietbai/chuyendoixanhhp.jpg" alt="">
+ <div style="font-size:13px;color:#3030ef;margin-top:6px;text-decoration:none;">
+    Chuyển đổi xanh tại thành phố Hải Phòng
+  </div>
+</a>
+</div>
+
 
 <div class="action-bar">
 <div class="like-box">
