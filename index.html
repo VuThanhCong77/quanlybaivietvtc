@@ -1285,18 +1285,37 @@ function autoScrollNews(){
   if(!box) return;
 
   let step = 1;
+  let timer = null;
 
-  setInterval(()=>{
-    box.scrollTop += step;
+  function startScroll(){
+    if(timer) return; // tránh chạy trùng
+    timer = setInterval(()=>{
+      if (box.scrollTop >= box.scrollHeight - box.clientHeight - 2) {
+        box.scrollTop = 0;
+      } else {
+        box.scrollTop += step;
+      }
+    }, 80);
+  }
 
-    if (box.scrollTop + box.clientHeight >= box.scrollHeight) {
-      box.scrollTop = 0; // quay lại đầu
-    }
-  }, 80); // tốc độ cuộn
+  function stopScroll(){
+    clearInterval(timer);
+    timer = null;
+  }
+
+  /* DỪNG khi rê chuột */
+  box.addEventListener("mouseenter", stopScroll);
+
+  /* CHẠY LẠI khi rời chuột */
+  box.addEventListener("mouseleave", startScroll);
+
+  /* Khởi động ban đầu */
+  startScroll();
 }
 
+/* đợi load xong dữ liệu */
 document.addEventListener("DOMContentLoaded", ()=>{
-  setTimeout(autoScrollNews, 1500); // đợi load xong tin
+  setTimeout(autoScrollNews, 1500);
 });
 </script>
 
