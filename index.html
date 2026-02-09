@@ -622,7 +622,7 @@ main{
    KHUNG TIN TỨC MỚI – CUỘN TRONG
    =============================== */
 .news-box{
-  max-height: 360px;          /* chiều cao khung */
+  max-height: 296px;          /* chiều cao khung */
   overflow-y: auto;           /* cho phép cuộn */
   border: 2px solid #0a7f99;
   border-radius: 10px;
@@ -813,21 +813,35 @@ a{
     </div>
 
 </div>
-		
-<section id="recent-posts">
-  <div class="container">
-    <h2 style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;">📝 Bài viết nổi bật</h2>
 
-	<div class="news-box">
-    <div id="recent-posts-list" class="news-list">
-    <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
-    </div>
-    </div>
-	  
-  </div>
-</section>
+<!-- ===== KHỐI HAI CỘT: BÀI VIẾT + ẢNH ===== -->
+<div class="half-box">
 
-	
+  <!-- == BÀI VIẾT NỔI BẬT == -->
+  <section id="recent-posts" class="half-item">
+    <div class="container">
+      <h2 style="color:#0303ef;font-weight:bold">📝 Bài viết nổi bật</h2>
+
+      <div class="news-box">
+        <div id="recent-posts-list" class="news-list">
+          <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- == SLIDER ẢNH TỪ THƯ VIỆN == -->
+  <section class="photo-slider-box half-item">
+    <h3>📷 Một số hình ảnh</h3>
+
+    <div class="photo-slider">
+      <img id="sliderImage" src="" alt="Ảnh hoạt động">
+      <div class="slider-note" id="sliderNote"></div>
+    </div>
+  </section>
+
+</div>
+
 <section class="video-section">
   <h2 style="text-align: left;font-size: 18px;">🎥 Youtube</h2>
 
@@ -839,8 +853,7 @@ a{
     </iframe>
   </div>
 </section>
-		
-
+	
 <div class="action-bar">
 <div class="follow-box">
   <button id="followBtn" class="follow-btn">
@@ -848,11 +861,11 @@ a{
   </button>
 </div>
 	
-<h2 style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;">📊 Tổng số bài viết:
-	<strong id= "tong-bai-viet">0</strong>
-</h2>
+  <h1> 📊 Tổng số bài viết:<strong id= "tong-bai-viet"> 0 </strong> </h1>
 
-<h1 style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;">🌸 Vũ Thành Công</h1>
+<div>
+  <h1>🌸 Vũ Thành Công</h1>
+</div>
 <p class="justified"; style="color:#074090">
     Trang chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp; nơi truyền cảm hứng và năng lượng sống tích cực.
 </p>
@@ -902,6 +915,7 @@ a{
  <img src="anhvietbai/xhcnhp2.jpg" alt="">
 </a>
 </div>
+
 
 <div class="action-bar">
 <div class="like-box">
@@ -1273,6 +1287,40 @@ function autoScrollNews(){
 document.addEventListener("DOMContentLoaded", ()=>{
   setTimeout(autoScrollNews, 1500); // đợi load xong tin
 });
+</script>
+
+<script>
+let sliderData = [];
+let currentIndex = 0;
+
+fetch('photos.json')
+  .then(res => res.json())
+  .then(data => {
+    sliderData = data;
+    showSlide(0);
+    setInterval(nextSlide, 10000); // 10 giây đổi ảnh
+  });
+
+function showSlide(index){
+  const img = document.getElementById('sliderImage');
+  const note = document.getElementById('sliderNote');
+
+  img.style.opacity = 0;
+
+  setTimeout(() => {
+    img.src = sliderData[index].img;
+    note.innerText = sliderData[index].note || '';
+    img.style.opacity = 1;
+  }, 300);
+}
+
+function nextSlide(){
+  currentIndex++;
+  if(currentIndex >= sliderData.length){
+    currentIndex = 0; // quay lại ảnh đầu
+  }
+  showSlide(currentIndex);
+}
 </script>
 
 </body>

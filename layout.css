@@ -520,4 +520,101 @@ footer{
 a{
   text-decoration: none;
 }
+/* ===== SLIDER ẢNH ===== */
+.photo-slider img{
+  display:block;
+  width:100%;
+  height:260px;
+  object-fit:cover;
+}
 
+.slider-note{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+
+  background:rgba(0,0,0,0.55);
+  color:#fff;
+  font-size:14px;
+  padding:6px 10px;
+
+  z-index:2;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .photo-slider img{
+    height:200px;
+  }
+}
+
+.photo-slider-box{
+  background:#ffffff;
+  border:1px solid #d9d9d9;      /* Viền xám nhạt – chuẩn hành chính */
+  border-radius:8px;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+ }
+
+.photo-slider{
+  position:relative;      /* BẮT BUỘC */
+  border:2px solid #0a3a5a;
+  border-radius:6px;
+  overflow:hidden;
+  flex:1;                /* kéo ảnh cao bằng khối bài viết */
+}
+
+/* Tiêu đề khung */
+.photo-slider-box h3{
+  font-size:15px;
+  font-weight:600;
+  color:#0a3a5a;
+  border-bottom:1px solid #e0e0e0;
+  padding-bottom:6px;
+  margin-bottom:10px;
+}
+.photo-slider:hover{
+  border-color:#c40000;          /* Đỏ sẫm – màu chính trị trang trọng */
+  transition:0.3s ease;
+}
+.half-box{
+  width:100%;
+  margin:0 auto;
+}
+
+/* ===== BỐ CỤC 2 KHỐI CAO BẰNG NHAU ===== */
+.half-box{
+  display:flex;
+  gap:16px;
+  align-items:stretch;   /* QUAN TRỌNG: kéo cao bằng nhau */
+  margin:16px 0;
+}
+
+.half-item{
+  width:50%;
+  display:flex;
+  flex-direction:column; /* để nội dung xếp dọc */
+}
+
+#recent-posts .container{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+#recent-posts .news-box{
+  flex:1;                /* chiếm hết phần còn lại */
+}
+
+@media(max-width:768px){
+  .half-box{
+    flex-direction:column;
+  }
+
+  .half-item{
+    width:100%;
+  }
+}
