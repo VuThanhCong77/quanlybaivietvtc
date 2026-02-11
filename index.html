@@ -657,9 +657,85 @@ main{
 }
 a{
   text-decoration: none;
-	}
+}
+
+#quick-comment {
+  margin-top: 40px;
+}
+
+#quick-comment .section-title {
+  border-left: 4px solid #b30000;
+  padding-left: 10px;
+  font-weight: bold;
+  color: #111;
+}
+
+.comment-box {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.comment-date {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.comment-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.comment-content {
+  line-height: 1.6;
+  text-align: justify;
+  color: #333;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #b30000;
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* ===== KHỐI 2 CỘT 50% - 50% ===== */
+.half-box{
+  display: flex;
+  gap: 20px;              /* khoảng cách giữa 2 khối */
+  align-items: stretch;   /* cao bằng nhau */
+}
+
+.half-box section{
+  flex: 1;                /* mỗi khối chiếm 50% */
+}
+
+/* Làm cho khối bên trong cao đều */
+.half-box .container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive: xuống 1 cột trên điện thoại */
+@media (max-width: 768px){
+  .half-box{
+    flex-direction: column;
+  }
+}
+
 </style>
-	<script type="application/ld+json">
+
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -881,6 +957,55 @@ a{
 </p>
 </div>
 
+<!-- ===== KHỐI HAI CỘT: BÀI VIẾT + ẢNH ===== -->
+<div class="half-box">
+
+<section id="popular-posts" class="half-item">
+  <div class="container">
+    <h2 span style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;">🔥 Bài viết được đọc nhiều</h2>
+
+    <div class="news-box">
+      <div id="popular-posts-list">
+        <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
+      </div>
+     </div>
+  </div>
+
+<!-- ẢNH -->
+    <div class="img-giua">
+		<a href="baiviet.html">
+        <img src="images/hoadao.jpg" alt="">
+		</a>
+    </div>
+
+</section>
+
+<!-- GÓC BÌNH LUẬN -->
+<section id="quick-comment">
+  <div class="container">
+    <h2 span style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;">🖋 Góc bình luận ngắn</h2>
+
+    <div class="comment-box">
+      <div class="comment-date">
+        Cập nhật: 19/12/2025
+      </div>
+
+      <h3 class="comment-title">
+        <span class="lotus-icon">🌸</span>Từ nông thôn lên đô thị không chỉ là sự thay đổi về hành chính mà còn là sự tái cấu trúc toàn diện về lối sống, tư duy phát triển và mô hình kinh tế.
+      </h3>
+
+      <p class="comment-content">
+       🔥 Quá trình chuyển đổi từ xã nông thôn lên phường của Lưu Kiếm không chỉ là sự thay đổi về không gian hành chính mà còn là sự tái cấu trúc toàn diện về lối sống, tư duy phát triển và mô hình kinh tế. Bài viết này đưa ra những ý tưởng tiếp cận đô thị hóa như một quá trình xã hội – kinh tế tổng hợp, trong đó con người vừa là chủ thể, vừa là động lực và mục tiêu của phát triển. Bài viết phân tích những yêu cầu đặt ra đối với Lưu Kiếm trong việc xây dựng lối sống đô thị văn minh gắn với phát triển kinh tế theo hướng xanh, hiện đại và bền vững.
+      </p>
+
+      <a href="posts/1766109812963.html" class="read-more">
+        Đọc phân tích đầy đủ →
+      </a>
+    </div>
+  </div>
+</section>
+ </div>
+
 <div class="container">
   <!-- ẢNH 1 -->
     <div class="img-giua">
@@ -1071,6 +1196,58 @@ document.addEventListener("DOMContentLoaded", ()=>{
   tongTatCaBaiViet();
 });
 </script>
+
+<script>
+/* ===============================
+   LOAD BÀI VIẾT ĐỌC NHIỀU
+   =============================== */
+
+async function loadPopularPosts(){
+  const posts = await fetchPosts();
+  const box = document.getElementById("popular-posts-list");
+  if(!box) return;
+
+  // Lọc đúng chuyên mục
+  const valid = posts
+    .filter(p =>
+      p.category === "tintuc" ||
+      p.category === "baiviet" ||
+      p.category === "suckhoe"
+    )
+    // Sắp xếp theo lượt xem giảm dần
+    .sort((a,b) => (b.views || 0) - (a.views || 0))
+    .slice(0,10);   // Top 10 bài
+
+  if(!valid.length){
+    box.innerHTML =
+      '<p style="text-align:center;color:#777">Chưa có dữ liệu.</p>';
+    return;
+  }
+
+  box.innerHTML = "";
+
+  valid.forEach(p=>{
+    box.insertAdjacentHTML("beforeend", `
+      <div class="news-item">
+        <img src="${p.thumbnail || 'images/vutrong.jpg'}" alt="">
+        <div>
+          <a href="post.html?id=${p.id}">
+            ${p.title}
+          </a>
+          <div class="news-date">
+            👁 ${p.views || 0} lượt xem
+          </div>
+        </div>
+      </div>
+    `);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  loadPopularPosts();
+});
+</script>
+
 
 <script>
 fetch("site_config.json")
