@@ -259,8 +259,9 @@ async function syncViews(post) {
 
     const res = await fetch(
       VIEW_API +
-      "?action=increment&postId=" +
-      encodeURIComponent(post.id)
+      "?action=increment" +
+      "&postId=" + encodeURIComponent(post.id) +
+      "&title=" + encodeURIComponent(post.title)
     );
 
     const data = await res.json();
