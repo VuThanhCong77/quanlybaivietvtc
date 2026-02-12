@@ -252,7 +252,7 @@ function guiGopY() {
 document.addEventListener('DOMContentLoaded', loadPost);
 
 
-const VIEW_API = "https://script.google.com/macros/s/AKfycbwBeZTTLx28LaqnfTlwFVHAgaWq-zaEH2VFJkjeHP3DLcmVlzB4nuBkWGXz-4bdxgiMXw/exec";
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxRloIxI4vgpdslPbyAFM6z2TQMgQiXwklc5uvnpj_d3wd8f9UGTadOeqfRNLpWy8MNdg/exec";
 
 async function syncViews(post) {
   try {
@@ -265,17 +265,8 @@ async function syncViews(post) {
 
     const data = await res.json();
 
-    if (data && data.success) {
-      // Sau khi tăng, gọi lại để lấy số mới
-      const getRes = await fetch(
-        VIEW_API + "?postId=" + encodeURIComponent(post.id)
-      );
-
-      const viewData = await getRes.json();
-
-      if (viewData.views !== undefined) {
-        document.getElementById("view-count").innerText = viewData.views;
-      }
+    if (data.views !== undefined) {
+      document.getElementById("view-count").innerText = data.views;
     }
 
   } catch (err) {
