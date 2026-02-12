@@ -252,24 +252,29 @@ function guiGopY() {
 document.addEventListener('DOMContentLoaded', loadPost);
 
 
-const VIEW_API = "https://script.google.com/macros/s/AKfycbxAiEma3FUdHiAVmR9-Ju2rNgNH97N9lCiNWSxcRh1OaYQt1fV1hWsgDgw-LCjta8T8/exec";
+const VIEW_API = "https://script.google.com/macros/s/AKfycby6zKaFcyJbnhYq_aU9sUVjMMXspRKQXemdoltOzH-JzeOwC76XTzXAXznz2j_v85bA2A/exec";
 
 function syncViews(post) {
+
+  // 1️⃣ Tăng lượt xem
   fetch(VIEW_API, {
     method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       postId: String(post.id),
       title: post.title
     })
-  })
-  .then(() => {
-    console.log("Đã gửi request tăng view");
-  })
-  .catch(err => console.error("Lỗi đồng bộ lượt xem", err));
+  });
+
+  // 2️⃣ Lấy tổng lượt xem mới nhất
+  fetch(VIEW_API + "?postId=" + post.id)
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.views !== undefined) {
+        document.getElementById("view-count").innerText = data.views;
+      }
+    })
+    .catch(err => console.error("Lỗi lấy lượt xem", err));
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -298,6 +303,25 @@ document.addEventListener("DOMContentLoaded", function () {
 <button id="backToTop" title="Về đầu trang">
     <i class="fas fa-arrow-up"></i>
 </button>
+
+<script>
+const postId = "bai-viet-26";   // ID bài viết phải trùng với ID lưu trong Sheet
+const title = document.title;
+
+fetch("LINK_WEB_APP_CUA_ANH", {
+  method: "POST",
+  body: JSON.stringify({
+    postId: postId,
+    title: title
+  })
+})
+.then(res => res.json())
+.then(data => {
+  document.getElementById("view-count").innerText = data.views;
+})
+.catch(err => console.error(err));
+</script>
+
 </body>
 
 
