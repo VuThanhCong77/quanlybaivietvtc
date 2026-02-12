@@ -252,15 +252,15 @@ function guiGopY() {
 document.addEventListener('DOMContentLoaded', loadPost);
 
 
-const VIEW_API = "https://script.google.com/macros/s/AKfycbw9VPVXwO1Yenjw36ciBYUYFl1cKJYFyW98c24UPKxaD8aS_M4syLJsKz1Y7G-BY_J9Gw/exec";
+const VIEW_API = "https://script.google.com/macros/s/AKfycbwFyTuwsR3JJOEwh6piyUdZFQM8LohTPwIKfCEa19dZAM6FTe24oCoptBZ5zdUf7P_Awg/exec";
 
 async function syncViews(post) {
   try {
 
     const res = await fetch(
-      "?action=increment" +
-"&postId=" + encodeURIComponent(post.id) +
-"&title=" + encodeURIComponent(post.title)
+      VIEW_API +
+      "?action=increment&postId=" +
+      encodeURIComponent(post.id)
     );
 
     const data = await res.json();
