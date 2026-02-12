@@ -1198,56 +1198,71 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </script>
 
 <script>
-/* ===============================
-   LOAD BÀI VIẾT ĐỌC NHIỀU
-   =============================== */
+const VIEW_API = "https://script.google.com/macros/s/AKfycbwFyTuwsR3JJOEwh6piyUdZFQM8LohTPwIKfCEa19dZAM6FTe24oCoptBZ5zdUf7P_Awg/exec";
 
 async function loadPopularPosts(){
-  const posts = await fetchPosts();
+
   const box = document.getElementById("popular-posts-list");
   if(!box) return;
 
-  // Lọc đúng chuyên mục
-  const valid = posts
-    .filter(p =>
-      p.category === "tintuc" ||
-      p.category === "baiviet" ||
-      p.category === "suckhoe"
-    )
-    // Sắp xếp theo lượt xem giảm dần
-    .sort((a,b) => (b.views || 0) - (a.views || 0))
-    .slice(0,10);   // Top 10 bài
+  try{
 
-  if(!valid.length){
-    box.innerHTML =
-      '<p style="text-align:center;color:#777">Chưa có dữ liệu.</p>';
-    return;
-  }
+    // 1. Lấy danh sách bài viết
+    const posts = await fetchPosts();
 
-  box.innerHTML = "";
+    // 2. Lấy toàn bộ lượt xem từ Google Sheet
+    const res = await fetch(VIEW_API + "?mode=list");
+    const viewData = await res.json();
 
-  valid.forEach(p=>{
-    box.insertAdjacentHTML("beforeend", `
-      <div class="news-item">
-        <img src="${p.thumbnail || 'images/vutrong.jpg'}" alt="">
-        <div>
-          <a href="post.html?id=${p.id}">
-            ${p.title}
-          </a>
-          <div class="news-date">
-            👁 ${p.views || 0} lượt xem
+    // 3. Gán views vào từng bài
+    posts.forEach(post=>{
+      const found = viewData.find(v => String(v.postId) === String(post.id));
+      post.views = found ? Number(found.views) : 0;
+    });
+
+    // 4. Lọc chuyên mục
+    const valid = posts
+      .filter(p =>
+        p.category === "tintuc" ||
+        p.category === "baiviet" ||
+        p.category === "suckhoe"
+      )
+      .sort((a,b) => b.views - a.views)
+      .slice(0,10);
+
+    if(!valid.length){
+      box.innerHTML =
+        '<p style="text-align:center;color:#777">Chưa có dữ liệu.</p>';
+      return;
+    }
+
+    box.innerHTML = "";
+
+    valid.forEach(p=>{
+      box.insertAdjacentHTML("beforeend", `
+        <div class="news-item">
+          <img src="${p.thumbnail || 'images/vutrong.jpg'}" alt="">
+          <div>
+            <a href="post.html?id=${p.id}">
+              ${p.title}
+            </a>
+            <div class="news-date">
+              👁 ${p.views} lượt xem
+            </div>
           </div>
         </div>
-      </div>
-    `);
-  });
+      `);
+    });
+
+  }catch(err){
+    console.error("Lỗi tải bài đọc nhiều:", err);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
   loadPopularPosts();
 });
 </script>
-
 
 <script>
 fetch("site_config.json")
