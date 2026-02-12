@@ -180,8 +180,7 @@ async function loadPost() {
             document.getElementById('view-content').innerHTML = post.description || "";
 
      syncViews(post);
-     countViews(post.id);
-
+    
             const imgElement = document.getElementById('view-image');
             if (post.thumbnail) {
                 // Tự động chuyển link GitHub thành link Raw nếu cần
@@ -258,36 +257,19 @@ const VIEW_API = "https://script.google.com/macros/s/AKfycbxAiEma3FUdHiAVmR9-Ju2
 function syncViews(post) {
   fetch(VIEW_API, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       postId: String(post.id),
-      title: post.title,
-      url: window.location.href
+      title: post.title
     })
   })
-  .then(res => res.json())
-  .then(data => {
-    if (data && data.views !== undefined) {
-      document.getElementById("view-count").innerText = data.views;
-    }
+  .then(() => {
+    console.log("Đã gửi request tăng view");
   })
   .catch(err => console.error("Lỗi đồng bộ lượt xem", err));
-}
-
-function countViews(postId) {
-    if (!postId) return;
-
-    const key = 'views_post_' + postId;
-    let views = localStorage.getItem(key);
-
-    if (!views) {
-        views = 1;
-    } else {
-        views = parseInt(views) + 1;
-    }
-
-    localStorage.setItem(key, views);
-    document.getElementById('view-count').innerText = views;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
