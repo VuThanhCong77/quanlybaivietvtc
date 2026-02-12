@@ -252,25 +252,30 @@ function guiGopY() {
 document.addEventListener('DOMContentLoaded', loadPost);
 
 
-const VIEW_API = "https://script.google.com/macros/s/AKfycbwGtrJvGTKVfcOOYPI9lg7n47wxs7QLphBnG3I6hp3J5okMDJcUJou1pqenyJSSYfZ3/exec";
+const VIEW_API = "https://script.google.com/macros/s/AKfycbyT75B8XCpSygReCmuvjXUHM4_kA94-kno4U8uMwZDCTl2c4CT0yH-sEAXL4oF3Rwu-EQ/exec";
 
 async function syncViews(post) {
-
   try {
-    // 1️⃣ Tăng lượt xem và chờ kết quả
-    const res = await fetch(VIEW_API, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        postId: String(post.id),
-        title: post.title
-      })
-    });
+
+    const res = await fetch(
+      VIEW_API +
+      "?action=increment&postId=" +
+      encodeURIComponent(post.id)
+    );
 
     const data = await res.json();
 
-    if (data && data.views !== undefined) {
-      document.getElementById("view-count").innerText = data.views;
+    if (data && data.success) {
+      // Sau khi tăng, gọi lại để lấy số mới
+      const getRes = await fetch(
+        VIEW_API + "?postId=" + encodeURIComponent(post.id)
+      );
+
+      const viewData = await getRes.json();
+
+      if (viewData.views !== undefined) {
+        document.getElementById("view-count").innerText = viewData.views;
+      }
     }
 
   } catch (err) {
