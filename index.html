@@ -1074,9 +1074,8 @@ a{
 
 <div class="action-bar">
 <div class="like-box">
-  <button id="likeBtn" class="like-btn">
-    👍 Thích <span id="likeCount">0</span>
-  </button>
+ <button id="likeBtn">👍 Thích </button>
+<span> 📊: <b id="likeCount">0</b></span>
 </div>
 
   <div class="share-group">
@@ -1360,6 +1359,7 @@ function copyLink(btn){
   if(el) el.innerText = users.length;
 })();
 </script>
+
 <script>
 (function(){
   const VIEW_KEY = "vtc77_total_views";
@@ -1437,30 +1437,35 @@ fetch("sidebar.html")
     document.getElementById("sidebar-container").innerHTML = data;
   });
 </script>
+
 <script>
-(function(){
-  const KEY = "vtc77_like_index"; // key riêng cho trang index
-  const btn = document.getElementById("likeBtn");
-  const countEl = document.getElementById("likeCount");
+if (localStorage.getItem("likedIndex")) {
+  alert("Bạn đã đồng tình trước đó.");
+  return;
+}
+localStorage.setItem("likedIndex", "true");
 
-  if(!btn || !countEl) return;
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
 
-  let data = JSON.parse(localStorage.getItem(KEY) || '{"count":0,"liked":false}');
+// Tải số like khi mở trang
+function loadLike() {
+  fetch(API + "?action=get&page=index")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("likeCount").innerText = data;
+    });
+}
 
-  countEl.innerText = data.count;
-  if(data.liked) btn.classList.add("liked");
+loadLike();
 
-  btn.addEventListener("click", ()=>{
-    if(data.liked) return; // mỗi thiết bị chỉ thích 1 lần
-
-    data.count++;
-    data.liked = true;
-
-    localStorage.setItem(KEY, JSON.stringify(data));
-    countEl.innerText = data.count;
-    btn.classList.add("liked");
-  });
-})();
+// Khi bấm nút
+document.getElementById("likeBtn").addEventListener("click", function() {
+  fetch(API + "?action=like&page=index")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("likeCount").innerText = data;
+    });
+});
 </script>
 
 <script>
