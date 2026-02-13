@@ -1430,6 +1430,7 @@ document.getElementById("btnDefaultBg").onclick = function(){
   localStorage.removeItem("bgIndex");
 };
 </script>
+
 <script>
 fetch("sidebar.html")
   .then(response => response.text())
@@ -1439,32 +1440,41 @@ fetch("sidebar.html")
 </script>
 
 <script>
-if (localStorage.getItem("likedIndex")) {
-  alert("Bạn đã đồng tình trước đó.");
-  return;
-}
-localStorage.setItem("likedIndex", "true");
-
+/* ===============================
+   THÍCH TRANG
+   =============================== */
 const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
 
 // Tải số like khi mở trang
 function loadLike() {
   fetch(API + "?action=get&page=index")
     .then(res => res.text())
     .then(data => {
-      document.getElementById("likeCount").innerText = data;
-    });
+      likeCount.innerText = data;
+    })
+    .catch(err => console.error("Lỗi tải like:", err));
 }
 
 loadLike();
 
 // Khi bấm nút
-document.getElementById("likeBtn").addEventListener("click", function() {
+likeBtn.addEventListener("click", function () {
+
+  // Nếu đã like trước đó
+  if (localStorage.getItem("likedIndex")) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
   fetch(API + "?action=like&page=index")
     .then(res => res.text())
     .then(data => {
-      document.getElementById("likeCount").innerText = data;
-    });
+      likeCount.innerText = data;
+      localStorage.setItem("likedIndex", "true");
+    })
+    .catch(err => console.error("Lỗi gửi like:", err));
 });
 </script>
 
