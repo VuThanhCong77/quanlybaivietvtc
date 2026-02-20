@@ -192,15 +192,24 @@ mark.current-match {
 </div>
 
  <!-- MAIN -->
-  <main>
+<div class="page-wrapper">
+<main class="main-content">
+<div class="main-grid">
+    <!-- CỘT TRÁI -->
+<section class="content-left">
+
     <h2 id="content-title">Đang tải...</h2>
     <div id="text-content">Đang tải nội dung...</div>
-  </main>
+ 
+ </section>
+ <!-- CỘT PHẢI -->
+    <aside class="content-right" id="sidebar-container"></aside>
+  </div>
+</main>
 
 <footer>
   ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
 </footer>
-
 </div>
 
 <button id="backToTop">▲</button>
@@ -326,6 +335,14 @@ prevBtn.onclick = goPrev;
 searchInput.addEventListener("keydown", e => {
   if (e.key === "Enter") searchBtn.click();
 });
+</script>
+
+<script>
+fetch("sidebar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("sidebar-container").innerHTML = data;
+  });
 </script>
 
 </body>
