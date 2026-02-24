@@ -197,8 +197,13 @@ mark.current-match {
 <div class="main-grid">
     <!-- CỘT TRÁI -->
 <section class="content-left">
-<button id="speakBtn">🔊 Nghe bài viết</button>
+
     <h2 id="content-title">Đang tải...</h2>
+<button onclick="startSpeak()">🔊 Nghe</button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
+
     <div id="text-content">Đang tải nội dung...</div>
  
  </section>
@@ -344,21 +349,33 @@ fetch("sidebar.html")
     document.getElementById("sidebar-container").innerHTML = data;
   });
 </script>
-/* ==============
-   ĐỌC BẰNG GIỌNG NÓI
-   =============== */
+
 <script>
-document.getElementById("speakBtn").addEventListener("click", function() {
+let utterance;
+
+function startSpeak() {
   const text = document.querySelector(".article").innerText;
-  
-  const utterance = new SpeechSynthesisUtterance(text);
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "vi-VN";
   utterance.rate = 1;
-  utterance.pitch = 1;
 
-  speechSynthesis.cancel(); 
   speechSynthesis.speak(utterance);
-});
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
+}
 </script>
 
 </body>
