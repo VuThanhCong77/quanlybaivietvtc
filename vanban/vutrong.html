@@ -145,7 +145,7 @@ footer p{
 
 <div class="article">
   <h2>TẢN MẠN VỀ DÒNG HỌ</h2>
-
+<button onclick="speakText()">🔊 Nghe bài viết</button>
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 21/01/2021
 </div>
@@ -232,5 +232,19 @@ function copyLink(){
   alert("Đã sao chép đường dẫn bài viết!");
 }
 </script>
+  /* ==============
+   ĐỌC BẰNG GIỌNG NÓI
+   =============== */
+<script>
+function speakText() {
+  const article = document.querySelector(".article").innerText;
+  const speech = new SpeechSynthesisUtterance(article);
+  speech.lang = "vi-VN";
+  speech.rate = 1;
+  window.speechSynthesis.speak(speech);
+}
+</script>
+
 </body>
 </html>
+
