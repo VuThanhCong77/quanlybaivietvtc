@@ -313,15 +313,33 @@ document.addEventListener("DOMContentLoaded", function () {
    ĐỌC BẰNG GIỌNG NÓI
    =============== */
 let speechUtterance = null;
-let vietnameseVoice = null;
+let selectedVoice = null;
 
-function loadVoices() {
-    const voices = speechSynthesis.getVoices();
-    vietnameseVoice = voices.find(voice => voice.lang === "vi-VN");
+// Hàm tìm giọng tiếng Việt
+function loadVietnameseVoice() {
+    const voices = window.speechSynthesis.getVoices();
+
+    // Ưu tiên giọng vi-VN chính xác
+    selectedVoice = voices.find(v => v.lang === "vi-VN");
+
+    // Nếu không có, chọn giọng có chữ "vi"
+    if (!selectedVoice) {
+        selectedVoice = voices.find(v => v.lang.toLowerCase().includes("vi"));
+    }
+
+    // Nếu vẫn không có, chọn giọng mặc định nhưng giữ lang vi-VN
+    if (!selectedVoice && voices.length > 0) {
+        selectedVoice = voices[0];
+    }
 }
 
 // Một số trình duyệt load voice chậm
-speechSynthesis.onvoiceschanged = loadVoices;
+window.speechSynthesis.onvoiceschanged = loadVietnameseVoice;
+
+// Gọi ngay khi load trang
+document.addEventListener("DOMContentLoaded", function () {
+    loadVietnameseVoice();
+});
 
 function startReading() {
 
@@ -329,24 +347,21 @@ function startReading() {
     if (!contentElement) return;
 
     const text = contentElement.innerText.trim();
-
     if (!text) {
         alert("Không có nội dung để đọc!");
-        return;
-    }
-
-    // Kiểm tra có giọng Việt không
-    if (!vietnameseVoice) {
-        alert("Thiết bị chưa hỗ trợ giọng đọc tiếng Việt. Vui lòng cài đặt giọng vi-VN trong hệ điều hành.");
         return;
     }
 
     window.speechSynthesis.cancel();
 
     speechUtterance = new SpeechSynthesisUtterance(text);
-    speechUtterance.voice = vietnameseVoice;
+    speechUtterance.lang = "vi-VN";   // luôn đặt ngôn ngữ Việt
     speechUtterance.rate = 1;
     speechUtterance.pitch = 1;
+
+    if (selectedVoice) {
+        speechUtterance.voice = selectedVoice;
+    }
 
     window.speechSynthesis.speak(speechUtterance);
 }
@@ -360,6 +375,7 @@ function pauseReading() {
 function stopReading() {
     speechSynthesis.cancel();
 }
+
 </script>
 <button id="backToTop" title="Về đầu trang">
     <i class="fas fa-arrow-up"></i>
