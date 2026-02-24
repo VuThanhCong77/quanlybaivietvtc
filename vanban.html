@@ -197,7 +197,7 @@ mark.current-match {
 <div class="main-grid">
     <!-- CỘT TRÁI -->
 <section class="content-left">
-
+<button onclick="speakText()">🔊 Nghe bài viết</button>
     <h2 id="content-title">Đang tải...</h2>
     <div id="text-content">Đang tải nội dung...</div>
  
@@ -343,6 +343,18 @@ fetch("sidebar.html")
   .then(data => {
     document.getElementById("sidebar-container").innerHTML = data;
   });
+</script>
+/* ==============
+   ĐỌC BẰNG GIỌNG NÓI
+   =============== */
+<script>
+function speakText() {
+  const article = document.querySelector(".article").innerText;
+  const speech = new SpeechSynthesisUtterance(article);
+  speech.lang = "vi-VN";
+  speech.rate = 1;
+  window.speechSynthesis.speak(speech);
+}
 </script>
 
 </body>
