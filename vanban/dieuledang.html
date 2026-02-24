@@ -297,11 +297,12 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 </script>
+
 <script>
 let utterance;
 
 function startSpeak() {
-  const text = document.querySelector(".article").innerText;
+  const text = document.getElementById("text-content").innerText;
 
   speechSynthesis.cancel(); // tránh chồng giọng
 
