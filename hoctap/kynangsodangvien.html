@@ -2,14 +2,14 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Đảng viên tiên phong trong học tập kỹ năng số</title>
+<title>Bài viết</title>
 
 <!-- THẺ CHIA SẺ MẠNG XÃ HỘI -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="Đảng viên tiên phong trong học tập kỹ năng số">
-<meta property="og:description" content="Chuyển đổi số đang trở thành xu thế phổ quát trên toàn cầu. Từ kinh tế đến giáo dục, từ quản trị nhà nước đến sinh hoạt xã hội, các mô hình truyền thống đang từng bước được tái cấu trúc trên nền tảng số. Với tốc độ phát triển như vũ bão của công nghệ, chuyển đổi số đang mở ra những cơ hội chưa từng có, đồng thời cũng đặt ra những thách thức gay gắt đối với mọi quốc gia, tổ chức và cá nhân. Trong bối cảnh đó, việc lựa chọn đi cùng hay đứng ngoài tiến trình này không còn là câu hỏi, mà là một yêu cầu bắt buộc đối với mọi quốc gia có khát vọng vươn lên.">
-<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/hoctap/kynangsodangvien.html">
-<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/anhvietbai/nangcaokienthuc.png">
+<meta property="og:title" content="TIÊU ĐỀ BÀI VIẾT">
+<meta property="og:description" content="MÔ TẢ BÀI VIẾT">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/vanban/TENTEP.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/hoamai.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -148,6 +148,8 @@ footer p{
 <div class="article">
   <h2>Đảng viên tiên phong trong học tập kỹ năng số</h2>
 
+<button onclick="speakText()">🔊 Nghe bài viết</button>
+
   <div style="color:#0303ef;font-weight:bold">
    🌸 Ban Tuyên giáo và Dân vận Trung ương ⏰ 2026
 </div>
@@ -207,8 +209,20 @@ function copyLink(){
   navigator.clipboard.writeText(window.location.href);
   alert("Đã sao chép đường dẫn bài viết!");
 }
+
 </script>
 
+/* ==============
+   ĐỌC BẰNG GIỌNG NÓI
+   =============== */
+<script>
+function speakText() {
+  const article = document.querySelector(".article").innerText;
+  const speech = new SpeechSynthesisUtterance(article);
+  speech.lang = "vi-VN";
+  speech.rate = 1;
+  window.speechSynthesis.speak(speech);
+}
+</script>
 </body>
 </html>
-
