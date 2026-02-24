@@ -215,10 +215,17 @@ mark.current-match{
 <!-- NỘI DUNG -->
 <main id="content-body">
   <h2 id="doc-title"></h2>
-<button onclick="startSpeak()">🔊 </button>
-<button onclick="pauseSpeak()">⏸ </button>
-<button onclick="resumeSpeak()">▶ </button>
-<button onclick="stopSpeak()">⏹ </button>
+<div class="mb-3">
+    <button class="btn btn-primary btn-sm me-2" onclick="startReading()">
+        ▶️ Đọc
+    </button>
+    <button class="btn btn-warning btn-sm me-2" onclick="pauseReading()">
+        ⏸ Tạm dừng
+    </button>
+    <button class="btn btn-danger btn-sm" onclick="stopReading()">
+        ⏹ Dừng
+    </button>
+</div>
 
   <div id="doc-content"></div>
 </main>
@@ -378,30 +385,68 @@ document.getElementById('prev-match-2').onclick = goPrev;
 </script>
 
 <script>
-let utterance;
+let speechUtterance = null;
+let selectedVoice = null;
 
-function startSpeak() {
-  const text = document.getElementById("text-content").innerText;
+// Hàm tìm giọng tiếng Việt
+function loadVietnameseVoice() {
+    const voices = window.speechSynthesis.getVoices();
 
-  speechSynthesis.cancel(); // tránh chồng giọng
+    // Ưu tiên giọng vi-VN chính xác
+    selectedVoice = voices.find(v => v.lang === "vi-VN");
 
-  utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "vi-VN";
-  utterance.rate = 1;
+    // Nếu không có, chọn giọng có chữ "vi"
+    if (!selectedVoice) {
+        selectedVoice = voices.find(v => v.lang.toLowerCase().includes("vi"));
+    }
 
-  speechSynthesis.speak(utterance);
+    // Nếu vẫn không có, chọn giọng mặc định nhưng giữ lang vi-VN
+    if (!selectedVoice && voices.length > 0) {
+        selectedVoice = voices[0];
+    }
 }
 
-function pauseSpeak() {
-  speechSynthesis.pause();
+// Một số trình duyệt load voice chậm
+window.speechSynthesis.onvoiceschanged = loadVietnameseVoice;
+
+// Gọi ngay khi load trang
+document.addEventListener("DOMContentLoaded", function () {
+    loadVietnameseVoice();
+});
+
+function startReading() {
+
+    const contentElement = document.getElementById("view-content");
+    if (!contentElement) return;
+
+    const text = contentElement.innerText.trim();
+    if (!text) {
+        alert("Không có nội dung để đọc!");
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    speechUtterance = new SpeechSynthesisUtterance(text);
+    speechUtterance.lang = "vi-VN";   // luôn đặt ngôn ngữ Việt
+    speechUtterance.rate = 1;
+    speechUtterance.pitch = 1;
+
+    if (selectedVoice) {
+        speechUtterance.voice = selectedVoice;
+    }
+
+    window.speechSynthesis.speak(speechUtterance);
 }
 
-function resumeSpeak() {
-  speechSynthesis.resume();
+function pauseReading() {
+    if (speechSynthesis.speaking) {
+        speechSynthesis.pause();
+    }
 }
 
-function stopSpeak() {
-  speechSynthesis.cancel();
+function stopReading() {
+    speechSynthesis.cancel();
 }
 </script>
 
