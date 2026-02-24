@@ -222,7 +222,7 @@ function copyLink(){
 let utterance;
 
 function startSpeak() {
-  const text = document.getElementById("text-content").innerText;
+  const text = document.querySelector(".article").innerText;
 
   speechSynthesis.cancel(); // tránh chồng giọng
 
@@ -248,6 +248,7 @@ function stopSpeak() {
 
 </body>
 </html>
+
 
 
 
