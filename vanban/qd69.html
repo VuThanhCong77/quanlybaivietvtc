@@ -377,12 +377,11 @@ document.getElementById('prev-match-2').onclick = goPrev;
 
 </script>
 
-/* ĐỌC BÀI VIẾT */
 <script>
 let utterance;
 
 function startSpeak() {
-  const text = document.querySelector(".article").innerText;
+  const text = document.getElementById("text-content").innerText;
 
   speechSynthesis.cancel(); // tránh chồng giọng
 
