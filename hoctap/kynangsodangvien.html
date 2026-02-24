@@ -148,7 +148,10 @@ footer p{
 <div class="article">
   <h2>Đảng viên tiên phong trong học tập kỹ năng số</h2>
 
-<button onclick="speakText()">🔊 Nghe bài viết</button>
+<button onclick="startSpeak()">🔊 Nghe</button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
 
   <div style="color:#0303ef;font-weight:bold">
    🌸 Ban Tuyên giáo và Dân vận Trung ương ⏰ 2026
@@ -216,13 +219,32 @@ function copyLink(){
    ĐỌC BẰNG GIỌNG NÓI
    =============== */
 <script>
-function speakText() {
-  const article = document.querySelector(".article").innerText;
-  const speech = new SpeechSynthesisUtterance(article);
-  speech.lang = "vi-VN";
-  speech.rate = 1;
-  window.speechSynthesis.speak(speech);
+let utterance;
+
+function startSpeak() {
+  const text = document.querySelector(".article").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
 }
 </script>
+
 </body>
 </html>
