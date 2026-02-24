@@ -149,7 +149,7 @@ CÂU CHUYỆN VỀ MỘT CON NGƯỜI BÊN DÒNG SÔNG ĐÁ BẠC🌱</h2>
 <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 03/12/2025
 </div>
-
+<button onclick="speakText()">🔊 Nghe bài viết</button>
   <p class="justified-p">
         <span class="lotus-icon">🌸</span> Giữa miền quê Lưu Kiếm hiền hòa, nơi dòng sông Đá Bạc quanh năm lặng lẽ chở phù sa bồi đắp cho những cánh đồng xanh mướt, có một câu chuyện đời người bình dị mà sâu sắc. Đó là câu chuyện về một con người sinh ra từ gian khó, lớn lên bằng ý chí và trưởng thành trong niềm tin yêu của Nhân dân. Câu chuyện ấy không ồn ào, không phô trương, nhưng đủ sức lay động bởi sự bền bỉ, chân thành và trách nhiệm với quê hương.
     </p>
@@ -260,6 +260,18 @@ fetch("sidebar.html")
   .then(data => {
     document.getElementById("sidebar-container").innerHTML = data;
   });
+</script>
+/* ==============
+   ĐỌC BẰNG GIỌNG NÓI
+   =============== */
+<script>
+function speakText() {
+  const article = document.querySelector(".article").innerText;
+  const speech = new SpeechSynthesisUtterance(article);
+  speech.lang = "vi-VN";
+  speech.rate = 1;
+  window.speechSynthesis.speak(speech);
+}
 </script>
 
 </body>
