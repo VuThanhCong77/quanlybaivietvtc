@@ -150,6 +150,11 @@ footer p{
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 23 - 4 - 2013
 </div>
+<button onclick="startSpeak()">🔊 Nghe</button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
+
    <p class="justified">
   1. Tâm: tịnh, sáng🌸“Tâm” ở đây là tâm trí, nội tâm của con người. “Tịnh” là trạng thái an yên, không xao động; “sáng” là sự minh mẫn, trong trẻo. Khi giữ tâm tịnh và sáng, con người dễ sống hài hòa, đưa ra quyết định sáng suốt và tránh bị chi phối bởi cảm xúc tiêu cực.</p> 
 <p class="justified">
@@ -241,5 +246,35 @@ function copyLink(){
   alert("Đã sao chép đường dẫn bài viết!");
 }
 </script>
+
+/* ĐỌC BÀI VIẾT */
+<script>
+let utterance;
+
+function startSpeak() {
+  const text = document.querySelector(".article").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
+}
+</script>
+
 </body>
 </html>

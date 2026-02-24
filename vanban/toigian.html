@@ -139,10 +139,14 @@ footer p{
 
 <div class="article">
   <h2>🌸 HƯỚNG DẪN...</h2>
-<button onclick="speakText()">🔊 Nghe bài viết</button>
+
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 18/02/2026
 </div>
+<button onclick="startSpeak()">🔊 Nghe</button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
 
 <h3>🌸 Lối sống tối giản</h3>
 <p class="justified-p">Lối sống tối giản khuyến khích loại bỏ những thứ dư thừa về vật chất, thông tin và cam kết để giảm gánh nặng tinh thần. Nhiều nghiên cứu đã chỉ ra rằng môi trường bừa bộn tăng mức cortisol (hormone căng thẳng) và gây suy giảm tập trung. Ảnh hưởng tâm lý của “clutter” (chất bừa bộn) cũng được ghi nhận: người ở nhà lộn xộn có cảm giác an toàn và hạnh phúc thấp hơn, dễ căng thẳng hơn. Dưới đây là một số phương pháp thực hành tối giản đã được phổ biến: </p>
@@ -218,20 +222,35 @@ function copyLink(){
   alert("Đã sao chép đường dẫn bài viết!");
 }
 </script>
-/* ==============
-   ĐỌC BẰNG GIỌNG NÓI
-   =============== */
+/* ĐỌC BÀI VIẾT */
 <script>
-function speakText() {
-  const article = document.querySelector(".article").innerText;
-  const speech = new SpeechSynthesisUtterance(article);
-  speech.lang = "vi-VN";
-  speech.rate = 1;
-  window.speechSynthesis.speak(speech);
+let utterance;
+
+function startSpeak() {
+  const text = document.querySelector(".article").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
 }
 </script>
 
 </body>
 </html>
-
 

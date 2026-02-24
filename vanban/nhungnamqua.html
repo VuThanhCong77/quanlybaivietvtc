@@ -147,6 +147,10 @@ footer p{
 
 <div class="article">
   <h2>Nhìn lại chặng đường những năm qua</h2>
+<button onclick="startSpeak()">🔊 Nghe</button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
 
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 08/02/2026
@@ -213,6 +217,36 @@ function copyLink(){
   alert("Đã sao chép đường dẫn bài viết!");
 }
 </script>
+
+/* ĐỌC BÀI VIẾT */
+<script>
+let utterance;
+
+function startSpeak() {
+  const text = document.querySelector(".article").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
+}
+</script>
+
 </body>
 </html>
 

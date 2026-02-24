@@ -215,6 +215,11 @@ mark.current-match{
 <!-- NỘI DUNG -->
 <main id="content-body">
   <h2 id="doc-title"></h2>
+<button onclick="startSpeak()">🔊 Nghe</button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
+
   <div id="doc-content"></div>
 </main>
 
@@ -370,6 +375,35 @@ fetch('qd69.json')
 document.getElementById('next-match-2').onclick = goNext;
 document.getElementById('prev-match-2').onclick = goPrev;
 
+</script>
+
+/* ĐỌC BÀI VIẾT */
+<script>
+let utterance;
+
+function startSpeak() {
+  const text = document.querySelector(".article").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
+}
 </script>
 
 </body>

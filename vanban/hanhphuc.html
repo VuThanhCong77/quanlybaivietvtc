@@ -147,10 +147,15 @@ footer p{
 
 <div class="article">
   <h2>🌿 HẠNH PHÚC LÀ GÌ?</h2>
-<button onclick="speakText()">🔊 Nghe bài viết</button>
+
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 21/01/2026
 </div>
+<button onclick="startSpeak()">🔊 Nghe</button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
+
 <p class="justified-p">Từ thuở nằm nôi đến lúc bạc đầu, con người ta đi suốt một đời cũng chỉ để kiếm tìm hai chữ bình yên. Mà bình yên, suy cho cùng, chính là gốc rễ của hạnh phúc. Trong đó, phụ nữ – những người mang nặng yêu thương và hy sinh – lại càng khao khát hạnh phúc hơn ai hết. Họ mong được hạnh phúc, họ đã từng rất hạnh phúc, nhưng cũng có không ít người, vì quen với sự chịu đựng, vì mải lo cho người khác, mà không nhận ra rằng hạnh phúc đang lặng lẽ ngồi ngay bên mình.</p>
 <p class="justified-p">Hạnh phúc, xét cho cùng, là một trạng thái cảm xúc. Đó là khi con người đạt được hoặc đang sở hữu điều gì đó làm thỏa mãn mong muốn của chính mình. Có người định nghĩa hạnh phúc thật giản đơn: “Hạnh phúc là tất cả những gì bạn đang có.” Nghe qua tưởng như vô lý, nhưng đến khi mất đi rồi, người ta mới thấm. Ngày còn làm việc tám tiếng thì mong thêm tiền, sẵn sàng làm mười tiếng. Đến lúc sức khỏe hao mòn, lại chỉ ước được trở về những ngày tám tiếng bình thường, có thời gian cho gia đình, cho bữa cơm đầm ấm. Khi ấy mới hiểu: hóa ra cái mình từng có, lại chính là hạnh phúc.</p>
 <p class="justified-p">Hạnh phúc không phải là thứ ở đâu xa, mà là cách ta sống với những gì đang hiện hữu. Muốn chạm tới hạnh phúc, con người cần học năm điều giản dị mà sâu sắc. Thứ nhất, tập tha thứ – tha cho người khác và cũng là tha cho chính mình. Thứ hai, bớt lo lắng – bởi lo xa quá chỉ làm lòng nặng thêm. Thứ ba, sống đơn giản – đơn giản trong nghĩ suy, trong nhu cầu, trong cách nhìn đời. Thứ tư, cho đi nhiều hơn – bởi yêu thương càng sẻ chia càng sinh sôi. Và cuối cùng, đừng trông đợi quá nhiều – kỳ vọng ít đi thì thất vọng cũng ít lại.</p>
@@ -214,22 +219,37 @@ function copyLink(){
   alert("Đã sao chép đường dẫn bài viết!");
 }
 </script>
-/* ==============
-   ĐỌC BẰNG GIỌNG NÓI
-   =============== */
+/* ĐỌC BÀI VIẾT */
 <script>
-function speakText() {
-  const article = document.querySelector(".article").innerText;
-  const speech = new SpeechSynthesisUtterance(article);
-  speech.lang = "vi-VN";
-  speech.rate = 1;
-  window.speechSynthesis.speak(speech);
+let utterance;
+
+function startSpeak() {
+  const text = document.querySelector(".article").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
 }
 </script>
 
 </body>
 </html>
-
 
 
 

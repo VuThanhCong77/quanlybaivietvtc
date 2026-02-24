@@ -145,10 +145,14 @@ footer p{
 
 <div class="article">
   <h2>TẢN MẠN VỀ DÒNG HỌ</h2>
-<button onclick="speakText()">🔊 Nghe bài viết</button>
+
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 21/01/2021
 </div>
+<button onclick="startSpeak()">🔊 Nghe</button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
 
 <p class="justified-p">“Cây có cội, nước có nguồn. Chim có tổ, người có tông”. Những câu tục ngữ ấy đã phần nào nói nên được ý nghĩa về việc cần phải giữ gìn, phát huy truyền thống duy trì dòng tộc của người Việt Nam từ ngàn xưa. Việc chăm sóc, thờ phụng của đời sau đối với đời trước là việc làm mang ý nghĩa nhân văn cao cả, giữ trọn đạo hiếu.</p>
 <p class="justified-p">Song, để duy trì và lưu giữ cho đời sau những giá trị truyền thống, công lao, tên tuổi của thế hệ trước thì mỗi gia đình, chi, dòng họ cần phải lập và lưu giữ được gia phả, tộc phả của chính gia đình mình, chi mình, dòng họ mình.</p>
@@ -232,19 +236,35 @@ function copyLink(){
   alert("Đã sao chép đường dẫn bài viết!");
 }
 </script>
-  /* ==============
-   ĐỌC BẰNG GIỌNG NÓI
-   =============== */
+
+/* ĐỌC BÀI VIẾT */
 <script>
-function speakText() {
-  const article = document.querySelector(".article").innerText;
-  const speech = new SpeechSynthesisUtterance(article);
-  speech.lang = "vi-VN";
-  speech.rate = 1;
-  window.speechSynthesis.speak(speech);
+let utterance;
+
+function startSpeak() {
+  const text = document.querySelector(".article").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
 }
 </script>
 
 </body>
 </html>
-
