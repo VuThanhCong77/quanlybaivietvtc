@@ -889,7 +889,14 @@ a{
       <div id="running-text" class="marquee"></div>
     </div>
 
-    <div class="current-time" id="currentTime"></div>
+ <div class="top-bar">
+  <div class="current-time" id="currentTime"></div>
+
+  <audio id="player">
+    <source src="amthanh/nhacnen.mp3" type="audio/mpeg">
+  </audio>
+  <button id="musicBtn" onclick="toggleMusic()">▶</button>
+</div>
 
     <div class="img-giua">
       <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/vanban/toigian.html">
@@ -1581,5 +1588,26 @@ function nextSlide(){
 }
 </script>
 
+<script>
+const player = document.getElementById("player");
+const btn = document.getElementById("musicBtn");
+
+function toggleMusic(){
+
+  if(player.paused){
+      player.play();
+      btn.innerHTML = "⏸";   // đổi sang Pause
+  } else {
+      player.pause();
+      btn.innerHTML = "▶";   // đổi về Play
+  }
+}
+
+// Nếu bài nhạc phát xong → tự về biểu tượng Play
+player.addEventListener("ended", function(){
+    btn.innerHTML = "▶";
+});
+</script>
+	
 </body>
 </html>
