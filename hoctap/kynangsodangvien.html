@@ -147,9 +147,13 @@ footer p{
 
 <div class="article">
   <h2>Đảng viên tiên phong trong học tập kỹ năng số</h2>
-<audio controls>
-  <source src="amthanh/nhacnen.mp3" type="audio/mpeg">
+
+<audio id="player">
+  <source src="../amthanh/nhacnen.mp3" type="audio/mpeg">
 </audio>
+<button onclick="phatNhac()">▶ Phát nhạc</button>
+<button onclick="dungNhac()">⏸ Dừng</button>
+
   <div style="color:#0303ef;font-weight:bold">
    Ban Tuyên giáo và Dân vận Trung ương, năm 2026
 </div>
@@ -210,8 +214,19 @@ function copyLink(){
 }
 </script>
 
+<script>
+function phatNhac() {
+  const audio = document.getElementById("player");
+  audio.play();
+}
+
+function dungNhac() {
+  const audio = document.getElementById("player");
+  audio.pause();
+}
+</script>
+
 </body>
 </html>
-
 
 
