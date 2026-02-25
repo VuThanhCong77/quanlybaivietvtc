@@ -910,6 +910,7 @@ a{
     <source src="amthanh/nhacnen.mp3" type="audio/mpeg">
   </audio>
   <button id="musicBtn" onclick="toggleMusic()">▶</button>
+  <button id="loopBtn" onclick="toggleLoop()">🔁</button>
 </div>
 
     <div class="img-giua">
@@ -1604,22 +1605,31 @@ function nextSlide(){
 
 <script>
 const player = document.getElementById("player");
-const btn = document.getElementById("musicBtn");
+const musicBtn = document.getElementById("musicBtn");
+const loopBtn = document.getElementById("loopBtn");
 
 function toggleMusic(){
-
   if(player.paused){
       player.play();
-      btn.innerHTML = "⏸";   // đổi sang Pause
+      musicBtn.innerHTML = "⏸";
   } else {
       player.pause();
-      btn.innerHTML = "▶";   // đổi về Play
+      musicBtn.innerHTML = "▶";
   }
 }
 
-// Nếu bài nhạc phát xong → tự về biểu tượng Play
+function toggleLoop(){
+  player.loop = !player.loop;
+
+  if(player.loop){
+      loopBtn.classList.add("active");
+  } else {
+      loopBtn.classList.remove("active");
+  }
+}
+
 player.addEventListener("ended", function(){
-    btn.innerHTML = "▶";
+    musicBtn.innerHTML = "▶";
 });
 </script>
 	
