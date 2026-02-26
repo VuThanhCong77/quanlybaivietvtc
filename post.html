@@ -86,12 +86,55 @@ font-family: 'Arial', sans-serif;
 .post-copy-btn.copied{
   background: linear-gradient(135deg, #198754, #28a745);
 }
+</style>
 
-    </style>
+<style>
+.tts-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px;
+  background: #f4f6f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  font-size: 14px;
+}
+
+.tts-btn {
+  background: #0d6efd;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tts-btn:hover {
+  background: #084298;
+}
+
+#ttsProgress {
+  flex: 1;
+  min-width: 120px;
+}
+
+#ttsRate, #ttsVoice {
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+#ttsTime {
+  font-weight: 500;
+  min-width: 80px;
+}
+</style>
 </head>
 <body>
 
-<div class="container my-5">
+<div class="article-content">
+
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="main-content" id="post-container">
@@ -102,19 +145,27 @@ font-family: 'Arial', sans-serif;
                     </ol>
                 </nav>
 
-                <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
+<div class="tts-container">
+    <button id="ttsBtn" class="tts-btn">▶ Đọc</button>
 
-<div class="mb-3">
-    <button class="btn btn-primary btn-sm me-2" onclick="startReading()">
-        ▶️ Đọc
-    </button>
-    <button class="btn btn-warning btn-sm me-2" onclick="pauseReading()">
-        ⏸ Tạm dừng
-    </button>
-    <button class="btn btn-danger btn-sm" onclick="stopReading()">
-        ⏹ Dừng
-    </button>
+  <input type="range" id="ttsProgress" value="0" min="0" max="100">
+
+  <span id="ttsTime">0:00 / 0:00</span>
+
+  <select id="ttsRate">
+    <option value="0.8">0.8x</option>
+    <option value="1" selected>1.0x</option>
+    <option value="1.2">1.2x</option>
+    <option value="1.5">1.5x</option>
+  </select>
+
+  <select id="ttsVoice">
+    <option value="female">Nữ miền Nam</option>
+    <option value="male">Nam miền Bắc</option>
+  </select>
 </div>
+
+                <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
 
 <div class="text-muted mb-2 small" id="post-views">
     <i class="fas fa-eye me-1"></i>
@@ -309,74 +360,157 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
-/* ==============
-   ĐỌC BẰNG GIỌNG NÓI
-   =============== */
-let speechUtterance = null;
-let selectedVoice = null;
+</script>
 
-// Hàm tìm giọng tiếng Việt
-function loadVietnameseVoice() {
-    const voices = window.speechSynthesis.getVoices();
+<script>
+const btn = document.getElementById("ttsBtn");
+const progress = document.getElementById("ttsProgress");
+const timeDisplay = document.getElementById("ttsTime");
+const rateSelect = document.getElementById("ttsRate");
+const voiceSelect = document.getElementById("ttsVoice");
 
-    // Ưu tiên giọng vi-VN chính xác
-    selectedVoice = voices.find(v => v.lang === "vi-VN");
+let utterance;
+let voices = [];
+let textContent = "";
+let currentCharIndex = 0;
+let isPlaying = false;
+let isPaused = false;
+let totalDuration = 0;
+let startTime = 0;
+let timer;
 
-    // Nếu không có, chọn giọng có chữ "vi"
-    if (!selectedVoice) {
-        selectedVoice = voices.find(v => v.lang.toLowerCase().includes("vi"));
-    }
-
-    // Nếu vẫn không có, chọn giọng mặc định nhưng giữ lang vi-VN
-    if (!selectedVoice && voices.length > 0) {
-        selectedVoice = voices[0];
-    }
+// Lấy nội dung bài viết
+function getArticleText() {
+  return document.getElementById("view-content").innerText;
 }
 
-// Một số trình duyệt load voice chậm
-window.speechSynthesis.onvoiceschanged = loadVietnameseVoice;
+// Format thời gian
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return m + ":" + (s < 10 ? "0" + s : s);
+}
 
-// Gọi ngay khi load trang
-document.addEventListener("DOMContentLoaded", function () {
-    loadVietnameseVoice();
+// Load voice
+function loadVoices() {
+  voices = speechSynthesis.getVoices();
+}
+speechSynthesis.onvoiceschanged = loadVoices;
+
+// Lấy voice tiếng Việt
+function getVietnameseVoice(type) {
+  const vi = voices.filter(v => v.lang === "vi-VN");
+  if (vi.length === 0) return null;
+  return type === "male" ? (vi[1] || vi[0]) : vi[0];
+}
+
+// Bắt đầu đọc
+function speakFrom(index = 0) {
+
+  textContent = getArticleText();
+  if (!textContent) return alert("Bài viết chưa tải xong!");
+
+  utterance = new SpeechSynthesisUtterance(
+    textContent.substring(index)
+  );
+
+  utterance.lang = "vi-VN";
+  utterance.rate = parseFloat(rateSelect.value);
+
+  const voice = getVietnameseVoice(voiceSelect.value);
+  if (voice) utterance.voice = voice;
+
+  utterance.onboundary = function(event) {
+    if (event.name === "word") {
+      currentCharIndex = index + event.charIndex;
+    }
+  };
+
+  utterance.onstart = function() {
+    isPlaying = true;
+    isPaused = false;
+    btn.innerText = "⏸ Tạm dừng";
+    startTimer();
+  };
+
+  utterance.onend = function() {
+    resetPlayer();
+  };
+
+  speechSynthesis.speak(utterance);
+}
+
+// Timer
+function startTimer() {
+  totalDuration = (textContent.split(" ").length / 180) * 60;
+  startTime = Date.now();
+
+  timer = setInterval(() => {
+    if (!isPaused) {
+      const elapsed = (Date.now() - startTime) / 1000;
+      progress.value = (currentCharIndex / textContent.length) * 100;
+      timeDisplay.innerText =
+        formatTime(elapsed) + " / " + formatTime(totalDuration);
+    }
+  }, 500);
+}
+
+function resetPlayer() {
+  clearInterval(timer);
+  isPlaying = false;
+  isPaused = false;
+  currentCharIndex = 0;
+  btn.innerText = "▶ Đọc";
+  progress.value = 0;
+}
+
+// Nút chính
+btn.addEventListener("click", () => {
+
+  if (!isPlaying) {
+    speakFrom(currentCharIndex);
+  }
+  else if (!isPaused) {
+    speechSynthesis.pause();
+    isPaused = true;
+    btn.innerText = "▶ Tiếp tục";
+  }
+  else {
+    speechSynthesis.resume();
+    isPaused = false;
+    btn.innerText = "⏸ Tạm dừng";
+  }
+
 });
 
-function startReading() {
-
-    const contentElement = document.getElementById("view-content");
-    if (!contentElement) return;
-
-    const text = contentElement.innerText.trim();
-    if (!text) {
-        alert("Không có nội dung để đọc!");
-        return;
-    }
-
-    window.speechSynthesis.cancel();
-
-    speechUtterance = new SpeechSynthesisUtterance(text);
-    speechUtterance.lang = "vi-VN";   // luôn đặt ngôn ngữ Việt
-    speechUtterance.rate = 1;
-    speechUtterance.pitch = 1;
-
-    if (selectedVoice) {
-        speechUtterance.voice = selectedVoice;
-    }
-
-    window.speechSynthesis.speak(speechUtterance);
-}
-
-function pauseReading() {
-    if (speechSynthesis.speaking) {
-        speechSynthesis.pause();
-    }
-}
-
-function stopReading() {
+// Khi đổi tốc độ
+rateSelect.addEventListener("change", () => {
+  if (isPlaying) {
     speechSynthesis.cancel();
-}
+    speakFrom(currentCharIndex);
+  }
+});
+
+// Khi đổi giọng
+voiceSelect.addEventListener("change", () => {
+  if (isPlaying) {
+    speechSynthesis.cancel();
+    speakFrom(currentCharIndex);
+  }
+});
+
+// Kéo thanh tiến trình
+progress.addEventListener("input", () => {
+  if (!textContent) return;
+  speechSynthesis.cancel();
+  currentCharIndex = Math.floor(
+    (progress.value / 100) * textContent.length
+  );
+  speakFrom(currentCharIndex);
+});
 
 </script>
+
 <button id="backToTop" title="Về đầu trang">
     <i class="fas fa-arrow-up"></i>
 </button>
