@@ -324,34 +324,6 @@ function copyLink(){
 </script>
 
 <script>
-let utterance;
-
-function startSpeak() {
-  const text = document.querySelector(".article").innerText;
-
-  speechSynthesis.cancel(); // tránh chồng giọng
-
-  utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "vi-VN";
-  utterance.rate = 1;
-
-  speechSynthesis.speak(utterance);
-}
-
-function pauseSpeak() {
-  speechSynthesis.pause();
-}
-
-function resumeSpeak() {
-  speechSynthesis.resume();
-}
-
-function stopSpeak() {
-  speechSynthesis.cancel();
-}
-</script>
-
-<script>
 const btnTTS = document.getElementById("ttsBtn");
 const progressBar = document.getElementById("ttsProgressBar");
 const timeDisplay = document.getElementById("ttsTime");
@@ -432,6 +404,7 @@ speedSelect.addEventListener("change", function(){
 
 </body>
 </html>
+
 
 
 
