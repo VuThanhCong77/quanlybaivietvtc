@@ -129,6 +129,11 @@ font-family: 'Arial', sans-serif;
   font-weight: 500;
   min-width: 80px;
 }
+.top-bar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
 </style>
 </head>
 <body>
@@ -144,27 +149,24 @@ font-family: 'Arial', sans-serif;
                         <li class="breadcrumb-item active">Bài viết</li>
                     </ol>
                 </nav>
-
+                
+<div class="top-bar">
 <div class="tts-container">
-    <button id="ttsBtn" class="tts-btn">▶ Đọc</button>
-
+  <button id="ttsBtn" class="tts-btn">▶ Đọc</button>
   <input type="range" id="ttsProgress" value="0" min="0" max="100">
-
   <span id="ttsTime">0:00 / 0:00</span>
-
   <select id="ttsRate">
     <option value="0.8">0.8x</option>
     <option value="1" selected>1.0x</option>
     <option value="1.2">1.2x</option>
     <option value="1.5">1.5x</option>
   </select>
-
   <select id="ttsVoice">
     <option value="female">Nữ miền Nam</option>
     <option value="male">Nam miền Bắc</option>
   </select>
 </div>
-
+</div>
                 <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
 
 <div class="text-muted mb-2 small" id="post-views">
