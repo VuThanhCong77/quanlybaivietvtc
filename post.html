@@ -134,6 +134,14 @@ font-family: 'Arial', sans-serif;
   align-items:center;
   gap:8px;
 }
+@media (max-width:600px){
+  .current-time{
+    font-size:12px;
+  }
+  .top-bar{
+    gap:6px;
+  }
+}
 </style>
 </head>
 <body>
@@ -151,21 +159,19 @@ font-family: 'Arial', sans-serif;
                 </nav>
                 
 <div class="top-bar">
-<div class="tts-container">
-  <button id="ttsBtn" class="tts-btn">▶ Đọc</button>
+  <button id="ttsBtn" class="tts-btn">▶</button>
   <input type="range" id="ttsProgress" value="0" min="0" max="100">
   <span id="ttsTime">0:00 / 0:00</span>
   <select id="ttsRate">
-    <option value="0.8">0.8x</option>
-    <option value="1" selected>1.0x</option>
-    <option value="1.2">1.2x</option>
-    <option value="1.5">1.5x</option>
+    <option value="0.8">0.8</option>
+    <option value="1" selected>1.0</option>
+    <option value="1.2">1.2</option>
+    <option value="1.5">1.5</option>
   </select>
   <select id="ttsVoice">
-    <option value="female">Nữ miền Nam</option>
-    <option value="male">Nam miền Bắc</option>
+    <option value="female">Nữ</option>
+    <option value="male">Nam</option>
   </select>
-</div>
 </div>
                 <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
 
@@ -431,7 +437,7 @@ function speakFrom(index = 0) {
   utterance.onstart = function() {
     isPlaying = true;
     isPaused = false;
-    btn.innerText = "⏸ Tạm dừng";
+    btn.innerText = "⏸";
     startTimer();
   };
 
