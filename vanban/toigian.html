@@ -123,48 +123,86 @@ footer{
 footer p{
   margin: 0;
 }
-</style>
-<style>
-.tts-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  padding: 10px;
-  background: #f4f6f9;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  font-size: 14px;
+
+/* ===== THANH ĐỌC VĂN BẢN ===== */
+.tts-bar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#f0f4ff;
+  padding:10px 14px;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  margin:15px 0 20px;
+  font-size:14px;
 }
 
-.tts-btn {
-  background: #0d6efd;
-  color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
+.tts-bar button{
+  background:#0b4ea2;
+  color:#fff;
+  border:none;
+  padding:6px 14px;
+  border-radius:20px;
+  cursor:pointer;
 }
 
-.tts-btn:hover {
-  background: #084298;
+.tts-bar button:hover{
+  background:#199586;
 }
 
-#ttsProgress {
-  flex: 1;
-  min-width: 120px;
+.tts-progress{
+  flex:1;
+  height:6px;
+  background:#ddd;
+  border-radius:10px;
+  overflow:hidden;
 }
 
-#ttsRate, #ttsVoice {
-  padding: 4px 6px;
-  border-radius: 6px;
+#ttsProgressBar{
+  height:100%;
+  width:0%;
+  background:#0b4ea2;
+  transition:width 0.2s linear;
 }
 
-#ttsTime {
-  font-weight: 500;
-  min-width: 80px;
+.tts-bar select,
+.tts-bar input[type="range"]{
+  cursor:pointer;
 }
+
+@media(max-width:768px){
+  .tts-bar{
+    font-size:13px;
+  }
+}
+.top-bar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+@media (max-width:600px){
+  .current-time{
+    font-size:13px;
+  }
+  .top-bar{
+    gap:6px;
+  }
+}
+
+.speed-select select{
+  padding:4px 8px;
+  border-radius:14px;
+  border:1px solid #cbd5e1;
+  font-size:12px;
+  cursor:pointer;
+  background:#fff;
+}
+.speed-select select:focus{
+  outline:none;
+  border-color:#0b4ea2;
+}
+
 </style>
 </head>
 
@@ -178,29 +216,36 @@ footer p{
   <a href="../index.html"> 🏠</a>
 </header>
 
-  <div class="article">
-    
-  <div class="tts-container">
-    <button id="ttsBtn" class="tts-btn">▶ Đọc</button>
-  <input type="range" id="ttsProgress" value="0" min="0" max="100">
-  <span id="ttsTime">0:00 / 0:00</span>
-  <select id="ttsRate">
-    <option value="0.8">0.8x</option>
-    <option value="1" selected>1.0x</option>
-    <option value="1.2">1.2x</option>
-    <option value="1.5">1.5x</option>
-  </select>
-  <select id="ttsVoice">
-    <option value="female">Nữ miền Nam</option>
-    <option value="male">Nam miền Bắc</option>
-  </select>
-</div>
-  
-  <h2>🌸 HƯỚNG DẪN...</h2>
-
+<div class="article">
+  <h2>🌸 Sống làm việc hiệu quả</h2>
+<div class="meta">
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 18/02/2026
 </div>
+</div>
+
+<!-- ====== KHỐI ĐỌC VĂN BẢN ====== -->
+<div class="top-bar">
+ <button id="ttsBtn">▶</button>
+  <div class="tts-progress">
+      <div id="ttsProgressBar"></div>
+  </div>
+  <span id="ttsTime">0:00/0:00</span>
+  <select id="ttsVoice">
+      <option value="female">Nữ</option>
+      <option value="male">Nam</option>
+  </select>
+<div class="speed-select">
+  <select id="ttsSpeedSelect">
+    <option value="0.8">0.8</option>
+    <option value="1" selected>1.0</option>
+    <option value="1.2">1.2</option>
+    <option value="1.5">1.5</option>
+  </select>
+</div>
+</div>
+
+<div id="noiDungDoc">
 
 <h3>🌸 Lối sống tối giản</h3>
 <p class="justified-p">Lối sống tối giản khuyến khích loại bỏ những thứ dư thừa về vật chất, thông tin và cam kết để giảm gánh nặng tinh thần. Nhiều nghiên cứu đã chỉ ra rằng môi trường bừa bộn tăng mức cortisol (hormone căng thẳng) và gây suy giảm tập trung. Ảnh hưởng tâm lý của “clutter” (chất bừa bộn) cũng được ghi nhận: người ở nhà lộn xộn có cảm giác an toàn và hạnh phúc thấp hơn, dễ căng thẳng hơn. Dưới đây là một số phương pháp thực hành tối giản đã được phổ biến: </p>
@@ -221,6 +266,7 @@ footer p{
 <p class="justified-p"> “Công việc Sâu” (Deep Work) – khái niệm của Cal Newport, nhấn mạnh làm việc trong trạng thái tập trung cao độ, không gián đoạn trên một nhiệm vụ cần suy nghĩ (như nghiên cứu, lập trình). Newport trích dẫn lời nhà tâm lý Adam Grant: “Để đạt hiệu suất đỉnh cao, bạn cần làm việc liên tục trong thời gian dài với sự tập trung hoàn toàn vào một nhiệm vụ”. Ví dụ, 90–120 phút không email, không điện thoại có thể cho hiệu quả cao hơn nhiều so với làm việc cắt vụn cả ngày. Ưu điểm: tăng chất lượng và tốc độ xử lý công việc phức tạp. Được nhiều chuyên gia (kể cả giảng viên hàng đầu như Adam Grant) khuyên áp dụng. Khuyến nghị: nếu cần viết báo cáo hay giải quyết vấn đề khó, hãy cài đặt thời gian không bị gián đoạn (tắt thông báo điện thoại/ứng dụng, đóng cửa phòng nếu có thể) và tập trung hết sức. </p>
 <p class="justified-p">Nghỉ giải lao hợp lý – thói quen nghỉ giữa giờ quan trọng để duy trì năng lượng và khả năng tập trung. Nghiên cứu của Viện Y tế Quốc gia Mỹ (NIH) cho thấy não bộ trong các khoảng nghỉ ngắn có thể “chạy lại” và củng cố kỹ năng vừa học. Điều đó ngụ ý cứ sau mỗi ~1 giờ làm việc căng thẳng, bạn nên đứng dậy đi lại, căng giãn hoặc trò chuyện ngắn để não hồi phục. Một thí nghiệm (cũng của NIH) còn ghi nhận việc học một kỹ năng mới được tăng tốc nhờ nghỉ ngơi ngắn xen kẽ (ví dụ luyện gõ bàn phím 10 giây nghỉ 10 giây). Ngoài ra, một nghiên cứu về gián đoạn tự ý cho thấy nếu bạn tự quyết định nghỉ (kiểu “xao nhãng tự phát”), điều này có thể giảm động lực và làm chậm tiến độ công việc hơn là nghỉ ngắn theo lịch. Khuyến nghị: cố gắng áp dụng quy tắc 50–10 (50 phút làm việc, 10 phút nghỉ) hoặc 52–17 (52 phút làm, 17 phút nghỉ) tùy nhu cầu. Trong giờ nghỉ, không nên lướt mạng xã hội mà tốt nhất đi bộ nhẹ, uống nước hoặc thiền ngắn. </p>
 <p class="justified-p">🌸 Nguồn tham khảo: Các nghiên cứu khoa học và chuyên gia nêu trên cung cấp dẫn chứng rằng dọn dẹp gọn gàng giảm stress, ăn uống có chánh niệm cải thiện hành vi ăn uống, và các kỹ thuật quản lý thời gian (như pomodoro, GTD, deep work) đều hướng tới tăng năng suất làm việc. Các phương pháp này đã được nhiều cá nhân và tổ chức trên thế giới áp dụng thành công, phù hợp với người trưởng thành có công việc ổn định muốn nâng cao chất lượng sống và hiệu quả làm việc.</p>
+</div>
 
 <div class="share-box">
    <a class="share-btn fb"
@@ -304,157 +350,88 @@ function stopSpeak() {
   speechSynthesis.cancel();
 }
 </script>
+
 <script>
-const btn = document.getElementById("ttsBtn");
-const progress = document.getElementById("ttsProgress");
+const btnTTS = document.getElementById("ttsBtn");
+const progressBar = document.getElementById("ttsProgressBar");
 const timeDisplay = document.getElementById("ttsTime");
-const rateSelect = document.getElementById("ttsRate");
 const voiceSelect = document.getElementById("ttsVoice");
+const speedControl = document.getElementById("ttsSpeed");
 
 let utterance;
-let voices = [];
-let textContent = "";
-let currentCharIndex = 0;
-let isPlaying = false;
-let isPaused = false;
-let totalDuration = 0;
-let startTime = 0;
-let timer;
+let isReading = false;
+let fullText = document.getElementById("noiDungDoc").innerText;
+let totalLength = fullText.length;
+let startTime;
+let timerInterval;
 
-// Lấy nội dung bài viết
-function getArticleText() {
-  return document.getElementById("view-content").innerText;
+function formatTime(sec){
+  let m = Math.floor(sec / 60);
+  let s = Math.floor(sec % 60);
+  return m + ":" + (s < 10 ? "0"+s : s);
 }
 
-// Format thời gian
-function formatTime(sec) {
-  const m = Math.floor(sec / 60);
-  const s = Math.floor(sec % 60);
-  return m + ":" + (s < 10 ? "0" + s : s);
-}
-
-// Load voice
-function loadVoices() {
-  voices = speechSynthesis.getVoices();
-}
-speechSynthesis.onvoiceschanged = loadVoices;
-
-// Lấy voice tiếng Việt
-function getVietnameseVoice(type) {
-  const vi = voices.filter(v => v.lang === "vi-VN");
-  if (vi.length === 0) return null;
-  return type === "male" ? (vi[1] || vi[0]) : vi[0];
-}
-
-// Bắt đầu đọc
-function speakFrom(index = 0) {
-
-  textContent = getArticleText();
-  if (!textContent) return alert("Bài viết chưa tải xong!");
-
-  utterance = new SpeechSynthesisUtterance(
-    textContent.substring(index)
-  );
-
+function startReading(){
+  utterance = new SpeechSynthesisUtterance(fullText);
   utterance.lang = "vi-VN";
-  utterance.rate = parseFloat(rateSelect.value);
+  utterance.rate = currentSpeed;
 
-  const voice = getVietnameseVoice(voiceSelect.value);
-  if (voice) utterance.voice = voice;
+  const voices = speechSynthesis.getVoices();
+  const selectedVoice = voiceSelect.value;
 
-  utterance.onboundary = function(event) {
-    if (event.name === "word") {
-      currentCharIndex = index + event.charIndex;
-    }
-  };
-
-  utterance.onstart = function() {
-    isPlaying = true;
-    isPaused = false;
-    btn.innerText = "⏸ Tạm dừng";
-    startTimer();
-  };
-
-  utterance.onend = function() {
-    resetPlayer();
-  };
+  if(selectedVoice === "male"){
+      utterance.voice = voices.find(v => v.lang.includes("vi") && v.name.toLowerCase().includes("male")) || voices.find(v => v.lang.includes("vi"));
+  }else{
+      utterance.voice = voices.find(v => v.lang.includes("vi"));
+  }
 
   speechSynthesis.speak(utterance);
-}
 
-// Timer
-function startTimer() {
-  totalDuration = (textContent.split(" ").length / 180) * 60;
   startTime = Date.now();
+  timerInterval = setInterval(updateProgress, 500);
 
-  timer = setInterval(() => {
-    if (!isPaused) {
-      const elapsed = (Date.now() - startTime) / 1000;
-      progress.value = (currentCharIndex / textContent.length) * 100;
-      timeDisplay.innerText =
-        formatTime(elapsed) + " / " + formatTime(totalDuration);
-    }
-  }, 500);
+  utterance.onend = stopReading;
+  isReading = true;
+  btnTTS.textContent = "⏸";
 }
 
-function resetPlayer() {
-  clearInterval(timer);
-  isPlaying = false;
-  isPaused = false;
-  currentCharIndex = 0;
-  btn.innerText = "▶ Đọc";
-  progress.value = 0;
-}
-
-// Nút chính
-btn.addEventListener("click", () => {
-
-  if (!isPlaying) {
-    speakFrom(currentCharIndex);
-  }
-  else if (!isPaused) {
-    speechSynthesis.pause();
-    isPaused = true;
-    btn.innerText = "▶ Tiếp tục";
-  }
-  else {
-    speechSynthesis.resume();
-    isPaused = false;
-    btn.innerText = "⏸ Tạm dừng";
-  }
-
-});
-
-// Khi đổi tốc độ
-rateSelect.addEventListener("change", () => {
-  if (isPlaying) {
-    speechSynthesis.cancel();
-    speakFrom(currentCharIndex);
-  }
-});
-
-// Khi đổi giọng
-voiceSelect.addEventListener("change", () => {
-  if (isPlaying) {
-    speechSynthesis.cancel();
-    speakFrom(currentCharIndex);
-  }
-});
-
-// Kéo thanh tiến trình
-progress.addEventListener("input", () => {
-  if (!textContent) return;
+function stopReading(){
   speechSynthesis.cancel();
-  currentCharIndex = Math.floor(
-    (progress.value / 100) * textContent.length
-  );
-  speakFrom(currentCharIndex);
+  clearInterval(timerInterval);
+  isReading = false;
+  btnTTS.textContent = "▶ ";
+}
+
+function updateProgress(){
+  const elapsed = (Date.now() - startTime) / 1000;
+  const estimatedTotal = totalLength / 15; 
+  const percent = Math.min((elapsed / estimatedTotal) * 100, 100);
+  progressBar.style.width = percent + "%";
+  timeDisplay.textContent = formatTime(elapsed) + " / " + formatTime(estimatedTotal);
+}
+
+btnTTS.addEventListener("click", function(){
+  if(isReading){
+      stopReading();
+  }else{
+      startReading();
+  }
+});
+
+let currentSpeed = 1;
+const speedSelect = document.getElementById("ttsSpeedSelect");
+
+speedSelect.addEventListener("change", function(){
+  currentSpeed = parseFloat(this.value);
+
+  if(utterance){
+    utterance.rate = currentSpeed;
+  }
 });
 </script>
+
 </body>
 </html>
-
-
 
 
 
