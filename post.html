@@ -468,7 +468,7 @@ function resetPlayer() {
   isPlaying = false;
   isPaused = false;
   currentCharIndex = 0;
-  btn.innerText = "▶ Đọc";
+  btn.innerText = "▶";
   progress.value = 0;
 }
 
@@ -481,12 +481,12 @@ btn.addEventListener("click", () => {
   else if (!isPaused) {
     speechSynthesis.pause();
     isPaused = true;
-    btn.innerText = "▶ Tiếp tục";
+    btn.innerText = "▶";
   }
   else {
     speechSynthesis.resume();
     isPaused = false;
-    btn.innerText = "⏸ Tạm dừng";
+    btn.innerText = "⏸";
   }
 
 });
