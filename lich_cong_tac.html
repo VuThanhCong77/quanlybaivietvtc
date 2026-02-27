@@ -108,8 +108,7 @@ th{ background:#1a73e8; color:#fff; }
                     <th>Thời gian</th>
                     <th>Nội dung</th>
                     <th>Trạng thái</th>
-                    <th id="colHanhDong" class="hidden">Hành động</th>
-                </tr>
+		</tr>
             </thead>
             <tbody id="body"></tbody>
         </table>
@@ -130,10 +129,7 @@ function toggleLoginBox(){
 
 function init(){
    role = "admin";  // hoặc "view" nếu chỉ xem
-   userInfo.innerText = "Chế độ: ADMIN";
-   adminControls.classList.remove("hidden");
-   colHanhDong.classList.remove("hidden");
-}
+  }
 
 function render(){
     body.innerHTML = "";
@@ -145,48 +141,33 @@ function render(){
     data.forEach(i=>{
         const tg = new Date(i.g);
         const diff = (tg-now)/3600000;
-let trangThai="Đang chờ", cls="";
 
-if(diff < 0){
-    trangThai = "Đã qua";
-    cls = "past";             // 👈 gán class cho lịch đã qua
-}
-else if(diff <= 6){
-    trangThai = "⚠️ Sắp diễn ra";
-    cls = "urgent";
-    coCanhBao = true;
-}
+        let trangThai="Đang chờ", cls="";
+
+        if(diff < 0){
+            trangThai = "Đã qua";
+            cls = "past";
+        }
+        else if(diff <= 6){
+            trangThai = "⚠️ Sắp diễn ra";
+            cls = "urgent";
+            coCanhBao = true;
+        }
 
         let row = `<tr class="${cls}">
             <td>${tg.toLocaleString("vi-VN")}</td>
             <td>${i.v}</td>
-            <td>${trangThai}</td>`;
+            <td>${trangThai}</td>
+        </tr>`;
 
-        if(role==="admin"){
-            row+=`<td>
-                <button class="exp" onclick="sua(${i.id})">✏️ Sửa</button>
-                <button class="del" onclick="xoa(${i.id})">Xóa</button>
-            </td>`;
-        }else if(role==="user"){
-            row+=`<td>-</td>`;
-        }
-        row+="</tr>";
-        body.innerHTML+=row;
+        body.innerHTML += row;
     });
 
     if(coCanhBao && role!=="view"){
         alertSound.play().catch(()=>{});
     }
-function saveData(){
-  fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
-}
-saveData();
+
+    saveData();
 }
 
 function themLich(){
