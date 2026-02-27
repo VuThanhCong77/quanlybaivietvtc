@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Lịch công tác | Vũ Thành Công</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lịch công tác điện tử - quản lý, theo dõi nhiệm vụ và nhắc việc tự động.">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="layout.css">
@@ -126,8 +128,8 @@ th{ background:#1a73e8; color:#fff; }
 <!-- HEADER THEO LAYOUT -->
 <header class="page-header">
 
-  <h1 class="page-title baiviet">
-<a href="lich_cong_tac.html">Lịch công tác  </a>
+<h1 class="page-title baiviet">
+Lịch công tác
 </h1>
 
   <a href="index.html"> 🏠</a>
@@ -155,17 +157,15 @@ th{ background:#1a73e8; color:#fff; }
   <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
 </nav>
 
-<div id="lich-am" style="font-weight:600;color:#8B0000;"></div>
-<div id="ngayHienTai"
-     style="text-align:right;color:#b30000;font-weight:bold;margin-bottom:6px">
-</div>
+    <div id="ngayHienTai"></div>
+    <div id="lich-am"></div>
 
-<div id="app" class="hidden">
+    <div id="app" class="hidden">
 
 1. Đảng ủy phường (T3-6-9-12)<br>
 2. Đảng ủy các cơ quan đảng (T01->12)<br>
 3. Ủy ban kiểm tra ĐU phường (T01->12)<br>
-4. Ủy ban kiêm tra ĐU các cơ quan đảng<br>
+4. Ủy ban kiểm tra ĐU các cơ quan đảng<br>
 5. Sinh hoạt chi bộ 2026: Phúc Nam (T01-5-8-11); 3 Đông Sơn (T3-6-9-12); Dưới (T02-4-7-10); UBKT (03 hàng tháng);<br>
 6. Ban bầu cử số 6.
     <hr>
@@ -201,6 +201,25 @@ const API_URL = "https://script.google.com/macros/s/AKfycby3UYBLatxtDhG3Qah1pMhL
 let role = "view";
 let data = [];
 
+const body = document.getElementById("body");
+const inpViec = document.getElementById("inpViec");
+const inpGio = document.getElementById("inpGio");
+const ngayHienTai = document.getElementById("ngayHienTai");
+const alertSound = document.getElementById("alertSound");
+
+function escapeHTML(str){
+  return str.replace(/[&<>"']/g, function(m){
+    return ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#39;'
+    })[m];
+  });
+}
+
+
 function toggleLoginBox(){
     loginBox.classList.toggle("hidden");
 }
@@ -234,7 +253,7 @@ function render(){
 
         let row = `<tr class="${cls}">
             <td>${tg.toLocaleString("vi-VN")}</td>
-            <td>${i.v}</td>
+            <td>${escapeHTML(i.v)}</td>
             <td>${trangThai}</td>
         </tr>`;
 
@@ -245,7 +264,7 @@ function render(){
         alertSound.play().catch(()=>{});
     }
 
-    saveData();
+    
 }
 
 function themLich(){
