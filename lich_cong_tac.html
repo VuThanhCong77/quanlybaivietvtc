@@ -64,34 +64,6 @@ th{ background:#1a73e8; color:#fff; }
 </head>
 
 <body>
-<div id="loginPage" style="
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#f2f2f2;
-">
-  <div style="
-      background:#fff;
-      padding:25px;
-      border-radius:10px;
-      width:300px;
-      text-align:center;
-      box-shadow:0 0 10px rgba(0,0,0,.2)
-  ">
-      <h3>🔐 ĐĂNG NHẬP HỆ THỐNG</h3>
-      <input id="pass" type="password" placeholder="Mật khẩu"
-             style="width:100%;padding:8px;margin:10px 0">
-      <button onclick="login()" style="
-          width:100%;
-          padding:10px;
-          background:#1a73e8;
-          color:#fff;
-          border:none;
-          border-radius:6px;
-      ">Đăng nhập</button>
-  </div>
-</div>
 
 <div id="app" class="hidden">
 <div class="container">
@@ -110,7 +82,7 @@ th{ background:#1a73e8; color:#fff; }
 
     <div style="margin-bottom:10px;">
         <a href="index.html">🏠Trang chủ</a> |
-        <button onclick="logout()" class="logout">🚪 Đăng xuất</button>
+      
    </div><br>
 1. Đảng ủy phường (T3-6-9-12)<br>
 2. Đảng ủy các cơ quan đảng (T01->12)<br>
@@ -120,18 +92,7 @@ th{ background:#1a73e8; color:#fff; }
 6. Ban bầu cử số 6.
     <hr>
 
-    <div id="loginBox" class="hidden" style="background:#eee; padding:15px; border-radius:8px; margin-bottom:15px;">
-        <b>Đăng nhập dành cho Cán bộ/Quản trị:</b><br><br>
-        <select id="role">
-            <option value="admin">Quản trị</option>
-            <option value="user">Cán bộ</option>
-        </select>
-        <input type="password" id="pass" placeholder="Mật khẩu">
-        <button onclick="login()" class="add">Xác nhận</button>
-        <button onclick="toggleLoginBox()" style="background:#666">Hủy</button>
-    </div>
-
-    <div id="mainBox">
+     <div id="mainBox">
         <div id="userInfo" style="font-weight:bold; color:#1a73e8; margin-bottom:10px;"></div>
 
         <div id="adminControls" class="hidden">
@@ -160,11 +121,6 @@ th{ background:#1a73e8; color:#fff; }
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycby3UYBLatxtDhG3Qah1pMhLxPmLD_8Ak_c6kgQHCHRh85b8VbCWX9dRYybdLnuTNUdc6Q/exec";
 
-const USERS = {
-    admin: "Congkhuyen@",
-    user: "Congkhuyen@"
-};
-
 let role = "view";
 let data = [];
 
@@ -172,33 +128,12 @@ function toggleLoginBox(){
     loginBox.classList.toggle("hidden");
 }
 
-function login(){
-    const r = document.getElementById("role").value; // ✅ đúng ID
-    const p = document.getElementById("pass").value;
-
-    if (USERS[r] !== p) {
-        alert("Sai mật khẩu");
-        return;
-    }
-
-    sessionStorage.setItem("ROLE", r);
-    location.reload();
-}
-
 function init(){
-   role = sessionStorage.getItem("ROLE") || "view"; // ← DÒNG BẮT BUỘC 
-   userInfo.innerText = "Chế độ: " + (role === "view" ? "Xem" : role.toUpperCase());
-
-    if(role === "admin" || role === "user"){
-        adminControls.classList.remove("hidden");
-        colHanhDong.classList.remove("hidden");
-        btnLogout.classList.remove("hidden");
-        btnShowLogin.classList.add("hidden");
-    }
-    if(role === "user"){
-        document.querySelector(".imp").style.display = "none";
-    }
-  }
+   role = "admin";  // hoặc "view" nếu chỉ xem
+   userInfo.innerText = "Chế độ: ADMIN";
+   adminControls.classList.remove("hidden");
+   colHanhDong.classList.remove("hidden");
+}
 
 function render(){
     body.innerHTML = "";
@@ -312,6 +247,7 @@ function hienNgayDayDu(){
 }
 
 ngayHienTai.innerText=hienNgayDayDu();
+document.getElementById("app").classList.remove("hidden");
 init();
 loadData();
 
@@ -414,38 +350,6 @@ function updateLichAm(){
 }
 
 window.addEventListener("load",updateLichAm);
-</script>
-
-<script>
-const PASSWORD = "Congkhuyen@";
-
-function login(){
-    const p = document.getElementById("pass").value;
-    if(p !== PASSWORD){
-        alert("Sai mật khẩu!");
-        return;
-    }
-    sessionStorage.setItem("LOGIN","OK");
-    location.reload();
-}
-
-function checkLogin(){
-    if(sessionStorage.getItem("LOGIN")==="OK"){
-        document.getElementById("loginPage").style.display="none";
-        document.getElementById("app").classList.remove("hidden");
-    }else{
-        document.getElementById("loginPage").style.display="flex";
-    }
-}
-
-function logout(){
-    if(confirm("Đăng xuất?")){
-        sessionStorage.clear();
-        location.reload();
-    }
-}
-
-checkLogin();
 </script>
 
 </body>
