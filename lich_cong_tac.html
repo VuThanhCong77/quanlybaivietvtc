@@ -60,30 +60,108 @@ th{ background:#1a73e8; color:#fff; }
   white-space: nowrap; /* ✅ Luôn giữ trên một hàng */
 }
 
+/* ===== MENU MOBILE ===== */
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 998;
+  transition: .3s;
+}
+.menu-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-menu{
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0,0,0,.15);
+  padding-top: 60px;
+  z-index: 999;
+  transition: .3s;
+}
+.nav-menu.active{ left: 0; }
+
+.nav-item{ border-bottom: 1px solid #eee; }
+
+.nav-link{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  color: #0a3a5a;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* MENU CẤP 2 */
+.sub-menu{
+  display: none;
+  background: #f5f9fb;
+}
+.sub-menu a{
+  display: block;
+  padding: 10px 30px;
+  font-size: 14px;
+  color: #0a5c7a;
+  text-decoration: none;
+}
+.nav-item.open > .sub-menu{
+  display: block;
+}
+
 </style>
 </head>
 
 <body>
 
-<div id="app" class="hidden">
-<div class="container">
-    <div class="title-wrap">
-        <img src="images/hoamai.jpg" alt="hoamai">
-        <div class="title-text">LỊCH CÔNG TÁC</div>
-        <img src="images/hoadao.jpg" alt="Icon">
-    </div>
-</div>
+<!-- HEADER THEO LAYOUT -->
+<header class="page-header">
 
+  <h1 class="page-title baiviet">
+<a href="lich_cong_tac.html">Lịch công tác  </a>
+</h1>
+
+  <a href="index.html"> 🏠</a>
+  <button class="menu-btn" id="menuBtn">☰</button>
+</header>
+<!-- OVERLAY & MENU -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="nav-menu" id="navMenu">
+  <div class="nav-item"><a class="nav-link" href="index.html">🏠 Trang chủ</a></div>
+  <div class="nav-item"><a class="nav-link" href="gioithieu.html">🏛 Giới thiệu</a></div>
+  <div class="nav-item"><a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a></div>
+  <div class="nav-item"><a class="nav-link" href="hoctap.html">📖 Học tập</a></div>
+  <div class="nav-item"><a class="nav-link" href="baiviet.html">✍ Bài viết</a></div>
+  <div class="nav-item"><a class="nav-link" href="tintuc.html">📢 Tin tức</a></div>
+  <div class="nav-item"><a class="nav-link" href="anh.html">📷 Thư viện ảnh</a></div>
+  <div class="nav-item">
+    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
+    <div class="sub-menu">
+      <a href="vanban.html">📖 Nội dung văn bản</a>
+      <a href="vanban/qd69.html">📜 Quy định 69</a>
+      <a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
+    </div>
+  </div>
+  <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
+</nav>
+
+<div id="lich-am" style="font-weight:600;color:#8B0000;"></div>
 <div id="ngayHienTai"
      style="text-align:right;color:#b30000;font-weight:bold;margin-bottom:6px">
 </div>
 
-<div id="lich-am" style="font-weight:600;color:#8B0000;"></div>
+<div id="app" class="hidden">
 
-    <div style="margin-bottom:10px;">
-        <a href="index.html">🏠Trang chủ</a> |
-      
-   </div><br>
 1. Đảng ủy phường (T3-6-9-12)<br>
 2. Đảng ủy các cơ quan đảng (T01->12)<br>
 3. Ủy ban kiểm tra ĐU phường (T01->12)<br>
@@ -331,6 +409,25 @@ function updateLichAm(){
 }
 
 window.addEventListener("load",updateLichAm);
+</script>
+
+<script>
+const menuBtn=document.getElementById("menuBtn");
+const navMenu=document.getElementById("navMenu");
+const menuOverlay=document.getElementById("menuOverlay");
+
+menuBtn.onclick=()=>{
+  navMenu.classList.add("active");
+  menuOverlay.classList.add("active");
+};
+menuOverlay.onclick=()=>{
+  navMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+};
+
+document.querySelectorAll(".toggle").forEach(t=>{
+  t.onclick=()=>t.parentElement.classList.toggle("open");
+});
 </script>
 
 </body>
