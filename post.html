@@ -86,63 +86,75 @@ font-family: 'Arial', sans-serif;
 .post-copy-btn.copied{
   background: linear-gradient(135deg, #198754, #28a745);
 }
-</style>
 
-<style>
-.tts-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  padding: 10px;
-  background: #f4f6f9;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  font-size: 14px;
+/* ===== MINI PODCAST PLAYER ===== */
+
+.mini-player{
+  background:#f8f9fa;
+  padding:12px;
+  border-radius:14px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.08);
+  margin-bottom:15px;
+  width:100%;
 }
 
-.tts-btn {
-  background: #0d6efd;
-  color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.tts-btn:hover {
-  background: #084298;
-}
-
-#ttsProgress {
-  flex: 1;
-  min-width: 120px;
-}
-
-#ttsRate, #ttsVoice {
-  padding: 4px 6px;
-  border-radius: 6px;
-}
-
-#ttsTime {
-  font-weight: 500;
-  min-width: 80px;
-}
-.top-bar{
+.mini-row{
   display:flex;
   align-items:center;
+  justify-content:space-between;
   gap:8px;
+  margin-bottom:8px;
+  flex-wrap:wrap;
 }
+
+.tts-btn{
+  background:#0d6efd;
+  color:#fff;
+  border:none;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.tts-btn:hover{
+  background:#084298;
+}
+
+#ttsProgress{
+  width:100%;
+  margin-bottom:10px;
+}
+
+#ttsTime{
+  font-size:13px;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+#ttsRate,
+#ttsVoice{
+  padding:4px 8px;
+  border-radius:8px;
+  font-size:13px;
+}
+
+/* ==== Mobile tối ưu hơn ==== */
 @media (max-width:600px){
-  .current-time{
-    font-size:12px;
+
+  .mini-row{
+    justify-content:space-between;
   }
-  .top-bar{
-    gap:6px;
+
+  #ttsVoice{
+    width:100%;
   }
+
 }
 </style>
+
 </head>
 <body>
 
@@ -157,23 +169,29 @@ font-family: 'Arial', sans-serif;
                         <li class="breadcrumb-item active">Bài viết</li>
                     </ol>
                 </nav>
-                
-<div class="top-bar">
-  <button id="ttsBtn" class="tts-btn">▶</button>
+
+  <div class="top-bar mini-player">
+  <div class="mini-row">
+    <button id="ttsBtn" class="tts-btn">▶</button>
+    <span id="ttsTime">0:00 / 0:00</span>
+    <select id="ttsRate">
+      <option value="0.8">0.8x</option>
+      <option value="1" selected>1.0x</option>
+      <option value="1.2">1.2x</option>
+      <option value="1.5">1.5x</option>
+    </select>
+  </div>
   <input type="range" id="ttsProgress" value="0" min="0" max="100">
-  <span id="ttsTime">0:00 / 0:00</span>
-  <select id="ttsRate">
-    <option value="0.8">0.8</option>
-    <option value="1" selected>1.0</option>
-    <option value="1.2">1.2</option>
-    <option value="1.5">1.5</option>
-  </select>
-  <select id="ttsVoice">
-    <option value="female">Nữ</option>
-    <option value="male">Nam</option>
-  </select>
-</div>
-                <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
+
+  <div class="mini-row">
+    <select id="ttsVoice">
+      <option value="female">🎙 Giọng Nữ</option>
+      <option value="male">🎙 Giọng Nam</option>
+    </select>
+  </div>
+</div>     
+
+<h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
 
 <div class="text-muted mb-2 small" id="post-views">
     <i class="fas fa-eye me-1"></i>
