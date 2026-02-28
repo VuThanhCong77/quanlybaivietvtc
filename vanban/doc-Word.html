@@ -215,39 +215,51 @@ function toggleSpeech(){
     const text = contentDiv.innerText.trim();
     if(!text) return alert("Chưa có nội dung.");
 
-    if(!isSpeaking){
-        speech = new SpeechSynthesisUtterance(text);
-        speech.lang = "vi-VN";
-        speech.rate = parseFloat(document.getElementById("rate").value);
+    if(isSpeaking){
+        speechSynthesis.cancel();
+        stopSpeech();
+        return;
+    }
 
-        const selectedVoice = speechSynthesis.getVoices()
-            .find(v => v.name === voiceSelect.value);
+    const rateValue = parseFloat(document.getElementById("rate").value);
+    const selectedVoice = speechSynthesis.getVoices()
+        .find(v => v.name === voiceSelect.value);
+
+    const chunks = text.match(/.{1,200}(\s|$)/g); // chia đoạn 200 ký tự
+    let index = 0;
+
+    function speakChunk(){
+        if(index >= chunks.length){
+            stopSpeech();
+            return;
+        }
+
+        speech = new SpeechSynthesisUtterance(chunks[index]);
+        speech.lang = "vi-VN";
+        speech.rate = rateValue;
+
         if(selectedVoice) speech.voice = selectedVoice;
 
-        speech.onend = stopSpeech;
+        speech.onend = function(){
+            index++;
+            speakChunk();
+        };
 
         speechSynthesis.speak(speech);
-        isSpeaking = true;
-        isPaused = false;
-        startTime = Date.now();
-        startProgress();
-        playBtn.innerText = "⏸";
     }
-    else if(!isPaused){
-        speechSynthesis.pause();
-        isPaused = true;
-        playBtn.innerText = "▶";
-    }
-    else{
-        speechSynthesis.resume();
-        isPaused = false;
-        playBtn.innerText = "⏸";
-    }
+
+    isSpeaking = true;
+    playBtn.innerText = "⏹";
+    startTime = Date.now();
+    startProgress();
+
+    speakChunk();
 }
 
 function stopSpeech(){
     clearInterval(progressInterval);
-    progressBar.value = 100;
+    speechSynthesis.cancel();
+    progressBar.value = 0;
     isSpeaking = false;
     playBtn.innerText = "▶";
 }
