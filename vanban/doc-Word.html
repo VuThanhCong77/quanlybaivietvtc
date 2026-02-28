@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đọc văn bản Word</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
+
+<style>
+body{
+    font-family: system-ui, -apple-system, sans-serif;
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    padding:40px;
+}
+
+.player{
+    width:420px;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    padding:20px;
+}
+
+.title{
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+#content{
+    max-height:120px;
+    overflow:auto;
+    font-size:14px;
+    border:1px solid #ddd;
+    padding:10px;
+    border-radius:8px;
+    background:#fafafa;
+}
+
+.controls{
+    margin-top:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.play-btn{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:none;
+    background:#0d6efd;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+
+select{
+    padding:5px;
+    border-radius:6px;
+}
+
+.progress-container{
+    margin-top:15px;
+}
+
+progress{
+    width:100%;
+    height:8px;
+}
+
+.time{
+    font-size:12px;
+    text-align:right;
+    color:#666;
+    margin-top:4px;
+}
+</style>
+</head>
+<body>
+
+<div class="player">
+    <div class="title">📄 Đọc văn bản dạng Word</div>
+
+    <input type="file" id="fileInput" accept=".docx">
+
+    <div id="content">Tải file Word để hiển thị nội dung...</div>
+
+    <div class="controls">
+        <button class="play-btn" onclick="toggleSpeech()">▶</button>
+
+        <div>
+            <select id="voiceSelect"></select>
+            <select id="rate">
+                <option value="0.8">0.8x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.2">1.2x</option>
+                <option value="1.5">1.5x</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <progress id="progressBar" value="0" max="100"></progress>
+        <div class="time" id="timeDisplay">00:00</div>
+    </div>
+</div>
+
+<script>
+let speech;
+let isPaused = false;
+let isSpeaking = false;
+let totalLength = 0;
+let progressInterval;
+
+const fileInput = document.getElementById("fileInput");
+const contentDiv = document.getElementById("content");
+const voiceSelect = document.getElementById("voiceSelect");
+const progressBar = document.getElementById("progressBar");
+const timeDisplay = document.getElementById("timeDisplay");
+
+fileInput.addEventListener("change", function(e){
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+        mammoth.extractRawText({ arrayBuffer: reader.result })
+        .then(result => {
+            contentDiv.innerText = result.value;
+        });
+    };
+    reader.readAsArrayBuffer(file);
+});
+
+function loadVoices(){
+    const voices = speechSynthesis.getVoices()
+        .filter(v => v.lang.includes("vi"));
+
+    voiceSelect.innerHTML = "";
+    voices.forEach(v => {
+        const option = document.createElement("option");
+        option.value = v.name;
+        option.textContent = v.name.includes("Female") || v.name.includes("Nữ")
+            ? "Nữ - " + v.name
+            : "Nam - " + v.name;
+        voiceSelect.appendChild(option);
+    });
+}
+
+speechSynthesis.onvoiceschanged = loadVoices;
+
+function toggleSpeech(){
+    const text = contentDiv.innerText.trim();
+    if(!text) return alert("Chưa có nội dung.");
+
+    if(!isSpeaking){
+        speech = new SpeechSynthesisUtterance(text);
+        speech.lang = "vi-VN";
+        speech.rate = parseFloat(document.getElementById("rate").value);
+
+        const selectedVoice = speechSynthesis.getVoices()
+            .find(v => v.name === voiceSelect.value);
+        if(selectedVoice) speech.voice = selectedVoice;
+
+        totalLength = text.length;
+        progressBar.value = 0;
+
+        speech.onend = stopSpeech;
+
+        speechSynthesis.speak(speech);
+        isSpeaking = true;
+        isPaused = false;
+        startProgress();
+        document.querySelector(".play-btn").innerText = "⏸";
+    }
+    else if(!isPaused){
+        speechSynthesis.pause();
+        isPaused = true;
+        document.querySelector(".play-btn").innerText = "▶";
+    }
+    else{
+        speechSynthesis.resume();
+        isPaused = false;
+        document.querySelector(".play-btn").innerText = "⏸";
+    }
+}
+
+function stopSpeech(){
+    clearInterval(progressInterval);
+    progressBar.value = 100;
+    isSpeaking = false;
+    document.querySelector(".play-btn").innerText = "▶";
+}
+
+function startProgress(){
+    let elapsed = 0;
+    progressInterval = setInterval(()=>{
+        if(!isPaused){
+            elapsed++;
+            let percent = (elapsed/ (totalLength/10)) * 100;
+            progressBar.value = percent;
+            timeDisplay.innerText = formatTime(elapsed);
+        }
+    },1000);
+}
+
+function formatTime(sec){
+    let m = Math.floor(sec/60);
+    let s = sec%60;
+    return (m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+}
+</script>
+
+</body>
+</html>
