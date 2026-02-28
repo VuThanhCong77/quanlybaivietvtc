@@ -135,6 +135,8 @@ progress{
 </div>
 
 <script>
+let totalDuration = 0;
+let totalWords = 0;
 let speech;
 let isPaused = false;
 let isSpeaking = false;
@@ -222,6 +224,22 @@ function toggleSpeech(){
     }
 
     const rateValue = parseFloat(document.getElementById("rate").value);
+
+// Tính tổng số từ
+totalWords = text.split(/\s+/).length;
+
+// tốc độ đọc trung bình ~180 từ/phút ở rate = 1
+let wordsPerMinuteBase = 180;
+
+// điều chỉnh theo rate
+let adjustedWPM = wordsPerMinuteBase * rateValue;
+
+// tính tổng thời gian (giây)
+totalDuration = Math.ceil((totalWords / adjustedWPM) * 60);
+
+// cập nhật max cho progress
+progressBar.max = totalDuration;
+
     const selectedVoice = speechSynthesis.getVoices()
         .find(v => v.name === voiceSelect.value);
 
@@ -260,6 +278,7 @@ function stopSpeech(){
     clearInterval(progressInterval);
     speechSynthesis.cancel();
     progressBar.value = 0;
+    timeDisplay.innerText = "00:00";
     isSpeaking = false;
     playBtn.innerText = "▶";
 }
@@ -268,8 +287,16 @@ function startProgress(){
     progressInterval = setInterval(()=>{
         if(!isPaused){
             let elapsed = Math.floor((Date.now()-startTime)/1000);
-            timeDisplay.innerText = formatTime(elapsed);
-            progressBar.value += 0.5;
+
+            if(elapsed >= totalDuration){
+                stopSpeech();
+                return;
+            }
+
+            timeDisplay.innerText = 
+                formatTime(elapsed) + " / " + formatTime(totalDuration);
+
+            progressBar.value = elapsed;
         }
     },1000);
 }
