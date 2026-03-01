@@ -267,7 +267,7 @@ async function loadPost() {
             document.getElementById('view-date').innerText = post.date || "Không xác định";
             document.getElementById('view-author').innerText = post.author || "Admin";
             document.getElementById('view-content').innerHTML = post.description || "";
-
+     articleLoaded = true;
      syncViews(post);
     
             const imgElement = document.getElementById('view-image');
@@ -398,6 +398,7 @@ const voiceSelect = document.getElementById("ttsVoice");
 let utterance;
 let voices = [];
 let textContent = "";
+let articleLoaded = false;
 let currentCharIndex = 0;
 let isPlaying = false;
 let isPaused = false;
@@ -425,16 +426,37 @@ speechSynthesis.onvoiceschanged = loadVoices;
 
 // Lấy voice tiếng Việt
 function getVietnameseVoice(type) {
-  const vi = voices.filter(v => v.lang === "vi-VN");
-  if (vi.length === 0) return null;
-  return type === "male" ? (vi[1] || vi[0]) : vi[0];
+  const viVoices = voices.filter(v => v.lang.includes("vi"));
+
+  if (viVoices.length === 0) return null;
+
+  if (type === "male") {
+    return viVoices.find(v =>
+      v.name.toLowerCase().includes("male") ||
+      v.name.toLowerCase().includes("nam")
+    ) || viVoices[0];
+  } else {
+    return viVoices.find(v =>
+      v.name.toLowerCase().includes("female") ||
+      v.name.toLowerCase().includes("nu") ||
+      v.name.toLowerCase().includes("woman")
+    ) || viVoices[0];
+  }
 }
 
 // Bắt đầu đọc
 function speakFrom(index = 0) {
 
+  if (!articleLoaded) {
+    alert("Bài viết đang tải, vui lòng chờ 1-2 giây!");
+    return;
+  }
+
+  speechSynthesis.cancel();
+  clearInterval(timer);
+
   textContent = getArticleText();
-  if (!textContent) return alert("Bài viết chưa tải xong!");
+  if (!textContent.trim()) return;
 
   utterance = new SpeechSynthesisUtterance(
     textContent.substring(index)
@@ -447,9 +469,7 @@ function speakFrom(index = 0) {
   if (voice) utterance.voice = voice;
 
   utterance.onboundary = function(event) {
-    if (event.name === "word") {
-      currentCharIndex = index + event.charIndex;
-    }
+    currentCharIndex = index + event.charIndex;
   };
 
   utterance.onstart = function() {
@@ -468,7 +488,11 @@ function speakFrom(index = 0) {
 
 // Timer
 function startTimer() {
-  totalDuration = (textContent.split(" ").length / 180) * 60;
+const words = textContent.split(/\s+/).length;
+const baseWPM = 180;
+const adjustedWPM = baseWPM * parseFloat(rateSelect.value);
+totalDuration = (words / adjustedWPM) * 60;
+
   startTime = Date.now();
 
   timer = setInterval(() => {
