@@ -178,7 +178,7 @@ main{
 
 /* Trang anh */
 .page-title.anh::before{
-  background-image: url("images/anhdaidien.jpg");
+  background-image: url("images/vutrong.jpg");
 }
 
 /* Khối ảnh đặt giữa nội dung */
@@ -619,3 +619,4 @@ a{
   }
 
 }
+
