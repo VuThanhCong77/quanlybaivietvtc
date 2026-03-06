@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Phường Lưu Kiếm</title>
+<title>Chuyên đề</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../layout.css">
 
@@ -127,6 +127,12 @@ p, div, li {
 
 <div class="special-page">
 
+<audio id="player">
+  <source src="../amthanh/tuyentruyenbaucu.mp3" type="audio/mpeg">
+</audio>
+<button onclick="phatNhac()">▶ Phát tuyên truyền</button>
+<button onclick="dungNhac()">⏸ Dừng</button>
+
 <div class="special-banner">
 <h1>BẦU CỬ ĐẠI BIỂU QUỐC HỘI & HỘI ĐỒNG NHÂN DÂN CÁC CẤP NHIỆM KỲ 2026 - 2031</h1>
 <p class="justified-p" style="color:#0303ef">Cuộc bầu cử đại biểu Quốc hội khóa XVI và đại biểu Hội đồng nhân dân các cấp nhiệm kỳ 2026 – 2031 là sự kiện chính trị trọng đại của đất nước, là ngày hội lớn của toàn dân. Đây không chỉ là quyền mà còn là nghĩa vụ thiêng liêng của mỗi công dân trong việc tham gia xây dựng Nhà nước pháp quyền xã hội chủ nghĩa của Nhân dân, do Nhân dân và vì Nhân dân.</p>
@@ -161,7 +167,7 @@ p, div, li {
  <div class="card"><img src="../anhvietbai/quochuy.webp" alt="" style="height:36px; vertical-align:middle; margin-left:48px;">
     <a href="https://bantuyengiaovadanvan.haiphong.dcs.vn/bau-cu-dai-bieu-quoc-hoi-va-hoi-dong-nhan-dan-cac-cap-nhiem-ky-2026-2031/tu-la-phieu-den-hieu-qua-quan-tri-quoc-gia-y-nghia-cua-bau-cu-nam-2026-756222?fbclid=IwY2xjawQU1YxleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeDxwqRNAoF853a70YAlzTT2KkRji9bivv9GUoEhzD08dbwXvIkkgaVGqE2bI_aem_HTtP1KeRzMDlkZOZ5_Ir-Q">Từ lá phiếu đến Hiệu quả quản trị quốc gia: Ý nghĩa của bầu cử năm 2026</a>
     <p class="justified-p">Ngày 15/3/2026, cử tri cả nước sẽ tham gia bầu cử đại biểu Quốc hội khóa XVI và đại biểu Hội đồng nhân dân các cấp nhiệm kỳ 2026–2031. Đây không chỉ là một mốc chính trị quan trọng theo Hiến pháp và pháp luật, mà còn là thời điểm mở đầu cho một chu kỳ quản trị mới của đất nước trong bối cảnh yêu cầu cải cách thể chế, nâng cao năng lực thực thi và tăng tốc phát triển đang đặt ra ngày càng cấp thiết.</p>
-(Nguồn:bantuyengiaovadanvan.haiphong.dcs.vn)</br>
+(Nguồn: https://bantuyengiaovadanvan.haiphong.dcs.vn)</br>
  <div class="image-grid">
   <img src="../anhvietbai/baucu_anhdai.jpg">
  </div>
@@ -249,11 +255,11 @@ p, div, li {
 <div class="card-grid">
   <div class="card">
 <ul style="list-style-type: square;">
-    <li><a href="../vanban/pdf/banbaucu.pdf" target="_blank">Ban bầu cử của phường Lưu Kiếm</a></li>
-     <li><a href="../vanban/pdf/Dsungcu26.pdf" target="_blank">Danh sách những người ứng cử đại biểu HĐND phường Lưu Kiếm nhiệm kỳ 2026 - 2031</a></li>
-      <li><a href="../vanban/pdf/hdbc2631.pdf" target="_blank"> Tài liệu tập huấn công tác bầu cử</a></li>
-      <li><a href="../vanban/pdf/tobaucu.pdf" target="_blank"> Tổ bầu cử trên địa bàn phường Lưu Kiếm</a></li>
-      <li><a href="../vanban/pdf/qd651.pdf" target="_blank"> Trưng tập cán bộ làm công tác bầu cử</a></li>
+    	<li><a href="../vanban/pdf/banbaucu.pdf" target="_blank">Ban bầu cử của phường Lưu Kiếm</a></li>
+     	<li><a href="../vanban/pdf/Dsungcu26.pdf" target="_blank">Danh sách những người ứng cử đại biểu HĐND phường Lưu Kiếm nhiệm kỳ 2026 - 2031</a></li>
+      	<li><a href="../vanban/pdf/hdbc2631.pdf" target="_blank"> Tài liệu tập huấn công tác bầu cử</a></li>
+      	<li><a href="../vanban/pdf/tobaucu.pdf" target="_blank"> Tổ bầu cử trên địa bàn phường Lưu Kiếm</a></li>
+	<li><a href="../vanban/pdf/qd651.pdf" target="_blank"> Trưng tập cán bộ làm công tác bầu cử</a></li>
 </ul>
   </div>
 </div>
@@ -265,9 +271,17 @@ p, div, li {
   </footer>
 </div>
 
+<script>
+function phatNhac() {
+  const audio = document.getElementById("player");
+  audio.play();
+}
+
+function dungNhac() {
+  const audio = document.getElementById("player");
+  audio.pause();
+}
+</script>
+
 </body>
-
 </html>
-
-
-
