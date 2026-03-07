@@ -29,7 +29,7 @@ justify-content:center
 
 nav a{
 color:white;
-padding:14px 18px;
+padding:6px 12px;
 text-decoration:none;
 font-size:14px;
 transition:.3s
@@ -193,6 +193,47 @@ p{
   text-align:justify;
   text-indent:1cm;
 }
+/* NÚT LÊN ĐẦU TRANG */
+#backToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #0b4ea2;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999;
+}
+
+#backToTop:hover{
+  background: #199586;
+}
+/* KHỐI CHIA SẺ */
+.share-box{
+  margin: 15px 0 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.share-btn{
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 </style>
 </head>
 
@@ -202,11 +243,11 @@ p{
 <h1>  
 <a href="index.html">CHUYÊN ĐỀ SỨC KHỎE</a>
 </h1>
-<p>Chủ động chăm sóc sức khỏe – Nâng cao chất lượng cuộc sống</p>
+<p style="text-align:center">Chủ động chăm sóc sức khỏe – Nâng cao chất lượng cuộc sống</p>
 </header>
 
 <nav>
-<a href="#nhanthuc">Nhận thức sức khỏe</a>
+<a href="#nhanthuc">Nhận thức</a>
 <a href="#loisong">Lối sống</a>
 <a href="#dinhduong">Dinh dưỡng</a>
 <a href="#thechat">Thể chất</a>
@@ -232,58 +273,58 @@ Chuyên đề Sức khỏe được xây dựng nhằm cung cấp những kiến
 <div class="grid">
 <div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1772877565452.html"> Sức khỏe – tài sản quý giá nhất của con người</a></h3></div>
 <div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1772878217534.html"> Phòng bệnh hơn chữa bệnh</a></h3></div>
-<div class="card"><h3>Sức khỏe và chất lượng cuộc sống</h3></div>
-<div class="card"><h3>Chủ động bảo vệ sức khỏe trong xã hội hiện đại</h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1772883941246.html">Sức khỏe và chất lượng cuộc sống</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1772884107242.html">Chủ động bảo vệ sức khỏe trong xã hội hiện đại</a></h3></div>
 </div>
 </div>
 
 <div class="section" id="loisong">
 <h2><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Lối sống lành mạnh</h2>
 <div class="grid">
-<div class="card"><h3>Thói quen buổi sáng giúp cơ thể khỏe mạnh</h3></div>
-<div class="card"><h3>Cân bằng giữa công việc và nghỉ ngơi</h3></div>
-<div class="card"><h3>Ngủ đủ giấc và vai trò đối với sức khỏe</h3></div>
-<div class="card"><h3>Xây dựng lối sống khoa học mỗi ngày</h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Thói quen buổi sáng giúp cơ thể khỏe mạnh</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Cân bằng giữa công việc và nghỉ ngơi</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Ngủ đủ giấc và vai trò đối với sức khỏe</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Xây dựng lối sống khoa học mỗi ngày</a></h3></div>
 </div>
 </div>
 
 <div class="section" id="dinhduong">
 <h2><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Dinh dưỡng khoa học</h2>
 <div class="grid">
-<div class="card"><h3>Bữa ăn cân bằng cho gia đình</h3></div>
-<div class="card"><h3>Thực phẩm tự nhiên tốt cho sức khỏe</h3></div>
-<div class="card"><h3>Uống đủ nước mỗi ngày</h3></div>
-<div class="card"><h3>Những nguyên tắc ăn uống lành mạnh</h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Bữa ăn cân bằng cho gia đình</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Thực phẩm tự nhiên tốt cho sức khỏe</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Uống đủ nước mỗi ngày</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Những nguyên tắc ăn uống lành mạnh</a></h3></div>
 </div>
 </div>
 
 <div class="section" id="thechat">
 <h2><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Rèn luyện thể chất</h2>
 <div class="grid">
-<div class="card"><h3>30 phút vận động mỗi ngày</h3></div>
-<div class="card"><h3>Đi bộ – phương pháp tập luyện đơn giản</h3></div>
-<div class="card"><h3>Thể dục buổi sáng</h3></div>
-<div class="card"><h3>Lợi ích của thể dục thể thao</h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">30 phút vận động mỗi ngày</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Đi bộ – phương pháp tập luyện đơn giản</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Thể dục buổi sáng</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Lợi ích của thể dục thể thao</a></h3></div>
 </div>
 </div>
 
 <div class="section" id="tinhthan">
 <h2><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Sức khỏe tinh thần</h2>
 <div class="grid">
-<div class="card"><h3>Giữ tâm trí bình an</h3></div>
-<div class="card"><h3>Suy nghĩ tích cực</h3></div>
-<div class="card"><h3>Kiểm soát căng thẳng</h3></div>
-<div class="card"><h3>Nghệ thuật thư giãn</h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Giữ tâm trí bình an</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Suy nghĩ tích cực</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Kiểm soát căng thẳng</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Nghệ thuật thư giãn</a></h3></div>
 </div>
 </div>
 
 <div class="section" id="phongbenh">
 <h2><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Phòng bệnh chủ động</h2>
 <div class="grid">
-<div class="card"><h3>Khám sức khỏe định kỳ</h3></div>
-<div class="card"><h3>Tăng cường sức đề kháng</h3></div>
-<div class="card"><h3>Những dấu hiệu cảnh báo sức khỏe</h3></div>
-<div class="card"><h3>Phòng bệnh trong sinh hoạt hằng ngày</h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Khám sức khỏe định kỳ</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Tăng cường sức đề kháng</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Những dấu hiệu cảnh báo sức khỏe</a></h3></div>
+<div class="card"><h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/">Phòng bệnh trong sinh hoạt hằng ngày</a></h3></div>
 </div>
 </div>
 
@@ -354,6 +395,29 @@ Chăm sóc sức khỏe không chỉ là trách nhiệm của ngành y tế mà 
 <p>Trang chuyên đề Sức khỏe | Lan tỏa tri thức – Nâng cao chất lượng cuộc sống</p>
 </footer>
 
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
 
 </body>
 </html>
