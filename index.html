@@ -41,85 +41,110 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   --primary:#0615ea;
   --secondary:#0a94a3;
 }
+
 /* ===============================
-   BANNER ANH
+   BANNER CHUẨN BÁO ĐIỆN TỬ
    =============================== */
+
 .news-banner{
 width:100%;
-height:520px;
-overflow:hidden;
+aspect-ratio:16/9;
 position:relative;
+overflow:hidden;
+background:#000;
 }
 
 .slider{
+position:relative;
 width:100%;
 height:100%;
-position:relative;
 }
 
 .slide{
 position:absolute;
-width:100%;
-height:100%;
+inset:0;
 opacity:0;
 transition:opacity 1s ease;
 }
 
 .slide.active{
 opacity:1;
+z-index:2;
 }
 
 .slide img{
 width:100%;
 height:100%;
 object-fit:cover;
-animation:zoom 8s ease-in-out infinite;
+animation:zoomBanner 12s ease-in-out infinite;
 }
 
-@keyframes zoom{
+@keyframes zoomBanner{
 0%{transform:scale(1);}
 50%{transform:scale(1.08);}
 100%{transform:scale(1);}
 }
 
-.caption{
-position:absolute;
-bottom:80px;
-left:80px;
-color:white;
-background:rgba(0,0,0,0.45);
-padding:25px 35px;
-max-width:520px;
-border-left:5px solid #ff4db8;
-}
-
-.caption h2{
-margin:0 0 10px;
-font-size:30px;
-}
-
-.caption p{
-margin:0;
-font-size:16px;
-}
+/* nút trái phải */
 
 .prev,.next{
 position:absolute;
 top:50%;
 transform:translateY(-50%);
-background:rgba(0,0,0,0.5);
-color:white;
+background:rgba(0,0,0,.45);
 border:none;
-font-size:30px;
-padding:10px 18px;
+color:#fff;
+font-size:32px;
+padding:8px 16px;
+cursor:pointer;
+z-index:5;
+transition:.25s;
+}
+
+.prev{left:15px}
+.next{right:15px}
+
+.prev:hover,.next:hover{
+background:#c80000;
+}
+
+/* chấm tròn */
+
+.dots{
+position:absolute;
+bottom:12px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:8px;
+z-index:6;
+}
+
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
+background:rgba(255,255,255,.5);
 cursor:pointer;
 }
 
-.prev{left:20px;}
-.next{right:20px;}
+.dot.active{
+background:#fff;
+}
 
-.prev:hover,.next:hover{
-background:#ff4db8;
+/* mobile */
+
+@media(max-width:768px){
+
+.news-banner{
+aspect-ratio:16/10;
+}
+
+.prev,.next{
+font-size:24px;
+padding:6px 12px;
+}
+
 }
 
 /* ===============================
@@ -617,7 +642,7 @@ main{
   margin-top: 0;
 }
 
-	/* ===============================
+/* ===============================
    NÚT THÍCH
    =============================== */
 .like-box{
@@ -702,7 +727,7 @@ main{
    KHUNG TIN TỨC MỚI – CUỘN TRONG
    =============================== */
 .news-box{
-  max-height: 292px;          /* chiều cao khung */
+  max-height: 382px;          /* chiều cao khung */
   overflow-y: auto;           /* cho phép cuộn */
   border: 2px solid #0a7f99;
   border-radius: 10px;
@@ -841,6 +866,74 @@ a{
   background:#1a73e8;
   color:rgb(215, 205, 15);
 }
+
+/* ===============================
+   HỖ TRỢ TRANG CHUYÊN ĐỀ
+   =============================== */
+.section{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,.06);
+margin-bottom:20px
+}
+
+.section h2{
+margin-top:0;
+border-left:6px solid #0ea5a4;
+padding-left:10px;
+font-size:20px
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-top:15px
+}
+
+.card{
+background:#f9fbfb;
+padding:15px;
+border-radius:8px;
+transition:.25s;
+border:1px solid #e4e8eb
+}
+
+.card:hover{
+transform:translateY(-3px);
+box-shadow:0 6px 14px rgba(0,0,0,.08)
+}
+
+.card h3{
+margin:0;
+font-size:15px;
+color:#0f766e
+}
+
+.sidebar .box{
+background:white;
+padding:18px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 3px 10px rgba(0,0,0,.06)
+}
+
+.sidebar h3{
+margin-top:0;
+border-bottom:2px solid #e5e7eb;
+padding-bottom:8px
+}
+
+.sidebar ul{
+padding-left:18px;
+margin:10px 0
+}
+
+.sidebar li{
+margin-bottom:8px
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -970,7 +1063,7 @@ a{
   <a href="tintuc.html" class="menu-item">📢 Tin tức</a>
   <a href="anh.html" class="menu-item">📷 Thư viện ảnh</a>
   <a href="suckhoe.html" class="menu-item">❤️ Sức khỏe</a>
-  <a href="suc_khoe.html" class="menu-item">🌱 Chuyên đề sức khỏe</a>
+  <a href="suc_khoe.html" class="menu-item">🌱 Chuyên đề Sức khỏe</a>
   <a href="tailieu.html" class="menu-item">📁 Tài liệu</a>
   <a href="lich_cong_tac.html" class="menu-item">📅 Xem lịch</a>
   <a href="danhsachbaiviet.html" class="menu-item">📖 Danh sách bài viết</a>
@@ -999,79 +1092,76 @@ a{
   <button id="musicBtn" onclick="toggleMusic()">▶</button>
   <button id="loopBtn" onclick="toggleLoop()">🔁</button>
 </div>
-
-<h2><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:28px;">
-<a href="suc_khoe.html">
-Chủ động chăm sóc sức khỏe – Nâng cao chất lượng cuộc sống
-</a>
-</h2>
 </div>
-	  
-<!-- ===== BANNER ẢNH ===== -->
-<section class="news-banner">
 
+<!-- ===== BANNER ẢNH ===== -->
+
+<section class="news-banner">
 <div class="slider">
 
 <div class="slide active">
 <img src="tinanh/01.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/02.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/03.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/baucu01.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/baucu02.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/baucu04.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/baucu05.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/baucu09.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/baucu10.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/baucu06.jpg">
 </div>
-<div class="slide active">
+<div class="slide">
 <img src="tinanh/baucu07.jpg">
 </div>
 
 <button class="prev">&#10094;</button>
 <button class="next">&#10095;</button>
 
+<div class="dots"></div>
+
 </div>
 </section>
 
-<!-- ===== BÀI VIẾT TUYÊN TRUYỀN ===== -->
-<h2><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/anhvietbai/quochuy.webp" alt="" style="height:28px; vertical-align:middle; margin-left:28px;">
-<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/vanban/baucu26.html">
-Bầu cử đại biểu Quốc hội & đại biểu Hội đồng nhân dân các cấp nhiệm kỳ 2026 - 2031
-</a>
-</h2>
-	  
 <!-- ===== KHỐI HAI CỘT: BÀI VIẾT + ẢNH ===== -->
 <div class="half-box">
 
- <!-- == SLIDER ẢNH TỪ THƯ VIỆN == -->
-  <section class="photo-slider-box half-item">
-	  <a href="anh.html"</a>
-    <h2 style="text-align: left;font-size: 18px;"><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:18px;"> TIN TỨC QUA ẢNH</h2>
+ <!-- == TRANG CHUYÊN ĐỀ == -->
 
-    <div class="photo-slider">
-      <img id="sliderImage" src="" alt="Ảnh hoạt động">
-      <div class="slider-note" id="sliderNote"></div>
-    </div>
-  </section>
+  <div class="section">
+<h2><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Trang chuyên đề</h2>
+<div class="grid">
+
+<div class="card"><h3><a href="suc_khoe.html"><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Chăm sóc sức khỏe </a></h3></div>
+
+<div class="card"><h3><a href="hanhphuc.html"><img src="images/hanhphuc.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Hạnh phúc cho mọi người</a></h3></div>
+
+<div class="card"><h3><a href="vanban/baucu26.html"><img src="anhvietbai/quochuy.webp" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Bầu cử đại biểu Quốc hội, HĐND nhiệm kỳ 2026 - 2031</a></h3></div>
+
+<div class="card"><h3><a href="kiemtra_giamsat.html"><img src="anhvietbai/kiemtra.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Kiểm tra, giám sát của Đảng</a></h3></div>
+
+<div class="card"><h3><a href="vanban/doc_pdf.html">📖 Đọc văn bản dạng pdf</a></h3></div>
+</div>
+</div>
+
 	
   <!-- == BÀI VIẾT NỔI BẬT == -->
   <section id="recent-posts" class="half-item">
@@ -1095,7 +1185,7 @@ BÀI VIẾT NỔI BẬT
 
   <div class="video-wrapper">
     <iframe
-      src="https://www.youtube.com/embed/ryRBFmn6b0c" title="
+      src="https://www.youtube.com/embed/ryRBFmn6b0c"
       title="Youtube"
       allowfullscreen>
     </iframe>
@@ -1753,33 +1843,57 @@ player.addEventListener("ended", function(){
 </script>
 
 <script>
+/* ===== SLIDER BANNER ===== */
 
-let slides=document.querySelectorAll(".slide");
-let index=0;
+const slides = document.querySelectorAll(".slide");
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+const dotsBox = document.querySelector(".dots");
+
+let index = 0;
+
+/* tạo chấm tròn */
+
+slides.forEach((_,i)=>{
+  const dot=document.createElement("div");
+  dot.classList.add("dot");
+  if(i===0) dot.classList.add("active");
+
+  dot.onclick=()=>showSlide(i);
+
+  dotsBox.appendChild(dot);
+});
+
+const dots=document.querySelectorAll(".dot");
 
 function showSlide(i){
 
 slides.forEach(s=>s.classList.remove("active"));
-slides[i].classList.add("active");
+dots.forEach(d=>d.classList.remove("active"));
 
+slides[i].classList.add("active");
+dots[i].classList.add("active");
+
+index=i;
 }
 
-document.querySelector(".next").onclick=()=>{
+function nextSlide(){
 index=(index+1)%slides.length;
 showSlide(index);
 }
 
-document.querySelector(".prev").onclick=()=>{
+function prevSlide(){
 index=(index-1+slides.length)%slides.length;
 showSlide(index);
 }
 
-setInterval(()=>{
-index=(index+1)%slides.length;
-showSlide(index);
-},6000);
+next.onclick=nextSlide;
+prev.onclick=prevSlide;
 
+/* tự chạy */
+
+setInterval(nextSlide,5000);
 </script>
-	
+
 </body>
 </html>
