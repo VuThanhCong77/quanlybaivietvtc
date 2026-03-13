@@ -41,6 +41,86 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   --primary:#0615ea;
   --secondary:#0a94a3;
 }
+/* ===============================
+   BANNER ANH
+   =============================== */
+.news-banner{
+width:100%;
+height:520px;
+overflow:hidden;
+position:relative;
+}
+
+.slider{
+width:100%;
+height:100%;
+position:relative;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+opacity:0;
+transition:opacity 1s ease;
+}
+
+.slide.active{
+opacity:1;
+}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+animation:zoom 8s ease-in-out infinite;
+}
+
+@keyframes zoom{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+
+.caption{
+position:absolute;
+bottom:80px;
+left:80px;
+color:white;
+background:rgba(0,0,0,0.45);
+padding:25px 35px;
+max-width:520px;
+border-left:5px solid #ff4db8;
+}
+
+.caption h2{
+margin:0 0 10px;
+font-size:30px;
+}
+
+.caption p{
+margin:0;
+font-size:16px;
+}
+
+.prev,.next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,0.5);
+color:white;
+border:none;
+font-size:30px;
+padding:10px 18px;
+cursor:pointer;
+}
+
+.prev{left:20px;}
+.next{right:20px;}
+
+.prev:hover,.next:hover{
+background:#ff4db8;
+}
 
 /* ===============================
    KHUNG NGANG DUY NHẤT
@@ -925,19 +1005,57 @@ a{
 Chủ động chăm sóc sức khỏe – Nâng cao chất lượng cuộc sống
 </a>
 </h2>
+</div>
+	  
+<!-- ===== BANNER ẢNH ===== -->
+<section class="news-banner">
+
+<div class="slider">
+
+<div class="slide active">
+<img src="tinanh/01.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/02.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/03.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/baucu01.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/baucu02.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/baucu04.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/baucu05.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/baucu09.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/baucu10.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/baucu06.jpg">
+</div>
+<div class="slide active">
+<img src="tinanh/baucu07.jpg">
+</div>
+
+<button class="prev">&#10094;</button>
+<button class="next">&#10095;</button>
 
 </div>
+</section>
 
 <!-- ===== BÀI VIẾT TUYÊN TRUYỀN ===== -->
 <h2><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/anhvietbai/quochuy.webp" alt="" style="height:28px; vertical-align:middle; margin-left:28px;">
 <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/vanban/baucu26.html">
 Bầu cử đại biểu Quốc hội & đại biểu Hội đồng nhân dân các cấp nhiệm kỳ 2026 - 2031
-	
-<!-- ẢNH -->
-<div class="img-giua">
- <img src="tinanh/03.jpg" alt="">
- </div>
-	
 </a>
 </h2>
 	  
@@ -1632,6 +1750,35 @@ function toggleLoop(){
 player.addEventListener("ended", function(){
     musicBtn.innerHTML = "▶";
 });
+</script>
+
+<script>
+
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+function showSlide(i){
+
+slides.forEach(s=>s.classList.remove("active"));
+slides[i].classList.add("active");
+
+}
+
+document.querySelector(".next").onclick=()=>{
+index=(index+1)%slides.length;
+showSlide(index);
+}
+
+document.querySelector(".prev").onclick=()=>{
+index=(index-1+slides.length)%slides.length;
+showSlide(index);
+}
+
+setInterval(()=>{
+index=(index+1)%slides.length;
+showSlide(index);
+},6000);
+
 </script>
 	
 </body>
