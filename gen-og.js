@@ -41,10 +41,10 @@ posts.forEach(p => {
   if (p.thumbnail) {
     if (p.thumbnail.startsWith("http")) {
       imageUrl = p.thumbnail;
-    } else if (p.thumbnail.startsWith("images/")) {
+    } else if (p.thumbnail.startsWith("/")) {
       imageUrl = `${BASE_URL}/${p.thumbnail}`;
     } else {
-      imageUrl = `${BASE_URL}/images/${p.thumbnail}`;
+      imageUrl = `${BASE_URL}/${p.thumbnail}`;
     }
 
     const lower = imageUrl.toLowerCase();
