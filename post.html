@@ -278,7 +278,7 @@ async function loadPost() {
                 imgElement.style.display = 'block';
             }
         } else {
-            document.getElementById('post-container').innerHTML = `<h2 class="text-danger">Bài viết không tồn tại!</h2>`;
+            document.getElementById('post-container').innerHTML = `<h2 class="text-danger">Bài viết đang được cập nhật!</h2>`;
         }
     } catch (error) {
         console.error("Lỗi load bài viết:", error);
