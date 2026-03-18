@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chuyên đề Trí tuệ</title>
+
+<!-- THẺ CHIA SẺ MẠNG XÃ HỘI -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chuyên đề Trí tuệ">
+<meta property="og:description" content="Trí tuệ là tài sản quý giá nhất của con người và là nguồn lực quan trọng nhất của sự phát triển xã hội...">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tritue.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/anhvietbai/tritue1.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial;
+background:#f4f6fa;
+}
+
+/* ===== MENU ===== */
+
+header{
+position:sticky;
+top:0;
+background:#002f6c;
+z-index:999;
+}
+
+.menu{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 20px;
+color:white;
+}
+
+.menu-links a{
+color:white;
+text-decoration:none;
+margin-right:20px;
+font-weight:500;
+}
+
+.search-box input{
+padding:7px 10px;
+border-radius:4px;
+border:none;
+}
+
+/* ===== SEARCH ===== */
+
+.search-box input{
+padding:7px 10px;
+border-radius:4px;
+border:none;
+}
+
+/* ===== BANNER ===== */
+
+.banner{
+max-width:1200px;
+margin:20px auto;
+position:relative;
+overflow:hidden;
+}
+
+.banner-slider{
+display:flex;
+transition:transform 0.8s ease;
+}
+
+.banner-slide{
+display:flex;
+gap:20px;
+min-width:100%;
+}
+
+.banner-slide img{
+width:50%;
+height:320px;
+object-fit:cover;
+border-radius:10px;
+background:#eee;
+}
+
+@media (max-width:768px){
+
+.banner-slide{
+flex-direction:column;
+}
+
+.banner-slide img{
+width:100%;
+height:auto;
+}
+
+}
+
+@media (max-width:768px){
+
+/* MENU */
+
+.menu{
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+}
+
+.menu-links{
+width:100%;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.search-box{
+width:100%;
+}
+
+.search-box input{
+width:100%;
+}
+
+/* BANNER */
+
+.banner-track{
+flex-direction:column;
+}
+
+.banner-item{
+width:100%;
+}
+
+.banner-item img{
+height:auto;
+}
+
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+}
+
+/* ===== GRID BÀI VIẾT ===== */
+
+.posts{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+margin-top:30px;
+}
+
+.post{
+background:white;
+border-radius:8px;
+overflow:hidden;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.post:hover{
+transform:translateY(-5px);
+}
+
+.post img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.post-content{
+padding:16px;
+}
+
+.post-content h3{
+font-size:18px;
+margin-bottom:10px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+background:#002f6c;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:40px;
+}
+
+.prev, .next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:45px;
+height:45px;
+border:none;
+border-radius:50%;
+background:rgba(0,0,0,0.45);
+color:white;
+font-size:26px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.3s;
+z-index:10;
+}
+
+/* vị trí */
+
+.prev{
+left:15px;
+}
+
+.next{
+right:15px;
+}
+
+/* hiệu ứng hover */
+
+.prev:hover,
+.next:hover{
+background:#0073ff;
+transform:translateY(-50%) scale(1.1);
+}
+
+.banner button{
+opacity:0;
+}
+
+.banner:hover button{
+opacity:1;
+}
+
+/* NÚT LÊN ĐẦU TRANG */
+#backToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #e40f56;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999;
+}
+
+#backToTop:hover{
+  background: #199586;
+}
+/* KHỐI CHIA SẺ */
+.share-box{
+  margin: 15px 0 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.share-btn{
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.post p{
+  text-align:justify;
+  text-indent:1cm;
+}
+
+.post a{
+   text-decoration: none;
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- MENU -->
+
+<header>
+
+<div class="menu">
+
+<div class="menu-links">
+<a href="index.html">Trang chủ</a>
+<a href="hanhphuc.html">Hạnh phúc</a>
+<a href="#postList">Trí tuệ</a>
+<a href="suc_khoe.html">Sức khỏe</a>
+</div>
+
+<div class="search-box">
+<input type="text" placeholder="Tìm bài viết..." id="search">
+</div>
+
+</div>
+
+</header>
+
+<!-- BANNER -->
+
+<section class="banner">
+
+<div class="banner-slider" id="slider">
+
+<div class="banner-slide">
+<img src="tinanh/luuky (15).jpg">
+<img src="tinanh/luuky (24).jpg">
+</div>
+
+<div class="banner-slide">
+<img src="tinanh/luuky (23).jpg">
+<img src="tinanh/luuky (22).jpg">
+</div>
+
+<div class="banner-slide">
+<img src="tinanh/luuky (7).jpg">
+<img src="tinanh/luuky (28).jpg">
+</div>
+
+<div class="banner-slide">
+<img src="tinanh/luuky (19).jpg">
+<img src="tinanh/luuky (18).jpg">
+</div>
+
+<div class="banner-slide">
+<img src="tinanh/luuky (2).jpg">
+<img src="tinanh/luuky (30).jpg">
+</div>
+
+<div class="banner-slide">
+<img src="tinanh/luuky (16).jpg">
+<img src="tinanh/luuky (3).jpg">
+</div>
+
+</div>
+
+<button class="prev">❮</button>
+<button class="next">❯</button>
+
+</section>
+
+<!-- NỘI DUNG -->
+
+<div class="container">
+
+<h2><img src="images/tritue_2.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Trí tuệ - Tri thức - Tư duy</h2>
+
+<div class="posts" id="postList">
+
+<div class="post">
+<img src="anhvietbai/tritue9.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773799930754.html">Trí tuệ con người: nền tảng của sự phát triển cá nhân và xã hội</a></h3>
+<p>Trí tuệ là tài sản quý giá nhất của con người và là nguồn lực quan trọng nhất của sự phát triển xã hội. Trong lịch sử nhân loại, mọi bước tiến của nền văn minh đều gắn liền với sự phát triển của trí tuệ.</p>
+</div>
+</div>
+
+<div class="post">
+<img src="anhvietbai/tritue1.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773794769273.html">Nhận thức chung về trí tuệ</a></h3>
+<p>Phát triển trí tuệ của con người thông qua giáo dục, khoa học và văn hóa chính là con đường quan trọng để xây dựng một xã hội phát triển bền vững.</p>
+</div>
+</div>
+
+<div class="post">
+<img src="anhvietbai/tritue2.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773794930521.html">Tri thức và học tập</a></h3>
+<p>Trong xã hội hiện đại, tri thức phát triển với tốc độ rất nhanh. Những kiến thức hôm nay có thể trở nên lạc hậu trong một thời gian ngắn. Vì vậy, học tập không còn là hoạt động chỉ diễn ra trong nhà trường mà trở thành quá trình suốt đời của mỗi con người.</p>
+</div>
+</div>
+
+<div class="post">
+<img src="anhvietbai/tritue3.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773795102825.html">Tư duy và sáng tạo</a></h3>
+<p>Tư duy phản biện là khả năng phân tích, đánh giá và kiểm chứng thông tin một cách khách quan, logic trước khi chấp nhận hoặc đưa ra quyết định. Đây không phải là sự phủ nhận mọi vấn đề, mà là quá trình suy nghĩ độc lập và có cơ sở khoa học.</p>
+</div>
+</div>
+
+<div class="post">
+<img src="anhvietbai/tritue4.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773795724217.html">Trí tuệ cảm xúc</a></h3>
+<p>Bên cạnh trí tuệ lý trí, con người còn sở hữu một dạng trí tuệ khác có vai trò rất quan trọng trong cuộc sống, đó là trí tuệ cảm xúc.</p>
+</div>
+</div>
+
+<div class="post">
+<img src="anhvietbai/tritue5.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773795852297.html">Trí tuệ trong lãnh đạo và quản lý</a></h3>
+<p>Trong mọi tổ chức và xã hội, vai trò của người lãnh đạo có ý nghĩa quyết định đối với sự phát triển. Một người lãnh đạo giỏi không chỉ cần phẩm chất đạo đức và tinh thần trách nhiệm mà còn phải có trí tuệ lãnh đạo.</p>
+</div>
+</div>
+
+<div class="post">
+<img src="anhvietbai/tritue6.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773795975569.html">Trí tuệ và công nghệ</a></h3>
+<p>Sự phát triển của công nghệ trong những thập niên gần đây đã đưa nhân loại bước vào kỷ nguyên của trí tuệ nhân tạo (AI)...</p>
+</div>
+</div>
+
+<div class="post">
+<img src="anhvietbai/tritue7.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773796100225.html">Gương trí trí tuệ</a></h3>
+<p>Trong lịch sử nhân loại, nhiều nhà khoa học đã để lại dấu ấn sâu sắc bằng trí tuệ và những phát minh làm thay đổi thế giới. Những đóng góp của họ không chỉ mở rộng tri thức khoa học mà còn thúc đẩy sự phát triển của nền văn minh nhân loại.</p>
+</div>
+</div>
+
+<div class="post">
+<img src="anhvietbai/tritue8.jpg">
+<div class="post-content">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773796359137.html">Phát triển trí tuệ cá nhân</a></h3>
+<p>Phát triển trí tuệ không phải là quá trình diễn ra trong một thời gian ngắn mà là kết quả của những thói quen tích cực được duy trì lâu dài.</p>
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+<footer>
+<p>Chuyên đề Trí tuệ</p>
+</footer>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+
+/* ===== SEARCH ===== */
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let keyword=this.value.toLowerCase();
+
+let posts=document.querySelectorAll(".post");
+
+posts.forEach(post=>{
+
+let text=post.innerText.toLowerCase();
+
+if(text.includes(keyword)){
+post.style.display="block";
+}else{
+post.style.display="none";
+}
+
+});
+
+});
+
+</script>
+
+<script>
+let slider=document.querySelector(".banner-slider");
+let slides=document.querySelectorAll(".banner-slide");
+
+let index=0;
+
+function showSlide(i){
+slider.style.transform="translateX("+(-i*100)+"%)";
+}
+
+document.querySelector(".next").onclick=function(){
+index++;
+if(index>=slides.length){index=0;}
+showSlide(index);
+}
+
+document.querySelector(".prev").onclick=function(){
+index--;
+if(index<0){index=slides.length-1;}
+showSlide(index);
+}
+
+setInterval(()=>{
+index++;
+if(index>=slides.length){index=0;}
+showSlide(index);
+},5000);
+</script>
+
+</body>
+</html>
