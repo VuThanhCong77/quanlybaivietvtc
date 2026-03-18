@@ -79,7 +79,7 @@ th{ background:#1a73e8; color:#fff; }
 
 .nav-menu{
   position: fixed;
-  top: 0;
+  top: 3;
   left: -280px;
   width: 260px;
   height: 100%;
@@ -157,6 +157,8 @@ Lịch công tác
   <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
 </nav>
 
+<main class="main-content">
+
     <div id="ngayHienTai"></div>
     <div id="lich-am"></div>
 
@@ -167,7 +169,6 @@ Lịch công tác
 3. Cơ quan phường (T01->12)<br>
 4. Các cơ quan đảng<br>
 5. Sinh hoạt chi bộ 2026: Phúc Nam (T01-5-8-11); 3 Đông Sơn (T3-6-9-12); Dưới (T02-4-7-10); Cơ quan phường (03 hàng tháng);<br>
-6. Ban bầu cử số 6.
     <hr>
 
      <div id="mainBox">
@@ -183,7 +184,8 @@ Lịch công tác
         <table>
             <thead>
                 <tr>
-                    <th>Thời gian</th>
+		    <th>Thứ</th>
+                    <th>Ngày Giờ</th>
                     <th>Nội dung</th>
                     <th>Trạng thái</th>
 		</tr>
@@ -194,6 +196,8 @@ Lịch công tác
 </div>
 
 <audio id="alertSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+
+</main>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycby3UYBLatxtDhG3Qah1pMhLxPmLD_8Ak_c6kgQHCHRh85b8VbCWX9dRYybdLnuTNUdc6Q/exec";
@@ -251,11 +255,14 @@ function render(){
             coCanhBao = true;
         }
 
-        let row = `<tr class="${cls}">
-            <td>${tg.toLocaleString("vi-VN")}</td>
-            <td>${escapeHTML(i.v)}</td>
-            <td>${trangThai}</td>
-        </tr>`;
+        const thu = tg.toLocaleDateString("vi-VN",{weekday:"long"});
+
+let row = `<tr class="${cls}">
+    <td>${thu}</td>
+    <td>${tg.toLocaleString("vi-VN")}</td>
+    <td>${escapeHTML(i.v)}</td>
+    <td>${trangThai}</td>
+</tr>`;
 
         body.innerHTML += row;
     });
