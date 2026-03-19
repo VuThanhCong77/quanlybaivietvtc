@@ -39,7 +39,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 :root{
   --max-width:1200px;
   --primary:#0615ea;
-  --secondary:#0a94a3;
+  --secondary:#10a9e6;
 }
 
 /* ===============================
@@ -51,7 +51,7 @@ width:100%;
 aspect-ratio:16/9;
 position:relative;
 overflow:hidden;
-background:#000;
+background:hsl(330, 6%, 93%);
 }
 
 .slider{
@@ -64,7 +64,8 @@ height:100%;
 position:absolute;
 inset:0;
 opacity:0;
-transition:opacity 1s ease;
+transition:opacity .8s ease;
+z-index:1;
 }
 
 .slide.active{
@@ -105,7 +106,7 @@ transition:.25s;
 .next{right:15px}
 
 .prev:hover,.next:hover{
-background:#c80000;
+background:#106fc7;
 }
 
 /* chấm tròn */
@@ -129,7 +130,7 @@ cursor:pointer;
 }
 
 .dot.active{
-background:#fff;
+background:#9c0505;
 }
 
 /* mobile */
@@ -176,7 +177,7 @@ padding:6px 12px;
   transform:translateX(-50%);
   width:100%;
   max-width:var(--max-width);
-  background: hsl(202, 98%, 23%);
+  background: hsl(194, 94%, 25%);
   color:#fff;
   z-index:1200;
   box-shadow:0 2px 6px rgba(0,0,0,.15);
@@ -225,7 +226,7 @@ nav{
 
 /* CHỮ CHẠY */
 .running-text{
-  background:#fff3cd;
+  background:rgb(247, 222, 1);
   color:#0303ef;
   padding:6px 0;
   text-align:center;
@@ -289,7 +290,7 @@ footer a{color:#fff;text-decoration:none}
   max-width: 1200px;
   margin: 0 auto;
   padding: 3px 3px;
-  background: hsl(202, 98%, 23%);
+  background: hsl(186, 92%, 24%);
   color: #fff;
   text-align: center;
 }
@@ -404,12 +405,11 @@ body{
 
 /* HEADER */
 .site-header{
-  background:rgba(1, 86, 112, 0.9);
+  background:#9f0945;
 }
 .site-header,
 .site-header a{
   color:#ffffff;
-  text-shadow:0 1px 2px rgba(0,0,0,.35);
 }
 
 /* MENU */
@@ -603,7 +603,7 @@ main{
   height: 44px;
   border-radius: 50%;
   border: none;
-  background: linear-gradient(135deg, #0a7f99, #0ab3c9);
+  background: linear-gradient(135deg, #eb0f1a, #db1515);
   color: #fff;
   font-size: 20px;
   font-weight: bold;
@@ -1091,46 +1091,97 @@ margin-bottom:8px
   </audio>
   <button id="musicBtn" onclick="toggleMusic()">▶</button>
   <button id="loopBtn" onclick="toggleLoop()">🔁</button>
+
 </div>
 </div>
 
-<!-- ===== BANNER ẢNH ===== -->
+<div class="img-giua">
+<img src="tinanh/madaothanhcong.jpg">
+</div>
+
+<!-- ===== BANNER ẢNH TUYÊN TRUYỀN===== -->
 
 <section class="news-banner">
 <div class="slider">
 
 <div class="slide active">
-<img src="tinanh/01.jpg">
+<img src="anhvietbai/daothithuyhang.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/02.jpg">
+<img src="anhvietbai/nguyenhuyhoang.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/03.jpg">
+<img src="anhvietbai/lethilethuy.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/baucu01.jpg">
+<img src="anhvietbai/buimanhhung.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/baucu02.jpg">
+<img src="anhvietbai/vuvancanh.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/baucu04.jpg">
+<img src="anhvietbai/daovanthuan.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/baucu05.jpg">
+<img src="anhvietbai/phanhuuchi.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/baucu09.jpg">
+<img src="anhvietbai/luonganhtoan.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/baucu10.jpg">
+<img src="anhvietbai/luongthuylam.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/baucu06.jpg">
+<img src="anhvietbai/hoanganhtuan.jpg">
 </div>
+
 <div class="slide">
-<img src="tinanh/baucu07.jpg">
+<img src="anhvietbai/levanthinh.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/phamvanhung.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/lexuannghi.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/nguyenminhke.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/nguyenthithuy.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/nguyenthinien.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/nguyenthihuong.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/dovanphuong.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/vuvanhai.jpg">
+</div>
+
+<div class="slide">
+<img src="anhvietbai/phamthimai.jpg">
 </div>
 
 <button class="prev">&#10094;</button>
@@ -1140,6 +1191,9 @@ margin-bottom:8px
 
 </div>
 </section>
+
+<h3 style="text-align:center;"><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773722263526.html">DANH SÁCH 20 NGƯỜI TRÚNG CỬ ĐẠI BIỂU HỘI ĐỒNG NHÂN DÂN PHƯỜNG LƯU KIẾM<br>
+KHÓA II, NHIỆM KỲ 2026 -2031</a></h3>
 
 <!-- ===== KHỐI HAI CỘT: BÀI VIẾT + ẢNH ===== -->
 <div class="half-box">
@@ -1152,13 +1206,14 @@ margin-bottom:8px
 
 <div class="card"><h3><a href="suc_khoe.html"><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Chăm sóc sức khỏe </a></h3></div>
 
-<div class="card"><h3><a href="hanhphuc.html"><img src="images/hanhphuc.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Hạnh phúc cho mọi người</a></h3></div>
+<div class="card"><h3><a href="tritue.html"><img src="images/tritue_2.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Phát triển trí tuệ</a></h3></div>
 
-<div class="card"><h3><a href="vanban/baucu26.html"><img src="anhvietbai/quochuy.webp" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Bầu cử đại biểu Quốc hội, HĐND nhiệm kỳ 2026 - 2031</a></h3></div>
+<div class="card"><h3><a href="hanhphuc.html"><img src="images/hanhphuc.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Xây dựng hạnh phúc</a></h3></div>
+
+<div class="card"><h3><a href="vanban/baucu26.html"><img src="anhvietbai/quochuy.webp" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Bầu cử ngày 15-3-2026</a></h3></div>
 
 <div class="card"><h3><a href="kiemtra_giamsat.html"><img src="images/kiemtradang.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Kiểm tra, giám sát của Đảng</a></h3></div>
 
-<div class="card"><h3><a href="vanban/doc_pdf.html">📖 Đọc văn bản dạng pdf</a></h3></div>
 </div>
 </div>
 
@@ -1281,6 +1336,19 @@ BÀI VIẾT NỔI BẬT
 🌸 Cuộc sống là một dòng chảy không bao giờ ngừng nghỉ, con người cứ mãi bơi theo dòng chảy ấy. Xuôi dòng thì nhanh, ngược dòng thì chậm, dừng bơi sẽ bị cuốn trôi. Do đó, chúng ta cứ để thuận theo chiều gió, thuận theo tự nhiên.
 </p>
 
+<!-- ẢNH 3.1-->
+<div class="img-giua">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773799930754.html"> 
+ <img src="anhvietbai/tritue1.jpg" alt="">
+ <div class="img-caption">
+ Trí tuệ con người: nền tảng của sự phát triển cá nhân và xã hội
+  </div>
+</a>
+</div>
+<p class="justified-p">
+🌸 Trí tuệ là tài sản quý giá nhất của con người và là nguồn lực quan trọng nhất của sự phát triển xã hội. Trong lịch sử nhân loại, mọi bước tiến của nền văn minh đều gắn liền với sự phát triển của trí tuệ. Trong bối cảnh thế giới đang bước vào thời đại kinh tế tri thức và chuyển đổi số, việc phát triển trí tuệ càng trở nên cần thiết đối với mỗi cá nhân và mỗi quốc gia. Mỗi người cần không ngừng học tập, rèn luyện tư duy và mở rộng tri thức để nâng cao năng lực của bản thân. Đồng thời, xã hội cần xây dựng môi trường khuyến khích sáng tạo, tôn trọng tri thức và phát huy trí tuệ của con người. Chỉ khi trí tuệ được phát triển và sử dụng đúng hướng, con người mới có thể xây dựng một xã hội tiến bộ, văn minh và phát triển bền vững.
+</p>
+
 <!-- ẢNH 4-->
 <div class="img-giua">
 <a href="vanban/chuyendoixanhhp.html"> 
@@ -1337,7 +1405,7 @@ BÀI VIẾT NỔI BẬT
  <footer class="site-footer">
   <a href="https://luukiem.haiphong.gov.vn/">Trang TTĐT phường Lưu Kiếm </a>
  <a href="https://www.facebook.com/?locale=vi_VN">🌸 Facebook</a><br>
-	  🏛 Số 02 đường Đá Bạc – Lưu Kiếm – Hải Phòng
+	  <a href="https://maps.app.goo.gl/EoSpEJbrzFSRJLEQA">🏛 Số 02 đường Đá Bạc – Lưu Kiếm – Hải Phòng</a>
  </footer>
 
 <script>
