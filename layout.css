@@ -25,8 +25,8 @@ font-size: 16px;
   --header-height: 45px;
   --sub-height: 65px;
 
-  --primary: #056085;
-  --secondary: #0d8ed8;
+  --primary: #0099DA;
+  --secondary: #0099DA;
   --bg-main: #fff9fe;
 }
 
@@ -203,7 +203,7 @@ footer{
   text-align: center;
   font-size: 13px;
   color: #fff;
-  background: hwb(199 2% 49%);
+  background: #0099DA;
   border-top: 1px solid #e5e7eb;
 }
 
