@@ -1957,13 +1957,24 @@ async function loadBanner(){
 
     let slidesHTML = "";
 
-    bannerPosts.forEach((p, i) => {
-      slidesHTML += `
+function getRetina(src){
+  const dot = src.lastIndexOf(".");
+  if(dot === -1) return src;
+  return src.slice(0, dot) + "@2x" + src.slice(dot);
+}
+
+   bannerPosts.forEach((p, i) => {
+
+  const retina = getRetina(p.thumbnail);
+
+  slidesHTML += `
   <div class="slide ${i===0 ? 'active' : ''}">
     <a href="post.html?id=${p.id}">
       <img 
         src="${p.thumbnail}" 
-        srcset="${p.thumbnail} 1x, ${p.thumbnail.replace('.', '@2x.')} 2x"
+        srcset="${p.thumbnail} 1x, ${retina} 2x"
+        sizes="100vw"
+        onerror="this.src='${p.thumbnail}'"
         alt=""
         loading="eager"
         decoding="async"
@@ -1971,8 +1982,8 @@ async function loadBanner(){
       <h2>${p.title}</h2>
     </a>
   </div>
-`;
-    });
+  `;
+});
 
     // chèn vào trước nút
     slider.insertAdjacentHTML("afterbegin", slidesHTML);
