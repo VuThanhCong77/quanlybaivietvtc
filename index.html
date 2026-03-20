@@ -64,7 +64,7 @@ height:100%;
 position:absolute;
 inset:0;
 opacity:0;
-transition:opacity .8s ease;
+transition:opacity .16s ease;
 z-index:1;
 }
 
@@ -74,16 +74,24 @@ z-index:2;
 }
 
 .slide img{
-width:100%;
-height:100%;
-object-fit:cover;
-animation:zoomBanner 12s ease-in-out infinite;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  /* làm ảnh nét hơn */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+
+  /* tăng độ rõ */
+  filter: contrast(1.08) brightness(1.08);
+
+  animation: zoomBanner 12s ease-in-out infinite;
 }
 
 @keyframes zoomBanner{
-0%{transform:scale(1);}
-50%{transform:scale(1.08);}
-100%{transform:scale(1);}
+  0%{transform:scale(1);}
+  50%{transform:scale(1.03);} /* giảm từ 1.08 xuống */
+  100%{transform:scale(1);}
 }
 
 /* nút trái phải */
@@ -934,6 +942,41 @@ margin:10px 0
 margin-bottom:8px
 }
 
+.slide a{
+  display:block;
+  width:100%;
+  height:100%;
+  position:relative;
+  color:#fff;
+}
+
+.slide a::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,.1));
+}
+
+.slide h2{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  right:20px;
+  z-index:3;
+  font-size:26px;
+  line-height:1.4;
+  font-weight:700;
+  color:#fff;
+  text-shadow:0 2px 6px rgba(0,0,0,.6);
+}
+
+@media(max-width:768px){
+  .slide h2{
+    font-size:18px;
+    bottom:10px;
+  }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -1100,101 +1143,19 @@ margin-bottom:8px
 <img src="tinanh/madaothanhcong.jpg">
 </div>
 
-<!-- ===== BANNER ẢNH TUYÊN TRUYỀN===== -->
+<!-- ===== BANNER 10 BÀI VIẾT MỚI===== -->
 
 <section class="news-banner">
-<div class="slider">
+  <div class="slider" id="bannerSlider">
 
-<div class="slide active">
-<img src="anhvietbai/daothithuyhang.jpg">
-</div>
+    <!-- Slides sẽ được JS tạo tự động -->
 
-<div class="slide">
-<img src="anhvietbai/nguyenhuyhoang.jpg">
-</div>
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
 
-<div class="slide">
-<img src="anhvietbai/lethilethuy.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/buimanhhung.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/vuvancanh.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/daovanthuan.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/phanhuuchi.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/luonganhtoan.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/luongthuylam.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/hoanganhtuan.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/levanthinh.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/phamvanhung.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/lexuannghi.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/nguyenminhke.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/nguyenthithuy.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/nguyenthinien.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/nguyenthihuong.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/dovanphuong.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/vuvanhai.jpg">
-</div>
-
-<div class="slide">
-<img src="anhvietbai/phamthimai.jpg">
-</div>
-
-<button class="prev">&#10094;</button>
-<button class="next">&#10095;</button>
-
-<div class="dots"></div>
-
-</div>
+    <div class="dots"></div>
+  </div>
 </section>
-
-<h3 style="text-align:center;"><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1773722263526.html">DANH SÁCH 20 NGƯỜI TRÚNG CỬ ĐẠI BIỂU HỘI ĐỒNG NHÂN DÂN PHƯỜNG LƯU KIẾM<br>
-KHÓA II, NHIỆM KỲ 2026 -2031</a></h3>
 
 <!-- ===== KHỐI HAI CỘT: BÀI VIẾT + ẢNH ===== -->
 <div class="half-box">
@@ -1961,7 +1922,108 @@ prev.onclick=prevSlide;
 
 /* tự chạy */
 
-setInterval(nextSlide,5000);
+setInterval(nextSlide,6000);
+</script>
+
+<script>
+/* ===============================
+   BANNER TỰ ĐỘNG TỪ posts_data.json
+   =============================== */
+
+const BANNER_LIMIT = 10; // số bài hiển thị
+
+async function loadBanner(){
+
+  try{
+    const res = await fetch("posts_data.json");
+    const posts = await res.json();
+
+    const slider = document.getElementById("bannerSlider");
+
+    // lọc bài có ảnh
+    const bannerPosts = posts
+      .filter(p => p.thumbnail)
+      .sort((a,b) => b.id - a.id)
+      .slice(0, BANNER_LIMIT);
+
+    if(!bannerPosts.length) return;
+
+    let slidesHTML = "";
+
+    bannerPosts.forEach((p, i) => {
+      slidesHTML += `
+        <div class="slide ${i===0 ? 'active' : ''}">
+          <a href="post.html?id=${p.id}">
+            <img src="${p.thumbnail}" alt="">
+            <h2>${p.title}</h2>
+          </a>
+        </div>
+      `;
+    });
+
+    // chèn vào trước nút
+    slider.insertAdjacentHTML("afterbegin", slidesHTML);
+
+    initBanner(); // chạy slider
+
+  }catch(err){
+    console.error("Lỗi banner:", err);
+  }
+}
+
+/* ===============================
+   SLIDER LOGIC
+   =============================== */
+
+function initBanner(){
+
+  const slides = document.querySelectorAll(".slide");
+  const prev = document.querySelector(".prev");
+  const next = document.querySelector(".next");
+  const dotsBox = document.querySelector(".dots");
+
+  let index = 0;
+
+  // tạo dots
+  slides.forEach((_,i)=>{
+    const dot=document.createElement("div");
+    dot.classList.add("dot");
+    if(i===0) dot.classList.add("active");
+
+    dot.onclick=()=>showSlide(i);
+    dotsBox.appendChild(dot);
+  });
+
+  const dots=document.querySelectorAll(".dot");
+
+  function showSlide(i){
+    slides.forEach(s=>s.classList.remove("active"));
+    dots.forEach(d=>d.classList.remove("active"));
+
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+
+    index=i;
+  }
+
+  function nextSlide(){
+    index=(index+1)%slides.length;
+    showSlide(index);
+  }
+
+  function prevSlide(){
+    index=(index-1+slides.length)%slides.length;
+    showSlide(index);
+  }
+
+  next.onclick=nextSlide;
+  prev.onclick=prevSlide;
+
+  setInterval(nextSlide,6000);
+}
+
+/* chạy */
+document.addEventListener("DOMContentLoaded", loadBanner);
 </script>
 
 </body>
