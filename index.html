@@ -64,7 +64,7 @@ height:100%;
 position:absolute;
 inset:0;
 opacity:0;
-transition:opacity .16s ease;
+transition:opacity .12s ease;
 z-index:1;
 }
 
@@ -77,6 +77,10 @@ z-index:2;
   width:100%;
   height:100%;
   object-fit:cover;
+
+image-rendering:auto;
+  backface-visibility:hidden;
+  transform:translateZ(0);
 
   /* làm ảnh nét hơn */
   image-rendering: -webkit-optimize-contrast;
@@ -953,8 +957,11 @@ margin-bottom:8px
 .slide a::after{
   content:"";
   position:absolute;
-  inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,.1));
+  left:0;
+  right:0;
+  bottom:0;
+  height:40%;
+  background:linear-gradient(to top, rgba(0,0,0,.45), transparent);
 }
 
 .slide h2{
@@ -1952,13 +1959,19 @@ async function loadBanner(){
 
     bannerPosts.forEach((p, i) => {
       slidesHTML += `
-        <div class="slide ${i===0 ? 'active' : ''}">
-          <a href="post.html?id=${p.id}">
-            <img src="${p.thumbnail}" alt="">
-            <h2>${p.title}</h2>
-          </a>
-        </div>
-      `;
+  <div class="slide ${i===0 ? 'active' : ''}">
+    <a href="post.html?id=${p.id}">
+      <img 
+        src="${p.thumbnail}" 
+        srcset="${p.thumbnail} 1x, ${p.thumbnail.replace('.', '@2x.')} 2x"
+        alt=""
+        loading="eager"
+        decoding="async"
+      >
+      <h2>${p.title}</h2>
+    </a>
+  </div>
+`;
     });
 
     // chèn vào trước nút
