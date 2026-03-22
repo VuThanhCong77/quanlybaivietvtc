@@ -8,8 +8,7 @@
    <!-- Open Graph chuẩn cho Facebook & Zalo -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tin ảnh_Vũ Thành Công">
-<meta property="og:description" content="📷 Tin tức qua hình ảnh">
-<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/anh.html">
+<meta property="og:description" content="📢 Tin tức qua hình ảnh">
 <meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/tinanh/mayanh.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -98,6 +97,46 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   opacity: 1;
   pointer-events: auto;
 }
+
+.action-bar {
+  display: flex;
+  justify-content: left;      /* căn giữa cả hàng */
+  align-items: center;
+  gap: 3px;                    /* khoảng cách giữa các nút */
+  margin: 6px 3;
+  flex-wrap: wrap;              /* mobile thì tự xuống dòng nếu chật */
+}
+
+/* đảm bảo các div con không chiếm cả dòng */
+.action-bar > div {
+  display: flex;
+}
+
+.main-content{
+  padding-top: 15px;
+}
+
+.action-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
+}
+
+.like-box button,
+.share-btn{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  background: #e8f4ff;
+}
 </style>
 </head>
 
@@ -142,7 +181,22 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   <!-- ================= KHUNG TRỤC CHUNG ================= -->
 <div class="page-wrapper">
 <main class="main-content">
+
+<div class="action-bar">
+<div class="like-box">
+ <button id="likeBtn">👍 Thích </button>
+<span> 💞 <b id="likeCount">0</b> 🌱 </span>
+</div>
+
+  <div class="share-group">
+  <button class="share-btn copy" onclick="copyLink(this)">
+    🔗 Copy link chia sẻ
+  </button>
+</div>
+</div>
+
 <div class="main-grid">
+
     <!-- CỘT TRÁI -->
 <section class="content-left">
 
@@ -214,6 +268,56 @@ document.querySelectorAll(".nav-link.toggle").forEach(toggle => {
     subMenu.classList.toggle("open");
   });
 });
+</script>
+
+<script>
+/* ===============================
+   THÍCH TRANG
+   =============================== */
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
+
+const pageName = "anh";   // tên trang
+
+function loadLike() {
+  fetch(API + "?action=get&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+    });
+}
+
+loadLike();
+
+likeBtn.addEventListener("click", function () {
+
+  if (localStorage.getItem("liked_" + pageName)) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
+  fetch(API + "?action=like&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+      localStorage.setItem("liked_" + pageName, "true");
+    });
+});
+</script>
+
+<script>
+function copyLink(btn){
+  navigator.clipboard.writeText(window.location.href)
+    .then(()=>{
+      const oldText = btn.innerText;
+      btn.innerText = "✅ Đã copy";
+      setTimeout(()=>btn.innerText = oldText, 1500);
+    })
+    .catch(()=>{
+      alert("Không copy được link!");
+    });
+}
 </script>
 
 </body>
