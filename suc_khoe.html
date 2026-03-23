@@ -603,33 +603,29 @@ function copyLink(btn){
 
 <script>
 const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
-
 const postId = "page_suc_khoe"; 
 const viewCount = document.getElementById("viewCount");
 
-// Lấy lượt xem
-function loadViews(){
-  fetch(VIEW_API + "?action=getViews&postId=" + postId)
-    .then(res => res.json())
-    .then(data => {
+async function updateViews(){
+  try{
+    // nếu chưa xem thì tăng view
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=addView&postId=" + postId);
+      const data = await res.json();
       viewCount.innerText = data.views;
-    });
-}
-
-// Tăng lượt xem 1 lần mỗi người
-function addView(){
-  if(!sessionStorage.getItem("viewed_" + postId)){
-    fetch(VIEW_API + "?action=addView&postId=" + postId)
-      .then(res => res.json())
-      .then(data => {
-        viewCount.innerText = data.views;
-        sessionStorage.setItem("viewed_" + postId, "true");
-      });
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      // nếu đã xem thì chỉ lấy số view
+      const res = await fetch(VIEW_API + "?action=getViews&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
   }
 }
 
-loadViews();
-addView();
+updateViews();
 </script>
 
 </body>
