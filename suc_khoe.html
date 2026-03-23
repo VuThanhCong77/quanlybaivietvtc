@@ -226,7 +226,7 @@ p{
   height: 42px;
   border: none;
   border-radius: 50%;
-  background: #0b4ea2;
+  background: #e90a0a;;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
@@ -236,7 +236,7 @@ p{
 }
 
 #backToTop:hover{
-  background: #199586;
+  background: #0fd4bd;
 }
 /* KHỐI CHIA SẺ */
 .share-box{
@@ -265,6 +265,55 @@ p{
   border-radius: 4px;
 }
 
+.action-bar {
+  display: flex;
+  justify-content: left;      /* căn giữa cả hàng */
+  align-items: center;
+  gap: 3px;                    /* khoảng cách giữa các nút */
+  margin: 6px 3;
+  flex-wrap: wrap;              /* mobile thì tự xuống dòng nếu chật */
+}
+
+/* đảm bảo các div con không chiếm cả dòng */
+.action-bar > div {
+  display: flex;
+}
+
+.main-content{
+  padding-top: 15px;
+}
+
+/* Nút Thích trang và Copy */
+.action-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
+}
+
+.like-box button,
+.share-btn{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d607a2;
+  background: #14cec4;
+  cursor: pointer;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  background: #20e007;
+}
+
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
+
 </style>
 </head>
 
@@ -291,6 +340,24 @@ p{
 <div class="layout">
 
 <div class="main">
+
+<div class="action-bar">
+<div class="like-box">
+ <button id="likeBtn">👍 Thích </button>
+<span> 💞 <b id="likeCount">0</b> 🌱 </span>
+</div>
+
+  <div class="share-group">
+  <button class="share-btn copy" onclick="copyLink(this)">
+    🔗 Copy link
+  </button>
+</div>
+
+<div class="view-box">
+👁 Lượt xem: <b id="viewCount">0</b>
+</div>
+
+</div>
 
 
 <div class="section">
@@ -485,6 +552,87 @@ btn.addEventListener("click", function(){
     behavior: "smooth"
   });
 });
+</script>
+
+<script>
+/* ===============================
+   THÍCH TRANG
+   =============================== */
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
+
+const pageName = "suc_khoe";   // tên trang
+
+function loadLike() {
+  fetch(API + "?action=get&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+    });
+}
+
+loadLike();
+
+likeBtn.addEventListener("click", function () {
+
+  if (localStorage.getItem("liked_" + pageName)) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
+  fetch(API + "?action=like&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+      localStorage.setItem("liked_" + pageName, "true");
+    });
+});
+</script>
+
+<script>
+function copyLink(btn){
+  navigator.clipboard.writeText(window.location.href)
+    .then(()=>{
+      const oldText = btn.innerText;
+      btn.innerText = "✅ Đã copy";
+      setTimeout(()=>btn.innerText = oldText, 1500);
+    })
+    .catch(()=>{
+      alert("Không copy được link!");
+    });
+}
+</script>
+
+<script>
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+
+const postId = "page_suc_khoe"; 
+const viewCount = document.getElementById("viewCount");
+
+// Lấy lượt xem
+function loadViews(){
+  fetch(VIEW_API + "?action=getViews&postId=" + postId)
+    .then(res => res.json())
+    .then(data => {
+      viewCount.innerText = data.views;
+    });
+}
+
+// Tăng lượt xem
+function addView(){
+  if(localStorage.getItem("viewed_" + postId)) return;
+
+  fetch(VIEW_API + "?action=addView&postId=" + postId)
+    .then(res => res.json())
+    .then(data => {
+      viewCount.innerText = data.views;
+      localStorage.setItem("viewed_" + postId, "true");
+    });
+}
+
+loadViews();
+addView();
 </script>
 
 </body>

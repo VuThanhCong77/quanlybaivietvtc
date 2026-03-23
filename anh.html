@@ -137,6 +137,37 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 .share-btn:hover{
   background: #e8f4ff;
 }
+
+/* NÚT LÊN ĐẦU TRANG */
+#backToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #e90a0a;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999;
+}
+
+#backToTop:hover{
+  background: #0fd4bd;
+}
+
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
+
 </style>
 </head>
 
@@ -190,9 +221,14 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
   <div class="share-group">
   <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link chia sẻ
+    🔗 Copy link
   </button>
 </div>
+
+<div class="view-box">
+👁 Lượt xem: <b id="viewCount">0</b>
+</div>
+
 </div>
 
 <div class="main-grid">
@@ -213,6 +249,9 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   <footer>Trang thông tin hình ảnh</footer>
 
 </div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
 
 <!-- ================= SCRIPT SINH NỘI DUNG ================= -->
 <script>
@@ -318,6 +357,62 @@ function copyLink(btn){
       alert("Không copy được link!");
     });
 }
+</script>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+/* ===============================
+   LƯỢT XEM TRANG
+   =============================== */
+
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec ";
+
+const postId = "page_anh"; 
+const viewCount = document.getElementById("viewCount");
+
+// Lấy lượt xem
+function loadViews(){
+  fetch(VIEW_API + "?action=getViews&postId=" + postId)
+    .then(res => res.json())
+    .then(data => {
+      viewCount.innerText = data.views;
+    });
+}
+
+// Tăng lượt xem
+function addView(){
+  if(localStorage.getItem("viewed_" + postId)) return;
+
+  fetch(VIEW_API + "?action=addView&postId=" + postId)
+    .then(res => res.json())
+    .then(data => {
+      viewCount.innerText = data.views;
+      localStorage.setItem("viewed_" + postId, "true");
+    });
+}
+
+loadViews();
+addView();
 </script>
 
 </body>
