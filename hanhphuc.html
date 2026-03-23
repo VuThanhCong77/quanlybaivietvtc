@@ -573,6 +573,37 @@ text-align:center
 
 header h1{margin:0;font-size:20px;letter-spacing:1px}
 
+/* Nút Thích - Copy -xem trang */
+.action-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
+}
+
+.like-box button,
+.share-btn{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d607a2;
+  background: #14cec4;
+  cursor: pointer;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  background: #20e007;
+}
+
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
+
 </style>
 </head>
 
@@ -594,6 +625,22 @@ HẠNH PHÚC
 <li><a href="#gallery">Hình ảnh</a></li>
 </ul>
 </nav>
+
+<div class="action-bar">
+<div class="like-box">
+ <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
+</div>
+
+  <div class="share-group">
+  <button class="share-btn copy" onclick="copyLink(this)">
+    🔗 Copy link
+  </button>
+</div>
+
+<div class="view-box">
+👁 Đã xem:<b id="viewCount">0</b>
+</div>
+</div>
 
 <!-- HINH ANH -->
 
@@ -1060,6 +1107,31 @@ setInterval(nextSlide,5000);
 
 showSlide();
 
+</script>
+
+<script>
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+const postId = "page_hanhphuc"; 
+const viewCount = document.getElementById("viewCount");
+
+async function updateViews(){
+  try{
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      const res = await fetch(VIEW_API + "?postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
+  }
+}
+
+updateViews();
 </script>
 
 </body>

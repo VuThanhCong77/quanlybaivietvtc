@@ -283,7 +283,7 @@ p{
   padding-top: 15px;
 }
 
-/* Nút Thích trang và Copy */
+/* Nút Thích - Copy -xem trang */
 .action-bar{
   display: flex;
   align-items: center;
@@ -608,15 +608,13 @@ const viewCount = document.getElementById("viewCount");
 
 async function updateViews(){
   try{
-    // nếu chưa xem thì tăng view
     if(!sessionStorage.getItem("viewed_" + postId)){
-      const res = await fetch(VIEW_API + "?action=addView&postId=" + postId);
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
       const data = await res.json();
       viewCount.innerText = data.views;
       sessionStorage.setItem("viewed_" + postId, "true");
     }else{
-      // nếu đã xem thì chỉ lấy số view
-      const res = await fetch(VIEW_API + "?action=getViews&postId=" + postId);
+      const res = await fetch(VIEW_API + "?postId=" + postId);
       const data = await res.json();
       viewCount.innerText = data.views;
     }

@@ -984,6 +984,14 @@ margin-bottom:8px
   }
 }
 
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -1367,8 +1375,8 @@ BÀI VIẾT NỔI BẬT
  </div>
 
      <p span style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;">📊 Online: <strong id="onlineCount">1</strong> | 
-    Lượt xem: <strong id="viewCount">0</strong> | 
-	 Bài viết:<strong id= "tong-bai-viet"> 0 </strong> </p>
+    👁 Đã xem:<b id="viewCount">0</b> | 
+    Bài viết:<strong id= "tong-bai-viet"> 0 </strong> </p>
  </main>
 
  <footer class="site-footer">
@@ -2031,6 +2039,30 @@ function initBanner(){
 
 /* chạy */
 document.addEventListener("DOMContentLoaded", loadBanner);
+</script>
+
+<script>
+const postId = "page_index"; 
+const viewCount = document.getElementById("viewCount");
+
+async function updateViews(){
+  try{
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      const res = await fetch(VIEW_API + "?postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
+  }
+}
+
+updateViews();
 </script>
 
 </body>
