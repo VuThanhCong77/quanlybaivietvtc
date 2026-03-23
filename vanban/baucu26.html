@@ -383,14 +383,6 @@ height:220px;
   <a href="../index.html"> 🏠</a>
 </header>
 
-<div class="special-page">
-
-<audio id="player">
-  <source src="../amthanh/tuyentruyenbaucu.mp3" type="audio/mpeg">
-</audio>
-<button onclick="phatNhac()">▶ Phát tuyên truyền</button>
-<button onclick="dungNhac()">⏸ Dừng</button>
-
 <div class="action-bar">
 <div class="like-box">
  <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
@@ -406,6 +398,14 @@ height:220px;
 👁 Đã xem:<b id="viewCount">0</b>
 </div>
 </div>
+
+<div class="special-page">
+
+<audio id="player">
+  <source src="../amthanh/tuyentruyenbaucu.mp3" type="audio/mpeg">
+</audio>
+<button onclick="phatNhac()">▶ Phát tuyên truyền</button>
+<button onclick="dungNhac()">⏸ Dừng</button>
 
 <div class="banner-slider">
 <div class="slides" id="slides">
@@ -784,6 +784,56 @@ setInterval(nextSlide,5000);
 
 showSlide();
 
+</script>
+
+<script>
+/* ===============================
+   THÍCH TRANG
+   =============================== */
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
+
+const pageName = "suc_khoe";   // tên trang
+
+function loadLike() {
+  fetch(API + "?action=get&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+    });
+}
+
+loadLike();
+
+likeBtn.addEventListener("click", function () {
+
+  if (localStorage.getItem("liked_" + pageName)) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
+  fetch(API + "?action=like&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+      localStorage.setItem("liked_" + pageName, "true");
+    });
+});
+</script>
+
+<script>
+function copyLink(btn){
+  navigator.clipboard.writeText(window.location.href)
+    .then(()=>{
+      const oldText = btn.innerText;
+      btn.innerText = "✅ Đã copy";
+      setTimeout(()=>btn.innerText = oldText, 1500);
+    })
+    .catch(()=>{
+      alert("Không copy được link!");
+    });
+}
 </script>
 
 <script>
