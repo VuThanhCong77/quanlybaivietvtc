@@ -92,7 +92,7 @@
 <div class="page-wrapper">
 
 <header class="page-header">
-  <button class="menu-btn" onclick="location.href='../index.html'">🏠</button>
+  <button class="menu-btn" onclick="location.href='index.html'">🏠</button>
   VĂN BẢN PDF
 </header>
 
@@ -129,12 +129,9 @@
     <option value="vanban/pdf/danhsachtrungcuphuong26.pdf">Danh sách đại biểu HĐND phường</option>
 
   </select>
-<div style="text-align:center;padding:10px;background:#fff">
-  <a id="openPDF" target="_blank"
-     style="background:#b30000;color:#fff;padding:8px 14px;
-            text-decoration:none;border-radius:5px;">
-     Mở PDF toàn màn hình
-  </a>
+
+<div class="mobile-open" id="mobileOpen">
+  <a id="openPDF" target="_blank">👉 Mở PDF toàn màn hình</a>
 </div>
 
 <div class="pdf-container">
@@ -160,7 +157,7 @@ function loadPDF(file){
   const openBtn = document.getElementById("openPDF");
 
   if (isMobile()) {
-    viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + file;
+    viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
   } else {
     viewer.src = file;
   }
