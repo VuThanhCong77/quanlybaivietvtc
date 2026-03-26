@@ -1,154 +1,91 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Đọc văn bản PDF</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đọc văn bản PDF</title>
 
-  <!-- THẺ CHIA SẺ -->
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Đọc file PDF">
-  <meta property="og:description" content="Văn bản pdf">
-  <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/vanban/doc_pdf.html">
-  <meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/vutrong.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f6f9;
+}
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="../layout.css">
+header{
+  background:#b30000;
+  color:white;
+  padding:12px;
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
+}
 
-  <!-- Icon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="../icons/icon32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="../icons/icon192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="../icons/icon180.png">
-  <meta name="theme-color" content="#0a7f99">
+.toolbar{
+  background:#fff;
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f6fa;
-    }
+select{
+  padding:6px 10px;
+  font-size:14px;
+}
 
-    .toolbar {
-      background: #ffffff;
-      padding: 10px 20px;
-      border-bottom: 1px solid #ddd;
-    }
+.pdf-container{
+  width:100%;
+  height:calc(100vh - 100px);
+}
 
-    select {
-      padding: 6px 10px;
-      font-size: 14px;
-    }
-
-    .pdf-container {
-      height: calc(100vh - 120px);
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: #fff;
-    }
-
-    .mobile-open {
-      display: none;
-      text-align: center;
-      padding: 12px;
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .mobile-open a {
-      background: #b30000;
-      color: #fff;
-      padding: 10px 16px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 15px;
-      display: inline-block;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: #ffffff;
-      border-top: 1px solid #ddd;
-      font-size: 14px;
-    }
-  </style>
+iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+</style>
 </head>
 
 <body>
 
-<div class="page-wrapper">
-
-<header class="page-header">
-  <button class="menu-btn" onclick="location.href='../index.html'">🏠</button>
-  VĂN BẢN PDF
-</header>
+<header>VĂN BẢN PDF</header>
 
 <div class="toolbar">
   Chọn văn bản:
   <select onchange="loadPDF(this.value)">
     <option value="pdf/nq08chuyendoixanh.pdf">Nghị quyết chuyển đổi xanh</option>
-<option value="pdf/xhcnhp.pdf">Nghị quyết xây dựng XHCN ở Hải Phòng</option>
+    <option value="pdf/xhcnhp.pdf">Nghị quyết xây dựng XHCN ở Hải Phòng</option>
     <option value="pdf/qd296tw.pdf">Quy định 296 TW</option>
     <option value="pdf/ytuonghay.pdf">Ý tưởng hay</option>
     <option value="pdf/Bi-mat-cua-mot-tri-nho-sieu-pham.pdf">Bí mật trí nhớ siêu phàm</option>
     <option value="pdf/Nhanto_Enzyme.pdf">Nhân tố Enzyme</option>
-    <option value="pdf/nghiquyetdh14.pdf">Nghị quyết đại hội XIV của Đảng</option>
-<option value="pdf/24 QD 2021 Thi hanh Dieu le Dang.pdf">Quy định thi hành Điều lệ Đảng</option>
-<option value="pdf/01 HD 2021 thi hanh dieu le Dang.pdf">Hướng dẫn thi hành Điều lệ Đảng</option>
-<option value="pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường lần I</option>
-<option value="pdf/Ct hanh cong thuc hien Nq Dh Dang bo phuong lan 1.pdf">Chương trình hành động thực hiện NQ ĐH Đảng bộ phường</option>
-<option value="pdf/danhsachtrungcuphuong26.pdf">Danh sách đại biểu HĐND phường 2026 - 2031</option>
+    <option value="pdf/nghiquyetdh14.pdf">Nghị quyết Đại hội XIV của Đảng</option>
+    <option value="pdf/24 QD 2021 Thi hanh Dieu le Dang.pdf">Quy định thi hành Điều lệ Đảng</option>
+    <option value="pdf/01 HD 2021 thi hanh dieu le Dang.pdf">Hướng dẫn thi hành Điều lệ Đảng</option>
+    <option value="pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường lần I</option>
+    <option value="pdf/Ct hanh cong thuc hien Nq Dh Dang bo phuong lan 1.pdf">Chương trình hành động</option>
+    <option value="pdf/danhsachtrungcuphuong26.pdf">Danh sách đại biểu HĐND phường</option>
   </select>
 </div>
 
-<div class="mobile-open" id="mobileOpen">
-  <a id="openPDF" target="_blank">👉 Mở PDF toàn màn hình</a>
+<div style="text-align:center;padding:10px;background:#fff">
+  <a id="openPDF" target="_blank"
+     style="background:#b30000;color:#fff;padding:8px 14px;
+            text-decoration:none;border-radius:5px;">
+     Mở PDF toàn màn hình
+  </a>
 </div>
 
 <div class="pdf-container">
-  <iframe id="pdfViewer"></iframe>
-</div>
-
-<footer>
-  ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
-</footer>
-
+  <iframe id="pdfViewer" src="pdf/xhcn.pdf"></iframe>
 </div>
 
 <script>
-let currentPDF = "pdf/xhcnhp.pdf";
-
-function loadPDF(file) {
-  currentPDF = file;
-  loadViewer();
+function loadPDF(file){
+  document.getElementById("pdfViewer").src = file;
+  document.getElementById("openPDF").href = file;
 }
 
-function isMobile() {
-  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
-
-function loadViewer() {
-  const viewer = document.getElementById("pdfViewer");
-  const openBtn = document.getElementById("openPDF");
-
-  const pdfURL = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" 
-                 + encodeURIComponent(currentPDF);
-
-  viewer.src = pdfURL;
-
-  if (isMobile()) {
-    document.getElementById("mobileOpen").style.display = "block";
-    openBtn.href = currentPDF;
-  }
-}
-
-loadViewer();
+document.getElementById("openPDF").href = "pdf/xhcn.pdf";
 </script>
 
 </body>
