@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đọc văn bản PDF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../layout.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f6fa;
+    }
+
+    .toolbar {
+      background: #ffffff;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    select {
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+
+    .pdf-container {
+      height: calc(100vh - 120px);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #fff;
+    }
+
+    .mobile-open {
+      display: none;
+      text-align: center;
+      padding: 15px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .mobile-open a {
+      background: #b30000;
+      color: #fff;
+      padding: 10px 16px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 15px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page-wrapper">
+
+<header class="page-header">
+  <button class="menu-btn" onclick="location.href='../index.html'">🏠</button>
+  VĂN BẢN PDF
+</header>
+
+<div class="toolbar">
+  Chọn văn bản:
+  <select onchange="loadPDF(this.value)">
+    <option value="pdf/xhcnhp.pdf">Nghị quyết xây dựng XHCN ở Hải Phòng</option>
+    <option value="pdf/nq08chuyendoixanh.pdf">Nghị quyết chuyển đổi xanh</option>
+    <option value="pdf/qd296tw.pdf">Quy định 296 TW</option>
+    <option value="pdf/ytuonghay.pdf">Ý tưởng hay</option>
+    <option value="pdf/Bi-mat-cua-mot-tri-nho-sieu-pham.pdf">Bí mật trí nhớ siêu phàm</option>
+    <option value="pdf/Nhanto_Enzyme.pdf">Nhân tố Enzyme</option>
+    <option value="pdf/nghiquyetdh14.pdf">Nghị quyết Đại hội XIV của Đảng</option>
+    <option value="pdf/24 QD 2021 Thi hanh Dieu le Dang.pdf">Quy định thi hành Điều lệ Đảng</option>
+    <option value="pdf/01 HD 2021 thi hanh dieu le Dang.pdf">Hướng dẫn thi hành Điều lệ Đảng</option>
+    <option value="pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường lần I</option>
+    <option value="pdf/Ct hanh cong thuc hien Nq Dh Dang bo phuong lan 1.pdf">Chương trình hành động</option>
+    <option value="pdf/danhsachtrungcuphuong26.pdf">Danh sách đại biểu HĐND phường</option>
+
+  </select>
+</div>
+
+<div class="mobile-open" id="mobileOpen">
+  <a id="openPDF" target="_blank">👉 Mở PDF toàn màn hình</a>
+</div>
+
+<div class="pdf-container">
+  <iframe id="pdfViewer"></iframe>
+</div>
+
+<footer>
+  <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+  </footer>
+</div>
+
+
+<script>
+let currentPDF = "pdf/xhcnhp.pdf";
+
+function loadPDF(file){
+  currentPDF = file;
+  document.getElementById("pdfViewer").src = file;
+  document.getElementById("openPDF").href = file;
+}
+
+// Khi trang load xong thì mở file đầu tiên
+window.onload = function(){
+  loadPDF(currentPDF);
+}
+</script>
+
+<script>
+function isMobile() {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function loadViewer() {
+  const viewer = document.getElementById("pdfViewer");
+  const openBtn = document.getElementById("openPDF");
+
+  if (isMobile()) {
+    document.getElementById("mobileOpen").style.display = "block";
+    viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + currentPDF;
+    openBtn.href = currentPDF;
+  } else {
+    viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + currentPDF;
+  }
+}
+
+loadViewer();
+</script>
+
+</body>
+</html>
