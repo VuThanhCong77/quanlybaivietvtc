@@ -34,9 +34,24 @@ select{
   font-size:14px;
 }
 
+.open-btn{
+  text-align:center;
+  padding:10px;
+  background:#fff;
+  border-bottom:1px solid #ddd;
+}
+
+.open-btn a{
+  background:#b30000;
+  color:#fff;
+  padding:8px 14px;
+  text-decoration:none;
+  border-radius:5px;
+}
+
 .pdf-container{
   width:100%;
-  height:calc(100vh - 100px);
+  height:calc(100vh - 160px);
 }
 
 iframe{
@@ -67,20 +82,16 @@ iframe{
     <option value="pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường lần I</option>
     <option value="pdf/Ct hanh cong thuc hien Nq Dh Dang bo phuong lan 1.pdf">Chương trình hành động</option>
     <option value="pdf/danhsachtrungcuphuong26.pdf">Danh sách đại biểu HĐND phường</option>
+
   </select>
 </div>
 
-
-<div style="text-align:center;padding:10px;background:#fff">
-  <a id="openPDF" target="_blank"
-     style="background:#b30000;color:#fff;padding:8px 14px;
-            text-decoration:none;border-radius:5px;">
-     Mở PDF toàn màn hình
-  </a>
+<div class="open-btn">
+  <a id="openPDF" target="_blank">Mở PDF toàn màn hình</a>
 </div>
 
 <div class="pdf-container">
-  <iframe id="pdfViewer" src="pdf/xhcnhp.pdf"></iframe>
+  <iframe id="pdfViewer"></iframe>
 </div>
 
 <footer>
@@ -89,12 +100,16 @@ iframe{
 </div>
 
 <script>
+let currentPDF = "pdf/xhcnhp.pdf";
+
 function loadPDF(file){
+  currentPDF = file;
   document.getElementById("pdfViewer").src = file;
   document.getElementById("openPDF").href = file;
 }
 
-document.getElementById("openPDF").href = "pdf/xhcn.pdf";
+// Tự load file đầu tiên
+loadPDF(currentPDF);
 </script>
 
 </body>
