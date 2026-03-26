@@ -157,8 +157,9 @@ function loadPDF(file){
   const openBtn = document.getElementById("openPDF");
 
   if (isMobile()) {
-    viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
-  } else {
+    viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodedFile;
+  } 
+  else {
     viewer.src = file;
   }
 
