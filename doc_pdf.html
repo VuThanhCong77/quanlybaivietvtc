@@ -130,8 +130,12 @@
 
   </select>
 
-<div class="mobile-open" id="mobileOpen">
-  <a id="openPDF" target="_blank">👉 Mở PDF toàn màn hình</a>
+<div style="text-align:center;padding:10px;background:#fff">
+  <a id="openPDF" target="_blank"
+     style="background:#b30000;color:#fff;padding:8px 14px;
+            text-decoration:none;border-radius:5px;">
+   👉 Mở PDF toàn màn hình
+  </a>
 </div>
 
 <div class="pdf-container">
@@ -157,12 +161,12 @@ function loadPDF(file){
   const openBtn = document.getElementById("openPDF");
 
   if (isMobile()) {
-    viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodedFile;
+   viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
   } 
   else {
     viewer.src = file;
   }
-
+// Nút mở toàn màn hình cho điện thoại
   openBtn.href = file;
 }
 
