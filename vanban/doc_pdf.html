@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Đọc văn bản PDF</title>
 
+<link rel="stylesheet" href="../layout.css">
+
 <style>
 body{
   margin:0;
@@ -13,7 +15,7 @@ body{
 }
 
 header{
-  background:#b30000;
+  background:#317be2;
   color:white;
   padding:12px;
   text-align:center;
@@ -46,6 +48,7 @@ iframe{
 </head>
 
 <body>
+<div class="page-wrapper">
 
 <header>VĂN BẢN PDF</header>
 
@@ -67,6 +70,7 @@ iframe{
   </select>
 </div>
 
+
 <div style="text-align:center;padding:10px;background:#fff">
   <a id="openPDF" target="_blank"
      style="background:#b30000;color:#fff;padding:8px 14px;
@@ -77,6 +81,11 @@ iframe{
 
 <div class="pdf-container">
   <iframe id="pdfViewer" src="pdf/xhcnhp.pdf"></iframe>
+</div>
+
+<footer>
+  <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+  </footer>
 </div>
 
 <script>
