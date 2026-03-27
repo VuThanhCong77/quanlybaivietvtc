@@ -136,12 +136,10 @@ function loadPDF(file){
 
   const fullURL = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
 
-  // Mobile dùng Google Docs Viewer
-  if(isMobile()){
-    viewer.src = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(fullURL);
-  }else{
-    viewer.src = fullURL;
-  }
+  viewer.src = "pdfjs/web/viewer.html?file=" + encodeURIComponent(fullURL);
+
+  openBtn.href = "pdfjs/web/viewer.html?file=" + encodeURIComponent(fullURL);
+}
 
   openBtn.href = fullURL;
 }
