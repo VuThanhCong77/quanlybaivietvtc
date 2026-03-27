@@ -202,35 +202,98 @@ window.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <script>
-// Copy link
+/* ===============================
+   THÍCH TRANG
+   =============================== */
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
+
+const pageName = "doc_pdf";   // tên trang
+
+function loadLike() {
+  fetch(API + "?action=get&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+    });
+}
+
+loadLike();
+
+likeBtn.addEventListener("click", function () {
+
+  if (localStorage.getItem("liked_" + pageName)) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
+  fetch(API + "?action=like&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+      localStorage.setItem("liked_" + pageName, "true");
+    });
+});
+</script>
+
+<script>
 function copyLink(btn){
   navigator.clipboard.writeText(window.location.href)
     .then(()=>{
       const oldText = btn.innerText;
       btn.innerText = "✅ Đã copy";
-      setTimeout(()=>btn.innerText = oldText,1500);
+      setTimeout(()=>btn.innerText = oldText, 1500);
+    })
+    .catch(()=>{
+      alert("Không copy được link!");
     });
 }
 </script>
 
 <script>
-// Lượt xem
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
 const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
 const postId = "page_doc_pdf"; 
 const viewCount = document.getElementById("viewCount");
 
 async function updateViews(){
-  if(!sessionStorage.getItem("viewed_"+postId)){
-    const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
-    const data = await res.json();
-    viewCount.innerText = data.views;
-    sessionStorage.setItem("viewed_"+postId,"true");
-  }else{
-    const res = await fetch(VIEW_API + "?postId=" + postId);
-    const data = await res.json();
-    viewCount.innerText = data.views;
+  try{
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      const res = await fetch(VIEW_API + "?postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
   }
 }
+
 updateViews();
 </script>
 
