@@ -156,25 +156,8 @@ footer,
   background: #000;
 }
 
-/* IFRAME FULL MÀN HÌNH */
-
-/* Mobile tối giản UI */
-@media (max-width: 768px){
-  .toolbar,
-  .action-bar,
-  footer {
-    display: none; /* giống Zalo */
-  }
-
-  .page-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-  }
+.mobile-open{
+  display: none;
 }
   </style>
 </head>
@@ -233,26 +216,30 @@ footer,
 </div>
 
 <script>
+function isMobile(){
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
 function loadPDF(file){
   const viewer = document.getElementById("pdfViewer");
   const openBtn = document.getElementById("openPDF");
 
   const fullURL = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
 
-  viewer.src = fullURL;
-  openBtn.href = fullURL;
-}
+  if(isMobile()){
+    // ❌ KHÔNG dùng iframe
+    viewer.style.display = "none";
 
-// Load file đầu tiên khi mở trang
-window.addEventListener("DOMContentLoaded", function(){
-  const firstFile = document.querySelector("select").value;
-  loadPDF(firstFile);
-});
-</script>
+    // 👉 hiện nút mở
+    document.getElementById("mobileOpen").style.display = "block";
 
-<script>
-function isMobile(){
-  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    openBtn.href = fullURL;
+
+  }else{
+    // PC vẫn dùng iframe
+    viewer.style.display = "block";
+    viewer.src = fullURL;
+  }
 }
 
 window.addEventListener("DOMContentLoaded", function(){
