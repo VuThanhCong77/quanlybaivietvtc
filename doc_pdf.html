@@ -165,14 +165,17 @@ function loadPDF(file){
   const viewer = document.getElementById("pdfViewer");
   const openBtn = document.getElementById("openPDF");
 
+  const fullURL = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
+
   if (isMobile()) {
-   viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
+    viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(fullURL);
   } 
   else {
-    viewer.src = file;
+    viewer.src = fullURL;
   }
-// Nút mở toàn màn hình cho điện thoại
-  openBtn.href = file;
+
+  // Nút mở toàn màn hình
+  openBtn.href = fullURL;
 }
 
 window.addEventListener("DOMContentLoaded", function(){
