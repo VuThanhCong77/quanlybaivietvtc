@@ -1,94 +1,79 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Đọc văn bản PDF</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Đọc văn bản PDF</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="layout.css">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f6fa;
-    }
+<style>
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:#f5f6fa;
+}
 
-    .toolbar {
-      background: #ffffff;
-      padding: 10px 20px;
-      border-bottom: 1px solid #ddd;
-    }
+.toolbar{
+  background:#ffffff;
+  padding:10px 20px;
+  border-bottom:1px solid #ddd;
+}
 
-    select {
-      padding: 6px 10px;
-      font-size: 14px;
-    }
+select{
+  padding:6px 10px;
+  font-size:14px;
+}
 
-    .pdf-container {
-      height: calc(100vh - 120px);
-    }
+.pdf-container{
+  height: calc(100vh - 180px);
+}
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: #fff;
-    }
+iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  background:#fff;
+}
 
-    .mobile-open {
-      display: none;
-      text-align: center;
-      padding: 15px;
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .mobile-open a {
-      background: #b30000;
-      color: #fff;
-      padding: 10px 16px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 15px;
-      display: inline-block;
-    }
-
-/* Nút Thích - Copy -xem trang */
+/* Thanh nút */
 .action-bar{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 10px 0 15px 0;
-  flex-wrap: wrap;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:10px;
+  flex-wrap:wrap;
 }
 
 .like-box button,
 .share-btn{
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #d607a2;
-  background: #14cec4;
-  cursor: pointer;
-}
-
-.like-box button:hover,
-.share-btn:hover{
-  background: #20e007;
+  padding:6px 10px;
+  border-radius:6px;
+  border:1px solid #d607a2;
+  background:#14cec4;
+  cursor:pointer;
 }
 
 .view-box{
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #0ea5a4;
-  background: #e0f7f6;
-  font-size: 14px;
+  padding:6px 12px;
+  border-radius:6px;
+  border:1px solid #0ea5a4;
+  background:#e0f7f6;
+  font-size:14px;
 }
-    
-#pdfViewer{
-  width: 100%;
-  height: calc(100vh - 220px);
-  border: none;
+
+.open-full{
+  text-align:center;
+  padding:10px;
+  background:#fff;
+}
+
+.open-full a{
+  background:#b30000;
+  color:#fff;
+  padding:8px 14px;
+  text-decoration:none;
+  border-radius:5px;
 }
 </style>
 </head>
@@ -102,19 +87,15 @@
 </header>
 
 <div class="action-bar">
-<div class="like-box">
- <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
-</div>
+  <div class="like-box">
+    <button id="likeBtn">👍 Thích: <b id="likeCount">0</b></button>
+  </div>
 
-  <div class="share-group">
-  <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link
-  </button>
-</div>
+  <button class="share-btn" onclick="copyLink(this)">🔗 Copy link</button>
 
-<div class="view-box">
-👁 Đã xem:<b id="viewCount">0</b>
-</div>
+  <div class="view-box">
+    👁 Đã xem: <b id="viewCount">0</b>
+  </div>
 </div>
 
 <div class="toolbar">
@@ -126,21 +107,12 @@
     <option value="vanban/pdf/ytuonghay.pdf">Ý tưởng hay</option>
     <option value="vanban/pdf/Bi-mat-cua-mot-tri-nho-sieu-pham.pdf">Bí mật trí nhớ siêu phàm</option>
     <option value="vanban/pdf/Nhanto_Enzyme.pdf">Nhân tố Enzyme</option>
-    <option value="vanban/pdf/nghiquyetdh14.pdf">Nghị quyết Đại hội XIV của Đảng</option>
-    <option value="vanban/pdf/24 QD 2021 Thi hanh Dieu le Dang.pdf">Quy định thi hành Điều lệ Đảng</option>
-    <option value="vanban/pdf/01 HD 2021 thi hanh dieu le Dang.pdf">Hướng dẫn thi hành Điều lệ Đảng</option>
-    <option value="vanban/pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường lần I</option>
-    <option value="vanban/pdf/Ct hanh cong thuc hien Nq Dh Dang bo phuong lan 1.pdf">Chương trình hành động</option>
-    <option value="vanban/pdf/danhsachtrungcuphuong26.pdf">Danh sách đại biểu HĐND phường</option>
-
+    <option value="vanban/pdf/nghiquyetdh14.pdf">Nghị quyết Đại hội XIV</option>
   </select>
+</div>
 
-<div style="text-align:center;padding:10px;background:#fff">
-  <a id="openPDF" target="_blank"
-     style="background:#b30000;color:#fff;padding:8px 14px;
-            text-decoration:none;border-radius:5px;">
-   👉 Mở PDF toàn màn hình
-  </a>
+<div class="open-full">
+  <a id="openPDF" target="_blank">👉 Mở PDF toàn màn hình</a>
 </div>
 
 <div class="pdf-container">
@@ -148,35 +120,33 @@
 </div>
 
 <footer>
-  <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
-  </footer>
+  <p style="text-align:center">❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+</footer>
+
 </div>
 
 <script>
-let currentPDF = "";
-
-function isMobile() {
+function isMobile(){
   return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
 function loadPDF(file){
-  currentPDF = file;
-
   const viewer = document.getElementById("pdfViewer");
   const openBtn = document.getElementById("openPDF");
 
   const fullURL = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
 
-  if (isMobile()) {
-  viewer.src = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(fullURL);
-} else {
-  viewer.src = fullURL;
-}
+  // Mobile dùng Google Docs Viewer
+  if(isMobile()){
+    viewer.src = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(fullURL);
+  }else{
+    viewer.src = fullURL;
+  }
 
-  // Nút mở toàn màn hình
   openBtn.href = fullURL;
 }
 
+// Load file đầu tiên khi mở trang
 window.addEventListener("DOMContentLoaded", function(){
   const firstFile = document.querySelector("select").value;
   loadPDF(firstFile);
@@ -184,77 +154,35 @@ window.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <script>
-/* ===============================
-   THÍCH TRANG
-   =============================== */
-const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
-const likeBtn = document.getElementById("likeBtn");
-const likeCount = document.getElementById("likeCount");
-
-const pageName = "doc_pdf";   // tên trang
-
-function loadLike() {
-  fetch(API + "?action=get&page=" + pageName)
-    .then(res => res.text())
-    .then(data => {
-      likeCount.innerText = data;
-    });
-}
-
-loadLike();
-
-likeBtn.addEventListener("click", function () {
-
-  if (localStorage.getItem("liked_" + pageName)) {
-    alert("Bạn đã đồng tình trước đó.");
-    return;
-  }
-
-  fetch(API + "?action=like&page=" + pageName)
-    .then(res => res.text())
-    .then(data => {
-      likeCount.innerText = data;
-      localStorage.setItem("liked_" + pageName, "true");
-    });
-});
-</script>
-
-<script>
+// Copy link
 function copyLink(btn){
   navigator.clipboard.writeText(window.location.href)
     .then(()=>{
       const oldText = btn.innerText;
       btn.innerText = "✅ Đã copy";
-      setTimeout(()=>btn.innerText = oldText, 1500);
-    })
-    .catch(()=>{
-      alert("Không copy được link!");
+      setTimeout(()=>btn.innerText = oldText,1500);
     });
 }
 </script>
 
 <script>
+// Lượt xem
 const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
 const postId = "page_doc_pdf"; 
 const viewCount = document.getElementById("viewCount");
 
 async function updateViews(){
-  try{
-    if(!sessionStorage.getItem("viewed_" + postId)){
-      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
-      const data = await res.json();
-      viewCount.innerText = data.views;
-      sessionStorage.setItem("viewed_" + postId, "true");
-    }else{
-      const res = await fetch(VIEW_API + "?postId=" + postId);
-      const data = await res.json();
-      viewCount.innerText = data.views;
-    }
-  }catch(err){
-    console.log("Lỗi view:", err);
+  if(!sessionStorage.getItem("viewed_"+postId)){
+    const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+    const data = await res.json();
+    viewCount.innerText = data.views;
+    sessionStorage.setItem("viewed_"+postId,"true");
+  }else{
+    const res = await fetch(VIEW_API + "?postId=" + postId);
+    const data = await res.json();
+    viewCount.innerText = data.views;
   }
 }
-
 updateViews();
 </script>
 
