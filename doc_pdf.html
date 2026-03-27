@@ -182,22 +182,14 @@
 </div>
 
 <script>
-function isMobile(){
-  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
-
 function loadPDF(file){
   const viewer = document.getElementById("pdfViewer");
   const openBtn = document.getElementById("openPDF");
 
   const fullURL = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
 
-  // Mobile dùng Google Docs Viewer
-  if(isMobile()){
-    viewer.src = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(fullURL);
-  }else{
-    viewer.src = fullURL;
-  }
+  // Luôn dùng trực tiếp PDF (cả mobile + PC)
+  viewer.src = fullURL;
 
   openBtn.href = fullURL;
 }
