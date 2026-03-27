@@ -23,6 +23,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icons/icon180.png">
   <meta name="theme-color" content="#0a7f99">
 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#000000">
+
   <style>
     body {
       margin: 0;
@@ -53,22 +57,21 @@
     }
 
     .mobile-open {
-      display: none;
-      text-align: center;
-      padding: 12px;
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-    }
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  z-index: 20;
+  display: block;
+}
 
-    .mobile-open a {
-      background: #b30000;
-      color: #fff;
-      padding: 10px 16px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 15px;
-      display: inline-block;
-    }
+.mobile-open a {
+  background: #ff3b30;
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 50px;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
 
     footer {
       text-align: center;
@@ -126,6 +129,53 @@
   font-size: 14px;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* tránh scroll ngoài */
+}
+
+.page-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar,
+.action-bar,
+footer,
+.page-header {
+  flex-shrink: 0;
+}
+
+/* KHUNG PDF FULL */
+.pdf-container {
+  flex: 1;
+  position: relative;
+  background: #000;
+}
+
+/* IFRAME FULL MÀN HÌNH */
+
+/* Mobile tối giản UI */
+@media (max-width: 768px){
+  .toolbar,
+  .action-bar,
+  footer {
+    display: none; /* giống Zalo */
+  }
+
+  .page-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+  }
+}
   </style>
 </head>
 
@@ -136,6 +186,7 @@
 <header class="page-header">
   <button class="menu-btn" onclick="location.href='index.html'">🏠</button>
   VĂN BẢN PDF
+
 </header>
 
 <div class="action-bar">
@@ -188,15 +239,29 @@ function loadPDF(file){
 
   const fullURL = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
 
-  // Luôn dùng trực tiếp PDF (cả mobile + PC)
   viewer.src = fullURL;
-
   openBtn.href = fullURL;
 }
 
 // Load file đầu tiên khi mở trang
 window.addEventListener("DOMContentLoaded", function(){
   const firstFile = document.querySelector("select").value;
+  loadPDF(firstFile);
+});
+</script>
+
+<script>
+function isMobile(){
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+  const firstFile = document.querySelector("select").value;
+
+  if(isMobile()){
+    document.body.classList.add("mobile-mode");
+  }
+
   loadPDF(firstFile);
 });
 </script>
