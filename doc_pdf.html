@@ -86,9 +86,9 @@
 }
     
 #pdfViewer{
-  width:100%;
-  height:80vh;
-  border:none;
+  width: 100%;
+  height: calc(100vh - 220px);
+  border: none;
 }
 </style>
 </head>
@@ -160,19 +160,22 @@ function isMobile() {
 }
 
 function loadPDF(file){
-  currentPDF = file;
-
   const viewer = document.getElementById("pdfViewer");
   const openBtn = document.getElementById("openPDF");
 
-  if (isMobile()) {
-   viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
-  } 
-  else {
-    viewer.src = file;
-  }
-// Nút mở toàn màn hình cho điện thoại
+  // Encode đường dẫn PDF để tránh lỗi khoảng trắng, ký tự tiếng Việt
+  const encodedFile = encodeURIComponent(file);
+
+  // Dùng PDF.js viewer
+  viewer.src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=https://vuthanhcong77.github.io/quanlybaivietvtc/" + encodedFile;
+
+  // Nút mở toàn màn hình cho điện thoại
   openBtn.href = file;
+
+  // Hiện nút trên mobile
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.getElementById("mobileOpen").style.display = "block";
+  }
 }
 
 window.addEventListener("DOMContentLoaded", function(){
