@@ -1,88 +1,140 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Đọc văn bản PDF</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Đọc văn bản PDF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="layout.css">
+  <!-- THẺ CHIA SẺ -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Đọc file PDF">
+  <meta property="og:description" content="Văn bản pdf">
+  <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/vanban/doc_pdf.html">
+  <meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/vuthanhcong.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
-<style>
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:#f5f6fa;
+  <!-- CSS -->
+  <link rel="stylesheet" href="layout.css">
+
+  <!-- Icon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon180.png">
+  <meta name="theme-color" content="#0a7f99">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f6fa;
+    }
+
+    .toolbar {
+      background: #ffffff;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    select {
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+
+    .pdf-container {
+      height: calc(100vh - 120px);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #fff;
+    }
+
+    .mobile-open {
+      display: none;
+      text-align: center;
+      padding: 12px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .mobile-open a {
+      background: #b30000;
+      color: #fff;
+      padding: 10px 16px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 15px;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #16b5e6;
+      border-top: 1px solid #ec0a0a;
+      font-size: 14px;
+    }
+/* Nút Thích trang – Copy – Lượt xem */
+.action-bar {
+  display: flex;
+  justify-content: left;      /* căn giữa cả hàng */
+  align-items: center;
+  gap: 3px;                    /* khoảng cách giữa các nút */
+  margin: 6px 3;
+  flex-wrap: wrap;              /* mobile thì tự xuống dòng nếu chật */
 }
 
-.toolbar{
-  background:#ffffff;
-  padding:10px 20px;
-  border-bottom:1px solid #ddd;
+/* đảm bảo các div con không chiếm cả dòng */
+.action-bar > div {
+  display: flex;
 }
 
-select{
-  padding:6px 10px;
-  font-size:14px;
+.main-content{
+  padding-top: 15px;
 }
 
-.pdf-container{
-  height: calc(100vh - 180px);
-}
-
-iframe{
-  width:100%;
-  height:100%;
-  border:none;
-  background:#fff;
-}
-
-/* Thanh nút */
 .action-bar{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:10px;
-  flex-wrap:wrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
 }
 
 .like-box button,
 .share-btn{
-  padding:6px 10px;
-  border-radius:6px;
-  border:1px solid #d607a2;
-  background:#14cec4;
-  cursor:pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d607a2;
+  background: #14cec4;
+  cursor: pointer;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  background: #20e007;
 }
 
 .view-box{
-  padding:6px 12px;
-  border-radius:6px;
-  border:1px solid #0ea5a4;
-  background:#e0f7f6;
-  font-size:14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
 }
 
-.open-full{
-  text-align:center;
-  padding:10px;
-  background:#fff;
-}
-
-.open-full a{
-  background:#b30000;
-  color:#fff;
-  padding:8px 14px;
-  text-decoration:none;
-  border-radius:5px;
-}
-</style>
+  </style>
 </head>
 
 <body>
+
 <div class="page-wrapper">
 
 <header class="page-header">
-  <button class="menu-btn" onclick="location.href='index.html'">🏠</button>
+  <button class="menu-btn" onclick="location.href='../index.html'">🏠</button>
   VĂN BẢN PDF
 </header>
 
@@ -116,7 +168,7 @@ iframe{
   </select>
 </div>
 
-<div class="open-full">
+<div class="mobile-open" id="mobileOpen">
   <a id="openPDF" target="_blank">👉 Mở PDF toàn màn hình</a>
 </div>
 
@@ -127,7 +179,6 @@ iframe{
 <footer>
   <p style="text-align:center">❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
 </footer>
-
 </div>
 
 <script>
@@ -141,10 +192,12 @@ function loadPDF(file){
 
   const fullURL = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + file;
 
-  viewer.src = "pdfjs/web/viewer.html?file=" + encodeURIComponent(fullURL);
-
-  openBtn.href = "pdfjs/web/viewer.html?file=" + encodeURIComponent(fullURL);
-}
+  // Mobile dùng Google Docs Viewer
+  if(isMobile()){
+    viewer.src = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(fullURL);
+  }else{
+    viewer.src = fullURL;
+  }
 
   openBtn.href = fullURL;
 }
