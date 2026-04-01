@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danh sách tài liệu</title>
+ <!-- CSS DÙNG CHUNG -->
+  <link rel="stylesheet" href="../layout.css">
+
+<style>
+body{
+    font-family: Arial;
+    padding:20px;
+    background:#f4f6f9;
+}
+h2{
+    text-align:center;
+}
+.controls{
+    margin-bottom:15px;
+}
+input, select{
+    padding:8px;
+    margin:5px;
+}
+table{
+    width:100%;
+    border-collapse: collapse;
+    background:white;
+}
+th, td{
+    border:1px solid #ddd;
+    padding:8px;
+}
+th{
+    background:#3498db;
+    color:white;
+}
+tr:hover{
+    background:#f1f1f1;
+}
+a{
+    color:blue;
+    cursor:pointer;
+}
+#viewer{
+    width:100%;
+    height:820px;
+    margin-top:20px;
+    border:1px solid #ccc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+<header class="page-header">
+  <h1 class="page-title gioithieu">
+<a href="../vanban/danh_sach_tai_lieu.html">QUẢN LÝ TÀI LIỆU</a>
+</h1>
+  <a href="../index.html"> 🏠</a>
+</header>
+
+<div class="controls">
+<input type="text" id="search" placeholder="Tìm kiếm..." onkeyup="render()">
+
+<select id="folderFilter" onchange="render()">
+<option value="">-- Tất cả thư mục --</option>
+</select>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>STT</th>
+<th>Tên</th>
+<th>Loại</th>
+<th>Thư mục</th>
+<th>Mở</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+
+<iframe id="viewer"></iframe>
+<footer>
+  <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+  </footer>
+
+</div>
+
+<script>
+let files = [{"name":"Nghị quyết chuyển đổi xanh của Hải Phòng","link":"pdf/nq08chuyendoixanh.pdf","type":"PDF","folder":"NQ08_HP"},{"name":"Mô hình chủ nghĩa xã hội ở Hải Phòng","link":"pdf/xhcnhp.pdf","type":"PDF","folder":"NQ05_HP"},{"name":"Nghị quyết đại hội XIV của Đảng","link":"pdf/nghiquyetdh14.pdf","type":"PDF","folder":"Đại hội XIV"}];
+
+function render(){
+    let keyword = document.getElementById("search").value.toLowerCase();
+    let folder = document.getElementById("folderFilter").value;
+    let tbody = document.getElementById("tableBody");
+    tbody.innerHTML = "";
+
+    let stt = 1;
+
+    files.forEach((f)=>{
+        if(keyword && !f.name.toLowerCase().includes(keyword)) return;
+        if(folder && f.folder !== folder) return;
+
+        tbody.innerHTML += `
+        <tr>
+            <td>${stt++}</td>
+            <td>${f.name}</td>
+            <td>${f.type}</td>
+            <td>${f.folder || ""}</td>
+            <td><a onclick="openFile('${f.link}','${f.type}')">Mở</a></td>
+        </tr>
+        `;
+    });
+}
+
+function loadFolders(){
+    let select = document.getElementById("folderFilter");
+    let folders = [...new Set(files.map(f=>f.folder).filter(f=>f))];
+
+    folders.forEach(f=>{
+        select.innerHTML += `<option value="${f}">${f}</option>`;
+    });
+}
+
+function openFile(link, type){
+    if(type === "PDF"){
+        document.getElementById("viewer").src = link;
+    }else{
+        window.open(link, "_blank");
+    }
+}
+
+loadFolders();
+render();
+</script>
+
+</body>
+</html>
