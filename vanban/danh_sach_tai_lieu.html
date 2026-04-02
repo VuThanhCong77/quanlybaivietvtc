@@ -217,9 +217,7 @@ function loadFolders(){
 function openFile(link, type){
     if(type === "PDF"){
         if(isMobile()){
-            // Mobile mở bằng PDF.js (tránh tải về)
-            document.getElementById("viewer").src =
-            "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(link);
+            window.open(link, "_blank"); // Mobile mở tab mới
         }else{
             document.getElementById("viewer").src = link;
         }
