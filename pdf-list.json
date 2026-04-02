@@ -1,54 +1,67 @@
 [
     {
     "name": "Nghị quyết TW về văn hóa",
+     "category": "Nghị quyết",
     "file": "vanban/pdf/nqtw80vanhoa.pdf"
   },
   {
     "name": "Nghị quyết về chuyển đổi xanh ở Hải Phòng",
+     "category": "Nghị quyết",
     "file": "vanban/pdf/nq08chuyendoixanh.pdf"
   },
 {
     "name": "Nghị quyết xây dựng XHCN ở Hải Phòng",
+     "category": "Nghị quyết",
     "file": "vanban/pdf/xhcnhp.pdf"
   },
 {
     "name": "Ý tưởng hay",
+      "category": "Khác",
     "file": "vanban/pdf/ytuonghay.pdf"
   },
 {
     "name": "Nhân tố Enzyme",
+      "category": "Sách",
     "file": "vanban/pdf/Nhanto_Enzyme.pdf"
   },
 {
     "name": "Nghị quyết Đại hội XIV của Đảng",
+     "category": "Nghị quyết",
     "file": "vanban/pdf/nghiquyetdh14.pdf"
   },
 {
     "name": "Quy định thi hành Điều lệ Đảng",
+      "category": "Điều lệ",
     "file": "vanban/pdf/24 QD 2021 Thi hanh Dieu le Dang.pdf"
   },
 {
     "name": "Hướng dẫn thi hành Điều lệ Đảng",
+      "category": "Điều lệ",
     "file": "vanban/pdf/01 HD 2021 thi hanh dieu le Dang.pdf"
   },
 {
     "name": "Nghị quyết Đại hội Đảng bộ phường Lưu Kiếm lần I",
+     "category": "Nghị quyết",
     "file": "vanban/pdf/Nq Dai hoi Dang bo phuong lan 1.pdf"
   },
 {
     "name": "Chương trình hành động",
+      "category": "Chương trình",
     "file": "vanban/pdf/Ct hanh cong thuc hien Nq Dh Dang bo phuong lan 1.pdf"
   },
 {
     "name": "Danh sách đại biểu HĐND phường",
+      "category": "Danh sách",
     "file": "vanban/pdf/danhsachtrungcuphuong26.pdf"
   },
   {
     "name": "Quy định 296 TW",
+      "category": "Kiểm tra",
     "file": "vanban/pdf/qd296tw.pdf"
   },
   {
     "name": "Bí mật trí nhớ siêu phàm",
+     "category": "Sách",
     "file": "vanban/pdf/Bi-mat-cua-mot-tri-nho-sieu-pham.pdf"
   }
 ]
