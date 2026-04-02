@@ -1,6 +1,6 @@
 {
-  "name": "Trang cá nhân Vũ Thành Công",
-  "short_name": "Trang tôi",
+  "name": "Vũ Thành Công",
+  "short_name": "Lưu Kiếm",
   "start_url": "/quanlybaivietvtc/index.html",
   "scope": "/quanlybaivietvtc/",
   "display": "standalone",
@@ -8,12 +8,12 @@
   "theme_color": "#0d6efd",
   "icons": [
     {
-      "src": "icons/icon192.png",
+      "src": "images/vuthanhcong.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/icon512.png",
+      "src": "images/vuthanhcong.png",
       "sizes": "512x512",
       "type": "image/png"
     }
