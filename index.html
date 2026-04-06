@@ -1048,35 +1048,50 @@ margin-bottom:8px
 <body>
 <div class="page-wrapper">
 <header class="site-header">
-    <div class="header-main">
+  <div class="header-main">
     <div class="container">
       <nav>
         <a href="vanban/vutrong.html" class="logo">
           <img src="images/vutrong.jpg">
-          <span> Thành Công</span>
- 	</a>
-	  <a href="gioithieu.html" class="logo">
-	     <img src="images/logo.png">
-	     <span> Giới thiệu </span>
-		           </a>
-        <button id="menuToggle" class="menu-toggle">Menu ☰</button>
+          <span data-vi="Thành Công" data-en="Thanh Cong">Thành Công</span>
+        </a>
+
+        <a href="gioithieu.html" class="logo">
+          <img src="images/logo.png">
+          <span data-vi="Giới thiệu" data-en="About">Giới thiệu</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle"
+          data-vi="Menu ☰"
+          data-en="Menu ☰">
+          Menu ☰
+        </button>
       </nav>
 
       <div class="nav-links">
-        <a href="suckhoe.html">❤️ Sức khỏe</a>
-	<a href="hoctap.html">📖 Học tập</a>
-        <a href="baiviet.html">✍ Bài viết</a>
-        <a href="tintuc.html">📢 Tin tức</a>
-	<a href="anh.html">📷 Thư viện ảnh</a>
-        <a href="vanban.html">📄 Văn bản</a>
-        <a href="tailieu.html">📁 Tài liệu</a>
-	<a><button id="btnChangeBg">Đổi nền</button></a>
- 	<a><button id="btnDefaultBg">Nền mặc định</button></a>
-	<a href="lich_cong_tac.html">📅 Xem lịch</a>  
-	</div>
+        <a href="suckhoe.html" data-vi="❤️ Sức khỏe" data-en="❤️ Health">❤️ Sức khỏe</a>
+        <a href="hoctap.html" data-vi="📖 Học tập" data-en="📖 Study">📖 Học tập</a>
+        <a href="baiviet.html" data-vi="✍ Bài viết" data-en="✍ Articles">✍ Bài viết</a>
+        <a href="tintuc.html" data-vi="📢 Tin tức" data-en="📢 News">📢 Tin tức</a>
+        <a href="anh.html" data-vi="📷 Thư viện ảnh" data-en="📷 Gallery">📷 Thư viện ảnh</a>
+        <a href="vanban.html" data-vi="📄 Văn bản" data-en="📄 Documents">📄 Văn bản</a>
+        <a href="tailieu.html" data-vi="📁 Tài liệu" data-en="📁 Files">📁 Tài liệu</a>
+
+        <a><button id="btnChangeBg">➡</button></a>
+        <a><button id="btnDefaultBg">⬅</button></a>
+
+        <a href="lich_cong_tac.html"
+          data-vi="📅 Lịch"
+          data-en="📅 Calendar">📅 Lịch</a>
+
+<div class="lang-switch">
+  <button onclick="setLang('vi')">VI</button>
+  <button onclick="setLang('en')">EN</button>
+</div>
+        
+      </div>
     </div>
   </div>
-
 </header>
 
 <!-- MENU -->
@@ -1191,8 +1206,10 @@ margin-bottom:8px
     <div class="container">
      <h2><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;">
  <a href="tintuc.html">
+<span data-vi="BÀI VIẾT NỔI BẬT"
+      data-en="FEATURED ARTICLES">
 BÀI VIẾT NỔI BẬT
- </a></h2>
+</span> </a></h2>
       <div class="news-box">
         <div id="recent-posts-list" class="news-list">
           <p style="text-align:center;color:#777">Đang tải dữ liệu...</p>
@@ -1204,7 +1221,11 @@ BÀI VIẾT NỔI BẬT
  <!-- == TRANG CHUYÊN ĐỀ == -->
 
   <div class="section">
-<h2><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> CHUYÊN ĐỀ</h2>
+<h2><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;">
+<span data-vi="CHUYÊN ĐỀ" data-en="TOPICS">
+CHUYÊN ĐỀ
+</span>
+</h2>
 <div class="grid">
 
 <div class="card"><h3><a href="suc_khoe.html"><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Chăm sóc sức khỏe </a></h3></div>
@@ -1235,16 +1256,20 @@ BÀI VIẾT NỔI BẬT
 
 <div class="action-bar">
 <div class="follow-box">
-  <button id="followBtn" class="follow-btn">
-    🔔 Theo dõi trang
-  </button>
+  <button id="followBtn"
+data-vi="🔔 Theo dõi trang"
+data-en="🔔 Follow">
+🔔 Theo dõi trang
+</button>
 </div>
 	
  <div>
   <h1 span style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;">Vũ Thành Công</h1>
 </div>
-<p class="justified"; style="color:#074090">
-    Trang chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp; nơi truyền cảm hứng và năng lượng sống tích cực.
+<p class="justified"
+data-vi="Trang chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp; nơi truyền cảm hứng và năng lượng sống tích cực."
+data-en="A website sharing knowledge, experience and positive life values; a place to inspire and spread positive energy.">
+Trang chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp; nơi truyền cảm hứng và năng lượng sống tích cực.
 </p>
 </div>
 
@@ -1254,8 +1279,11 @@ BÀI VIẾT NỔI BẬT
 <section id="popular-posts" class="half-item">
   <div class="container">
     <h2 span style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;"><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> 
-		BÀI VIẾT ĐƯỢC ĐỌC NHIỀU
-	</h2>
+	<span data-vi="BÀI VIẾT ĐƯỢC ĐỌC NHIỀU"
+      data-en="MOST VIEWED ARTICLES">
+BÀI VIẾT ĐƯỢC ĐỌC NHIỀU
+</span>
+</h2>
 
     <div class="news-box">
       <div id="popular-posts-list">
@@ -1277,7 +1305,11 @@ BÀI VIẾT NỔI BẬT
 <section id="quick-comment">
   <div class="container">
     <h2 span style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;"><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> 
-		GÓC BÌNH LUẬN NGẮN
+<span data-vi="GÓC BÌNH LUẬN NGẮN"
+      data-en="SHORT COMMENTS">
+GÓC BÌNH LUẬN NGẮN
+</span>
+</h2>
 	</h2>
 
     <div class="comment-box">
@@ -1313,9 +1345,11 @@ BÀI VIẾT NỔI BẬT
 <div class="img-giua">
 <a href="vanban/ytuonghay.html"> 
  <img src="tinanh/gd26.jpg" alt="">
- <div class="img-caption">
-    Ý tưởng hay "8 Quy tắc vàng"
-  </div>
+ <div class="img-caption"
+data-vi='Ý tưởng hay "8 Quy tắc vàng"'
+data-en='Good idea "8 Golden Rules"'>
+Ý tưởng hay "8 Quy tắc vàng"
+</div>
 </a>
 </div>
 <p class="justified-p">
@@ -1360,14 +1394,21 @@ BÀI VIẾT NỔI BẬT
 
 <div class="action-bar">
 <div class="like-box">
- <button id="likeBtn">👍 Thích </button>
+<button id="likeBtn"
+data-vi="👍 Thích"
+data-en="👍 Like">
+👍 Thích
+</button>
 <span> 💞 <b id="likeCount">0</b> 🌱 </span>
 </div>
 
   <div class="share-group">
-  <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link chia sẻ
-  </button>
+  <button class="share-btn copy"
+data-vi="🔗 Copy link chia sẻ"
+data-en="🔗 Copy share link"
+onclick="copyLink(this)">
+🔗 Copy link chia sẻ
+</button>
 </div>
 </div>
 
@@ -1389,7 +1430,10 @@ BÀI VIẾT NỔI BẬT
  </main>
 
  <footer class="site-footer">
-  <a href="https://luukiem.haiphong.gov.vn/">Trang TTĐT phường Lưu Kiếm </a>
+  <a data-vi="Trang TTĐT phường Lưu Kiếm"
+   data-en="Luu Kiem Ward Portal">
+Trang TTĐT phường Lưu Kiếm
+</a>
  <a href="https://www.facebook.com/?locale=vi_VN">🌸 Facebook</a><br>
 	  <a href="https://maps.app.goo.gl/EoSpEJbrzFSRJLEQA">🏛 Số 02 đường Đá Bạc – Lưu Kiếm – Hải Phòng</a>
  </footer>
@@ -1593,22 +1637,32 @@ fetch("site_config.json")
 <script>
 function updateTime() {
   const now = new Date();
+  const lang = localStorage.getItem("lang") || "vi";
 
-  const days = [
-    "Chủ Nhật", "Thứ Hai", "Thứ Ba",
-    "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"
-  ];
+  const days_vi = ["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"];
+  const days_en = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-  const dayName = days[now.getDay()];
-  const date = now.toLocaleDateString("vi-VN");
-  const time = now.toLocaleTimeString("vi-VN");
+  const dayName = lang === "en" ? days_en[now.getDay()] : days_vi[now.getDay()];
 
-  document.getElementById("currentTime").innerText =
-    `${dayName}, ngày ${date} |`;
+  const date = now.toLocaleDateString(lang === "en" ? "en-US" : "vi-VN");
+
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+
+  let timeString;
+
+  if(lang === "en"){
+    timeString = `${dayName}, ${date} - ${hours}:${minutes}`;
+  } else {
+    timeString = `${dayName}, ${date} - ${hours}:${minutes}`;
+  }
+
+  document.getElementById("currentTime").innerText = timeString;
 }
 
-updateTime();
+// chạy liên tục
 setInterval(updateTime, 1000);
+updateTime();
 </script>
 
 <script>
@@ -2072,6 +2126,28 @@ async function updateViews(){
 }
 
 updateViews();
+
+<script src="menu.js"></script>
+<script src="background.js"></script>
+<script src="slider.js"></script>
+
+<script>
+function setLang(lang){
+  localStorage.setItem("lang", lang);
+
+  document.querySelectorAll("[data-vi]").forEach(el=>{
+    if(lang === "en"){
+      if(el.dataset.en) el.innerHTML = el.dataset.en;
+    } else {
+      if(el.dataset.vi) el.innerHTML = el.dataset.vi;
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+  const lang = localStorage.getItem("lang") || "vi";
+  setLang(lang);
+});
 </script>
 
 </body>
