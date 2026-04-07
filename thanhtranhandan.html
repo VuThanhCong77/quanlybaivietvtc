@@ -16,98 +16,29 @@
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="layout.css">
 
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
 <style>
-:root {
-    --main: #1565c0;
-    --accent: #c62828;
-    --bg: #f4f6f9;
-}
+body {font-family: Arial, sans-serif; margin:0; color:#333}
+header {background:#b30000; color:#fff; padding:20px; text-align:center}
+nav {background:#222; padding:10px; position:sticky; top:0}
+nav a {color:#fff; margin:10px; text-decoration:none; font-weight:bold}
+nav a:hover {color:#ffd700}
+.container {max-width:1200px; margin:auto; padding:20px}
+.section {background:#fff; padding:20px; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+h2 {color:#b30000}
+.icon {margin-right:8px; color:#b30000}
+.grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px}
+.card {background:#fafafa; padding:15px; border-radius:8px; border-left:5px solid #b30000}
+img {max-width:100%; border-radius:10px}
+footer {background:#07a4d4; color:#fff; text-align:center; padding:15px}
+.timeline {border-left:3px solid #b30000; padding-left:20px}
+.timeline div {margin-bottom:15px}
 
-body {
-    margin: 0;
-    font-family: "Segoe UI", Arial;
-  }
-
-header {
-    background: var(--main);
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    background: #0d47a1;
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: white;
-    padding: 12px 15px;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-nav a:hover {
-    background: #1976d2;
-}
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-h2 {
-    color: var(--main);
-    border-left: 5px solid var(--main);
-    padding-left: 10px;
-}
-
-h3 {
-    color: #2e7d32;
-}
-
-ul {
-    padding-left: 20px;
-}
-
-.badge {
-    display: inline-block;
-    background: var(--accent);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 15px;
-}
-
-.box {
-    background: #f1f8ff;
-    padding: 15px;
-    border-left: 4px solid var(--main);
-}
-
-footer {
-    text-align: center;
-    padding: 15px;
-    background: #0a55b8;
-    font-size: 13px;
-}
 /* NÚT LÊN ĐẦU TRANG */
 #backToTop{
   position: fixed;
@@ -188,25 +119,120 @@ height:auto;
 object-fit:cover;
 }
 
+/* ===============================
+   MENU CHÍNH
+   =============================== */
+.nav-menu{
+  position: fixed;
+  top: calc(var(--header-height) + var(--sub-height));
+  right: 12px;
+  right: auto;
+
+  width: 150px;
+
+  background: #0696e9;
+  border-radius: 10px;
+  padding: 10px 0;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  z-index: 1001;
+}
+
+.nav-menu.open{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-item{
+  padding: 6px 16px;
+}
+
+.nav-link{
+  display: block;
+  color: #0a3a5a;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.nav-link:hover{
+  color: var(--primary);
+}
+
+/* SUB MENU */
+.sub-menu{
+  display: none;
+  padding-left: 16px;
+}
+
+.sub-menu.open{
+  display: block;
+}
+/* ===============================
+   OVERLAY
+   =============================== */
+
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 999;
+}
+
+.menu-overlay.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.box {
+    background: #daf104;
+    padding: 18px;
+    border-left: 4px solid var(--main);
+}
+
+.badge {
+    display: inline-block;
+    background: #b30000;
+    color: rgb(243, 227, 9);
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+p{
+  text-align:justify;
+  text-indent:1cm;
+}
+
 </style>
 </head>
-
 <body>
 
 <div class="page-wrapper">
 <header class="page-header">
-<h1 class="page-title gioithieu"">BAN THANH TRA NHÂN DÂN</h1>
+ <button class="menu-btn" aria-label="Mở menu">☰</button>
+
+<h1 class="page-title gioithieu">BAN THANH TRA NHÂN DÂN</h1><br>
 </header>
 
-<nav>
-<a href="index.html">🏠</a>
-<a href="#gioithieu">Giới thiệu</a>
-<a href="#thanhlap">Thành lập</a>
-<a href="#nhiemvu">Nhiệm vụ</a>
-<a href="#hoatdong">Hoạt động</a>
-<a href="#kinhnghiem">Kinh nghiệm</a>
-<a href="#ketqua">Kết quả</a>
+<div class="menu-overlay" id="menuOverlay"></div>
+<nav class="nav-menu" id="navMenu">
+<a href="index.html">🏠 Trang chủ</a><br>
+<a href="#gioithieu">🔍 Giới thiệu</a><br>
+<a href="#phaply">🔍 Pháp lý</a><br>
+<a href="#tochuc">🔍 Tổ chức</a><br>
+<a href="#nhiemvu">🔍 Nhiệm vụ</a><br>
+<a href="#quytrinh">🔍 Quy trình</a><br>
+<a href="#hinhanh">🔍 Hình ảnh</a><br>
 </nav>
+
 
 <div class="action-bar">
 <div class="like-box">
@@ -226,14 +252,90 @@ object-fit:cover;
 
 <div class="container">
 
-<!-- GIỚI THIỆU -->
-<div class="card" id="gioithieu">
-<h2><a href="vanban/thanhtranhandan_1.html">
-I. Giới thiệu chung</a></h2>
-<p>
-Ban Thanh tra nhân dân là tổ chức do cán bộ, công chức, viên chức bầu ra, thực hiện chức năng giám sát nội bộ nhằm phát huy dân chủ, bảo đảm công khai, minh bạch trong cơ quan.
-</p>
+<div id="gioithieu" class="section">
+<h2>
+<a href="vanban/thanhtranhandan_1.html">Vị trí, vai trò</a>
+</h2>
 
+<p>Ban Thanh tra nhân dân là tổ chức do cán bộ, công chức, viên chức bầu ra ((<a href="vanban/pdf/luatdanchucoso.pdf">Điều 51 của Luật Thực hiện dân chủ ở cơ sở</a>)), thực hiện chức năng giám sát nội bộ nhằm phát huy dân chủ, bảo đảm công khai, minh bạch trong cơ quan.</p>
+</div>
+
+<div id="phaply" class="section">
+<h2>Cơ sở pháp lý</h2>
+<ul>
+<li>Luật Thanh tra 2022</li>
+<li>Luật Thực hiện dân chủ ở cơ sở 2022 (<a href="vanban/pdf/ND59_2023.pdf">Nghị định 59/2023/NĐ-CP ngày 14/8/2023 hướng dẫn...</a>)</li>
+<li>Văn bản hướng dẫn của MTTQ, Thanh tra, Bộ Nội vụ</li>
+</ul>
+</div>
+
+<div id="tochuc" class="section">
+<h2>Sơ đồ tổ chức</h2>
+<div class="grid">
+<div class="card"><b>Trưởng ban</b><br>
+- Chịu trách nhiệm chung, trực tiếp phụ trách các hoạt động của Ban thanh tra nhân dân;<br>
+ - Chủ trì, chịu trách nhiệm soạn thảo nội dung các cuộc họp của Ban thanh tra nhân dân, thay mặt Ban thanh tra nhân dân dự họp với các cơ quan chức năng khi có yêu cầu;<br>
+- Lập kế hoạch hoạt động của Ban;<br>
+- Giám sát việc giải quyết khiếu nại, tố cáo của cơ quan;<br>
+</div>
+
+<div class="card"><b>Phó Trưởng ban</b><br>
+- Thay mặt trưởng ban khi trưởng ban bận đi vắng;<br>
+ - Giám sát việc thực hiện chế độ, chính sách;<br>
+ - Thư ký, ghi biên bản các lần họp của Ban thanh tra nhân dân;<br>
+ - Dự thảo báo cáo quí, sơ kết và tổng kết;<br>
+ - Quản lý hồ sơ, sổ sách của Ban thanh tra nhân dân.<br>
+</div>
+
+<div class="card"><b>Ủy viên</b><br>
+- Giám sát việc thực hiện qui chế cơ quan, việc thực hiện pháp luật, Nghị quyết Hội nghị cán bộ, công chức;<br>
+- Giám sát việc thực hiện chế độ chính sách của Nhà nước đối với mọi thành viên của cơ quan;<br>
+- Giám sát hoạt động tài chính của cơ quan MTTQ, quỹ phúc lợi của cơ quan.<br>
+</div>
+
+<div class="card"><b>Số lượng</b><br>
+Từ 3 đến 9 người (Khoản 1 Điều 60 của Luật Thực hiện dân chủ ở cơ sở)<br>
+<span class="badge">Nhiệm kỳ: 2 năm</span><br>
+</div>
+
+</div>
+</div>
+
+<div id="nhiemvu" class="section">
+<h2><a href="vanban/thanhtranhandan_2.html">Nhiệm vụ</a></h2>
+
+<p>1. Giám sát việc thực hiện chính sách, pháp luật, nghị quyết của Hội nghị cán bộ, công chức, nội qui, qui chế (Quy chế thực hiện dân chủ trong cơ quan, quy chế chi tiêu nội bộ...) của cơ quan đối với các tổ chức và cá nhân trong cơ quan</p>
+<p>2. Giám sát việc giải quyết các kiến nghị, khiếu nại, tố cáo của Thủ trưởng cơ quan</p>
+<p>3. Thường xuyên phản ảnh tình hình hoạt động với cơ quan Mặt trận tổ quốc. Định kỳ báo cáo tổng kết trước Hội nghị cán bộ, công chức. Kiến nghị Thủ trưởng cơ quan kịp thời khen thưởng, động viên tinh thần cán bộ, công chức và người lao động có thành tích xuất sắc</p>
+
+<h2>Quyền hạn</h2>
+<p>1. Khi phát hiện thấy các vi phạm chính sách, pháp luật nội qui, qui chế thì kiến nghị thủ trưởng cơ quan xử lý hoặc có biện pháp khắc phục, đồng thời giám sát việc thực hiện các kiến nghị đó.</p>
+<p>2. Được yêu cầu cá nhân và tổ chức có liên quan đến các vụ việc giám sát, kiểm tra, cung cấp các thông tin tài liệu cần thiết.</p>
+<p>3. Được tổ chức các hình thức động viên người lao động tham gia, phát hiện người có sai phạm, tiếp nhận các ý kiến và phản ảnh của quần chúng.</p>
+<p> 4. Được lập biên bản các vụ việc giám sát, kiểm tra. Được yêu cầu, kiến nghị với Thủ trưởng cơ quan các vấn đề cần phải xử lý</p>
+<p>5. Được cử Đại diện tham gia các cuộc họp của cơ quan mà nội dung có liên quan trực tiếp đến nhiệm vụ và quyền hạn giám sát, kiểm tra của Ban thanh tra nhân dân.</p>
+<p>6. Được đề nghị với Thủ trưởng khen thưởng những cá nhân và tập thể có thành tích trong hoạt động của Ban thanh tra nhân dân, xử lý kỷ luật các cá nhân và tập thể vi phạm.</p>
+
+<h2>Lề lối làm việc </h2>
+<p>- Chế độ làm việc tập thể với tinh thần khách quan, dân chủ, công khai và kịp thời.</p>
+<p>- Thực hiện nguyên tắc tập trung dân chủ, biểu quyết theo đa số. Mọi thành viên nói và làm theo nghị quyết.</p>
+<p>- Mỗi quí họp một lần vào đầu tháng của đầu quí.</p>
+
+</div>
+
+<div id="quytrinh" class="section">
+<h2>Quy trình hoạt động</h2>
+<div class="timeline">
+<div><b>Bước 1:</b> Xây dựng kế hoạch giám sát</div>
+<div><b>Bước 2:</b> Thu thập thông tin</div>
+<div><b>Bước 3:</b> Tiến hành giám sát</div>
+<div><b>Bước 4:</b> Báo cáo, kiến nghị</div>
+<div><b>Bước 5:</b> Theo dõi kết quả xử lý</div>
+</div>
+</div>
+
+<div id="hinhanh" class="section">
+<h2>Hội nghị cán bộ, công chức</h2>
 <div class="grid">
 <div class="card">
 <img src="anhvietbai/hoinghicanbo26_1.jpg" alt="hoinghicanbo26_1">
@@ -245,116 +347,10 @@ Ban Thanh tra nhân dân là tổ chức do cán bộ, công chức, viên chứ
 </div>
 
 <div class="box">
-Hoạt động theo Luật Thực hiện dân chủ ở cơ sở năm 2022 (<a href="vanban/pdf/ND59_2023.pdf">Nghị định 59/2023/NĐ-CP ngày 14/8/2023 hướng dẫn...</a>) và các quy chế của cơ quan.
-</div>
-</div>
-
-<!-- THÀNH LẬP -->
-<div class="card" id="thanhlap">
-<h2>II. Thành lập Ban Thanh tra nhân dân</h2>
-
-<h3>1. Nguyên tắc</h3>
-<ul>
-<li>Do Hội nghị cán bộ, công chức bầu (<a href="vanban/pdf/luatdanchucoso.pdf">Điều 51 của Luật Thực hiện dân chủ ở cơ sở</a>)</li>
-<li>Hoạt động độc lập tương đối</li>
-<li>Đặt dưới sự hướng dẫn của ....</li>
-<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775531614586.html">Quy chế hoạt động</a></li>
-</ul>
-
-<h3>2. Cơ cấu</h3>
-<ul>
-<li>Trưởng ban</li>
-<li>Phó Trưởng ban (nếu có)</li>
-<li>Các thành viên</li>
-<li>Số lượng từ 3 đến 9 người (Khoản 1 Điều 60 của Luật Thực hiện dân chủ ở cơ sở)</li>
-</ul>
-
-<span class="badge">Nhiệm kỳ: 2 năm</span>
-</div>
-
-<!-- NHIỆM VỤ -->
-<div class="card" id="nhiemvu">
-<h2>III. Nhiệm vụ, quyền hạn ( Điều 61 Luật dân chủ cơ sở)</h2>
-
-<div class="grid">
-<div class="box">
-<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775531101290.html">Nhiệm vụ</a></h3>
-<ul>
-<li>Giám sát chế độ chính sách</li>
-<li>Giám sát tài chính</li>
-<li>Giám sát dân chủ cơ sở</li>
-<li>Tiếp nhận kiến nghị</li>
-</ul>
-</div>
-
-<div class="box">
-<h3>Quyền hạn</h3>
-<ul>
-<li>Yêu cầu cung cấp tài liệu</li>
-<li>Tham dự họp</li>
-<li>Lập biên bản giám sát</li>
-<li>Kiến nghị xử lý</li>
-</ul>
-</div>
-</div>
-</div>
-
-<!-- HOẠT ĐỘNG -->
-<div class="card" id="hoatdong">
-<h2>IV. Hoạt động chủ yếu</h2>
-
-<ul>
-<li>Xây dựng kế hoạch giám sát năm</li>
-<li>Giám sát tài chính, tài sản</li>
-<li>Giám sát chế độ cán bộ</li>
-<li>Giám sát kỷ luật, kỷ cương</li>
-<li>Báo cáo kết quả định kỳ</li>
-</ul>
-
-<div class="box">
-Hoạt động theo quy trình: Kế hoạch 
-→ Giám sát
-→ <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775532788282.html">Báo cáo </a>
-→ Kiến nghị 
-→ Theo dõi
-</div>
-</div>
-
-<!-- KINH NGHIỆM -->
-<div class="card" id="kinhnghiem">
-<h2>V. Trao đổi kinh nghiệm</h2>
-
-<ul>
-<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775531984649.html">Lựa chọn nội dung giám sát trọng tâm</a> </li>
-<li>Phối hợp chặt chẽ với lãnh đạo</li>
-<li>Tăng cường công khai, minh bạch</li>
-<li>Phát huy vai trò tập thể</li>
-</ul>
-
-<div class="grid">
-<div class="box"><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775532310617.html">Chủ động kế hoạch</a></div>
-<div class="box">Bám sát thực tiễn</div>
-<div class="box">Khách quan, minh bạch</div>
-<div class="box">Theo dõi đến cùng</div>
-</div>
-</div>
-
-<!-- KẾT QUẢ -->
-<div class="card" id="ketqua">
-<h2>VI. Kết quả đạt được</h2>
-
-<ul>
-<li>Nâng cao dân chủ trong cơ quan</li>
-<li>Hạn chế sai phạm tài chính</li>
-<li>Tăng tính minh bạch</li>
-<li>Góp phần xây dựng cơ quan vững mạnh</li>
-</ul>
-
-<div class="box">
 Ban Thanh tra nhân dân là công cụ giám sát hiệu quả, góp phần xây dựng cơ quan trong sạch, hoạt động đúng quy định.
 </div>
-</div>
 
+</div>
 </div>
 
 <footer>
@@ -363,6 +359,7 @@ Trang chuyên đề Ban Thanh tra nhân dân
 
 <!-- NÚT LÊN ĐẦU TRANG -->
 <button id="backToTop" title="Lên đầu trang">⬆</button>
+
 </div>
 
 <script>
@@ -459,6 +456,32 @@ async function updateViews(){
 }
 
 updateViews();
+</script>
+
+<script>
+/* ===== MENU CHÍNH ===== */
+const menuBtn = document.querySelector(".menu-btn");
+const navMenu = document.getElementById("navMenu");
+const overlay = document.getElementById("menuOverlay");
+
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+  overlay.classList.toggle("show");
+});
+
+overlay.addEventListener("click", () => {
+  navMenu.classList.remove("open");
+  overlay.classList.remove("show");
+});
+
+/* ===== MENU CẤP 2 ===== */
+document.querySelectorAll(".nav-link.toggle").forEach(toggle => {
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault(); // không nhảy trang
+    const subMenu = this.nextElementSibling;
+    subMenu.classList.toggle("open");
+  });
+});
 </script>
 
 </body>
