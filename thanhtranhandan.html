@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ban Thanh tra nhân dân</title>
+
+<!-- Open Graph chuẩn cho Facebook & Zalo -->
+<meta property="og:title" content="Ban thanh tra nhân dân">
+<meta property="og:description" content="🌱 là tổ chức do cán bộ, công chức, viên chức bầu ra, thực hiện chức năng giám sát nội bộ nhằm phát huy dân chủ, bảo đảm công khai, minh bạch trong cơ quan.">
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/anhvietbai/quychedanchu.jpg">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/thanhtranhandan.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vũ Thành Công">
+
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="layout.css">
+
+<style>
+:root {
+    --main: #1565c0;
+    --accent: #c62828;
+    --bg: #f4f6f9;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial;
+  }
+
+header {
+    background: var(--main);
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #0d47a1;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    padding: 12px 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    background: #1976d2;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+    color: var(--main);
+    border-left: 5px solid var(--main);
+    padding-left: 10px;
+}
+
+h3 {
+    color: #2e7d32;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 15px;
+}
+
+.box {
+    background: #f1f8ff;
+    padding: 15px;
+    border-left: 4px solid var(--main);
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #0a55b8;
+    font-size: 13px;
+}
+/* NÚT LÊN ĐẦU TRANG */
+#backToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #e40f56;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999;
+}
+
+#backToTop:hover{
+  background: #199586;
+}
+/* Nút Thích trang – Copy – Lượt xem */
+.action-bar {
+  display: flex;
+  justify-content: left;      /* căn giữa cả hàng */
+  align-items: center;
+  gap: 3px;                    /* khoảng cách giữa các nút */
+  margin: 6px 3;
+  flex-wrap: wrap;              /* mobile thì tự xuống dòng nếu chật */
+}
+
+/* đảm bảo các div con không chiếm cả dòng */
+.action-bar > div {
+  display: flex;
+}
+
+.main-content{
+  padding-top: 15px;
+}
+
+.action-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
+}
+
+.like-box button,
+.share-btn{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d607a2;
+  background: #14cec4;
+  cursor: pointer;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  background: #20e007;
+}
+
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
+
+a{
+   text-decoration: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+<header>
+<h1>BAN THANH TRA NHÂN DÂN</h1>
+</header>
+
+<nav>
+<a href="index.html">🏠</a>
+<a href="#gioithieu">Giới thiệu</a>
+<a href="#thanhlap">Thành lập</a>
+<a href="#nhiemvu">Nhiệm vụ</a>
+<a href="#hoatdong">Hoạt động</a>
+<a href="#kinhnghiem">Kinh nghiệm</a>
+<a href="#ketqua">Kết quả</a>
+</nav>
+
+<div class="action-bar">
+<div class="like-box">
+ <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
+</div>
+
+  <div class="share-group">
+  <button class="share-btn copy" onclick="copyLink(this)">
+    🔗 Copy link
+  </button>
+</div>
+
+<div class="view-box">
+👁Đã xem: <b id="viewCount">0</b>
+</div>
+</div>
+
+<div class="container">
+
+<!-- GIỚI THIỆU -->
+<div class="card" id="gioithieu">
+<h2><a href="vanban/thanhtranhandan_1.html">
+I. Giới thiệu chung</a></h2>
+<p>
+Ban Thanh tra nhân dân là tổ chức do cán bộ, công chức, viên chức bầu ra, thực hiện chức năng giám sát nội bộ nhằm phát huy dân chủ, bảo đảm công khai, minh bạch trong cơ quan.
+</p>
+
+<div class="box">
+Hoạt động theo Luật Thực hiện dân chủ ở cơ sở năm 2022 (<a href="vanban/pdf/ND59_2023.pdf">Nghị định 59/2023/NĐ-CP ngày 14/8/2023 hướng dẫn...</a>) và các quy chế của cơ quan.
+</div>
+</div>
+
+<!-- THÀNH LẬP -->
+<div class="card" id="thanhlap">
+<h2>II. Thành lập Ban Thanh tra nhân dân</h2>
+
+<h3>1. Nguyên tắc</h3>
+<ul>
+<li>Do Hội nghị cán bộ, công chức bầu (<a href="vanban/pdf/luatdanchucoso.pdf">Điều 51 của Luật Thực hiện dân chủ ở cơ sở</a>)</li>
+<li>Hoạt động độc lập tương đối</li>
+<li>Đặt dưới sự hướng dẫn của ....</li>
+<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775531614586.html">Quy chế hoạt động</a></li>
+</ul>
+
+<h3>2. Cơ cấu</h3>
+<ul>
+<li>Trưởng ban</li>
+<li>Phó Trưởng ban (nếu có)</li>
+<li>Các thành viên</li>
+<li>Số lượng từ 3 đến 9 người (Khoản 1 Điều 60 của Luật Thực hiện dân chủ ở cơ sở)</li>
+</ul>
+
+<span class="badge">Nhiệm kỳ: 2 năm</span>
+</div>
+
+<!-- NHIỆM VỤ -->
+<div class="card" id="nhiemvu">
+<h2>III. Nhiệm vụ, quyền hạn ( Điều 61 Luật dân chủ cơ sở)</h2>
+
+<div class="grid">
+<div class="box">
+<h3><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775531101290.html">Nhiệm vụ</a></h3>
+<ul>
+<li>Giám sát chế độ chính sách</li>
+<li>Giám sát tài chính</li>
+<li>Giám sát dân chủ cơ sở</li>
+<li>Tiếp nhận kiến nghị</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Quyền hạn</h3>
+<ul>
+<li>Yêu cầu cung cấp tài liệu</li>
+<li>Tham dự họp</li>
+<li>Lập biên bản giám sát</li>
+<li>Kiến nghị xử lý</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- HOẠT ĐỘNG -->
+<div class="card" id="hoatdong">
+<h2>IV. Hoạt động chủ yếu</h2>
+
+<ul>
+<li>Xây dựng kế hoạch giám sát năm</li>
+<li>Giám sát tài chính, tài sản</li>
+<li>Giám sát chế độ cán bộ</li>
+<li>Giám sát kỷ luật, kỷ cương</li>
+<li>Báo cáo kết quả định kỳ</li>
+</ul>
+
+<div class="box">
+Hoạt động theo quy trình: Kế hoạch 
+→ Giám sát
+→ <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775532788282.html">Báo cáo </a>
+→ Kiến nghị 
+→ Theo dõi
+</div>
+</div>
+
+<!-- KINH NGHIỆM -->
+<div class="card" id="kinhnghiem">
+<h2>V. Trao đổi kinh nghiệm</h2>
+
+<ul>
+<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775531984649.html">Lựa chọn nội dung giám sát trọng tâm</a> </li>
+<li>Phối hợp chặt chẽ với lãnh đạo</li>
+<li>Tăng cường công khai, minh bạch</li>
+<li>Phát huy vai trò tập thể</li>
+</ul>
+
+<div class="grid">
+<div class="box"><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/posts/1775532310617.html">Chủ động kế hoạch</a></div>
+<div class="box">Bám sát thực tiễn</div>
+<div class="box">Khách quan, minh bạch</div>
+<div class="box">Theo dõi đến cùng</div>
+</div>
+</div>
+
+<!-- KẾT QUẢ -->
+<div class="card" id="ketqua">
+<h2>VI. Kết quả đạt được</h2>
+
+<ul>
+<li>Nâng cao dân chủ trong cơ quan</li>
+<li>Hạn chế sai phạm tài chính</li>
+<li>Tăng tính minh bạch</li>
+<li>Góp phần xây dựng cơ quan vững mạnh</li>
+</ul>
+
+<div class="box">
+Ban Thanh tra nhân dân là công cụ giám sát hiệu quả, góp phần xây dựng cơ quan trong sạch, hoạt động đúng quy định.
+</div>
+</div>
+
+</div>
+
+<footer>
+© Trang chuyên đề Ban Thanh tra nhân dân
+</footer>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+</div>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+/* ===============================
+   THÍCH TRANG
+   =============================== */
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
+
+const pageName = "thanhtranhandan";   // tên trang
+
+function loadLike() {
+  fetch(API + "?action=get&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+    });
+}
+
+loadLike();
+
+likeBtn.addEventListener("click", function () {
+
+  if (localStorage.getItem("liked_" + pageName)) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
+  fetch(API + "?action=like&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+      localStorage.setItem("liked_" + pageName, "true");
+    });
+});
+</script>
+
+<script>
+function copyLink(btn){
+  navigator.clipboard.writeText(window.location.href)
+    .then(()=>{
+      const oldText = btn.innerText;
+      btn.innerText = "✅ Đã copy";
+      setTimeout(()=>btn.innerText = oldText, 1500);
+    })
+    .catch(()=>{
+      alert("Không copy được link!");
+    });
+}
+</script>
+
+<script>
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+const postId = "page_thanhtranhandan"; 
+const viewCount = document.getElementById("viewCount");
+
+async function updateViews(){
+  try{
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      const res = await fetch(VIEW_API + "?postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
+  }
+}
+
+updateViews();
+</script>
+
+</body>
+</html>
