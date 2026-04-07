@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chuyên đề Ban Thanh tra nhân dân</title>
+
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="../layout.css">
+
+
+<style>
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+}
+
+h1 {
+    text-align: center;
+    color: #c62828;
+    margin-bottom: 5px;
+}
+
+h2 {
+    color: #1565c0;
+    border-left: 5px solid #1565c0;
+    padding-left: 10px;
+    margin-top: 30px;
+}
+
+h3 {
+    color: #2e7d32;
+    margin-top: 20px;
+}
+
+p {
+    text-align: justify;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+.box {
+    background: #f1f8ff;
+    border-left: 4px solid #2196f3;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.footer {
+    text-align: center;
+    font-size: 14px;
+    color: #016c70;
+    margin-top: 40px;
+}
+/* NÚT LÊN ĐẦU TRANG */
+#backToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #e40f56;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999;
+}
+
+#backToTop:hover{
+  background: #199586;
+}
+/* Nút Thích trang – Copy – Lượt xem */
+.action-bar {
+  display: flex;
+  justify-content: left;      /* căn giữa cả hàng */
+  align-items: center;
+  gap: 3px;                    /* khoảng cách giữa các nút */
+  margin: 6px 3;
+  flex-wrap: wrap;              /* mobile thì tự xuống dòng nếu chật */
+}
+
+/* đảm bảo các div con không chiếm cả dòng */
+.action-bar > div {
+  display: flex;
+}
+
+.main-content{
+  padding-top: 15px;
+}
+
+.action-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
+}
+
+.like-box button,
+.share-btn{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d607a2;
+  background: #14cec4;
+  cursor: pointer;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  background: #20e007;
+}
+
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="../thanhtranhandan.html"> << Thanh tra nhân dân</a>
+<h1>Ban thanh tra nhân dân trong cơ quan, đơn vị</h1>
+
+<div class="action-bar">
+<div class="like-box">
+ <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
+</div>
+
+  <div class="share-group">
+  <button class="share-btn copy" onclick="copyLink(this)">
+    🔗 Copy link
+  </button>
+</div>
+
+<div class="view-box">
+👁Đã xem: <b id="viewCount">0</b>
+</div>
+</div>
+
+<h2>I. Khái quát chung</h2>
+<p>
+Ban Thanh tra nhân dân trong cơ quan, đơn vị là tổ chức do cán bộ, công chức, viên chức và người lao động bầu ra, nhằm phát huy quyền làm chủ, tăng cường giám sát nội bộ.
+</p>
+
+<div class="box">
+Hoạt động của Ban Thanh tra nhân dân thực hiện theo Luật Thực hiện dân chủ ở cơ sở và các quy định của cơ quan, đơn vị.<br>
+1. Tuân thủ theo quy định của pháp luật; thực hiện đúng nhiệm vụ, quyền hạn được giao; bảo đảm khách quan, công khai, minh bạch; mọi ý kiến, phản ánh của cán bộ, công chức, viên chức, người lao động được phản ánh trung thực đến người có thẩm quyền giải quyết theo quy định của pháp luật.<br>
+2. Không được lợi dụng nhiệm vụ, quyền hạn để kích động, dụ dỗ, lôi kéo công chức, viên chức, người lao động để thực hiện các hành vi trái pháp luật.<br>
+3. Làm việc theo chế độ tập thể và quyết định theo đa số.<br>
+</div>
+
+<p>
+Đây không phải là cơ quan thanh tra nhà nước mà là tổ chức giám sát của tập thể cán bộ trong cơ quan.
+</p>
+
+<h2>II. Vị trí, vai trò</h2>
+<ul>
+<li>Cầu nối giữa cán bộ, công chức với lãnh đạo cơ quan</li>
+<li>Giám sát việc thực hiện dân chủ nội bộ</li>
+<li>Phòng ngừa vi phạm, tiêu cực</li>
+<li>Tăng cường công khai, minh bạch</li>
+</ul>
+
+<div class="box">
+Nơi nào Ban Thanh tra nhân dân hoạt động tốt thì môi trường làm việc dân chủ, đoàn kết và hiệu quả cao.
+</div>
+
+<h2>III. Nhiệm vụ, quyền hạn</h2>
+
+<h3>1. Nhiệm vụ</h3>
+<ul>
+<li>Giám sát chế độ, chính sách cán bộ</li>
+<li>Giám sát quy chế dân chủ</li>
+<li>Giám sát tài chính, tài sản</li>
+<li>Giám sát nghị quyết hội nghị cán bộ, công chức</li>
+<li>Tiếp nhận, tổng hợp kiến nghị</li>
+<li>Kiến nghị xử lý vi phạm</li>
+</ul>
+
+<h3>2. Quyền hạn</h3>
+<ul>
+<li>Yêu cầu cung cấp tài liệu</li>
+<li>Tham dự các cuộc họp liên quan</li>
+<li>Lập biên bản, báo cáo giám sát</li>
+<li>Kiến nghị cơ quan có thẩm quyền</li>
+<li>Theo dõi việc thực hiện kiến nghị</li>
+</ul>
+
+<h2>IV. Nội dung giám sát chủ yếu</h2>
+
+<h3>1. Quy chế dân chủ</h3>
+<ul>
+<li>Công khai tài chính</li>
+<li>Công khai thi đua, khen thưởng</li>
+<li>Phân công nhiệm vụ</li>
+<li>Tổ chức hội nghị cán bộ, công chức</li>
+</ul>
+
+<h3>2. Tài chính, tài sản</h3>
+<ul>
+<li>Thu, chi ngân sách</li>
+<li>Chi tiêu nội bộ</li>
+<li>Mua sắm tài sản</li>
+<li>Quản lý tài sản công</li>
+</ul>
+
+<h3>3. Chế độ, chính sách</h3>
+<ul>
+<li>Nâng lương</li>
+<li>Thi đua, khen thưởng</li>
+<li>Nghỉ phép</li>
+<li>Bảo hiểm xã hội</li>
+</ul>
+
+<h3>4. Kỷ luật, kỷ cương</h3>
+<ul>
+<li>Giờ giấc làm việc</li>
+<li>Thực hiện nhiệm vụ</li>
+<li>Chấp hành nội quy</li>
+</ul>
+
+<h2>V. Hạn chế</h2>
+<ul>
+<li>Hoạt động còn hình thức</li>
+<li>Chưa chủ động giám sát</li>
+<li>Kỹ năng giám sát hạn chế</li>
+<li>Theo dõi sau giám sát chưa chặt chẽ</li>
+</ul>
+
+<h2>VI. Giải pháp</h2>
+
+<h3>1. Nâng cao nhận thức</h3>
+<ul>
+<li>Tuyên truyền vai trò Ban Thanh tra nhân dân</li>
+</ul>
+
+<h3>2. Hoàn thiện quy chế</h3>
+<ul>
+<li>Quy định rõ nhiệm vụ từng thành viên</li>
+</ul>
+
+<h3>3. Nâng cao chất lượng giám sát</h3>
+<ul>
+<li>Xây dựng kế hoạch hằng năm</li>
+<li>Lựa chọn nội dung trọng tâm</li>
+</ul>
+
+<h3>4. Tăng cường phối hợp</h3>
+<ul>
+<li>Phối hợp với lãnh đạo, công đoàn</li>
+</ul>
+
+<h3>5. Phát huy vai trò người đứng đầu</h3>
+<ul>
+<li>Tạo điều kiện hoạt động</li>
+<li>Tiếp thu kiến nghị</li>
+</ul>
+
+<h2>VII. Kết luận</h2>
+<p>
+Ban Thanh tra nhân dân là thiết chế quan trọng góp phần thực hiện dân chủ, tăng cường kỷ luật, kỷ cương hành chính, xây dựng cơ quan trong sạch, vững mạnh.
+</p>
+
+<div class="footer">
+Trang chuyên đề – Ban Thanh tra nhân dân
+</div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+</div>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+/* ===============================
+   THÍCH TRANG
+   =============================== */
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
+
+const pageName = "thanhtranhandan_1";   // tên trang
+
+function loadLike() {
+  fetch(API + "?action=get&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+    });
+}
+
+loadLike();
+
+likeBtn.addEventListener("click", function () {
+
+  if (localStorage.getItem("liked_" + pageName)) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
+  fetch(API + "?action=like&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+      localStorage.setItem("liked_" + pageName, "true");
+    });
+});
+</script>
+
+<script>
+function copyLink(btn){
+  navigator.clipboard.writeText(window.location.href)
+    .then(()=>{
+      const oldText = btn.innerText;
+      btn.innerText = "✅ Đã copy";
+      setTimeout(()=>btn.innerText = oldText, 1500);
+    })
+    .catch(()=>{
+      alert("Không copy được link!");
+    });
+}
+</script>
+
+<script>
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+const postId = "page_thanhtranhandan_1"; 
+const viewCount = document.getElementById("viewCount");
+
+async function updateViews(){
+  try{
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      const res = await fetch(VIEW_API + "?postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
+  }
+}
+
+updateViews();
+</script>
+
+</body>
+</html>
