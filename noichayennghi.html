@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vũ Thanh Tùng</title>
+
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="layout.css">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<style>
+body {font-family: Arial, sans-serif; margin:0; color:#333}
+header {background:#b30000; color:#fff; padding:20px; text-align:center}
+nav {background:#222; padding:10px; position:sticky; top:0}
+nav a {color:#fff; margin:10px; text-decoration:none; font-weight:bold}
+nav a:hover {color:#ffd700}
+.container {max-width:1200px; margin:auto; padding:20px}
+.section {background:#fff; padding:20px; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+h2 {color:#222}
+.icon {margin-right:8px; color:#b30000}
+.grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px}
+.card {background:#fafafa; padding:15px; border-radius:8px; border-left:5px solid #222}
+img {max-width:100%; border-radius:10px}
+footer {background:#07a4d4; color:#fff; text-align:center; padding:15px}
+.timeline {border-left:3px solid #b30000; padding-left:20px}
+.timeline div {margin-bottom:15px}
+
+/* NÚT LÊN ĐẦU TRANG */
+#backToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #e40f56;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999;
+}
+
+#backToTop:hover{
+  background: #199586;
+}
+/* Nút Thích trang – Copy – Lượt xem */
+.action-bar {
+  display: flex;
+  justify-content: left;      /* căn giữa cả hàng */
+  align-items: center;
+  gap: 3px;                    /* khoảng cách giữa các nút */
+  margin: 6px 3;
+  flex-wrap: wrap;              /* mobile thì tự xuống dòng nếu chật */
+}
+
+/* đảm bảo các div con không chiếm cả dòng */
+.action-bar > div {
+  display: flex;
+}
+
+.main-content{
+  padding-top: 15px;
+}
+
+.action-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
+}
+
+.like-box button,
+.share-btn{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d607a2;
+  background: #14cec4;
+  cursor: pointer;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  background: #20e007;
+}
+
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
+
+a{
+   text-decoration: none;
+}
+
+/* ===============================
+   MENU CHÍNH
+   =============================== */
+.nav-menu{
+  position: fixed;
+  top: calc(var(--header-height) + var(--sub-height));
+  right: 12px;
+  right: auto;
+
+  width: 150px;
+
+  background: #0696e9;
+  border-radius: 10px;
+  padding: 10px 0;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  z-index: 1001;
+}
+
+.nav-menu.open{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-item{
+  padding: 6px 16px;
+}
+
+.nav-link{
+  display: block;
+  color: #0a3a5a;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.nav-link:hover{
+  color: var(--primary);
+}
+
+/* SUB MENU */
+.sub-menu{
+  display: none;
+  padding-left: 16px;
+}
+
+.sub-menu.open{
+  display: block;
+}
+/* ===============================
+   OVERLAY
+   =============================== */
+
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 999;
+}
+
+.menu-overlay.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.box {
+    background: #daf104;
+    padding: 18px;
+    border-left: 4px solid var(--main);
+}
+
+.badge {
+    display: inline-block;
+    background: #b30000;
+    color: rgb(243, 227, 9);
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+p{
+  text-align:justify;
+ }
+
+.img-giua {
+  width: 100%;
+  text-align: center;
+}
+.img-giua img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+.img-caption {
+  font-size: 13px;
+  color: #1f3fbf;     /* Màu xanh chính luận */
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+<header class="page-header">
+ <button class="menu-btn" aria-label="Mở menu">☰</button>
+
+<h1><img src="anhvietbai/hoasentrang.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Nơi cha yên nghỉ</h1><br>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<nav class="nav-menu" id="navMenu">
+<a href="index.html">🏠 Trang chủ</a><br>
+<a href="#gioithieu">🌱 Giới thiệu</a><br>
+<a href="#hinhanh">🌱 Hình ảnh</a><br>
+</nav>
+
+
+<div class="action-bar">
+<div class="like-box">
+ <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
+</div>
+
+  <div class="share-group">
+  <button class="share-btn copy" onclick="copyLink(this)">
+    🔗 Copy link
+  </button>
+</div>
+
+<div class="view-box">
+👁 Xem: <b id="viewCount">0</b>
+</div>
+</div>
+
+<div class="container">
+
+<div class="grid">
+<div class="card">
+<img src="anhvietbai/vuthanhtung1.jpg" alt="vuthanhtung1">
+</div>
+
+<div class="card">
+<img src="anhvietbai/vuthanhtung2.jpg" alt="vuthanhtung2">
+</div>
+</div>
+
+<div id="gioithieu" class="section">
+<h2><img src="anhvietbai/hoasentrang.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Ông Vũ Thanh Tùng</h2>
+<p>
+- Sinh ngày 04/01/1948 (Năm Mậu Tý)<br>
+- Chết 10h 20, ngày 12/4/2023 (22/2/Quý Mão) <br>
+- Hưởng thọ 76 tuổi<br>
+<b>HUY HIỆU 50 NĂM TUỔI ĐẢNG</b><br>
+Quê quán: Phúc Nam, xã Lưu Kiếm, huyện Thủy Nguyên, thành phố Hải Phòng. <br>
+Nơi ở: Thôn Lưu Kỳ 1, xã Lưu Kỳ, huyện Thủy Nguyên, thành phố Hải Phòng (TDP Lưu Kỳ 1, phường Lưu Kiếm, Hải Phòng) <br>
+Ông sinh ra trong một gia đình nông dân nghèo tại vùng quê giầu truyền thống cách mạng. Ngôi làng ông ở lằm cạnh bên bờ Sông Móc hay còn gọi là sông Lò Nồi, nhánh phía Bắc nối với sông Đá Bạch (còn gọi là Đá Bạc), nhánh phía Nam nối với sông Giá (Nay là hồ Đà Nẵng). <br>
+* Đối với gia đình: Ông là người chồng, người cha gương mẫu, tích cực; Yêu thương, dạy bảo các con, các cháu. <br>
+* Đối với họ hàng, dòng tộc: Ông luôn tích cực tham gia các hoạt động của dòng tộc, là người con, người cháu ngoan hiền, biết nghe lời người trên. <br>
+* Đối với làng xóm: Ông luôn sống trung thực, cởi mở, hòa nhã, đoàn kết, giúp đỡ mọi người. <br>
+* Đối với xã hội: Ông sống có trách nhiệm, hết lòng vì công việc chung, đối xử với mọi người công bằng, thân thiện, thực hiện nhiệm vụ dân chủ. <br>
+<b>* Quá trình công tác:</b><br>
+05/1965 - 07/1965 tổ phó tổ sản xuất thôn Phúc Nam, xã Lưu Liếm; <br>
+08/1965 - 09/1966 trắc thủ máy chỉ huy Binh nhất chiến sĩ C165 Z252 F363; <br>
+10/1966 - 02/1968 học viên trường sĩ quan hậu cần; <br>
+03/1968 - 10/1968 giáo viên, chuẩn uý trường trung cấp quân khí; <br>
+11/1968 - 06/1971 trợ lý huấn luyện, chuẩn uý trường trung cấp quân khí; <br>
+07/1971 - 09/1971 hành quân vào chiến trường Miền Nam; <br>
+10/1971- 05/1973 Đảng viên, trợ lý quân khí, Chuẩn uý BT 52 F470; <br>
+06/1973 - 06/1975 Chi uỷ viên, trợ lý kế hoạch kho, Chuẩn uý D505 cục VC559; <br>
+07/1975 - 10/1975 Đảng viên, trợ lý kế hoạch kho, thiếu uý D505 E541 - 559; <br>
+11/1975 - 02/1979 Đảng viên, Trưởng ban bảo vệ xí nghiệp đá thị xã Uông Bí, tỉnh Quảng Ninh; <br>
+03/1979 - 05/1981 Đảng uỷ viên tiểu đoàn, C trưởng, Trung uý C2D140 Ban chỉ huy quân sự Uông Bí; <br>
+06/1981 - 12/1981 chi uỷ viên, chính trị viên, Trung uý đoàn 81 cục hậu cần; <br>
+01/1982 - 04/1984 Đảng viên, trưởng ban đời sống Xí nghiệp đá Uông Bí, tỉnh Quảng Ninh; <br>
+05/1984 - 10/1988 Đảng viên, nghỉ mất sức; <br>
+11/1988 - 10/1990 Chi uỷ viên, Phó ban kiểm soát Hợp tác xã nông nghiệp Lưu Kỳ; <br>
+11/1990 - 12/1992 Chi uỷ viên, Trưởng ban kiểm soát Hợp tác xã nông nghiệp Lưu Kỳ;<br>
+01/1993 – 03/2001 Đảng viên, nghỉ hưu; <br>
+04/2001 - 10/2002 Đảng viên, Thường vụ Hội cựu chiến binh xã Lưu Kiếm; <br>
+11/2002-01/2004 Chi hội trưởng Chi hội cựu chiến binh Lưu Kỳ; <br>
+02/2004 - 04/2016 Phó chủ tịch Hội cựu chiến binh xã Lưu Kỳ; <br>
+<b>* Khen thưởng:</b><br>
+Vào Đảng Cộng sản Việt Nam ngày 25/01/1973; Huy hiệu 30, 40, 45, 50 năm tuổi Đảng; <br>
+Ngày 28/08/1986 được Chủ tịch nước Trường Chinh tặng thưởng Huân chương kháng chiến hạng 3; <br>
+Ngày 02/03/1979 được Chủ tịch nước Tôn Đức Thắng tặng thưởng Huân chương chiến sỹ vẻ vang hạng nhì; <br>
+Ngày 02/03/1979 được Chủ tịch nước Tôn Đức Thắng tặng thưởng Huân chương chiến sỹ vẻ vang hạng ba; <br>
+Ngày 10/07/2007, Ban chấp hành Hội nông dân huyện Thuỷ Nguyên tặng giấy khen đã có thành tích xuất sắc trong công tác Hội và phong trào nông dân xã nhiệm kỳ 2002 – 2007; <br>
+Ngày 25/09/2014, Ban chấp hành Hội cựu chiến binh huyện Thuỷ Nguyên tặng giấy khen đã có thành tích xuất sắc trong phong trào thi đua “Cựu chiến binh gương mẫu” 5 năm (2009 – 2014); <br>
+Ngày 06/12/2014, Chủ tịch UBND xã Lưu Kỳ tặng giấy khen đã có thành tích xuất sắc trong phong trào thi đua “Cựu chiến binh gương mẫu” 5 năm (2009 – 2014); <br>
+Ngày 10/03/2017, Chủ tịch UBND xã Lưu Kỳ tặng giấy khen đã có thành tích xuất sắc trong phong trào thi đua “Cựu chiến binh gương mẫu” 5 năm (2012 – 2017); <br>
+Ngày 16/12/2015, Ban chấp hành Hội cựu chiến binh huyện Thuỷ Nguyên tặng giấy khen đã hoàn thành xuất sắc nhiệm vụ trong phong trào thi đua “Cựu chiến binh gương mẫu” năm 2015; <br>
+</p>
+
+</div>
+
+
+<div id="hinhanh" class="section">
+<h2><img src="anhvietbai/.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Một số hình ảnh</h2>
+<div class="grid">
+<div class="card">
+<img src="anhvietbai/vuthanhtung3.jpg" alt="vuthanhtung3">
+</div>
+
+<div class="card">
+<img src="anhvietbai/vuthanhtung4.jpg" alt="vuthanhtung4">
+</div>
+</div>
+
+<div class="box"><img src="anhvietbai/hoasentrang.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;">
+ Trần gian là cõi tạm - Đất mẹ là mãi mãi - Ai đến rồi cũng phải đi - Đi rồi để lại chút luyến thương!
+</div>
+
+</div>
+</div>
+
+<footer>
+NƠI CHA YÊN NGHỈ
+</footer>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+</div>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+/* ===============================
+   THÍCH TRANG
+   =============================== */
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
+
+const pageName = "noichayennghi";   // tên trang
+
+function loadLike() {
+  fetch(API + "?action=get&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+    });
+}
+
+loadLike();
+
+likeBtn.addEventListener("click", function () {
+
+  if (localStorage.getItem("liked_" + pageName)) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
+  fetch(API + "?action=like&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+      localStorage.setItem("liked_" + pageName, "true");
+    });
+});
+</script>
+
+<script>
+function copyLink(btn){
+  navigator.clipboard.writeText(window.location.href)
+    .then(()=>{
+      const oldText = btn.innerText;
+      btn.innerText = "✅ Đã copy";
+      setTimeout(()=>btn.innerText = oldText, 1500);
+    })
+    .catch(()=>{
+      alert("Không copy được link!");
+    });
+}
+</script>
+
+<script>
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+const postId = "page_noichayennghi"; 
+const viewCount = document.getElementById("viewCount");
+
+async function updateViews(){
+  try{
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      const res = await fetch(VIEW_API + "?postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
+  }
+}
+
+updateViews();
+</script>
+
+<script>
+/* ===== MENU CHÍNH ===== */
+const menuBtn = document.querySelector(".menu-btn");
+const navMenu = document.getElementById("navMenu");
+const overlay = document.getElementById("menuOverlay");
+
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+  overlay.classList.toggle("show");
+});
+
+overlay.addEventListener("click", () => {
+  navMenu.classList.remove("open");
+  overlay.classList.remove("show");
+});
+
+/* ===== MENU CẤP 2 ===== */
+document.querySelectorAll(".nav-link.toggle").forEach(toggle => {
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault(); // không nhảy trang
+    const subMenu = this.nextElementSibling;
+    subMenu.classList.toggle("open");
+  });
+});
+</script>
+
+</body>
+</html>
