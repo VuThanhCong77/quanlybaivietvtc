@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="dynamic-title">Bài viết</title>
+    <title id="dynamic-title">Vũ Thành Công</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
    <!-- Open Graph chuẩn cho Facebook & Zalo -->
-<meta property="og:title" content="Vũ Thành Công_Lưu Kiếm">
-<meta property="og:description" content="🌱 Nơi chia sẻ, lan tỏa những năng lượng tích cực về cuộc sống">
-<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/images/cong.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vũ Thành Công ❤️ Truyền cảm hứng tích cực">
+<meta property="og:description" content="🌱 Giá trị sống tích cực">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/vuthanhcong.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Vũ Thành Công">
+
 
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="layout.css">
@@ -151,6 +153,46 @@ font-family: 'Arial', sans-serif;
   }
 
 }
+/* Nút quay lại hiện đại */
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 22px;
+    background:linear-gradient(135deg,#0a9e97,#06554e);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    transition:all 0.3s ease;
+    text-decoration:none;
+}
+
+/* Hover máy tính */
+.back-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(37,99,235,0.35);
+    background:linear-gradient(135deg,#175fe4,#032a80);
+}
+
+/* Khi bấm */
+.back-btn:active{
+    transform:scale(0.97);
+}
+
+/* Responsive điện thoại */
+@media(max-width:768px){
+    .back-btn{
+        width:100%;
+        justify-content:center;
+        padding:14px;
+        font-size:17px;
+    }
+}
+
 </style>
 
 </head>
@@ -163,8 +205,13 @@ font-family: 'Arial', sans-serif;
             <div class="main-content" id="post-container">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-arrow-left"></i> 🏠</a></li>
-                        <li>| Vũ Thành Công_Lưu Kiếm</li>
+                        <li class="breadcrumb-item"><a href="javascript:history.back()">
+<button class="back-btn" onclick="history.back()">
+    ← Trở về
+</button>
+</a>
+</li>
+                        <li>   | Vũ Thành Công_Lưu Kiếm</li>
                     </ol>
                 </nav>
 
@@ -229,9 +276,11 @@ font-family: 'Arial', sans-serif;
   🔗 Copy link chia sẻ
 </button>
     </div>
-    <a href="index.html" class="text-decoration-none">
-        <i class="fas fa-arrow-left"></i> 🏠
-    </a>
+    <a href="javascript:history.back()">
+<button class="back-btn" onclick="history.back()">
+    ← Trở về
+</button>
+</a>
 </div>
 
             </div>
