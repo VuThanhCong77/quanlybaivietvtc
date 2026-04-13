@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Văn bản</title>
+<title>Quy định 21-QĐ/TW</title>
 
 <!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7V4F395VKJ"></script>
@@ -112,7 +112,6 @@ mark.current-match {
   right: 20px;
   bottom: 100px;
   display: none;
-  flex-direction: column;
   gap: 6px;
   z-index: 1006;
 }
@@ -136,6 +135,11 @@ mark.current-match {
   border-radius: 6px;
   padding: 4px;
   box-shadow: 0 0 4px rgba(0,0,0,.2);
+}
+
+p{
+ padding: 6px 6px;
+  text-align:justify;
 }
 
 </style>
@@ -194,11 +198,8 @@ mark.current-match {
  <!-- MAIN -->
 <div class="page-wrapper">
 <main class="main-content">
-<div class="main-grid">
-    <!-- CỘT TRÁI -->
-<section class="content-left">
 
-    <h2 id="content-title">Đang tải...</h2>
+ <h2 id="content-title">Đang tải...</h2>
 <button onclick="startSpeak()">🔊 </button>
 <button onclick="pauseSpeak()">⏸ </button>
 <button onclick="resumeSpeak()">▶ </button>
@@ -206,10 +207,6 @@ mark.current-match {
 
     <div id="text-content">Đang tải nội dung...</div>
  
- </section>
- <!-- CỘT PHẢI -->
-    <aside class="content-right" id="sidebar-container"></aside>
-  </div>
 </main>
 
 <footer>
@@ -340,14 +337,6 @@ prevBtn.onclick = goPrev;
 searchInput.addEventListener("keydown", e => {
   if (e.key === "Enter") searchBtn.click();
 });
-</script>
-
-<script>
-fetch("sidebar.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("sidebar-container").innerHTML = data;
-  });
 </script>
 
 <script>
