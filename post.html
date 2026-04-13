@@ -153,51 +153,56 @@ font-family: 'Arial', sans-serif;
   }
 
 }
-/* Nút quay lại hiện đại */
-.back-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:12px 12px;
-    background:linear-gradient(135deg,#0a9e97,#06554e);
-    color:white;
-    font-size:16px;
-    font-weight:600;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
-    transition:all 0.3s ease;
-    text-decoration:none;
-}
 
-/* Hover máy tính */
-.back-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(37,99,235,0.35);
-    background:linear-gradient(135deg,#175fe4,#032a80);
-}
-
-/* Khi bấm */
-.back-btn:active{
-    transform:scale(0.97);
-}
-
-/* Responsive điện thoại */
-@media(max-width:768px){
-    .back-btn{
-        width:100%;
-        justify-content:center;
-        padding:14px;
-        font-size:17px;
-    }
-}
-.back-btn{
+/* Nút floating quay lại */
+.floating-back{
     position:fixed;
     top:20px;
     left:20px;
-    z-index:999;
+    width:50px;
+    height:50px;
+
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#aeb107,#9a9c06);
+    color:white;
+
+    font-size:24px;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+
+    z-index:9999;
+
+    transition:all 0.3s ease;
 }
+
+/* Hover desktop */
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,#175fe4,#032a80);
+}
+
+/* Khi nhấn */
+.floating-back:active{
+    transform:scale(0.92);
+}
+
+/* Mobile tối ưu */
+@media(max-width:768px){
+    .floating-back{
+        width:45px;
+        height:45px;
+        font-size:20px;
+        top:15px;
+        left:15px;
+    }
+}
+
 </style>
 
 </head>
@@ -277,8 +282,8 @@ font-family: 'Arial', sans-serif;
 </button>
     </div>
    
-<button class="back-btn" onclick="history.back()">
-    ← Trở về
+<button class="floating-back" onclick="history.back()">
+    ←
 </button>
 
 </div>
