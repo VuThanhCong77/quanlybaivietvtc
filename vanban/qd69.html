@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quy định 69</title>
+<title>Quy định 69 QĐTW</title>
 
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="../layout.css">
@@ -188,6 +188,54 @@ mark.current-match{
     right: 8px;
   }
 }
+/* Nút floating quay lại */
+.floating-back{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#aeb107,#9a9c06);
+    color:white;
+
+    font-size:24px;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+
+    z-index:9999;
+
+    transition:all 0.3s ease;
+}
+
+/* Hover desktop */
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,#175fe4,#032a80);
+}
+
+/* Khi nhấn */
+.floating-back:active{
+    transform:scale(0.92);
+}
+
+/* Mobile tối ưu */
+@media(max-width:768px){
+    .floating-back{
+        width:45px;
+        height:45px;
+        font-size:20px;
+        top:15px;
+        right:15px;
+    }
+}
 
 </style>
 </head>
@@ -198,7 +246,7 @@ mark.current-match{
 <!-- HEADER DÙNG CHUNG -->
 <header class="page-header">
   <button class="menu-btn" onclick="location.href='../index.html'">🏠</button>
-  <h1>📖 Văn bản chuyên môn</h1>
+  <h1>📖 Quy định số 69</h1>
 </header>
 
 <!-- THANH SEARCH CỐ ĐỊNH -->
@@ -208,7 +256,7 @@ mark.current-match{
   <button id="search-button" class="btn-action">Tìm</button>
 </div>
   <div id="search-results">
-    <span id="match-count"></span>
+     <div id="search-results"><span id="match-count"></span></div>
   </div>
 </div>
 
@@ -449,6 +497,10 @@ function stopReading() {
     speechSynthesis.cancel();
 }
 </script>
+
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
 
 </body>
 </html>
