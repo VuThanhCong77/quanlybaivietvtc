@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" qd20_2026="width=device-width, initial-scale=1.0">
+<title>Quy định số 20-QĐ/TW</title>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V4F395VKJ"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7V4F395VKJ', { anonymize_ip: true });
+</script>
+
+<link rel="stylesheet" href="../layout.css">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" qd20_2026="#0a7f99">
+
+<style>
+/* ===== MENU ===== */
+.menu-overlay{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.4);
+  opacity: 0; visibility: hidden;
+  z-index: 998; transition:.3s;
+}
+.menu-overlay.active{opacity:1;visibility:visible;}
+
+.nav-menu{
+  position: fixed; top:0; left:-280px;
+  width:260px; height:100%;
+  background:#fff;
+  z-index:999;
+  padding-top:60px;
+  transition:.3s;
+}
+.nav-menu.active{left:0;}
+.nav-item{border-bottom:1px solid #eee;}
+.nav-link{
+  display:flex; justify-qd20_2026:space-between;
+  padding:12px 16px;
+  font-weight:600;
+  color:#0a3a5a;
+  text-decoration:none;
+  cursor:pointer;
+}
+.sub-menu{display:none;background:#f5f9fb;}
+.sub-menu a{display:block;padding:10px 30px;}
+.nav-item.open>.sub-menu{display:block;}
+
+/* SEARCH */
+#search-container-wrapper{
+  max-width:800px;
+  margin:20px auto;
+  padding:0 15px;
+}
+#search-container{
+  display:flex; gap:8px;
+}
+#search-input{
+  flex:1; padding:10px;
+  border:2px solid var(--secondary);
+  border-radius:6px;
+}
+.btn-action,.btn-nav{
+  padding:10px 14px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.btn-action{background:var(--primary);color:#fff;}
+.btn-nav{background:var(--secondary);color:#fff;}
+.btn-nav:disabled{background:#ccc}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:20px;}
+h2{
+  border-left:5px solid var(--primary);
+  padding-left:15px;
+}
+
+/* BACK TO TOP */
+#backToTop{
+  position:fixed;
+  bottom:30px; right:30px;
+  width:48px; height:48px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  display:none;
+  z-index:1005;
+}
+
+mark { background: yellow; }
+mark.current-match {
+  background: orange;
+  font-weight: bold;
+}
+
+/* ===== SEARCH NAV FIXED ===== */
+#search-nav-fixed{
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  display: none;
+  gap: 6px;
+  z-index: 1006;
+}
+
+#search-nav-fixed button{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--secondary);
+  color: #fff;
+}
+
+#search-nav-fixed span{
+  text-align: center;
+  font-size: 12px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 0 4px rgba(0,0,0,.2);
+}
+
+p{
+ padding: 6px;
+ text-align:justify;
+}
+
+</style>
+</head>
+
+<div id="search-nav-fixed">
+  <button id="prev-match">↑</button>
+   <button id="next-match">↓</button>
+</div>
+
+<body>
+
+<div class="page-wrapper">
+
+<header class="page-header">
+  <button id="menuBtn" class="menu-btn">☰</button>
+  
+<h1 class="page-title vanban">
+<a href="vanban.html">Quy định số 20-QĐ/TW </a>
+</h1>
+
+  <a href="../index.html"> 🏠</a>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="nav-menu" id="navMenu">
+  <div class="nav-item"><a class="nav-link" href="../index.html">🏠 Trang chủ</a></div>
+  <div class="nav-item"><a class="nav-link" href="../gioithieu.html">🏛 Giới thiệu</a></div>
+  <div class="nav-item"><a class="nav-link" href="../suckhoe.html">❤️ Sức khỏe</a></div>
+  <div class="nav-item"><a class="nav-link" href="../hoctap.html">📖 Học tập</a></div>
+  <div class="nav-item"><a class="nav-link" href="../baiviet.html">✍ Bài viết</a></div>
+  <div class="nav-item"><a class="nav-link" href="../tintuc.html">📢 Tin tức</a></div>
+  <div class="nav-item"><a class="nav-link" href="../anh.html">📷 Thư viện ảnh</a></div>
+  <div class="nav-item">
+    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
+    <div class="sub-menu">
+      <a href="../vanban.html">📖 Quy định số 21-QĐ/TW</a>
+      <a href="qd69.html">📜 Quy định 69</a>
+      <a href="dieuledang.html">📕 Điều lệ Đảng</a>
+      <a href="../doc_pdf.html">📕 Văn bản pdf</a>
+    </div>
+  </div>
+  <div class="nav-item"><a class="nav-link" href="../tailieu.html">📁 Tài liệu</a></div>
+</nav>
+
+<div id="search-container-wrapper">
+  <div id="search-container">
+    <input id="search-input" placeholder="Nhập từ khóa...">
+    <button id="search-button" class="btn-action">Tìm</button>
+  </div>
+  <div id="search-results"><span id="match-count"></span></div>
+</div>
+
+ <!-- MAIN -->
+<div class="page-wrapper">
+<main class="main-qd20_2026">
+
+ <h2 id="qd20_2026-title">Đang tải...</h2>
+<button onclick="startSpeak()">🔊 </button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
+
+    <div id="text-qd20_2026">Đang tải nội dung...</div>
+ 
+</main>
+
+<footer>
+  ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
+</footer>
+</div>
+
+<button id="backToTop">▲</button>
+
+<script>
+/* MENU */
+menuBtn.onclick=()=>{navMenu.classList.add('active');menuOverlay.classList.add('active')}
+menuOverlay.onclick=()=>{navMenu.classList.remove('active');menuOverlay.classList.remove('active')}
+document.querySelectorAll('.toggle').forEach(t=>t.onclick=()=>t.parentElement.classList.toggle('open'))
+
+/* BACK TO TOP */
+const topBtn=document.getElementById('backToTop')
+window.onscroll=()=>topBtn.style.display=window.scrollY>300?'block':'none'
+topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'})
+</script>
+
+<script>
+/* ===== GLOBAL ===== */
+const qd20_2026Title = document.getElementById("qd20_2026-title");
+const qd20_2026Area  = document.getElementById("text-qd20_2026");
+
+const searchInput = document.getElementById("search-input");
+const searchBtn   = document.getElementById("search-button");
+const prevBtn     = document.getElementById("prev-match");
+const nextBtn     = document.getElementById("next-match");
+const resultBox   = document.getElementById("search-results");
+const countSpan   = document.getElementById("match-count");
+
+let matches = [];
+let currentIndex = -1;
+let originalHTML = "";
+
+/* ===== LOAD qd20_2026 ===== */
+fetch("qd20_2026.json")
+  .then(res => {
+    if (!res.ok) throw new Error("Không tìm thấy qd20_2026.json");
+    return res.json();
+  })
+  .then(data => {
+    qd20_2026Title.innerHTML = data.title || "Văn bản";
+    qd20_2026Area.innerHTML  = data.qd20_2026 || "Chưa có nội dung.";
+    originalHTML = qd20_2026Area.innerHTML;
+  })
+  .catch(err => {
+    qd20_2026Title.innerHTML = "Lỗi tải văn bản";
+    qd20_2026Area.innerHTML  = "❌ Không tải được nội dung.";
+    console.error(err);
+  });
+</script>
+
+<script>
+/* ===== SEARCH ===== */
+
+function escapeReg(text){
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+searchBtn.onclick = () => {
+  const keyword = searchInput.value.trim();
+  if (!keyword || !originalHTML) return;
+
+  const regex = new RegExp(`(${escapeReg(keyword)})`, "gi");
+  qd20_2026Area.innerHTML = originalHTML.replace(regex, "<mark>$1</mark>");
+
+  matches = qd20_2026Area.querySelectorAll("mark");
+  currentIndex = -1;
+
+  if (!matches.length) {
+    alert("Không tìm thấy nội dung phù hợp");
+    return;
+  }
+
+  prevBtn.disabled = false;
+  nextBtn.disabled = false;
+  resultBox.style.display = "block";
+  goNext();
+};
+
+const fixedNav = document.getElementById("search-nav-fixed");
+
+searchBtn.onclick = () => {
+  const keyword = searchInput.value.trim();
+  if (!keyword) return;
+
+  if (!originalHTML) originalHTML = qd20_2026Area.innerHTML;
+
+  const regex = new RegExp(`(${escapeReg(keyword)})`, "gi");
+  qd20_2026Area.innerHTML = originalHTML.replace(regex, "<mark>$1</mark>");
+
+  matches = qd20_2026Area.querySelectorAll("mark");
+  currentIndex = -1;
+
+  if (matches.length === 0) {
+    fixedNav.style.display = "none";
+    alert("Không tìm thấy nội dung phù hợp");
+    return;
+  }
+
+  prevBtn.disabled = false;
+  nextBtn.disabled = false;
+  fixedNav.style.display = "flex";
+  goNext();
+};
+
+/* ===== NAV RESULT ===== */
+function updateMatch(){
+  matches.forEach(m=>m.classList.remove("current-match"));
+
+  const el = matches[currentIndex];
+
+  el.classList.add("current-match");
+
+  el.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+  countSpan.innerText =
+      `${currentIndex+1}/${matches.length}`;
+}
+
+function goNext(){
+  currentIndex=(currentIndex+1)%matches.length;
+  updateMatch();
+}
+
+function goPrev(){
+  currentIndex=(currentIndex-1+matches.length)%matches.length;
+  updateMatch();
+}
+
+nextBtn.onclick=goNext;
+prevBtn.onclick=goPrev;
+
+searchInput.addEventListener("keydown",e=>{
+  if(e.key==="Enter") searchBtn.click();
+});
+</script>
+
+<script>
+let utterance;
+
+function startSpeak() {
+  const text = document.getElementById("text-qd20_2026").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
+}
+</script>
+
+</body>
+</html>
