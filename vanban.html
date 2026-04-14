@@ -138,56 +138,8 @@ mark.current-match {
 }
 
 p{
- padding: 6px 6px;
-  text-align:justify;
-}
-/* Nút floating quay lại */
-.floating-back{
-    position:fixed;
-    top:20px;
-    left:20px;
-    width:50px;
-    height:50px;
-
-    border:none;
-    border-radius:50%;
-    background:linear-gradient(135deg,#aeb107,#9a9c06);
-    color:white;
-
-    font-size:24px;
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    box-shadow:0 6px 18px rgba(0,0,0,0.25);
-
-    z-index:9999;
-
-    transition:all 0.3s ease;
-}
-
-/* Hover desktop */
-.floating-back:hover{
-    transform:translateY(-3px) scale(1.08);
-    background:linear-gradient(135deg,#175fe4,#032a80);
-}
-
-/* Khi nhấn */
-.floating-back:active{
-    transform:scale(0.92);
-}
-
-/* Mobile tối ưu */
-@media(max-width:768px){
-    .floating-back{
-        width:45px;
-        height:45px;
-        font-size:20px;
-        top:15px;
-        left:15px;
-    }
+ padding: 6px;
+ text-align:justify;
 }
 
 </style>
@@ -195,8 +147,7 @@ p{
 
 <div id="search-nav-fixed">
   <button id="prev-match">↑</button>
-  <span id="match-count"></span>
-  <button id="next-match">↓</button>
+   <button id="next-match">↓</button>
 </div>
 
 <body>
@@ -207,7 +158,7 @@ p{
   <button id="menuBtn" class="menu-btn">☰</button>
   
 <h1 class="page-title vanban">
-<a href="vanban.html">Quy định 21-QĐ/TW< </a>
+<a href="vanban.html">Văn bản </a>
 </h1>
 
   <a href="index.html"> 🏠</a>
@@ -414,9 +365,6 @@ function stopSpeak() {
   speechSynthesis.cancel();
 }
 </script>
-<button class="floating-back" onclick="history.back()">
-    ←
-</button>
 
 </body>
 </html>
