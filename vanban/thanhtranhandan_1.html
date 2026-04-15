@@ -135,16 +135,68 @@ li {
   background: #e0f7f6;
   font-size: 14px;
 }
+
 .container{background:rgba(243, 243, 204, 0.973);}
+
+/* Nút floating quay lại */
+.floating-back{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#aeb107,#9a9c06);
+    color:white;
+
+    font-size:24px;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+
+    z-index:9999;
+
+    transition:all 0.3s ease;
+}
+
+/* Hover desktop */
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,#175fe4,#032a80);
+}
+
+/* Khi nhấn */
+.floating-back:active{
+    transform:scale(0.92);
+}
+
+/* Mobile tối ưu */
+@media(max-width:768px){
+    .floating-back{
+        width:45px;
+        height:45px;
+        font-size:20px;
+        top:15px;
+        right:15px;
+    }
+}
+
 </style>
 </head>
 
 <body>
-
+<div class="page-wrapper">
 <div class="container">
 
-<a href="../thanhtranhandan.html"> << Thanh tra nhân dân</a>
-<h1>Ban thanh tra nhân dân trong cơ quan</h1>
+<header class="page-header">
+<h1 class="page-title gioithieu"><a href="../thanhtranhandan.html">Ban thanh tra nhân dân trong cơ quan</h1>
+  </header>
 
 <div class="action-bar">
 <div class="like-box">
@@ -285,9 +337,11 @@ Nơi nào Ban Thanh tra nhân dân hoạt động tốt thì môi trường làm
 <p>
 Ban Thanh tra nhân dân là thiết chế quan trọng góp phần thực hiện dân chủ, tăng cường kỷ luật, kỷ cương hành chính, xây dựng cơ quan trong sạch, vững mạnh.
 </p>
+</div>
 
-<div class="footer">
-Trang chuyên đề – Ban Thanh tra nhân dân
+<footer>
+Trang chuyên đề Ban Thanh tra nhân dân
+</footer>
 </div>
 
 <!-- NÚT LÊN ĐẦU TRANG -->
@@ -389,6 +443,10 @@ async function updateViews(){
 
 updateViews();
 </script>
+
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
 
 </body>
 </html>
