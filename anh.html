@@ -138,28 +138,6 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   background: #09dd25;
 }
 
-/* NÚT LÊN ĐẦU TRANG */
-#backToTop{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 42px;
-  height: 42px;
-  border: none;
-  border-radius: 50%;
-  background: #e90a0a;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  display: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  z-index: 9999;
-}
-
-#backToTop:hover{
-  background: #0fd4bd;
-}
-
 .view-box{
   padding: 6px 12px;
   border-radius: 6px;
@@ -311,11 +289,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 </main>
 
   <footer>Trang thông tin hình ảnh</footer>
-
 </div>
-
-<!-- NÚT LÊN ĐẦU TRANG -->
-<button id="backToTop" title="Lên đầu trang">⬆</button>
 
 <!-- ================= SCRIPT SINH NỘI DUNG ================= -->
 <script>
@@ -421,27 +395,6 @@ function copyLink(btn){
       alert("Không copy được link!");
     });
 }
-</script>
-
-<script>
-const btn = document.getElementById("backToTop");
-
-// Hiện nút khi cuộn xuống
-window.addEventListener("scroll", function(){
-  if (window.scrollY > 300) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-});
-
-// Cuộn mượt lên đầu trang
-btn.addEventListener("click", function(){
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
 </script>
 
 <script>
