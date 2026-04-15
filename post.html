@@ -31,32 +31,11 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 h1,h2 {
 font-size: 18px;
 }
-#backToTop{
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: none;
-    background-color: #198754;
-    color: #ffffff;
-    font-size: 18px;
-    cursor: pointer;
-    display: none;
-    z-index: 999;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-}
-
-#backToTop:hover{
-    background-color: #146c43;
-}
-
-        body { 
+body { 
 background-color: #2E8B57;
 font-family: 'Arial', sans-serif;
  }
-        .main-content { background: hsl(0, 8%, 90%); border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(10, 13, 193, 0.05); }
+        .main-content { background: hsl(54, 70%, 78%); border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(10, 13, 193, 0.05); }
         .post-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; display: none; }
         #view-content { line-height: 1.8; color: #071d6d; font-size: 1.1rem; }
         .huongdan-gopy { margin-top:3px; font-size:13px; color:#0303ef; font-style:italic; }
@@ -154,53 +133,70 @@ font-family: 'Arial', sans-serif;
 
 }
 
-/* Nút floating quay lại */
-.floating-back{
+/* Floating Menu */
+.floating-menu{
     position:fixed;
-    top:20px;
+    bottom:20px;
     right:20px;
-    width:50px;
-    height:50px;
+    z-index:9999;
+}
 
+/* Nút chính */
+.main-float{
+    width:55px;
+    height:55px;
     border:none;
     border-radius:50%;
-    background:linear-gradient(135deg,#aeb107,#9a9c06);
-    color:white;
-
+    background:linear-gradient(135deg,#1565c0,#0d47a1);
+    color:#fff;
     font-size:24px;
     cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    transition:.3s;
+}
 
+.main-float:hover{
+    transform:scale(1.1);
+}
+
+/* Các nút phụ */
+.sub-buttons{
     display:flex;
-    align-items:center;
-    justify-content:center;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:10px;
 
-    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    opacity:0;
+    transform:translateY(20px);
+    pointer-events:none;
 
-    z-index:9999;
-
-    transition:all 0.3s ease;
+    transition:.35s ease;
 }
 
-/* Hover desktop */
-.floating-back:hover{
-    transform:translateY(-3px) scale(1.08);
-    background:linear-gradient(135deg,#175fe4,#032a80);
+/* Khi mở */
+.sub-buttons.show{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
 }
 
-/* Khi nhấn */
-.floating-back:active{
-    transform:scale(0.92);
+/* Nút con */
+.sub-buttons button{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:50%;
+    background:#e91e63;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition:.3s;
 }
 
-/* Mobile tối ưu */
-@media(max-width:768px){
-    .floating-back{
-        width:45px;
-        height:45px;
-        font-size:20px;
-        top:15px;
-        right:15px;
-    }
+.sub-buttons button:hover{
+    transform:scale(1.1);
+    background:#00acc1;
 }
 
 </style>
@@ -282,10 +278,6 @@ font-family: 'Arial', sans-serif;
 </button>
     </div>
    
-<button class="floating-back" onclick="history.back()">
-    ←
-</button>
-
 </div>
 
             </div>
@@ -415,29 +407,6 @@ async function syncViews(post) {
     console.error("Lỗi đồng bộ lượt xem:", err);
   }
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const backToTopBtn = document.getElementById("backToTop");
-
-    if (!backToTopBtn) return;
-
-    window.addEventListener("scroll", function () {
-        if (document.documentElement.scrollTop > 300 || document.body.scrollTop > 300) {
-            backToTopBtn.style.display = "block";
-        } else {
-            backToTopBtn.style.display = "none";
-        }
-    });
-
-    backToTopBtn.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-
-});
 </script>
 
 <script>
@@ -613,9 +582,37 @@ progress.addEventListener("input", () => {
 
 </script>
 
-<button id="backToTop" title="Về đầu trang">
-    <i class="fas fa-arrow-up"></i>
-</button>
+<div class="floating-menu">
+
+    <button class="main-float" onclick="toggleFloatMenu()">
+        ☰
+    </button>
+
+    <div class="sub-buttons" id="subButtons">
+
+        <button onclick="scrollToTop()" title="Lên đầu trang">
+            ⬆
+        </button>
+
+        <button onclick="history.back()" title="Quay lại">
+            ←
+        </button>
+
+    </div>
+</div>
+
+<script>
+function toggleFloatMenu(){
+    document.getElementById("subButtons").classList.toggle("show");
+}
+
+function scrollToTop(){
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+</script>
 
 </body>
 
