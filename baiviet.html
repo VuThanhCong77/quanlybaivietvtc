@@ -152,6 +152,72 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   .post-item{ flex-direction: column; }
   .post-thumbnail{ width: 100%; height: auto; }
 }
+/* Floating Menu */
+.floating-menu{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:9999;
+}
+
+/* Nút chính */
+.main-float{
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#1565c0,#0d47a1);
+    color:#fff;
+    font-size:24px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    transition:.3s;
+}
+
+.main-float:hover{
+    transform:scale(1.1);
+}
+
+/* Các nút phụ */
+.sub-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:10px;
+
+    opacity:0;
+    transform:translateY(20px);
+    pointer-events:none;
+
+    transition:.35s ease;
+}
+
+/* Khi mở */
+.sub-buttons.show{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+}
+
+/* Nút con */
+.sub-buttons button{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:50%;
+    background:#e91e63;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition:.3s;
+}
+
+.sub-buttons button:hover{
+    transform:scale(1.1);
+    background:#00acc1;
+}
+
 </style>
 </head>
 
@@ -282,6 +348,37 @@ fetch("sidebar.html")
   .then(data => {
     document.getElementById("sidebar-container").innerHTML = data;
   });
+</script>
+<div class="floating-menu">
+
+    <button class="main-float" onclick="toggleFloatMenu()">
+        ☰
+    </button>
+
+    <div class="sub-buttons" id="subButtons">
+
+        <button onclick="scrollToTop()" title="Lên đầu trang">
+            ⬆
+        </button>
+
+        <button onclick="history.back()" title="Quay lại">
+            ←
+        </button>
+
+    </div>
+</div>
+
+<script>
+function toggleFloatMenu(){
+    document.getElementById("subButtons").classList.toggle("show");
+}
+
+function scrollToTop(){
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
 </script>
 
 </body>
