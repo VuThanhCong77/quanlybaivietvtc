@@ -142,6 +142,78 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   #search-input{ width: 100%; }
   .file-item{ flex-direction: column; }
 }
+
+/* NÚT LÊN ĐẦU TRANG */
+#backToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #0b4ea2;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999;
+}
+
+#backToTop:hover{
+  background: #199586;
+}
+
+/* Nút floating quay lại */
+.floating-back{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#aeb107,#9a9c06);
+    color:white;
+
+    font-size:24px;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+
+    z-index:9999;
+
+    transition:all 0.3s ease;
+}
+
+/* Hover desktop */
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,#175fe4,#032a80);
+}
+
+/* Khi nhấn */
+.floating-back:active{
+    transform:scale(0.92);
+}
+
+/* Mobile tối ưu */
+@media(max-width:768px){
+    .floating-back{
+        width:45px;
+        height:45px;
+        font-size:20px;
+        top:15px;
+        right:15px;
+    }
+}
+
 </style>
 </head>
 
@@ -167,7 +239,6 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   <div class="nav-item"><a class="nav-link" href="index.html">🏠 Trang chủ</a></div>
   <div class="nav-item"><a class="nav-link" href="gioithieu.html">🏛 Giới thiệu</a></div>
   <div class="nav-item"><a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a></div>
-  <div class="nav-item"><a class="nav-link" href="hoctap.html">📖 Học tập</a></div>
   <div class="nav-item"><a class="nav-link" href="baiviet.html">✍ Bài viết</a></div>
   <div class="nav-item"><a class="nav-link" href="tintuc.html">📢 Tin tức</a></div>
   <div class="nav-item"><a class="nav-link" href="anh.html">📷 Thư viện ảnh</a></div>
@@ -196,18 +267,72 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
     <div id="document-list-container" class="post-list"></div>
 
+<h3>📖 Kho sách</h3>
+<div>
+<a href="https://stbook.vn/hochiminh">Sách điện tử Hồ Chí Minh</a><br>
+<a href="https://sites.google.com/view/kho-sach-online/trang-chủ">Kho sách Online</a><br>
+<a href="https://nhasachmienphi.com/">Thư viện Ebook miễn phí</a><br>
+<a href="https://sachnoiviet.net/">Sách nói</a><br>
+</div>
+
+<section class="sidebar-box">
+  <h3>🎥 Các bậc chân sư Yogi Ấn Độ</h3>
+
+  <div class="video-sidebar">
+    <iframe 
+       src="https://www.youtube.com/embed/9U8RT-TPkws"
+      title="Video"
+      allowfullscreen>
+    </iframe>
+  </div>
 </section>
+
+<section class="sidebar-box">
+  <h3>🎥 Sách nói</h3>
+
+  <div class="video-sidebar">
+    <iframe 
+       src="https://www.youtube.com/embed/IMyDOj45USU"
+      title="Video"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+</section>
+
  <!-- CỘT PHẢI -->
     <aside class="content-right" id="sidebar-container"></aside>
   </div>
 </main>
 
-  <!-- FOOTER -->
   <footer>
     ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
   </footer>
-
 </div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
 
 <script>
 const JSON_URL = 'posts_data.json';
@@ -272,6 +397,10 @@ fetch("sidebar.html")
     document.getElementById("sidebar-container").innerHTML = data;
   });
 </script>
+
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
 
 </body>
 </html>
