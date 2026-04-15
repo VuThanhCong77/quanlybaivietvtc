@@ -81,6 +81,7 @@ href="../icons/icon180.png"> <link rel="manifest" href="manifest.json">
 .btn-action{background:var(--primary);color:#fff;}
 .btn-nav{background:var(--secondary);color:#fff;}
 .btn-nav:disabled{background:#ccc}
+.main-content{background:rgba(243, 243, 204, 0.973);}
 
 /* MAIN */
 main{max-width:1200px;margin:0 auto;padding:20px;}
@@ -206,6 +207,55 @@ mark.current-match {
   font-size: 14px;
 }
 
+/* Nút floating quay lại */
+.floating-back{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#aeb107,#9a9c06);
+    color:white;
+
+    font-size:24px;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+
+    z-index:9999;
+
+    transition:all 0.3s ease;
+}
+
+/* Hover desktop */
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,#175fe4,#032a80);
+}
+
+/* Khi nhấn */
+.floating-back:active{
+    transform:scale(0.92);
+}
+
+/* Mobile tối ưu */
+@media(max-width:768px){
+    .floating-back{
+        width:45px;
+        height:45px;
+        font-size:20px;
+        top:15px;
+        right:15px;
+    }
+}
+
 </style>
 </head>
 
@@ -235,17 +285,16 @@ Hướng dẫn kiểm tra, giám sát
   <div class="nav-item"><a class="nav-link" href="../index.html">🏠 Trang chủ</a></div>
   <div class="nav-item"><a class="nav-link" href="../gioithieu.html">🏛 Giới thiệu</a></div>
   <div class="nav-item"><a class="nav-link" href="../suckhoe.html">❤️ Sức khỏe</a></div>
-  <div class="nav-item"><a class="nav-link" href="../hoctap.html">📖 Học tập</a></div>
-  <div class="nav-item"><a class="nav-link" href="../baiviet.html">✍ Bài viết</a></div>
+    <div class="nav-item"><a class="nav-link" href="../baiviet.html">✍ Bài viết</a></div>
   <div class="nav-item"><a class="nav-link" href="../tintuc.html">📢 Tin tức</a></div>
   <div class="nav-item"><a class="nav-link" href="../anh.html">📷 Thư viện ảnh</a></div>
   <div class="nav-item">
     <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
     <div class="sub-menu">
-      <a href="../vanban.html">📖 Nội dung văn bản</a>
-      <a href="qd69.html">📜 Quy định 69</a>
-      <a href="dieuledang.html">📕 Điều lệ Đảng</a>
-      <a href="doc_pdf.html">📕 Đọc văn bản pdf</a>
+<a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
+      <a href="vanban/qd19_2026.html">📜 Quy định 19 QĐTW</a>
+      <a href="vanban/qd20_2026.html">📜 Quy định 20 QĐTW</a>
+      <a href="vanban.html">📜 Quy định 21 QĐTW</a
     </div>
   </div>
   <div class="nav-item"><a class="nav-link" href="../tailieu.html">📁 Tài liệu</a></div>
@@ -288,6 +337,8 @@ Hướng dẫn kiểm tra, giám sát
 <div id="noiDungDoc">
 <h2>HƯỚNG DẪN</h2>
 <p class="justified-p">Thực hiện công tác kiểm tra, giám sát của chi bộ, đảng bộ trực thuộc Đảng ủy cấp xã</p>
+
+<p class="justified-p"><i>(<b>Thành ủy:</b> Quyết định số 1012-QĐ/TU, 23/5/2023 quy trình kiểm tra, giám sát, thi hành kỷ luật đảng, giải quyết tó cáo của chi bộ; <b>Đảng ủy:</b>  57-CV/ĐU, 25/8/2025 thực hiện một số nội dung trong công tác kiểm tra, giám sát và kỷ luật của Đảng; 58-CV/ĐU, 25/8/2025 thực hiện chế độ báo cáo kết quả công tác kiểm tra, giám sát, kỷ luật của Đảng; <b>Ủy ban kiểm tra Đảng ủy:</b>  01-HD/UBKT, 18/8/2025 thực hiện công tác kiểm tra, giám sát của chi bộ, đảng bộ )</i></p>
 
 <h2>I. MỤC ĐÍCH, YÊU CẦU</h2>
 <p class="justified-p">- Giúp chi bộ, đảng bộ nắm vững và tổ chức thực hiện đúng, đủ nội dung công tác kiểm tra, giám sát theo quy định mới của Trung ương.</p>
@@ -546,6 +597,10 @@ async function updateViews(){
 
 updateViews();
 </script>
+
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
 
 </body>
 </html>
