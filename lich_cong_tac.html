@@ -23,7 +23,7 @@ body{
   background: transparent;
 }
 .container{
-  max-width:960px;
+  max-width:1200px;
   margin:auto;
   background: rgba(255,255,255,0.92);
   padding:12px;
@@ -190,7 +190,7 @@ Lịch công tác
   <div class="nav-item"><a class="nav-link" href="index.html">🏠 Trang chủ</a></div>
   <div class="nav-item"><a class="nav-link" href="gioithieu.html">🏛 Giới thiệu</a></div>
   <div class="nav-item"><a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a></div>
-  <div class="nav-item"><a class="nav-link" href="baiviet.html">✍ Bài viết</a></div>
+   <div class="nav-item"><a class="nav-link" href="baiviet.html">✍ Bài viết</a></div>
   <div class="nav-item"><a class="nav-link" href="tintuc.html">📢 Tin tức</a></div>
   <div class="nav-item"><a class="nav-link" href="anh.html">📷 Thư viện ảnh</a></div>
   <div class="nav-item">
@@ -212,14 +212,28 @@ Lịch công tác
 
     <div id="app" class="hidden">
 
-1. Đảng ủy phường (T3-6-9-12)<br>
-2. Đảng ủy các cơ quan đảng (T01->12)<br>
-3. Cơ quan phường (T01->12)<br>
-4. Các cơ quan đảng<br>
-5. Sinh hoạt chi bộ 2026: Phúc Nam (T01-5-8-11); 3 Đông Sơn (T3-6-9-12); Dưới (T02-4-7-10); Cơ quan phường (03 hàng tháng);<br>
-    <hr>
+<table>
+            <thead>
+                <tr>
+		    <th>UBKT</th>
+                    <th>ĐU Cơ quan Đảng</th>
+                    <th>ĐU phường</th>
+                    <th>Chi bộ</th>
+		    <th>Thanh tra nhân dân</th>
+		</tr>
+</thead>
+           <tbody>
+        <tr>
+            <td>Hằng ngày</td>
+            <td>Hằng tháng</td>
+            <td>Hằng quý<br>T3-6-9-12</td>
+            <td>+ Phúc Nam (T01-5-8-11)<br>+ 3 Đông Sơn (T3-6-9-12)<br>+ Dưới (T02-4-7-10)<br>+ Cơ quan phường (Ngày 03 hàng tháng)</td>
+            <td>Hằng quý<br>T3-6-9-12</td>
+       </tr>
+       </tbody>
+</table>
 
-     <div id="mainBox">
+<div id="mainBox">
         <div id="userInfo" style="font-weight:bold; color:#1a73e8; margin-bottom:10px;"></div>
 
         <div id="adminControls" class="hidden">
@@ -503,6 +517,7 @@ document.querySelectorAll(".toggle").forEach(t=>{
   t.onclick=()=>t.parentElement.classList.toggle("open");
 });
 </script>
+
 <button class="floating-back" onclick="history.back()">
     ←
 </button>
