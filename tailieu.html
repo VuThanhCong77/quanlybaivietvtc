@@ -143,70 +143,75 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   .file-item{ flex-direction: column; }
 }
 
-/* Floating Menu */
-.floating-menu{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    z-index:9999;
+/* NÚT LÊN ĐẦU TRANG */
+#backToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #0b4ea2;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999;
 }
 
-/* Nút chính */
-.main-float{
-    width:55px;
-    height:55px;
+#backToTop:hover{
+  background: #199586;
+}
+
+/* Nút floating quay lại */
+.floating-back{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+
     border:none;
     border-radius:50%;
-    background:linear-gradient(135deg,#1565c0,#0d47a1);
-    color:#fff;
+    background:linear-gradient(135deg,#aeb107,#9a9c06);
+    color:white;
+
     font-size:24px;
     cursor:pointer;
-    box-shadow:0 8px 20px rgba(0,0,0,0.25);
-    transition:.3s;
-}
 
-.main-float:hover{
-    transform:scale(1.1);
-}
-
-/* Các nút phụ */
-.sub-buttons{
     display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-bottom:10px;
+    align-items:center;
+    justify-content:center;
 
-    opacity:0;
-    transform:translateY(20px);
-    pointer-events:none;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
 
-    transition:.35s ease;
+    z-index:9999;
+
+    transition:all 0.3s ease;
 }
 
-/* Khi mở */
-.sub-buttons.show{
-    opacity:1;
-    transform:translateY(0);
-    pointer-events:auto;
+/* Hover desktop */
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,#175fe4,#032a80);
 }
 
-/* Nút con */
-.sub-buttons button{
-    width:48px;
-    height:48px;
-    border:none;
-    border-radius:50%;
-    background:#e91e63;
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    transition:.3s;
+/* Khi nhấn */
+.floating-back:active{
+    transform:scale(0.92);
 }
 
-.sub-buttons button:hover{
-    transform:scale(1.1);
-    background:#00acc1;
+/* Mobile tối ưu */
+@media(max-width:768px){
+    .floating-back{
+        width:45px;
+        height:45px;
+        font-size:20px;
+        top:15px;
+        right:15px;
+    }
 }
 
 </style>
@@ -294,7 +299,13 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   </div>
 </section>
 
+<h3>📖 Học tập</h3>
+<div>
+<a href="vanban/ma_tran.html">Sơ đồ ma trận Eisenhower</a><br>
+</div>
+
 </section>
+
 
  <!-- CỘT PHẢI -->
     <aside class="content-right" id="sidebar-container"></aside>
@@ -305,6 +316,29 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
     ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
   </footer>
 </div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
 
 <script>
 const JSON_URL = 'posts_data.json';
@@ -370,37 +404,9 @@ fetch("sidebar.html")
   });
 </script>
 
-<div class="floating-menu">
-
-    <button class="main-float" onclick="toggleFloatMenu()">
-        ☰
-    </button>
-
-    <div class="sub-buttons" id="subButtons">
-
-        <button onclick="scrollToTop()" title="Lên đầu trang">
-            ⬆
-        </button>
-
-        <button onclick="history.back()" title="Quay lại">
-            ←
-        </button>
-
-    </div>
-</div>
-
-<script>
-function toggleFloatMenu(){
-    document.getElementById("subButtons").classList.toggle("show");
-}
-
-function scrollToTop(){
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-}
-</script>
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
 
 </body>
 </html>
