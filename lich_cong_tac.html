@@ -168,6 +168,35 @@ th{ background:#1a73e8; color:#fff; }
     }
 }
 
+        .box{
+            background:#fff;
+            border:1px solid #18b4db;
+            border-radius:10px;
+            padding:10px;
+        }
+
+        .title{
+            background:#0971d8;
+            color:#fff;
+            text-align:center;
+            padding:6px;
+            border-radius:6px;
+            font-size:14px;
+            margin-bottom:8px;
+        }
+
+        .content{
+            font-size:14px;
+            line-height:1.5;
+        }
+
+        .note{
+            color:#e60a0a;
+            font-weight:bold;
+            margin-top:8px;
+            display:block;
+        }
+
 </style>
 </head>
 
@@ -212,32 +241,19 @@ Lịch công tác
 
     <div id="app" class="hidden">
 
-<table>
-            <thead>
-                <tr>
-		    <th>
-				1. UBKT<br>
-				2. ĐU Cơ quan Đảng<br>
-				3. ĐU phường<br>
-				4. Sinh hoạt chi bộ<br>
-				5. Thanh tra nhân dân
-			</th>
-            	</tr>
-</thead>
-           <tbody>
-        <tr>
-            <td>
-				1. Hằng ngày<br>
-				2. Hằng tháng<br>
-				3. Hằng quý<br>
-				4. Phúc Nam (01-5-8-11)<br>+ 3 Đông Sơn (3-6-9-12)<br>+ Dưới (02-4-7-10)<br>+ UBKT(Ngày 03)<br>
-				5. Hằng quý
-			</td>
-      </tr>
-       </tbody>
-</table>
+   <div class="box">
+        <div class="title">Quản trị công việc</div>
+        <div class="content">
+1. Đảng ủy phường (T3-6-9-12)<br>
+2. Đảng ủy các cơ quan đảng (T01->12)<br>
+ <span class="note">3. Ủy ban kiểm tra Đảng ủy phường (Hằng ngày)</span>
+4. Ủy ban kiểm tra Đảng ủy các cơ quan đảng (Hằng quý)<br>
+5. Thanh tra nhân dân cơ quan (Hằng quý)<br>
+6. Sinh hoạt chi bộ 2026: <b>Phúc Nam</b> (T01-5-8-11); <b>3 Đông Sơn</b> (T3-6-9-12); <b>Dưới</b> (T02-4-7-10); <b>Cơ quan UBKT</b> (Ngày 03 hàng tháng);<br>
+   </div>
+    </div>
 
-<div id="mainBox">
+     <div id="mainBox">
         <div id="userInfo" style="font-weight:bold; color:#1a73e8; margin-bottom:10px;"></div>
 
         <div id="adminControls" class="hidden">
