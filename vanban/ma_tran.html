@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ đồ ma trận</title>
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="../icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f6f9;
+            margin:10px;
+        }
+
+        h2{
+            text-align:center;
+            font-size:18px;
+            margin-bottom:10px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:10px;
+        }
+
+        .box{
+            background:#fff;
+            border:1px solid #18b4db;
+            border-radius:10px;
+            padding:10px;
+        }
+
+        .title{
+            background:#0971d8;
+            color:#fff;
+            text-align:center;
+            padding:6px;
+            border-radius:6px;
+            font-size:14px;
+            margin-bottom:8px;
+        }
+
+        .content{
+            font-size:14px;
+            line-height:1.5;
+        }
+
+        .note{
+            color:#e60a0a;
+            font-weight:bold;
+            margin-top:8px;
+            display:block;
+        }
+
+        /* Mobile tối ưu */
+        @media (max-width:600px){
+            .grid{
+                grid-template-columns:1fr;
+            }
+            h2{
+                font-size:16px;
+            }
+        }
+
+/* Menu quay lại*/
+.floating-menu{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:9999;
+}
+
+/* Nút chính */
+.main-float{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#1565c0,#0d47a1);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    transition:.3s;
+}
+
+.main-float:hover{
+    transform:scale(1.1);
+}
+
+/* Các nút phụ */
+.sub-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:10px;
+
+    opacity:0;
+    transform:translateY(20px);
+    pointer-events:none;
+
+    transition:.35s ease;
+}
+
+/* Khi mở */
+.sub-buttons.show{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+}
+
+/* Nút con */
+.sub-buttons button{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:#e91e63;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition:.3s;
+}
+
+.sub-buttons button:hover{
+    transform:scale(1.1);
+    background:#00acc1;
+}
+
+/* Khối ảnh đặt giữa nội dung */
+.img-giua{
+    text-align: center;
+    margin: 3px 3px;
+}
+/* Ảnh trong bài viết */
+.img-giua img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Sơ đồ ma trận Eisenhower</h2>
+
+ <!-- ẢNH -->
+<div class="img-giua">
+ <img src="../anhvietbai/ma_tran_eisenshower.jpg" alt="">
+  </div>
+</div>
+
+<div class="grid">
+
+    <div class="box">
+        <div class="title">1. Khẩn cấp & quan trọng</div>
+        <div class="content">
+            + Công văn hỏa tốc, khẩn, thượng khẩn<br>
+            + Nhiệm vụ có thời hạn (Hạn chót)<br>
+            + Sự cố an ninh, cháy nổ...<br>
+            <span class="note">→ LÀM NGAY</span>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="title">2. Quan trọng, chưa khẩn cấp</div>
+        <div class="content">
+            + Lập kế hoạch, chương trình công tác<br>
+	    + Hội nghị chuyên môn<br>
+	    + Báo cáo định kỳ quan trọng<br>
+            + Bồi dưỡng kiến thức<br>
+            <span class="note">→ ƯU TIÊN XẾP LỊCH</span>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="title">3. Khẩn cấp, không quan trọng</div>
+        <div class="content">
+            + Họp phối hợp nhỏ<br>
+            + Báo cáo định kỳ ít quan trọng<br>
+	    + Người khác nhờ cần làm ngay<br>
+            <span class="note">→ ỦY QUYỀN / TỐI ƯU</span>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="title">4. Không khẩn cấp, không quan trọng</div>
+        <div class="content">
+            + Tán gẫu, lướt web, tin nhắn không liên quan<br>
+            <span class="note">→ LOẠI BỎ / XEM NGOÀI GIỜ</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="floating-menu">
+
+    <button class="main-float" onclick="toggleFloatMenu()">
+        ☰
+    </button>
+
+    <div class="sub-buttons" id="subButtons">
+
+        <button onclick="scrollToTop()" title="Lên đầu trang">
+            ⬆
+        </button>
+
+        <button onclick="history.back()" title="Quay lại">
+            ←
+        </button>
+
+    </div>
+</div>
+
+<script>
+function toggleFloatMenu(){
+    document.getElementById("subButtons").classList.toggle("show");
+}
+
+function scrollToTop(){
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+</script>
+
+</body>
+</html>
