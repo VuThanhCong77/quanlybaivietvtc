@@ -981,6 +981,44 @@ margin-bottom:8px
   font-size: 14px;
 }
 
+.dropdown-box{
+    background:#fff;
+    border-radius:12px;
+    padding:12px;
+    margin:10px 0;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown-title{
+    font-weight:bold;
+    margin-bottom:8px;
+    color:#b71c1c;
+}
+
+/* Select đẹp hơn */
+.dropdown-box select{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.2s;
+    appearance:none;
+    background:url('https://cdn-icons-png.flaticon.com/512/32/32195.png') no-repeat right 10px center;
+    background-size:12px;
+}
+
+.dropdown-box select:focus{
+    outline:none;
+    border-color:#b71c1c;
+    box-shadow:0 0 5px rgba(183,28,28,0.3);
+}
+	
+/* Hover */
+.dropdown-box select:hover{
+    border-color:#b71c1c;
+}
 </style>
 
 <script type="application/ld+json">
@@ -1138,7 +1176,22 @@ margin-bottom:8px
   <button id="musicBtn" onclick="toggleMusic()">▶</button>
   <button id="loopBtn" onclick="toggleLoop()">🔁</button>
 </div>
-	 
+
+<div class="dropdown-box">
+    <select onchange="goPage(this)">
+        <option value="">-- Chọn chuyên đề --</option>
+        <option value="suc_khoe.html">❤️ Sức khỏe</option>
+        <option value="hanhphuc.html">🌿 Hạnh phúc</option>
+        <option value="tritue.html">📈 Trí tuệ</option>
+	<option value="kiemtra_giamsat.html">🔍 Kiểm tra, giám sát</option>
+	<option value="thanhtranhandan.html">🔍 Thanh tra nhân dân</option>
+	<option value="doc_pdf.html">📕 Văn bản pdf</option>
+	<option value="vanban/baucu26.html">📍Bầu cử 2026</option>
+        <option value="lich_su/bienniensukien.html">📍 Biên niên sự kiện</option>
+	<option value="noichayennghi.html">📍Nơi cha về với đất mẹ</option>
+    </select>
+</div>
+
 </div>
 </div>
 
@@ -2077,5 +2130,15 @@ async function updateViews(){
 updateViews();
 </script>
 
+<script>
+function goPage(select){
+    const page = select.value;
+    if(page){
+        window.location.href = page; // chuyển trang cùng thư mục
+        select.selectedIndex = 0; // reset lại
+    }
+}
+</script>
+	
 </body>
 </html>
