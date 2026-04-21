@@ -135,6 +135,73 @@ text-align:justify;
   background:#c62828; /* đỏ đậm */
   color:#fff;
 }
+
+/* Menu quay lại*/
+.floating-menu{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:9999;
+}
+
+/* Nút chính */
+.main-float{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#1565c0,#0d47a1);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    transition:.3s;
+}
+
+.main-float:hover{
+    transform:scale(1.1);
+}
+
+/* Các nút phụ */
+.sub-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:10px;
+
+    opacity:0;
+    transform:translateY(20px);
+    pointer-events:none;
+
+    transition:.35s ease;
+}
+
+/* Khi mở */
+.sub-buttons.show{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+}
+
+/* Nút con */
+.sub-buttons button{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:#e91e63;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition:.3s;
+}
+
+.sub-buttons button:hover{
+    transform:scale(1.1);
+    background:#00acc1;
+}
+
 </style>
 </head>
 
@@ -158,11 +225,11 @@ text-align:justify;
 <!-- FORM -->
 <div class="form-box">
 <input id="yearInput" placeholder="Năm">
-<input id="timeInput" placeholder="Thời gian">
+<input id="timeInput" placeholder="Tháng">
 <input id="titleInput" placeholder="Tiêu đề">
 <textarea id="descInput" placeholder="Nội dung"></textarea>
-<input id="imgInput" placeholder="Link ảnh">
-<input id="pdfInput" placeholder="Link PDF">
+<input id="imgInput" placeholder="Link ảnh_Ví dụ: ../anhvietbai/hoasen.jpg">
+<input id="pdfInput" placeholder="Link PDF_Ví dụ: vanban/pdf/quyetdinh01.pdf">
 <button onclick="downloadJSON()">💾 Cập nhật</button>
 <button onclick="addEvent()">➕ Thêm</button>
 </div>
@@ -173,7 +240,6 @@ text-align:justify;
 
 <div class="toolbar">
 <button class="btn" onclick="toggleSlideshow()" id="slideBtn">▶</button>
-<button class="btn" onclick="scrollToTop()">⬆</button>
 </div>
 
 <footer>
@@ -385,10 +451,37 @@ function stop(){
    e.style.display="block";
  });
 }
+</script>
 
-/* SCROLL */
+<div class="floating-menu">
+
+    <button class="main-float" onclick="toggleFloatMenu()">
+        ☰
+    </button>
+
+    <div class="sub-buttons" id="subButtons">
+
+        <button onclick="scrollToTop()" title="Lên đầu trang">
+            ⬆
+        </button>
+
+        <button onclick="history.back()" title="Quay lại">
+            ←
+        </button>
+
+    </div>
+</div>
+
+<script>
+function toggleFloatMenu(){
+    document.getElementById("subButtons").classList.toggle("show");
+}
+
 function scrollToTop(){
- window.scrollTo({top:0,behavior:"smooth"});
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 </script>
 
