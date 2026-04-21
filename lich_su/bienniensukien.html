@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bảo tàng số</title>
+
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="../layout.css">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="../icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<style>
+body{margin:0;font-family:Arial}
+
+/* HEADER */
+.header{
+  background:#0b3d91;color:#fff;padding:12px;text-align:center;
+  position:sticky;top:0;z-index:1000
+}
+
+/* SEARCH */
+.search-box{
+  width:90%;margin:10px auto;display:block;padding:10px;border-radius:6px;border:none
+}
+
+/* TIMELINE NGANG */
+.timeline-bar{
+  display:flex;
+  overflow-x:auto;
+  padding:10px;
+  gap:10px;
+  background:#fff;
+  border-bottom:2px solid #ddd;
+}
+
+.year-btn{
+  flex:0 0 auto;
+  padding:10px 15px;
+  background:#0b3d91;
+  color:#fff;
+  border-radius:20px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+/* CONTENT */
+.container{
+padding:10px;
+font-family:Arial;
+}
+
+p{
+text-indent:2em;
+text-align:justify;
+}
+
+/* EVENT */
+.event{
+  background:#fff;
+  margin:10px 0;
+  padding:12px;
+  border-left:4px solid #0b3d91;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.event:hover{background:#eef3ff}
+
+.time{font-weight:bold;color:#1317e7}
+
+.details{
+  display:none;
+  margin-top:10px;
+}
+
+.event img{
+  width:100%;
+  border-radius:8px;
+  margin-top:8px;
+}
+
+/* TOOLBAR */
+.toolbar{
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.btn{
+  background:#0b3d91;
+  color:#fff;
+  border:none;
+  padding:12px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+/* FORM */
+.form-box{
+  background:#fff;
+  padding:10px;
+  border-radius:8px;
+}
+
+.form-box input, .form-box textarea{
+  width:100%;
+  margin:5px 0;
+  padding:8px;
+}
+
+.edit-btn{
+  background:#ffc107;
+  border:none;
+  border-radius:50%;
+  width:28px;
+  height:28px;
+  cursor:pointer;
+}
+.year-btn.active{
+  background:#ffc107; /* vàng nổi bật */
+  color:#000;
+  font-weight:bold;
+}
+
+.year-btn.active{
+  background:#c62828; /* đỏ đậm */
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+<header class="page-header">
+  <h1 class="page-title gioithieu">
+<a href="../index.html">📚 BẢO TÀNG SỐ </a>
+</h1>
+  </header>
+
+<input type="text" id="search" class="search-box" placeholder="Tìm kiếm...">
+
+<!-- TIMELINE -->
+<div class="timeline-bar" id="timelineBar"></div>
+
+<div class="container">
+
+<!-- FORM -->
+<div class="form-box">
+<input id="yearInput" placeholder="Năm">
+<input id="timeInput" placeholder="Thời gian">
+<input id="titleInput" placeholder="Tiêu đề">
+<textarea id="descInput" placeholder="Nội dung"></textarea>
+<input id="imgInput" placeholder="Link ảnh">
+<input id="pdfInput" placeholder="Link PDF">
+<button onclick="downloadJSON()">💾 Cập nhật</button>
+<button onclick="addEvent()">➕ Thêm</button>
+</div>
+
+<p id="content"></p>
+
+</div>
+
+<div class="toolbar">
+<button class="btn" onclick="toggleSlideshow()" id="slideBtn">▶</button>
+<button class="btn" onclick="scrollToTop()">⬆</button>
+</div>
+
+<footer>
+  Biên niên sự kiện phường Lưu Kiếm
+  </footer>
+</div>
+
+<script>
+let editIndex = null;
+let editYear = null;
+let sukien = {};
+let currentYear = null;
+
+/* LOAD JSON */
+fetch('sukien.json')
+.then(r=>r.json())
+.then(data=>{
+  sukien = data;
+  buildTimeline();
+});
+
+function downloadJSON(){
+  const blob = new Blob(
+    [JSON.stringify(sukien, null, 2)],
+    {type: "application/json"}
+  );
+
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "sukien.json";
+
+  document.body.appendChild(a); // QUAN TRỌNG
+  a.click();
+
+  document.body.removeChild(a); // dọn dẹp
+}
+
+/* TIMELINE */
+function buildTimeline(){
+  let bar = document.getElementById("timelineBar");
+  bar.innerHTML="";
+
+  Object.keys(sukien).sort((a,b)=>b-a).forEach(year=>{
+    let btn = document.createElement("div");
+    btn.className="year-btn";
+    btn.innerText=year;
+    btn.onclick=()=>showYear(year);
+    bar.appendChild(btn);
+  });
+
+let activeBtn = document.querySelector(".year-btn.active");
+activeBtn.scrollIntoView({behavior:"smooth", inline:"center"});
+
+  let first = Object.keys(sukien)[0];
+  if(first) showYear(first);
+}
+
+/* HIỂN THỊ */
+function showYear(year){
+  currentYear = year;
+
+ // 🔥 XÓA active cũ
+  document.querySelectorAll(".year-btn").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  // 🔥 GÁN active mới
+  document.querySelectorAll(".year-btn").forEach(btn=>{
+    if(btn.innerText == year){
+      btn.classList.add("active");
+    }
+  });
+
+  let container = document.getElementById("content");
+  container.innerHTML="";
+
+ sukien[year].forEach((e,index)=>{
+    let div = document.createElement("div");
+    div.className="event";
+
+div.innerHTML = `
+  <div class="time">
+    ${e.time || ""} - <b>${e.title || ""}</b>
+
+    <span style="float:right">
+      <button onclick="editEvent('${year}', ${index}); event.stopPropagation()">✏️</button>
+    </span>
+  </div>
+
+  <div class="details">
+    <div>${e.desc}</div>
+
+    ${e.image ? `<img src="${e.image}">` : ""}
+
+    ${e.pdf ? `<a href="${e.pdf}" target="_blank">📄 PDF</a>` : ""}
+  </div>
+`;
+
+    div.onclick=()=>{
+      let d = div.querySelector(".details");
+      d.style.display = d.style.display==="block" ? "none":"block";
+    }
+
+    container.appendChild(div);
+  });
+}
+
+function editEvent(year, index){
+  let e = sukien[year][index];
+
+  yearInput.value = year;
+  timeInput.value = e.time || "";
+  titleInput.value = e.title || "";
+  descInput.value = e.desc || "";
+  imgInput.value = e.image || "";
+  pdfInput.value = e.pdf || "";
+
+  editIndex = index;
+  editYear = year;
+
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ADD EVENT */
+function addEvent(){
+  let year = yearInput.value;
+  let time = timeInput.value;
+  let title = titleInput.value;
+  let desc = descInput.value;
+  let image = imgInput.value;
+  let pdf = pdfInput.value;
+
+  if(!year || !desc) return alert("Thiếu dữ liệu");
+
+  // 👉 CHẾ ĐỘ SỬA
+  if(editIndex !== null){
+    sukien[editYear][editIndex] = {time,title,desc,image,pdf};
+
+    editIndex = null;
+    editYear = null;
+
+  }else{
+    // 👉 CHẾ ĐỘ THÊM
+    if(!sukien[year]) sukien[year]=[];
+
+    sukien[year].push({time,title,desc,image,pdf});
+  }
+
+  localStorage.setItem("timelineData", JSON.stringify(sukien));
+
+  buildTimeline();
+
+  // reset form
+  yearInput.value="";
+  timeInput.value="";
+  titleInput.value="";
+  descInput.value="";
+  imgInput.value="";
+  pdfInput.value="";
+}
+
+/* SEARCH */
+search.addEventListener("keyup", function(){
+ let k = this.value.toLowerCase();
+ document.querySelectorAll(".event").forEach(e=>{
+   e.style.display = e.innerText.toLowerCase().includes(k) ? "block":"none";
+ });
+});
+
+/* SLIDESHOW */
+let slideIndex=0;
+let timer=null;
+let playing=false;
+
+function toggleSlideshow(){
+ if(playing){stop();}else{start();}
+}
+
+function start(){
+ let events = document.querySelectorAll(".event");
+ if(events.length===0) return;
+
+ playing=true;
+ slideBtn.innerText="⏸";
+
+ slideIndex=0;
+ run(events);
+}
+
+function run(events){
+ if(!playing) return;
+
+ events.forEach(e=>e.style.display="none");
+
+ if(slideIndex>=events.length) slideIndex=0;
+
+ events[slideIndex].style.display="block";
+ slideIndex++;
+
+ timer=setTimeout(()=>run(events),3000);
+}
+
+function stop(){
+ playing=false;
+ clearTimeout(timer);
+ slideBtn.innerText="▶";
+
+ document.querySelectorAll(".event").forEach(e=>{
+   e.style.display="block";
+ });
+}
+
+/* SCROLL */
+function scrollToTop(){
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
