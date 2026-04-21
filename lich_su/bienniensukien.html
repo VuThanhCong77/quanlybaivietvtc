@@ -25,7 +25,7 @@ body{margin:0;font-family:Arial}
 
 /* SEARCH */
 .search-box{
-  width:90%;margin:10px auto;display:block;padding:10px;border-radius:6px;border:none
+  width:30%;margin:10px auto;display:block;padding:10px;border-radius:6px;background:#f4f276;border:none
 }
 
 /* TIMELINE NGANG */
@@ -34,7 +34,7 @@ body{margin:0;font-family:Arial}
   overflow-x:auto;
   padding:10px;
   gap:10px;
-  background:#fff;
+  background:#e86464;
   border-bottom:2px solid #ddd;
 }
 
@@ -51,7 +51,7 @@ body{margin:0;font-family:Arial}
 /* CONTENT */
 .container{
 padding:10px;
-font-family:Arial;
+font-family:Arial
 }
 
 p{
@@ -72,7 +72,7 @@ text-align:justify;
 
 .event:hover{background:#eef3ff}
 
-.time{font-weight:bold;color:#1317e7}
+.time{font-weight:bold;color:#1317e7;font-family:Arial}
 
 .details{
   display:none;
@@ -132,7 +132,7 @@ text-align:justify;
 }
 
 .year-btn.active{
-  background:#c62828; /* đỏ đậm */
+  background:#93a009; /* vàng */
   color:#fff;
 }
 
@@ -160,7 +160,7 @@ text-align:justify;
 
 .main-float:hover{
     transform:scale(1.1);
-}
+  }
 
 /* Các nút phụ */
 .sub-buttons{
@@ -202,6 +202,121 @@ text-align:justify;
     background:#00acc1;
 }
 
+/* ===== BANNER SLIDER ===== */
+
+.banner-slider{
+position:relative;
+width:100%;
+max-width:1200px;
+margin:auto;
+overflow:hidden;
+border-radius:10px;
+}
+
+/* slide track */
+
+.slides{
+display:flex;
+transition:transform 0.8s ease;
+}
+
+/* mỗi slide */
+
+.slide{
+min-width:100%;
+display:flex;
+gap:10px;
+}
+
+/* ảnh */
+
+.banner-img{
+flex:1;
+overflow:hidden;
+border-radius:8px;
+}
+
+.banner-img img{
+width:100%;
+height:360px;
+object-fit:cover;
+transition:transform 0.7s;
+}
+
+.banner-img:hover img{
+transform:scale(1.08);
+}
+
+/* nút điều hướng */
+
+.nav-btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,0.5);
+color:white;
+border:none;
+font-size:26px;
+width:40px;
+height:40px;
+cursor:pointer;
+border-radius:50%;
+}
+
+.prev{
+left:10px;
+}
+
+.next{
+right:10px;
+}
+
+.prev:hover,.next:hover{
+background:#df092d;
+
+}
+/* chấm tròn */
+
+.dots{
+text-align:center;
+margin-top:10px;
+}
+
+.dot{
+height:12px;
+width:12px;
+margin:0 4px;
+background:#bbb;
+border-radius:50%;
+display:inline-block;
+cursor:pointer;
+}
+
+.dot.active{
+background:#d40000;
+}
+
+/* mobile */
+
+@media(max-width:768px){
+
+.slide{
+flex-direction:column;
+}
+
+.banner-img img{
+height:220px;
+}
+}
+
+.img-giua {
+  width: 100%;
+  text-align: center;
+  height: auto;
+}
+
+.card {background:#fafafa; padding:15px; border-radius:8px; border-left:5px solid #222}
+
 </style>
 </head>
 
@@ -210,9 +325,46 @@ text-align:justify;
 <div class="page-wrapper">
 
 <header class="page-header">
-  <img src="images/qrvtc.png">
-  <h1><a href="../index.html">📚 BẢO TÀNG SỐ </a></h1>
-  </header>
+<h1>📚 BẢO TÀNG SỐ</h1>
+</header>
+
+<div class="banner-slider">
+<div class="slides" id="slides">
+
+<div class="slide">
+<div class="banner-img">
+<img src="../anhvietbai/anhluuky (1).jpg">
+</div>
+<div class="banner-img">
+<img src="../anhvietbai/anhluuky (2).jpg">
+</div>
+</div>
+
+<div class="slide">
+<div class="banner-img">
+<img src="../anhvietbai/anhluuky (3).jpg">
+</div>
+<div class="banner-img">
+<img src="../anhvietbai/anhluuky (4).jpg">
+</div>
+</div>
+
+<div class="slide">
+<div class="banner-img">
+<img src="../anhvietbai/anhluuky (5).jpg">
+</div>
+<div class="banner-img">
+<img src="../anhvietbai/anhluuky (6).jpg">
+</div>
+</div>
+
+</div>
+<button class="nav-btn prev" onclick="prevSlide()">❮</button>
+<button class="nav-btn next" onclick="nextSlide()">❯</button>
+</div>
+
+<div class="dots" id="dots"></div>
+
 
 <input type="text" id="search" class="search-box" placeholder="Tìm kiếm...">
 
@@ -221,20 +373,17 @@ text-align:justify;
 
 <div class="container">
 
-<!-- FORM -->
-<div class="form-box">
-<input id="yearInput" placeholder="Năm">
-<input id="timeInput" placeholder="Tháng">
-<input id="titleInput" placeholder="Tiêu đề">
-<textarea id="descInput" placeholder="Nội dung"></textarea>
-<input id="imgInput" placeholder="Link ảnh_Ví dụ: ../anhvietbai/hoasen.jpg">
-<input id="pdfInput" placeholder="Link PDF_Ví dụ: vanban/pdf/quyetdinh01.pdf">
-<button onclick="downloadJSON()">💾 Cập nhật</button>
-<button onclick="addEvent()">➕ Thêm</button>
-</div>
-
 <p id="content"></p>
 
+</div>
+
+<div class="card">
+<div class="img-giua">
+<img src="lich_su (3).jpg" alt="">
+<div style="font-size:14px;color:#3030ef;margin-top:6px;">
+    Hình ảnh: Một góc phố Lưu Kỳ 2
+</div>
+</div>
 </div>
 
 <div class="toolbar">
@@ -483,6 +632,89 @@ function scrollToTop(){
     });
 }
 </script>
+
+<script>
+
+const slides = document.getElementById("slides");
+const total = slides.children.length;
+
+let index = 0;
+
+const dotsContainer = document.getElementById("dots");
+
+/* tạo chấm */
+
+for(let i=0;i<total;i++){
+
+let dot=document.createElement("span");
+
+dot.className="dot";
+
+dot.onclick=function(){goSlide(i)};
+
+dotsContainer.appendChild(dot);
+
+}
+
+function updateDots(){
+
+let dots=document.querySelectorAll(".dot");
+
+dots.forEach(d=>d.classList.remove("active"));
+
+dots[index].classList.add("active");
+
+}
+
+function showSlide(){
+
+slides.style.transform="translateX(-"+index*100+"%)";
+
+updateDots();
+
+}
+
+function nextSlide(){
+
+index++;
+
+if(index>=total){
+index=0;
+}
+
+showSlide();
+
+}
+
+function prevSlide(){
+
+index--;
+
+if(index<0){
+index=total-1;
+}
+
+showSlide();
+
+}
+
+function goSlide(i){
+
+index=i;
+
+showSlide();
+
+}
+
+/* auto slide */
+
+setInterval(nextSlide,5000);
+
+showSlide();
+
+</script>
+
+<button class="floating-back" onclick="history.back()">
 
 </body>
 </html>
