@@ -280,6 +280,53 @@ strong a{
     }
 }
 
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
+
+.dropdown-box{
+    background:#fff;
+    border-radius:12px;
+    padding:12px;
+    margin:10px 0;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown-title{
+    font-weight:bold;
+    margin-bottom:8px;
+    color:#b71c1c;
+}
+
+/* Select đẹp hơn */
+.dropdown-box select{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.2s;
+    appearance:none;
+    background:url('https://cdn-icons-png.flaticon.com/512/32/32195.png') no-repeat right 10px center;
+    background-size:12px;
+}
+
+.dropdown-box select:focus{
+    outline:none;
+    border-color:#b71c1c;
+    box-shadow:0 0 5px rgba(183,28,28,0.3);
+}
+	
+/* Hover */
+.dropdown-box select:hover{
+    border-color:#b71c1c;
+}
+
 </style>
 
 </head>
@@ -318,8 +365,20 @@ strong a{
 </div>
 </div>
 
-<div class="container">
+<div class="dropdown-box">
+<select onchange="goPage(this)">
 
+ <option value="">-- Chọn chuyên đề --</option>
+<option value="../vanban/dieuledang.html">📕 Điều lệ Đảng</option>
+<option value="vanban/qd19_2026.html">📜 Quy định số 19-QĐ/TW về chính trị, tư tưởng</option>
+<option value="vanban/qd20_2026.html">📜 Quy định số 20-QĐ/TW về thi hành Điều lệ Đảng</option>
+<option value="../vanban.html">📜 Quy định số 21-QĐ/TW về kiểm tra, giám sát của Đảng</option>
+<option value="vanban/qd69.html">📜 Quy định 69-QĐ/TW về kỷ luật tổ chức đảng, đảng viên</option>
+
+</select>
+</div>
+
+<div class="container">
 
 <!-- Giới thiệu -->
 
@@ -394,6 +453,8 @@ bảo vệ những nhân tố tích cực, góp phần xây dựng Đảng ngày
 <p><a href="vanban.html">🔍 Quy định 21, ngày 11 tháng 4 năm 2026, của Ban Chấp hành Trung ương Đảng khoá XIV, về công tác kiểm tra, giám sát và kỷ luật của Đảng</a></p>
 
 <p><a href="vanban/qd69.html">📜 Quy định 69-QĐ/TW ngày 06 tháng 7 năm 2022 về kỷ luật tổ chức đảng, đảng viên vi phạm</a></p>
+
+<p><a href="vanban/phancapquanlycanbo.html">📜 Quy định về phân cấp quản lý cán bộ</a></p>
 
 </div>
 </div>
@@ -594,6 +655,16 @@ updateViews();
 <button class="floating-back" onclick="history.back()">
     ←
 </button>
+
+<script>
+function goPage(select){
+    const page = select.value;
+    if(page){
+        window.location.href = page; // chuyển trang cùng thư mục
+        select.selectedIndex = 0; // reset lại
+    }
+}
+</script>
 
 </body>
 </html>
