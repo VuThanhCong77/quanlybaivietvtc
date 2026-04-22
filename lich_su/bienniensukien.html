@@ -72,7 +72,25 @@ text-align:justify;
 
 .event:hover{background:#eef3ff}
 
-.time{font-weight:bold;color:#1317e7;font-family:Arial}
+.header-line{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.badge{
+  background:#0b3d91;
+  color:#fff;
+  padding:2px 8px;
+  border-radius:12px;
+  font-size:12px;
+  text-align:center;
+}
+
+.title{
+  font-weight:600;
+  color:#0b3d91;
+}
 
 .details{
   display:none;
@@ -125,15 +143,11 @@ text-align:justify;
   height:28px;
   cursor:pointer;
 }
-.year-btn.active{
-  background:#ffc107; /* vàng nổi bật */
-  color:#000;
-  font-weight:bold;
-}
 
 .year-btn.active{
-  background:#93a009; /* vàng */
-  color:#fff;
+  background:#ffc107;
+  color:#000;
+  font-weight:bold;
 }
 
 /* Menu quay lại*/
@@ -146,8 +160,8 @@ text-align:justify;
 
 /* Nút chính */
 .main-float{
-    width:30px;
-    height:30px;
+    width:36px;
+    height:36px;
     border:none;
     border-radius:50%;
     background:linear-gradient(135deg,#1565c0,#0d47a1);
@@ -185,8 +199,8 @@ text-align:justify;
 
 /* Nút con */
 .sub-buttons button{
-    width:30px;
-    height:30px;
+    width:36px;
+    height:36px;
     border:none;
     border-radius:50%;
     background:#e91e63;
@@ -254,7 +268,7 @@ position:absolute;
 top:50%;
 transform:translateY(-50%);
 background:rgba(0,0,0,0.5);
-color:white;
+color:rgb(243, 239, 13);
 border:none;
 font-size:26px;
 width:40px;
@@ -315,7 +329,7 @@ height:220px;
   height: auto;
 }
 
-.card {background:#fafafa; padding:15px; border-radius:8px; border-left:5px solid #222}
+.card {background:#e4cd4f; padding:15px; border-radius:8px; border-left:5px solid #222}
 
 </style>
 </head>
@@ -335,17 +349,11 @@ height:220px;
 <div class="banner-img">
 <img src="../anhvietbai/anhluuky (1).jpg">
 </div>
-<div class="banner-img">
-<img src="../anhvietbai/anhluuky (2).jpg">
-</div>
 </div>
 
 <div class="slide">
 <div class="banner-img">
 <img src="../anhvietbai/anhluuky (3).jpg">
-</div>
-<div class="banner-img">
-<img src="../anhvietbai/anhluuky (4).jpg">
 </div>
 </div>
 
@@ -353,6 +361,21 @@ height:220px;
 <div class="banner-img">
 <img src="../anhvietbai/anhluuky (5).jpg">
 </div>
+</div>
+
+<div class="slide">
+<div class="banner-img">
+<img src="../anhvietbai/anhluuky (2).jpg">
+</div>
+</div>
+
+<div class="slide">
+<div class="banner-img">
+<img src="../anhvietbai/anhluuky (4).jpg">
+</div>
+</div>
+
+<div class="slide">
 <div class="banner-img">
 <img src="../anhvietbai/anhluuky (6).jpg">
 </div>
@@ -373,21 +396,17 @@ height:220px;
 
 <div class="container">
 
-<p id="content"></p>
+<div id="content"></div>
 
 </div>
 
 <div class="card">
 <div class="img-giua">
 <img src="lich_su (3).jpg" alt="">
-<div style="font-size:14px;color:#3030ef;">
+<div style="font-size:14px;color:#ffffff;;padding:20px;">
     Hình ảnh: Một góc phố Lưu Kỳ 2
 </div>
 </div>
-</div>
-
-<div class="toolbar">
-<button class="btn" onclick="toggleSlideshow()" id="slideBtn">▶</button>
 </div>
 
 <footer>
@@ -425,6 +444,7 @@ function downloadJSON(){
   document.body.removeChild(a); // dọn dẹp
 }
 
+
 /* TIMELINE */
 function buildTimeline(){
   let bar = document.getElementById("timelineBar");
@@ -439,10 +459,20 @@ function buildTimeline(){
   });
 
 let activeBtn = document.querySelector(".year-btn.active");
-activeBtn.scrollIntoView({behavior:"smooth", inline:"center"});
+if(activeBtn){
+  activeBtn.scrollIntoView({behavior:"smooth", inline:"center"});
+}
 
   let first = Object.keys(sukien)[0];
   if(first) showYear(first);
+}
+
+/* CHUYỂN CHỮ THÀNH SỐ */
+function getOrder(time){
+  if(!time) return 0;
+
+  let m = time.match(/\d+/); // lấy số trong "Tháng 3"
+  return m ? parseInt(m[0]) : 0;
 }
 
 /* HIỂN THỊ */
@@ -464,18 +494,20 @@ function showYear(year){
   let container = document.getElementById("content");
   container.innerHTML="";
 
- sukien[year].forEach((e,index)=>{
+ sukien[year]
+  .sort((a,b)=> getOrder(a.time) - getOrder(b.time))
+  .forEach((e,index)=>{
     let div = document.createElement("div");
     div.className="event";
 
 div.innerHTML = `
-  <div class="time">
-    ${e.time || ""} - <b>${e.title || ""}</b>
+  
 
-    <span style="float:right">
-      <button onclick="editEvent('${year}', ${index}); event.stopPropagation()">✏️</button>
-    </span>
-  </div>
+<div class="header-line">
+  <span class="badge">${e.time || ""}</span>
+  <span class="title">${e.title || ""}</span>
+</div>
+
 
   <div class="details">
     <div>${e.desc}</div>
@@ -493,22 +525,6 @@ div.innerHTML = `
 
     container.appendChild(div);
   });
-}
-
-function editEvent(year, index){
-  let e = sukien[year][index];
-
-  yearInput.value = year;
-  timeInput.value = e.time || "";
-  titleInput.value = e.title || "";
-  descInput.value = e.desc || "";
-  imgInput.value = e.image || "";
-  pdfInput.value = e.pdf || "";
-
-  editIndex = index;
-  editYear = year;
-
-  window.scrollTo({top:0, behavior:"smooth"});
 }
 
 /* ADD EVENT */
@@ -536,7 +552,19 @@ function addEvent(){
     sukien[year].push({time,title,desc,image,pdf});
   }
 
-  localStorage.setItem("timelineData", JSON.stringify(sukien));
+ let local = localStorage.getItem("timelineData");
+
+if(local){
+  sukien = JSON.parse(local);
+  buildTimeline();
+}else{
+  fetch('sukien.json')
+  .then(r=>r.json())
+  .then(data=>{
+    sukien = data;
+    buildTimeline();
+  });
+}
 
   buildTimeline();
 
@@ -567,6 +595,8 @@ function toggleSlideshow(){
 }
 
 function start(){
+ if(playing) return; // tránh chạy trùng
+
  let events = document.querySelectorAll(".event");
  if(events.length===0) return;
 
@@ -714,7 +744,7 @@ showSlide();
 
 </script>
 
-<button class="floating-back" onclick="history.back()">
+<button class="floating-back" onclick="history.back()">⬅</button>
 
 </body>
 </html>
