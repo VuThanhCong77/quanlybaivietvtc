@@ -2,7 +2,8 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Sơ đồ trang Vũ Thành Công</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sơ đồ dạng cây</title>
 
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="layout.css">
@@ -15,77 +16,94 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
 <style>
 body{
-  margin:0;
   font-family:Arial;
+  padding:20px;
 }
 
-.canvas{
-  width:1200px;
-  height:900px;
-  margin:auto;
+/* TREE */
+.tree ul{
+  list-style:none;
+  padding-left:20px;
   position:relative;
- }
+}
+
+/* LINE DỌC */
+.tree ul::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  border-left:2px solid #ccc;
+  height:100%;
+}
+
+/* ITEM */
+.tree li{
+  position:relative;
+  padding:6px 0 6px 20px;
+}
+
+/* LINE NGANG */
+.tree li::before{
+  content:"";
+  position:absolute;
+  top:14px;
+  left:0;
+  width:20px;
+  border-top:2px solid #ccc;
+}
+
+/* TOGGLE */
+.toggle{
+  cursor:pointer;
+  margin-right:6px;
+  color:#555;
+}
+
+/* ICON */
+.icon{
+  margin-right:6px;
+}
 
 /* BOX */
 .box{
-  position:absolute;
+  display:inline-flex;
+  align-items:center;
   background:#880707;
   color:#fff;
-  padding:10px 14px;
-  border-radius:8px;
+  padding:6px 10px;
+  border-radius:6px;
   font-size:14px;
-  cursor:pointer;
+  text-decoration:none;
   transition:0.2s;
 }
 .box:hover{
   background:#0fbad1;
-  transform:scale(1.05);
 }
-
-/* MAIN */
-.main{
-  background:#f57c00;
-  top:30px;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-/* NODE */
-.node{
-  position:absolute;
-  width:20px;
-  height:20px;
-  border:2px solid #999;
-  background:#fff;
-  cursor:pointer;
- }
-.node::before,
-.node::after{
-  content:"";
-  position:absolute;
-  background:#666;
-}
-.node::before{
-  width:10px;height:2px;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-}
-.node::after{
-  width:2px;height:10px;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-}
-.node.open::after{ display:none; }
-
-/* LINE */
-.h-line{ position:absolute;height:2px;background:#999;}
-.v-line{ position:absolute;width:2px;background:#999;}
 
 /* GROUP */
-.group{ display:none; }
-.group.open{ display:block; }
+.tree ul ul{
+  display:none;
+}
+.tree ul.open{
+  display:block;
+}
 
+/* ROOT */
+.root{
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .box{
+    font-size:13px;
+  }
+}
 </style>
+
 <style>
 /* MENU NGANG DESKTOP */
 .nav-links{
@@ -145,9 +163,7 @@ body{
 </head>
 
 <body>
-
 <div class="page-wrapper">
-
 <header class="page-header">
 <h1>
 <a href="index.html" title="Trang chủ">| 🏠 |</a>
@@ -165,92 +181,239 @@ SƠ ĐỒ</h1>
 
 </header>
 
-<div class="canvas">
+<div class="tree">
 
-<!-- TRANG CHỦ -->
-<div class="box main" onclick="go('index.html')">
-  Trang chủ Vũ Thành Công
-</div>
+  <div class="root">📁 Trang chủ Vũ Thành Công</div>
 
-<div class="v-line" style="top:90px;left:600px;height:40px;"></div>
-<div class="h-line" style="top:130px;left:0px;width:1000px;"></div>
+  <ul class="open">
+    
+  <!-- DANH MỤC -->
+<li>
+  <span class="toggle" onclick="toggle(this)">▶</span>
+  <a href="index.html" class="box" title="Trang chủ">
+    <span class="icon">📁</span>Danh mục
+  </a>
 
-<!-- ===== NHÁNH TRÁI ===== -->
-<div class="node" style="top:120px;left:0px;" onclick="toggle('left1', this)"></div>
+  <ul>
 
-<div class="box" style="top:140px;left:0px;" onclick="go('danhsach.html')">
-  Danh mục
-</div>
+    <!-- GIỚI THIỆU -->
+    <li>
+      <a href="gioithieu.html" class="box" title="Trang giới thiệu về người quản lý trang">
+        <span class="icon">📄</span>Giới thiệu
+      </a>
+    </li>
 
-<div id="left1" class="group"> 
-<div class="box" style="top:180px;left:20px;" onclick="go('gioithieu.html')">Giới thiệu</div> 
-<div class="box" style="top:230px;left:20px;" onclick="go('vanban.html')">Văn bản</div> 
-<div class="box" style="top:290px;left:20px;" onclick="go('lienket.html')">Liên kết</div> 
-</div>
+    <!-- VĂN BẢN -->
+    <li>
+      <span class="toggle" onclick="toggle(this)">▶</span>
+      <span class="box">
+        <span class="icon">📁</span>Văn bản
+      </span>
 
-<div class="node" style="top:360px;left:0px;" onclick="toggle('left2', this)"></div>
+      <ul>
+        <li>
+          <a href="vanban/qd19_2026.html" class="box">📜 Quy định số 19 QĐTW</a>
+        </li>
 
-<div class="box" style="top:440px;left:0px;" onclick="go('timkiem.html')">
-  Tìm kiếm văn bản
-</div>
+        <li>
+          <a href="vanban/qd20_2026.html" class="box">📜 Quy định số 20 QĐTW</a>
+        </li>
 
-<div id="left2" class="group"> 
-<div class="box" style="top:530px;left:20px;" onclick="go('vbphapluat.html')">VB pháp luật</div> 
-<div class="box" style="top:570px;left:20px;" onclick="go('congvan.html')">Công văn</div> 
-<div class="box" style="top:610px;left:20px;" onclick="go('tcvn.html')">TCVN</div> 
-</div>
+        <li>
+          <a href="vanban.html" class="box">📜 Quy định số 21 QĐTW</a>
+        </li>
+      </ul>
+    </li>
 
-<!-- ===== NHÁNH GIỮA ===== -->
-<div class="node" style="top:120px;left:600px;" onclick="toggle('mid1', this)"></div>
+<!-- LIÊN KẾT -->
+    <li>
+      <span class="toggle" onclick="toggle(this)">▶</span>
+      <span class="box">
+        <span class="icon">📁</span>Liên kết
+      </span>
 
-<div class="box" style="top:140px;left:600px;" onclick="go('tintuc.html')">
-  Tin tức pháp luật
-</div>
+      <ul>
+        <li>
+          <a href="https://dichvucong.dcs.vn/web/home" class="box">🔴 Hành chính của Đảng</a>
+        </li>
 
-<div id="mid1" class="group">
-  <div class="box" style="top:200px;left:620px;" onclick="go('thongbao.html')">Thông báo VB mới</div>
-  <div class="box" style="top:250px;left:620px;" onclick="go('thoisu.html')">Thời sự</div>
-</div>
+        <li>
+          <a href="https://ubkttw.vn/" class="box">🔍 UBKT TW</a>
+        </li>
 
-<div class="node" style="top:320px;left:600px;" onclick="toggle('mid2', this)"></div>
+        <li>
+          <a href="https://chinhphu.vn//" class="box">🏢 Chính phủ</a>
+        </li>
 
-<div class="box" style="top:330px;left:600px;" onclick="go('vanban.html')">
-  Văn bản mới
-</div>
+      <li>
+          <a href="https://daotaotructuyen.haiphong.gov.vn/" class="box">💻 Kỹ năng số</a>
+        </li>
 
-<div id="mid2" class="group">
-  <div class="box" style="top:390px;left:620px;" onclick="go('vbpl.html')">VB pháp luật</div>
-  <div class="box" style="top:440px;left:620px;" onclick="go('congvan.html')">Công văn</div>
-  <div class="box" style="top:490px;left:620px;" onclick="go('tcvn.html')">TCVN</div>
-</div>
+      <li>
+          <a href="https://bandoso.haiphong.gov.vn/" class="box">🏞 Bản đồ Hải phòng</a>
+        </li>
 
-<!-- ===== NHÁNH PHẢI ===== -->
-<div class="node" style="top:120px;left:1000px;" onclick="toggle('right1', this)"></div>
+      </ul>
+    </li>
 
-<div class="box" style="top:140px;left:1000px;" onclick="go('congdong.html')">
-  Cộng đồng
-</div>
+    <!-- BÀI VIẾT -->
+    <li>
+      <a href="baiviet.html" class="box" title="Trang Bài viết">
+        <span class="icon">📄</span>Bài viết
+      </a>
+    </li>
 
-<div id="right1" class="group">
-  <div class="box" style="top:240px;left:1020px;" onclick="go('luatsu.html')">Luật sư</div>
-  <div class="box" style="top:290px;left:1020px;" onclick="go('thaoluan.html')">Thảo luận</div>
-</div>
+  <!-- TIN TỨC -->
+    <li>
+      <a href="tintuc.html" class="box" title="Trang Tin tức">
+        <span class="icon">📢</span>Tin tức
+      </a>
+    </li>
 
-</div>
+  <!-- THƯ VIỆN ẢNH -->
+    <li>
+      <a href="anh.html" class="box" title="Trang Thư viện ảnh">
+        <span class="icon">📷</span>Thư viện ảnh
+      </a>
+    </li>
 
-<footer>
-<p style="text-align:center">Nâng cao chất lượng cuộc sống</p>
-</footer>
+<!-- SỨC KHỎE -->
+    <li>
+      <a href="suckhoe.html" class="box" title="Trang Sức khỏe">
+        <span class="icon">❤️</span>Sức khỏe
+      </a>
+    </li>
+
+<!-- TÀI LIỆU -->
+    <li>
+      <a href="tailieu.html" class="box" title="Trang Tài liệu tham khảo và học tập">
+        <span class="icon">📁</span>Tài liệu
+      </a>
+    </li>
+
+<!-- LỊCH CÔNG TÁC -->
+    <li>
+      <a href="lich_cong_tac.html" class="box" title="Trang Lịch công tác">
+        <span class="icon">📅</span>Lịch công tác
+      </a>
+    </li>
+
+<!-- DANH SÁCH BÀI VIẾT -->
+    <li>
+      <a href="danhsachbaiviet.html" class="box">
+        <span class="icon">📖</span>Danh sách bài viết
+      </a>
+    </li>
+
+<!-- SOẠN BÀI VIẾT -->
+    <li>
+      <a href="soanbaiviet.html" class="box">
+        <span class="icon">📖</span>Soạn bài viết
+      </a>
+    </li>
+
+ </ul>
+</li
+
+    <!-- CHUYÊN ĐỀ -->
+    <li>
+      <span class="toggle" onclick="toggle(this)">▶</span>
+      <a href="" class="box">
+        <span class="icon">📁</span>Chuyên đề
+      </a>
+
+      <ul>
+        <li>
+          <a href="suc_khoe.html" class="box">
+            <span class="icon">❤️</span>Chăm sóc sức khỏe
+          </a>
+        </li>
+
+        <li>
+          <a href="hanhphuc.html" class="box">
+            <span class="icon">🌿</span>Xây dựng hạnh phúc
+          </a>
+        </li>
+
+        <li>
+          <a href="tritue.html" class="box">
+            <span class="icon">📈</span>Phát triển trí tuệ
+          </a>
+        </li>
+
+        <li>
+          <a href="kiemtra_giamsat.html" class="box">
+            <span class="icon">🔍</span>Kiểm tra, giám sát của Đảng
+          </a>
+        </li>
+
+        <li>
+          <a href="thanhtranhandan.html" class="box">
+            <span class="icon">🔍</span>Ban thanh tra nhân dân cơ quan
+          </a>
+        </li>
+
+        <li>
+          <a href="vanban/baucu26.html" class="box">
+            <span class="icon">📍</span>Bầu cử 15-3-2026
+          </a>
+        </li>
+
+        <li>
+          <a href="lich_su/bienniensukien.html" class="box" title="Trang Biên niên sự kiện">
+            <span class="icon">📚</span>Bảo tàng số
+          </a>
+        </li>
+
+        <li>
+          <a href="noichayennghi.html" class="box">
+            <span class="icon">🏛</span>Nơi cha về với đất mẹ
+          </a>
+        </li>
+
+      </ul>
+    </li>
+
+    <!-- KIỂM TRA_GIÁM SÁT -->
+    <li>
+      <span class="toggle" onclick="toggle(this)">▶</span>
+      <a href="kiemtra_giamsat.html" class="box">
+        <span class="icon">📁</span>Kiểm tra, giám sát của Đảng
+      </a>
+
+      <ul>
+        <li>
+          <a href="vanban/dieuledang.html" class="box">
+            <span class="icon">📕</span>Điều lệ Đảng
+          </a>
+        </li>
+        <li>
+          <a href="vanban/qd69.html" class="box">
+            <span class="icon">📜</span>Quy định số 69 QĐTW
+          </a>
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+
 </div>
 
 <script>
-function toggle(id, el){
-  document.getElementById(id).classList.toggle("open");
-  el.classList.toggle("open");
-}
+function toggle(el){
+  let parent = el.parentElement;
+  let sub = parent.querySelector("ul");
+  let icon = el;
 
-function go(link){
-  window.location.href = link;
+  if(sub.classList.contains("open")){
+    sub.classList.remove("open");
+    icon.textContent = "▶"; // đóng
+    parent.querySelector(".icon").textContent = "📁";
+  }else{
+    sub.classList.add("open");
+    icon.textContent = "▼"; // mở
+    parent.querySelector(".icon").textContent = "📂";
+  }
 }
 </script>
 
