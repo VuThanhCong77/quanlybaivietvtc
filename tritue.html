@@ -409,6 +409,61 @@ header h1{margin:0;font-size:20px;letter-spacing:1px}
 }
 
 </style>
+<style>
+/* MENU NGANG DESKTOP */
+.nav-links{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  padding:8px 0;
+  background:rgba(255,255,255,.15);
+}
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  white-space:nowrap;
+}
+@media(max-width:991px){
+  .nav-links{display:none}
+}
+
+/* MENU */
+.nav-links a,
+.logo span{
+  color:#ffffff;
+  font-weight:600;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: auto;
+  background-color: #727e05;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+
+  position: absolute;
+  bottom: -150%; /* hiện phía dưới */
+  left: 100%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
 
 </head>
 <body>
@@ -417,14 +472,25 @@ header h1{margin:0;font-size:20px;letter-spacing:1px}
 <!-- MENU -->
 
 <header>
-<h1>  
+<h1>
+<a href="index.html" title="Trang chủ">| 🏠 |</a>  
 TRÍ TUỆ - TRI THỨC - TƯ DUY
 </h1>
+
+
+<div class="nav-links">
+        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
+	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
+        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
+	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
+        <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
+        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
+	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
+      	</div>
 
 <div class="menu">
 
 <div class="menu-links">
-<a href="index.html">🏠</a>
 <a href="hanhphuc.html">Hạnh phúc</a>
 <a href="suc_khoe.html">Sức khỏe</a>
 </div>

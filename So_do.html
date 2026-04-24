@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Sơ đồ trang Vũ Thành Công</title>
+
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="layout.css">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+}
+
+.canvas{
+  width:1200px;
+  height:900px;
+  margin:auto;
+  position:relative;
+ }
+
+/* BOX */
+.box{
+  position:absolute;
+  background:#880707;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:14px;
+  cursor:pointer;
+  transition:0.2s;
+}
+.box:hover{
+  background:#0fbad1;
+  transform:scale(1.05);
+}
+
+/* MAIN */
+.main{
+  background:#f57c00;
+  top:30px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* NODE */
+.node{
+  position:absolute;
+  width:20px;
+  height:20px;
+  border:2px solid #999;
+  background:#fff;
+  cursor:pointer;
+ }
+.node::before,
+.node::after{
+  content:"";
+  position:absolute;
+  background:#666;
+}
+.node::before{
+  width:10px;height:2px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+}
+.node::after{
+  width:2px;height:10px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+}
+.node.open::after{ display:none; }
+
+/* LINE */
+.h-line{ position:absolute;height:2px;background:#999;}
+.v-line{ position:absolute;width:2px;background:#999;}
+
+/* GROUP */
+.group{ display:none; }
+.group.open{ display:block; }
+
+</style>
+<style>
+/* MENU NGANG DESKTOP */
+.nav-links{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  padding:8px 0;
+  background:rgba(255,255,255,.15);
+}
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  white-space:nowrap;
+}
+@media(max-width:991px){
+  .nav-links{display:none}
+}
+
+/* MENU */
+.nav-links a,
+.logo span{
+  color:#ffffff;
+  font-weight:600;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: auto;
+  background-color: #727e05;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+
+  position: absolute;
+  bottom: -150%; /* hiện phía dưới */
+  left: 100%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+<header class="page-header">
+<h1>
+<a href="index.html" title="Trang chủ">| 🏠 |</a>
+SƠ ĐỒ</h1>
+
+<div class="nav-links">
+        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
+	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
+        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
+	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
+        <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
+        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
+	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
+      	</div>
+
+</header>
+
+<div class="canvas">
+
+<!-- TRANG CHỦ -->
+<div class="box main" onclick="go('index.html')">
+  Trang chủ Vũ Thành Công
+</div>
+
+<div class="v-line" style="top:90px;left:600px;height:40px;"></div>
+<div class="h-line" style="top:130px;left:0px;width:1000px;"></div>
+
+<!-- ===== NHÁNH TRÁI ===== -->
+<div class="node" style="top:120px;left:0px;" onclick="toggle('left1', this)"></div>
+
+<div class="box" style="top:140px;left:0px;" onclick="go('danhsach.html')">
+  Danh mục
+</div>
+
+<div id="left1" class="group"> 
+<div class="box" style="top:180px;left:20px;" onclick="go('gioithieu.html')">Giới thiệu</div> 
+<div class="box" style="top:230px;left:20px;" onclick="go('vanban.html')">Văn bản</div> 
+<div class="box" style="top:290px;left:20px;" onclick="go('lienket.html')">Liên kết</div> 
+</div>
+
+<div class="node" style="top:360px;left:0px;" onclick="toggle('left2', this)"></div>
+
+<div class="box" style="top:440px;left:0px;" onclick="go('timkiem.html')">
+  Tìm kiếm văn bản
+</div>
+
+<div id="left2" class="group"> 
+<div class="box" style="top:530px;left:20px;" onclick="go('vbphapluat.html')">VB pháp luật</div> 
+<div class="box" style="top:570px;left:20px;" onclick="go('congvan.html')">Công văn</div> 
+<div class="box" style="top:610px;left:20px;" onclick="go('tcvn.html')">TCVN</div> 
+</div>
+
+<!-- ===== NHÁNH GIỮA ===== -->
+<div class="node" style="top:120px;left:600px;" onclick="toggle('mid1', this)"></div>
+
+<div class="box" style="top:140px;left:600px;" onclick="go('tintuc.html')">
+  Tin tức pháp luật
+</div>
+
+<div id="mid1" class="group">
+  <div class="box" style="top:200px;left:620px;" onclick="go('thongbao.html')">Thông báo VB mới</div>
+  <div class="box" style="top:250px;left:620px;" onclick="go('thoisu.html')">Thời sự</div>
+</div>
+
+<div class="node" style="top:320px;left:600px;" onclick="toggle('mid2', this)"></div>
+
+<div class="box" style="top:330px;left:600px;" onclick="go('vanban.html')">
+  Văn bản mới
+</div>
+
+<div id="mid2" class="group">
+  <div class="box" style="top:390px;left:620px;" onclick="go('vbpl.html')">VB pháp luật</div>
+  <div class="box" style="top:440px;left:620px;" onclick="go('congvan.html')">Công văn</div>
+  <div class="box" style="top:490px;left:620px;" onclick="go('tcvn.html')">TCVN</div>
+</div>
+
+<!-- ===== NHÁNH PHẢI ===== -->
+<div class="node" style="top:120px;left:1000px;" onclick="toggle('right1', this)"></div>
+
+<div class="box" style="top:140px;left:1000px;" onclick="go('congdong.html')">
+  Cộng đồng
+</div>
+
+<div id="right1" class="group">
+  <div class="box" style="top:240px;left:1020px;" onclick="go('luatsu.html')">Luật sư</div>
+  <div class="box" style="top:290px;left:1020px;" onclick="go('thaoluan.html')">Thảo luận</div>
+</div>
+
+</div>
+
+<footer>
+<p style="text-align:center">Nâng cao chất lượng cuộc sống</p>
+</footer>
+</div>
+
+<script>
+function toggle(id, el){
+  document.getElementById(id).classList.toggle("open");
+  el.classList.toggle("open");
+}
+
+function go(link){
+  window.location.href = link;
+}
+</script>
+
+</body>
+</html>

@@ -191,6 +191,62 @@ p{
 }
 
 </style>
+<style>
+/* MENU NGANG DESKTOP */
+.nav-links{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  padding:8px 0;
+  background:rgba(255,255,255,.15);
+}
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  white-space:nowrap;
+}
+@media(max-width:991px){
+  .nav-links{display:none}
+}
+
+/* MENU */
+.nav-links a,
+.logo span{
+  color:#ffffff;
+  font-weight:600;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: auto;
+  background-color: #727e05;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+
+  position: absolute;
+  bottom: -150%; /* hiện phía dưới */
+  left: 100%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
+
 </head>
 
 <div id="search-nav-fixed">
@@ -206,16 +262,24 @@ p{
   <button id="menuBtn" class="menu-btn">☰</button>
   
 <h1 class="page-title vanban">
+  <a href="index.html" title="Trang chủ">| 🏠 |</a>
 <a href="vanban.html">Quy định số 21 QĐTW </a>
 </h1>
 
-  <a href="index.html"> 🏠</a>
+<div class="nav-links">
+        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
+	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
+        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
+	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
+        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
+	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
+      	</div>
+
 </header>
 
 <div class="menu-overlay" id="menuOverlay"></div>
 
 <nav class="nav-menu" id="navMenu">
-  <div class="nav-item"><a class="nav-link" href="index.html">🏠 Trang chủ</a></div>
   <div class="nav-item"><a class="nav-link" href="gioithieu.html">🏛 Giới thiệu</a></div>
   <div class="nav-item"><a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a></div>
   <div class="nav-item"><a class="nav-link" href="baiviet.html">✍ Bài viết</a></div>
