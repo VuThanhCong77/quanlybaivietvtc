@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Danh mục nội dung</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+/* TAB */
+.tabs {
+    display: flex;
+    background: #fff;
+    border-bottom: 2px solid #f39c12;
+}
+
+.tab {
+    padding: 12px 18px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+}
+
+.tab.active {
+    background: #f39c12;
+    color: #fff;
+}
+
+/* LIST */
+.tab-content {
+    display: none;
+    max-width: 1000px;
+    margin: 15px auto;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ITEM */
+.card {
+    display: flex;
+    background: #fff;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+/* ẢNH */
+.card img {
+    width: 140px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* NỘI DUNG */
+.card-content {
+    padding: 10px 15px;
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.card-desc {
+    font-size: 14px;
+    color: #666;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+    }
+
+    .card img {
+        width: 100%;
+        height: 180px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TAB -->
+<div class="tabs">
+    <div class="tab active" onclick="showTab(0)">Sức khỏe</div>
+    <div class="tab" onclick="showTab(1)">Trí tuệ</div>
+    <div class="tab" onclick="showTab(2)">Hạnh phúc</div>
+    <div class="tab" onclick="showTab(3)">Chuyên đề khác</div>
+</div>
+
+<!-- TAB 1 -->
+<div class="tab-content active">
+    
+<div class="card">
+<iframe src="suc_khoe.html" width="100%" height="600" style="border:none;"></iframe>
+</div>
+</div>
+
+<!-- TAB 2 -->
+<div class="tab-content">
+
+<div class="card">
+<iframe src="tritue.html" width="100%" height="600" style="border:none;"></iframe>
+</div>
+
+</div>
+
+<!-- TAB 3 -->
+<div class="tab-content">
+
+<div class="card">
+<iframe src="hanhphuc.html" width="100%" height="600" style="border:none;"></iframe>
+</div>
+
+</div>
+
+<!-- TAB 4 -->
+<div class="tab-content">
+<div class="grid">
+
+<div class="card">
+<img src="images/kiemtradang.png" alt="">
+ 	<div class="card-content"> 
+	<div class="card-title"><a href="kiemtra_giamsat.html">Kiểm tra, giám sát của Đảng</a></div>
+	<div class="card-desc";  style="text-align:justify; text-indent:1cm;">Công tác kiểm tra, giám sát là một trong những chức năng lãnh đạo quan trọng của Đảng, là phương thức hiệu quả nhằm bảo đảm sự nghiêm minh trong tổ chức Đảng, giữ vững kỷ luật, kỷ cương và nâng cao năng lực lãnh đạo, sức chiến đấu của tổ chức đảng và đảng viên.</div>
+</div>
+</div>
+
+<div class="card">
+<img src="icons/icon192.png" alt="">
+ 	<div class="card-content"> 
+	<div class="card-title"><a href="doc_pdf.html">Văn bản pdf</a></div>
+	<div class="card-desc";  style="text-align:justify; text-indent:1cm;">Một số văn bản được lưu trữ dưới dạng pdf </div>
+</div>
+</div>
+
+<div class="card">
+<img src="anhvietbai/quychedanchu.png" alt="">
+ 	<div class="card-content"> 
+	<div class="card-title"><a href="thanhtranhandan.html">Ban thanh tra nhân dân cơ quan</a></div>
+	<div class="card-desc";  style="text-align:justify; text-indent:1cm;">Ban Thanh tra nhân dân là tổ chức do cán bộ, công chức, viên chức bầu ra (Điều 51 của Luật Thực hiện dân chủ ở cơ sở), thực hiện chức năng giám sát nội bộ nhằm phát huy dân chủ, bảo đảm công khai, minh bạch trong cơ quan.</div>
+</div>
+</div>
+
+<div class="card">
+<img src="anhvietbai/quochuy.webp" alt="">
+ 	<div class="card-content"> 
+	<div class="card-title"><a href="vanban/baucu26.html">Bầu cử ngày 15-3-2026</a></div>
+	<div class="card-desc";  style="text-align:justify; text-indent:1cm;">Cuộc bầu cử đại biểu Quốc hội khóa XVI và đại biểu Hội đồng nhân dân các cấp nhiệm kỳ 2026 – 2031 là sự kiện chính trị trọng đại của đất nước, là ngày hội lớn của toàn dân.</div>
+</div>
+</div>
+
+<div class="card">
+<img src="anhvietbai/quochuy.webp" alt="">
+ 	<div class="card-content"> 
+	<div class="card-title"><a href="lich_su/bienniensukien.html">Bảo tàng số</a></div>
+	<div class="card-desc";  style="text-align:justify; text-indent:1cm;">Nơi lưu trữ những sự kiện lịch sử diễn ra trên địa bàn phường Lưu Kiếm, thành phố Hải Phòng về kinh tế, văn hóa, xã hội, quốc phòng, an ninh và đời sống nhân dân...</div>
+</div>
+</div>
+
+<div class="card">
+<img src="images/hoasen.jpg" alt="">
+ 	<div class="card-content"> 
+	<div class="card-title"><a href="noichayennghi.html">Nơi cha về với đất mẹ</a></div>
+	<div class="card-desc";  style="text-align:justify; text-indent:1cm;">Trong dòng chảy của lịch sử quê hương Hải Phòng, nơi những vùng đất ven sông giàu truyền thống cách mạng đã hun đúc nên bao thế hệ con người kiên trung, cuộc đời ông Vũ Thanh Tùng là một minh chứng tiêu biểu cho phẩm chất của người đảng viên, người lính và người công dân mẫu mực.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function showTab(index) {
+    let tabs = document.querySelectorAll(".tab");
+    let contents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach(t => t.classList.remove("active"));
+    contents.forEach(c => c.classList.remove("active"));
+
+    tabs[index].classList.add("active");
+    contents[index].classList.add("active");
+}
+</script>
+
+</body>
+</html>
