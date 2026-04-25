@@ -14,8 +14,8 @@ body {
 /* TAB */
 .tabs {
     display: flex;
-    background: #98ef41ea;
-    border-bottom: 2px solid #f39c12;
+    background: #50a9e9cb;
+    border-bottom: 2px solid #e9f154;
 }
 
 .tab {
@@ -95,10 +95,11 @@ body {
 
 <!-- TAB -->
 <div class="tabs">
-    <div class="tab active" onclick="showTab(0)">Sức khỏe</div>
-    <div class="tab" onclick="showTab(1)">Trí tuệ</div>
-    <div class="tab" onclick="showTab(2)">Hạnh phúc</div>
+    <div class="tab active" onclick="showTab(0)"title="Sức khỏe">❤️ Sức khỏe</div>
+    <div class="tab" onclick="showTab(1)" title="Trí tuệ">🧠</div>
+    <div class="tab" onclick="showTab(2)" title="Hạnh phúc">🌿</div>
     <div class="tab" onclick="showTab(3)" title="Chuyên đề khác">💻</div>
+    <div class="tab" onclick="showTab(4)" title="Lịch công tác">📅</div>
 </div>
 
 <!-- TAB 1 -->
@@ -180,6 +181,15 @@ body {
 </div>
 
 </div>
+</div>
+
+<!-- TAB 5 -->
+<div class="tab-content">
+
+<div class="card">
+<iframe src="lich_cong_tac.html" width="100%" height="600" style="border:none;"></iframe>
+</div>
+
 </div>
 
 <script>
