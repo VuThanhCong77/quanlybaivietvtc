@@ -160,6 +160,34 @@ body{
 }
 </style>
 
+<style>
+.tree{
+  gap:20px; /* khoảng cách giữa các nhánh lớn */
+  line-height:1.8;
+}
+
+.node{
+  gap:12px; /* khoảng cách giữa các box trong cùng node */
+  margin-left:20px;
+ }
+
+.node > .node{
+  border-left:2px solid #ccc; /* tạo cảm giác nhánh */
+}
+
+/* nếu muốn phân cấp rõ hơn */
+.level-1{ margin-top:6px; }
+.level-2{ margin-top:10px; }
+.level-3{ margin-top:6px; }
+
+.level-1{ background:#0b7a87;}
+.level-2{ background:#0a3a5a;}
+.level-3{ background:#2e7d32;}
+
+.vtc1{ background:#0a3a5a;}
+.vtc2{ background:#2e7d32;}
+</style>
+
 </head>
 
 <body>
@@ -186,11 +214,107 @@ SƠ ĐỒ</h1>
   <div class="root">📁 Trang chủ Vũ Thành Công</div>
 
   <ul class="open">
-    
+
+    <!-- TRANG CHỦ -->
+    <li>
+      <span class="toggle" onclick="toggle(this)">▶</span>
+      <a href="index.html" class="box" title="Trang chủ">
+        <span class="icon">📁</span>Trang chủ
+      </a>
+
+      <ul>
+<div class="tree">
+
+<div class="node">
+  <div class="box level-2">HEADER</div>
+  <div class="node">
+    <div class="box level-3">Logo + Giới thiệu</div>
+    <div class="box level-3">Menu Desktop</div>
+    <div class="box level-3">Menu Mobile</div>
+  </div>
+</div>
+
+<div class="node">
+  <div class="box level-2">MAIN</div>
+
+  <div class="node">
+    <div class="box level-3">Top bar</div>
+    <div class="node">
+      <div class="box level-1">⏰ Thời gian</div>
+      <div class="box level-1">🎵 Nhạc</div>
+      <div class="box level-1">📂 Dropdown chuyên đề</div>
+    </div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Banner Slider</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Bài viết nổi bật</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Chuyên đề</div>
+    <div class="node">
+      <div class="box level-1">Sức khỏe</div>
+      <div class="box level-1">Hạnh phúc</div>
+      <div class="box level-1">Trí tuệ</div>
+      <div class="box level-1">Kiểm tra giám sát</div>
+      <div class="box level-1">Thanh tra nhân dân</div>
+    </div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Youtube</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Giới thiệu cá nhân</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Tư duy & Triết lý</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Bài viết đọc nhiều</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Góc bình luận</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Nội dung ảnh + bài viết</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Like + Share</div>
+  </div>
+
+  <div class="node">
+    <div class="box level-3">Sidebar (load động)</div>
+  </div>
+
+</div>
+
+<div class="node">
+  <div class="box level-2">FOOTER</div>
+  <div class="node">
+    <div class="box level-1">Liên kết ngoài</div>
+    <div class="box level-1">Địa chỉ</div>
+  </div>
+</div>
+
+</div>
+      </ul>
+    </li>
+
   <!-- DANH MỤC -->
 <li>
   <span class="toggle" onclick="toggle(this)">▶</span>
-  <a href="index.html" class="box" title="Trang chủ">
+  <a href="" class="box" title="Mennu">
     <span class="icon">📁</span>Danh mục
   </a>
 
@@ -198,7 +322,7 @@ SƠ ĐỒ</h1>
 
     <!-- GIỚI THIỆU -->
     <li>
-      <a href="gioithieu.html" class="box" title="Trang giới thiệu về người quản lý trang">
+      <a href="gioithieu.html" class="box vtc1" title="Trang giới thiệu về người quản lý trang">
         <span class="icon">📄</span>Giới thiệu
       </a>
     </li>
@@ -206,21 +330,21 @@ SƠ ĐỒ</h1>
     <!-- VĂN BẢN -->
     <li>
       <span class="toggle" onclick="toggle(this)">▶</span>
-      <span class="box">
+      <span class="box vtc1">
         <span class="icon">📁</span>Văn bản
       </span>
 
       <ul>
         <li>
-          <a href="vanban/qd19_2026.html" class="box">📜 Quy định số 19 QĐTW</a>
+          <a href="vanban/qd19_2026.html" class="box vtc2">📜 Quy định số 19 QĐTW</a>
         </li>
 
         <li>
-          <a href="vanban/qd20_2026.html" class="box">📜 Quy định số 20 QĐTW</a>
+          <a href="vanban/qd20_2026.html" class="box vtc2">📜 Quy định số 20 QĐTW</a>
         </li>
 
         <li>
-          <a href="vanban.html" class="box">📜 Quy định số 21 QĐTW</a>
+          <a href="vanban.html" class="box vtc2">📜 Quy định số 21 QĐTW</a>
         </li>
       </ul>
     </li>
@@ -228,29 +352,29 @@ SƠ ĐỒ</h1>
 <!-- LIÊN KẾT -->
     <li>
       <span class="toggle" onclick="toggle(this)">▶</span>
-      <span class="box">
+      <span class="box vtc1">
         <span class="icon">📁</span>Liên kết
       </span>
 
       <ul>
         <li>
-          <a href="https://dichvucong.dcs.vn/web/home" class="box">🔴 Hành chính của Đảng</a>
+          <a href="https://dichvucong.dcs.vn/web/home" class="box vtc2">🔴 Hành chính của Đảng</a>
         </li>
 
         <li>
-          <a href="https://ubkttw.vn/" class="box">🔍 UBKT TW</a>
+          <a href="https://ubkttw.vn/" class="box vtc2">🔍 UBKT TW</a>
         </li>
 
         <li>
-          <a href="https://chinhphu.vn//" class="box">🏢 Chính phủ</a>
+          <a href="https://chinhphu.vn//" class="box vtc2">🏢 Chính phủ</a>
         </li>
 
       <li>
-          <a href="https://daotaotructuyen.haiphong.gov.vn/" class="box">💻 Kỹ năng số</a>
+          <a href="https://daotaotructuyen.haiphong.gov.vn/" class="box vtc2">💻 Kỹ năng số</a>
         </li>
 
       <li>
-          <a href="https://bandoso.haiphong.gov.vn/" class="box">🏞 Bản đồ Hải phòng</a>
+          <a href="https://bandoso.haiphong.gov.vn/" class="box vtc2">🏞 Bản đồ Hải phòng</a>
         </li>
 
       </ul>
@@ -258,56 +382,56 @@ SƠ ĐỒ</h1>
 
     <!-- BÀI VIẾT -->
     <li>
-      <a href="baiviet.html" class="box" title="Trang Bài viết">
+      <a href="baiviet.html" class="box vtc1" title="Trang Bài viết">
         <span class="icon">📄</span>Bài viết
       </a>
     </li>
 
   <!-- TIN TỨC -->
     <li>
-      <a href="tintuc.html" class="box" title="Trang Tin tức">
+      <a href="tintuc.html" class="box vtc1" title="Trang Tin tức">
         <span class="icon">📢</span>Tin tức
       </a>
     </li>
 
   <!-- THƯ VIỆN ẢNH -->
     <li>
-      <a href="anh.html" class="box" title="Trang Thư viện ảnh">
+      <a href="anh.html" class="box vtc1" title="Trang Thư viện ảnh">
         <span class="icon">📷</span>Thư viện ảnh
       </a>
     </li>
 
 <!-- SỨC KHỎE -->
     <li>
-      <a href="suckhoe.html" class="box" title="Trang Sức khỏe">
+      <a href="suckhoe.html" class="box vtc1" title="Trang Sức khỏe">
         <span class="icon">❤️</span>Sức khỏe
       </a>
     </li>
 
 <!-- TÀI LIỆU -->
     <li>
-      <a href="tailieu.html" class="box" title="Trang Tài liệu tham khảo và học tập">
+      <a href="tailieu.html" class="box vtc1" title="Trang Tài liệu tham khảo và học tập">
         <span class="icon">📁</span>Tài liệu
       </a>
     </li>
 
 <!-- LỊCH CÔNG TÁC -->
     <li>
-      <a href="lich_cong_tac.html" class="box" title="Trang Lịch công tác">
+      <a href="lich_cong_tac.html" class="box vtc1" title="Trang Lịch công tác">
         <span class="icon">📅</span>Lịch công tác
       </a>
     </li>
 
 <!-- DANH SÁCH BÀI VIẾT -->
     <li>
-      <a href="danhsachbaiviet.html" class="box">
+      <a href="danhsachbaiviet.html" class="box vtc1">
         <span class="icon">📖</span>Danh sách bài viết
       </a>
     </li>
 
 <!-- SOẠN BÀI VIẾT -->
     <li>
-      <a href="soanbaiviet.html" class="box">
+      <a href="soanbaiviet.html" class="box vtc1">
         <span class="icon">📖</span>Soạn bài viết
       </a>
     </li>
@@ -324,49 +448,49 @@ SƠ ĐỒ</h1>
 
       <ul>
         <li>
-          <a href="suc_khoe.html" class="box">
+          <a href="suc_khoe.html" class="box vtc1">
             <span class="icon">❤️</span>Chăm sóc sức khỏe
           </a>
         </li>
 
         <li>
-          <a href="hanhphuc.html" class="box">
+          <a href="hanhphuc.html" class="box vtc1">
             <span class="icon">🌿</span>Xây dựng hạnh phúc
           </a>
         </li>
 
         <li>
-          <a href="tritue.html" class="box">
+          <a href="tritue.html" class="box vtc1">
             <span class="icon">📈</span>Phát triển trí tuệ
           </a>
         </li>
 
         <li>
-          <a href="kiemtra_giamsat.html" class="box">
+          <a href="kiemtra_giamsat.html" class="box vtc1">
             <span class="icon">🔍</span>Kiểm tra, giám sát của Đảng
           </a>
         </li>
 
         <li>
-          <a href="thanhtranhandan.html" class="box">
+          <a href="thanhtranhandan.html" class="box vtc1">
             <span class="icon">🔍</span>Ban thanh tra nhân dân cơ quan
           </a>
         </li>
 
         <li>
-          <a href="vanban/baucu26.html" class="box">
+          <a href="vanban/baucu26.html" class="box vtc1">
             <span class="icon">📍</span>Bầu cử 15-3-2026
           </a>
         </li>
 
         <li>
-          <a href="lich_su/bienniensukien.html" class="box" title="Trang Biên niên sự kiện">
+          <a href="lich_su/bienniensukien.html" class="box vtc1" title="Trang Biên niên sự kiện">
             <span class="icon">📚</span>Bảo tàng số
           </a>
         </li>
 
         <li>
-          <a href="noichayennghi.html" class="box">
+          <a href="noichayennghi.html" class="box vtc1">
             <span class="icon">🏛</span>Nơi cha về với đất mẹ
           </a>
         </li>
@@ -383,20 +507,20 @@ SƠ ĐỒ</h1>
 
       <ul>
         <li>
-          <a href="vanban/dieuledang.html" class="box">
+          <a href="vanban/dieuledang.html" class="box vtc1">
             <span class="icon">📕</span>Điều lệ Đảng
           </a>
         </li>
         <li>
-          <a href="vanban/qd69.html" class="box">
+          <a href="vanban/qd69.html" class="box vtc1">
             <span class="icon">📜</span>Quy định số 69 QĐTW
           </a>
         </li>
+
       </ul>
     </li>
 
   </ul>
-
 </div>
 
 <script>
