@@ -32,7 +32,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
 <style>
 :root{
-  --max-width:var(--max-width);
+  --max-width:1500px;
   --primary:#0615ea;
   --secondary:#10a9e6;
 }
@@ -294,7 +294,7 @@ footer{
 footer a{color:#fff;text-decoration:none}
 
 .site-footer{
-  max-width: var(--max-width);
+  max-width: 1500px;
   margin: 0 auto;
   padding: 3px 3px;
   background: #0099DA;
@@ -823,7 +823,17 @@ a{
 }
 
 .half-box section{
-  flex: 1;                /* mỗi khối chiếm 50% */
+  grid-template-columns: 2fr 1fr; /*Trái chiếm 2 phải chiếm 1 */
+}
+
+.half-box_2{
+  display: flex;
+  gap: 20px;              /* khoảng cách giữa 2 khối */
+  align-items: stretch;   /* cao bằng nhau */
+}
+
+.half-box_2 section{
+  flex: 1;
 }
 
 /* Làm cho khối bên trong cao đều */
@@ -838,6 +848,10 @@ a{
   .half-box{
     flex-direction: column;
   }
+ .half-box_2{
+    flex-direction: column;
+  }
+
 }
 
 .justified-p{
@@ -1202,11 +1216,18 @@ margin-bottom:8px
 </div>
 </div>
 
+   <!-- ẢNH -->
+    <div class="img-giua">
+		<img src="anhnen/cong77.jpg" alt="">
+		</div>    
+
+<!-- ===== KHỐI HAI CỘT: BÀI VIẾT + ẢNH ===== -->
+<div class="half-box">
+
 <!-- ===== BANNER 10 BÀI VIẾT MỚI===== -->
 
 <section class="news-banner">
-
-   <div class="slider" id="bannerSlider">
+<div class="slider" id="bannerSlider">
 
     <!-- Slides sẽ được JS tạo tự động -->
 
@@ -1220,16 +1241,10 @@ margin-bottom:8px
     <div class="dots"></div>
   </div>
 </section>
-
-	   <!-- ẢNH -->
-    <div class="img-giua">
-		<img src="anhnen/cong77.jpg" alt="">
-		</div>    
-  
+	  
  <!-- == BÀI VIẾT NỔI BẬT  == -->
-
+ <section id="recent-posts" class="half-item">
   <div class="section">
-
  <div class="container">
      <h2><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;">
  BÀI VIẾT NỔI BẬT
@@ -1238,9 +1253,10 @@ margin-bottom:8px
         <div id="recent-posts-list" class="news-list">
           <p style="text-align:center;color:#9b0cbf">Đang tải dữ liệu...</p>
         </div>
-      </div>
+        </div>
+        </div>
+        </section>
 
-</div>
 </div>
 
 <div class="card">
@@ -1297,22 +1313,7 @@ TƯ DUY & TRIẾT LÝ SỐNG</h2>
  </div>
 
 <!-- ===== KHỐI HAI CỘT: BÀI VIẾT + ẢNH ===== -->
-<div class="half-box">
-
-<section id="popular-posts" class="half-item">
-  <div class="container">
-    <h2 span style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;"><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> 
-		BÀI VIẾT ĐƯỢC ĐỌC NHIỀU
-	</h2>
-
-    <div class="news-box">
-      <div id="popular-posts-list">
-        <p style="text-align:center;color:#6c0db6">Đang tải dữ liệu...</p>
-      </div>
-     </div>
-  </div>
-
-</section>
+<div class="half-box_2">
 
 <!-- GÓC BÌNH LUẬN -->
 <section id="quick-comment">
@@ -1340,6 +1341,21 @@ TƯ DUY & TRIẾT LÝ SỐNG</h2>
     </div>
   </div>
 </section>
+
+<section id="popular-posts" class="half-item">
+  <div class="container">
+    <h2 span style="color:#b30000;border-bottom:2px solid #b30000;display:inline-block;padding-bottom:3px;font-weight:600;"><img src="images/cong.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> 
+		BÀI VIẾT ĐƯỢC ĐỌC NHIỀU
+	</h2>
+
+    <div class="news-box">
+      <div id="popular-posts-list">
+        <p style="text-align:center;color:#6c0db6">Đang tải dữ liệu...</p>
+      </div>
+     </div>
+  </div>
+</section>
+
  </div>
 
 <div class="container">
