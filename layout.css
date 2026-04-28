@@ -21,7 +21,7 @@ font-size: 16px;
 }
 
 :root{
-  --max-width: var(--max-width);
+  --max-width: 1500px;
   --header-height: 45px;
   --sub-height: 65px;
 
