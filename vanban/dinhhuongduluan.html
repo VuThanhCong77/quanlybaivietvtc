@@ -285,7 +285,7 @@ Bảo vệ nền tảng tư tưởng của đảng trên không gian mạng
 <button onclick="resumeSpeak()">▶ </button>
 <button onclick="stopSpeak()">⏹ </button>
 
-    <div id="text-heading">Đang tải nội dung...</div>
+    <div id="text-dinhhuongduluan">Đang tải nội dung...</div>
  
 </main>
 
@@ -324,20 +324,51 @@ let matches = [];
 let currentIndex = -1;
 let originalHTML = "";
 
-/* ===== LOAD dinhhuongduluan ===== */
+/* ===== LOAD JSON ===== */
 fetch("dinhhuongduluan.json")
   .then(res => {
-    if (!res.ok) throw new Error("Không tìm thấy dinhhuongduluan.json");
+    if (!res.ok) throw new Error("Không tìm thấy file JSON");
     return res.json();
   })
   .then(data => {
+
+    // Tiêu đề
     dinhhuongduluanTitle.innerHTML = data.title || "Văn bản";
-    dinhhuongduluanArea.innerHTML  = data.dinhhuongduluan || "Chưa có nội dung.";
-    originalHTML = dinhhuongduluanArea.innerHTML;
+
+    // Nội dung
+    let html = "";
+
+    if (data.sections && data.sections.length > 0) {
+
+      data.sections.forEach(section => {
+
+        html += `
+          <section class="content-section">
+            <h2>${section.heading || ""}</h2>
+            <div class="section-content">
+              ${section.content || ""}
+            </div>
+          </section>
+        `;
+      });
+
+    } else {
+      html = "<p>Chưa có nội dung.</p>";
+    }
+
+    dinhhuongduluanArea.innerHTML = html;
+
+    // lưu HTML gốc cho tìm kiếm
+    originalHTML = html;
+
   })
   .catch(err => {
-    dinhhuongduluanTitle.innerHTML = "Lỗi tải văn bản";
-    dinhhuongduluanArea.innerHTML  = "❌ Không tải được nội dung.";
+
+    dinhhuongduluanTitle.innerHTML = "Lỗi tải dữ liệu";
+
+    dinhhuongduluanArea.innerHTML =
+      "<p>❌ Không tải được file JSON.</p>";
+
     console.error(err);
   });
 </script>
