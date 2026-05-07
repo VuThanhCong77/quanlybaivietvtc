@@ -43,7 +43,8 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 .nav-menu.active{left:0;}
 .nav-item{border-bottom:1px solid #eee;}
 .nav-link{
-  display:flex; justify-dinhhuongduluan:space-between;
+  display:flex;
+  justify-content:space-between;
   padding:12px 16px;
   font-weight:600;
   color:#0a3a5a;
@@ -79,6 +80,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 .btn-nav{background:var(--secondary);color:#fff;}
 .btn-nav:disabled{background:#ccc}
 .main-dinhhuongduluan{background:rgba(243, 243, 204, 0.973);}
+
 /* MAIN */
 main{max-width:1200px;margin:0 auto;padding:20px;}
 h2{
@@ -256,7 +258,7 @@ body{
     line-height:1.8;
 }
 
-#text-qd20_2026{
+#text-dinhhuongduluan{
     font-size:20px;
     line-height:1.9;
 }
@@ -388,80 +390,82 @@ let originalHTML = "";
 /* ===== LOAD JSON ===== */
 fetch("dinhhuongduluan.json")
   .then(res => {
-    if (!res.ok) throw new Error("Không tìm thấy file JSON");
+    if (!res.ok) {
+      throw new Error("Không tìm thấy file JSON");
+    }
     return res.json();
   })
+
   .then(data => {
 
     // Tiêu đề
-    dinhhuongduluanTitle.innerHTML = data.title || "Văn bản";
+    dinhhuongduluanTitle.textContent =
+      data.title || "Văn bản";
 
     // Nội dung
     let html = "";
 
     if (data.sections && data.sections.length > 0) {
 
-     data.sections.forEach((section,index) => {
+      data.sections.forEach((section, index) => {
 
-  html += `
-  
-    <section class="content-section ${index===0 ? 'active' : ''}">
+        html += `
+          <section class="content-section ${index === 0 ? 'active' : ''}">
 
-      <div class="section-header">
+            <div class="section-header">
 
-        <h2 class="section-title">
-          ${section.heading || ""}
-        </h2>
+              <h2 class="section-title">
+                ${section.heading || ""}
+              </h2>
 
-        <span class="section-arrow">▼</span>
+              <span class="section-arrow">▼</span>
 
-      </div>
+            </div>
 
-      <div class="section-content">
+            <div class="section-content">
+              ${section.content || ""}
+            </div>
 
-        ${section.content || ""}
-
-      </div>
-
-    </section>
-
-  `;
-});
+          </section>
+        `;
+      });
 
     } else {
+
       html = "<p>Chưa có nội dung.</p>";
     }
 
     dinhhuongduluanArea.innerHTML = html;
 
-    // lưu HTML gốc cho tìm kiếm
+    // Lưu HTML gốc
     originalHTML = html;
+
+    /* ===== ACCORDION ===== */
+    document.querySelectorAll(".section-header")
+      .forEach(header => {
+
+        header.addEventListener("click", () => {
+
+          const section = header.parentElement;
+
+          section.classList.toggle("active");
+
+        });
+
+      });
 
   })
 
-/* ===== ACCORDION ===== */
-
-document.querySelectorAll(".section-header")
-.forEach(header=>{
-
-  header.onclick=function(){
-
-    const section=header.parentElement;
-
-    section.classList.toggle("active");
-
-  };
-
-});
-
   .catch(err => {
 
-    dinhhuongduluanTitle.innerHTML = "Lỗi tải dữ liệu";
+    console.error(err);
+
+    dinhhuongduluanTitle.textContent =
+      "Lỗi tải dữ liệu";
 
     dinhhuongduluanArea.innerHTML =
       "<p>❌ Không tải được file JSON.</p>";
 
-    console.error(err);
   });
 </script>
 
