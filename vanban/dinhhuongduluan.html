@@ -158,33 +158,9 @@ mark{
 
 /* ===== ACCORDION ===== */
 
-.content-section{
-    margin-bottom:15px;
-    background:#fff;
-    border-radius:10px;
-    overflow:hidden;
-    border:1px solid #ddd;
-}
-
-.section-header{
-    background:#eef7fa;
-    padding:16px;
-    cursor:pointer;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
 .section-title{
     margin:0;
     font-size:20px;
-}
-
-.section-content{
-    display:none;
-    padding:20px;
-    border-top:1px solid #eee;
 }
 
 .content-section.active .section-content{
@@ -573,6 +549,9 @@ ${section.content || section.noidung || ''}
 `;
 
 originalHTML = area.innerHTML;
+matches = [];
+currentIndex = -1;
+resultBox.innerHTML = "";
 
 
 /* ACTIVE MENU */
@@ -597,32 +576,21 @@ document
 ====================== */
 
 const searchInput =
-document.getElementById(
-"searchInput"
-);
+document.getElementById("searchInput");
 
 const searchBtn =
-document.getElementById(
-"searchBtn"
-);
+document.getElementById("searchBtn");
 
 const prevBtn =
-document.getElementById(
-"prevBtn"
-);
+document.getElementById("prevBtn");
 
 const nextBtn =
-document.getElementById(
-"nextBtn"
-);
+document.getElementById("nextBtn");
 
 const resultBox =
-document.getElementById(
-"resultBox"
-);
+document.getElementById("resultBox");
 
 let matches = [];
-
 let currentIndex = -1;
 
 
@@ -638,6 +606,10 @@ return text.replace(
 
 
 
+/* ======================
+   SEARCH BUTTON
+====================== */
+
 searchBtn.onclick = () => {
 
 const keyword =
@@ -652,51 +624,66 @@ return;
 
 }
 
+matches = [];
+currentIndex = -1;
 
-/* RESET */
-area.innerHTML =
-originalHTML;
-
-initAccordion();
+let foundSection = -1;
 
 
-/* OPEN ALL */
-document
-.querySelectorAll(
-".content-section"
-)
+/* TÌM TRONG TOÀN BỘ SECTION */
 
-.forEach(section => {
+allSections.forEach((section,index)=>{
 
-section.classList.add(
-"active"
-);
+const html =
+(section.content || section.noidung || "");
+
+if(
+html.toLowerCase()
+.includes(keyword.toLowerCase())
+&& foundSection === -1
+){
+
+foundSection = index;
+
+}
 
 });
 
 
-/* SEARCH */
+if(foundSection === -1){
+
+resultBox.innerHTML =
+"Không tìm thấy";
+
+return;
+
+}
+
+
+/* MỞ SECTION ĐẦU TIÊN TÌM THẤY */
+
+showSection(foundSection);
+
+
+/* HIGHLIGHT */
+
 const regex =
 new RegExp(
 escapeRegExp(keyword),
 "gi"
 );
 
-
-/* HIGHLIGHT */
 area.innerHTML =
 area.innerHTML.replace(
 regex,
-match =>
-`<mark>${match}</mark>`
+match => `<mark>${match}</mark>`
 );
 
 
 /* GET MATCHES */
+
 matches =
-area.querySelectorAll(
-"mark"
-);
+area.querySelectorAll("mark");
 
 
 if(!matches.length){
@@ -716,6 +703,10 @@ updateMatch();
 };
 
 
+
+/* ======================
+   UPDATE MATCH
+====================== */
 
 function updateMatch(){
 
@@ -738,7 +729,6 @@ matches[currentIndex]
 .scrollIntoView({
 
 behavior:"smooth",
-
 block:"center"
 
 });
@@ -751,7 +741,9 @@ resultBox.innerHTML =
 
 
 
-/* NEXT */
+/* ======================
+   NEXT
+====================== */
 
 nextBtn.onclick = () => {
 
@@ -774,7 +766,9 @@ updateMatch();
 
 
 
-/* PREV */
+/* ======================
+   PREV
+====================== */
 
 prevBtn.onclick = () => {
 
@@ -796,7 +790,9 @@ updateMatch();
 
 
 
-/* ENTER */
+/* ======================
+   ENTER
+====================== */
 
 searchInput.addEventListener(
 "keydown",
