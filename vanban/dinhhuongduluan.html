@@ -6,8 +6,6 @@
 
 <title>Định hướng dư luận</title>
 
-<link rel="stylesheet" href="../layout.css">
-
 <style>
 
 body{
@@ -20,7 +18,7 @@ body{
 /* ===== SEARCH ===== */
 
 #search-container{
-    max-width:1500px;
+    max-width:1000px;
     margin:20px auto;
     display:flex;
     gap:8px;
@@ -65,7 +63,7 @@ body{
 /* ===== MAIN ===== */
 
 main{
-    max-width:1500px;
+    max-width:1000px;
     margin:auto;
     padding:20px;
 }
@@ -215,22 +213,11 @@ bottom:80px;
 background:#009688;
 
 }
-.content-section .content-section{
-  margin-top:15px;
-  margin-left:20px;
-  border-left:3px solid #cfe5ec;
-}
+
 </style>
 </head>
 
 <body>
-<div class="page-wrapper">
-<header class="page-header">
-  <h1>
-<a href="index.html" title="Trang chủ">| 🏠 |</a>
-Bảo vệ nền tảng tư tưởng trên không gian mạng
-</h1>
-</header>
 
 <div id="search-container">
 
@@ -280,11 +267,6 @@ Tìm
 onclick="history.back()">
 ←
 </button>
-
-<footer>
-  Nơi truyền cảm hứng và năng lượng sống tích cực!
-</footer>
-</div>
 
 <script>
 
@@ -406,7 +388,17 @@ if(Array.isArray(data.sections)){
 data.sections.forEach(
 section => {
 
-html += createSection(section);
+html += createSection(
+
+section.heading ||
+section.title ||
+"",
+
+section.content ||
+section.noidung ||
+""
+
+);
 
 });
 
@@ -416,7 +408,17 @@ else if(Array.isArray(data)){
 
 data.forEach(item => {
 
-html += createSection(item);
+html += createSection(
+
+item.heading ||
+item.title ||
+"",
+
+item.content ||
+item.noidung ||
+""
+
+);
 
 });
 
@@ -448,55 +450,37 @@ Không tải được JSON
    CREATE SECTION
 ====================== */
 
-function createSection(section){
-
-let childHTML = "";
-
-/* ĐỌC MỤC CON */
-if(
-Array.isArray(section.children)
-&&
-section.children.length
+function createSection(
+title,
+content
 ){
-
-childHTML =
-section.children
-.map(child =>
-createSection(child)
-)
-.join("");
-
-}
 
 return `
 
 <div class="content-section active">
 
-  <div class="section-header">
+<div class="section-header">
 
-    <h2 class="section-title">
-      ${section.heading || section.title || ""}
-    </h2>
+<h2 class="section-title">
+${title}
+</h2>
 
-    <span class="section-arrow">
-      ▼
-    </span>
+<span class="section-arrow">
+▼
+</span>
 
-  </div>
+</div>
 
-  <div class="section-content">
-
-    ${section.content || section.noidung || ""}
-
-    ${childHTML}
-
-  </div>
+<div class="section-content">
+${content}
+</div>
 
 </div>
 
 `;
 
 }
+
 
 
 /* ======================
@@ -506,26 +490,25 @@ return `
 function initAccordion(){
 
 document
-.querySelectorAll(".section-header")
+.querySelectorAll(
+".section-header"
+)
 
 .forEach(header => {
 
-header.onclick = (e) => {
+header.onclick = () => {
 
-  /* CHẶN NỔI BỌT */
-  e.stopPropagation();
-
-  /* CHỈ TOGGLE ĐÚNG MỤC */
-  const section =
-    header.closest(".content-section");
-
-  section.classList.toggle("active");
+header.parentElement
+.classList.toggle(
+"active"
+);
 
 };
 
 });
 
 }
+
 
 
 /* ======================
