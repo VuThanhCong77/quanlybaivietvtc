@@ -48,6 +48,8 @@ body{
   background:#eef5ff;
   color:var(--text);
   line-height:1.6;
+  background-repeat:no-repeat;
+  min-height:100vh;
 }
 
 /* ===== HEADER ===== */
@@ -540,6 +542,8 @@ padding:6px 6px;
 </div>
 </div>
 
+<div class="clock" id="clock"></div>
+
 <div class="top-right">
 <button class="logo" title="Giới thiệu về bản thân">
 <a href="gioithieu.html">
@@ -645,7 +649,7 @@ padding:6px 6px;
 <div class="hero-text">
 <h2 style="color:#7e0721;">Chia sẻ tri thức - Lan tỏa giá trị sống</h2>
 
-<p style="color:#b5c809;">
+<p style="color:#9c0808;">
 Nơi kết nối những điều tốt đẹp, chia sẻ kinh nghiệm sống, truyền cảm hứng tích cực và góp phần xây dựng cộng đồng văn minh, nhân ái, phát triển bền vững.
 </p>
 </div>
@@ -664,10 +668,7 @@ Nơi kết nối những điều tốt đẹp, chia sẻ kinh nghiệm sống, t
 
 <div class="news-list" id="latestNews">
 
-<!-- JS AUTO LOAD -->
-
 </div>
-
 </div>
 
 </section>
@@ -711,6 +712,7 @@ TƯ DUY & TRIẾT LÝ SỐNG</h2>
 </div>
 
  </div>
+
 
 <!-- FEATURE -->
 
@@ -826,22 +828,8 @@ Trong tình hình hiện nay, định hướng dư luận trên không gian mạ
 </div>
 
 <div class="card-content">
-<iframe src="trangphu.html" width="100%" style="border:none;"></iframe>
+<iframe src="trangphu.html" width="100%" height="680" style="border:none;"></iframe>
 </div>
-</section>
-
-<!-- YOUTUBE -->
-
-<section class="card">
-
-<div class="card-title">
-🎥 Youtube
-</div>
-
-  <div class="card-content">
-    <iframe src="https://www.youtube.com/embed/ryRBFmn6b0c" width="100%" title="Youtube" allowfullscreen></iframe>
-  </div>
-
 </section>
 
 <!-- UTILITIES -->
@@ -879,6 +867,11 @@ Trong tình hình hiện nay, định hướng dư luận trên không gian mạ
 <p class="justified"; style="color:#074090">
 Kết nối yêu thương và lan tỏa những giá trị sống tích cực vì cộng đồng tốt đẹp hơn.
 </p>
+
+<p style="color:#b30000;">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/gioithieu.html"><b>🌱 Câu chuyện về một con người sinh ra từ gian khó, lớn lên bằng ý chí và trưởng thành trong niềm tin yêu của Nhân dân. Một con người bền bỉ, chân thành và trách nhiệm với quê hương ...→</b></a>
+</p>
+
 </div>
 
 </section>
@@ -1019,10 +1012,6 @@ Kết nối yêu thương và lan tỏa những giá trị sống tích cực v�
 <img src="anhnen/cong77.jpg">
 </div>
 
-<div class="img-giua"> 
-<img src="anhvietbai/ranhomang.png">
-</div>
-
 </div>
 </div>
 
@@ -1064,12 +1053,6 @@ Kết nối yêu thương và lan tỏa những giá trị sống tích cực v�
 
 <div class="img-giua">
 <img src="images/qrvtc.png" alt="">
-</div>
-
-<div class="card">
-<p style="color:#b30000;">
-<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/gioithieu.html">🌱 Câu chuyện về một con người sinh ra từ gian khó, lớn lên bằng ý chí và trưởng thành trong niềm tin yêu của Nhân dân. Một con người bền bỉ, chân thành và trách nhiệm với quê hương ...→</a>
-</p>
 </div>
 
 </aside>
@@ -1158,16 +1141,18 @@ Xin chào và cảm ơn bạn đã ghé thăm!
 
 /* BACK TO TOP */
 
-window.onscroll = function(){
+window.addEventListener("scroll", function(){
 
-const btn = document.getElementById('topBtn');
+const btn = document.getElementById("topBtn");
+
+if(!btn) return;
 
 btn.style.display =
-document.documentElement.scrollTop > 300
-? 'block'
-: 'none';
+window.scrollY > 300
+? "block"
+: "none";
 
-};
+});
 
 function scrollToTop(){
 
@@ -1231,10 +1216,13 @@ async function loadLatestNews(){
 try{
 
 const response =
-await fetch('posts_data.json');
+await fetch('./posts_data.json?v=' + Date.now());
 
-const posts =
-await response.json();
+if(!response.ok){
+  throw new Error("Không tìm thấy posts_data.json");
+}
+
+const posts = await response.json();
 
 /* Lọc danh mục */
 
@@ -1314,7 +1302,7 @@ document.getElementById('latestNews').innerHTML = `
 
 /* INIT */
 
-window.onload = ()=>{
+window.addEventListener("load", ()=>{
 
 const saved = localStorage.getItem('savedBg');
 
@@ -1329,7 +1317,7 @@ if(saved){
 
 loadLatestNews();
 
-};
+});
 
 </script>
 
@@ -1394,6 +1382,8 @@ likeBtn.addEventListener("click", function () {
 </script>
 
 <script>
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+
 const postId = "page_index"; 
 const viewCount = document.getElementById("viewCount");
 
@@ -1439,75 +1429,36 @@ updateViews();
 </script>
 
 <script>
-/* ===============================
-   LOAD BÀI VIẾT MỚI NHẤT (DẠNG LIST)
-   =============================== */
-
-const JSON_URL = 'posts_data.json';
-
-async function fetchPosts(){
-  try{
-    const res = await fetch(JSON_URL);
-    if(!res.ok) throw new Error("Không tải được posts_data.json");
-    return await res.json();
-  }catch(e){
-    console.error("Lỗi tải bài viết:", e);
-    return [];
-  }
-}
-
-async function loadRecentPosts(){
-  const posts = await fetchPosts();
-  const box = document.getElementById("recent-posts-list");
-  if(!box) return;
-
-  const valid = posts
-    .filter(p =>
-      p.category === "tintuc" ||
-      p.category === "baiviet" ||
-      p.category === "suckhoe"
-    )
-    .sort((a,b) => b.id - a.id)
-    .slice(0,18);   // Số lượng tin mới
-
-  if(!valid.length){
-    box.innerHTML =
-      '<p style="text-align:center;color:#777">Chưa có dữ liệu bài viết.</p>';
-    return;
-  }
-
-  box.innerHTML = "";
-
-  valid.forEach(p=>{
-    box.insertAdjacentHTML("beforeend", `
-      <div class="news-item">
-        <img src="${p.thumbnail || 'images/vutrong.jpg'}" alt="">
-        <div>
-          <a href="post.html?id=${p.id}">
-            ${p.title}
-          </a>
-          <div class="news-date">${p.date || ""}</div>
-        </div>
-      </div>
-    `);
-  });
-}
-
-/* ===============================
-   TỔNG SỐ BÀI VIẾT
-   =============================== */
 async function tongTatCaBaiViet(){
+
   try{
-    const posts = await fetchPosts();
-    document.getElementById("tong-bai-viet").innerText = posts.length;
+
+    const res = await fetch('./posts_data.json?v=' + Date.now());
+
+    if(!res.ok){
+      throw new Error("Không tải được posts_data.json");
+    }
+
+    const posts = await res.json();
+
+    const el = document.getElementById("tong-bai-viet");
+
+    if(el){
+      el.innerText = posts.length;
+    }
+
   }catch(e){
-    console.error(e);
+
+    console.error("Lỗi tổng bài viết:", e);
+
   }
+
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
-  loadRecentPosts();
+
   tongTatCaBaiViet();
+
 });
 </script>
 
