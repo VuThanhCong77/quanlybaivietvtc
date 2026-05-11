@@ -7,6 +7,7 @@ body{
   font-family: Arial, sans-serif;
   color: #033e5a;
   line-height: 1.6;
+  background:linear-gradient(to bottom,#f3f8ff,#eef5ff);
 
   /* ẢNH NỀN CHUNG TOÀN SITE */
     background:
@@ -384,7 +385,7 @@ footer{
 }
 .content-wrapper{
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 2.5fr 1fr;
 }
 /* ===============================
    TỐI ƯU KHOẢNG CÁCH HEADER - MAIN
@@ -416,7 +417,7 @@ footer{
 /* GRID 2 CỘT */
 .main-grid{
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 2.5fr 1fr;
   gap: 16px;
   align-items: start;
 }
@@ -634,4 +635,83 @@ a{
   padding: 6px 12px;
   border-radius: 6px;
   transition: 0.25s;
+}
+
+/* ===== QUICK LINKS GRID ===== */
+
+.quick-links{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.quick-links a{
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+
+min-height:72px;
+padding:12px;
+
+background:linear-gradient(
+135deg,
+#f8fbff,
+#eef5ff
+);
+
+border:1px solid #dbeafe;
+border-radius:14px;
+
+text-decoration:none;
+color:#0d47a1;
+
+font-size:14px;
+font-weight:600;
+
+transition:.3s;
+box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.quick-links a:hover{
+transform:translateY(-4px);
+background:linear-gradient(
+135deg,
+#1565c0,
+#1e88e5
+);
+
+color:#fff;
+
+box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+/* ===== CARD ===== */
+
+.card{
+  background:var(--white);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.card-title{
+background:#0d72c5;
+color:#ffffff;
+padding:10px 16px;
+font-size:17px;
+font-weight:600;
+letter-spacing:.3px;
+}
+
+.card-content{
+  padding:20px;
+}
+
+.card{
+transition:.3s;
+}
+
+.card:hover{
+box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
