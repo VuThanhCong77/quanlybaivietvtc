@@ -3,70 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đọc văn bản PDF</title>
+
+<title>Sách PDF lật trang</title>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Turn.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
 
 <style>
+
 body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#f4f6f9;
+    margin:0;
+    background:#555;
+    font-family:Arial;
+    overflow:hidden;
 }
 
+/* HEADER */
 header{
-  background:#b30000;
-  color:white;
-  padding:12px;
-  text-align:center;
-  font-size:18px;
-  font-weight:bold;
+    background:#8b0000;
+    color:white;
+    padding:12px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
 }
 
+/* THANH CHỌN */
 .toolbar{
-  background:#fff;
-  padding:10px;
-  border-bottom:1px solid #ddd;
+    background:white;
+    padding:10px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    border-bottom:1px solid #ccc;
 }
 
 select{
-  padding:6px 10px;
-  font-size:14px;
+    padding:8px;
+    font-size:15px;
 }
 
-.open-btn{
-  text-align:center;
-  padding:10px;
-  background:#fff;
-  border-bottom:1px solid #ddd;
+button{
+    padding:8px 14px;
+    border:none;
+    background:#8b0000;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
 }
 
-.open-btn a{
-  background:#b30000;
-  color:#fff;
-  padding:8px 14px;
-  text-decoration:none;
-  border-radius:5px;
+/* KHU SÁCH */
+#book-container{
+    width:100%;
+    height:calc(100vh - 110px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.pdf-container{
-  width:100%;
-  height:calc(100vh - 160px);
+/* QUYỂN SÁCH */
+#flipbook{
+    width:1200px;
+    height:800px;
 }
 
-iframe{
-  width:100%;
-  height:100%;
-  border:none;
+/* TRANG */
+.page{
+    background:white;
+    overflow:hidden;
 }
+
+/* CANVAS PDF */
+.page canvas{
+    width:100%;
+    height:100%;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>VĂN BẢN PDF</header>
+<header>📖 TỦ SÁCH ĐIỆN TỬ</header>
 
 <div class="toolbar">
-  Chọn văn bản:
-  <select onchange="loadPDF(this.value)">
+
+<select id="pdfSelect">
+
 <option value="pdf/ytuonghay.pdf">Ý tưởng hay</option>
  <option value="pdf/Qd20thihanhdieuledang2026.pdf">Quy định 20 thi hành Điều lệ Đảng</option>
  <option value="pdf/qd21ktgs.pdf">Quy định 21 về kiểm tra, giám sát</option>
@@ -74,30 +103,97 @@ iframe{
  <option value="pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường Lưu Kiếm lần I</option>
  <option value="pdf/Qd19chinhtritutuong.pdf">Quy định 19 về chính trị, tư tưởng</option>
  <option value="../sach_hay/triethocmaclenin.pdf">Triết học Mác Lênin</option>
-    <option value="pdf/xhcnhp.pdf">Nghị quyết xây dựng XHCN</option>
-    <option value="pdf/nq08chuyendoixanh.pdf">Nghị quyết chuyển đổi xanh</option>
-    <option value="pdf/Lich su Luu Ky_A5.pdf">Lưu Kỳ những chặng đường lịch sử</option>
-  </select>
+<option value="pdf/xhcnhp.pdf">Nghị quyết xây dựng XHCN</option>
+<option value="pdf/nq08chuyendoixanh.pdf">Nghị quyết chuyển đổi xanh</option>
+<option value="pdf/Lich su Luu Ky_A5.pdf">Lưu Kỳ những chặng đường lịch sử</option>
+
+</select>
+
+<button onclick="loadBook()">
+Mở sách
+</button>
+
+<button onclick="$('#flipbook').turn('previous')">
+⬅ Trang trước
+</button>
+
+<button onclick="$('#flipbook').turn('next')">
+Trang sau ➡
+</button>
+
 </div>
 
-<div class="open-btn">
-  <a id="openPDF" target="_blank">Mở PDF toàn màn hình</a>
-</div>
-
-<div class="pdf-container">
-  <iframe id="pdfViewer"></iframe>
+<div id="book-container">
+    <div id="flipbook"></div>
 </div>
 
 <script>
-function loadPDF(file){
-  document.getElementById("pdfViewer").src = file;
-  document.getElementById("openPDF").href = file;
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+async function loadBook(){
+
+    const pdfFile =
+        document.getElementById("pdfSelect").value;
+
+    const flipbook =
+        document.getElementById("flipbook");
+
+    flipbook.innerHTML = "";
+
+    const pdf =
+        await pdfjsLib.getDocument(pdfFile).promise;
+
+    for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++){
+
+        const page =
+            await pdf.getPage(pageNum);
+
+        const viewport =
+            page.getViewport({scale:1.5});
+
+        const canvas =
+            document.createElement("canvas");
+
+        const context =
+            canvas.getContext("2d");
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        await page.render({
+            canvasContext:context,
+            viewport:viewport
+        }).promise;
+
+        const div =
+            document.createElement("div");
+
+        div.className = "page";
+
+        div.appendChild(canvas);
+
+        flipbook.appendChild(div);
+    }
+
+    // Khởi tạo hiệu ứng lật sách
+    $("#flipbook").turn({
+
+        width:1200,
+        height:800,
+
+        autoCenter:true,
+
+        gradients:true,
+
+        elevation:50
+
+    });
 }
 
-window.onload = function(){
-  const firstFile = document.querySelector("select").value;
-  loadPDF(firstFile);
-}
+window.onload = loadBook;
+
 </script>
 
 </body>
