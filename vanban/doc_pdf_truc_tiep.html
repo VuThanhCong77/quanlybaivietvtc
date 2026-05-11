@@ -85,6 +85,29 @@ button{
     height:100%;
 }
 
+/* MOBILE */
+@media(max-width:768px){
+
+    #flipbook{
+        width:95vw !important;
+        height:70vh !important;
+    }
+
+    .page{
+        background:white;
+    }
+
+    canvas{
+        width:100% !important;
+        height:100% !important;
+        object-fit:contain;
+    }
+
+    body{
+        overflow:hidden;
+        touch-action:pan-y;
+    }
+}
 </style>
 </head>
 
@@ -196,5 +219,51 @@ window.onload = loadBook;
 
 </script>
 
+<script>
+
+// =======================
+// VUỐT TAY MOBILE
+// =======================
+
+let startX = 0;
+let endX = 0;
+
+const flipbook =
+    document.getElementById("flipbook");
+
+// Khi chạm tay
+flipbook.addEventListener("touchstart", function(e){
+
+    startX = e.changedTouches[0].screenX;
+
+}, {passive:true});
+
+// Khi nhấc tay
+flipbook.addEventListener("touchend", function(e){
+
+    endX = e.changedTouches[0].screenX;
+
+    handleSwipe();
+
+}, {passive:true});
+
+function handleSwipe(){
+
+    const distance = endX - startX;
+
+    // Vuốt sang trái → Trang tiếp
+    if(distance < -50){
+
+        $("#flipbook").turn("next");
+    }
+
+    // Vuốt sang phải → Trang trước
+    if(distance > 50){
+
+        $("#flipbook").turn("previous");
+    }
+}
+
+</script>
 </body>
 </html>
