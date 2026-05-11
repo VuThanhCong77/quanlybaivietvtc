@@ -45,7 +45,7 @@ html{
 
 body{
   font-family:Arial, Helvetica, sans-serif;
-  background:#eef5ff;
+  background:linear-gradient(to bottom,#f3f8ff,#eef5ff);
   color:var(--text);
   line-height:1.6;
   background-repeat:no-repeat;
@@ -230,11 +230,10 @@ main{
 }
 
 .card-title{
-  padding:6px 10px;
-  background:linear-gradient(90deg,var(--main2),var(--main));
-  color:#fff;
-  font-size:18px;
-  font-weight:bold;
+padding:10px 16px;
+font-size:17px;
+font-weight:600;
+letter-spacing:.3px;
 }
 
 .card-content{
@@ -350,6 +349,63 @@ main{
   color:#0d47a1;
 }
 
+/* ===== QUICK LINKS GRID ===== */
+
+.quick-links{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.quick-links a{
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+
+min-height:72px;
+padding:12px;
+
+background:linear-gradient(
+135deg,
+#f8fbff,
+#eef5ff
+);
+
+border:1px solid #dbeafe;
+border-radius:14px;
+
+text-decoration:none;
+color:#0d47a1;
+
+font-size:14px;
+font-weight:600;
+
+transition:.3s;
+box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.quick-links a:hover{
+transform:translateY(-4px);
+background:linear-gradient(
+135deg,
+#1565c0,
+#1e88e5
+);
+
+color:#fff;
+
+box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+@media(max-width:768px){
+
+.quick-links{
+grid-template-columns:1fr;
+}
+
+}
+
 .side-img{
   width:100%;
   border-radius:14px;
@@ -370,6 +426,10 @@ main{
   background:var(--main);
   color:#fff;
   cursor:pointer;
+}
+
+.utility button:hover{
+transform:translateY(-2px);
 }
 
 /* ===== FOOTER ===== */
@@ -520,6 +580,57 @@ padding:6px 6px;
 /* Hover */
 .dropdown-box select:hover{
     border-color:#b71c1c;
+}
+
+/* ===== PHẦN BỔ SUNG ===== */
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+}
+
+.hero-text{
+z-index:2;
+}
+
+.news-item{
+border:none;
+box-shadow:0 3px 10px rgba(0,0,0,.06);
+}
+
+.news-item:hover{
+transform:translateY(-6px);
+box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+
+.news-body h3{
+line-height:1.4;
+color:#0d47a1;
+}
+
+.feature-box{
+transition:.35s;
+}
+
+.feature-box:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 22px rgba(0,0,0,.1);
+}
+
+.feature-box img{
+width:100%;
+border-radius:12px;
+margin:10px 0;
+}
+
+.card{
+transition:.3s;
+}
+
+.card:hover{
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
 }
 
 </style>
@@ -992,19 +1103,11 @@ Kết nối yêu thương và lan tỏa những giá trị sống tích cực v�
 <div class="card-content">
 
 <div class="img-giua"> 
-<img src="tinanh/tinanh (9).jpg">
-</div>
-
-<div class="img-giua"> 
 <img src="tinanh/H (1).jpg">
 </div>
 
 <div class="img-giua"> 
 <img src="tinanh/luuky (24).jpg">
-</div>
-
-<div class="img-giua"> 
-<img src="tinanh/tinanh (13).jpg">
 </div>
 
 <div class="img-giua"> 
@@ -1014,22 +1117,49 @@ Kết nối yêu thương và lan tỏa những giá trị sống tích cực v�
 </div>
 </div>
 
-<div class="card">
-<div class="card-title">
+<div class="grid">
+<div class="grid-title">
 🌐 Liên kết nhanh
 </div>
 
 <div class="card-content">
 
-<li><a href="https://dichvucong.dcs.vn/web/home">🔴 Hành chính của Đảng</a></li>
-<li><a href="https://ubkttw.vn/">🔍 UBKT TW</a></li>
-<li><a href="https://chinhphu.vn//">🏢 Chính phủ</a></li>
-<li><a href="https://haiphong.dcs.vn/">🏢 Thành ủy Hải Phòng</a></li>
-<li><a href="https://dichvucong.gov.vn/">🧾 Dịch vụ công</a></li>
-<li><a href="https://bandoso.haiphong.gov.vn/">🏞 Bản đồ Hải Phòng</a></li>
-<li><a href="https://daotaotructuyen.haiphong.gov.vn/">💻 Kỹ năng số</a></li>
-<li><a href="vanban/HuongdanSD.html">📘 Hướng dẫn sử dụng</a></li>
+<div class="quick-links">
+
+<a href="https://dichvucong.dcs.vn/web/home">
+🔴 Hành chính Đảng
+</a>
+
+<a href="https://ubkttw.vn/">
+🔍 UBKT Trung ương
+</a>
+
+<a href="https://chinhphu.vn/">
+🏢 Chính phủ
+</a>
+
+<a href="https://haiphong.dcs.vn/">
+🏛 Thành ủy Hải Phòng
+</a>
+
+<a href="https://dichvucong.gov.vn/">
+🧾 Dịch vụ công
+</a>
+
+<a href="https://bandoso.haiphong.gov.vn/">
+🗺 Bản đồ Hải Phòng
+</a>
+
+<a href="https://daotaotructuyen.haiphong.gov.vn/">
+💻 Kỹ năng số
+</a>
+
+<a href="vanban/HuongdanSD.html">
+📘 Hướng dẫn
+</a>
+
 </div>
+
 </div>
 
 <div class="card">
@@ -1086,7 +1216,7 @@ Facebook
 </div>
 
 <div class="copy">
-© 2026 - Vũ Thành Công | Phát triển vì cộng đồng
+© 2026 Vũ Thành Công • Lan tỏa tri thức và giá trị sống tích cực
 </div>
 
 </footer>
@@ -1244,9 +1374,9 @@ filtered.sort((a,b)=>
 new Date(b.date) - new Date(a.date)
 );
 
-/* Lấy 9 bài */
+/* Lấy 6 bài */
 
-const latest = filtered.slice(0,9);
+const latest = filtered.slice(0,6);
 
 let html = '';
 

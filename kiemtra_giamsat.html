@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- CSS DÙNG CHUNG -->
-<link rel="stylesheet" href="layout.css">
-
 <title>Kiểm tra của Đảng</title>
 
 <!-- Open Graph chuẩn cho Facebook & Zalo -->
@@ -27,361 +24,590 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
 <style>
 
-body{
-font-family: Arial, Helvetica, sans-serif;
-margin:0;
-line-height:1.6;
+:root{
+  --primary:#8b0000;
+  --primary2:#b91c1c;
+  --accent:#0f766e;
+
+  --bg:#f4f7fb;
+  --card:#ffffffee;
+
+  --text:#1f2937;
+  --muted:#6b7280;
+
+  --shadow:
+      0 10px 30px rgba(0,0,0,.08);
+
+  --radius:24px;
 }
 
-/* Header */
+/* RESET */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+
+  background:
+      linear-gradient(
+          rgba(255,255,255,.90),
+          rgba(255,255,255,.93)
+      ),
+      url("images/bg-dang.jpg")
+      center/cover fixed;
+
+  color:var(--text);
+
+  line-height:1.8;
+}
+
+/* ===== HEADER ===== */
 
 .header{
-background:#0099DA;
-color:white;
-text-align:center;
-padding:18px 10px;
+  position:sticky;
+  top:0;
+  z-index:999;
+
+  backdrop-filter:blur(12px);
+
+  background:
+      linear-gradient(
+          135deg,
+          rgba(139,0,0,.92),
+          rgba(120,0,0,.88)
+      );
+
+  padding:22px 15px 18px;
+
+  text-align:center;
+
+  box-shadow:
+      0 4px 20px rgba(0,0,0,.12);
 }
 
 .header h1{
-margin:0;
-font-size:22px;
+  margin:0;
+
+  font-size:32px;
+  font-weight:700;
+
+  color:#fff;
+
+  letter-spacing:.5px;
 }
 
-.header p{
-margin:5px 0 0;
-font-size:16px;
+.header h1 a{
+  color:#fff;
+  text-decoration:none;
 }
 
-/* menu */
+/* ===== MENU DESKTOP ===== */
+
+.nav-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+
+  gap:12px;
+
+  padding:14px 10px 2px;
+}
+
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+
+  padding:9px 16px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.10);
+
+  transition:.3s;
+
+  font-size:15px;
+  font-weight:600;
+}
+
+.nav-links a:hover{
+  background:rgba(255,255,255,.22);
+  transform:translateY(-2px);
+}
+
+/* ===== MENU CHUYÊN ĐỀ ===== */
 
 .menu{
-background:#8B0000;
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
+  max-width:1200px;
+
+  margin:18px auto 10px;
+
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+
+  gap:12px;
+
+  padding:0 15px;
 }
 
 .menu a{
-color:white;
-padding:6px 12px;
-text-decoration:none;
-font-weight:bold;
+  text-decoration:none;
+
+  color:#fff;
+
+  background:
+      linear-gradient(
+          135deg,
+          #b91c1c,
+          #7f1d1d
+      );
+
+  padding:10px 18px;
+
+  border-radius:999px;
+
+  font-weight:600;
+
+  transition:.3s;
+
+  box-shadow:
+      0 4px 12px rgba(0,0,0,.08);
 }
 
 .menu a:hover{
-background:#b30000;
+  transform:translateY(-3px);
+  opacity:.92;
 }
 
-/* container */
+/* ===== ACTION BAR ===== */
 
-.container{
-max-width:1500px;
-margin:auto;
-padding:20px;
+.action-bar{
+  max-width:1200px;
+
+  margin:20px auto 10px;
+
+  padding:0 20px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:12px;
 }
 
-/* section */
+.like-box button,
+.share-btn,
+.view-box{
+  border:none;
 
-.section{
-background:white;
-padding:12px;
-margin-bottom:20px;
-border-radius:6px;
-box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  padding:11px 18px;
+
+  border-radius:999px;
+
+  font-size:14px;
+  font-weight:600;
 }
 
-.section h2{
-border-left:5px solid #b30000;
-padding-left:10px;
-color:#b30000;
-}
+.like-box button{
+  background:#ecfeff;
+  color:#0f766e;
 
-/* list */
-
-.section ul{
-padding-left:20px;
-}
-
-.section li{
-margin-bottom:8px;
-}
-
-/* grid */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:15px;
-}
-
-.card{
-background:#fafafa;
-padding:12px;
-border-radius:6px;
-border:1px solid #ddd;
-}
-
-.card:hover{
-background:#fff7f7;
-}
-
-/* footer */
-.footer{
-background:#0099DA;
-color:white;
-text-align:center;
-padding:12px 12px;
-margin-top:30px;
-}
-
-/* NÚT LÊN ĐẦU TRANG */
-#backToTop{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 42px;
-  height: 42px;
-  border: none;
-  border-radius: 50%;
-  background: #0b4ea2;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  display: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  z-index: 9999;
-}
-
-#backToTop:hover{
-  background: #199586;
-}
-/* KHỐI CHIA SẺ */
-.share-box{
-  margin: 15px 0 25px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  font-size: 14px;
+  cursor:pointer;
 }
 
 .share-btn{
-  padding: 6px 14px;
-  border-radius: 20px;
-  text-decoration: none;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
+  background:#eff6ff;
+  color:#1d4ed8;
+
+  cursor:pointer;
 }
+
+.view-box{
+  background:#fef2f2;
+  color:#991b1b;
+}
+
+/* ===== DROPDOWN ===== */
+
+.dropdown-box{
+  max-width:1200px;
+
+  margin:0 auto 20px;
+
+  padding:0 20px;
+}
+
+.dropdown-box select{
+  width:100%;
+
+  padding:15px 18px;
+
+  border:none;
+  border-radius:18px;
+
+  background:#fff;
+
+  font-size:15px;
+
+  box-shadow:var(--shadow);
+
+  outline:none;
+
+  transition:.3s;
+}
+
+.dropdown-box select:focus{
+  box-shadow:
+      0 0 0 3px rgba(185,28,28,.15);
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+  max-width:1300px;
+
+  margin:auto;
+
+  padding:15px 20px 60px;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+  background:rgba(255,255,255,.72);
+
+  backdrop-filter:blur(8px);
+
+  border-radius:var(--radius);
+
+  padding:28px;
+
+  margin-bottom:30px;
+
+  box-shadow:var(--shadow);
+
+  border:1px solid rgba(255,255,255,.4);
+}
+
+.section h2{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  font-size:28px;
+
+  color:var(--primary);
+
+  margin-bottom:22px;
+
+  position:relative;
+}
+
+.section h2::after{
+  content:"";
+
+  position:absolute;
+  left:0;
+  bottom:-10px;
+
+  width:90px;
+  height:4px;
+
+  border-radius:10px;
+
+  background:
+      linear-gradient(
+          90deg,
+          #b91c1c,
+          #ef4444
+      );
+}
+
+/* ===== TEXT ===== */
 
 p{
   text-align:justify;
-  text-indent:1cm;
+  text-indent:2em;
+
+  margin-bottom:16px;
+
+  color:#374151;
+
+  font-size:17px;
+}
+
+/* ===== GRID ===== */
+
+.grid{
+  display:grid;
+
+  grid-template-columns:
+      repeat(auto-fit,minmax(320px,1fr));
+
+  gap:24px;
+}
+
+/* ===== CARD ===== */
+
+.card{
+  background:#fff;
+
+  border-radius:22px;
+
+  overflow:hidden;
+
+  padding:18px;
+
+  box-shadow:
+      0 8px 25px rgba(0,0,0,.06);
+
+  transition:.35s;
+
+  border:1px solid #f3f4f6;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+
+  box-shadow:
+      0 18px 35px rgba(0,0,0,.10);
 }
 
 .card a{
-   text-decoration: none;
+  text-decoration:none;
+
+  color:var(--primary);
+
+  font-weight:700;
+
+  line-height:1.7;
+
+  transition:.3s;
 }
 
-strong a{
-   text-decoration: none;
+.card a:hover{
+  color:#dc2626;
 }
+
+/* ===== IMAGE ===== */
 
 .image-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:10px;
-  margin-top:15px;
+  margin-top:14px;
 }
 
 .image-grid img{
   width:100%;
-  border-radius:8px;
+
+  border-radius:18px;
+
+  object-fit:cover;
+
+  transition:.4s;
+
+  box-shadow:
+      0 6px 18px rgba(0,0,0,.10);
 }
 
-/* Nút Thích - Copy -xem trang */
-.action-bar{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 10px 0 15px 0;
-  flex-wrap: wrap;
+.card:hover img{
+  transform:scale(1.03);
 }
 
-.like-box button,
-.share-btn{
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #d607a2;
-  background: #14cec4;
-  cursor: pointer;
-}
+/* ===== FOOTER ===== */
 
-.like-box button:hover,
-.share-btn:hover{
-  background: #20e007;
-}
+.footer{
+  margin-top:50px;
 
-.view-box{
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #0ea5a4;
-  background: #e0f7f6;
-  font-size: 14px;
-}
+  background:
+      linear-gradient(
+          135deg,
+          #7f1d1d,
+          #450a0a
+      );
 
-/* Nút floating quay lại */
-.floating-back{
-    position:fixed;
-    top:20px;
-    right:20px;
-    width:50px;
-    height:50px;
-
-    border:none;
-    border-radius:50%;
-    background:linear-gradient(135deg,#aeb107,#9a9c06);
-    color:white;
-
-    font-size:24px;
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    box-shadow:0 6px 18px rgba(0,0,0,0.25);
-
-    z-index:9999;
-
-    transition:all 0.3s ease;
-}
-
-/* Hover desktop */
-.floating-back:hover{
-    transform:translateY(-3px) scale(1.08);
-    background:linear-gradient(135deg,#175fe4,#032a80);
-}
-
-/* Khi nhấn */
-.floating-back:active{
-    transform:scale(0.92);
-}
-
-/* Mobile tối ưu */
-@media(max-width:768px){
-    .floating-back{
-        width:45px;
-        height:45px;
-        font-size:20px;
-        top:15px;
-        right:15px;
-    }
-}
-
-.view-box{
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #0ea5a4;
-  background: #e0f7f6;
-  font-size: 14px;
-}
-
-.dropdown-box{
-    background:#fff;
-    border-radius:12px;
-    padding:12px;
-    margin:10px 0;
-    box-shadow:0 3px 8px rgba(0,0,0,0.1);
-}
-
-.dropdown-title{
-    font-weight:bold;
-    margin-bottom:8px;
-    color:#b71c1c;
-}
-
-/* Select đẹp hơn */
-.dropdown-box select{
-    width:100%;
-    padding:10px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:14px;
-    cursor:pointer;
-    transition:0.2s;
-    appearance:none;
-    background:url('https://cdn-icons-png.flaticon.com/512/32/32195.png') no-repeat right 10px center;
-    background-size:12px;
-}
-
-.dropdown-box select:focus{
-    outline:none;
-    border-color:#b71c1c;
-    box-shadow:0 0 5px rgba(183,28,28,0.3);
-}
-	
-/* Hover */
-.dropdown-box select:hover{
-    border-color:#b71c1c;
-}
-
-</style>
-<style>
-/* MENU NGANG DESKTOP */
-.nav-links{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  padding:8px 0;
-  background:rgba(255,255,255,.15);
-}
-.nav-links a{
   color:#fff;
-  text-decoration:none;
+
+  text-align:center;
+
+  padding:35px 20px;
+
+  font-size:17px;
+  letter-spacing:.5px;
+}
+
+/* ===== BACK TO TOP ===== */
+
+#backToTop{
+  position:fixed;
+
+  bottom:22px;
+  right:22px;
+
+  width:55px;
+  height:55px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+      linear-gradient(
+          135deg,
+          #dc2626,
+          #991b1b
+      );
+
+  color:#fff;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  display:none;
+
+  z-index:9999;
+
+  box-shadow:
+      0 10px 22px rgba(0,0,0,.18);
+
+  transition:.3s;
+}
+
+#backToTop:hover{
+  transform:translateY(-5px);
+}
+
+/* ===== FLOATING BACK ===== */
+
+.floating-back{
+  position:fixed;
+
+  top:18px;
+  right:18px;
+
+  width:50px;
+  height:50px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+      linear-gradient(
+          135deg,
+          #2563eb,
+          #1d4ed8
+      );
+
+  color:#fff;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  z-index:9999;
+
+  box-shadow:
+      0 8px 20px rgba(0,0,0,.18);
+
+  transition:.3s;
+}
+
+.floating-back:hover{
+  transform:scale(1.08);
+}
+
+/* ===== TOOLTIP ===== */
+
+.tooltip{
+  position:relative;
+}
+
+.tooltip .tooltip-text{
+  visibility:hidden;
+
+  position:absolute;
+
+  top:120%;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:#111827;
+  color:#fff;
+
+  padding:8px 12px;
+
+  border-radius:10px;
+
+  font-size:13px;
+
+  opacity:0;
+
+  transition:.3s;
+
   white-space:nowrap;
 }
-@media(max-width:991px){
-  .nav-links{display:none}
+
+.tooltip:hover .tooltip-text{
+  visibility:visible;
+  opacity:1;
 }
 
-/* MENU */
-.nav-links a,
-.logo span{
-  color:#ffffff;
-  font-weight:600;
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+  /* ẨN MENU MOBILE */
+
+  .nav-links,
+  .menu{
+    display:none !important;
+  }
+
+  .header{
+    padding:18px 12px 16px;
+  }
+
+  .header h1{
+    font-size:24px;
+    line-height:1.5;
+  }
+
+  .section{
+    padding:22px 18px;
+    border-radius:20px;
+  }
+
+  .section h2{
+    font-size:22px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  p{
+    font-size:16px;
+  }
+
+  .floating-back{
+    width:45px;
+    height:45px;
+    font-size:20px;
+  }
+
+  #backToTop{
+    width:50px;
+    height:50px;
+  }
+
 }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.tooltip .tooltip-text {
-  visibility: hidden;
-  width: auto;
-  background-color: #727e05;
-  color: #fff;
-  text-align: center;
-  padding: 5px;
-  border-radius: 6px;
-
-  position: absolute;
-  bottom: -150%; /* hiện phía dưới */
-  left: 100%;
-  transform: translateX(-50%);
-  z-index: 1;
-
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.tooltip:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
-}
 </style>
 
 </head>
@@ -391,19 +617,8 @@ strong a{
 <div class="header">
 <h1>
 <a href="index.html" title="Trang chủ"> 🏠</a>
-Kiểm tra, giám sát của Đảng </h1>
+Kiểm tra, giám sát</h1>
 </div>
-
-<div class="nav-links">
-        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
-	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
-        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
-	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
-        <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
-        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
-	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
-      	</div>
-
 
 <div class="menu">
 <a href="#gioithieu">Giới thiệu</a>
@@ -431,6 +646,30 @@ Kiểm tra, giám sát của Đảng </h1>
 </div>
 
 <div class="dropdown-box">
+
+<div style="
+max-width:1200px;
+margin:0 auto 25px;
+padding:0 20px;
+">
+
+<div style="
+background:rgba(255,255,255,.72);
+backdrop-filter:blur(8px);
+padding:24px;
+border-radius:24px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+line-height:1.9;
+color:#374151;
+">
+
+⚖️ Chuyên đề Kiểm tra, giám sát của Đảng là không gian tổng hợp văn bản,
+nghiệp vụ, kinh nghiệm thực tiễn và thông tin chuyên sâu phục vụ công tác xây dựng Đảng,
+góp phần nâng cao hiệu lực, hiệu quả kiểm tra, giám sát và giữ vững kỷ luật, kỷ cương của Đảng.
+
+</div>
+</div>
+
 <select onchange="goPage(this)">
  <option value="">-- Chọn chuyên đề --</option>
 <option value="vanban/dieuledang.html">📕 Điều lệ Đảng</option>

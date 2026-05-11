@@ -4,11 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- CSS DÙNG CHUNG -->
-<link rel="stylesheet" href="layout.css">
-
 <title>Sức khỏe</title>
-
 
 <!-- Open Graph chuẩn cho Facebook & Zalo -->
 <meta property="og:type" content="article">
@@ -28,10 +24,19 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Roboto,Arial,sans-serif;color:#333}
+
+body{
+  margin:0;
+  font-family:Roboto,Arial,sans-serif;
+
+  color:#334155;
+
+  background:
+  linear-gradient(to bottom,#f8fafc,#eef7f6);
+}
 
 header{
-background:#0099DA;
+background:linear-gradient(135deg,#0f766e,#115e59);
 color:white;
 padding:12px 6px;
 text-align:center
@@ -72,11 +77,15 @@ gap:25px
 }
 
 .section{
-background: white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,.06);
-margin-bottom:20px
+  background:#fff;
+
+  padding:24px;
+
+  border-radius:20px;
+
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+
+  margin-bottom:24px;
 }
 
 .section h2{
@@ -94,11 +103,21 @@ margin-top:15px
 }
 
 .card{
-background:#f9fbfb;
-padding:15px;
-border-radius:8px;
-transition:.25s;
-border:1px solid #e4e8eb
+  background:#fff;
+  padding:16px;
+  border-radius:16px;
+
+  border:1px solid #e5e7eb;
+
+  transition:.3s;
+
+  box-shadow:0 4px 12px rgba(0,0,0,.04);
+}
+
+.card:hover{
+  transform:translateY(-5px);
+
+  box-shadow:0 14px 28px rgba(0,0,0,.1);
 }
 
 .card:hover{
@@ -133,6 +152,12 @@ margin:10px 0
 
 .sidebar li{
 margin-bottom:8px
+}
+
+.sidebar{
+  position:sticky;
+  top:20px;
+  align-self:start;
 }
 
 .quote{
@@ -432,6 +457,187 @@ p{
   visibility: visible;
   opacity: 1;
 }
+
+/* ===================================================
+   HERO BANNER SỨC KHỎE 2.0
+=================================================== */
+
+.hero{
+  position:relative;
+  width:100%;
+  min-height:320px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:
+  linear-gradient(
+    rgba(0,0,0,.45),
+    rgba(0,0,0,.45)
+  ),
+  url("anhnen/bg-5.jpg");
+
+  background-size:cover;
+  background-position:center;
+
+  border-radius:0 0 28px 28px;
+
+  margin-bottom:28px;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+  radial-gradient(
+    circle at top right,
+    rgba(20,184,166,.35),
+    transparent 40%
+  );
+
+  z-index:1;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+
+  max-width:900px;
+  padding:40px 25px;
+
+  text-align:center;
+  color:#fff;
+}
+
+.hero-tag{
+  display:inline-block;
+
+  background:rgba(255,255,255,.15);
+
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  padding:8px 18px;
+  border-radius:999px;
+
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.5px;
+
+  margin-bottom:18px;
+}
+
+.hero-content h1{
+  margin:0 0 18px;
+
+  font-size:48px;
+  line-height:1.25;
+  font-weight:700;
+
+  text-shadow:0 4px 12px rgba(0,0,0,.3);
+}
+
+.hero-content p{
+  max-width:760px;
+
+  margin:0 auto 28px;
+
+  font-size:18px;
+  line-height:1.8;
+
+  color:rgba(255,255,255,.92);
+
+  text-indent:0;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+
+  flex-wrap:wrap;
+}
+
+.hero-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:12px 22px;
+
+  border-radius:12px;
+
+  background:#14b8a6;
+  color:#fff;
+
+  text-decoration:none;
+  font-weight:600;
+
+  transition:.3s;
+
+  box-shadow:0 10px 24px rgba(20,184,166,.28);
+}
+
+.hero-btn:hover{
+  transform:translateY(-3px);
+
+  background:#0d9488;
+
+  box-shadow:0 14px 28px rgba(20,184,166,.35);
+}
+
+.hero-btn.outline{
+  background:rgba(255,255,255,.12);
+
+  border:1px solid rgba(255,255,255,.28);
+
+  backdrop-filter:blur(8px);
+}
+
+.hero-btn.outline:hover{
+  background:rgba(255,255,255,.2);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.hero{
+  min-height:220px;
+  border-radius:0 0 10px 10px;
+}
+
+.hero-content{
+  padding:12px 8px;
+}
+
+.hero-content h1{
+  font-size:20px;
+}
+
+.hero-content p{
+  font-size:16px;
+  line-height:1.5;
+}
+
+.hero-buttons{
+  flex-direction:column;
+}
+
+.hero-btn{
+  width:100%;
+  max-width:220px;
+}
+
+}
 </style>
 
 </head>
@@ -440,9 +646,10 @@ p{
 <div class="page-wrapper">
 <header>
 <h1>  
+<a href="index.html" title="Trang chủ">🏠 </a>
 <a href="index.html">SỨC KHỎE</a>
-<a href="index.html" title="Trang chủ"> 🏠</a>
 </h1>
+
 <div class="nav-links">
         <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
 	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
@@ -451,17 +658,21 @@ p{
         <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
         <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
 	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
-      	</div>
+</div>
+
 </header>
 
-<nav>
-<a href="#nhanthuc">🌱 Nhận thức</a>
-<a href="#loisong">🌱 Lối sống</a>
-<a href="#dinhduong">🌱 Dinh dưỡng</a>
-<a href="#thechat">🌱 Thể chất</a>
-<a href="#tinhthan">🌱 Tinh thần</a>
-<a href="#phongbenh">🌱 Phòng bệnh</a>
-</nav>
+<section class="hero">
+ <div class="hero-content">
+  <p class="hero-sub">
+    🌱 Chuyên đề Sức khỏe được xây dựng nhằm cung cấp những kiến thức cơ bản, khoa học và thiết thực về chăm sóc sức khỏe thể chất và tinh thần. Nội dung hướng tới việc nâng cao nhận thức, hình thành lối sống lành mạnh và chủ động phòng ngừa bệnh tật trong cộng đồng.
+    </p>
+
+    <p class="hero-desc">
+    ❤️ Bạn không phải là người học về y khoa hay dinh dưỡng học, nhưng bạn hãy lắng nghe cơ thể mình từng giây, từng phút và quan sát cuộc sống xung quanh, bạn cũng có thể rút ra được phương pháp chăm sóc sức khỏe cho chính mình. Điều quan trọng là bạn có duy trì được phương pháp tích cực đó hàng ngày không thôi. (Vũ Thành Công)
+    </p>
+</div>
+</section>
 
 <div class="action-bar">
 <div class="like-box">
@@ -484,15 +695,6 @@ p{
 <div class="layout">
 
 <div class="main">
-
-<div class="section">
-<h2><img src="anhvietbai/ranhomang.png" alt="" style="height:28px; vertical-align:middle;"> Ngày sức khỏe toàn dân: ⏰ 07/04</h2>
-<p style="color:#0303ef">
-Chuyên đề Sức khỏe được xây dựng nhằm cung cấp những kiến thức cơ bản, khoa học và thiết thực về chăm sóc sức khỏe thể chất và tinh thần. Nội dung hướng tới việc nâng cao nhận thức, hình thành lối sống lành mạnh và chủ động phòng ngừa bệnh tật trong cộng đồng.</p>
-<p style="color:#0303ef">
-❤️ Bạn không phải là người học về y khoa hay dinh dưỡng học, nhưng bạn hãy lắng nghe cơ thể mình từng giây, từng phút và quan sát cuộc sống xung quanh, bạn cũng có thể rút ra được phương pháp chăm sóc sức khỏe cho chính mình. Điều quan trọng là bạn có duy trì được phương pháp tích cực đó hàng ngày không thôi. (Vũ Thành Công)
-</p>
-</div>
 
 <div class="section" id="nhanthuc">
 <h2><img src="images/suckhoecuaban.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Nhận thức về sức khỏe</h2>
