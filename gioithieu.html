@@ -9,342 +9,593 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vũ Thành Công">
 <meta property="og:description" content="Giới thiệu">
-<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/images/gioithieu3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/main/anhnen/cong77.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
 
-<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
-href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
-href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
-href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
-<meta name="theme-color" content="#0a7f99">
-	
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="layout.css">
 
-<!-- GOOGLE ANALYTICS -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V4F395VKJ"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-7V4F395VKJ', { anonymize_ip: true });
-</script>
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="images/CK.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="images/CK.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="images/CK.png"> <link rel="manifest" href="manifest.json"> 
 
 <style>
 
 /* =========================
-   FONT & BODY
+   RESET
 ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
 
 *{
-  box-sizing:border-box;
-}
-
-body{
   margin:0;
-  font-family:'Be Vietnam Pro',sans-serif;
-  color:#1f2937;
-  line-height:1.75;
-
-  background:
-    linear-gradient(rgba(255,255,255,.82),rgba(255,255,255,.88)),
-    url("anhnen/bg-4.jpg") center/cover fixed;
+  padding:0;
+  box-sizing:border-box;
 }
 
 /* =========================
    HEADER
 ========================= */
-.page-header{
+
+.site-header{
   position:sticky;
   top:0;
-  z-index:999;
-  
-  backdrop-filter:blur(12px);
-  background:rgba(10,58,90,.82);
+  z-index:9999;
 
-  border-bottom:1px solid rgba(255,255,255,.15);
+  height:70px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  padding:10px 18px;
+  padding:0 18px;
+
+  background:rgba(8,47,73,.95);
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:0 2px 15px rgba(0,0,0,.12);
 }
 
-.page-title a{
+/* LEFT */
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  min-width:0;
+}
+
+/* MENU BUTTON */
+
+.menu-toggle{
+  width:44px;
+  height:44px;
+
+  border:none;
+  border-radius:14px;
+
+  background:rgba(255,255,255,.12);
+
+  color:#fff;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  transition:.25s;
+}
+
+.menu-toggle:hover{
+  background:rgba(255,255,255,.2);
+}
+
+/* TITLE */
+
+.site-title{
+  min-width:0;
+}
+
+.site-title a{
+  color:#fff;
+
+  text-decoration:none;
+
+  font-size:26px;
+  font-weight:700;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* RIGHT */
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+/* DESKTOP MENU */
+
+.desktop-menu{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.desktop-menu a{
   color:#fff;
   text-decoration:none;
-  font-size:24px;
-  font-weight:700;
-  letter-spacing:.5px;
+
+  padding:10px 14px;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:500;
+
+  transition:.25s;
 }
 
-.menu-btn{
+.desktop-menu a:hover{
+  background:rgba(255,255,255,.12);
+}
+
+/* HOME */
+
+.home-btn{
+  width:44px;
+  height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,.12);
+
+  color:#fff;
+  text-decoration:none;
+
+  font-size:22px;
+
+  transition:.25s;
+}
+
+.home-btn:hover{
+  background:rgba(255,255,255,.2);
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-overlay{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.45);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.3s;
+
+  z-index:9998;
+}
+
+.mobile-overlay.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.mobile-menu{
+  position:fixed;
+
+  top:0;
+  left:-300px;
+
+  width:280px;
+  height:100vh;
+
+  background:#fff;
+
+  z-index:9999;
+
+  overflow-y:auto;
+
+  transition:.35s ease;
+
+  box-shadow:5px 0 25px rgba(0,0,0,.15);
+}
+
+.mobile-menu.show{
+  left:0;
+}
+
+/* TOP */
+
+.mobile-menu-top{
+  height:70px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 16px;
+
+  background:#0b4c70;
+
+  color:#fff;
+}
+
+.mobile-logo{
+  font-size:20px;
+  font-weight:700;
+}
+
+.close-menu{
   border:none;
   background:none;
+
   color:#fff;
+
   font-size:24px;
+
   cursor:pointer;
 }
 
-/* =========================
-   MENU DESKTOP
-========================= */
-.nav-links{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
+/* LINKS */
 
-.nav-links a{
-  color:#fff;
+.mobile-menu a{
+  display:block;
+
+  padding:15px 18px;
+
+  color:#1e293b;
   text-decoration:none;
-  padding:8px 14px;
-  border-radius:30px;
 
-  transition:.3s;
-  font-size:14px;
+  border-bottom:1px solid #e5e7eb;
+
+  font-size:15px;
+  font-weight:500;
+
+  transition:.25s;
 }
 
-.nav-links a:hover,
-.nav-links a.active{
-  background:rgba(255,255,255,.18);
-  transform:translateY(-2px);
+.mobile-menu a:hover{
+  background:#f1f5f9;
+  padding-left:24px;
 }
 
 /* =========================
-   HERO SECTION
+   MOBILE
 ========================= */
+
+@media(max-width:991px){
+
+  .desktop-menu{
+    display:none;
+  }
+
+  .site-title a{
+    font-size:22px;
+  }
+
+}
+
+@media(min-width:992px){
+
+  .menu-toggle{
+    display:none;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .site-header{
+    height:64px;
+    padding:0 12px;
+  }
+
+  .site-title a{
+    font-size:20px;
+  }
+
+  .home-btn{
+    width:40px;
+    height:40px;
+    font-size:20px;
+  }
+
+  .menu-toggle{
+    width:40px;
+    height:40px;
+    font-size:20px;
+  }
+
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+  font-family:'Be Vietnam Pro',sans-serif;
+  background:
+    linear-gradient(rgba(255,255,255,.86),rgba(255,255,255,.9)),
+    url("anhnen/bg-4.jpg") center/cover fixed;
+  color:#1e293b;
+  line-height:1.8;
+}
+
+/* =========================
+   HERO
+========================= */
+
 .hero-box{
   max-width:1200px;
-  margin:30px auto 20px;
-  padding:35px;
 
-  border-radius:24px;
+  margin:24px auto 18px;
+  padding:38px 28px;
 
-  background:rgba(255,255,255,.72);
-  backdrop-filter:blur(10px);
+  border-radius:28px;
 
-  box-shadow:0 10px 40px rgba(0,0,0,.08);
+  background:rgba(255,255,255,.78);
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.08);
 
   text-align:center;
 }
 
 .hero-box h1{
-  font-size:38px;
-  color:#7F1D1D;
-  margin-bottom:10px;
-}
+  font-size:40px;
+  line-height:1.5;
 
-.hero-sub{
-  color:#334155;
-  font-size:17px;
-  max-width:900px;
-  margin:auto;
-}
-
-/* =========================
-   MAIN GRID
-========================= */
-.main-grid{
-  display:grid;
-  grid-template-columns: minmax(0,1fr) 320px;
-  gap:24px;
-
-  max-width:1500px;
-  margin:auto;
-  padding:20px;
-}
-
-@media(max-width:991px){
-  .main-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-/* =========================
-   CONTENT LEFT
-========================= */
-.content-left{
-  min-width:0;
-}
-
-/* =========================
-   ARTICLE CARD
-========================= */
-.article-card{
-  background:rgba(255,255,255,.82);
-  border-radius:24px;
-
-  padding:30px;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.08);
-
-  margin-bottom:28px;
-}
-
-/* =========================
-   TITLE
-========================= */
-.section-title{
-  font-size:32px;
-  line-height:1.4;
-  color:#7F1D1D;
+  color:#7f1d1d;
 
   margin-bottom:14px;
 }
 
-.meta-info{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-
-  color:#2563eb;
-  font-weight:600;
-  margin-bottom:25px;
-}
-
-/* =========================
-   PARAGRAPH
-========================= */
-.justified-p{
-  text-align:justify;
-  text-indent:1.8em;
-
-  background:#ffffffd9;
-
-  padding:18px 22px;
-  margin-bottom:18px;
-
-  border-left:5px solid #0ea5a4;
-  border-radius:16px;
-
-  transition:.3s;
-}
-
-.justified-p:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
-}
-
-/* =========================
-   IMAGE
-========================= */
-.img-giua{
-  margin:32px auto;
-  
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-}
-
-.img-giua img{
-  display:block;
-
-  width:100%;
-  max-width:900px;
+.hero-sub{
+  max-width:850px;
 
   margin:auto;
 
-  border-radius:22px;
+  font-size:18px;
 
-  box-shadow:0 10px 35px rgba(0,0,0,.18);
-
-  transition:.5s;
-}
-
-.img-giua img:hover{
-  transform:scale(1.015);
-  box-shadow:0 18px 45px rgba(0,0,0,.22);
-}
-
-.img-giua img:hover{
-  transform:scale(1.02);
-}
-
-.img-giua div{
-  margin-top:10px;
-  font-size:14px;
   color:#475569;
-  font-style:italic;
 }
 
 /* =========================
    ACTION BAR
 ========================= */
+
 .action-bar{
+  max-width:1200px;
+
+  margin:0 auto 20px;
+
   display:flex;
-  gap:12px;
+  gap:14px;
   flex-wrap:wrap;
 
-  margin:18px auto;
-  padding:0 20px;
-
-  max-width:1280px;
+  padding:0 10px;
 }
 
 .action-bar button,
 .view-box{
   border:none;
 
-  padding:10px 16px;
-  border-radius:14px;
+  background:#fff;
 
-  font-size:15px;
+  padding:12px 18px;
+
+  border-radius:18px;
+
+  font-size:16px;
   font-weight:600;
 
-  background:white;
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.08);
 
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
-
-  transition:.3s;
+  transition:.25s;
 }
 
 .action-bar button:hover{
   transform:translateY(-2px);
-  background:#0ea5a4;
+
+  background:#0f766e;
   color:#fff;
+}
+
+/* =========================
+   MAIN GRID
+========================= */
+
+.main-content{
+  max-width:1500px;
+  margin:auto;
+}
+
+.main-grid{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    320px;
+
+  gap:24px;
+
+  padding:18px;
+}
+
+/* =========================
+   ARTICLE
+========================= */
+
+.article-card{
+  background:
+    rgba(255,255,255,.84);
+
+  border-radius:28px;
+
+  padding:34px;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.08);
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.section-title{
+  font-size:34px;
+  line-height:1.5;
+
+  color:#7f1d1d;
+
+  margin-bottom:14px;
+}
+
+/* =========================
+   META
+========================= */
+
+.meta-info{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+
+  margin-bottom:28px;
+
+  color:#0f766e;
+
+  font-weight:600;
+}
+
+/* =========================
+   PARAGRAPH
+========================= */
+
+.justified-p{
+  text-align:justify;
+
+  text-indent:1.8em;
+
+  background:#ffffffd9;
+
+  padding:18px 22px;
+
+  margin-bottom:18px;
+
+  border-left:5px solid #0ea5a4;
+
+  border-radius:18px;
+
+  font-size:17px;
+
+  transition:.3s;
+}
+
+.justified-p:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.08);
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.img-giua{
+  margin:34px auto;
+
+  text-align:center;
+}
+
+.img-giua img{
+  width:100%;
+
+  max-width:900px;
+
+  margin:auto;
+
+  border-radius:24px;
+
+  display:block;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.18);
+
+  transition:.4s;
+}
+
+.img-giua img:hover{
+  transform:scale(1.015);
+}
+
+.img-giua div{
+  margin-top:10px;
+
+  font-size:14px;
+
+  color:#334155;
+
+  font-style:italic;
 }
 
 /* =========================
    SIDEBAR
 ========================= */
+
 .content-right{
   position:sticky;
+
   top:90px;
+
   align-self:start;
 
-  background:rgba(255,255,255,.82);
+  background:
+    rgba(255,255,255,.82);
 
-  border-radius:22px;
+  border-radius:24px;
 
   padding:18px;
 
-  box-shadow:0 8px 25px rgba(0,0,0,.08);
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
 }
 
 /* =========================
    FOOTER
 ========================= */
+
 footer{
   margin-top:50px;
 
-  background:linear-gradient(135deg,#0a3a5a,#0c5f78);
+  padding:40px 20px;
 
-  color:#fff;
   text-align:center;
 
-  padding:35px 20px;
+  color:#fff;
 
-  border-top-left-radius:30px;
-  border-top-right-radius:30px;
+  background:
+    linear-gradient(135deg,#0b4c70,#0f766e);
+
+  border-top-left-radius:28px;
+  border-top-right-radius:28px;
 }
 
 footer p{
@@ -354,11 +605,14 @@ footer p{
 /* =========================
    FLOATING MENU
 ========================= */
+
 .floating-menu{
   position:fixed;
-  right:24px;
-  bottom:24px;
-  z-index:9999;
+
+  right:22px;
+  bottom:22px;
+
+  z-index:999;
 }
 
 .main-float{
@@ -366,32 +620,38 @@ footer p{
   height:58px;
 
   border:none;
+
   border-radius:50%;
 
-  font-size:24px;
+  background:
+    linear-gradient(135deg,#0f766e,#0891b2);
+
   color:#fff;
+
+  font-size:24px;
 
   cursor:pointer;
 
-  background:linear-gradient(135deg,#0f766e,#0891b2);
-
-  box-shadow:0 10px 25px rgba(0,0,0,.2);
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.18);
 
   transition:.3s;
 }
 
 .main-float:hover{
-  transform:scale(1.08);
+  transform:scale(1.06);
 }
 
 .sub-buttons{
   display:flex;
   flex-direction:column;
+
   gap:12px;
 
   margin-bottom:12px;
 
   opacity:0;
+
   transform:translateY(20px);
 
   pointer-events:none;
@@ -401,6 +661,7 @@ footer p{
 
 .sub-buttons.show{
   opacity:1;
+
   transform:translateY(0);
 
   pointer-events:auto;
@@ -411,214 +672,211 @@ footer p{
   height:48px;
 
   border:none;
+
   border-radius:50%;
+
+  background:#e11d48;
+
+  color:#fff;
 
   font-size:20px;
 
   cursor:pointer;
 
-  color:#fff;
-  background:#e91e63;
-
-  box-shadow:0 8px 18px rgba(0,0,0,.2);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.18);
 }
 
 /* =========================
    MOBILE
 ========================= */
+
+@media(max-width:991px){
+
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+
+  .content-right{
+    position:static;
+  }
+
+}
+
 @media(max-width:768px){
 
+  body{
+    line-height:1.75;
+  }
+
   .hero-box{
-    padding:22px;
-    margin:18px;
+    margin:14px 10px;
+
+    padding:24px 18px;
+
+    border-radius:22px;
   }
 
   .hero-box h1{
     font-size:28px;
   }
 
-  .section-title{
-    font-size:24px;
+  .hero-sub{
+    font-size:16px;
+  }
+
+  .main-grid{
+    padding:10px;
+    gap:14px;
   }
 
   .article-card{
     padding:18px;
+    border-radius:20px;
   }
 
-}
-
-.article-card,
-.content-right,
-.hero-box{
-  animation:fadeUp .7s ease;
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(20px);
+  .section-title{
+    font-size:24px;
   }
-  to{
-    opacity:1;
-    transform:none;
+
+  .meta-info{
+    font-size:14px;
   }
+
+   .justified-p{
+    padding:15px;
+
+    font-size:16px;
+
+    text-indent:1.4em;
+
+    line-height:1.9;
+  }
+
+  .img-giua img{
+    border-radius:18px;
+  }
+
+  .action-bar{
+    padding:0 10px;
+  }
+
+  .action-bar button,
+  .view-box{
+    font-size:15px;
+
+    padding:10px 14px;
+  }
+
+  .floating-menu{
+    right:14px;
+    bottom:14px;
+  }
+
+  .main-float{
+    width:52px;
+    height:52px;
+  }
+
 }
 
 /* =========================
-   MOBILE MENU
+   PHẦN NÂNG CẤP
 ========================= */
-
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-
-  opacity:0;
-  visibility:hidden;
-
-  transition:.3s;
-
-  z-index:998;
-}
-
-.menu-overlay.active{
-  opacity:1;
-  visibility:visible;
-}
-
-.nav-menu{
+#readingBar{
   position:fixed;
   top:0;
-  left:-280px;
-
-  width:280px;
-  height:100vh;
-
-  background:rgba(255,255,255,.96);
-
-  backdrop-filter:blur(14px);
-
-  box-shadow:4px 0 30px rgba(0,0,0,.15);
-
-  padding-top:70px;
-
-  transition:.35s;
-
-  z-index:999;
-}
-
-.nav-menu.active{
   left:0;
+
+  width:0%;
+  height:4px;
+
+  z-index:10000;
+
+  background:
+    linear-gradient(90deg,#0ea5a4,#2563eb);
 }
 
-.nav-item{
-  border-bottom:1px solid #e5e7eb;
+.img-giua{
+  overflow:hidden;
+  border-radius:24px;
 }
 
-.nav-link{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:14px 18px;
-
-  color:#0f172a;
-  text-decoration:none;
-
-  font-weight:600;
-
-  cursor:pointer;
+.img-giua img{
+  filter:saturate(1.04) contrast(1.03);
 }
 
-.sub-menu{
-  display:none;
-  background:#f8fafc;
-}
-
-.nav-item.open .sub-menu{
-  display:block;
-}
-
-.sub-menu a{
-  display:block;
-
-  padding:10px 24px;
-
-  color:#334155;
-  text-decoration:none;
-
-  font-size:14px;
-}
-
-.tooltip{
+.hero-box{
   position:relative;
+  overflow:hidden;
 }
 
-.tooltip-text{
-  visibility:hidden;
+.hero-box::before{
+  content:"";
 
   position:absolute;
-  bottom:-38px;
-  left:50%;
 
-  transform:translateX(-50%);
+  width:240px;
+  height:240px;
 
-  background:#111827;
-  color:#fff;
+  background:
+    radial-gradient(
+      rgba(14,165,164,.15),
+      transparent 70%
+    );
 
-  padding:6px 10px;
-
-  border-radius:8px;
-
-  font-size:12px;
-  white-space:nowrap;
-
-  opacity:0;
-
-  transition:.3s;
+  top:-80px;
+  right:-80px;
 }
 
-.tooltip:hover .tooltip-text{
-  visibility:visible;
-  opacity:1;
-}
-
-@media(max-width:991px){
-  .nav-links{
-    display:none;
-  }
-}
-
-img{
-  max-width:100%;
-  display:block;
+.hero-box h1{
+  letter-spacing:.2px;
 }
 
 </style>
-
 </head>
-
 <body>
-<div class="page-wrapper">
 
-<header class="page-header">
-  <button class="menu-btn" id="menuBtn">☰</button>
+<!-- =========================
+     HEADER MOBILE + DESKTOP MỚI
+========================= -->
 
-<h1 class="page-title gioithieu">
-<a href="gioithieu.html">Giới thiệu </a>
-</h1>
+<header class="site-header">
 
-  <a href="index.html" title="Trang chủ"> 🏠</a>
+  <!-- LEFT -->
+  <div class="header-left">
 
-<div class="nav-links">
-<a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
-<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
-<a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
-<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
-<a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
-<a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
-<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
-      	</div>
+    <button class="menu-toggle" id="menuBtn">
+      ☰
+    </button>
+
+    <h1 class="site-title">
+      <a href="gioithieu.html">
+        Giới thiệu
+      </a>
+    </h1>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="header-right">
+
+    <nav class="desktop-menu">
+
+      <a href="index.html">🏠 Trang chủ</a>
+      <a href="suckhoe.html">❤️ Sức khỏe</a>
+      <a href="baiviet.html">✍ Bài viết</a>
+      <a href="tintuc.html">📢 Tin tức</a>
+      <a href="anh.html">📷 Ảnh</a>
+      <a href="vanban.html">📄 Văn bản</a>
+
+    </nav>
+
+    <a href="index.html" class="home-btn">
+      🏠
+    </a>
+
+  </div>
 
 </header>
 
@@ -631,26 +889,41 @@ img{
   </div>
 </section>
 
-<div class="menu-overlay" id="menuOverlay"></div>
+<!-- =========================
+     OVERLAY
+========================= -->
 
-<nav class="nav-menu" id="navMenu">
-  <div class="nav-item"><a class="nav-link" href="index.html">🏠 Trang chủ</a></div>
-  <div class="nav-item"><a class="nav-link" href="gioithieu.html">🏛 Giới thiệu</a></div>
-  <div class="nav-item"><a class="nav-link" href="suckhoe.html">❤️ Sức khỏe</a></div>
-  <div class="nav-item"><a class="nav-link" href="hoctap.html">📖 Học tập</a></div>
-  <div class="nav-item"><a class="nav-link" href="baiviet.html">✍ Bài viết</a></div>
-  <div class="nav-item"><a class="nav-link" href="tintuc.html">📢 Tin tức</a></div>
-  <div class="nav-item"><a class="nav-link" href="anh.html">📷 Thư viện ảnh</a></div>
-  <div class="nav-item">
-    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
-    <div class="sub-menu">
-      <a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
-      <a href="vanban/qd19_2026.html">📜 Quy định 19 QĐTW</a>
-      <a href="vanban/qd20_2026.html">📜 Quy định 20 QĐTW</a>
-      <a href="vanban.html">📜 Quy định 21 QĐTW</a>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<nav class="mobile-menu" id="mobileMenu">
+
+  <div class="mobile-menu-top">
+
+    <div class="mobile-logo">
+      🌱 MENU
     </div>
+
+    <button class="close-menu" id="closeMenu">
+      ✕
+    </button>
+
   </div>
-  <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
+
+  <a href="index.html">🏠 Trang chủ</a>
+  <a href="gioithieu.html">🏛 Giới thiệu</a>
+  <a href="suckhoe.html">❤️ Sức khỏe</a>
+  <a href="hoctap.html">📖 Học tập</a>
+  <a href="baiviet.html">✍ Bài viết</a>
+  <a href="tintuc.html">📢 Tin tức</a>
+  <a href="anh.html">📷 Thư viện ảnh</a>
+  <a href="vanban.html">📄 Văn bản</a>
+  <a href="tailieu.html">📁 Tài liệu</a>
+
 </nav>
 
 <div class="action-bar">
@@ -671,9 +944,10 @@ img{
 
 <main class="main-content">
 <div class="main-grid">
+
+
     <!-- CỘT TRÁI -->
 <section class="content-left">
-
 <div class="article-card">
 
 <h2 class="section-title">
@@ -775,19 +1049,6 @@ img{
 </footer>
 
 </div>
-
-<script>
-const menuBtn=document.getElementById("menuBtn");
-const navMenu=document.getElementById("navMenu");
-const overlay=document.getElementById("menuOverlay");
-
-menuBtn.onclick=()=>{ navMenu.classList.add("active"); overlay.classList.add("active"); }
-overlay.onclick=()=>{ navMenu.classList.remove("active"); overlay.classList.remove("active"); }
-
-document.querySelectorAll(".toggle").forEach(t=>{
-  t.onclick=()=>t.parentElement.classList.toggle("open");
-});
-</script>
 
 <script>
 fetch("sidebar.html")
@@ -914,29 +1175,53 @@ links.forEach(link => {
 
 <div id="readingBar"></div>
 
-<style>
-#readingBar{
-  position:fixed;
-  top:0;
-  left:0;
+<script>
 
-  width:0%;
-  height:4px;
+/* =========================
+   MOBILE MENU
+========================= */
 
-  background:linear-gradient(90deg,#0ea5a4,#2563eb);
+const closeMenu = document.getElementById("closeMenu");
 
-  z-index:99999;
+const mobileMenu = document.getElementById("mobileMenu");
+const mobileOverlay = document.getElementById("mobileOverlay");
+
+function openMenu(){
+  mobileMenu.classList.add("show");
+  mobileOverlay.classList.add("show");
 }
-</style>
+
+function closeMobileMenu(){
+  mobileMenu.classList.remove("show");
+  mobileOverlay.classList.remove("show");
+}
+
+menuBtn.addEventListener("click", openMenu);
+
+closeMenu.addEventListener("click", closeMobileMenu);
+
+mobileOverlay.addEventListener("click", closeMobileMenu);
+
+</script>
 
 <script>
+/* =========================
+   PHẦN NÂNG CẤP
+========================= */
 window.addEventListener("scroll",()=>{
-  const scrollTop=document.documentElement.scrollTop;
-  const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
 
-  const percent=(scrollTop/height)*100;
+  const scrollTop =
+    document.documentElement.scrollTop;
 
-  document.getElementById("readingBar").style.width=percent+"%";
+  const height =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+
+  const percent =
+    (scrollTop / height) * 100;
+
+  document.getElementById("readingBar")
+    .style.width = percent + "%";
 });
 </script>
 
