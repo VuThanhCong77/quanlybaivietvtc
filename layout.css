@@ -715,3 +715,34 @@ transition:.3s;
 .card:hover{
 box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
+
+/* Nút Thích - xem trang */
+.action-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
+}
+
+.like-box button,
+.share-btn{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d607a2;
+  background: #14cec4;
+  cursor: pointer;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  background: #20e007;
+}
+
+.view-box{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0ea5a4;
+  background: #e0f7f6;
+  font-size: 14px;
+}
