@@ -34,16 +34,26 @@ href="images/CK.png"> <link rel="manifest" href="manifest.json">
   box-sizing:border-box;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ==================================================
+   HEADER MỚI CHUẨN LAYOUT
+   ================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+
+body{
+  font-family:'Be Vietnam Pro',sans-serif;
+}
+
+/* HEADER */
 .site-header{
-  position:sticky;
+  position:fixed;
   top:0;
-  z-index:9999;
+  left:50%;
+  transform:translateX(-50%);
 
-  height:70px;
+  width:100%;
+  max-width:var(--max-width);
+  height:72px;
 
   display:flex;
   align-items:center;
@@ -51,36 +61,38 @@ href="images/CK.png"> <link rel="manifest" href="manifest.json">
 
   padding:0 18px;
 
-  background:rgba(8,47,73,.95);
+  background:
+    linear-gradient(
+      135deg,
+      #0077b6,
+      #0096d6,
+      #00b4f0
+    );
 
-  backdrop-filter:blur(10px);
+  box-shadow:
+    0 4px 20px rgba(0,0,0,.10);
 
-  box-shadow:0 2px 15px rgba(0,0,0,.12);
+  z-index:1000;
 }
 
 /* LEFT */
-
 .header-left{
+  width:60px;
   display:flex;
   align-items:center;
-  gap:14px;
-
-  min-width:0;
 }
 
 /* MENU BUTTON */
-
-.menu-toggle{
-  width:44px;
-  height:44px;
+.menu-btn{
+  width:42px;
+  height:42px;
 
   border:none;
-  border-radius:14px;
+  border-radius:12px;
 
-  background:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.15);
 
   color:#fff;
-
   font-size:22px;
 
   cursor:pointer;
@@ -88,87 +100,135 @@ href="images/CK.png"> <link rel="manifest" href="manifest.json">
   transition:.25s;
 }
 
-.menu-toggle:hover{
-  background:rgba(255,255,255,.2);
+.menu-btn:hover{
+  background:rgba(255,255,255,.25);
+  transform:scale(1.05);
 }
 
-/* TITLE */
+/* CENTER */
+.header-center{
+  flex:1;
 
-.site-title{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
   min-width:0;
 }
 
-.site-title a{
-  color:#fff;
+/* LOGO */
+.header-logo img{
+  width:48px;
+  height:48px;
 
+  border-radius:50%;
+  object-fit:cover;
+
+  border:2px solid rgba(255,255,255,.45);
+
+  background:#fff;
+}
+
+/* TITLE */
+.header-title{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  min-width:0;
+}
+
+.header-title h1{
+  margin:0;
+  line-height:1.1;
+}
+
+.header-title h1 a{
+  color:#fff;
   text-decoration:none;
 
-  font-size:26px;
+  font-size:24px;
   font-weight:700;
+  letter-spacing:.6px;
+
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.18);
+}
+
+.header-title span{
+  font-size:12px;
+  color:rgba(255,255,255,.88);
+
+  margin-top:3px;
 
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
-/* RIGHT */
-
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-
-/* DESKTOP MENU */
-
-.desktop-menu{
+/* RIGHT MENU */
+.header-nav{
   display:flex;
   align-items:center;
   gap:8px;
 }
 
-.desktop-menu a{
+.header-nav a{
   color:#fff;
   text-decoration:none;
-
-  padding:10px 14px;
-
-  border-radius:12px;
 
   font-size:14px;
-  font-weight:500;
+  font-weight:600;
+
+  padding:9px 12px;
+  border-radius:10px;
 
   transition:.25s;
 }
 
-.desktop-menu a:hover{
-  background:rgba(255,255,255,.12);
+.header-nav a:hover{
+  background:rgba(255,255,255,.18);
 }
 
-/* HOME */
-
-.home-btn{
-  width:44px;
-  height:44px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:14px;
-
-  background:rgba(255,255,255,.12);
-
-  color:#fff;
-  text-decoration:none;
-
-  font-size:22px;
-
-  transition:.25s;
+/* ACTIVE */
+.header-nav a.active{
+  background:#ffffff;
+  color:#0077b6;
 }
 
-.home-btn:hover{
-  background:rgba(255,255,255,.2);
+/* WRAPPER */
+.page-wrapper{
+  padding-top:82px;
+}
+
+/* MOBILE */
+@media(max-width:991px){
+
+  .site-header{
+    height:64px;
+    padding:0 12px;
+  }
+
+  .header-nav{
+    display:none;
+  }
+
+  .header-logo img{
+    width:42px;
+    height:42px;
+  }
+
+  .header-title h1 a{
+    font-size:18px;
+  }
+
+  .header-title span{
+    font-size:11px;
+  }
+
+  .page-wrapper{
+    padding-top:74px;
+  }
 }
 
 /* =========================
@@ -339,7 +399,7 @@ body{
 .hero-box{
   max-width:1200px;
 
-  margin:24px auto 18px;
+  margin:110px auto 18px;
   padding:38px 28px;
 
   border-radius:28px;
@@ -705,7 +765,7 @@ footer p{
   }
 
   .hero-box{
-    margin:14px 10px;
+    margin:88px 10px 14px;
 
     padding:24px 18px;
 
@@ -755,7 +815,6 @@ footer p{
 
     line-height:1.8;
 
-    color:#0b31ad;
   }
 
   .img-giua img{
@@ -850,38 +909,64 @@ footer p{
 
   <!-- LEFT -->
   <div class="header-left">
-
-    <button class="menu-toggle" id="menuBtn">
+    <button class="menu-btn" id="menuBtn">
       ☰
     </button>
+  </div>
 
-    <h1 class="site-title">
-      <a href="gioithieu.html">
-        Giới thiệu
-      </a>
-    </h1>
+  <!-- CENTER -->
+  <div class="header-center">
+
+    <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
+
+    <div class="header-title">
+      <h1 Style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>
+        Chia sẻ tri thức • Giá trị cuộc sống
+      </span>
+    </div>
 
   </div>
 
   <!-- RIGHT -->
-  <div class="header-right">
+  <nav class="header-nav">
 
-    <nav class="desktop-menu">
+    <a href="index.html">🏠 Trang chủ</a>
 
-      <a href="index.html">🏠 Trang chủ</a>
-      <a href="suckhoe.html">❤️ Sức khỏe</a>
-      <a href="baiviet.html">✍ Bài viết</a>
-      <a href="tintuc.html">📢 Tin tức</a>
-      <a href="anh.html">📷 Ảnh</a>
-      <a href="vanban.html">📄 Văn bản</a>
-
-    </nav>
-
-    <a href="index.html" class="home-btn">
-      🏠
+    <a href="suckhoe.html">
+      ❤️ Sức khỏe
     </a>
 
-  </div>
+    <a href="baiviet.html">
+         ✍ Bài viết
+    </a>
+
+    <a href="tintuc.html">
+      📢 Tin tức
+    </a>
+
+    <a href="anh.html">
+      📷 Thư viện
+    </a>
+
+    <a href="vanban.html">
+      📄 Văn bản
+    </a>
+
+    <a href="tailieu.html">
+      📁 Tài liệu
+    </a>
+
+<a href="lich_cong_tac.html" >
+📅 Lịch
+</a>  
+
+  </nav>
 
 </header>
 
@@ -1051,6 +1136,8 @@ footer p{
 
 </div>
 
+<div id="readingBar"></div>
+
 <script>
 fetch("sidebar.html")
   .then(response => response.text())
@@ -1139,9 +1226,14 @@ updateViews();
     </div>
 </div>
 
+<!-- THANH ĐỌC -->
+<div id="readingBar"></div>
+
 <script>
 function toggleFloatMenu(){
-    document.getElementById("subButtons").classList.toggle("show");
+    document
+      .getElementById("subButtons")
+      .classList.toggle("show");
 }
 
 function scrollToTop(){
@@ -1151,23 +1243,13 @@ function scrollToTop(){
     });
 }
 </script>
-<script>
-const links = document.querySelectorAll(".nav-links a");
-links.forEach(link => {
-  if(link.href === window.location.href){
-    link.classList.add("active");
-  }
-});
-</script>
-
-<div id="readingBar"></div>
 
 <script>
-
 /* =========================
    MOBILE MENU
 ========================= */
 
+const menuBtn = document.getElementById("menuBtn");
 const closeMenu = document.getElementById("closeMenu");
 
 const mobileMenu = document.getElementById("mobileMenu");
@@ -1188,7 +1270,6 @@ menuBtn.addEventListener("click", openMenu);
 closeMenu.addEventListener("click", closeMobileMenu);
 
 mobileOverlay.addEventListener("click", closeMobileMenu);
-
 </script>
 
 <script>
@@ -1209,6 +1290,21 @@ window.addEventListener("scroll",()=>{
 
   document.getElementById("readingBar")
     .style.width = percent + "%";
+});
+</script>
+
+<script>
+const currentPage = location.pathname.split("/").pop();
+
+document.querySelectorAll(".header-nav a")
+.forEach(link => {
+
+  const linkPage = link.getAttribute("href");
+
+  if(linkPage === currentPage){
+    link.classList.add("active");
+  }
+
 });
 </script>
 
