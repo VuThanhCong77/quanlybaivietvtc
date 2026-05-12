@@ -327,9 +327,7 @@ href="images/CK.png"> <link rel="manifest" href="manifest.json">
 ========================= */
 
 body{
-    background:
-    linear-gradient(rgba(255,255,255,.86),rgba(255,255,255,.9)),
-    url("anhnen/bg-1.jpg") center/cover fixed;
+    background:url("anhnen/bg-1.jpg") center/cover fixed;
   color:#1e293b;
   line-height:1.8;
 }
@@ -427,11 +425,9 @@ body{
 }
 
 .main-grid{
-  display:grid;
+ display:grid;
 
-  grid-template-columns:
-    minmax(0,1fr)
-    320px;
+ grid-template-columns: 2.5fr 1fr;
 
   gap:24px;
 
@@ -940,12 +936,6 @@ footer p{
  <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
 </div>
 
-  <div class="share-group">
-  <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link
-  </button>
-</div>
-
 <div class="view-box">
 👁 Đã xem:<b id="viewCount">0</b>
 </div>
@@ -1102,20 +1092,6 @@ likeBtn.addEventListener("click", function () {
       localStorage.setItem("liked_" + pageName, "true");
     });
 });
-</script>
-
-<script>
-function copyLink(btn){
-  navigator.clipboard.writeText(window.location.href)
-    .then(()=>{
-      const oldText = btn.innerText;
-      btn.innerText = "✅ Đã copy";
-      setTimeout(()=>btn.innerText = oldText, 1500);
-    })
-    .catch(()=>{
-      alert("Không copy được link!");
-    });
-}
 </script>
 
 <script>
