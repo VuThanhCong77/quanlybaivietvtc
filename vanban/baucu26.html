@@ -16,6 +16,18 @@
 <meta property="og:image:height" content="630">
 
 <style>
+body{
+  margin:0;
+   font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  background:
+    linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.82)),
+    url('../anhnen/bg-1.jpg') center/cover fixed;
+
+  line-height:1.9;
+}
+
 .special-page{
   max-width:1200px;
   margin:30px auto;
@@ -339,7 +351,7 @@ height:220px;
 }
 
 }
-/* Nút Thích - Copy -xem trang */
+/* Nút Thích -xem trang */
 .action-bar{
   display: flex;
   align-items: center;
@@ -501,38 +513,72 @@ height:220px;
 </head>
 
 <body>
-<div class="page-wrapper">
+<header class="site-header">
 
-<header class="page-header">
-  <h1 class="page-title gioithieu">
-<a href="index.html" title="Trang chủ">| 🏠 |</a>
-<a href="../vanban/baucu26.html">Bầu cử nhiệm kỳ 2026 - 2031 </a>
-</h1>
+    <!-- CENTER -->
+  <div class="header-center">
 
-<div class="nav-links">
-        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
-	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
-        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
-	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
-        <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
-        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
-	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
-      	</div>
+    <a href="index.html" class="header-logo">
+      <img src="../images/logo.png" alt="Logo">
+    </a>
+
+    <div class="header-title">
+      <h1 Style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>
+        Chia sẻ tri thức • Giá trị cuộc sống
+      </span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <nav class="header-nav">
+
+    <a href="index.html">🏠 Trang chủ</a>
+
+    <a href="suckhoe.html">
+      ❤️ Sức khỏe
+    </a>
+
+    <a href="baiviet.html">
+         ✍ Bài viết
+    </a>
+
+    <a href="tintuc.html">
+      📢 Tin tức
+    </a>
+
+    <a href="anh.html">
+      📷 Thư viện
+    </a>
+
+    <a href="vanban.html">
+      📄 Văn bản
+    </a>
+
+    <a href="tailieu.html">
+      📁 Tài liệu
+    </a>
+
+<a href="lich_cong_tac.html" >
+📅 Lịch
+</a>  
+
+  </nav>
 
 </header>
+
+<div class="page-wrapper">
 
 <div class="action-bar">
 <div class="like-box">
  <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
 </div>
 
-  <div class="share-group">
-  <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link
-  </button>
-</div>
-
-<div class="view-box">
+  <div class="view-box">
 👁 Đã xem:<b id="viewCount">0</b>
 </div>
 </div>
@@ -975,20 +1021,6 @@ likeBtn.addEventListener("click", function () {
       localStorage.setItem("liked_" + pageName, "true");
     });
 });
-</script>
-
-<script>
-function copyLink(btn){
-  navigator.clipboard.writeText(window.location.href)
-    .then(()=>{
-      const oldText = btn.innerText;
-      btn.innerText = "✅ Đã copy";
-      setTimeout(()=>btn.innerText = oldText, 1500);
-    })
-    .catch(()=>{
-      alert("Không copy được link!");
-    });
-}
 </script>
 
 <script>

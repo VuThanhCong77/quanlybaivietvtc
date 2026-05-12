@@ -26,6 +26,18 @@ href="../icons/icon180.png"> <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a7f99">
 
 <style>
+body{
+  margin:0;
+   font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  background:
+    linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.82)),
+    url('../anhnen/bg-1.jpg') center/cover fixed;
+
+  line-height:1.9;
+}
+
 /* ===== MENU ===== */
 .menu-overlay{
   position: fixed; inset: 0;
@@ -266,39 +278,65 @@ mark.current-match {
 </div>
 
 <body>
+<header class="site-header">
 
-<div class="page-wrapper">
+    <!-- CENTER -->
+  <div class="header-center">
 
-<header class="page-header">
-  <button id="menuBtn" class="menu-btn">☰</button>
-  
-<h1 class="page-title vanban">
-Hướng dẫn kiểm tra, giám sát
-</h1>
+    <a href="index.html" class="header-logo">
+      <img src="../images/logo.png" alt="Logo">
+    </a>
 
-  <a href="../index.html"> 🏠</a>
+    <div class="header-title">
+      <h1 Style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>
+        Chia sẻ tri thức • Giá trị cuộc sống
+      </span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <nav class="header-nav">
+
+    <a href="index.html">🏠 Trang chủ</a>
+
+    <a href="suckhoe.html">
+      ❤️ Sức khỏe
+    </a>
+
+    <a href="baiviet.html">
+         ✍ Bài viết
+    </a>
+
+    <a href="tintuc.html">
+      📢 Tin tức
+    </a>
+
+    <a href="anh.html">
+      📷 Thư viện
+    </a>
+
+    <a href="vanban.html">
+      📄 Văn bản
+    </a>
+
+    <a href="tailieu.html">
+      📁 Tài liệu
+    </a>
+
+<a href="lich_cong_tac.html" >
+📅 Lịch
+</a>  
+
+  </nav>
+
 </header>
 
-<div class="menu-overlay" id="menuOverlay"></div>
-
-<nav class="nav-menu" id="navMenu">
-  <div class="nav-item"><a class="nav-link" href="../index.html">🏠 Trang chủ</a></div>
-  <div class="nav-item"><a class="nav-link" href="../gioithieu.html">🏛 Giới thiệu</a></div>
-  <div class="nav-item"><a class="nav-link" href="../suckhoe.html">❤️ Sức khỏe</a></div>
-    <div class="nav-item"><a class="nav-link" href="../baiviet.html">✍ Bài viết</a></div>
-  <div class="nav-item"><a class="nav-link" href="../tintuc.html">📢 Tin tức</a></div>
-  <div class="nav-item"><a class="nav-link" href="../anh.html">📷 Thư viện ảnh</a></div>
-  <div class="nav-item">
-    <div class="nav-link toggle">📄 Văn bản <span>▾</span></div>
-    <div class="sub-menu">
-<a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
-      <a href="vanban/qd19_2026.html">📜 Quy định 19 QĐTW</a>
-      <a href="vanban/qd20_2026.html">📜 Quy định 20 QĐTW</a>
-      <a href="vanban.html">📜 Quy định 21 QĐTW</a
-    </div>
-  </div>
-  <div class="nav-item"><a class="nav-link" href="../tailieu.html">📁 Tài liệu</a></div>
-</nav>
+<div class="page-wrapper">
 
 <div class="action-bar">
 <div class="like-box">

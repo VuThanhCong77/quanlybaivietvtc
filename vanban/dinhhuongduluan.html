@@ -11,10 +11,15 @@
 <style>
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f5f5f5;
-    line-height:1.8;
+  margin:0;
+   font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  background:
+    linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.82)),
+    url('../anhnen/bg-1.jpg') center/cover fixed;
+
+  line-height:1.9;
 }
 
 /* ===== SEARCH ===== */
@@ -62,105 +67,49 @@ body{
     color:red;
 }
 
-/* ===== LAYOUT ===== */
+/* ===== MAIN ===== */
 
-.viewer-layout{
-    display:flex;
-    height:calc(100vh - 180px);
-    border:1px solid #ddd;
-    background:#fff;
-    overflow:hidden;
-}
-
-/* ===== SIDEBAR ===== */
-
-.sidebar{
-    width:320px;
-    background:#f1f1f1;
-    overflow-y:auto;
-    border-right:1px solid #ccc;
-}
-
-.menu-item{
-    padding:14px 18px;
-    border-bottom:1px solid #ddd;
-    cursor:pointer;
-    transition:.2s;
-    font-size:15px;
-    line-height:1.5;
-}
-
-.menu-item:hover{
-    background:#dbeeff;
-}
-
-.menu-item.active{
-    background:#c7ddff;
-    font-weight:bold;
-    color:#0d47a1;
-}
-
-/* ===== CONTENT ===== */
-
-.content-view{
-    flex:1;
-    overflow-y:auto;
-    padding:40px;
-    background:#fff;
-}
-
-.content-page{
-    max-width:900px;
+main{
+    max-width:1500px;
     margin:auto;
-    font-size:20px;
-    line-height:2;
-    text-align:justify;
-}
-
-.content-page h2{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-/* ===== MARK ===== */
-
-mark{
-    background:yellow;
-}
-
-.current-match{
-    background:orange;
-}
-
-/* ===== MOBILE ===== */
-
-@media(max-width:768px){
-
-.viewer-layout{
-    flex-direction:column;
-    height:auto;
-}
-
-.sidebar{
-    width:100%;
-    max-height:250px;
-}
-
-.content-view{
     padding:20px;
 }
 
-.content-page{
-    font-size:18px;
-}
-
+.main-box{
+    background:#fffbea;
+    border-radius:12px;
+    padding:20px;
 }
 
 /* ===== ACCORDION ===== */
 
+.content-section{
+    margin-bottom:15px;
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid #ddd;
+}
+
+.section-header{
+    background:#eef7fa;
+    padding:16px;
+    cursor:pointer;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
 .section-title{
     margin:0;
     font-size:20px;
+}
+
+.section-content{
+    display:none;
+    padding:20px;
+    border-top:1px solid #eee;
 }
 
 .content-section.active .section-content{
@@ -276,13 +225,65 @@ background:#009688;
 </head>
 
 <body>
-<div class="page-wrapper">
+<header class="site-header">
 
-<header class="page-header">
-<h1 class="page-title vanban">
-Định hướng dư luận xã hội
-</h1>
+    <!-- CENTER -->
+  <div class="header-center">
+
+    <a href="index.html" class="header-logo">
+      <img src="../images/logo.png" alt="Logo">
+    </a>
+
+    <div class="header-title">
+      <h1 Style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>
+        Chia sẻ tri thức • Giá trị cuộc sống
+      </span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <nav class="header-nav">
+
+    <a href="index.html">🏠 Trang chủ</a>
+
+    <a href="suckhoe.html">
+      ❤️ Sức khỏe
+    </a>
+
+    <a href="baiviet.html">
+         ✍ Bài viết
+    </a>
+
+    <a href="tintuc.html">
+      📢 Tin tức
+    </a>
+
+    <a href="anh.html">
+      📷 Thư viện
+    </a>
+
+    <a href="vanban.html">
+      📄 Văn bản
+    </a>
+
+    <a href="tailieu.html">
+      📁 Tài liệu
+    </a>
+
+<a href="lich_cong_tac.html" >
+📅 Lịch
+</a>  
+
+  </nav>
+
 </header>
+
+<div class="page-wrapper">
 
 <div id="search-container">
 
@@ -305,34 +306,20 @@ Tìm
 
 <main>
 
-<div class="viewer-layout">
+<div class="main-box">
 
-    <!-- MENU -->
-    <div class="sidebar" id="sidebar">
-        Đang tải mục lục...
-    </div>
+<h2 id="page-title">
+Đang tải...
+</h2>
 
-    <!-- NỘI DUNG -->
-    <div class="content-view">
+<button onclick="startSpeak()">🔊</button>
+<button onclick="pauseSpeak()">⏸</button>
+<button onclick="resumeSpeak()">▶</button>
+<button onclick="stopSpeak()">⏹</button>
 
-        <div class="main-box">
-
-            <h2 id="page-title">
-            Đang tải...
-            </h2>
-
-            <button onclick="startSpeak()">🔊</button>
-            <button onclick="pauseSpeak()">⏸</button>
-            <button onclick="resumeSpeak()">▶</button>
-            <button onclick="stopSpeak()">⏹</button>
-
-            <div id="content" class="content-page">
-            Đang tải nội dung...
-            </div>
-
-        </div>
-
-    </div>
+<div id="content">
+Đang tải nội dung...
+</div>
 
 </div>
 
@@ -425,26 +412,29 @@ behavior:"smooth"
 
 };
 
+
+
 /* ======================
    LOAD JSON
 ====================== */
 
 const area =
-document.getElementById("content");
-
-const sidebar =
-document.getElementById("sidebar");
+document.getElementById(
+"content"
+);
 
 let originalHTML = "";
-
-let allSections = [];
 
 fetch("./dinhhuongduluan.json")
 
 .then(res => {
 
 if(!res.ok){
-throw new Error("Không đọc được JSON");
+
+throw new Error(
+"Không đọc được JSON"
+);
+
 }
 
 return res.json();
@@ -452,6 +442,8 @@ return res.json();
 })
 
 .then(data => {
+
+let html = "";
 
 if(data.title){
 
@@ -461,25 +453,53 @@ document.getElementById(
 
 }
 
+
 if(Array.isArray(data.sections)){
 
-allSections = data.sections;
+data.sections.forEach(
+section => {
+
+html += createSection(
+
+section.heading ||
+section.title ||
+"",
+
+section.content ||
+section.noidung ||
+""
+
+);
+
+});
 
 }
 
 else if(Array.isArray(data)){
 
-allSections = data;
+data.forEach(item => {
+
+html += createSection(
+
+item.heading ||
+item.title ||
+"",
+
+item.content ||
+item.noidung ||
+""
+
+);
+
+});
 
 }
 
-renderSidebar();
+area.innerHTML = html;
 
-if(allSections.length){
+originalHTML = html;
 
-showSection(0);
-
-}
+initAccordion();
 
 })
 
@@ -498,99 +518,101 @@ Không tải được JSON
 
 
 /* ======================
-   SIDEBAR
+   CREATE SECTION
 ====================== */
 
-function renderSidebar(){
+function createSection(
+title,
+content
+){
 
-let menuHTML = "";
+return `
 
-allSections.forEach((section,index)=>{
+<div class="content-section active">
 
-menuHTML += `
+<div class="section-header">
 
-<div
-class="menu-item ${index===0?'active':''}"
-onclick="showSection(${index})"
->
+<h2 class="section-title">
+${title}
+</h2>
 
-${section.heading || section.title || 'Không tiêu đề'}
+<span class="section-arrow">
+▼
+</span>
+
+</div>
+
+<div class="section-content">
+${content}
+</div>
 
 </div>
 
 `;
-
-});
-
-sidebar.innerHTML = menuHTML;
 
 }
 
 
 
 /* ======================
-   SHOW CONTENT
+   ACCORDION
 ====================== */
 
-function showSection(index){
-
-const section = allSections[index];
-
-area.innerHTML = `
-
-<h2>
-${section.heading || section.title || ''}
-</h2>
-
-<div>
-${section.content || section.noidung || ''}
-</div>
-
-`;
-
-originalHTML = area.innerHTML;
-matches = [];
-currentIndex = -1;
-resultBox.innerHTML = "";
-
-
-/* ACTIVE MENU */
+function initAccordion(){
 
 document
-.querySelectorAll(".menu-item")
-.forEach(item => {
+.querySelectorAll(
+".section-header"
+)
 
-item.classList.remove("active");
+.forEach(header => {
+
+header.onclick = () => {
+
+header.parentElement
+.classList.toggle(
+"active"
+);
+
+};
 
 });
 
-document
-.querySelectorAll(".menu-item")
-[index]
-.classList.add("active");
-
 }
+
+
 
 /* ======================
    SEARCH
 ====================== */
 
 const searchInput =
-document.getElementById("searchInput");
+document.getElementById(
+"searchInput"
+);
 
 const searchBtn =
-document.getElementById("searchBtn");
+document.getElementById(
+"searchBtn"
+);
 
 const prevBtn =
-document.getElementById("prevBtn");
+document.getElementById(
+"prevBtn"
+);
 
 const nextBtn =
-document.getElementById("nextBtn");
+document.getElementById(
+"nextBtn"
+);
 
 const resultBox =
-document.getElementById("resultBox");
+document.getElementById(
+"resultBox"
+);
 
 let matches = [];
+
 let currentIndex = -1;
 
 
@@ -606,10 +628,6 @@ return text.replace(
 
 
 
-/* ======================
-   SEARCH BUTTON
-====================== */
-
 searchBtn.onclick = () => {
 
 const keyword =
@@ -624,66 +642,51 @@ return;
 
 }
 
-matches = [];
-currentIndex = -1;
 
-let foundSection = -1;
+/* RESET */
+area.innerHTML =
+originalHTML;
+
+initAccordion();
 
 
-/* TÌM TRONG TOÀN BỘ SECTION */
+/* OPEN ALL */
+document
+.querySelectorAll(
+".content-section"
+)
 
-allSections.forEach((section,index)=>{
+.forEach(section => {
 
-const html =
-(section.content || section.noidung || "");
-
-if(
-html.toLowerCase()
-.includes(keyword.toLowerCase())
-&& foundSection === -1
-){
-
-foundSection = index;
-
-}
+section.classList.add(
+"active"
+);
 
 });
 
 
-if(foundSection === -1){
-
-resultBox.innerHTML =
-"Không tìm thấy";
-
-return;
-
-}
-
-
-/* MỞ SECTION ĐẦU TIÊN TÌM THẤY */
-
-showSection(foundSection);
-
-
-/* HIGHLIGHT */
-
+/* SEARCH */
 const regex =
 new RegExp(
 escapeRegExp(keyword),
 "gi"
 );
 
+
+/* HIGHLIGHT */
 area.innerHTML =
 area.innerHTML.replace(
 regex,
-match => `<mark>${match}</mark>`
+match =>
+`<mark>${match}</mark>`
 );
 
 
 /* GET MATCHES */
-
 matches =
-area.querySelectorAll("mark");
+area.querySelectorAll(
+"mark"
+);
 
 
 if(!matches.length){
@@ -703,10 +706,6 @@ updateMatch();
 };
 
 
-
-/* ======================
-   UPDATE MATCH
-====================== */
 
 function updateMatch(){
 
@@ -729,6 +728,7 @@ matches[currentIndex]
 .scrollIntoView({
 
 behavior:"smooth",
+
 block:"center"
 
 });
@@ -741,9 +741,7 @@ resultBox.innerHTML =
 
 
 
-/* ======================
-   NEXT
-====================== */
+/* NEXT */
 
 nextBtn.onclick = () => {
 
@@ -766,9 +764,7 @@ updateMatch();
 
 
 
-/* ======================
-   PREV
-====================== */
+/* PREV */
 
 prevBtn.onclick = () => {
 
@@ -790,9 +786,7 @@ updateMatch();
 
 
 
-/* ======================
-   ENTER
-====================== */
+/* ENTER */
 
 searchInput.addEventListener(
 "keydown",
