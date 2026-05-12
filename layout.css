@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+
 html, body{
   min-height: 100%;
 }
 
 body{
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   color: #033e5a;
   line-height: 1.6;
   background:linear-gradient(to bottom,#f3f8ff,#eef5ff);
@@ -18,7 +20,7 @@ body{
    LAYOUT CHUNG TOÀN WEBSITE
    ================================================== */
 h1, h2,h3,h4,h5,h6 {
-font-size: 16px;
+font-size: 14px;
 }
 
 :root{
@@ -43,56 +45,6 @@ font-size: 16px;
   margin: 0 auto;
   position: relative;
  }
-
-/* ===============================
-   HEADER – FIXED – CÙNG TRỤC
-   =============================== */
-.page-header{
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-  max-width: var(--max-width);
-  width: 100%;
-  height: var(--header-height);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: linear-gradient(
-    to right,
-    var(--primary),
-    var(--secondary)
-  );
-  color: #fff;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(3, 161, 189, 0.15);
-}
-
-.page-header h1{
-  font-size: 16px;
-  margin: 0;
-  line-height: 1;
-}
-
-.page-header a{
-  color: #fff;
-  text-decoration: none;
-  margin-left: 6px;
-}
-
-/* NÚT MENU */
-.menu-btn{
-  position: absolute;
-  left: 12px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 22px;
-  cursor: pointer;
-}
 
 /* ===============================
    KHỐI CỐ ĐỊNH PHỤ (SEARCH, TOOLBAR)
@@ -621,12 +573,45 @@ a{
 
 }
 /* MENU NGANG DESKTOP - ACTIVE */
+
+/* Bật sáng khi vào trang */
+.header-nav a.active,
 .nav-links a.active{
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f0f9ff
+    );
+
+  color:#0077b6 !important;
+
+  border:1px solid rgba(255,255,255,.9);
+
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.18),
+    0 8px 18px rgba(0,0,0,.15);
+
+  transform:translateY(-1px);
+
+  position:relative;
+}
+
+/* Viền sáng */
+.header-nav a.active::after,
+.nav-links a.active::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  border-radius:inherit;
+
+  box-shadow:
+    inset 0 0 12px rgba(255,255,255,.75);
+
+  pointer-events:none;
 }
 
 /* Hover đẹp hơn */
@@ -745,4 +730,201 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
   border: 1px solid #0ea5a4;
   background: #e0f7f6;
   font-size: 14px;
+}
+
+/* ==================================================
+   HEADER MỚI CHUẨN LAYOUT
+   ================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+
+body{
+  font-family:'Be Vietnam Pro',sans-serif;
+}
+
+/* HEADER */
+.site-header{
+  position:fixed;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+
+  width:100%;
+  max-width:var(--max-width);
+  height:72px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0077b6,
+      #0096d6,
+      #00b4f0
+    );
+
+  box-shadow:
+    0 4px 20px rgba(0,0,0,.10);
+
+  z-index:1000;
+}
+
+/* LEFT */
+.header-left{
+  width:60px;
+  display:flex;
+  align-items:center;
+}
+
+/* MENU BUTTON */
+.menu-btn{
+  width:42px;
+  height:42px;
+
+  border:none;
+  border-radius:12px;
+
+  background:rgba(255,255,255,.15);
+
+  color:#fff;
+  font-size:22px;
+
+  cursor:pointer;
+
+  transition:.25s;
+}
+
+.menu-btn:hover{
+  background:rgba(255,255,255,.25);
+  transform:scale(1.05);
+}
+
+/* CENTER */
+.header-center{
+  flex:1;
+
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  min-width:0;
+}
+
+/* LOGO */
+.header-logo img{
+  width:48px;
+  height:48px;
+
+  border-radius:50%;
+  object-fit:cover;
+
+  border:2px solid rgba(255,255,255,.45);
+
+  background:#fff;
+}
+
+/* TITLE */
+.header-title{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  min-width:0;
+}
+
+.header-title h1{
+  margin:0;
+  line-height:1.1;
+}
+
+.header-title h1 a{
+  color:#fff;
+  text-decoration:none;
+
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:.6px;
+
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.18);
+}
+
+.header-title span{
+  font-size:12px;
+  color:rgba(255,255,255,.88);
+
+  margin-top:3px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* RIGHT MENU */
+.header-nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.header-nav a{
+  color:#fff;
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:600;
+
+  padding:9px 12px;
+  border-radius:10px;
+
+  transition:.25s;
+}
+
+.header-nav a:hover{
+  background:rgba(255,255,255,.18);
+}
+
+/* ACTIVE */
+.header-nav a.active{
+  background:#ffffff;
+  color:#0077b6;
+}
+
+/* WRAPPER */
+.page-wrapper{
+  padding-top:82px;
+}
+
+/* MOBILE */
+@media(max-width:991px){
+
+  .site-header{
+    height:64px;
+    padding:0 12px;
+  }
+
+  .header-nav{
+    display:none;
+  }
+
+  .header-logo img{
+    width:42px;
+    height:42px;
+  }
+
+  .header-title h1 a{
+    font-size:18px;
+  }
+
+  .header-title span{
+    font-size:11px;
+  }
+
+  .page-wrapper{
+    padding-top:74px;
+  }
 }

@@ -74,7 +74,7 @@ a{
     text-decoration:none;
     color:#007bff;
 }
-/* Nút Thích trang – Copy – Lượt xem */
+/* Nút Thích trang – Lượt xem */
 .action-bar {
   display: flex;
   justify-content: left;      /* căn giữa cả hàng */
@@ -257,19 +257,66 @@ a{
 
 <div class="page-wrapper">
 
-<header class="page-header">
-   VĂN BẢN PDF
-<a href="index.html" title="Trang chủ"> 🏠</a>
+<header class="site-header">
 
-<div class="nav-links">
-        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
-	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
-        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
-	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
-        <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
-        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
-	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
-      	</div>
+  <!-- LEFT -->
+  <div class="header-left">
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+
+  <!-- CENTER -->
+  <div class="header-center">
+
+    <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
+
+    <div class="header-title">
+      <h1 Style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>
+        Chia sẻ tri thức • Giá trị cuộc sống
+      </span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <nav class="header-nav">
+
+    <a href="index.html">🏠 Trang chủ</a>
+
+    <a href="suckhoe.html">
+      ❤️ Sức khỏe
+    </a>
+
+    <a href="baiviet.html">
+         ✍ Bài viết
+    </a>
+
+    <a href="tintuc.html">
+      📢 Tin tức
+    </a>
+
+    <a href="anh.html">
+      📷 Thư viện
+    </a>
+
+    <a href="vanban.html">
+      📄 Văn bản
+    </a>
+
+    <a href="tailieu.html">
+      📁 Tài liệu
+    </a>
+
+<a href="lich_cong_tac.html" >
+📅 Lịch
+</a>  
+
+  </nav>
 
 </header>
 
@@ -288,13 +335,7 @@ a{
  <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
 </div>
 
-  <div class="share-group">
-  <button class="share-btn copy" onclick="copyLink(this)">
-    🔗 Copy link
-  </button>
-</div>
-
-<div class="view-box">
+ <div class="view-box">
 👁 Đã xem:<b id="viewCount">0</b>
 </div>
 </div>
@@ -411,20 +452,6 @@ likeBtn.addEventListener("click", function () {
 </script>
 
 <script>
-function copyLink(btn){
-  navigator.clipboard.writeText(window.location.href)
-    .then(()=>{
-      const oldText = btn.innerText;
-      btn.innerText = "✅ Đã copy";
-      setTimeout(()=>btn.innerText = oldText, 1500);
-    })
-    .catch(()=>{
-      alert("Không copy được link!");
-    });
-}
-</script>
-
-<script>
 const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
 
 const postId = "doc_pdf"; 
@@ -474,6 +501,21 @@ btn.addEventListener("click", function(){
 <button class="floating-back" onclick="history.back()">
     ←
 </button>
+
+<script>
+const currentPage = location.pathname.split("/").pop();
+
+document.querySelectorAll(".header-nav a, .nav-links a")
+.forEach(link => {
+
+  const linkPage = link.getAttribute("href");
+
+  if(linkPage === currentPage){
+    link.classList.add("active");
+  }
+
+});
+</script>
 
 </body>
 </html>

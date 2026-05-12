@@ -23,6 +23,11 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a7f99">
 
 <style>
+.main-content{
+  background:#fffffff5;
+  line-height:1.8;
+}
+
 /* ===== MENU ===== */
 .menu-overlay{
   position: fixed; inset: 0;
@@ -258,22 +263,66 @@ p{
 
 <div class="page-wrapper">
 
-<header class="page-header">
-  <button id="menuBtn" class="menu-btn">☰</button>
-  
-<h1 class="page-title vanban">
-  <a href="index.html" title="Trang chủ">| 🏠 |</a>
-<a href="vanban.html">Quy định số 21 QĐTW </a>
-</h1>
+<header class="site-header">
 
-<div class="nav-links">
-        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
-	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
-        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
-	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
-        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
-	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
-      	</div>
+  <!-- LEFT -->
+  <div class="header-left">
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+
+  <!-- CENTER -->
+  <div class="header-center">
+
+    <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
+
+    <div class="header-title">
+      <h1 Style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>
+        Chia sẻ tri thức • Giá trị cuộc sống
+      </span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <nav class="header-nav">
+
+    <a href="index.html">🏠 Trang chủ</a>
+
+    <a href="suckhoe.html">
+      ❤️ Sức khỏe
+    </a>
+
+    <a href="baiviet.html">
+         ✍ Bài viết
+    </a>
+
+    <a href="tintuc.html">
+      📢 Tin tức
+    </a>
+
+    <a href="anh.html">
+      📷 Thư viện
+    </a>
+
+    <a href="vanban.html">
+      📄 Văn bản
+    </a>
+
+    <a href="tailieu.html">
+      📁 Tài liệu
+    </a>
+
+<a href="lich_cong_tac.html" >
+📅 Lịch
+</a>  
+
+  </nav>
 
 </header>
 
@@ -480,5 +529,19 @@ function stopSpeak() {
     ←
 </button>
 
+<script>
+const currentPage = location.pathname.split("/").pop();
+
+document.querySelectorAll(".header-nav a, .nav-links a")
+.forEach(link => {
+
+  const linkPage = link.getAttribute("href");
+
+  if(linkPage === currentPage){
+    link.classList.add("active");
+  }
+
+});
+</script>
 </body>
 </html>

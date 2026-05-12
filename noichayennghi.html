@@ -60,7 +60,7 @@ footer {background:#07a4d4; color:#fff; text-align:center; padding:15px}
 #backToTop:hover{
   background: #199586;
 }
-/* Nút Thích trang – Copy – Lượt xem */
+/* Nút Thích trang - Lượt xem */
 .action-bar {
   display: flex;
   justify-content: left;      /* căn giữa cả hàng */
@@ -591,20 +591,6 @@ likeBtn.addEventListener("click", function () {
       localStorage.setItem("liked_" + pageName, "true");
     });
 });
-</script>
-
-<script>
-function copyLink(btn){
-  navigator.clipboard.writeText(window.location.href)
-    .then(()=>{
-      const oldText = btn.innerText;
-      btn.innerText = "✅ Đã copy";
-      setTimeout(()=>btn.innerText = oldText, 1500);
-    })
-    .catch(()=>{
-      alert("Không copy được link!");
-    });
-}
 </script>
 
 <script>

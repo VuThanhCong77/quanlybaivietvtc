@@ -15,14 +15,13 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a7f99">
 
 <style>
+/* ==================================================
+   CSS RIÊNG CHO TRANG TÀI LIỆU
+   ================================================== */
 .main-content{
   background:#fffffff5;
   line-height:1.8;
 }
-	
-/* ==================================================
-   CSS RIÊNG CHO TRANG TÀI LIỆU
-   ================================================== */
 
 /* ===== MENU MOBILE ===== */
 .menu-overlay{
@@ -233,6 +232,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 }
 
 </style>
+
 <style>
 /* MENU NGANG DESKTOP */
 .nav-links{
@@ -288,33 +288,72 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   opacity: 1;
 }
 </style>
-
 </head>
-
 <body>
 
-<div class="page-wrapper">
-
   <!-- HEADER -->
-  <header class="page-header">
+<header class="site-header">
+
+  <!-- LEFT -->
+  <div class="header-left">
     <button class="menu-btn" id="menuBtn">☰</button>
-    
-<h1 class="page-title tailieu">
-<a href="index.html" title="Trang chủ">| 🏠 |</a>
-<a href="tailieu.html">Tài liệu </a>
-</h1>
+  </div>
 
-   <div class="nav-links">
-        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
-	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
-        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
-	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
-        <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
-        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
-	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
-      	</div>
+  <!-- CENTER -->
+  <div class="header-center">
 
-  </header>
+    <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
+
+    <div class="header-title">
+      <h1 Style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>
+        Chia sẻ tri thức • Giá trị cuộc sống
+      </span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <nav class="header-nav">
+
+    <a href="index.html">🏠 Trang chủ</a>
+
+    <a href="suckhoe.html">
+      ❤️ Sức khỏe
+    </a>
+
+    <a href="baiviet.html">
+         ✍ Bài viết
+    </a>
+
+    <a href="tintuc.html">
+      📢 Tin tức
+    </a>
+
+    <a href="anh.html">
+      📷 Thư viện
+    </a>
+
+    <a href="vanban.html">
+      📄 Văn bản
+    </a>
+
+    <a href="tailieu.html">
+      📁 Tài liệu
+    </a>
+
+<a href="lich_cong_tac.html" >
+📅 Lịch
+</a>  
+
+  </nav>
+
+</header>
 
   <!-- MENU -->
   <div class="menu-overlay" id="menuOverlay"></div>
@@ -499,13 +538,21 @@ fetch("sidebar.html")
 <button class="floating-back" onclick="history.back()">
     ←
 </button>
+
 <script>
-const links = document.querySelectorAll(".nav-links a");
-links.forEach(link => {
-  if(link.href === window.location.href){
+const currentPage = location.pathname.split("/").pop();
+
+document.querySelectorAll(".header-nav a, .nav-links a")
+.forEach(link => {
+
+  const linkPage = link.getAttribute("href");
+
+  if(linkPage === currentPage){
     link.classList.add("active");
   }
+
 });
 </script>
+
 </body>
 </html>
