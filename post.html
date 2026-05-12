@@ -1,55 +1,330 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="dynamic-title">Vũ Thành Công</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-   <!-- Open Graph chuẩn cho Facebook & Zalo -->
+
+<!-- =========================
+META CƠ BẢN
+========================= -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title id="dynamic-title">Vũ Thành Công | Chia sẻ tri thức & truyền cảm hứng tích cực</title>
+
+<meta name="description" content="Trang chia sẻ tri thức, giá trị sống tích cực, kinh nghiệm thực tiễn và truyền cảm hứng sống tốt đẹp.">
+<meta name="keywords" content="Vũ Thành Công, truyền cảm hứng, kỹ năng sống, tri thức, bài viết hay, giá trị sống">
+<meta name="author" content="Vũ Thành Công">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a7f99">
+
+<!-- =========================
+CANONICAL
+========================= -->
+<link rel="canonical" href="https://vuthanhcong77.github.io/quanlybaivietvtc/">
+
+<!-- =========================
+OPEN GRAPH FACEBOOK - ZALO
+========================= -->
+<meta property="og:locale" content="vi_VN">
 <meta property="og:type" content="article">
+<meta property="og:site_name" content="Vũ Thành Công">
 <meta property="og:title" content="Vũ Thành Công ❤️ Truyền cảm hứng tích cực">
-<meta property="og:description" content="🌱 Giá trị sống tích cực">
+<meta property="og:description" content="🌱 Chia sẻ tri thức, kinh nghiệm và giá trị sống tích cực mỗi ngày.">
 <meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/anhnen/cong77.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
 
+<!-- =========================
+TWITTER CARD
+========================= -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vũ Thành Công ❤️ Truyền cảm hứng tích cực">
+<meta name="twitter:description" content="🌱 Chia sẻ tri thức, giá trị sống và năng lượng tích cực.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/anhnen/cong77.jpg">
+
+<!-- =========================
+PWA + ICON
+========================= -->
+<link rel="manifest" href="manifest.json">
+
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon180.png">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vũ Thành Công">
+
+<!-- =========================
+FONT + ICON + BOOTSTRAP
+========================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <!-- CSS DÙNG CHUNG -->
 <link rel="stylesheet" href="layout.css">
 
-<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
-href="icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
-href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
-href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
-<meta name="theme-color" content="#0a7f99">
+<style>
 
-    <style>
-h1,h2 {
-font-size: 18px;
+/* =========================
+RESET
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-body { 
-background-color: #2E8B57;
-font-family: 'Arial', sans-serif;
- }
-.main-content { 
-          background-color: #F5E6C8;
-          color: #4A3B2A;
-          font-family: Times New Roman; 
-          border-radius: 6px; 
-          padding: 12px; 
-          box-shadow: 0 4px 15px #A67C52; 
-        }
-.post-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; display: none; }
-#view-content { line-height: 1.8; color: #071d6d; font-size: 1.1rem; }
-.huongdan-gopy { margin-top:3px; font-size:13px; color:#0303ef; font-style:italic; }
 
-/* ===============================
-   NÚT COPY – TRANG BÀI VIẾT CHI TIẾT
-   =============================== */
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#a9c2c7;
+    font-family:'Roboto',sans-serif;
+    color:#222;
+    overflow-x:hidden;
+    padding-top:80px;
+}
+
+/* =========================
+HEADER
+========================= */
+.site-header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:99999;
+
+    background:linear-gradient(135deg,#0a7f99,#075e73);
+
+    box-shadow:0 3px 12px rgba(0,0,0,.18);
+}
+
+.header-container{
+    max-width:1200px;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:12px 16px;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-avatar{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,.4);
+}
+
+.logo-text{
+    color:#fff;
+    line-height:1.2;
+}
+
+.logo-text h1{
+    font-size:18px;
+    margin:0;
+    font-weight:700;
+}
+
+.logo-text span{
+    font-size:13px;
+    opacity:.92;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.header-btn{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+    color:#fff;
+
+    cursor:pointer;
+    transition:.25s;
+}
+
+.header-btn:hover{
+    background:#ffffff;
+    color:#0a7f99;
+    transform:translateY(-2px);
+}
+
+
+
+/* =========================
+MAIN CONTENT
+========================= */
+.main-content{
+    background:#F5E6C8;
+    color:#4A3B2A;
+    font-family:"Times New Roman",serif;
+
+    border-radius:10px;
+    padding:16px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.18);
+}
+
+.mini-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+  flex-wrap:nowrap;
+  background:#49dff3e5;
+}
+
+#ttsRate,
+#ttsVoice{
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:13px;
+  border:none;
+  outline:none;
+  background:#fff;
+  min-width:90px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+@media(max-width:768px){
+
+    body{
+        padding-top:74px;
+    }
+
+    .logo-text h1{
+        font-size:16px;
+    }
+
+    .logo-text span{
+        font-size:12px;
+    }
+
+   .mini-row{
+    justify-content:space-between;
+    flex-wrap:nowrap;
+    gap:6px;
+  }
+
+  #ttsTime{
+    font-size:12px;
+    min-width:72px;
+    text-align:center;
+  }
+
+  #ttsRate,
+  #ttsVoice{
+    flex:1;
+    min-width:0;
+    font-size:12px;
+  }
+
+  .tts-btn{
+    flex-shrink:0;
+  }
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+iframe{
+    max-width:100%;
+}
+
+.mini-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:nowrap;
+}
+
+#ttsTime{
+  min-width:82px;
+  text-align:center;
+  font-size:13px;
+}
+
+#ttsRate,
+#ttsVoice{
+  border:none;
+  border-radius:8px;
+  padding:5px 8px;
+  font-size:13px;
+  background:#fff;
+}
+
+#ttsRate{
+  width:72px;
+}
+
+#ttsVoice{
+  width:95px;
+}
+
+.tts-btn{
+  flex-shrink:0;
+}
+
+@media (max-width:600px){
+
+  .mini-row{
+    gap:5px;
+    background:#49dff3e5;
+  }
+
+  #ttsTime{
+    min-width:68px;
+    font-size:11px;
+  }
+
+  #ttsRate{
+    width:64px;
+    font-size:11px;
+  }
+
+  #ttsVoice{
+    width:82px;
+    font-size:11px;
+  }
+
+  .tts-btn{
+    width:38px;
+    height:38px;
+    font-size:14px;
+  }
+
+}
+
 .post-copy-btn{
   background: linear-gradient(135deg, #0a7f99, #0ab3c9);
   color: #ffffff;
@@ -73,176 +348,136 @@ font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, #198754, #28a745);
 }
 
-/* ===== MINI PODCAST PLAYER ===== */
+.post-img{
+    display:none;
 
-.mini-player{
-  background:#d4b907;
-  padding:12px;
-  border-radius:14px;
-  box-shadow:0 3px 10px hsla(91, 78%, 62%, 0.078);
-  margin-bottom:15px;
-  width:100%;
-}
+    max-width:100%;
+    width:auto;
 
-.mini-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  margin-bottom:8px;
-  flex-wrap:wrap;
-}
+    max-height:520px;
 
-.tts-btn{
-  background:#0f5ccf;
-  color:#dd23e1;
-  border:none;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
+    margin:
+        18px auto 28px;
 
-.tts-btn:hover{
-  background:#084298;
-}
+    border-radius:18px;
 
-#ttsProgress{
-  width:100%;
-  margin-bottom:10px;
-}
+    object-fit:cover;
 
-#ttsTime{
-  font-size:13px;
-  font-weight:500;
-  white-space:nowrap;
-}
+    box-shadow:
+        0 8px 26px rgba(0,0,0,.18),
+        0 2px 8px rgba(0,0,0,.08);
 
-#ttsRate,
-#ttsVoice{
-  padding:4px 8px;
-  border-radius:8px;
-  font-size:13px;
-}
-
-/* ==== Mobile tối ưu hơn ==== */
-@media (max-width:600px){
-
-  .mini-row{
-    justify-content:space-between;
-  }
-
-  #ttsVoice{
-    width:100%;
-  }
-
-}
-
-/* Floating Menu */
-.floating-menu{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    z-index:9999;
-}
-
-/* Nút chính */
-.main-float{
-    width:36px;
-    height:36px;
-    border:none;
-    border-radius:50%;
-    background:linear-gradient(135deg,#1565c0,#0d47a1);
-    color:#fff;
-    font-size:20px;
-    cursor:pointer;
-    box-shadow:0 8px 20px rgba(0,0,0,0.25);
-    transition:.3s;
-}
-
-.main-float:hover{
-    transform:scale(1.1);
-}
-
-/* Các nút phụ */
-.sub-buttons{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-bottom:10px;
-
-    opacity:0;
-    transform:translateY(20px);
-    pointer-events:none;
+    border:4px solid rgba(255,255,255,.75);
 
     transition:.35s ease;
 }
 
-/* Khi mở */
-.sub-buttons.show{
-    opacity:1;
-    transform:translateY(0);
-    pointer-events:auto;
+/* Hover desktop */
+.post-img:hover{
+    transform:scale(1.01);
 }
 
-/* Nút con */
-.sub-buttons button{
-    width:36px;
-    height:36px;
-    border:none;
-    border-radius:50%;
-    background:#e91e63;
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    transition:.3s;
-}
+/* Mobile */
+@media(max-width:768px){
 
-.sub-buttons button:hover{
-    transform:scale(1.1);
-    background:#00acc1;
-}
+    .post-img{
+        width:100%;
+        max-height:360px;
 
+        border-radius:14px;
+    }
+
+}
 </style>
-
 </head>
+
 <body>
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header class="site-header">
+
+    <div class="header-container">
+
+        <div class="logo-area">
+
+            <img 
+                src="anhnen/CK.png"
+                alt="Vũ Thành Công"
+                class="logo-avatar"
+            >
+
+            <div class="logo-text">
+                <h1>Vũ Thành Công</h1>
+                <span>Lan tỏa giá trị sống tích cực</span>
+            </div>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button class="header-btn" onclick="history.back()" title="Quay lại">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+
+            <button class="header-btn" onclick="scrollToTop()" title="Lên đầu trang">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+
+            <button class="header-btn" onclick="window.location.href='index.html'" title="Trang chủ">
+                <i class="fas fa-home"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
 
 <div class="article-content">
 
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="main-content" id="post-container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                       
-  <b>Vũ Thành Công_Lưu Kiếm</b>
-                    </ol>
-                </nav>
 
-  <div class="top-bar mini-player">
-  <div class="mini-row">
-    <button id="ttsBtn" class="tts-btn">▶</button>
-    <span id="ttsTime">0:00 / 0:00</span>
-    <select id="ttsRate">
-      <option value="0.8">0.8x</option>
-      <option value="1" selected>1.0x</option>
-      <option value="1.2">1.2x</option>
-      <option value="1.5">1.5x</option>
-    </select>
-  </div>
-  <input type="range" id="ttsProgress" value="0" min="0" max="100">
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb mb-2">
+<li class="breadcrumb-item">
+ <a href="index.html">Trang chủ</a>
+</li>
+
+<li class="breadcrumb-item active" aria-current="page">
+      Bài viết
+</li>
+</ol>
+</nav>
+
 
   <div class="mini-row">
-    <select id="ttsVoice">
-      <option value="female">🎙 Giọng Nữ</option>
-      <option value="male">🎙 Giọng Nam</option>
-    </select>
-  </div>
-</div>     
+
+  <button id="ttsBtn" class="tts-btn">▶</button>
+
+  <span id="ttsTime">0:00 / 0:00</span>
+
+  <select id="ttsRate">
+    <option value="0.8">0.8x</option>
+    <option value="1" selected>1.0x</option>
+    <option value="1.2">1.2x</option>
+    <option value="1.5">1.5x</option>
+  </select>
+
+  <select id="ttsVoice">
+    <option value="female">🎙 Nữ</option>
+    <option value="male">🎙 Nam</option>
+  </select>
+
+</div>
+
+<input type="range" id="ttsProgress" value="0" min="0" max="100">
+
+ 
 
 <h1 id="view-title" class="fw-bold mb-3">Đang tải tiêu đề...</h1>
 
@@ -257,7 +492,15 @@ font-family: 'Arial', sans-serif;
                     <span class="ms-3"><i class="fas fa-user me-1"></i> <span id="view-author">Admin</span></span>
                 </div>
 
-                <img id="view-image" src="" alt="" class="post-img shadow-sm">
+<div class="text-center">
+    <img 
+        id="view-image"
+        src=""
+        alt="Ảnh bài viết"
+        class="post-img"
+        loading="lazy"
+    >
+</div>
 
                 <div id="view-content" class="mb-5"></div>
 
@@ -280,8 +523,9 @@ font-family: 'Arial', sans-serif;
                 
 <div class="d-flex justify-content-between align-items-center mt-4">
     <div>
-        <button onclick="copyLink(this)" class="post-copy-btn shadow-sm">
-  🔗 Copy link chia sẻ
+ <button onclick="copyLink(this)" class="post-copy-btn">
+    <i class="fas fa-share-alt"></i>
+    <span>Copy link chia sẻ</span>
 </button>
     </div>
    
@@ -337,6 +581,7 @@ async function loadPost() {
 }
 
 function copyLink(btn){
+
     if (!currentPost) return;
 
     const link =
@@ -345,19 +590,26 @@ function copyLink(btn){
       ".html";
 
     navigator.clipboard.writeText(link)
-      .then(()=>{
-        const oldText = btn.innerText;
+    .then(()=>{
+
         btn.classList.add("copied");
-        btn.innerText = "✅ Đã sao chép link chia sẻ";
+
+        btn.innerHTML =
+        '<i class="fas fa-check-circle"></i><span>Đã sao chép liên kết</span>';
 
         setTimeout(()=>{
-          btn.classList.remove("copied");
-          btn.innerText = oldText;
-        }, 1800);
-      })
-      .catch(()=>{
+
+            btn.classList.remove("copied");
+
+            btn.innerHTML =
+            '<i class="fas fa-share-alt"></i><span>Copy link chia sẻ</span>';
+
+        },1800);
+
+    })
+    .catch(()=>{
         alert("Không copy được liên kết!");
-      });
+    });
 }
 
 function guiGopY() {
@@ -589,29 +841,8 @@ progress.addEventListener("input", () => {
 
 </script>
 
-<div class="floating-menu">
-
-    <button class="main-float" onclick="toggleFloatMenu()">
-        ☰
-    </button>
-
-    <div class="sub-buttons" id="subButtons">
-
-        <button onclick="scrollToTop()" title="Lên đầu trang">
-            ⬆
-        </button>
-
-        <button onclick="history.back()" title="Quay lại">
-            ←
-        </button>
-
-    </div>
-</div>
 
 <script>
-function toggleFloatMenu(){
-    document.getElementById("subButtons").classList.toggle("show");
-}
 
 function scrollToTop(){
     window.scrollTo({
@@ -619,9 +850,19 @@ function scrollToTop(){
         behavior:"smooth"
     });
 }
+
+document.querySelector('meta[name="description"]')
+?.setAttribute("content", post.description.replace(/<[^>]+>/g, '').substring(0,160));
+
+document.querySelector('meta[property="og:title"]')
+?.setAttribute("content", post.title);
+
+document.querySelector('meta[property="og:description"]')
+?.setAttribute("content",
+post.description.replace(/<[^>]+>/g, '').substring(0,160));
+
 </script>
 
 </body>
-
 
 </html>
