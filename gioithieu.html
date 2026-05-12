@@ -327,10 +327,9 @@ href="images/CK.png"> <link rel="manifest" href="manifest.json">
 ========================= */
 
 body{
-  font-family:'Be Vietnam Pro',sans-serif;
-  background:
+    background:
     linear-gradient(rgba(255,255,255,.86),rgba(255,255,255,.9)),
-    url("anhnen/bg-4.jpg") center/cover fixed;
+    url("anhnen/bg-1.jpg") center/cover fixed;
   color:#1e293b;
   line-height:1.8;
 }
@@ -753,6 +752,16 @@ footer p{
     line-height:1.9;
   }
 
+ p{
+    padding:16px;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+    color:#0b31ad;
+  }
+
   .img-giua img{
     border-radius:18px;
   }
@@ -931,6 +940,12 @@ footer p{
  <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
 </div>
 
+  <div class="share-group">
+  <button class="share-btn copy" onclick="copyLink(this)">
+    🔗 Copy link
+  </button>
+</div>
+
 <div class="view-box">
 👁 Đã xem:<b id="viewCount">0</b>
 </div>
@@ -958,9 +973,10 @@ footer p{
     <!-- ẢNH 1 -->
     <div class="img-giua">
         <img src="anhvietbai/sdb.jpg" alt="">
-<div style="font-size:13px;color:#3030ef;margin-top:6px;">
+<p>
     Hình ảnh: Tắm trên sông Đá Bạc
-    </div>
+</p>
+</div>
 
     <p class="justified-p">
         <span class="lotus-icon">🌸</span> Mùa hè năm 1977, khi đất nước vừa bước ra khỏi chiến tranh, đời sống còn bộn bề thiếu thốn, một cậu bé cất tiếng khóc chào đời trong một gia đình thuần nông ven sông Đá Bạc. Tuổi thơ của cậu gắn liền với ruộng đồng, với dáng mẹ tảo tần gánh gồng sớm hôm, dáng cha lặng lẽ “bán mặt cho đất, bán lưng cho trời”. Gian khó không làm cậu chùn bước, trái lại, sớm hun đúc trong cậu ý thức vươn lên bằng con đường học tập và lao động chân chính.
@@ -991,15 +1007,15 @@ footer p{
     </p>
  
 <!-- ẢNH 2 -->
-    <div class="img-giua">
-	<a href="vanban/uocmo.html"> 
+<div class="img-giua">
+<a href="vanban/uocmo.html"> 
         <img src="images/gioithieu2.jpg" alt="">
-<div style="font-size:13px;color:#3030ef;margin-top:6px;">
+<p>
     Hình ảnh: Kỷ niệm ngày ra trường (1995 - 2025)
-  </div>
-	</a>
+</p>
 
-      </div>
+</a>
+</div>
 
 <h2 class="section-title">
    🌸 TƯ DUY & TRIẾT LÝ SỐNG 
@@ -1022,11 +1038,11 @@ footer p{
   </p>
 
     <!-- ẢNH 3 -->
-    <div class="img-giua">
+<div class="img-giua">
         <img src="anhvietbai/anhluuky (5).jpg" alt="">
-<div style="font-size:13px;color:#3030ef;margin-top:6px;">
+<p>
     Hình ảnh: Ngôi trường cấp 1 + 2 Lưu Kỳ
- </div>
+</p>
 </div>
 
 
@@ -1086,6 +1102,20 @@ likeBtn.addEventListener("click", function () {
       localStorage.setItem("liked_" + pageName, "true");
     });
 });
+</script>
+
+<script>
+function copyLink(btn){
+  navigator.clipboard.writeText(window.location.href)
+    .then(()=>{
+      const oldText = btn.innerText;
+      btn.innerText = "✅ Đã copy";
+      setTimeout(()=>btn.innerText = oldText, 1500);
+    })
+    .catch(()=>{
+      alert("Không copy được link!");
+    });
+}
 </script>
 
 <script>
