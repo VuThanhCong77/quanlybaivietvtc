@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hướng dẫn sinh hoạt chi bộ</title>
+
+<link rel="stylesheet" href="../layout.css">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="../icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<style>
+
+body{
+  margin:0;
+   font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  background:
+    linear-gradient(rgba(255,255,255,0.30), rgba(255,255,255,0.82)),
+    url('../anhnen/bg-5.jpg') center/cover fixed;
+
+  line-height:1.9;
+}
+
+/* ===== SEARCH ===== */
+
+#search-container{
+    max-width:1500px;
+    margin:20px auto;
+    display:flex;
+    gap:8px;
+    padding:0 15px;
+}
+
+#searchInput{
+    flex:1;
+    padding:12px;
+    border-radius:8px;
+    border:2px solid #1976d2;
+    font-size:16px;
+}
+
+#searchBtn,
+#prevBtn,
+#nextBtn{
+    padding:12px 16px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:#fff;
+    font-weight:bold;
+}
+
+#searchBtn{
+    background:#1976d2;
+}
+
+#prevBtn,
+#nextBtn{
+    background:#009688;
+}
+
+#resultBox{
+    display:flex;
+    align-items:center;
+    font-weight:bold;
+    color:red;
+}
+
+/* ===== LAYOUT ===== */
+
+.viewer-layout{
+    display:flex;
+    height:calc(100vh - 180px);
+    border:1px solid #ddd;
+    background:#fff;
+    overflow:hidden;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+    width:320px;
+    background:#f1f1f1;
+    overflow-y:auto;
+    border-right:1px solid #ccc;
+}
+
+.menu-item{
+    padding:14px 18px;
+    border-bottom:1px solid #ddd;
+    cursor:pointer;
+    transition:.2s;
+    font-size:15px;
+    line-height:1.5;
+}
+
+.menu-item:hover{
+    background:#dbeeff;
+}
+
+.menu-item.active{
+    background:#c7ddff;
+    font-weight:bold;
+    color:#0d47a1;
+}
+
+/* ===== CONTENT ===== */
+
+.content-view{
+    flex:1;
+    overflow-y:auto;
+    padding:40px;
+    background:#fff;
+}
+
+.content-page{
+    max-width:1200px;
+    margin:auto;
+    font-size:20px;
+    line-height:2;
+    text-align:justify;
+}
+
+.content-page h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+
+/* ===== MARK ===== */
+
+mark{
+    background:yellow;
+}
+
+.current-match{
+    background:orange;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+.viewer-layout{
+    flex-direction:column;
+    height:auto;
+}
+
+.sidebar{
+    width:100%;
+    max-height:250px;
+}
+
+.content-view{
+    padding:20px;
+}
+
+.content-page{
+    font-size:18px;
+}
+
+}
+
+/* ===== ACCORDION ===== */
+
+.section-title{
+    margin:0;
+    font-size:20px;
+}
+
+.content-section.active .section-content{
+    display:block;
+}
+
+.section-arrow{
+    transition:.3s;
+}
+
+.content-section.active .section-arrow{
+    transform:rotate(180deg);
+}
+
+/* ===== MARK ===== */
+
+mark{
+    background:yellow;
+}
+
+.current-match{
+    background:orange;
+}
+
+/* ===== BUTTON ===== */
+
+#backToTop{
+    position:fixed;
+    right:30px;
+    bottom:30px;
+
+    width:50px;
+    height:50px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#1976d2;
+    color:#fff;
+
+    cursor:pointer;
+
+    display:none;
+}
+
+p{
+    text-align:justify;
+}
+
+/* ===== FLOATING BACK ===== */
+
+.floating-back{
+  position:fixed;
+
+  top:18px;
+  right:18px;
+
+  width:50px;
+  height:50px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+      linear-gradient(
+          135deg,
+          #2563eb,
+          #1d4ed8
+      );
+
+  color:#fff;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  z-index:9999;
+
+  box-shadow:
+      0 8px 20px rgba(0,0,0,.18);
+
+  transition:.3s;
+}
+
+.floating-back:hover{
+  transform:scale(1.08);
+}
+
+/* ===== NÚT TÌM KIẾM NỔI ===== */
+
+#prevBtn,
+#nextBtn{
+
+position:fixed;
+
+right:20px;
+
+z-index:9999;
+
+width:50px;
+height:50px;
+
+border:none;
+border-radius:50%;
+
+font-size:22px;
+font-weight:bold;
+
+cursor:pointer;
+
+color:#fff;
+
+box-shadow:0 4px 10px rgba(0,0,0,.3);
+
+}
+
+#prevBtn{
+
+bottom:140px;
+
+background:#1976d2;
+
+}
+
+#nextBtn{
+
+bottom:80px;
+
+background:#009688;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <!-- CENTER -->
+<div class="header-center">
+   <a href="index.html" class="header-logo">
+      <img src="../images/logo.png" alt="Logo">
+    </a>
+    <div class="header-title">
+      <h1 Style="color:#fff;">VŨ THÀNH CÔNG</h1>
+      <span>Chia sẻ tri thức • Giá trị cuộc sống</span>
+    </div>
+</div>
+
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="../index.html">🏠 Trang chủ</a>
+    <a href="../suckhoe.html">❤️ Sức khỏe</a>
+    <a href="../baiviet.html">✍ Bài viết</a>
+    <a href="../tintuc.html">📢 Tin tức</a>
+    <a href="../anh.html">📷 Thư viện</a>
+    <a href="../vanban.html">📄 Văn bản</a>
+    <a href="../tailieu.html">📁 Tài liệu</a>
+    <a href="../lich_cong_tac.html" >📅 Lịch</a>  
+  </nav>
+
+</header>
+
+<div class="page-wrapper">
+<div id="search-container">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Nhập từ khóa...">
+
+<button id="searchBtn">
+Tìm
+</button>
+
+<button id="prevBtn">⬆</button>
+
+<button id="nextBtn">⬇</button>
+
+<span id="resultBox"></span>
+
+</div>
+
+<main>
+
+<div class="viewer-layout">
+
+    <!-- MENU -->
+    <div class="sidebar" id="sidebar">
+        Đang tải mục lục...
+    </div>
+
+    <!-- NỘI DUNG -->
+    <div class="content-view">
+
+        <div class="main-box">
+
+            <h2 id="page-title">
+            Đang tải...
+            </h2>
+
+            <button onclick="startSpeak()">🔊</button>
+            <button onclick="pauseSpeak()">⏸</button>
+            <button onclick="resumeSpeak()">▶</button>
+            <button onclick="stopSpeak()">⏹</button>
+
+            <div id="content" class="content-page">
+            Đang tải nội dung...
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+<footer>
+  Trang chia sẻ tri thức, kinh nghiệm và giá trị sống tốt đẹp; nơi truyền cảm hứng và năng lượng sống tích cực.
+</footer>
+</div>
+
+<button id="backToTop">
+▲
+</button>
+
+<script>
+/* ======================
+   BACK TO TOP
+====================== */
+
+const topBtn =
+document.getElementById(
+"backToTop"
+);
+
+window.addEventListener(
+"scroll",
+() => {
+
+topBtn.style.display =
+window.scrollY > 300
+? "block"
+: "none";
+
+});
+
+topBtn.onclick = () => {
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+};
+
+/* ======================
+   TEXT TO SPEECH
+====================== */
+
+let utterance;
+
+function startSpeak(){
+
+const text =
+document.getElementById(
+"content"
+).innerText;
+
+speechSynthesis.cancel();
+
+utterance =
+new SpeechSynthesisUtterance(
+text
+);
+
+utterance.lang = "vi-VN";
+
+speechSynthesis.speak(
+utterance
+);
+
+}
+
+function pauseSpeak(){
+speechSynthesis.pause();
+}
+
+function resumeSpeak(){
+speechSynthesis.resume();
+}
+
+function stopSpeak(){
+speechSynthesis.cancel();
+}
+
+/* ======================
+   LOAD JSON
+====================== */
+
+const area =
+document.getElementById("content");
+
+const sidebar =
+document.getElementById("sidebar");
+
+let originalHTML = "";
+
+let allSections = [];
+
+fetch("./Hdsinhhoatchibo50.json")
+
+.then(res => {
+
+if(!res.ok){
+throw new Error("Không đọc được JSON");
+}
+
+return res.json();
+
+})
+
+.then(data => {
+
+if(data.title){
+
+document.getElementById(
+"page-title"
+).innerHTML = data.title;
+
+}
+
+if(Array.isArray(data.sections)){
+
+allSections = data.sections;
+
+}
+
+else if(Array.isArray(data)){
+
+allSections = data;
+
+}
+
+renderSidebar();
+
+if(allSections.length){
+
+showSection(0);
+
+}
+
+})
+
+.catch(err => {
+
+console.error(err);
+
+area.innerHTML = `
+<p style="color:red">
+Không tải được JSON
+</p>
+`;
+
+});
+
+
+
+/* ======================
+   SIDEBAR
+====================== */
+
+function renderSidebar(){
+
+let menuHTML = "";
+
+allSections.forEach((section,index)=>{
+
+menuHTML += `
+
+<div
+class="menu-item ${index===0?'active':''}"
+onclick="showSection(${index})"
+>
+
+${section.heading || section.title || 'Không tiêu đề'}
+
+</div>
+
+`;
+
+});
+
+sidebar.innerHTML = menuHTML;
+
+}
+
+
+
+/* ======================
+   SHOW CONTENT
+====================== */
+
+function showSection(index){
+
+const section = allSections[index];
+
+area.innerHTML = `
+
+<h2>
+${section.heading || section.title || ''}
+</h2>
+
+<div>
+${section.content || section.noidung || ''}
+</div>
+
+`;
+
+originalHTML = area.innerHTML;
+matches = [];
+currentIndex = -1;
+resultBox.innerHTML = "";
+
+
+/* ACTIVE MENU */
+
+document
+.querySelectorAll(".menu-item")
+.forEach(item => {
+
+item.classList.remove("active");
+
+});
+
+document
+.querySelectorAll(".menu-item")
+[index]
+.classList.add("active");
+
+}
+
+/* ======================
+   SEARCH
+====================== */
+
+const searchInput =
+document.getElementById("searchInput");
+
+const searchBtn =
+document.getElementById("searchBtn");
+
+const prevBtn =
+document.getElementById("prevBtn");
+
+const nextBtn =
+document.getElementById("nextBtn");
+
+const resultBox =
+document.getElementById("resultBox");
+
+let matches = [];
+let currentIndex = -1;
+
+
+
+function escapeRegExp(text){
+
+return text.replace(
+/[.*+?^${}()|[\]\\]/g,
+"\\$&"
+);
+
+}
+
+
+
+/* ======================
+   SEARCH BUTTON
+====================== */
+
+searchBtn.onclick = () => {
+
+const keyword =
+searchInput.value.trim();
+
+if(!keyword){
+
+resultBox.innerHTML =
+"Nhập từ khóa";
+
+return;
+
+}
+
+matches = [];
+currentIndex = -1;
+
+let foundSection = -1;
+
+
+/* TÌM TRONG TOÀN BỘ SECTION */
+
+allSections.forEach((section,index)=>{
+
+const html =
+(section.content || section.noidung || "");
+
+if(
+html.toLowerCase()
+.includes(keyword.toLowerCase())
+&& foundSection === -1
+){
+
+foundSection = index;
+
+}
+
+});
+
+
+if(foundSection === -1){
+
+resultBox.innerHTML =
+"Không tìm thấy";
+
+return;
+
+}
+
+
+/* MỞ SECTION ĐẦU TIÊN TÌM THẤY */
+
+showSection(foundSection);
+
+
+/* HIGHLIGHT */
+
+const regex =
+new RegExp(
+escapeRegExp(keyword),
+"gi"
+);
+
+area.innerHTML =
+area.innerHTML.replace(
+regex,
+match => `<mark>${match}</mark>`
+);
+
+
+/* GET MATCHES */
+
+matches =
+area.querySelectorAll("mark");
+
+
+if(!matches.length){
+
+resultBox.innerHTML =
+"Không tìm thấy";
+
+return;
+
+}
+
+
+currentIndex = 0;
+
+updateMatch();
+
+};
+
+
+
+/* ======================
+   UPDATE MATCH
+====================== */
+
+function updateMatch(){
+
+matches.forEach(m => {
+
+m.classList.remove(
+"current-match"
+);
+
+});
+
+
+matches[currentIndex]
+.classList.add(
+"current-match"
+);
+
+
+matches[currentIndex]
+.scrollIntoView({
+
+behavior:"smooth",
+block:"center"
+
+});
+
+
+resultBox.innerHTML =
+`${currentIndex + 1}/${matches.length}`;
+
+}
+
+
+
+/* ======================
+   NEXT
+====================== */
+
+nextBtn.onclick = () => {
+
+if(!matches.length)
+return;
+
+currentIndex++;
+
+if(
+currentIndex >= matches.length
+){
+
+currentIndex = 0;
+
+}
+
+updateMatch();
+
+};
+
+
+
+/* ======================
+   PREV
+====================== */
+
+prevBtn.onclick = () => {
+
+if(!matches.length)
+return;
+
+currentIndex--;
+
+if(currentIndex < 0){
+
+currentIndex =
+matches.length - 1;
+
+}
+
+updateMatch();
+
+};
+
+
+
+/* ======================
+   ENTER
+====================== */
+
+searchInput.addEventListener(
+"keydown",
+e => {
+
+if(e.key === "Enter"){
+
+searchBtn.click();
+
+}
+
+});
+
+</script>
+
+<button class="floating-back"onclick="history.back()">
+←
+</button>
+
+</body>
+</html>
