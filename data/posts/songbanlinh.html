@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sống bản lĩnh</title>
+
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/images/banlinh.jpg">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="../../icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="../../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="../../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="../../layout.css">
+
+<style>
+
+html{
+  scroll-behavior:smooth;
+}
+
+:root{
+  --main:#0b4ea2;
+  --sub:#199586;
+  --text:#1f2937;
+  --light:#ffffff;
+
+  --radius:22px;
+
+  --shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+  --shadow-hover:
+    0 18px 45px rgba(0,0,0,0.12);
+}
+
+/* =================================
+   BODY
+================================= */
+
+body{
+  margin:0;
+  font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.82),
+      rgba(255,255,255,0.88)
+    ),
+    url('../../anhnen/bg-1.jpg') center/cover fixed;
+
+  line-height:1.9;
+
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* =================================
+   ARTICLE
+================================= */
+
+.article{
+  max-width:980px;
+
+  margin:30px auto;
+  padding:50px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.95),
+      rgba(255,255,255,.92)
+    );
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+  border:1px solid rgba(255,255,255,.65);
+
+  backdrop-filter:blur(10px);
+
+  transition:.35s ease;
+}
+
+.article:hover{
+  box-shadow:var(--shadow-hover);
+}
+
+/* =================================
+   TITLE
+================================= */
+
+.article h2{
+  text-align:center;
+
+  color:#0b4ea2;
+
+  font-size:34px;
+  font-weight:700;
+
+  margin:0 0 12px;
+
+  letter-spacing:.3px;
+}
+
+.article > div:first-of-type{
+  text-align:center;
+
+  font-size:14px;
+  color:#2563eb;
+
+  margin-bottom:28px;
+}
+
+/* =================================
+   PARAGRAPH
+================================= */
+
+.article p{
+  font-size:18px;
+
+  line-height:2;
+
+  text-align:justify;
+
+  text-indent:2.2em;
+
+  color:#1f2937;
+
+  margin-bottom:22px;
+}
+
+/* Drop cap mở đầu */
+.article p:first-of-type::first-letter{
+  font-size:42px;
+  font-weight:700;
+  color:#0b4ea2;
+}
+
+/* =================================
+   IMAGE
+================================= */
+
+.img-giua{
+  margin:35px 0;
+  text-align:center;
+}
+
+.img-giua img{
+  width:100%;
+  max-width:780px;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.16);
+
+  transition:.45s ease;
+}
+
+.img-giua img:hover{
+  transform:scale(1.015);
+}
+
+.img-giua div{
+  margin-top:12px;
+
+  font-size:14px;
+  color:#4b5563;
+
+  font-style:italic;
+}
+
+
+/* =================================
+   SHARE BOX
+================================= */
+
+.share-box{
+  margin-top:38px;
+
+  padding-top:24px;
+
+  border-top:
+    1px dashed rgba(0,0,0,.12);
+
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.share-btn{
+  padding:11px 18px;
+
+  border:none;
+  border-radius:999px;
+
+  color:#fff;
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.28s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.10);
+}
+
+.share-btn:hover{
+  transform:translateY(-3px);
+}
+
+.share-btn.fb{
+  background:
+    linear-gradient(
+      135deg,
+      #1877f2,
+      #0a58ca
+    );
+}
+
+.share-btn.copy{
+  background:
+    linear-gradient(
+      135deg,
+      #6b7280,
+      #374151
+    );
+}
+
+/* =================================
+   FLOAT BUTTON
+================================= */
+
+.floating-back{
+  position:fixed;
+
+  top:20px;
+  right:20px;
+
+  width:54px;
+  height:54px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:24px;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.22);
+
+  z-index:9999;
+
+  transition:.3s ease;
+}
+
+.floating-back:hover{
+  transform:
+    translateY(-4px)
+    scale(1.06);
+}
+
+.floating-back:active{
+  transform:scale(.92);
+}
+
+/* =================================
+   BACK TO TOP
+================================= */
+
+#backToTop{
+  position:fixed;
+
+  bottom:20px;
+  right:20px;
+
+  width:48px;
+  height:48px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.18);
+
+  z-index:9999;
+
+  transition:.3s ease;
+}
+
+#backToTop:hover{
+  transform:translateY(-3px);
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+footer{
+  margin-top:18px;
+
+  border-radius:16px 16px 0 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0077b6,
+      #0096d6
+    );
+}
+
+footer p{
+  margin:0;
+  letter-spacing:.4px;
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media(max-width:768px){
+
+  .article{
+    margin:12px;
+    padding:28px 22px;
+    border-radius:20px;
+  }
+
+  .article h2{
+    font-size:28px;
+    line-height:1.4;
+  }
+
+  .article p{
+    font-size:16px;
+    line-height:1.9;
+    text-indent:1.8em;
+  }
+
+  .floating-back{
+    width:48px;
+    height:48px;
+    top:14px;
+    right:14px;
+  }
+
+}
+
+/* =========================
+   VOICE WRAP
+========================= */
+
+.voice-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  margin:20px 0 35px;
+}
+
+/* NÚT CHÍNH */
+
+.voice-main{
+  border:none;
+
+  padding:12px 22px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.3s ease;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.12);
+}
+
+.voice-main:hover{
+  transform:translateY(-3px);
+}
+
+/* PANEL */
+
+.voice-panel{
+  display:flex;
+  gap:10px;
+
+  margin-top:14px;
+
+  max-height:0;
+
+  overflow:hidden;
+
+  opacity:0;
+
+  transform:translateY(-8px);
+
+  transition:.35s ease;
+}
+
+/* KHI MỞ */
+
+.voice-panel.show{
+  max-height:100px;
+
+  opacity:1;
+
+  transform:translateY(0);
+}
+
+/* NÚT */
+
+.voice-panel button{
+  width:46px;
+  height:46px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.12);
+}
+
+.voice-panel button:hover{
+  transform:scale(1.08);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .voice-main{
+    width:100%;
+    max-width:260px;
+  }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+<div class="header-center">
+
+    <a href="index.html" class="header-logo">
+      <img src="../../images/logo.png">
+    </a>
+
+    <div class="header-title">
+      <h1 style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>Chia sẻ tri thức • Giá trị cuộc sống</span>
+    </div>
+
+  </div>
+
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="../../index.html">🏠 Trang chủ</a>
+    <a href="../../suckhoe.html">❤️ Sức khỏe</a>
+    <a href="../../baiviet.html">✍ Bài viết</a>
+    <a href="../../tintuc.html">📢 Tin tức</a>
+    <a href="../../anh.html">📷 Thư viện</a>
+    <a href="../../../vanban.html">📄 Văn bản</a>
+    <a href="../../tailieu.html">📁 Tài liệu</a>
+    <a href="../../lich_cong_tac.html" >📅 Lịch</a>  
+  </nav>
+
+</header>
+
+<div class="page-wrapper">
+<div class="article">
+  <h2>Sống bản lĩnh</h2>
+
+<div style="font-size:14px;color:#3030ef;margin-top:6px;font-style:italic;">
+  Vũ Thành Công 📅 08-02-2026
+</div>
+
+<div class="voice-wrap">
+
+  <!-- NÚT ĐỌC CHÍNH -->
+  <button class="voice-main">
+    🔊 Nghe bài viết
+  </button>
+
+  <!-- NÚT PHỤ -->
+  <div class="voice-panel" id="voicePanel">
+
+    <button onclick="startSpeak()" title="Đọc">
+      ▶
+    </button>
+
+    <button onclick="pauseSpeak()" title="Tạm dừng">
+      ⏸
+    </button>
+
+    <button onclick="resumeSpeak()" title="Tiếp tục">
+      ⏯
+    </button>
+
+    <button onclick="stopSpeak()" title="Dừng">
+      ⏹
+    </button>
+
+  </div>
+
+</div>
+
+ <!-- KHU VỰC ĐỌC -->
+  <div class="article-content" id="readingContent">
+
+<p class="justified-p">Thời hiện đại mở ra cho con người nhiều cơ hội chưa từng có. Công nghệ phát triển nhanh chóng, thông tin lan truyền tức thì, đời sống vật chất ngày càng đủ đầy. Tuy nhiên, song hành với sự tiện nghi ấy là áp lực vô hình: áp lực phải nhanh hơn, giỏi hơn, thành công sớm hơn và không được phép tụt lại phía sau. Trong bối cảnh đó, cách sống của con người hiện đại không chỉ là thích nghi, mà còn là lựa chọn có ý thức để giữ được giá trị cốt lõi của chính mình.</p>
+
+<p class="justified-p">Trước hết, sống thời hiện đại đòi hỏi năng lực tự chủ. Khi mạng xã hội, truyền thông và quảng cáo liên tục định hình suy nghĩ, cảm xúc và mong muốn, con người rất dễ bị cuốn theo đám đông. Tự chủ là biết dừng lại, biết đặt câu hỏi: điều này có thực sự cần cho tôi không, hay chỉ là mong muốn được tạo ra? Người sống tự chủ không phủ nhận công nghệ, nhưng sử dụng công nghệ như công cụ phục vụ cuộc sống, thay vì để nó điều khiển nhịp sống và cảm xúc của mình.</p>
+
+ <!-- ẢNH -->
+<div class="img-giua">
+ <img src="../../anhvietbai/gd (5).png"
+     alt="gd (5)"
+     loading="lazy">
+ <div style="font-size:13px;color:#3030ef;margin-top:6px;">
+    Hình ảnh: Đứng trước một biệt tự đẹp
+  </div>
+</div>
+
+ <p class="justified-p">Bên cạnh đó, học tập suốt đời trở thành một cách sống tất yếu. Kiến thức không còn là hành trang cho một giai đoạn, mà là dòng chảy xuyên suốt cuộc đời. Người sống tốt trong thời hiện đại không ngừng cập nhật kỹ năng, mở rộng tư duy và sẵn sàng học lại từ đầu khi cần thiết. Họ hiểu rằng bằng cấp chỉ là điểm khởi đầu, còn năng lực thích ứng mới là yếu tố quyết định giá trị lâu dài của mỗi cá nhân.</p>
+
+<p class="justified-p">Một yếu tố quan trọng khác là cân bằng giữa công việc và đời sống tinh thần. Tốc độ làm việc cao, áp lực hiệu suất và mục tiêu tài chính dễ khiến con người rơi vào trạng thái kiệt sức. Sống hiện đại không đồng nghĩa với làm việc không ngừng nghỉ, mà là biết nghỉ đúng lúc, sống chậm khi cần. Dành thời gian cho gia đình, cho thiên nhiên, cho những khoảng lặng nội tâm giúp con người tái tạo năng lượng và giữ được sự bền bỉ lâu dài.</p>
+
+<p class="justified-p">Ngoài ra, cách sống thời hiện đại còn thể hiện ở trách nhiệm xã hội và ý thức cộng đồng. Một cá nhân thành công không chỉ đo bằng thành tựu cá nhân, mà còn bằng những giá trị họ mang lại cho người khác. Từ việc ứng xử văn minh trên không gian mạng, bảo vệ môi trường, đến sẵn sàng chia sẻ và giúp đỡ, tất cả đều góp phần xây dựng một xã hội nhân văn hơn trong thời đại số.</p>
+
+<p class="justified-p">Cuối cùng, sống thời hiện đại là sống có mục đích. Khi vật chất không còn là mục tiêu duy nhất, con người bắt đầu tìm kiếm ý nghĩa trong những gì mình làm. Mục đích sống không nhất thiết phải lớn lao, nhưng cần đủ rõ ràng để mỗi sáng thức dậy, ta biết vì sao mình tiếp tục cố gắng. Người có mục đích sống sẽ ít bị hoang mang trước biến động, bởi họ có một điểm tựa nội tâm vững chắc.</p>
+
+</div>
+
+<div class="share-box">
+   <a class="share-btn fb"
+     href="#"
+     onclick="shareFacebook(); return false;">
+     Facebook
+  </a>
+
+  <button class="share-btn copy" onclick="copyLink()">
+     Sao chép link
+  </button>
+</div>
+
+</div>
+<footer>
+  <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+  </footer>
+</div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+function shareFacebook(){
+  const url = encodeURIComponent(window.location.href);
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    '_blank'
+  );
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("Đã sao chép đường dẫn bài viết!");
+}
+</script>
+
+<script>
+
+let utterance;
+
+function startSpeak(){
+
+  const article =
+    document.getElementById("readingContent");
+
+  if(!article) return;
+
+  const text =
+    article.innerText
+      .replace(/\s+/g," ")
+      .trim();
+
+  speechSynthesis.cancel();
+
+  utterance =
+    new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "vi-VN";
+
+  utterance.rate = 1;
+
+  utterance.pitch = 1;
+
+  utterance.volume = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak(){
+  speechSynthesis.pause();
+}
+
+function resumeSpeak(){
+  speechSynthesis.resume();
+}
+
+function stopSpeak(){
+  speechSynthesis.cancel();
+}
+
+/* =========================
+   TOGGLE PANEL
+========================= */
+
+document.addEventListener("DOMContentLoaded", ()=>{
+
+  const btn = document.querySelector(".voice-main");
+  const panel = document.getElementById("voicePanel");
+
+  if(btn && panel){
+
+    btn.addEventListener("click", ()=>{
+
+      panel.classList.toggle("show");
+
+    });
+
+  }
+
+});
+
+</script>
+
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
