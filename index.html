@@ -623,6 +623,122 @@ transition:.3s;
 box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
+/* =========================
+   HOME POSTS
+========================= */
+
+.home-posts{
+  margin:30px 0;
+}
+
+.section-title{
+  font-size:24px;
+  font-weight:700;
+
+  color:#0b4ea2;
+
+  margin-bottom:20px;
+}
+
+/* GRID */
+
+.posts-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+  gap:22px;
+}
+
+/* CARD */
+
+.post-card{
+  display:block;
+
+  background:#fff;
+
+  border-radius:22px;
+
+  overflow:hidden;
+
+  text-decoration:none;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.08);
+
+  transition:.35s ease;
+}
+
+.post-card:hover{
+  transform:translateY(-6px);
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.14);
+}
+
+/* IMAGE */
+
+.post-card img{
+  width:100%;
+  height:220px;
+
+  object-fit:cover;
+
+  transition:.5s ease;
+}
+
+.post-card:hover img{
+  transform:scale(1.04);
+}
+
+/* CONTENT */
+
+.post-info{
+  padding:18px;
+}
+
+.post-category{
+  display:inline-block;
+
+  padding:5px 12px;
+
+  border-radius:999px;
+
+  background:#dbeafe;
+
+  color:#0b4ea2;
+
+  font-size:12px;
+  font-weight:700;
+
+  margin-bottom:12px;
+}
+
+.post-title{
+  font-size:21px;
+
+  color:#0f172a;
+
+  margin-bottom:10px;
+
+  line-height:1.5;
+}
+
+.post-desc{
+  color:#475569;
+
+  line-height:1.7;
+
+  margin-bottom:16px;
+}
+
+.post-date{
+  font-size:14px;
+
+  color:#64748b;
+}
+
 </style>
 </head>
 <body>
@@ -667,6 +783,8 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
 <li><a href="so_do.html">🏞 Sơ đồ</a></li>
 
 <li><a href="baiviet.html">✍ Bài viết</a></li>
+
+<li><a href="bai_viet.html">✍ Bài viết nổi bật</a></li>
 
 <li><a href="tintuc.html">📢 Tin tức</a></li>
 
@@ -765,9 +883,10 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
     <select onchange="goPage(this)">
         	<option value="">☰ Chọn chủ đề</option>
        	<option value="so_do.html">📈 Sơ đồ</option>
-        	<option value="suc_khoe.html">❤️ Sức khỏe</option>
-        	<option value="hanhphuc.html">🌿 Hạnh phúc</option>
-        	<option value="tritue.html">📈 Trí tuệ</option>
+	<option value="bai_viet.html">✍ Bài viết nổi bật</option>
+        <option value="suc_khoe.html">❤️ Sức khỏe</option>
+        <option value="hanhphuc.html">🌿 Hạnh phúc</option>
+        <option value="tritue.html">📈 Trí tuệ</option>
 	<option value="kiemtra_giamsat.html">🔍 Kiểm tra, giám sát</option>
 	<option value="thanhtranhandan.html">🔍 Thanh tra nhân dân</option>
 	<option value="doc_pdf.html">📕 Văn bản pdf</option>
@@ -778,7 +897,7 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
     </select>
 </div>
 
-<!-- NEWS BÀI VIẾT MỚI-->
+<!-- NEWS TIN TỨC MỚI-->
 
 <section class="card">
 
@@ -819,6 +938,21 @@ TƯ DUY & TRIẾT LÝ SỐNG</h2>
 
  </div>
 
+<!-- BÀI VIẾT MỚI Ở DATA -->
+<section class="home-posts">
+
+  <div class="section-title">
+    ✍ Những bài viết nổi bật
+  </div>
+
+  <div id="latestPosts"
+       class="posts-grid">
+
+      Đang tải...
+
+  </div>
+
+</section>
 
 <!-- FEATURE -->
 
@@ -1597,6 +1731,73 @@ document.addEventListener("DOMContentLoaded", ()=>{
   tongTatCaBaiViet();
 
 });
+</script>
+
+<script>
+
+fetch("data/posts.json")
+
+.then(res => res.json())
+
+.then(posts => {
+
+  const container =
+    document.getElementById("latestPosts");
+
+  let html = "";
+
+  /* Đảo ngược để bài mới lên đầu */
+
+  posts.reverse().forEach(post => {
+
+    html += `
+
+    <a class="post-card"
+       href="${post.url}">
+
+      <img src="${post.image}"
+           alt="${post.title}"
+           loading="lazy">
+
+      <div class="post-info">
+
+        <div class="post-category">
+          ${post.category}
+        </div>
+
+        <div class="post-title">
+          ${post.title}
+        </div>
+
+        <div class="post-desc">
+          ${post.desc}
+        </div>
+
+        <div class="post-date">
+          📅 ${post.date}
+        </div>
+
+      </div>
+
+    </a>
+
+    `;
+  });
+
+  container.innerHTML = html;
+
+})
+
+.catch(error => {
+
+  console.error(error);
+
+  document.getElementById(
+    "latestPosts"
+  ).innerHTML = "Không tải được bài viết.";
+
+});
+
 </script>
 
 </body>
