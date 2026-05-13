@@ -6,6 +6,8 @@
 
 <title>Kiểm tra của Đảng</title>
 
+<link rel="stylesheet" href="layout.css">
+
 <!-- Open Graph chuẩn cho Facebook & Zalo -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chuyên đề kiểm tra - giám sát">
@@ -57,12 +59,8 @@ body{
   font-family:"Segoe UI",Arial,sans-serif;
 
   background:
-      linear-gradient(
-          rgba(255,255,255,.90),
-          rgba(255,255,255,.93)
-      ),
-      url("images/bg-dang.jpg")
-      center/cover fixed;
+	linear-gradient(rgba(255,255,255,.90),rgba(255,255,255,.93)),
+      	url("anhnen/bg-4.jpg")center/cover fixed;
 
   color:var(--text);
 
@@ -145,7 +143,7 @@ body{
 /* ===== MENU CHUYÊN ĐỀ ===== */
 
 .menu{
-  max-width:1200px;
+  max-width:1500px;
 
   margin:18px auto 10px;
 
@@ -190,7 +188,7 @@ body{
 /* ===== ACTION BAR ===== */
 
 .action-bar{
-  max-width:1200px;
+  max-width:1500px;
 
   margin:20px auto 10px;
 
@@ -237,7 +235,7 @@ body{
 /* ===== DROPDOWN ===== */
 
 .dropdown-box{
-  max-width:1200px;
+  max-width:1500px;
 
   margin:0 auto 20px;
 
@@ -271,7 +269,7 @@ body{
 /* ===== CONTAINER ===== */
 
 .container{
-  max-width:1300px;
+  max-width:1500px;
 
   margin:auto;
 
@@ -613,22 +611,35 @@ p{
 </head>
 
 <body>
+
+<header class="site-header">
+
+    <!-- CENTER -->
+<div class="header-center">
+   <a href="index.html" class="header-logo">
+      <img src="../images/logo.png" alt="Logo">
+    </a>
+    <div class="header-title">
+      <h1 Style="color:#fff;">VŨ THÀNH CÔNG</h1>
+      <span>Chuyên đề kiểm tra, giám sát</span>
+    </div>
+</div>
+
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="../index.html">🏠 Trang chủ</a>
+    <a href="../suckhoe.html">❤️ Sức khỏe</a>
+    <a href="../baiviet.html">✍ Bài viết</a>
+    <a href="../tintuc.html">📢 Tin tức</a>
+    <a href="../anh.html">📷 Thư viện</a>
+    <a href="../vanban.html">📄 Văn bản</a>
+    <a href="../tailieu.html">📁 Tài liệu</a>
+    <a href="../lich_cong_tac.html" >📅 Lịch</a>  
+  </nav>
+
+</header>
+
 <div class="page-wrapper">
-<div class="header">
-<h1>
-<a href="index.html" title="Trang chủ"> 🏠</a>
-Kiểm tra, giám sát</h1>
-</div>
-
-<div class="menu">
-<a href="#gioithieu">Giới thiệu</a>
-<a href="#tintuc">Tin tức</a>
-<a href="#vanban">Văn bản</a>
-<a href="#kinhnghiem">Kinh nghiệm</a>
-<a href="#hinhanh">Hình ảnh</a>
-
-</div>
-
 <div class="action-bar">
 <div class="like-box">
  <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
@@ -665,13 +676,14 @@ góp phần nâng cao hiệu lực, hiệu quả kiểm tra, giám sát và gi�
 </div>
 
 <select onchange="goPage(this)">
- <option value="">-- Chọn chuyên đề --</option>
+ <option value="">-- Chọn văn bản --</option>
 <option value="vanban/dieuledang.html">📕 Điều lệ Đảng</option>
 <option value="vanban/qd19_2026.html">📜 Quy định số 19 về chính trị, tư tưởng</option>
 <option value="vanban/qd20_2026.html">📜 Quy định số 20 về thi hành Điều lệ Đảng</option>
 <option value="vanban.html">📜 Quy định số 21 về kiểm tra, giám sát của Đảng</option>
 <option value="vanban/qd69.html">📜 Quy định 69 về kỷ luật tổ chức đảng, đảng viên</option>
 <option value="vanban/huongdankekhaitaisan.html">📘 Hướng dẫn kê khai tài sản, thu nhập</option>
+<option value="vanban/Hdsinhhoatchibo50.html">📘 Hướng dẫn sinh hoạt chi bộ</option>
 </select>
 </div>
 
@@ -735,7 +747,7 @@ bảo vệ những nhân tố tích cực, góp phần xây dựng Đảng ngày
 
 <div class="section" id="vanban">
 
-<h2><img src="images/kiemtradang.png" alt=""  style="height:28px; vertical-align:middle; margin-left:0px;"> Văn bản, quy định của Đảng</h2>
+<h2><img src="images/kiemtradang.png" alt=""  style="height:28px; vertical-align:middle; margin-left:0px;"> Quy định, hướng dẫn...</h2>
 
 <div class="grid">
 <div class="card">
@@ -752,6 +764,8 @@ bảo vệ những nhân tố tích cực, góp phần xây dựng Đảng ngày
 <p><a href="vanban/qd69.html">📜 Quy định 69-QĐ/TW ngày 06 tháng 7 năm 2022 về kỷ luật tổ chức đảng, đảng viên vi phạm</a></p>
 
 <p><a href="vanban/dinhhuongduluan.html">📘 Bảo vệ nền tảng tư tưởng của Đảng trên không gian mạng "Định hướng dư luận trong tình hình hiện nay"</a></p>
+
+<p><a href="vanban/Hdsinhhoatchibo50.html">📘 Hướng dẫn sinh hoạt chi bộ theo Chỉ thị 50 năm 2025 của Ban bí thư</a></p>
 
 </div>
 </div>
@@ -935,6 +949,7 @@ async function updateViews(){
 
 updateViews();
 </script>
+
 <button class="floating-back" onclick="history.back()">
     ←
 </button>
