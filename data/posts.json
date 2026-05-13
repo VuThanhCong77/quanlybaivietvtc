@@ -1,0 +1,19 @@
+[
+  {
+    "title":"Sống bản lĩnh",
+    "desc":"Giữ vững giá trị bản thân trong thời đại nhiều biến động.",
+    "image":"anhvietbai/gd (5).png",
+    "url":"data/posts/songbanlinh.html",
+    "date":"2026-02-08",
+    "category":"Giá trị sống"
+  },
+
+  {
+    "title":"Ước mơ",
+    "desc":"Lan tỏa năng lượng tích cực trong cuộc sống hiện đại.",
+    "image":"anhvietbai/ytuonghay.jpg",
+    "url":"data/posts/uocmo.html",
+    "date":"2026-02-09",
+    "category":"Những ký ức đẹp về cuộc sống"
+  }
+]
