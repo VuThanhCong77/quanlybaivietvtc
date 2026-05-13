@@ -8,13 +8,24 @@
 
 <link rel="stylesheet" href="../layout.css">
 
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="../icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
 <style>
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f5f5f5;
-    line-height:1.8;
+  margin:0;
+   font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  background:
+    linear-gradient(rgba(255,255,255,0.30), rgba(255,255,255,0.60)),
+    url('../anhnen/bg-5.jpg') center/cover fixed;
+
+  line-height:1.9;
 }
 
 /* ===== SEARCH ===== */
@@ -276,13 +287,35 @@ background:#009688;
 </head>
 
 <body>
-<div class="page-wrapper">
 
-<header class="page-header">
-<h1 class="page-title vanban">
-Định hướng dư luận xã hội
-</h1>
+<header class="site-header">
+
+    <!-- CENTER -->
+<div class="header-center">
+   <a href="index.html" class="header-logo">
+      <img src="../images/logo.png" alt="Logo">
+    </a>
+    <div class="header-title">
+      <h1 Style="color:#fff;">VŨ THÀNH CÔNG</h1>
+      <span>Định hướng dư luận xã hội</span>
+    </div>
+</div>
+
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="../index.html">🏠 Trang chủ</a>
+    <a href="../suckhoe.html">❤️ Sức khỏe</a>
+    <a href="../baiviet.html">✍ Bài viết</a>
+    <a href="../tintuc.html">📢 Tin tức</a>
+    <a href="../anh.html">📷 Thư viện</a>
+    <a href="../vanban.html">📄 Văn bản</a>
+    <a href="../tailieu.html">📁 Tài liệu</a>
+    <a href="../lich_cong_tac.html" >📅 Lịch</a>  
+  </nav>
+
 </header>
+
+<div class="page-wrapper">
 
 <div id="search-container">
 
