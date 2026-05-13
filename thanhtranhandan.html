@@ -23,9 +23,17 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a7f99">
 
 <style>
-body {font-family: Arial, sans-serif; margin:0; color:#333}
-header {background:#b30000; color:#fff; padding:20px; text-align:center}
-nav {background:#222; padding:10px; position:sticky; top:0}
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+
+  background:
+	linear-gradient(rgba(255,255,255,.30),rgba(255,255,255,.60)),
+      	url("anhnen/bg-4.jpg")center/cover fixed;
+
+  color:var(--text);
+
+  line-height:1.8;
+}
 nav a {color:#fff; margin:10px; text-decoration:none; font-weight:bold}
 nav a:hover {color:#ffd700}
 .container {max-width:1500px; margin:auto; padding:20px}
@@ -336,38 +344,34 @@ p{
 </head>
 <body>
 
-<div class="page-wrapper">
-<header class="page-header">
- <button class="menu-btn" aria-label="Mở menu">☰</button>
+<header class="site-header">
 
-<h1>
-<a href="index.html" title="Trang chủ">| 🏠 |</a>
-<img src="anhvietbai/quychedanchu.png" alt="" style="height:28px; vertical-align:middle; margin-left:0px;">THANH TRA NHÂN DÂN</h1><br>
+    <!-- CENTER -->
+<div class="header-center">
+   <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
+    <div class="header-title">
+      <h1 Style="color:#fff;">VŨ THÀNH CÔNG</h1>
+      <span>Ban thanh tra nhân dân cơ quan </span>
+    </div>
+</div>
 
-<div class="nav-links">
-        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
-	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
-        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
-	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
-        <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
-        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
-	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
-      	</div>
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="index.html">🏠 Trang chủ</a>
+    <a href="suckhoe.html">❤️ Sức khỏe</a>
+    <a href="baiviet.html">✍ Bài viết</a>
+    <a href="tintuc.html">📢 Tin tức</a>
+    <a href="anh.html">📷 Thư viện</a>
+    <a href="vanban.html">📄 Văn bản</a>
+    <a href="tailieu.html">📁 Tài liệu</a>
+    <a href="lich_cong_tac.html" >📅 Lịch</a>  
+  </nav>
 
 </header>
 
-<div class="menu-overlay" id="menuOverlay"></div>
-<nav class="nav-menu" id="navMenu">
-<a href="index.html">🏠 Trang chủ</a><br>
-<a href="#gioithieu">⚖️ Giới thiệu</a><br>
-<a href="#phaply">⚖️ Pháp lý</a><br>
-<a href="#tochuc">⚖️ Tổ chức</a><br>
-<a href="#nhiemvu">⚖️ Nhiệm vụ</a><br>
-<a href="#quytrinh">⚖️ Quy trình</a><br>
-<a href="#hinhanh">⚖️ Hình ảnh</a><br>
-</nav>
-
-
+<div class="page-wrapper">
 <div class="action-bar">
 <div class="like-box">
  <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>

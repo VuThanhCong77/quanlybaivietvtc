@@ -7,6 +7,8 @@
 
 <title>Trí tuệ</title>
 
+<link rel="stylesheet" href="layout.css">
+
 <!-- THẺ CHIA SẺ MẠNG XÃ HỘI -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chuyên đề Trí tuệ">
@@ -44,45 +46,15 @@ html{
 }
 
 body{
-  font-family:"Segoe UI",sans-serif;
-  color:var(--text);
+  font-family:"Segoe UI",Arial,sans-serif;
 
   background:
-    linear-gradient(rgba(255,255,255,.88),
-    rgba(255,255,255,.92)),
-    url("images/bg-tritue.jpg") center/cover fixed;
+	linear-gradient(rgba(255,255,255,.30),rgba(255,255,255,.60)),
+      	url("anhnen/bg-3.jpg")center/cover fixed;
 
-  line-height:1.7;
-}
+  color:var(--text);
 
-/* ===== HEADER ===== */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:999;
-
-  backdrop-filter:blur(14px);
-
-  background:rgba(10,40,80,.82);
-
-  border-bottom:1px solid rgba(255,255,255,.08);
-
-  box-shadow:0 4px 20px rgba(0,0,0,.08);
-}
-
-header h1{
-  text-align:center;
-  padding:18px 15px 10px;
-  font-size:28px;
-  color:#fff;
-  letter-spacing:1px;
-  font-weight:700;
-}
-
-header h1 a{
-  text-decoration:none;
-  color:#fff;
+  line-height:1.8;
 }
 
 /* ===== MENU TOP ===== */
@@ -185,7 +157,7 @@ header h1 a{
 /* ===== BANNER ===== */
 
 .banner{
-  max-width:1250px;
+  max-width:1500px;
   margin:30px auto 10px;
   padding:0 15px;
 
@@ -608,33 +580,37 @@ footer{
 </head>
 <body>
 
-<div class="page-wrapper">
-<!-- MENU -->
+<header class="site-header">
 
-<header>
-<h1>
-<a href="index.html" title="Trang chủ">🏠 </a>  
-TRÍ TUỆ
-</h1>
-
-
-<div class="nav-links">
-        <a href="suckhoe.html" class="tooltip">❤️ Sức khỏe <span class="tooltip-text">Trang Sức khỏe</span></a>
-	<a href="baiviet.html" class="tooltip">✍ Bài viết<span class="tooltip-text">Trang Bài viết</span></a>
-        <a href="tintuc.html" class="tooltip">📢 Tin tức<span class="tooltip-text">Trang Tin tức</span></a>
-	<a href="anh.html" class="tooltip">📷 Thư viện ảnh<span class="tooltip-text">Trang Thư viện ảnh</span></a>
-        <a href="vanban.html" class="tooltip">📄 Văn bản<span class="tooltip-text">Trang Văn bản</span></a>
-        <a href="tailieu.html" class="tooltip">📁 Tài liệu<span class="tooltip-text">Trang Tài liệu</span></a>
-	<a href="lich_cong_tac.html" class="tooltip">📅 Lịch<span class="tooltip-text">Trang Lịch công tác</span></a>  
+    <!-- CENTER -->
+<div class="header-center">
+   <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
+    <div class="header-title">
+      <h1 Style="color:#fff;">VŨ THÀNH CÔNG</h1>
+      <span>Trí tuệ - Tri thức - Tư duy</span>
+    </div>
 </div>
 
-<div class="menu">
-
-<input type="text" placeholder="🔍 Tìm bài viết, chủ đề tri thức..." id="search">
-
-</div>
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="index.html">🏠 Trang chủ</a>
+    <a href="suckhoe.html">❤️ Sức khỏe</a>
+    <a href="baiviet.html">✍ Bài viết</a>
+    <a href="tintuc.html">📢 Tin tức</a>
+    <a href="anh.html">📷 Thư viện</a>
+    <a href="vanban.html">📄 Văn bản</a>
+    <a href="tailieu.html">📁 Tài liệu</a>
+    <a href="lich_cong_tac.html" >📅 Lịch</a>  
+  </nav>
 
 </header>
+
+<div class="page-wrapper">
+<div class="menu">
+<input type="text" placeholder="🔍 Tìm bài viết, chủ đề tri thức..." id="search">
+</div>
 
 <!-- BANNER -->
 

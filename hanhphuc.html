@@ -3,9 +3,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- CSS DÙNG CHUNG -->
-<link rel="stylesheet" href="layout.css">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hạnh phúc</title>
 
@@ -21,16 +18,55 @@
 <meta property="og:image:height" content="630">
 
 <style>
+body{
+  font-family:"Roboto",sans-serif;
+  margin:0;
+  color:var(--text);
+  line-height:1.8;
+  overflow-x:hidden;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.75),
+      rgba(255,255,255,.88)
+    ),
+    url("anhnen/bg-5.jpg") center/cover fixed;
+
+  animation:fadeBody 1s ease;
+}
+
+@keyframes fadeBody{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
 
 :root{
   --primary:#0f766e;
   --primary-light:#14b8a6;
-  --soft-bg:#f4fbfa;
-  --card:#ffffffd9;
+  --primary-dark:#134e4a;
+
+  --soft-bg:#f0fdfa;
+
+  --card:rgba(255,255,255,.72);
+
   --text:#1f2937;
   --muted:#6b7280;
-  --shadow:0 10px 30px rgba(0,0,0,.08);
-  --radius:20px;
+
+  --shadow:
+    0 10px 30px rgba(15,118,110,.10);
+
+  --shadow-hover:
+    0 18px 40px rgba(15,118,110,.18);
+
+  --radius:24px;
+
+  --blur:blur(14px);
 }
 
 *{
@@ -38,110 +74,110 @@
   scroll-behavior:smooth;
 }
 
-body{
-  margin:0;
-  font-family:'Roboto',sans-serif;
-  background:linear-gradient(to bottom,#f0fdfa,#f8fafc);
-  color:var(--text);
-  line-height:1.8;
-}
-
-/* HEADER */
-
-header{
+.site-header{
   position:sticky;
   top:0;
-  z-index:999;
-  backdrop-filter:blur(14px);
-  background:rgba(15,118,110,.82);
-  border-bottom:1px solid rgba(255,255,255,.15);
-  padding:14px 10px;
-  box-shadow:0 3px 18px rgba(0,0,0,.08);
-}
+  z-index:9999;
 
-header h1{
-  margin:0;
-  text-align:center;
-  font-size:24px;
-  letter-spacing:.5px;
-  color:#fff;
-  font-family:'Merriweather',serif;
-}
-
-header h1 a{
-  text-decoration:none;
-}
-
-/* MENU DESKTOP */
-
-.nav-links{
   display:flex;
-  justify-content:center;
-  gap:12px;
-  margin-top:12px;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:14px 28px;
+
+  background:rgba(15,118,110,.72);
+
+  backdrop-filter:blur(16px);
+
+  border-bottom:1px solid rgba(255,255,255,.15);
+
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.header-center{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.header-logo img{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid rgba(255,255,255,.4);
+}
+
+.header-title h1{
+  margin:0;
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+.header-title span{
+  color:#d1fae5;
+  font-size:14px;
+}
+
+.header-nav{
+  display:flex;
+  gap:10px;
   flex-wrap:wrap;
 }
 
-.nav-links a{
+.header-nav a{
   color:#fff;
   text-decoration:none;
-  padding:10px 16px;
+  padding:10px 14px;
   border-radius:999px;
+  transition:.3s;
   font-size:14px;
-  font-weight:500;
-  transition:.25s;
-  background:rgba(255,255,255,.08);
 }
 
-.nav-links a:hover{
-  background:rgba(255,255,255,.2);
+.header-nav a:hover{
+  background:rgba(255,255,255,.15);
   transform:translateY(-2px);
 }
 
-/* ẨN MENU TRÊN MOBILE */
-
-@media(max-width:768px){
-  .nav-links{
-    display:none;
-  }
-
-  nav{
-    display:none;
-  }
+.banner-img:hover img{
+  transform:scale(1.08);
+  filter:brightness(1.05);
 }
 
-/* NAV SECTION */
+.nav-btn{
+  width:52px;
+  height:52px;
 
-nav{
-  position:sticky;
-  top:74px;
-  z-index:998;
-  background:rgba(255,255,255,.75);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(0,0,0,.06);
+  border:none;
+  border-radius:50%;
+
+  background:rgba(255,255,255,.28);
+
+  backdrop-filter:blur(10px);
+
+  color:#fff;
+
+  font-size:24px;
+
+  cursor:pointer;
+
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+  transition:.3s;
 }
 
-nav ul{
-  margin:0;
-  padding:10px;
-  list-style:none;
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+.nav-btn:hover{
+  background:rgba(255,255,255,.35);
+  transform:translateY(-50%) scale(1.08);
 }
 
-nav a{
-  text-decoration:none;
-  color:var(--primary);
-  font-weight:600;
-  padding:8px 16px;
-  border-radius:999px;
-  transition:.25s;
+.prev{
+  left:18px;
 }
 
-nav a:hover{
-  background:#dff7f3;
+.next{
+  right:18px;
 }
 
 /* ACTION BAR */
@@ -179,47 +215,10 @@ nav a:hover{
   background:#ecfdf5;
 }
 
-/* BANNER */
-
-.banner-slider{
-  position:relative;
-  width:100%;
-  max-width:1300px;
-  margin:20px auto;
-  overflow:hidden;
-  border-radius:28px;
-  box-shadow:0 15px 40px rgba(0,0,0,.12);
-}
-
-.slide{
-  min-width:100%;
-  width:100%;
-  display:flex;
-  gap:10px;
-  flex-shrink:0;
-}
-
-.banner-img{
-  width:50%;
-  overflow:hidden;
-  position:relative;
-}
-
-.banner-img img{
-  width:100%;
-  height:420px;
-  object-fit:cover;
-  transition:transform .8s ease;
-}
-
-.banner-img:hover img{
-  transform:scale(1.06);
-}
-
 /* CONTAINER */
 
 .container{
-  max-width:1280px;
+  max-width:1500px;
   margin:22px auto;
   padding:0 14px;
 }
@@ -251,25 +250,44 @@ nav a:hover{
 .value,
 .index-box,
 .quotes{
+
   background:var(--card);
-  backdrop-filter:blur(10px);
+
+  backdrop-filter:var(--blur);
+
   border-radius:var(--radius);
+
   overflow:hidden;
-  box-shadow:var(--shadow);
-  transition:.3s;
+
   border:1px solid rgba(255,255,255,.5);
+
+  box-shadow:var(--shadow);
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
 }
 
 .card:hover,
 .value:hover,
 .index-box:hover{
-  transform:translateY(-6px);
+
+  transform:
+    translateY(-8px);
+
+  box-shadow:var(--shadow-hover);
 }
 
 .card img{
   width:100%;
-  height:210px;
+  height:220px;
   object-fit:cover;
+
+  transition:1s ease;
+}
+
+.card:hover img{
+  transform:scale(1.06);
 }
 
 .card-content{
@@ -289,6 +307,25 @@ nav a:hover{
   text-indent:0;
   color:var(--muted);
   font-size:15px;
+}
+
+.hero-content{
+  max-width:1000px;
+  margin:40px auto;
+  padding:40px;
+
+  background:rgba(255,255,255,.68);
+
+  backdrop-filter:blur(16px);
+
+  border-radius:32px;
+
+  box-shadow:var(--shadow);
+}
+
+.hero-content p{
+  font-size:17px;
+  text-align:justify;
 }
 
 /* VALUE + INDEX */
@@ -385,7 +422,142 @@ footer{
   transform:translateY(-3px) scale(1.05);
 }
 
+/* =========================
+   BANNER SLIDER
+========================= */
+
+.banner{
+  max-width:1500px;
+  margin:30px auto 10px;
+  padding:0 15px;
+
+  position:relative;
+  overflow:hidden;
+}
+
+.banner-wrapper{
+  overflow:hidden;
+  border-radius:30px;
+}
+
+.banner-slider{
+  display:flex;
+  transition:transform .7s ease;
+}
+
+.banner-slide{
+  min-width:100%;
+  flex-shrink:0;
+
+  display:flex;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.banner-slide img{
+  width:50%;
+  height:360px;
+
+  object-fit:cover;
+
+  border-radius:28px;
+
+  display:block;
+
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+
+  transition:
+    transform .5s ease,
+    filter .5s ease;
+}
+
+.banner-slide img:hover{
+  transform:scale(1.03);
+  filter:brightness(1.05);
+}
+
+.banner-slide img:hover{
+  transform:scale(1.03);
+  filter:brightness(1.05);
+}
+
+/* NÚT */
+
+.prev,
+.next{
+  position:absolute;
+
+  top:50%;
+  transform:translateY(-50%);
+
+  width:52px;
+  height:52px;
+
+  border:none;
+  border-radius:50%;
+
+  background:rgba(255,255,255,.25);
+
+  backdrop-filter:blur(10px);
+
+  color:#fff;
+  font-size:24px;
+
+  cursor:pointer;
+  z-index:20;
+
+  transition:.3s;
+}
+
+.prev{
+  left:28px;
+}
+
+.next{
+  right:28px;
+}
+
+.prev:hover,
+.next:hover{
+  background:rgba(255,255,255,.4);
+  transform:translateY(-50%) scale(1.08);
+}
+
 /* MOBILE */
+
+@media(max-width:768px){
+
+ .banner-slide{
+    flex-direction:column;
+  }
+
+  .banner-slide img{
+    width:auto;
+    height:180px;
+  }
+
+  .posts{
+    grid-template-columns:1fr;
+  }
+
+  .prev,
+  .next{
+    width:36px;
+    height:36px;
+    font-size:20px;
+  }
+
+  .prev{
+    left:10px;
+  }
+
+  .next{
+    right:10px;
+  }
+
+/*============
+ MOBILE 
+=============*/
 
 @media(max-width:768px){
 
@@ -393,22 +565,47 @@ footer{
     line-height:1.7;
   }
 
-  header h1{
-    font-size:20px;
+  /* ẨN MENU */
+  .header-nav{
+    display:none;
   }
 
-  .banner-img img{
-    height:240px;
+  /* HEADER */
+  .site-header{
+    padding:12px 16px;
+    justify-content:center;
   }
 
-  .slide{
-    flex-direction:column;
+  .header-center{
+    width:100%;
+    justify-content:center;
   }
 
-  .section-title{
+  .header-title h1{
     font-size:18px;
+    text-align:center;
   }
 
+  .header-title span{
+    font-size:12px;
+    display:block;
+    text-align:center;
+  }
+
+  /* HERO */
+  .hero-content{
+    padding:24px;
+    border-radius:22px;
+    margin:24px 12px;
+  }
+
+  /* SECTION */
+  .section-title{
+    font-size:20px;
+    line-height:1.5;
+  }
+
+   /* GRID */
   .cards,
   .values,
   .index-grid,
@@ -422,6 +619,7 @@ footer{
     padding:18px;
   }
 
+  /* BUTTON */
   .floating-back,
   #backToTop{
     width:44px;
@@ -430,68 +628,41 @@ footer{
 
 }
 
-.slides{
-  display:flex;
-  transition:transform .8s ease;
-  width:100%;
-}
-
-@media(max-width:768px){
-
-  .banner-slider{
-    border-radius:18px;
-  }
-
-  .slide{
-    flex-direction:column;
-  }
-
-  .banner-img img{
-    height:220px;
-  }
-
-}
-
-@media(max-width:768px){
-
-  .slide{
-    flex-direction:column;
-  }
-
-  .banner-img{
-    width:100%;
-  }
-
-  .banner-img img{
-    height:220px;
-  }
-
-}
 </style>
-
 </head>
+<body>
 
-<body class="modern-ui">
-<div class="page-wrapper">
-<!-- MENU -->
-<header class="glass-header">
-<h1>
-  <a href="index.html" title="Trang chủ">🏠 </a>
-HẠNH PHÚC
-</h1>
+<header class="site-header">
+
+    <!-- CENTER -->
+<div class="header-center">
+   <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
+    <div class="header-title">
+      <h1 Style="color:#fff;">VŨ THÀNH CÔNG</h1>
+      <span>Hạnh phúc luôn ở bên ta</span>
+    </div>
+</div>
+
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="index.html">🏠 Trang chủ</a>
+    <a href="suckhoe.html">❤️ Sức khỏe</a>
+    <a href="baiviet.html">✍ Bài viết</a>
+    <a href="tintuc.html">📢 Tin tức</a>
+    <a href="anh.html">📷 Thư viện</a>
+    <a href="vanban.html">📄 Văn bản</a>
+    <a href="tailieu.html">📁 Tài liệu</a>
+    <a href="lich_cong_tac.html" >📅 Lịch</a>  
+  </nav>
+
 </header>
 
-<nav>
-<ul>
-<li><a href="#gioithieu">Giới thiệu</a></li>
-<li><a href="#baiviet">Bài viết</a></li>
-<li><a href="#chisohanhphuc">Chỉ số ❤️</a></li>
-<li><a href="#giatri">Giá trị</a></li>
-<li><a href="#gallery">Hình ảnh</a></li>
-</ul>
-</nav>
+<div class="page-wrapper">
 
 <div class="action-bar">
+
 <div class="like-box">
  <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
 </div>
@@ -501,76 +672,58 @@ HẠNH PHÚC
 </div>
 </div>
 
-<!-- HINH ANH -->
+<!-- BANNER -->
 
-<div class="banner-slider">
-<div class="slides" id="slides">
+<section class="banner">
 
-<div class="slide">
-<div class="banner-img">
+<div class="banner-wrapper">
+
+<div class="banner-slider" id="slider">
+
+<div class="banner-slide">
 <img src="tinanh/hanhphuc1.jpg">
-</div>
-<div class="banner-img">
 <img src="tinanh/hanhphuc3.jpg">
 </div>
-</div>
 
-<div class="slide">
-<div class="banner-img">
+<div class="banner-slide">
 <img src="tinanh/hanhphuc4.jpg">
-</div>
-<div class="banner-img">
 <img src="tinanh/bachdanggiang26.jpg">
 </div>
-</div>
 
-<div class="slide">
-<div class="banner-img">
+<div class="banner-slide">
 <img src="tinanh/bachdanggiang26_2.jpg">
-</div>
-<div class="banner-img">
 <img src="tinanh/tinanh (13).jpg">
 </div>
-</div>
 
-<div class="slide">
-<div class="banner-img">
+<div class="banner-slide">
 <img src="tinanh/bachdanggiang26_4.jpg">
-</div>
-<div class="banner-img">
 <img src="tinanh/tinanh (1).jpg">
 </div>
-</div>
 
-<div class="slide">
-<div class="banner-img">
+<div class="banner-slide">
 <img src="tinanh/tinanh (14).jpg">
-</div>
-<div class="banner-img">
 <img src="tinanh/bachdanggiang26_7.jpg">
 </div>
-</div>
 
-<div class="slide">
-<div class="banner-img">
+<div class="banner-slide">
 <img src="tinanh/hanhphuc2.jpg">
-</div>
-<div class="banner-img">
 <img src="tinanh/hanhphuc4.jpg">
 </div>
+
 </div>
 
 </div>
-<button class="nav-btn prev" onclick="prevSlide()">❮</button>
-<button class="nav-btn next" onclick="nextSlide()">❯</button>
-</div>
 
-<div class="dots" id="dots"></div>
+<button class="prev">❮</button>
+<button class="next">❯</button>
 
+</section>
+
+<div class="container" style="padding-top:10px;padding-bottom:0">
+  
 <!-- GIỚI THIỆU -->
 
-<div class="container" id="gioithieu">
-
+ <div class="hero-content">
 <h2 class="section-title"><img src="images/hanhphuc.png" alt="" style="height:26px; vertical-align:middle; margin-left:0px;"> Ý nghĩa của Hạnh phúc</h2>
 
 <p>
@@ -864,47 +1017,42 @@ btn.addEventListener("click", function(){
 </script>
 
 <script>
+const slider = document.querySelector(".banner-slider");
+const slides = document.querySelectorAll(".banner-slide");
 
-const slides = document.getElementById("slides");
-const dotsContainer = document.getElementById("dots");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
 
 let index = 0;
-const total = document.querySelectorAll(".slide").length;
+const total = slides.length;
 
-/* Tạo dots */
-for(let i = 0; i < total; i++){
+function updateSlider(){
+  slider.style.transform =
+    `translateX(-${index * 100}%)`;
+}
 
-  const dot = document.createElement("span");
+nextBtn.addEventListener("click", () => {
+  index++;
 
-  dot.classList.add("dot");
-
-  if(i === 0){
-    dot.classList.add("active");
+  if(index >= total){
+    index = 0;
   }
 
-  dot.addEventListener("click", () => {
-    index = i;
-    showSlide();
-  });
+  updateSlider();
+});
 
-  dotsContainer.appendChild(dot);
-}
+prevBtn.addEventListener("click", () => {
+  index--;
 
-/* Hiển thị slide */
-function showSlide(){
+  if(index < 0){
+    index = total - 1;
+  }
 
-  slides.style.transform =
-    `translateX(-${index * 100}%)`;
+  updateSlider();
+});
 
-  document.querySelectorAll(".dot")
-    .forEach(dot => dot.classList.remove("active"));
-
-  document.querySelectorAll(".dot")[index]
-    .classList.add("active");
-}
-
-/* Slide tiếp */
-function nextSlide(){
+/* Auto slide */
+setInterval(() => {
 
   index++;
 
@@ -912,27 +1060,9 @@ function nextSlide(){
     index = 0;
   }
 
-  showSlide();
-}
+  updateSlider();
 
-/* Slide lùi */
-function prevSlide(){
-
-  index--;
-
-  if(index < 0){
-    index = total - 1;
-  }
-
-  showSlide();
-}
-
-/* Auto chạy */
-setInterval(nextSlide, 5000);
-
-/* Khởi tạo */
-showSlide();
-
+}, 5000);
 </script>
 
 <script>
@@ -1000,5 +1130,4 @@ updateViews();
 </button>
 
 </body>
-
 </html>
