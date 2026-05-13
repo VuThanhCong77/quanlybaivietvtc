@@ -344,7 +344,7 @@ background:#009688;
 <input
 type="text"
 id="searchInput"
-placeholder="Nhập từ khóa...">
+placeholder="🔍 Tìm theo nội dung...">
 
 <button id="searchBtn">
 Tìm
@@ -362,12 +362,28 @@ Tìm
 
 <div class="viewer-layout">
 
-    <!-- MENU -->
-    <div class="sidebar" id="sidebar">
-        Đang tải mục lục...
-    </div>
+  <!-- MENU -->
 
-    <!-- NỘI DUNG -->
+<div class="sidebar">
+
+<input
+type="text"
+id="menuSearch"
+placeholder="🔍 Tìm tiêu đề mục..."
+style="
+width:calc(100% - 20px);
+margin:10px;
+padding:10px;
+border:1px solid #ccc;
+border-radius:8px;
+box-sizing:border-box;
+">
+
+<div id="sidebar"></div>
+
+</div>
+
+      <!-- NỘI DUNG -->
     <div class="content-view">
 
         <div class="main-box">
@@ -521,6 +537,39 @@ allSections = data;
 }
 
 renderSidebar();
+
+/* ======================
+   SEARCH SIDEBAR
+====================== */
+
+document
+.getElementById("menuSearch")
+.addEventListener("input",function(){
+
+const keyword =
+this.value.toLowerCase().trim();
+
+const items =
+document.querySelectorAll(".menu-item");
+
+items.forEach(item=>{
+
+const text =
+item.innerText.toLowerCase();
+
+if(text.includes(keyword)){
+
+item.style.display = "block";
+
+}else{
+
+item.style.display = "none";
+
+}
+
+});
+
+});
 
 if(allSections.length){
 
