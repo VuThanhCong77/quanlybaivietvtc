@@ -928,3 +928,56 @@ body{
     padding-top:74px;
   }
 }
+
+/* =========================
+   FONT SIZE CONTROL
+========================= */
+
+.font-tools{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+
+  margin:10px 0 28px;
+
+  flex-wrap:wrap;
+}
+
+.font-tools button{
+  border:none;
+
+  width:42px;
+  height:42px;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:18px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.12);
+}
+
+.font-tools button:hover{
+  transform:scale(1.08);
+}
+
+.font-tools span{
+  font-size:14px;
+  color:#374151;
+  font-weight:600;
+}

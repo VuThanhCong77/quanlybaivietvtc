@@ -1023,7 +1023,6 @@ Trí tuệ là tài sản quý giá nhất của con người và là nguồn l�
 
 </section>
 
-
 <!-- UTILITIES -->
 
 <section class="card">
@@ -1761,6 +1760,35 @@ posts
   ).innerHTML = "Không tải được bài viết.";
 
 });
+
+</script>
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener("load", () => {
+
+    navigator.serviceWorker
+      .register("service-worker.js")
+
+      .then(reg => {
+        console.log(
+          "Service Worker đăng ký thành công:",
+          reg
+        );
+      })
+
+      .catch(err => {
+        console.log(
+          "Service Worker lỗi:",
+          err
+        );
+      });
+
+  });
+
+}
 
 </script>
 
