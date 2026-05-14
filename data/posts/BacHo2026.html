@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tư tưởng Hồ Chí Minh</title>
+
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/images/BacHo.jpg">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="../../icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="../../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="../../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="../../layout.css">
+
+<style>
+
+html{
+  scroll-behavior:smooth;
+}
+
+:root{
+  --main:#0b4ea2;
+  --sub:#199586;
+  --text:#1f2937;
+  --light:#ffffff;
+
+  --radius:22px;
+
+  --shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+  --shadow-hover:
+    0 18px 45px rgba(0,0,0,0.12);
+}
+
+/* =================================
+   BODY
+================================= */
+
+body{
+  margin:0;
+  font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.82),
+      rgba(255,255,255,0.88)
+    ),
+    url('../../anhnen/bg-1.jpg') center/cover fixed;
+
+  line-height:1.9;
+
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* =================================
+   ARTICLE
+================================= */
+
+.article{
+  max-width:980px;
+
+  margin:30px auto;
+  padding:50px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.95),
+      rgba(255,255,255,.92)
+    );
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+  border:1px solid rgba(255,255,255,.65);
+
+  backdrop-filter:blur(10px);
+
+  transition:.35s ease;
+}
+
+.article:hover{
+  box-shadow:var(--shadow-hover);
+}
+
+/* =================================
+   TITLE
+================================= */
+
+.article h2{
+  text-align:center;
+
+  color:#0b4ea2;
+
+  font-size:34px;
+  font-weight:700;
+
+  margin:0 0 12px;
+
+  letter-spacing:.3px;
+}
+
+.article > div:first-of-type{
+  text-align:center;
+
+  font-size:14px;
+  color:#2563eb;
+
+  margin-bottom:28px;
+}
+
+/* =================================
+   PARAGRAPH
+================================= */
+
+.article p{
+  font-size:18px;
+
+  line-height:2;
+
+  text-align:justify;
+
+  text-indent:2.2em;
+
+  color:#1f2937;
+
+  margin-bottom:22px;
+}
+
+/* Drop cap mở đầu */
+.article p:first-of-type::first-letter{
+  font-size:42px;
+  font-weight:700;
+  color:#0b4ea2;
+}
+
+/* =================================
+   IMAGE
+================================= */
+
+.img-giua{
+  margin:35px 0;
+  text-align:center;
+}
+
+.img-giua img{
+  width:100%;
+  max-width:780px;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.16);
+
+  transition:.45s ease;
+}
+
+.img-giua img:hover{
+  transform:scale(1.015);
+}
+
+.img-giua div{
+  margin-top:12px;
+
+  font-size:14px;
+  color:#4b5563;
+
+  font-style:italic;
+}
+
+
+/* =================================
+   SHARE BOX
+================================= */
+
+.share-box{
+  margin-top:38px;
+
+  padding-top:24px;
+
+  border-top:
+    1px dashed rgba(0,0,0,.12);
+
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.share-btn{
+  padding:11px 18px;
+
+  border:none;
+  border-radius:999px;
+
+  color:#fff;
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.28s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.10);
+}
+
+.share-btn:hover{
+  transform:translateY(-3px);
+}
+
+.share-btn.fb{
+  background:
+    linear-gradient(
+      135deg,
+      #1877f2,
+      #0a58ca
+    );
+}
+
+.share-btn.copy{
+  background:
+    linear-gradient(
+      135deg,
+      #6b7280,
+      #374151
+    );
+}
+
+/* =================================
+   FLOAT BUTTON
+================================= */
+
+.floating-back{
+  position:fixed;
+
+  top:20px;
+  right:20px;
+
+  width:54px;
+  height:54px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:24px;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.22);
+
+  z-index:9999;
+
+  transition:.3s ease;
+}
+
+.floating-back:hover{
+  transform:
+    translateY(-4px)
+    scale(1.06);
+}
+
+.floating-back:active{
+  transform:scale(.92);
+}
+
+/* =================================
+   BACK TO TOP
+================================= */
+
+#backToTop{
+  position:fixed;
+
+  bottom:20px;
+  right:20px;
+
+  width:48px;
+  height:48px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.18);
+
+  z-index:9999;
+
+  transition:.3s ease;
+}
+
+#backToTop:hover{
+  transform:translateY(-3px);
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+footer{
+  margin-top:18px;
+
+  border-radius:16px 16px 0 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0077b6,
+      #0096d6
+    );
+}
+
+footer p{
+  margin:0;
+  letter-spacing:.4px;
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media(max-width:768px){
+
+  .article{
+    margin:12px;
+    padding:28px 22px;
+    border-radius:20px;
+  }
+
+  .article h2{
+    font-size:28px;
+    line-height:1.4;
+  }
+
+  .article p{
+    font-size:16px;
+    line-height:1.9;
+    text-indent:1.8em;
+  }
+
+  .floating-back{
+    width:48px;
+    height:48px;
+    top:14px;
+    right:14px;
+  }
+
+}
+
+/* =========================
+   VOICE WRAP
+========================= */
+
+.voice-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  margin:20px 0 35px;
+}
+
+/* NÚT CHÍNH */
+
+.voice-main{
+  border:none;
+
+  padding:12px 22px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.3s ease;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.12);
+}
+
+.voice-main:hover{
+  transform:translateY(-3px);
+}
+
+/* PANEL */
+
+.voice-panel{
+  display:flex;
+  gap:10px;
+
+  margin-top:14px;
+
+  max-height:0;
+
+  overflow:hidden;
+
+  opacity:0;
+
+  transform:translateY(-8px);
+
+  transition:.35s ease;
+}
+
+/* KHI MỞ */
+
+.voice-panel.show{
+  max-height:100px;
+
+  opacity:1;
+
+  transform:translateY(0);
+}
+
+/* NÚT */
+
+.voice-panel button{
+  width:46px;
+  height:46px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.12);
+}
+
+.voice-panel button:hover{
+  transform:scale(1.08);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .voice-main{
+    width:100%;
+    max-width:260px;
+  }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+<div class="header-center">
+
+    <a href="index.html" class="header-logo">
+      <img src="../../images/logo.png">
+    </a>
+
+    <div class="header-title">
+      <h1 style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>Chia sẻ tri thức • Giá trị cuộc sống</span>
+    </div>
+
+  </div>
+
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="../../index.html">🏠 Trang chủ</a>
+    <a href="../../suckhoe.html">❤️ Sức khỏe</a>
+    <a href="../../baiviet.html">✍ Bài viết</a>
+    <a href="../../tintuc.html">📢 Tin tức</a>
+    <a href="../../anh.html">📷 Thư viện</a>
+    <a href="../../../vanban.html">📄 Văn bản</a>
+    <a href="../../tailieu.html">📁 Tài liệu</a>
+    <a href="../../lich_cong_tac.html" >📅 Lịch</a>  
+  </nav>
+
+</header>
+
+<div class="page-wrapper">
+<div class="article">
+  <h2>Bác Hồ với tư tưởng về đổi mới công cuộc kiến thiết và xây dựng đất nước</h2>
+
+<div style="font-size:14px;color:#3030ef;margin-top:6px;font-style:italic;">
+  Vũ Thành Công 📅 14-05-2026
+</div>
+
+<div class="voice-wrap">
+
+  <!-- NÚT ĐỌC CHÍNH -->
+  <button class="voice-main">
+    🔊 Nghe bài viết
+  </button>
+
+  <!-- NÚT PHỤ -->
+  <div class="voice-panel" id="voicePanel">
+
+    <button onclick="startSpeak()" title="Đọc">
+      ▶
+    </button>
+
+    <button onclick="pauseSpeak()" title="Tạm dừng">
+      ⏸
+    </button>
+
+    <button onclick="resumeSpeak()" title="Tiếp tục">
+      ⏯
+    </button>
+
+    <button onclick="stopSpeak()" title="Dừng">
+      ⏹
+    </button>
+
+  </div>
+
+</div>
+
+ <!-- KHU VỰC ĐỌC -->
+  <div class="article-content" id="readingContent">
+
+<p class="justified-p">
+Chủ tịch Hồ Chí Minh là lãnh tụ thiên tài của Đảng và dân tộc Việt Nam, Anh hùng giải phóng dân tộc, Danh nhân văn hóa thế giới. Cả cuộc đời Người đã cống hiến trọn vẹn cho sự nghiệp đấu tranh giành độc lập dân tộc, tự do cho nhân dân và hạnh phúc cho con người. Không chỉ là người tìm ra con đường cứu nước đúng đắn cho dân tộc Việt Nam, Hồ Chí Minh còn là nhà tư tưởng lớn về kiến thiết quốc gia, phát triển đất nước và đổi mới xã hội.
+Sinh thời, Người luôn đau đáu một khát vọng lớn lao: xây dựng nước Việt Nam hòa bình, thống nhất, độc lập, dân chủ và giàu mạnh; nhân dân có cuộc sống ấm no, tự do, hạnh phúc. Chính từ khát vọng ấy, Hồ Chí Minh đã hình thành nên hệ thống tư tưởng sâu sắc về đổi mới tư duy, đổi mới phương thức lãnh đạo, phát triển kinh tế, văn hóa, giáo dục và xây dựng con người mới. Những tư tưởng đó đến nay vẫn còn nguyên giá trị, trở thành nền tảng tinh thần và kim chỉ nam cho công cuộc đổi mới đất nước.
+Tư tưởng đổi mới của Hồ Chí Minh trước hết được hình thành từ thực tiễn lịch sử của dân tộc và thời đại. Chứng kiến cảnh nước mất, nhân dân lầm than dưới ách áp bức của thực dân, phong kiến, Người sớm nhận ra rằng những con đường cứu nước cũ không còn phù hợp. Với tư duy độc lập, sáng tạo, Người đã bôn ba khắp năm châu để tìm đường cứu nước, tiếp thu tinh hoa văn hóa nhân loại, kết hợp chủ nghĩa yêu nước truyền thống với chủ nghĩa Mác – Lênin để tìm ra con đường giải phóng dân tộc đúng đắn.
+Điều đặc biệt trong tư tưởng Hồ Chí Minh là tinh thần đổi mới luôn gắn liền với thực tiễn Việt Nam. Người không giáo điều, máy móc mà luôn xuất phát từ điều kiện cụ thể của đất nước và lợi ích của nhân dân. Chính vì vậy, tư tưởng của Người vừa mang tầm vóc thời đại, vừa gần gũi với đời sống nhân dân, phù hợp với tâm tư, nguyện vọng của quần chúng.
+Một trong những nội dung cốt lõi trong tư tưởng Hồ Chí Minh về xây dựng đất nước là quan điểm độc lập dân tộc phải gắn liền với hạnh phúc của nhân dân. Người từng khẳng định: “Nếu nước độc lập mà dân không hưởng hạnh phúc, tự do thì độc lập cũng chẳng có nghĩa lý gì”. Đây là tư tưởng mang giá trị nhân văn sâu sắc, thể hiện rõ mục tiêu cuối cùng của cách mạng không chỉ là giành chính quyền mà còn phải chăm lo đời sống nhân dân, nâng cao chất lượng cuộc sống của con người.
+Theo Hồ Chí Minh, sau khi giành được độc lập, nhiệm vụ quan trọng hàng đầu là kiến thiết đất nước. Người nhấn mạnh phải phát triển kinh tế, nâng cao dân trí, chăm lo đời sống vật chất và tinh thần cho nhân dân. Người từng nói: “Chúng ta phải biến một nước dốt nát, cực khổ thành một nước văn hóa cao và đời sống tươi vui hạnh phúc”. Tư tưởng ấy cho thấy tầm nhìn chiến lược và tinh thần đổi mới rất tiến bộ của Người.
+Trong lĩnh vực kinh tế, Hồ Chí Minh đặc biệt coi trọng lao động, sản xuất và thực hành tiết kiệm. Người cho rằng muốn xây dựng chủ nghĩa xã hội thì trước hết phải phát triển kinh tế, nâng cao năng suất lao động. Người đề cao vai trò của nông nghiệp, coi nông nghiệp là nền tảng; đồng thời quan tâm phát triển công nghiệp, khoa học – kỹ thuật và thương nghiệp. Hồ Chí Minh luôn khuyến khích tinh thần tự lực, tự cường, chống tư tưởng bảo thủ, trì trệ và lãng phí.
+Ngày nay, nhìn lại gần 40 năm thực hiện công cuộc đổi mới do Đảng khởi xướng và lãnh đạo, có thể thấy nhiều quan điểm của Hồ Chí Minh vẫn mang ý nghĩa thời sự sâu sắc. Đó là tư duy phát triển kinh tế gắn với ổn định xã hội; lấy con người làm trung tâm của sự phát triển; phát huy nội lực kết hợp với sức mạnh thời đại; xây dựng nền kinh tế độc lập, tự chủ đi đôi với hội nhập quốc tế sâu rộng.
+Không chỉ đổi mới trong tư duy phát triển kinh tế, Hồ Chí Minh còn đặc biệt quan tâm xây dựng Nhà nước của dân, do dân và vì dân. Theo Người, nhân dân là chủ thể của đất nước, mọi quyền lực đều thuộc về nhân dân. Cán bộ, đảng viên phải thực sự là “công bộc của dân”, hết lòng phục vụ nhân dân. Người nhiều lần nhắc nhở cán bộ phải gần dân, hiểu dân, trọng dân và có trách nhiệm với dân.
+Tinh thần đổi mới trong tư tưởng Hồ Chí Minh còn thể hiện ở yêu cầu xây dựng một nền hành chính liêm chính, hiệu quả; chống quan liêu, tham ô, lãng phí và xa dân. Người cho rằng nếu cán bộ thoái hóa, biến chất thì sẽ làm giảm niềm tin của nhân dân đối với Đảng và Nhà nước. Vì vậy, xây dựng đội ngũ cán bộ có đạo đức, có năng lực và tinh thần trách nhiệm là nhiệm vụ đặc biệt quan trọng.
+Trong giai đoạn hiện nay, tư tưởng đó càng có ý nghĩa sâu sắc khi Đảng và Nhà nước đang đẩy mạnh cải cách hành chính, xây dựng chính quyền số, chuyển đổi số quốc gia và xây dựng Nhà nước pháp quyền xã hội chủ nghĩa. Những yêu cầu về trách nhiệm nêu gương, đạo đức công vụ, tinh thần phục vụ nhân dân chính là sự kế thừa và phát triển tư tưởng Hồ Chí Minh trong điều kiện mới.
+Bên cạnh kinh tế và chính trị, Hồ Chí Minh đặc biệt coi trọng vai trò của văn hóa, giáo dục và con người. Người từng khẳng định: “Văn hóa soi đường cho quốc dân đi”. Theo Người, muốn xây dựng đất nước bền vững phải xây dựng con người mới có đạo đức, tri thức, lý tưởng và tinh thần cống hiến.
+Hồ Chí Minh luôn dành sự quan tâm đặc biệt cho thế hệ trẻ. Người coi thanh niên là chủ nhân tương lai của đất nước, là lực lượng xung kích trong lao động, học tập và bảo vệ Tổ quốc. Người mong muốn thế hệ trẻ phải có hoài bão lớn, có tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám cống hiến vì lợi ích chung của đất nước và nhân dân.
+Ngày nay, trong bối cảnh cuộc Cách mạng công nghiệp lần thứ tư và xu thế hội nhập quốc tế ngày càng sâu rộng, tư tưởng đổi mới của Hồ Chí Minh càng cho thấy giá trị to lớn. Đó là tinh thần chủ động học hỏi tinh hoa nhân loại, tiếp cận khoa học công nghệ hiện đại, đổi mới sáng tạo nhưng vẫn giữ vững bản sắc văn hóa dân tộc và độc lập, tự chủ quốc gia.
+Dưới sự lãnh đạo của Đảng, đất nước ta đã đạt được nhiều thành tựu quan trọng trên các lĩnh vực. Kinh tế tăng trưởng ổn định; đời sống nhân dân ngày càng được nâng cao; hệ thống kết cấu hạ tầng ngày càng hiện đại; vị thế và uy tín của Việt Nam trên trường quốc tế không ngừng được củng cố. Những thành tựu đó là minh chứng sinh động cho việc vận dụng sáng tạo tư tưởng Hồ Chí Minh vào thực tiễn đổi mới và phát triển đất nước.
+</p>
+<p class="justified-p">
+Tuy nhiên, bên cạnh những thời cơ thuận lợi, đất nước cũng đang đứng trước nhiều khó khăn, thách thức như nguy cơ tụt hậu, biến đổi khí hậu, già hóa dân số, cạnh tranh quốc tế gay gắt, những tác động phức tạp của không gian mạng và sự suy thoái về tư tưởng chính trị, đạo đức, lối sống ở một bộ phận cán bộ, đảng viên. Điều đó đòi hỏi toàn Đảng, toàn dân và toàn quân phải tiếp tục phát huy tinh thần đổi mới, đoàn kết và sáng tạo theo tư tưởng của Chủ tịch Hồ Chí Minh.
+Đối với mỗi cán bộ, đảng viên, việc học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh cần được thể hiện bằng những hành động cụ thể, thiết thực. Đó là không ngừng đổi mới tư duy, nâng cao trình độ chuyên môn, tinh thần trách nhiệm, ý thức phục vụ nhân dân; tích cực ứng dụng khoa học công nghệ và chuyển đổi số vào công việc; nói đi đôi với làm; chống chủ nghĩa cá nhân, quan liêu, lãng phí.
+Đối với thế hệ trẻ, học tập tư tưởng Hồ Chí Minh không chỉ là học lý luận mà còn là học tinh thần tự học, ý chí vượt khó, khát vọng vươn lên và trách nhiệm đối với quê hương, đất nước. Mỗi thanh niên cần nuôi dưỡng lý tưởng sống đẹp, có khát vọng cống hiến, làm chủ khoa học công nghệ, góp phần xây dựng đất nước phát triển nhanh và bền vững.
+</p>
+<p class="justified-p">
+Kỷ niệm ngày sinh Chủ tịch Hồ Chí Minh là dịp để mỗi người Việt Nam thêm tự hào về vị lãnh tụ kính yêu của dân tộc, đồng thời nhận thức sâu sắc hơn trách nhiệm của mình đối với đất nước. Tư tưởng Hồ Chí Minh về đổi mới công cuộc kiến thiết và xây dựng đất nước mãi mãi là di sản vô giá của dân tộc Việt Nam, là ngọn đuốc soi đường cho sự nghiệp xây dựng và bảo vệ Tổ quốc.
+Noi gương Bác Hồ kính yêu, toàn Đảng, toàn dân và toàn quân ta tiếp tục phát huy tinh thần đoàn kết, đổi mới sáng tạo, khơi dậy mạnh mẽ khát vọng phát triển đất nước phồn vinh, hạnh phúc; quyết tâm xây dựng nước Việt Nam ngày càng giàu mạnh, văn minh, vững bước tiến vào kỷ nguyên phát triển mới của dân tộc.
+</p>
+
+</div>
+
+<div class="share-box">
+   <a class="share-btn fb"
+     href="#"
+     onclick="shareFacebook(); return false;">
+     Facebook
+  </a>
+
+  <button class="share-btn copy" onclick="copyLink()">
+     Sao chép link
+  </button>
+</div>
+
+</div>
+<footer>
+  <p>❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC</p>
+  </footer>
+</div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+function shareFacebook(){
+  const url = encodeURIComponent(window.location.href);
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    '_blank'
+  );
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("Đã sao chép đường dẫn bài viết!");
+}
+</script>
+
+<script>
+
+let utterance;
+
+function startSpeak(){
+
+  const article =
+    document.getElementById("readingContent");
+
+  if(!article) return;
+
+  const text =
+    article.innerText
+      .replace(/\s+/g," ")
+      .trim();
+
+  speechSynthesis.cancel();
+
+  utterance =
+    new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "vi-VN";
+
+  utterance.rate = 1;
+
+  utterance.pitch = 1;
+
+  utterance.volume = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak(){
+  speechSynthesis.pause();
+}
+
+function resumeSpeak(){
+  speechSynthesis.resume();
+}
+
+function stopSpeak(){
+  speechSynthesis.cancel();
+}
+
+/* =========================
+   TOGGLE PANEL
+========================= */
+
+document.addEventListener("DOMContentLoaded", ()=>{
+
+  const btn = document.querySelector(".voice-main");
+  const panel = document.getElementById("voicePanel");
+
+  if(btn && panel){
+
+    btn.addEventListener("click", ()=>{
+
+      panel.classList.toggle("show");
+
+    });
+
+  }
+
+});
+
+</script>
+
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
