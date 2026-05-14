@@ -576,6 +576,21 @@ footer p{
 
 </div>
 
+<!-- ĐIỀU CHỈNH CỠ CHỮ -->
+<div class="font-tools">
+
+  <button onclick="decreaseFont()" title="Giảm cỡ chữ">
+    A-
+  </button>
+
+  <span>Cỡ chữ</span>
+
+  <button onclick="increaseFont()" title="Tăng cỡ chữ">
+    A+
+  </button>
+
+</div>
+
  <!-- KHU VỰC ĐỌC -->
   <div class="article-content" id="readingContent">
 
@@ -660,6 +675,51 @@ function shareFacebook(){
 function copyLink(){
   navigator.clipboard.writeText(window.location.href);
   alert("Đã sao chép đường dẫn bài viết!");
+}
+
+/* =========================
+   FONT SIZE
+========================= */
+
+const articleParagraphs =
+  document.querySelectorAll(".article-content p");
+
+let currentFont =
+  parseInt(localStorage.getItem("articleFont")) || 18;
+
+// Áp dụng khi tải trang
+applyFontSize();
+
+function applyFontSize(){
+
+  articleParagraphs.forEach(p=>{
+    p.style.fontSize = currentFont + "px";
+  });
+
+  localStorage.setItem(
+    "articleFont",
+    currentFont
+  );
+}
+
+function increaseFont(){
+
+  if(currentFont < 30){
+
+    currentFont += 2;
+
+    applyFontSize();
+  }
+}
+
+function decreaseFont(){
+
+  if(currentFont > 14){
+
+    currentFont -= 2;
+
+    applyFontSize();
+  }
 }
 </script>
 
