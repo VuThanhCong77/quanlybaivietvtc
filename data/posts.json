@@ -1,19 +1,99 @@
 [
+{
+    "title": "🌱 Câu chuyện về một con người sinh ra bên dòng sông Đá Bạc",
+    "desc": "Hôm nay, dù đã trải qua nhiều cương vị, người đàn ông ấy vẫn giữ trọn nét mộc mạc, chân chất của người nông dân năm xưa. Cuộc đời ông như dòng sông Đá Bạc: lặng lẽ, bền bỉ, vững chãi trước ghềnh đá và không ngừng bồi đắp phù sa cho đời.",
+    "image": "anhvietbai/sdb.jpg",
+    "url": "gioithieu.html",
+    "date": "03-12-2025",
+    "category": "Giá trị cuộc sống"
+  },
+  {
+    "title": "🌱 Nhìn lại chặng đường những năm qua",
+    "desc": "Nhìn lại chặng đường đã qua là dịp để mỗi cán bộ, đảng viên và Nhân dân phường Lưu Kiếm cùng ôn lại những dấu mốc lịch sử đáng tự hào, khẳng định vai trò lãnh đạo của Đảng, sự điều hành hiệu quả của chính quyền, cũng như tinh thần đoàn kết, đồng lòng của toàn thể Nhân dân trong sự nghiệp xây dựng và phát triển quê hương.",
+    "image": "anhvietbai/gd (2).jpg",
+    "url": "vanban/nhungnamqua.html",
+    "date": "08-02-2026",
+    "category": "Gí trị cuộc sống"
+  },
+  {
+    "title": "❤️ Một lựa chọn đúng đắn của đời người",
+    "desc": "Gia đình, vì thế, không chỉ là lựa chọn của tình cảm, mà còn là lựa chọn của lý trí; không chỉ là việc riêng, mà còn là nền móng của việc chung. Và xây dựng gia đình một cách tử tế, bền vững chính là đóng góp thiết thực, lâu dài nhất của mỗi cá nhân đối với xã hội.",
+    "image": "anhvietbai/gd (1).png",
+    "url": "vanban/layvo.html",
+    "date": "08-02-2026",
+    "category": "Giá trị cuộc sống"
+  },
+  {
+    "title": "❤️ Hạnh phúc là gì?",
+    "desc": "Hạnh phúc không phải là có nhiều, mà là biết đủ; không phải là đi tìm, mà là biết nhận ra. Khi con người biết dừng lại một chút, cúi xuống nhìn cuộc đời bằng ánh mắt dịu dàng hơn, thì hạnh phúc – hóa ra – vẫn luôn ở đó, bình dị như bát cơm nóng, như tiếng gọi thân quen, như một ngày bình thường trôi qua trong yên ổn.",
+    "image": "anhvietbai/gd (4).png",
+    "url": "vanban/hanhphuc.html",
+    "date": "21-01-2026",
+    "category": "Giá trị cuộc sống"
+  },
+  {
+    "title": "📚 Bảo vệ nền tảng tư tưởng của đảng trên không gian mạng",
+    "desc": "Trong tình hình hiện nay, định hướng dư luận trên không gian mạng không chỉ là yêu cầu khách quan của công tác tuyên truyền, giáo dục chính trị tư tưởng mà còn là nhiệm vụ đặc biệt quan trọng trong công tác bảo vệ nền tảng tư tưởng của Đảng. Thực hiện tốt nhiệm vụ này sẽ góp phần củng cố niềm tin của Nhân dân đối với Đảng và Nhà nước, bảo vệ vững chắc nền tảng tư tưởng của Đảng, giữ vững ổn định chính trị – xã hội, tạo sự đồng thuận trong xã hội và xây dựng môi trường thông tin lành mạnh, tích cực phục vụ sự nghiệp phát triển đất nước trong thời kỳ mới.",
+    "image": "anhvietbai/duluanxahoi.jpg",
+    "url": "vanban/dinhhuongduluan.html",
+    "date": "10-05-2026",
+    "category": "Chính trị"
+  },
+  {
+    "title": "🤝 Mô hình xã hội chủ nghĩa ở Hải Phòng",
+    "desc": "Xây dựng Hải Phòng trở thành thành phố “VĂN MINH - HẠNH PHÚC” - hình mẫu tiêu biểu của mô hình Chủ nghĩa xã hội trong kỷ nguyên mới - kỷ nguyên vươn mình, giàu mạnh và thịnh vượng của dân tộc, nơi hội tụ đầy đủ các yếu tố: kinh tế phát triển cao và bền vững; xã hội dân chủ, công bằng, văn minh; con người được phát triển toàn diện về trí tuệ, đạo đức, thể chất, tinh thần; cộng đồng đoàn kết, nhân văn, có bản sắc văn hóa riêng; chính quyền hiện đại, hoạt động minh bạch, hiệu quả, vì Nhân dân phục vụ.",
+    "image": "anhvietbai/xhcnhp.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/post.html?id=1770607924882",
+    "date": "09-02-2026",
+    "category": "Chính trị"
+  },
+  {
+    "title": "💙 Chuyển đổi xanh tại thành phố Hải Phòng",
+    "desc": "Chuyển đổi xanh giai đoạn 2026 - 2030, lấy phát triển cảng xanh là đột phá chiến lược, tạo động lực cho quá trình chuyển đổi xanh toàn diện. Đến năm 2030, đạt mức giảm phát thải khí nhà kính ít nhất 43,5% so với năm 2020; chỉ số Xanh cấp tỉnh (PGI) nằm trong nhóm 05 địa phương dẫn đầu cả nước. Phấn đấu đến năm 2045, đạt và duy trì mục tiêu phát thải ròng bằng “0” (Net Zero); giữ vững chỉ số PGI nằm trong nhóm dẫn đầu cả nước.",
+    "image": "anhvietbai/chuyendoixanhhp.jpg",
+    "url": "vanban/chuyendoixanhhp.html",
+    "date": "10-03-2026",
+    "category": "Sống xanh"
+  },
+  {
+    "title": "Bầu cử nhiệm kỳ 2026 – 2031",
+    "desc": "Cuộc bầu cử đại biểu Quốc hội khóa XVI và đại biểu Hội đồng nhân dân các cấp nhiệm kỳ 2026 – 2031 là sự kiện chính trị trọng đại của đất nước, là ngày hội lớn của toàn dân.",
+    "image": "tinanh/26baucu.jpg",
+    "url": "vanban/baucu26.html",
+    "date": "10-01-2026",
+    "category": "Chính trị"
+  },
+{
+    "title": "Tản mạn về dòng họ \"Vũ Trọng\" ở Lưu Kiếm",
+    "desc": "Để duy trì và lưu giữ cho đời sau những giá trị truyền thống, công lao, tên tuổi của thế hệ trước thì mỗi gia đình, chi, dòng họ cần phải lập và lưu giữ được gia phả, tộc phả của chính gia đình mình, chi mình, dòng họ mình.",
+    "image": "images/vutrong.jpg",
+    "url": "vanban/vutrong.html",
+    "date": "21-01-2021",
+    "category": "Giá trị cuộc sống"
+  },
+  {
+    "title": "Sống làm việc hiệu quả",
+    "desc": "Sống tối giản, hay dọn dẹp gọn gàng giảm stress, ăn uống có chánh niệm cải thiện hành vi ăn uống, và các kỹ thuật quản lý thời gian (như pomodoro, GTD, deep work) đều hướng tới tăng năng suất làm việc.",
+    "image": "images/thiendinh.jpg",
+    "url": "vanban/toigian.html",
+    "date": "18-02-2026",
+    "category": "Giá trị cuộc sống"
+  },
   {
     "title":"Sống bản lĩnh",
-    "desc":"Giữ vững giá trị bản thân trong thời đại nhiều biến động.",
-    "image":"anhvietbai/gd (5).png",
+    "desc":"Mục đích sống không nhất thiết phải lớn lao, nhưng cần đủ rõ ràng để mỗi sáng thức dậy, ta biết vì sao mình tiếp tục cố gắng. Người có mục đích sống sẽ ít bị hoang mang trước biến động, bởi họ có một điểm tựa nội tâm vững chắc.",
+    "image":"images/banlinh.jpg",
     "url":"data/posts/songbanlinh.html",
-    "date":"2026-02-08",
-    "category":"Giá trị sống"
+    "date":"08-02-2026",
+    "category":"Giá trị cuộc sống"
   },
 
   {
     "title":"Ước mơ",
-    "desc":"Lan tỏa năng lượng tích cực trong cuộc sống hiện đại.",
+    "desc":"Từ bãi sông quê nghèo khó nhưng giàu nghĩa tình, tôi tin rằng mỗi nỗ lực học tập, mỗi giọt mồ hôi lao động đều góp phần tạo nên nền tảng cho sự đổi thay bền vững.",
     "image":"anhvietbai/ytuonghay.jpg",
     "url":"data/posts/uocmo.html",
-    "date":"2026-02-09",
-    "category":"Những ký ức đẹp về cuộc sống"
+    "date":"20-01-2026",
+    "category":"Giá trị cuộc sống"
   }
 ]
