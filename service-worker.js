@@ -1,8 +1,9 @@
 const CACHE_NAME = "vtc-cache-v1";
 
 const urlsToCache = [
-  "/quanlybaivietvtc/",
+   "/quanlybaivietvtc/",
   "/quanlybaivietvtc/index.html",
+  "/quanlybaivietvtc/offline.html",
   "/quanlybaivietvtc/posts_data.json"
 ];
 
@@ -25,10 +26,13 @@ self.addEventListener("fetch", event => {
 
   event.respondWith(
 
-    caches.match(event.request)
-      .then(response => {
+    fetch(event.request)
 
-        return response || fetch(event.request);
+      .catch(() => {
+
+        return caches.match(
+          "/quanlybaivietvtc/offline.html"
+        );
 
       })
 
