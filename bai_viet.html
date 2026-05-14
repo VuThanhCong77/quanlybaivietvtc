@@ -7,7 +7,7 @@
 <title>Bài viết | Vũ Thành Công</title>
 
 <meta name="description"
-content="Nơi chia sẻ tri thức, giá trị sống, kinh nghiệm và cảm hứng tích cực.">
+content="Nơi chia sẻ tri thức, giá trị, kinh nghiệm và cảm hứng tích cực về cuộc sống.">
 
 <link rel="stylesheet" href="layout.css">
 
@@ -278,6 +278,165 @@ footer{
   font-size:14px;
 }
 
+/* =========================
+   TOOLBAR
+========================= */
+
+.posts-toolbar{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:16px;
+
+  margin-bottom:24px;
+
+  flex-wrap:wrap;
+}
+
+.posts-count{
+
+  font-weight:700;
+  color:#0f172a;
+
+  background:#fff;
+
+  padding:10px 16px;
+
+  border-radius:14px;
+
+  border:1px solid #e2e8f0;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,.04);
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.posts-search{
+
+  flex:1;
+  min-width:240px;
+}
+
+.posts-search input{
+
+  width:100%;
+
+  padding:14px 16px;
+
+  border-radius:14px;
+
+  border:1px solid #cbd5e1;
+
+  outline:none;
+
+  font-size:15px;
+
+  transition:.25s ease;
+
+  background:#fff;
+}
+
+.posts-search input:focus{
+
+  border-color:#0b4ea2;
+
+  box-shadow:
+    0 0 0 4px rgba(11,78,162,.08);
+}
+
+/* =========================
+   FLOATING BUTTONS
+========================= */
+
+.floating-btn{
+
+  position:fixed;
+
+  width:52px;
+  height:52px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#0b4ea2;
+
+  color:#fff;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.2);
+
+  z-index:999;
+
+  transition:.3s ease;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.floating-btn:hover{
+  transform:translateY(-4px);
+}
+
+.back-btn{
+
+  left:18px;
+  bottom:20px;
+}
+
+.top-btn{
+
+  right:18px;
+  bottom:20px;
+
+  opacity:0;
+  visibility:hidden;
+}
+
+.top-btn.show{
+
+  opacity:1;
+  visibility:visible;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .posts-toolbar{
+    gap:12px;
+  }
+
+  .posts-count{
+    width:100%;
+    text-align:center;
+  }
+
+  .posts-search{
+    width:100%;
+  }
+
+  .floating-btn{
+
+    width:48px;
+    height:48px;
+
+    font-size:20px;
+  }
+
+}
 
 </style>
 </head>
@@ -333,6 +492,27 @@ footer{
 
 <div class="posts-page">
 
+<!-- TOOLBAR -->
+
+<div class="posts-toolbar">
+
+  <!-- Tổng số bài -->
+  <div class="posts-count">
+    📚 Tổng bài:
+    <span id="totalPosts">0</span>
+  </div>
+
+  <!-- Tìm kiếm -->
+  <div class="posts-search">
+
+    <input type="text"
+           id="searchInput"
+           placeholder="Tìm bài viết...">
+
+  </div>
+
+</div>
+
   <!-- HEADING -->
   <div class="posts-heading">
 
@@ -341,8 +521,8 @@ footer{
     </h2>
 
     <p>
-      Nơi chia sẻ tri thức, cảm hứng sống,
-      giá trị tích cực và những trải nghiệm ý nghĩa.
+      Nơi chia sẻ tri thức, cảm hứng,
+      giá trị tích cực và những trải nghiệm ý nghĩa về cuộc sống.
     </p>
 
   </div>
@@ -373,21 +553,59 @@ footer{
 
 <script>
 
+let allPosts = [];
+
 fetch("data/posts.json")
 
 .then(res => res.json())
 
 .then(posts => {
 
+  allPosts = posts.reverse();
+
+  renderPosts(allPosts);
+
+  document.getElementById(
+    "totalPosts"
+  ).textContent = allPosts.length;
+
+})
+
+.catch(error => {
+
+  document.getElementById(
+    "postsContainer"
+  ).innerHTML = `
+
+    <div class="empty-post">
+
+      Không thể tải dữ liệu bài viết.
+
+    </div>
+
+  `;
+
+  console.error(error);
+
+});
+
+/* =========================
+   HIỂN THỊ BÀI VIẾT
+========================= */
+
+function renderPosts(posts){
+
   const container =
-    document.getElementById("postsContainer");
+    document.getElementById(
+      "postsContainer"
+    );
 
   if(!posts.length){
 
     container.innerHTML = `
 
       <div class="empty-post">
-        Chưa có bài viết nào.
+        Không tìm thấy bài viết phù hợp.
       </div>
 
     `;
@@ -397,7 +615,7 @@ fetch("data/posts.json")
 
   let html = "";
 
-  posts.reverse().forEach(post => {
+  posts.forEach(post => {
 
     html += `
 
@@ -407,9 +625,9 @@ fetch("data/posts.json")
       <div class="post-thumb">
 
         <img src="${post.image}"
-     alt="${post.title}"
-     loading="lazy"
-     decoding="async">
+             alt="${post.title}"
+             loading="lazy"
+             decoding="async">
 
       </div>
 
@@ -453,28 +671,114 @@ fetch("data/posts.json")
   });
 
   container.innerHTML = html;
+}
 
-})
+/* =========================
+   TÌM KIẾM
+========================= */
 
-.catch(error => {
+document.addEventListener(
+  "input",
+  function(e){
 
+    if(e.target.id === "searchInput"){
+
+      const keyword =
+        e.target.value
+        .toLowerCase()
+        .trim();
+
+      const filtered =
+        allPosts.filter(post =>
+
+          post.title
+            .toLowerCase()
+            .includes(keyword)
+
+          ||
+
+          post.desc
+            .toLowerCase()
+            .includes(keyword)
+
+          ||
+
+          post.category
+            .toLowerCase()
+            .includes(keyword)
+
+        );
+
+      renderPosts(filtered);
+
+      document.getElementById(
+        "totalPosts"
+      ).textContent = filtered.length;
+    }
+
+});
+
+/* =========================
+   NÚT LÊN ĐẦU
+========================= */
+
+const scrollTopBtn =
   document.getElementById(
-    "postsContainer"
-  ).innerHTML = `
+    "scrollTopBtn"
+  );
 
-    <div class="empty-post">
+window.addEventListener(
+  "scroll",
+  () => {
 
-      Không thể tải dữ liệu bài viết.
+    if(window.scrollY > 300){
 
-    </div>
+      scrollTopBtn.classList.add(
+        "show"
+      );
 
-  `;
+    }else{
 
-  console.error(error);
+      scrollTopBtn.classList.remove(
+        "show"
+      );
+
+    }
+
+});
+
+scrollTopBtn.addEventListener(
+  "click",
+  () => {
+
+    window.scrollTo({
+
+      top:0,
+      behavior:"smooth"
+
+    });
 
 });
 
 </script>
+
+<!-- NÚT TRỞ VỀ -->
+
+<button class="floating-btn back-btn"
+        onclick="history.back()">
+
+  ←
+
+</button>
+
+<!-- NÚT LÊN ĐẦU -->
+
+<button class="floating-btn top-btn"
+        id="scrollTopBtn">
+
+  ↑
+
+</button>
 
 </body>
 </html>
