@@ -56,7 +56,7 @@ body{
   grid-template-columns:
     repeat(auto-fit,minmax(280px,1fr));
   gap:20px;
-  text-align:justify;
+    text-align:justify;
 }
 
 /* =========================
@@ -562,7 +562,18 @@ fetch("data/posts.json")
 
 .then(posts => {
 
-  allPosts = posts.reverse();
+  allPosts = posts.sort((a,b)=>{
+
+  const da =
+    a.date.split("-").reverse().join("");
+
+  const db =
+    b.date.split("-").reverse().join("");
+
+  return db - da;
+
+})
+
 
   renderPosts(allPosts);
 
