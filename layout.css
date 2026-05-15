@@ -335,9 +335,11 @@ footer{
     margin-top: 20px;
   }
 }
+
 .content-wrapper{
   display: grid;
   grid-template-columns: 2.5fr 1fr;
+
 }
 /* ===============================
    TỐI ƯU KHOẢNG CÁCH HEADER - MAIN
@@ -980,4 +982,178 @@ body{
   font-size:14px;
   color:#374151;
   font-weight:600;
+}
+
+/* =========================
+   DROPDOWN MENU DESKTOP
+========================= */
+
+.dropdown{
+  position:relative;
+}
+
+/* submenu */
+
+.submenu{
+  position:absolute;
+
+  top:120%;
+  left:0;
+
+  min-width:230px;
+
+  display:flex;
+  flex-direction:column;
+
+  padding:10px;
+
+  border-radius:16px;
+
+  background:#ffffff;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.12);
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(10px);
+
+  transition:.25s ease;
+
+  z-index:9999;
+}
+
+/* item */
+
+.submenu a{
+  color:#0f172a !important;
+
+  padding:10px 14px;
+
+  border-radius:10px;
+
+  font-size:14px;
+
+  background:none !important;
+}
+
+/* hover */
+
+.submenu a:hover{
+  background:#f1f5f9 !important;
+  color:#0077b6 !important;
+}
+
+/* xổ xuống desktop */
+
+.dropdown:hover .submenu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+/* MOBILE: ẨN submenu */
+
+@media(max-width:991px){
+
+  .submenu{
+    display:none !important;
+  }
+
+}
+
+.dropdown-box select{
+  width:100%;
+
+  padding:12px 14px;
+
+  border-radius:14px;
+  border:1px solid #cbd5e1;
+
+  background:#ffffff;
+
+  font-size:15px;
+  font-weight:600;
+
+  color:#0f172a;
+
+  outline:none;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.05);
+
+  transition:.25s;
+}
+
+.dropdown-box select:hover{
+  border-color:#0099DA;
+}
+
+.dropdown-box select:focus{
+  border-color:#0099DA;
+
+  box-shadow:
+    0 0 0 4px rgba(0,153,218,.15);
+}
+
+.dropdown-box optgroup{
+  font-weight:700;
+  color:#0077b6;
+}
+
+/* =========================
+   SIDE LIST HOVER
+========================= */
+
+.side-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+.side-list li{
+  margin-bottom:6px;
+}
+
+.side-list li a{
+  display:block;
+
+  padding:10px 12px;
+
+  border-radius:10px;
+
+  color:#0f172a;
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:500;
+
+  transition:.25s ease;
+}
+
+/* HOVER */
+
+.side-list li a:hover{
+
+  background:
+    linear-gradient(
+      135deg,
+      #eef7ff,
+      #dff1ff
+    );
+
+  color:#0077b6;
+
+  transform:translateX(4px);
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.06);
+
+}
+
+.side-list li a:hover{
+  border-left:4px solid #0099DA;
 }

@@ -18,9 +18,9 @@
 <link rel="stylesheet" href="layout.css">
 
 <!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
-href="images/icon192.png"> <link rel="icon" type="image/png" sizes="192x192"
-href="images/icon180.png"> <link rel="apple-touch-icon" sizes="180x180"
-href="images/icon512.png"> <link rel="manifest" href="manifest.json"> 
+href="images/CK.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="images/CK.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="images/CK.png"> <link rel="manifest" href="manifest.json"> 
 
 <style>
 :root{
@@ -741,6 +741,10 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
   color:#64748b;
 }
 
+.header-nav{
+   justify-content:center;
+ }
+
 </style>
 </head>
 <body>
@@ -776,52 +780,74 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
 </div>
 
 <!-- MENU DESKTOP -->
+<div class="header-nav">
 
-<nav>
-<ul class="menu">
+<a href="index.html" class="active">
+🏠 Trang chủ
+</a>
 
-<li><a href="suckhoe.html">❤️ Sức khỏe</a></li>
+<div class="dropdown">
 
-<li><a href="so_do.html">🏞 Sơ đồ</a></li>
+<a href="#">
+✍ Bài viết ▾
+</a>
 
-<li><a href="baiviet.html">✍ Bài viết</a></li>
+<div class="submenu">
 
-<li><a href="bai_viet.html" title="Bài viết nổi bật">✍</a></li>
+<a href="baiviet.html">📚 Tất cả bài viết</a>
 
-<li><a href="tintuc.html">📢 Tin tức</a></li>
+<a href="bai_viet.html">⭐ Nổi bật</a>
 
-<li><a href="anh.html">📷 Thư viện ảnh</a></li>
+<a href="suckhoe.html">💚 Sức khỏe</a>
 
-<li><a href="vanban.html">📄 Văn bản</a></li>
+</div>
+</div>
 
-<li><a href="tailieu.html">📁 Tài liệu</a></li>
+<a href="tintuc.html">📢 Tin tức</a>
 
-<li><a href="lich_cong_tac.html">📅 Lịch</a></li>
+<a href="anh.html">📷 Thư viện</a>
 
-</ul>
-</nav>
+<a href="vanban.html">📄 Văn bản</a>
+
+<a href="tailieu.html">📁 Tài liệu</a>
+
+<a href="lich_cong_tac.html">📅 Lịch</a>
+
+<a href="so_do.html">🗺 Sơ đồ</a>
+
+</div>
 
 <!-- MOBILE MENU -->
 
 <div class="mobile-menu" id="mobileMenu">
 
-<a href="so_do.html">🏞 Sơ đồ</a>
+<a href="index.html" class="active">🏠 Trang chủ</a>
 
-<details>
-<summary style="padding:14px 20px;color:#fff;cursor:pointer;">
+<details style="background:rgb(4, 121, 76);">
+<summary style="color:#fff; background:rgb(111, 129, 7);padding:12px 12px;">
+✍ Bài viết
+</summary>
+
+<a href="baiviet.html">📚 Tất cả bài viết</a>
+<a href="bai_viet.html">⭐ Nổi bật</a>
+<a href="suckhoe.html">💚 Sức khỏe</a>
+</details>
+
+<details style="background:rgb(4, 121, 76);">
+<summary style="color:#fff; background:rgb(117, 6, 93);padding:12px 12px;">
 📄 Văn bản
 </summary>
 
 <a href="vanban/dieuledang.html">📕 Điều lệ Đảng</a>
 <a href="vanban/qd20_2026.html">📜 Quy định 20 QĐTW</a>
 <a href="vanban.html">📜 Quy định 21 QĐTW</a>
-<a href="vanban/HuongdanSD.html">📘 Hướng dẫn</a>
 <a href="doc_pdf.html">📕 Văn bản pdf</a>
+<a href=="vanban/doc_pdf_truc_tiep.html">📕 Xem pdf trực tiếp</a>
 <a href="vanban/doc-Word.html">📕 Đọc văn bản Word</a>
 </details>
 
-<details>
-<summary style="padding:14px 20px;color:#fff;cursor:pointer;">
+<details style="background:rgb(4, 121, 76);">
+<summary style="color:#fff; background:rgb(81, 5, 143);padding:12px 12px;">
 🔗 Liên kết
 </summary>
 
@@ -832,14 +858,13 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
 <a href="https://bandoso.haiphong.gov.vn/">🏞 Bản đồ Hải phòng</a>
 </details>
 
-<a href="suckhoe.html">❤️ Sức khỏe</a>
-<a href="baiviet.html">✍ Bài viết</a>
 <a href="tintuc.html">📢 Tin tức</a>
-<a href="anh.html">📷 Thư viện ảnh</a>
+<a href="anh.html">📷 Thư viện</a>
 <a href="tailieu.html">📁 Tài liệu</a>
 <a href="lich_cong_tac.html">📅 Lịch</a>
-<a href="danhsachbaiviet.html">📖 Danh sách bài viết</a>
 <a href="soanbai.html">📖 Soạn bài viết</a>
+<a href="so_do.html">🏞 Sơ đồ</a>
+<a href="vanban/HuongdanSD.html">📘 Hướng dẫn</a>
 
 </div>
 
@@ -879,27 +904,48 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
 
 </div>
 
-<!-- MENU CHUYÊN ĐỀ-->
+<!== MENU CHUYÊN ĐỀ ==>
+<div class="card">
 
 <div class="dropdown-box">
-    <select onchange="goPage(this)">
-        	<option value="">☰ Chọn chủ đề</option>
-       	<option value="so_do.html">📈 Sơ đồ</option>
-	<option value="bai_viet.html">✍ Bài viết nổi bật</option>
-        <option value="suc_khoe.html">❤️ Sức khỏe</option>
-        <option value="hanhphuc.html">🌿 Hạnh phúc</option>
-        <option value="tritue.html">📈 Trí tuệ</option>
-	<option value="kiemtra_giamsat.html">🔍 Kiểm tra, giám sát</option>
-	<option value="thanhtranhandan.html">🔍 Thanh tra nhân dân</option>
-	<option value="doc_pdf.html">📕 Văn bản pdf</option>
-	<option value="vanban/doc_pdf_truc_tiep.html">📕 Đọc pdf trực tiếp</option>
-	<option value="vanban/baucu26.html">📍Bầu cử 2026</option>
-	<option value="lich_su/bienniensukien.html">📚 Bảo tàng số</option>
-	<option value="noichayennghi.html">🏛 Nơi cha về với đất mẹ</option>
-    </select>
+<select onchange="goPage(this)">
+
+<option value="">☰ Chọn chủ đề</option>
+
+<!-- NHÓM BÀI VIẾT -->
+
+<optgroup label="✍ Bài viết">
+<option value="baiviet.html">📚 Tất cả bài viết</option>
+<option value="bai_viet.html">⭐ Nổi bật</option>
+<option value="suc_khoe.html">❤️ Sức khỏe</option>
+<option value="hanhphuc.html">🌿 Hạnh phúc</option>
+<option value="tritue.html">📈 Trí tuệ</option>
+</optgroup>
+
+<!-- NHÓM VĂN BẢN -->
+
+<optgroup label="📕 Văn bản">
+<option value="doc_pdf.html">📄 Văn bản PDF</option>
+<option value="vanban/doc_pdf_truc_tiep.html">📖 Xem PDF trực tiếp</option>
+</optgroup>
+
+<!-- NHÓM TỔNG HỢP -->
+
+<optgroup label="📚 Tổng hợp">
+<option value="kiemtra_giamsat.html">🔍 Kiểm tra, giám sát</option>
+<option value="thanhtranhandan.html">🔍 Thanh tra nhân dân</option>
+<option value="vanban/baucu26.html">📍 Bầu cử 2026</option>
+<option value="lich_su/bienniensukien.html">🏛 Bảo tàng số</option>
+<option value="noichayennghi.html">🌿 Nơi cha về với đất mẹ</option>
+<option value="so_do.html">📈 Sơ đồ</option>
+</optgroup>
+
+</select>
 </div>
 
-<!-- NEWS TIN TỨC MỚI-->
+</div>
+
+<!== NEWS TIN TỨC MỚI ==>
 
 <section class="card">
 
@@ -941,11 +987,13 @@ TƯ DUY & TRIẾT LÝ SỐNG</h2>
  </div>
 
 <!-- BÀI VIẾT MỚI Ở DATA -->
-<section class="home-posts">
+<section class="card">
 
-  <div class="section-title">
+<div class="card-title">
     ✍ Những bài viết nổi bật
   </div>
+
+<div class="card-content">
 
   <div id="latestPosts"
        class="posts-grid">
@@ -953,7 +1001,7 @@ TƯ DUY & TRIẾT LÝ SỐNG</h2>
       Đang tải...
 
   </div>
-
+  </div>
 </section>
 
 <div class="img-giua"> 
@@ -1086,7 +1134,7 @@ Kết nối yêu thương và lan tỏa những giá trị sống tích cực v�
 
 <ul class="side-list">
 
-<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/post.html?id=1765945315658">Chủ tịch Hồ Chí Minh, Người thầy vĩ đại của cách mạng Việt Nam</a></li>
+<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/post.html?id=1765945315658" >Chủ tịch Hồ Chí Minh, Người thầy vĩ đại của cách mạng Việt Nam</a></li>
 
 <li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/vanban/chuyendoixanhhp.html">Nghị quyết về chuyển đổi xanh thành phố Hải Phòng</a></li>
 
@@ -1114,21 +1162,44 @@ Kết nối yêu thương và lan tỏa những giá trị sống tích cực v�
 
 <div class="card">
 <div class="card-title">
+<!== MENU CHUYÊN ĐỀ ==>
+
 <div class="dropdown-box">
-    <select onchange="goPage(this)">
-        	<option value="">☰ Chọn chủ đề</option>
-       	<option value="so_do.html">📈 Sơ đồ</option>
-        	<option value="suc_khoe.html">❤️ Sức khỏe</option>
-        	<option value="hanhphuc.html">🌿 Hạnh phúc</option>
-        	<option value="tritue.html">📈 Trí tuệ</option>
-	<option value="kiemtra_giamsat.html">🔍 Kiểm tra, giám sát</option>
-	<option value="thanhtranhandan.html">🔍 Thanh tra nhân dân</option>
-	<option value="doc_pdf.html">📕 Văn bản pdf</option>
-	<option value="vanban/baucu26.html">📍Bầu cử 2026</option>
-	<option value="lich_su/bienniensukien.html">📚 Bảo tàng số</option>
-	<option value="noichayennghi.html">🏛 Nơi cha về với đất mẹ</option>
-    </select>
+<select onchange="goPage(this)">
+
+<option value="">☰ Chọn chủ đề</option>
+
+<!-- NHÓM BÀI VIẾT -->
+
+<optgroup label="✍ Bài viết">
+<option value="baiviet.html">📚 Tất cả bài viết</option>
+<option value="bai_viet.html">⭐ Nổi bật</option>
+<option value="suc_khoe.html">❤️ Sức khỏe</option>
+<option value="hanhphuc.html">🌿 Hạnh phúc</option>
+<option value="tritue.html">📈 Trí tuệ</option>
+</optgroup>
+
+<!-- NHÓM VĂN BẢN -->
+
+<optgroup label="📕 Văn bản">
+<option value="doc_pdf.html">📄 Văn bản PDF</option>
+<option value="vanban/doc_pdf_truc_tiep.html">📖 Xem PDF trực tiếp</option>
+</optgroup>
+
+<!-- NHÓM TỔNG HỢP -->
+
+<optgroup label="📚 Tổng hợp">
+<option value="kiemtra_giamsat.html">🔍 Kiểm tra, giám sát</option>
+<option value="thanhtranhandan.html">🔍 Thanh tra nhân dân</option>
+<option value="vanban/baucu26.html">📍 Bầu cử 2026</option>
+<option value="lich_su/bienniensukien.html">🏛 Bảo tàng số</option>
+<option value="noichayennghi.html">🌿 Nơi cha về với đất mẹ</option>
+<option value="so_do.html">📈 Sơ đồ</option>
+</optgroup>
+
+</select>
 </div>
+
 </div>
 </div>
 
@@ -1444,13 +1515,7 @@ const posts = await response.json();
 
 /* Lọc danh mục */
 
-const filtered = posts.filter(post =>
-
-post.category === 'tintuc' ||
-post.category === 'baiviet' ||
-post.category === 'suckhoe'
-
-);
+const filtered = posts.filter(post =>post.category === 'tintuc');
 
 /* Sắp xếp mới nhất */
 
@@ -1482,6 +1547,10 @@ alt="${post.title}"
 <p>
 ${post.shortDescription || ''}
 </p>
+
+ <div style="text-align:right;">
+  📅 ${post.date}
+ </div>
 
 <a
 href="post.html?id=${post.id}"
@@ -1732,7 +1801,7 @@ posts
           ${post.title}
         </div>
 
-        <div class="post-desc">
+       <div class="post-desc">
           ${post.desc}
         </div>
 
@@ -1791,6 +1860,7 @@ if ("serviceWorker" in navigator) {
 }
 
 </script>
+
 
 </body>
 </html>

@@ -407,7 +407,12 @@ let allPosts = [];
 fetch("posts_data.json")
 .then(r => r.json())
 .then(data => {
-  allPosts = data.filter(p => p.category === "baiviet");
+ 
+  // Tổng hợp tất cả bài thuộc các chuyên mục cần lấy
+  allPosts = data.filter(post =>
+    ["tintuc", "baiviet", "suckhoe", "tailieu"].includes(post.category)
+  );
+
   allPosts.sort((a,b)=>new Date(b.date)-new Date(a.date));
   renderArticles(allPosts);
   postCountSpan.textContent = allPosts.length;
