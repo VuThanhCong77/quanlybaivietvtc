@@ -401,10 +401,27 @@ let allPosts=[];
 fetch("posts_data.json")
 .then(r=>r.json())
 .then(data=>{
-  allPosts=data.filter(p=>p.category==="suckhoe");
-  allPosts.sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+  allPosts = data.filter(p => {
+
+    // Nếu category là mảng
+    if(Array.isArray(p.category)){
+      return p.category.includes("suckhoe");
+    }
+
+    // Hỗ trợ dữ liệu cũ
+    return p.category === "suckhoe";
+
+  });
+
+  allPosts.sort((a,b)=>
+    new Date(b.date) - new Date(a.date)
+  );
+
   render(allPosts);
-  postCountSpan.textContent=allPosts.length;
+
+  postCountSpan.textContent = allPosts.length;
+
 });
 
 function render(posts){

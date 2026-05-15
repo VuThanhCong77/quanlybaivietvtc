@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bài viết</title>
+<title>Tin tức</title>
 
 <!-- CSS layout chung -->
 <link rel="stylesheet" href="layout.css">
@@ -14,7 +14,6 @@ href="icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
 href="icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
 <meta name="theme-color" content="#0a7f99">
 
-<!-- CSS RIÊNG TRANG (GIỮ NGUYÊN) -->
 <style>
 .main-content{
   background:#fffffff5;
@@ -22,6 +21,15 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 }
 
 /* ===== MENU MOBILE ===== */
+.menu-btn{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Overlay */
 .menu-overlay{
   position: fixed;
   inset: 0;
@@ -36,6 +44,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   visibility: visible;
 }
 
+/* Menu chính */
 .nav-menu{
   position: fixed;
   top: 0;
@@ -63,7 +72,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   text-decoration: none;
 }
 
-/* MENU CẤP 2 */
+/* ===== MENU CẤP 2 ===== */
 .sub-menu{
   display: none;
   background: #f5f9fb;
@@ -75,11 +84,9 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   color: #0a5c7a;
   text-decoration: none;
 }
-.nav-item.open > .sub-menu{
-  display: block;
-}
+.nav-item.open > .sub-menu{ display: block; }
 
-/* ===== MAIN CONTENT RIÊNG ===== */
+/* ===== RIÊNG TRANG TIN TỨC ===== */
 .control-panel{
   display: flex;
   justify-content: flex-end;
@@ -107,55 +114,49 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   font-size: 14px;
 }
 
-.post-item{
-  display: flex;
-  gap: 20px;
+.news-item{
   padding: 6px 6px;
   border-bottom: 1px solid #cde7ef;
+  display: flex;
+  gap: 20px;
 }
-.post-item:last-child{ border-bottom: none; }
+.news-item:last-child{ border-bottom: none; }
 
-.post-thumbnail{
+.news-item img{
   width: 130px;
   height: 110px;
   object-fit: cover;
   border-radius: 6px;
+  flex-shrink: 0;
 }
 
-.post-item-content h3{
-  margin: 0 0 5px 0;
-  font-size: 20px;
+.news-content h3{
+  margin: 0;
 }
-.post-item-content h3 a{
+.news-content h3 a{
   color: #0a3a5a;
   text-decoration: none;
 }
-.post-item-content h3 a:hover{
-  color: #0a7f99;
-}
-.post-item-content small{
+.news-content h3 a:hover{ color: #0a7f99; }
+
+.news-content small{
   color: #888;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
-.post-item-content p{
-  margin: 0;
-  color: #555;
-  text-align: justify;
+.news-content p{
+  margin-top: 6px;
+  color: #08405d;
 }
 
-/* RESPONSIVE RIÊNG */
 @media (max-width: 991px){
-  .post-list{ grid-template-columns: 1fr; }
+  .news-list{ grid-template-columns: 1fr; }
 }
 @media (max-width: 768px){
-  .control-panel{
-    flex-direction: column;
-    align-items: stretch;
-  }
+  .control-panel{ flex-direction: column; align-items: stretch; }
   #search-input{ width: auto; }
-  .post-item{ flex-direction: column; }
-  .post-thumbnail{ width: 100%; height: auto; }
+  .news-item{ flex-direction: column; }
+  .news-item img{ width: 100%; height: auto; }
 }
 /* Floating Menu */
 .floating-menu{
@@ -223,6 +224,9 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
     background:#00acc1;
 }
 
+</style>
+
+<style>
 /* MENU NGANG DESKTOP */
 .nav-links{
   display:flex;
@@ -246,9 +250,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   color:#ffffff;
   font-weight:600;
 }
-</style>
 
-<style>
 .tooltip {
   position: relative;
   display: inline-block;
@@ -284,8 +286,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
 <body>
 
-<!-- HEADER THEO LAYOUT -->
-
+<!-- HEADER CHUẨN -->
 <header class="site-header">
 
   <!-- LEFT -->
@@ -349,7 +350,6 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 
 </header>
 
-<!-- OVERLAY & MENU -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
 <nav class="nav-menu" id="navMenu">
@@ -366,7 +366,7 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
       <a href="vanban/qd19_2026.html">📜 Quy định 19 QĐTW</a>
       <a href="vanban/qd20_2026.html">📜 Quy định 20 QĐTW</a>
       <a href="vanban.html">📜 Quy định 21 QĐTW</a
-     </div>
+    </div>
   </div>
   <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
 </nav>
@@ -377,96 +377,158 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
     <!-- CỘT TRÁI -->
 <section class="content-left">
 
-  <div class="control-panel">
-    <input type="text" id="search-input" placeholder="Tìm kiếm theo tiêu đề bài viết...">
-    <div id="stats-box">📊 Tổng cộng: <span id="post-count">0</span> bài</div>
-  </div>
+      <div class="control-panel">
+        <input type="text" id="search-input" placeholder="Tìm kiếm tin tức theo tiêu đề...">
+        <div id="stats-box">
+          📊 Tổng tin tức: <span id="news-count">0</span> bài
+        </div>
+      </div>
 
-  <div id="list" class="post-list">
-    <p style="text-align:center;font-style:italic;color:#777">
-      Đang tải bài viết...
-    </p>
-  </div>
-</section>
+      <div id="news-list" class="news-list">
+        <p style="text-align:center;color:#aaa;padding:20px;">Đang tải dữ liệu...</p>
+      </div>
+  </section>
  <!-- CỘT PHẢI -->
     <aside class="content-right" id="sidebar-container"></aside>
   </div>
 </main>
-<footer>
-  ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
-</footer>
+
+  <footer>
+    ❤️ SỨC KHỎE 🧠 TRÍ TUỆ 🌸 HẠNH PHÚC
+  </footer>
+
 </div>
 
-<!-- JS GIỮ NGUYÊN -->
 <script>
-const listContainer = document.getElementById("list");
+const JSON_URL = 'posts_data.json';
+
+const newsListContainer = document.getElementById("news-list");
 const searchInput = document.getElementById("search-input");
-const postCountSpan = document.getElementById("post-count");
-let allPosts = [];
+const newsCountSpan = document.getElementById("news-count");
 
-fetch("posts_data.json")
-.then(r => r.json())
-.then(data => {
+let allNews = [];
 
-  const categories = [
-    "tintuc",
-    "baiviet",
-    "suckhoe",
-    "tailieu"
-  ];
+/* LOAD NEWS */
+async function loadNews(){
 
-  allPosts = data.filter(post => {
+  try{
 
-    // Nếu category là mảng
-    if(Array.isArray(post.category)){
+    const res = await fetch(JSON_URL);
+    const data = await res.json();
 
-      return post.category.some(cat =>
-        categories.includes(cat)
-      );
+    /* LỌC CATEGORY */
+    allNews = data.filter(p => {
 
-    }
+      /* category dạng mảng */
+      if(Array.isArray(p.category)){
+        return p.category.includes("quocphong_anninh");
+      }
 
-    // Hỗ trợ dữ liệu cũ
-    return categories.includes(post.category);
+      /* category dạng chuỗi */
+      return p.category === "quocphong_anninh";
 
-  });
+    });
 
-  allPosts.sort((a,b)=>
-    new Date(b.date)-new Date(a.date)
-  );
+    /* SẮP XẾP MỚI NHẤT */
+    allNews.sort((a,b)=>
+      new Date(b.date) - new Date(a.date)
+    );
 
-  renderArticles(allPosts);
+    renderNews(allNews);
 
-  postCountSpan.textContent = allPosts.length;
+    newsCountSpan.textContent = allNews.length;
 
-});
-
-function renderArticles(posts){
-  listContainer.innerHTML="";
-  if(!posts.length){
-    listContainer.innerHTML="<p style='text-align:center'>Không có bài viết.</p>";
-    return;
   }
-  posts.forEach(p=>{
-    listContainer.innerHTML+=`
-    <div class="post-item">
-      ${p.thumbnail?`<img src="${p.thumbnail}" class="post-thumbnail">`:""}
-      <div class="post-item-content">
-        <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
-        <small>${p.date}</small>
-        <p>${p.shortDescription || p.content.substring(0,200)+"..."}</p>
-      </div>
-    </div>`;
-  });
+  catch(err){
+
+    console.error(err);
+
+    newsListContainer.innerHTML = `
+      <p style="text-align:center;color:red;padding:20px;">
+        Không tải được dữ liệu.
+      </p>
+    `;
+  }
+
 }
 
+/* RENDER */
+function renderNews(posts){
+
+  newsListContainer.innerHTML = "";
+
+  if(!posts.length){
+
+    newsListContainer.innerHTML = `
+      <p style="text-align:center;color:#888;padding:20px;">
+        Không có dữ liệu.
+      </p>
+    `;
+
+    return;
+  }
+
+  posts.forEach(p => {
+
+    newsListContainer.innerHTML += `
+      <div class="news-item">
+
+        <img
+          src="${p.thumbnail || 'placeholder_thumb.jpg'}"
+          alt="${p.title}"
+        >
+
+        <div class="news-content">
+
+          <h3>
+            <a href="post.html?id=${p.id}">
+              ${p.title}
+            </a>
+          </h3>
+
+          <small>${p.date || ''}</small>
+
+          <p>
+            ${
+              p.shortDescription ||
+              (p.description
+                ? p.description.replace(/<[^>]+>/g,'').substring(0,150) + "..."
+                : "")
+            }
+          </p>
+
+        </div>
+
+      </div>
+    `;
+
+  });
+
+}
+
+/* SEARCH */
 searchInput.addEventListener("input",()=>{
-  const q=searchInput.value.toLowerCase();
-  const f=allPosts.filter(p=>p.title.toLowerCase().includes(q));
-  renderArticles(f);
-  postCountSpan.textContent=f.length;
+
+  const q = searchInput.value.toLowerCase();
+
+  const filtered = allNews.filter(p =>
+    p.title &&
+    p.title.toLowerCase().includes(q)
+  );
+
+  renderNews(filtered);
+
+  newsCountSpan.textContent = filtered.length;
+
 });
 
+/* INIT */
+document.addEventListener(
+  "DOMContentLoaded",
+  loadNews
+);
+
+/* MENU */
 const menuBtn=document.getElementById("menuBtn");
 const navMenu=document.getElementById("navMenu");
 const menuOverlay=document.getElementById("menuOverlay");
@@ -475,6 +537,7 @@ menuBtn.onclick=()=>{
   navMenu.classList.add("active");
   menuOverlay.classList.add("active");
 };
+
 menuOverlay.onclick=()=>{
   navMenu.classList.remove("active");
   menuOverlay.classList.remove("active");
@@ -538,6 +601,5 @@ document.querySelectorAll(".header-nav a, .nav-links a")
 
 });
 </script>
-
 </body>
 </html>

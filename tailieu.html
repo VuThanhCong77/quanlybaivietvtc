@@ -377,9 +377,10 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
   <div class="nav-item"><a class="nav-link" href="tailieu.html">📁 Tài liệu</a></div>
 </nav>
 
-  <<div class="page-wrapper">
+ <div class="page-wrapper">
 <main class="main-content">
 <div class="main-grid">
+
     <!-- CỘT TRÁI -->
 <section class="content-left">
 
@@ -434,11 +435,11 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 <li><a href="vanban/ma_tran.html">Sơ đồ ma trận Eisenhower</a></li>
 </ul>
 </div>
-   
+
 <div class="img-giua"> 
 <img src="anhvietbai/sanvuon3.png">
 </div>
-   
+
 </section>
 
 
@@ -483,10 +484,25 @@ const countBox = document.getElementById("document-count");
 let allDocs = [];
 
 async function loadDocs(){
+
   const res = await fetch(JSON_URL);
+
   const data = await res.json();
-  allDocs = data.filter(p => p.category === "tailieu" && p.fileData);
+
+  allDocs = data.filter(p => {
+
+    // category kiểu mảng
+    if(Array.isArray(p.category)){
+      return p.category.includes("tailieu") && p.fileData;
+    }
+
+    // category kiểu cũ
+    return p.category === "tailieu" && p.fileData;
+
+  });
+
   render(allDocs);
+
 }
 
 function render(list){

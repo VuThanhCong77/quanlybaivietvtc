@@ -400,52 +400,133 @@ href="icons/icon180.png"> <link rel="manifest" href="manifest.json">
 </div>
 
 <script>
-const JSON_URL='posts_data.json';
-const newsListContainer=document.getElementById("news-list");
-const searchInput=document.getElementById("search-input");
-const newsCountSpan=document.getElementById("news-count");
-let allNews=[];
+const JSON_URL = 'posts_data.json';
 
-async function fetchPosts(){
-  const res=await fetch(JSON_URL);
-  const data=await res.json();
-  return data.filter(p=>p.category==="tintuc");
+const newsListContainer = document.getElementById("news-list");
+const searchInput = document.getElementById("search-input");
+const newsCountSpan = document.getElementById("news-count");
+
+let allNews = [];
+
+/* LOAD NEWS */
+async function loadNews(){
+
+  try{
+
+    const res = await fetch(JSON_URL);
+    const data = await res.json();
+
+    /* LỌC CATEGORY */
+    allNews = data.filter(p => {
+
+      /* category dạng mảng */
+      if(Array.isArray(p.category)){
+        return p.category.includes("tintuc");
+      }
+
+      /* category dạng chuỗi */
+      return p.category === "tintuc";
+
+    });
+
+    /* SẮP XẾP MỚI NHẤT */
+    allNews.sort((a,b)=>
+      new Date(b.date) - new Date(a.date)
+    );
+
+    renderNews(allNews);
+
+    newsCountSpan.textContent = allNews.length;
+
+  }
+  catch(err){
+
+    console.error(err);
+
+    newsListContainer.innerHTML = `
+      <p style="text-align:center;color:red;padding:20px;">
+        Không tải được dữ liệu.
+      </p>
+    `;
+  }
+
 }
 
+/* RENDER */
 function renderNews(posts){
-  newsListContainer.innerHTML="";
+
+  newsListContainer.innerHTML = "";
+
   if(!posts.length){
-    newsListContainer.innerHTML="<p style='text-align:center;color:#888;padding:20px;'>Không có dữ liệu.</p>";
+
+    newsListContainer.innerHTML = `
+      <p style="text-align:center;color:#888;padding:20px;">
+        Không có dữ liệu.
+      </p>
+    `;
+
     return;
   }
-  posts.forEach(p=>{
-    newsListContainer.innerHTML+=`
-    <div class="news-item">
-      <img src="${p.thumbnail||'placeholder_thumb.jpg'}">
-      <div class="news-content">
-        <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
-        <small>${p.date}</small>
-        <p>${p.shortDescription||p.content.substring(0,150)+"..."}</p>
+
+  posts.forEach(p => {
+
+    newsListContainer.innerHTML += `
+      <div class="news-item">
+
+        <img
+          src="${p.thumbnail || 'placeholder_thumb.jpg'}"
+          alt="${p.title}"
+        >
+
+        <div class="news-content">
+
+          <h3>
+            <a href="post.html?id=${p.id}">
+              ${p.title}
+            </a>
+          </h3>
+
+          <small>${p.date || ''}</small>
+
+          <p>
+            ${
+              p.shortDescription ||
+              (p.description
+                ? p.description.replace(/<[^>]+>/g,'').substring(0,150) + "..."
+                : "")
+            }
+          </p>
+
+        </div>
+
       </div>
-    </div>`;
+    `;
+
   });
+
 }
 
-async function loadNews(){
-  allNews=await fetchPosts();
-  allNews.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  renderNews(allNews);
-  newsCountSpan.textContent=allNews.length;
-}
-
+/* SEARCH */
 searchInput.addEventListener("input",()=>{
-  const q=searchInput.value.toLowerCase();
-  const f=allNews.filter(p=>p.title.toLowerCase().includes(q));
-  renderNews(f);
-  newsCountSpan.textContent=f.length;
+
+  const q = searchInput.value.toLowerCase();
+
+  const filtered = allNews.filter(p =>
+    p.title &&
+    p.title.toLowerCase().includes(q)
+  );
+
+  renderNews(filtered);
+
+  newsCountSpan.textContent = filtered.length;
+
 });
 
-document.addEventListener("DOMContentLoaded",loadNews);
+/* INIT */
+document.addEventListener(
+  "DOMContentLoaded",
+  loadNews
+);
 
 /* MENU */
 const menuBtn=document.getElementById("menuBtn");
@@ -456,6 +537,7 @@ menuBtn.onclick=()=>{
   navMenu.classList.add("active");
   menuOverlay.classList.add("active");
 };
+
 menuOverlay.onclick=()=>{
   navMenu.classList.remove("active");
   menuOverlay.classList.remove("active");

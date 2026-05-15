@@ -934,11 +934,15 @@ FEEDBACK BOX
 <div class="submenu">
 
 <a href="baiviet.html">📚 Tất cả bài viết</a>
-
 <a href="bai_viet.html">⭐ Nổi bật</a>
-
 <a href="suckhoe.html">💚 Sức khỏe</a>
-
+<a href="tri_tue.html">📚 Trí tuệ</a>
+<a href="hanh_phuc.html">📚 Hạnh phúc là đây</a>
+<a href="giatricuocsong.html">📚 Giá trị cuộc sống</a>
+<a href="chinhtri.html">📚 Chính trị</a>
+<a href="kinhte.html">📚 Kinh tế</a>
+<a href="vanhoa.html">📚 Văn hóa - Xã hội</a>
+<a href="quocphong_anninh.html">📚 Quốc phòng - An ninh</a>
 </div>
 </div>
 
@@ -970,6 +974,13 @@ FEEDBACK BOX
 <a href="baiviet.html">📚 Tất cả bài viết</a>
 <a href="bai_viet.html">⭐ Nổi bật</a>
 <a href="suckhoe.html">💚 Sức khỏe</a>
+<a href="tri_tue.html">📚 Trí tuệ</a>
+<a href="hanh_phuc.html">📚 Hạnh phúc là đây</a>
+<a href="giatricuocsong.html">📚 Giá trị cuộc sống</a>
+<a href="chinhtri.html">📚 Chính trị</a>
+<a href="kinhte.html">📚 Kinh tế</a>
+<a href="vanhoa.html">📚 Văn hóa - Xã hội</a>
+<a href="quocphong_anninh.html">📚 Quốc phòng - An ninh</a>
 </details>
 
 <details style="background:rgb(4, 121, 76);">
@@ -1694,7 +1705,17 @@ const posts = await response.json();
 
 /* Lọc danh mục */
 
-const filtered = posts.filter(post =>post.category === 'tintuc');
+const filtered = posts.filter(post => {
+
+  // category kiểu mảng
+  if(Array.isArray(post.category)){
+    return post.category.includes('tintuc');
+  }
+
+  // category kiểu cũ
+  return post.category === 'tintuc';
+
+});
 
 /* Sắp xếp mới nhất */
 

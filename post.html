@@ -653,7 +653,13 @@ async function loadPost() {
         const data = await response.json();
         
         // Tìm bài viết
-        const post = data.find(p => String(p.id) === String(postId));
+       const post = data.find(p =>
+String(p.id).trim() === String(postId).trim()
+);
+
+       if(post && !Array.isArray(post.category)){
+post.category = [post.category];
+}
 
         if (post) {
             currentPost = post; // Gán ngay lập tức
@@ -685,10 +691,9 @@ function copyLink(btn){
 
     if (!currentPost) return;
 
-    const link =
-      "https://vuthanhcong77.github.io/quanlybaivietvtc/posts/" +
-      currentPost.id +
-      ".html";
+const link =
+"https://vuthanhcong77.github.io/quanlybaivietvtc/post.html?id=" +
+currentPost.id;
 
     navigator.clipboard.writeText(link)
     .then(()=>{
@@ -789,10 +794,16 @@ async function loadRelatedPosts(currentPost){
             }
 
             // cùng category
-            const sameCategory =
-                post.category &&
-                currentPost.category &&
-                post.category === currentPost.category;
+const postCats = Array.isArray(post.category)
+? post.category
+: [post.category];
+
+const currentCats = Array.isArray(currentPost.category)
+? currentPost.category
+: [currentPost.category];
+
+const sameCategory =
+postCats.some(cat => currentCats.includes(cat));
 
             // cùng tags
             const sameTags =
