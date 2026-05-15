@@ -421,11 +421,11 @@ async function loadNews(){
 
       /* category dạng mảng */
       if(Array.isArray(p.category)){
-        return p.category.includes("vanhoa");
+        return p.category.includes("xahoi");
       }
 
       /* category dạng chuỗi */
-      return p.category === "vanhoa";
+      return p.category === "xahoi";
 
     });
 
