@@ -745,7 +745,146 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
    justify-content:center;
  }
 
+/* =========================
+FEEDBACK BOX
+========================= */
+
+.feedback-box{
+
+    padding:20px 20px;
+
+    display:flex;
+    justify-content:center;
+}
+
+.feedback-inner{
+
+    width:100%;
+    max-width:1500px;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:35px 28px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.10);
+}
+
+.feedback-inner h2{
+
+    color:#0a7f99;
+
+    margin-bottom:12px;
+
+    font-size:30px;
+
+    font-weight:700;
+}
+
+.feedback-desc{
+
+    color:#666;
+
+    margin-bottom:24px;
+
+    line-height:1.7;
+}
+
+.feedback-inner input,
+.feedback-inner textarea{
+
+    width:100%;
+
+    border:none;
+
+    background:#f5f7fa;
+
+    border-radius:16px;
+
+    padding:15px 18px;
+
+    margin-bottom:18px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+}
+
+.feedback-inner input:focus,
+.feedback-inner textarea:focus{
+
+    background:#eef9fc;
+
+    box-shadow:
+    0 0 0 2px rgba(10,127,153,.18);
+}
+
+.feedback-inner textarea{
+    resize:vertical;
+}
+
+.feedback-inner button{
+
+    border:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0a7f99,
+        #0ab3c9
+    );
+
+    color:#fff;
+
+    padding:14px 28px;
+
+    border-radius:50px;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.feedback-inner button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 8px 18px rgba(0,0,0,.18);
+}
+
+#fb-message{
+
+    margin-top:16px;
+
+    color:#666;
+
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+    .feedback-inner{
+
+        padding:28px 20px;
+    }
+
+    .feedback-inner h2{
+
+        font-size:24px;
+    }
+
+}
+
 </style>
+
 </head>
 <body>
 
@@ -1108,6 +1247,46 @@ Kết nối yêu thương và lan tỏa những giá trị sống tích cực v�
 </p>
 
 </div>
+
+</section>
+
+<!-- =========================
+HÒM THƯ GÓP Ý
+========================= -->
+
+<section class="feedback-box">
+
+    <div class="feedback-inner">
+
+        <h2>
+            <i class="fas fa-envelope-open-text"></i>
+            Hòm thư góp ý
+        </h2>
+
+        <p class="feedback-desc">
+            Mọi ý kiến đóng góp chân thành sẽ giúp website ngày càng hoàn thiện hơn. <b>Xin trân trọng cảm ơn!</b>
+        </p>
+
+        <input
+            type="text"
+            id="fb-name"
+            placeholder="Họ và tên (không bắt buộc)"
+        >
+
+        <textarea
+            id="fb-content"
+            rows="5"
+            placeholder="Nhập nội dung góp ý..."
+        ></textarea>
+
+        <button onclick="sendFeedback()">
+            <i class="fas fa-paper-plane"></i>
+            Gửi góp ý
+        </button>
+
+        <div id="fb-message"></div>
+
+    </div>
 
 </section>
 
@@ -1861,6 +2040,75 @@ if ("serviceWorker" in navigator) {
 
 </script>
 
+<script>
+
+function sendFeedback(){
+
+    const content =
+        document.getElementById("fb-content")
+        .value
+        .trim();
+
+    if(!content){
+
+        alert("Vui lòng nhập nội dung góp ý!");
+
+        return;
+    }
+
+    const data = {
+
+        page:"Trang chủ",
+
+        ten:
+        document.getElementById("fb-name").value
+        || "Ẩn danh",
+
+        noiDung:content,
+
+        thoiGian:
+        new Date().toLocaleString('vi-VN'),
+
+        url:window.location.href
+
+    };
+
+    fetch(
+    "https://script.google.com/macros/s/AKfycbzb_ovIs2kZto3vuHVPATt1Iq0Uvb0GiQo3hvCm_FAcjRgfaTPyjTG0Qir4ECEkyOE8-g/exec",
+    {
+
+        method:"POST",
+
+        mode:"no-cors",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(data)
+
+    })
+
+    .then(()=>{
+
+        document.getElementById("fb-message")
+        .innerHTML =
+        "✅ Đã gửi góp ý thành công!";
+
+        document.getElementById("fb-content")
+        .value = "";
+
+    })
+
+    .catch(()=>{
+
+        alert("Có lỗi xảy ra!");
+
+    });
+
+}
+
+</script>
 
 </body>
 </html>
