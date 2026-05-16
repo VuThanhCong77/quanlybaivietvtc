@@ -663,6 +663,9 @@ post.category = [post.category];
 
         if (post) {
             currentPost = post; // Gán ngay lập tức
+	    currentPost = post;
+	    updateSEO(post);
+	    loadRelatedPosts(post);
             loadRelatedPosts(post);
             document.title = post.title;
             document.getElementById('view-title').innerText = post.title;
@@ -675,7 +678,7 @@ post.category = [post.category];
             const imgElement = document.getElementById('view-image');
             if (post.thumbnail) {
                 // Tự động chuyển link GitHub thành link Raw nếu cần
-                let finalImg = post.thumbnail.replace('github.com', 'raw.githubusercontent.com').replace('/tree/', '/');
+                let finalImg = post.thumbnail.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
                 imgElement.src = finalImg;
                 imgElement.style.display = 'block';
             }
@@ -1048,7 +1051,6 @@ progress.addEventListener("input", () => {
 
 </script>
 
-
 <script>
 
 function scrollToTop(){
@@ -1058,31 +1060,82 @@ function scrollToTop(){
     });
 }
 
+</script>
+
+<script>
+
 function updateSEO(post){
 
     if(!post) return;
 
+    // Làm sạch mô tả
     const cleanDesc =
         (post.description || '')
         .replace(/<[^>]+>/g,'')
-        .substring(0,160);
+        .replace(/\s+/g,' ')
+        .trim()
+        .substring(0,180);
 
+    // URL bài viết
+    const postUrl =
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/post.html?id=" +
+        post.id;
+
+    // Ảnh đại diện bài viết
+    let imageUrl = post.thumbnail || "";
+
+    // Chuyển GitHub → raw nếu cần
+    imageUrl = imageUrl
+        .replace("github.com","raw.githubusercontent.com")
+        .replace("/blob/","/");
+
+    // TITLE
     document.title = post.title;
 
+    // DESCRIPTION
     document.querySelector(
         'meta[name="description"]'
     )?.setAttribute("content", cleanDesc);
 
+    // CANONICAL
+    document.querySelector(
+        'link[rel="canonical"]'
+    )?.setAttribute("href", postUrl);
+
+    // OG TITLE
     document.querySelector(
         'meta[property="og:title"]'
     )?.setAttribute("content", post.title);
 
+    // OG DESCRIPTION
     document.querySelector(
         'meta[property="og:description"]'
     )?.setAttribute("content", cleanDesc);
 
-}
+    // OG IMAGE
+    document.querySelector(
+        'meta[property="og:image"]'
+    )?.setAttribute("content", imageUrl);
 
+    // OG URL
+    document.querySelector(
+        'meta[property="og:url"]'
+    )?.setAttribute("content", postUrl);
+
+    // TWITTER
+    document.querySelector(
+        'meta[name="twitter:title"]'
+    )?.setAttribute("content", post.title);
+
+    document.querySelector(
+        'meta[name="twitter:description"]'
+    )?.setAttribute("content", cleanDesc);
+
+    document.querySelector(
+        'meta[name="twitter:image"]'
+    )?.setAttribute("content", imageUrl);
+
+}
 </script>
 
 </body>
