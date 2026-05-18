@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nhớ lời ông dạy</title>
+
+<meta property="og:description" content="🌱 Ký ức là nơi thời gian dừng lại, để yêu thương ở lại mãi mãi">
+
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/cuoc_doi_toi/anhbia.png">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="../../icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="../../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="../../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<!-- CSS DÙNG CHUNG -->
+<link rel="stylesheet" href="../../layout.css">
+
+<style>
+
+html{
+  scroll-behavior:smooth;
+}
+
+:root{
+  --main:#0b4ea2;
+  --sub:#199586;
+  --text:#1f2937;
+  --light:#ffffff;
+
+  --radius:22px;
+
+  --shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+  --shadow-hover:
+    0 18px 45px rgba(0,0,0,0.12);
+}
+
+/* =================================
+   BODY
+================================= */
+
+body{
+  margin:0;
+  font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.82),
+      rgba(255,255,255,0.88)
+    ),
+    url('../../anhnen/bg-1.jpg') center/cover fixed;
+
+  line-height:1.9;
+
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* =================================
+   ARTICLE
+================================= */
+
+.article{
+  max-width:980px;
+
+  margin:30px auto;
+  padding:50px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.95),
+      rgba(255,255,255,.92)
+    );
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+  border:1px solid rgba(255,255,255,.65);
+
+  backdrop-filter:blur(10px);
+
+  transition:.35s ease;
+}
+
+.article:hover{
+  box-shadow:var(--shadow-hover);
+}
+
+/* =================================
+   TITLE
+================================= */
+
+.article h2{
+  text-align:center;
+
+  color:#0b4ea2;
+
+  font-size:34px;
+  font-weight:700;
+
+  margin:0 0 12px;
+
+  letter-spacing:.3px;
+}
+
+.article > div:first-of-type{
+  text-align:center;
+
+  font-size:14px;
+  color:#2563eb;
+
+  margin-bottom:28px;
+}
+
+/* =================================
+   PARAGRAPH
+================================= */
+
+.article p{
+  font-size:18px;
+
+  line-height:2;
+
+  text-align:justify;
+
+  text-indent:2.2em;
+
+  color:#1f2937;
+
+  margin-bottom:22px;
+}
+
+/* Drop cap mở đầu */
+.article p:first-of-type::first-letter{
+  font-size:42px;
+  font-weight:700;
+  color:#0b4ea2;
+}
+
+/* =================================
+   IMAGE
+================================= */
+
+.img-giua{
+  margin:35px 0;
+  text-align:center;
+}
+
+.img-giua img{
+  width:100%;
+  max-width:780px;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.16);
+
+  transition:.45s ease;
+}
+
+.img-giua img:hover{
+  transform:scale(1.015);
+}
+
+.img-giua div{
+  margin-top:12px;
+
+  font-size:14px;
+  color:#4b5563;
+
+  font-style:italic;
+}
+
+
+/* =================================
+   SHARE BOX
+================================= */
+
+.share-box{
+  margin-top:38px;
+
+  padding-top:24px;
+
+  border-top:
+    1px dashed rgba(0,0,0,.12);
+
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.share-btn{
+  padding:11px 18px;
+
+  border:none;
+  border-radius:999px;
+
+  color:#fff;
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.28s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.10);
+}
+
+.share-btn:hover{
+  transform:translateY(-3px);
+}
+
+.share-btn.fb{
+  background:
+    linear-gradient(
+      135deg,
+      #1877f2,
+      #0a58ca
+    );
+}
+
+.share-btn.copy{
+  background:
+    linear-gradient(
+      135deg,
+      #6b7280,
+      #374151
+    );
+}
+
+/* =================================
+   FLOAT BUTTON
+================================= */
+
+.floating-back{
+  position:fixed;
+
+  top:20px;
+  right:20px;
+
+  width:54px;
+  height:54px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:24px;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.22);
+
+  z-index:9999;
+
+  transition:.3s ease;
+}
+
+.floating-back:hover{
+  transform:
+    translateY(-4px)
+    scale(1.06);
+}
+
+.floating-back:active{
+  transform:scale(.92);
+}
+
+/* =================================
+   BACK TO TOP
+================================= */
+
+#backToTop{
+  position:fixed;
+
+  bottom:20px;
+  right:20px;
+
+  width:48px;
+  height:48px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.18);
+
+  z-index:9999;
+
+  transition:.3s ease;
+}
+
+#backToTop:hover{
+  transform:translateY(-3px);
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+footer{
+  margin-top:18px;
+
+  border-radius:16px 16px 0 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0077b6,
+      #0096d6
+    );
+}
+
+footer p{
+  margin:0;
+  letter-spacing:.4px;
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media(max-width:768px){
+
+  .article{
+    margin:12px;
+    padding:28px 22px;
+    border-radius:20px;
+  }
+
+  .article h2{
+    font-size:28px;
+    line-height:1.4;
+  }
+
+  .article p{
+    font-size:16px;
+    line-height:1.9;
+    text-indent:1.8em;
+  }
+
+  .floating-back{
+    width:48px;
+    height:48px;
+    top:14px;
+    right:14px;
+  }
+
+}
+
+/* =========================
+   VOICE WRAP
+========================= */
+
+.voice-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  margin:20px 0 35px;
+}
+
+/* NÚT CHÍNH */
+
+.voice-main{
+  border:none;
+
+  padding:12px 22px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.3s ease;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.12);
+}
+
+.voice-main:hover{
+  transform:translateY(-3px);
+}
+
+/* PANEL */
+
+.voice-panel{
+  display:flex;
+  gap:10px;
+
+  margin-top:14px;
+
+  max-height:0;
+
+  overflow:hidden;
+
+  opacity:0;
+
+  transform:translateY(-8px);
+
+  transition:.35s ease;
+}
+
+/* KHI MỞ */
+
+.voice-panel.show{
+  max-height:100px;
+
+  opacity:1;
+
+  transform:translateY(0);
+}
+
+/* NÚT */
+
+.voice-panel button{
+  width:46px;
+  height:46px;
+
+  border:none;
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.12);
+}
+
+.voice-panel button:hover{
+  transform:scale(1.08);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .voice-main{
+    width:100%;
+    max-width:260px;
+  }
+
+}
+
+/* ===============================
+   LOGO TIÊU ĐỀ TRANG
+   =============================== */
+.page-title{
+  position: relative;
+  padding-left: 52px;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.page-title::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+<div class="header-center">
+
+   <a href="../../index.html" class="header-logo">
+      <img src="../../images/logo.png">
+  </a>
+   
+    <div class="header-title">
+      <h1 style="color:#fff;">
+ VŨ THÀNH CÔNG
+     </h1>
+
+      <span>Những ký ức đẹp của một đời người...</span>
+    </div>
+
+  </div>
+
+ <!-- RIGHT -->
+  <nav class="header-nav">
+    <a href="../../index.html">🏠 Trang chủ</a>
+    <a href="../../gioithieu.html">Giới thiệu</a>
+    
+  </nav>
+
+</header>
+
+<div class="page-wrapper">
+<div class="article">
+  <h2>Nhớ lời ông dạy</h2>
+
+<div style="font-size:14px;color:#3030ef;margin-top:6px;font-style:italic; text-align:left;">
+  📅 18-05-2026
+</div>
+
+<div class="voice-wrap">
+
+  <!-- NÚT ĐỌC CHÍNH -->
+  <button class="voice-main">
+    🔊 Nghe bài viết
+  </button>
+
+  <!-- NÚT PHỤ -->
+  <div class="voice-panel" id="voicePanel">
+
+    <button onclick="startSpeak()" title="Đọc">
+      ▶
+    </button>
+
+    <button onclick="pauseSpeak()" title="Tạm dừng">
+      ⏸
+    </button>
+
+    <button onclick="resumeSpeak()" title="Tiếp tục">
+      ⏯
+    </button>
+
+    <button onclick="stopSpeak()" title="Dừng">
+      ⏹
+    </button>
+
+  </div>
+
+</div>
+
+<!-- ĐIỀU CHỈNH CỠ CHỮ -->
+<div class="font-tools">
+
+  <button onclick="decreaseFont()" title="Giảm cỡ chữ">
+    A-
+  </button>
+
+  <span>Cỡ chữ</span>
+
+  <button onclick="increaseFont()" title="Tăng cỡ chữ">
+    A+
+  </button>
+
+</div>
+
+ <!-- KHU VỰC ĐỌC -->
+  <div class="article-content" id="readingContent">
+
+<p class="justified-p">
+Có những câu nói trong đời chỉ nghe một lần, nhưng lại đi theo con người ta suốt cả cuộc đời.
+</p>
+<p class="justified-p">
+Tôi vẫn nhớ rất rõ một buổi tối cách đây đã hơn ba mươi năm, khi ông nội tôi còn sống. Đó là một bữa cơm gia đình bình thường như bao ngày khác. Căn nhà khi ấy còn đơn sơ, ánh đèn dầu le lói tỏa xuống mâm cơm giản dị chỉ vài món dân dã. Ngoài sân, tiếng côn trùng rả rích trong đêm quê yên tĩnh.
+
+Ông tôi ngồi ở đầu mâm. Ông vốn là người ít nói, cả đời lam lũ và nghiêm khắc, ông là người trung thực, nhưng cũng rất thắng thắn đối với những thói thư tật xấu. Những lời ông nói thường ngắn gọn nhưng dứt khoát. Hôm ấy, khi cả nhà đang ngồi quây quần bên mâm cơm, thì có một người bạn của chú tôi đến chơi, chú tôi đã mời người khách đó lên nhà trên ngồi uống nước và gia đình tiếp tục ăn cơm. Không hiểu người khách đó đã gây ấn tượng xấu gì cho ông tôi hay có lẽ trong xóm vừa xảy ra chuyện liên quan đến cờ bạc, trộm cắp gì? Mà bỗng dưng ông đặt bát cơm xuống rồi chậm rãi nói:
+
+<b style="color:#0b4ea2;">“Tôi ghét nhất những người hay cờ bạc và trộm cắp.”</b>
+
+Cả mâm cơm hôm đó im lặng vài giây. Là một đứa trẻ khi ấy, tôi chưa hiểu hết ý nghĩa của câu nói ấy. Tôi chỉ cảm nhận được sự nghiêm nghị trong ánh mắt của ông và giọng nói đầy dứt khoát của một người từng trải.
+</p>
+
+ <!-- ẢNH -->
+<div class="img-giua">
+ <img src="../../cuoc_doi_toi/anhbia2.png"
+     alt="anhbia2"
+     loading="lazy">
+</div>
+
+ <p class="justified-p">
+Rồi năm tháng trôi qua.
+
+Ông nội tôi đã mất hơn ba mươi năm nay. Ngôi nhà cũ lằm cạnh Bến Hà, nơi con sông Móc hiền hòa chảy qua, với lối đi từ ngoài đường vào bên tay phải là cây táo hàng vụ vẫn ra trịu quả để mỗi lần tôi đi học về đều qua đó chơi và thưởng thức những quả táo thơm ngon nay không còn nữa. Những người ngồi quanh mâm cơm năm ấy, người còn người mất, các cô, các chú năm nào đã lên ông lên bà, mỗi người có một cuộc sống riêng. Nhưng lạ thay, trong vô vàn điều đã bị lãng quên theo thời gian, song tôi vẫn nhớ nguyên vẹn câu nói của ông năm nào.
+
+Càng lớn lên, va chạm với cuộc đời nhiều hơn, tôi càng hiểu vì sao ông lại ghét hai điều ấy đến thế.
+
+Đúng vậy, Cờ bạc không chỉ làm mất tiền bạc, mà còn làm con người đánh mất nhân cách, lòng tự trọng và có khi là cả hạnh phúc gia đình. Tôi đã chứng kiến không ít người từ chăm chỉ, hiền lành, khi xa vào con đường cờ bạc đã trở nên nợ nần, dối trá, lừa lọc không chỉ xã hội, mà ngay cả với người thân.
+
+Còn trộm cắp, dù lớn hay nhỏ, cũng là sự đánh mất lòng tử tế và danh dự của một con người. Một người quen lấy của người khác hôm nay, rồi cũng sẽ dễ đánh mất chính mình ngày mai.
+</p>
+<p class="justified-p">
+Sau này tôi nhận ra, điều ông muốn dạy con cháu không đơn thuần chỉ là ghét cờ bạc hay trộm cắp. Điều sâu xa hơn, ông muốn chúng tôi phải sống lương thiện, biết lao động chân chính và giữ lấy lòng tự trọng của mình.
+
+Có những bài học không đến từ sách vở. Nó đến từ một câu nói trong bữa cơm gia đình, từ ánh mắt của người ông đã đi qua gần hết cuộc đời với biết bao trải nghiệm.
+
+Đến hôm nay, mỗi khi đứng trước những lựa chọn đúng sai trong cuộc sống, tôi lại nhớ đến giọng nói của ông năm nào. Nó như một lời nhắc âm thầm nhưng đủ sức giữ con người ta sống ngay thẳng giữa nhiều cám dỗ.
+
+Ông nội tôi không để lại tài sản lớn lao cho con cháu. Nhưng câu nói giản dị trong buổi tối năm ấy, với tôi, lại là một di sản quý giá mà suốt đời không thể nào quên.
+</p>
+
+</div>
+
+<div class="share-box">
+   <a class="share-btn fb"
+     href="#"
+     onclick="shareFacebook(); return false;">
+     Facebook
+  </a>
+
+  <button class="share-btn copy" onclick="copyLink()">
+     Sao chép link
+  </button>
+</div>
+
+</div>
+<footer>
+  <p>MỘT ĐỜI NGƯỜI - NHIỀU KÝ ỨC - VẠN YÊU THƯƠNG</p>
+  </footer>
+</div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+function shareFacebook(){
+  const url = encodeURIComponent(window.location.href);
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    '_blank'
+  );
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("Đã sao chép đường dẫn bài viết!");
+}
+
+/* =========================
+   FONT SIZE
+========================= */
+
+const articleParagraphs =
+  document.querySelectorAll(".article-content p");
+
+let currentFont =
+  parseInt(localStorage.getItem("articleFont")) || 18;
+
+// Áp dụng khi tải trang
+applyFontSize();
+
+function applyFontSize(){
+
+  articleParagraphs.forEach(p=>{
+    p.style.fontSize = currentFont + "px";
+  });
+
+  localStorage.setItem(
+    "articleFont",
+    currentFont
+  );
+}
+
+function increaseFont(){
+
+  if(currentFont < 30){
+
+    currentFont += 2;
+
+    applyFontSize();
+  }
+}
+
+function decreaseFont(){
+
+  if(currentFont > 14){
+
+    currentFont -= 2;
+
+    applyFontSize();
+  }
+}
+</script>
+
+<script>
+
+let utterance;
+
+function startSpeak(){
+
+  const article =
+    document.getElementById("readingContent");
+
+  if(!article) return;
+
+  const text =
+    article.innerText
+      .replace(/\s+/g," ")
+      .trim();
+
+  speechSynthesis.cancel();
+
+  utterance =
+    new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "vi-VN";
+
+  utterance.rate = 1;
+
+  utterance.pitch = 1;
+
+  utterance.volume = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak(){
+  speechSynthesis.pause();
+}
+
+function resumeSpeak(){
+  speechSynthesis.resume();
+}
+
+function stopSpeak(){
+  speechSynthesis.cancel();
+}
+
+/* =========================
+   TOGGLE PANEL
+========================= */
+
+document.addEventListener("DOMContentLoaded", ()=>{
+
+  const btn = document.querySelector(".voice-main");
+  const panel = document.getElementById("voicePanel");
+
+  if(btn && panel){
+
+    btn.addEventListener("click", ()=>{
+
+      panel.classList.toggle("show");
+
+    });
+
+  }
+
+});
+
+</script>
+
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
