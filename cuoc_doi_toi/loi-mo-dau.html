@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Hồi ký đời sống</title>
+<meta property="og:description" content="🌱 Ký ức là nơi thời gian dừng lại, để yêu thương ở lại mãi mãi">
+
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/cuoc_doi_toi/anhbia.png">
+
+<!-- Favicon & PWA --> <link rel="icon" type="image/png" sizes="32x32" 
+href="../icons/icon32.png"> <link rel="icon" type="image/png" sizes="192x192"
+href="../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
+href="../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
+<meta name="theme-color" content="#0a7f99">
+
+<link rel="stylesheet"
+href="../css/article.css">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* =========================
+BODY
+========================= */
+
+body{
+  font-family:'Be Vietnam Pro',sans-serif;
+
+  background:transparent;
+
+  color:#1f2937;
+
+  line-height:1.9;
+
+  overflow-x:hidden;
+}
+
+/* =========================
+ARTICLE
+========================= */
+
+.article{
+
+  width:100%;
+
+  max-width:860px;
+
+  margin:0 auto;
+
+  padding:24px 22px 40px;
+
+  background:#ffffff;
+
+  border-radius:0;
+
+  box-shadow:none;
+}
+
+/* =========================
+TITLE
+========================= */
+
+.article h1{
+
+  text-align:center;
+
+  color:#0b4ea2;
+
+  font-size:32px;
+
+  margin-bottom:10px;
+
+  line-height:1.4;
+}
+
+.article-date{
+
+  text-align:center;
+
+  font-size:14px;
+
+  color:#6b7280;
+
+  margin-bottom:26px;
+}
+
+/* =========================
+VOICE TOOL
+========================= */
+
+.voice-wrap{
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:24px;
+}
+
+.voice-wrap button{
+
+  border:none;
+
+  padding:10px 18px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.10);
+}
+
+.voice-wrap button:hover{
+
+  transform:
+    translateY(-2px);
+}
+
+/* =========================
+FONT TOOL
+========================= */
+
+.font-tools{
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:28px;
+}
+
+.font-tools button{
+
+  width:42px;
+  height:42px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:18px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.25s;
+}
+
+.font-tools button:hover{
+
+  transform:scale(1.08);
+}
+
+.font-tools span{
+
+  font-size:14px;
+
+  color:#374151;
+
+  font-weight:600;
+}
+
+/* =========================
+CONTENT
+========================= */
+
+.article-content p{
+
+  font-size:18px;
+
+  line-height:2;
+
+  text-align:justify;
+
+  text-indent:2em;
+
+  margin-bottom:22px;
+}
+
+/* Chữ cái đầu */
+
+.article-content p:first-child::first-letter{
+
+  font-size:42px;
+
+  font-weight:700;
+
+  color:#0b4ea2;
+}
+
+/* =========================
+IMAGE
+========================= */
+
+.img-box{
+
+  margin:28px 0;
+
+  text-align:center;
+}
+
+.img-box img{
+
+  width:100%;
+
+  max-width:760px;
+
+  border-radius:18px;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.14);
+}
+
+/* =========================
+FLOAT BUTTON
+========================= */
+
+.float-btn{
+
+  position:fixed;
+
+  width:50px;
+  height:50px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.18);
+
+  z-index:9999;
+
+  transition:.25s;
+}
+
+.float-btn:hover{
+
+  transform:
+    translateY(-3px)
+    scale(1.06);
+}
+
+/* Nút quay lại */
+
+#backBtn{
+
+  top:18px;
+  right:18px;
+}
+
+/* Nút lên đầu */
+
+#topBtn{
+
+  bottom:18px;
+  right:18px;
+
+  display:none;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .article{
+
+    padding:
+      18px 16px 30px;
+  }
+
+  .article h1{
+
+    font-size:28px;
+  }
+
+  .article-content p{
+
+    font-size:16px;
+
+    line-height:1.9;
+
+    text-indent:1.8em;
+  }
+
+  .voice-wrap{
+
+    gap:8px;
+  }
+
+  .voice-wrap button{
+
+    padding:10px 14px;
+
+    font-size:13px;
+  }
+
+}
+
+a{
+ 
+  text-decoration: none;
+}
+
+/* =================================
+   SHARE BOX
+================================= */
+
+.share-box{
+  margin-top:38px;
+
+  padding-top:24px;
+
+  border-top:
+    1px dashed rgba(0,0,0,.12);
+
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.share-btn{
+  padding:11px 18px;
+
+  border:none;
+  border-radius:999px;
+
+  color:#fff;
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.28s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.10);
+}
+
+.share-btn:hover{
+  transform:translateY(-3px);
+}
+
+.share-btn.fb{
+  background:
+    linear-gradient(
+      135deg,
+      #1877f2,
+      #0a58ca
+    );
+}
+
+.share-btn.copy{
+  background:
+    linear-gradient(
+      135deg,
+      #6b7280,
+      #374151
+    );
+}
+
+.footer{
+    margin-top:50px;
+    text-align:center;
+    color:#666;
+    font-style:italic;
+}
+
+/* ===== BẬT SÁNG KHI CHỈ CHUỘT VÀO ===== */
+
+.side-list{
+  list-style:none;
+}
+
+.side-list li{
+  padding:12px 0;
+  border-bottom:1px dashed #ddd;
+}
+
+.side-list a{
+  text-decoration:none;
+  color:#0d47a1;
+}
+
+.side-list li a{
+display:block;
+padding:10px 14px;
+border-radius:10px;
+transition:all 0.3s ease;
+color:#222;
+text-decoration:none;
+}
+
+/* Khi đưa chuột vào */
+.side-list li a:hover{
+background:#0d6efd;
+color:#fff;
+box-shadow:0 0 12px rgba(13,110,253,0.5);
+transform:translateX(4px);
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- NÚT QUAY LẠI -->
+
+<button
+class="float-btn"
+id="backBtn"
+onclick="history.back()">
+
+←
+
+</button>
+
+<div class="article">
+
+<ul class="side-list">
+ <li><a href="hoi-ky-doi-song.html">🌱 ĐI QUA NHỮNG MÙA NHỚ</a></li>
+</ul>
+
+<div class="img-box">
+<img
+src="anhbia.png"
+alt="Ảnh minh họa">
+<div style="font-size:13px;color:#3030ef;font-style:italic;margin-top:12px;">
+   Lưu Kiếm, ngày 18 - 05 - 2026
+  </div>
+</div>
+
+</div>
+
+<div class="article">
+
+<h1>LỜI MỞ ĐẦU</h1>
+
+<div class="article-date">
+
+📅 18-05-2026
+
+</div>
+
+<!-- VOICE TOOL -->
+
+<div class="voice-wrap">
+
+<button onclick="startSpeak()">
+▶
+</button>
+
+<button onclick="pauseSpeak()">
+⏸
+</button>
+
+<button onclick="resumeSpeak()">
+⏯
+</button>
+
+<button onclick="stopSpeak()">
+⏹
+</button>
+
+<!-- FONT TOOL -->
+
+<button onclick="decreaseFont()">
+A-
+</button>
+
+<button onclick="increaseFont()">
+A+
+</button>
+
+</div>
+
+<!-- CONTENT -->
+
+<div
+class="article-content"
+id="readingContent">
+
+<p>
+Tôi sinh ra tại làng Phúc Nam, một miền quê nhỏ nằm bên dòng Sông Móc hiền hòa – con sông nối liền với dòng Đá Bạc theo hướng Đông Bắc, quanh năm mang theo phù sa và những ký ức bình dị của người dân quê ven sông. Đó là nơi đã cất giữ tiếng khóc chào đời đầu tiên của tôi, nơi có mái nhà tranh nghèo nhưng ấm áp nghĩa tình, nơi lưu giữ những dấu ấn đẹp về quê hương, dòng tộc và người thân.
+</p>
+
+<p>
+Nhưng tuổi thơ thật sự của cuộc đời tôi lại gắn bó với quê hương bên dòng sông Đá Bạc. Khi tôi vừa tròn một tuổi, gia đình tôi cùng nhiều hộ dân khác rời quê cũ, theo chủ trương xây dựng vùng kinh tế mới để đến nơi đây lập nghiệp. Những ngày đầu đặt chân tới vùng đất mới, trước mắt chỉ là bãi bồi hoang sơ, những gò đất nhấp nhô, lau sậy mọc xen cùng rừng sú vẹt xanh um, những dãy núi đá vôi được bao quanh bởi những con sông, con lạch. Ven sông Đá Bạc, từng đàn cò trắng chao nghiêng trên nền trời rộng lớn, tiếng chim gọi nhau vang lên giữa không gian mênh mang của vùng đất còn đậm hơi thở hoang dã.
+
+Khi ấy, nước mặn vẫn theo thủy triều len lỏi vào từng cánh đồng, cuộc sống của người dân vô cùng khó khăn. Nhưng bằng ý chí và khát vọng dựng xây cuộc sống mới, Nhà nước đã tổ chức đắp đê ngăn mặn, quai đê lấn biển, biến vùng đất hoang sơ ngày nào thành những cánh đồng màu mỡ và khu dân cư đông đúc. Từ đó, vùng kinh tế mới Lưu Kỳ dần hình thành, trở thành nơi chở che và nuôi dưỡng tuổi thơ tôi lớn lên qua từng mùa lúa chín.
+
+Tuổi thơ của tôi gắn với những buổi chiều chạy chân trần trên triền đê đất mới đắp, những ngày trên lưng trâu theo mẹ ra đồng, những lần tắm sông Đá Bạc giữa tiếng gió thổi qua rặng sú vẹt. Dòng sông ấy không chỉ bồi đắp phù sa cho ruộng đồng mà còn nuôi lớn tâm hồn của biết bao con người nơi đây, trong đó có tôi.
+
+Năm tháng qua đi, quê hương đổi thay từng ngày. Những con đường đất lầy lội ngày nào nay đã được bê tông hóa, nhựa hóa; những bãi bồi hoang vu đã trở thành xóm làng trù phú, những cánh đồng tốt tươi; tiếng cò bay năm xưa giờ nhường chỗ cho nhịp sống mới của một vùng quê đang chuyển mình phát triển. Nhưng trong sâu thẳm ký ức, hình ảnh dòng Đá Bạc với màu nước hiền hòa, với bãi sú vẹt và đàn cò trắng vẫn luôn là phần thiêng liêng nhất của cuộc đời tôi.
+</p>
+
+<div class="img-box">
+<img
+src="../anhvietbai/sdb.jpg"
+alt="Ảnh minh họa">
+ <div style="font-size:13px;color:#3030ef;margin-top:12px;">
+   Hình ảnh: Tắm trên dòng sông Đá Bạc
+  </div>
+</div>
+
+<p>
+Cuốn “Đi qua những mùa nhớ” này không chỉ là câu chuyện riêng của một con người, mà còn là ký ức về một thời mở đất, về những con người chân chất đã dùng mồ hôi và nghị lực để biến vùng đất hoang sơ thành quê hương trù phú hôm nay. Đó cũng là lời tri ân đối với cha mẹ, đối với quê hương thân yêu và dòng sông Đá Bạc – nơi đã nuôi tôi khôn lớn và dạy tôi biết sống nghĩa tình, bền bỉ như chính dòng sông quê mình.
+</p>
+
+</div>
+
+<div class="share-box">
+   <a class="share-btn fb"
+     href="#"
+     onclick="shareFacebook(); return false;">
+     Facebook
+  </a>
+
+  <button class="share-btn copy" onclick="copyLink()">
+     Sao chép link
+  </button>
+</div>
+
+<div class="footer">
+<b>"Hạnh phúc không phải là đứng trên đỉnh cao danh vọng, 
+mà là nhìn thấy quê hương thay da đổi thịt 
+và nụ cười bình yên của những người ta yêu thương."</b>
+</div>
+
+</div>
+
+
+<!-- NÚT LÊN ĐẦU -->
+
+<button
+class="float-btn"
+id="topBtn">
+
+⬆
+
+</button>
+
+<script>
+
+function shareFacebook(){
+  const url = encodeURIComponent(window.location.href);
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    '_blank'
+  );
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("Đã sao chép đường dẫn bài viết!");
+}
+
+/* =========================
+FONT SIZE
+========================= */
+
+const paragraphs =
+document.querySelectorAll(
+".article-content p"
+);
+
+let currentFont = 18;
+
+function applyFont(){
+
+paragraphs.forEach(p=>{
+
+p.style.fontSize =
+currentFont + "px";
+
+});
+
+}
+
+function increaseFont(){
+
+if(currentFont < 30){
+
+currentFont += 2;
+
+applyFont();
+
+}
+
+}
+
+function decreaseFont(){
+
+if(currentFont > 14){
+
+currentFont -= 2;
+
+applyFont();
+
+}
+
+}
+
+/* =========================
+VOICE
+========================= */
+
+let utterance;
+
+function startSpeak(){
+
+const text =
+document
+.getElementById(
+"readingContent"
+)
+.innerText;
+
+speechSynthesis.cancel();
+
+utterance =
+new SpeechSynthesisUtterance(text);
+
+utterance.lang = "vi-VN";
+
+utterance.rate = 1;
+
+speechSynthesis.speak(
+utterance
+);
+
+}
+
+function pauseSpeak(){
+
+speechSynthesis.pause();
+
+}
+
+function resumeSpeak(){
+
+speechSynthesis.resume();
+
+}
+
+function stopSpeak(){
+
+speechSynthesis.cancel();
+
+}
+
+/* =========================
+TOP BUTTON
+========================= */
+
+const topBtn =
+document.getElementById(
+"topBtn"
+);
+
+window.addEventListener(
+"scroll",
+()=>{
+
+if(window.scrollY > 300){
+
+topBtn.style.display =
+"flex";
+
+}else{
+
+topBtn.style.display =
+"none";
+
+}
+
+});
+
+topBtn.addEventListener(
+"click",
+()=>{
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
+});
+
+});
+
+/* =========================
+AUTO HEIGHT IFRAME
+========================= */
+
+function sendHeight(){
+
+const height =
+document.body.scrollHeight;
+
+parent.postMessage({
+
+iframeHeight:height
+
+},"*");
+
+}
+
+window.onload = sendHeight;
+
+window.onresize = sendHeight;
+
+</script>
+
+</body>
+</html>
