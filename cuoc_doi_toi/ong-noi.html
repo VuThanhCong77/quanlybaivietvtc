@@ -538,6 +538,156 @@ RELATED POSTS BÀI VIẾT LIÊN QUAN
 
 }
 
+/* =========================
+FEEDBACK BOX
+========================= */
+
+.feedback-box{
+
+margin-top:50px;
+
+padding:28px;
+
+border-radius:22px;
+
+background:
+linear-gradient(
+135deg,
+#f8fbff,
+#eef7ff
+);
+
+border:1px solid #dbeafe;
+
+box-shadow:
+0 8px 24px rgba(0,0,0,.06);
+}
+
+.feedback-box h2{
+
+text-align:center;
+
+color:#0b4ea2;
+
+margin-bottom:10px;
+
+font-size:24px;
+}
+
+.feedback-box p{
+
+text-align:center;
+
+color:#475569;
+
+margin-bottom:22px;
+
+font-size:15px;
+}
+
+#feedbackForm{
+
+display:flex;
+
+flex-direction:column;
+
+gap:16px;
+}
+
+#feedbackForm input,
+#feedbackForm textarea{
+
+width:100%;
+
+padding:14px 16px;
+
+border-radius:14px;
+
+border:1px solid #cbd5e1;
+
+font-size:15px;
+
+font-family:inherit;
+
+outline:none;
+
+transition:.25s;
+
+background:#fff;
+}
+
+#feedbackForm input:focus,
+#feedbackForm textarea:focus{
+
+border-color:#0b4ea2;
+
+box-shadow:
+0 0 0 4px rgba(11,78,162,.10);
+}
+
+#feedbackForm textarea{
+
+min-height:140px;
+
+resize:vertical;
+}
+
+#feedbackForm button{
+
+border:none;
+
+padding:14px;
+
+border-radius:999px;
+
+background:
+linear-gradient(
+135deg,
+#0b4ea2,
+#199586
+);
+
+color:#fff;
+
+font-size:15px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.25s;
+}
+
+#feedbackForm button:hover{
+
+transform:
+translateY(-2px);
+
+box-shadow:
+0 10px 22px rgba(0,0,0,.12);
+}
+
+#fbStatus{
+
+margin-top:10px;
+
+text-align:center;
+
+font-size:14px;
+
+font-weight:600;
+
+color:#199586;
+}
+
+@media(max-width:768px){
+
+.feedback-box{
+
+padding:22px 16px;
+}
+
+}
 </style>
 
 </head>
@@ -572,20 +722,8 @@ onclick="history.back()">
 
 <div class="voice-wrap">
 
-<button onclick="startSpeak()">
-▶
-</button>
-
-<button onclick="pauseSpeak()">
-⏸
-</button>
-
-<button onclick="resumeSpeak()">
-⏯
-</button>
-
-<button onclick="stopSpeak()">
-⏹
+<button id="speakBtn" onclick="toggleSpeak()">
+▶ Đọc bài
 </button>
 
 <!-- FONT TOOL -->
@@ -634,9 +772,45 @@ Sau này tôi nhận ra, điều ông muốn dạy con cháu không đơn thuầ
 </div>
 
 <div class="voice-wrap">
- <button onclick="sharePage()">🔗 Chia sẻ Facebook</button>
+ <button onclick="sharePage()">Vũ Thành Công</button>
 
 <button onclick="copyLink()">📋 Copy Link</button>
+</div>
+
+<!-- =========================
+HÒM THƯ GÓP Ý
+========================= -->
+
+<div class="feedback-box">
+
+<h2>💌 Gửi góp ý</h2>
+
+<p>
+Nếu bạn có điều muốn chia sẻ,
+hãy để lại lời nhắn bên dưới 🌱
+</p>
+
+<form id="feedbackForm">
+
+<input
+type="text"
+id="fbName"
+placeholder="Tên của bạn">
+
+<textarea
+id="fbMessage"
+placeholder="Nội dung góp ý..."
+required>
+</textarea>
+
+<button type="submit">
+📨 Gửi góp ý
+</button>
+
+</form>
+
+<div id="fbStatus"></div>
+
 </div>
 
 <!-- =========================
@@ -666,17 +840,6 @@ id="topBtn">
 <script>
 
 /* SHARE */
-
-function sharePage(){
-
-const url = encodeURIComponent(location.href);
-
-window.open(
-'https://www.facebook.com/sharer/sharer.php?u=' + url,
-'_blank'
-);
-
-}
 
 /* COPY */
 
@@ -739,14 +902,47 @@ VOICE
 ========================= */
 
 let utterance;
+let isSpeaking = false;
+let isPaused = false;
 
-function startSpeak(){
+const speakBtn =
+document.getElementById("speakBtn");
+
+function toggleSpeak(){
+
+/* Nếu đang đọc → tạm dừng */
+
+if(isSpeaking && !isPaused){
+
+speechSynthesis.pause();
+
+isPaused = true;
+
+speakBtn.innerHTML = "▶ Tiếp tục";
+
+return;
+
+}
+
+/* Nếu đang tạm dừng → tiếp tục */
+
+if(isSpeaking && isPaused){
+
+speechSynthesis.resume();
+
+isPaused = false;
+
+speakBtn.innerHTML = "⏸ Tạm dừng";
+
+return;
+
+}
+
+/* Nếu chưa đọc */
 
 const text =
 document
-.getElementById(
-"readingContent"
-)
+.getElementById("readingContent")
 .innerText;
 
 speechSynthesis.cancel();
@@ -758,27 +954,20 @@ utterance.lang = "vi-VN";
 
 utterance.rate = 1;
 
-speechSynthesis.speak(
-utterance
-);
+utterance.onend = ()=>{
 
-}
+isSpeaking = false;
+isPaused = false;
 
-function pauseSpeak(){
+speakBtn.innerHTML = "▶ Đọc bài";
 
-speechSynthesis.pause();
+};
 
-}
+speechSynthesis.speak(utterance);
 
-function resumeSpeak(){
+isSpeaking = true;
 
-speechSynthesis.resume();
-
-}
-
-function stopSpeak(){
-
-speechSynthesis.cancel();
+speakBtn.innerHTML = "⏸ Tạm dừng";
 
 }
 
@@ -913,6 +1102,117 @@ error
 }
 
 }
+
+/* =========================
+HÒM THƯ GÓP Ý
+========================= */
+
+const feedbackForm =
+document.getElementById(
+"feedbackForm"
+);
+
+feedbackForm.addEventListener(
+"submit",
+function(e){
+
+e.preventDefault();
+
+const name =
+document.getElementById(
+"fbName"
+).value || "Ẩn danh";
+
+const message =
+document.getElementById(
+"fbMessage"
+).value;
+
+if(message.trim() === "") return;
+
+const feedbacks =
+JSON.parse(
+localStorage.getItem("feedbacks")
+|| "[]"
+);
+
+/* =========================
+GOOGLE SHEET WEB APP URL
+DÁN LINK WEB APP CỦA BẠN VÀO ĐÂY
+========================= */
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzb_ovIs2kZto3vuHVPATt1Iq0Uvb0GiQo3hvCm_FAcjRgfaTPyjTG0Qir4ECEkyOE8-g/exec";
+
+/* Lưu local */
+
+feedbacks.push({
+
+name:name,
+message:message,
+time:new Date().toLocaleString()
+
+});
+
+localStorage.setItem(
+"feedbacks",
+JSON.stringify(feedbacks)
+);
+
+/* Gửi lên Google Sheet */
+
+fetch(GOOGLE_SCRIPT_URL,{
+
+method:"POST",
+
+mode:"no-cors",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+postId:
+location.pathname
+.split("/")
+.pop(),
+
+tieuDe:
+document.querySelector("h1")
+.innerText,
+
+ten:name,
+
+noiDung:message,
+
+url:location.href
+
+})
+
+})
+
+.then(()=>{
+
+document.getElementById(
+"fbStatus"
+).innerHTML =
+"✅ Đã gửi góp ý thành công!";
+
+feedbackForm.reset();
+
+})
+
+.catch(()=>{
+
+document.getElementById(
+"fbStatus"
+).innerHTML =
+"⚠ Không gửi được lên Google Sheet";
+
+});
+
+}
+);
 
 loadRelatedPosts();
 
