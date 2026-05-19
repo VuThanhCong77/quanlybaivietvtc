@@ -7,7 +7,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Hồi ký đời sống</title>
+<title>Đi qua những mùa nhớ</title>
 <meta property="og:description" content="🌱 Ký ức là nơi thời gian dừng lại, để yêu thương ở lại mãi mãi">
 
 <meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/cuoc_doi_toi/anhbia.png">
@@ -508,6 +508,10 @@ alt="Ảnh minh họa">
 
 <div class="article">
 
+<ul class="side-list">
+ <li><a href="#">🌱 ĐI QUA NHỮNG MÙA NHỚ</a></li>
+</ul>
+
 <h1>LỜI MỞ ĐẦU</h1>
 
 <div class="article-date">
@@ -583,16 +587,10 @@ Cuốn “Đi qua những mùa nhớ” này không chỉ là câu chuyện riê
 
 </div>
 
-<div class="share-box">
-   <a class="share-btn fb"
-     href="#"
-     onclick="shareFacebook(); return false;">
-     Facebook
-  </a>
+<div class="voice-wrap">
+ <button onclick="sharePage()">🔗 Chia sẻ Facebook</button>
 
-  <button class="share-btn copy" onclick="copyLink()">
-     Sao chép link
-  </button>
+<button onclick="copyLink()">📋 Copy Link</button>
 </div>
 
 <div class="footer">
@@ -616,18 +614,30 @@ id="topBtn">
 
 <script>
 
-function shareFacebook(){
-  const url = encodeURIComponent(window.location.href);
-  window.open(
-    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-    '_blank'
-  );
+/* SHARE */
+
+function sharePage(){
+
+const url = encodeURIComponent(location.href);
+
+window.open(
+'https://www.facebook.com/sharer/sharer.php?u=' + url,
+'_blank'
+);
+
 }
 
+/* COPY */
+
 function copyLink(){
-  navigator.clipboard.writeText(window.location.href);
-  alert("Đã sao chép đường dẫn bài viết!");
+
+navigator.clipboard.writeText(location.href);
+
+alert("Đã copy liên kết!");
+
 }
+
+
 
 /* =========================
 FONT SIZE

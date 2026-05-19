@@ -7,7 +7,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Hồi ký đời sống</title>
+<title>Đi qua những mùa nhớ</title>
 <meta property="og:description" content="🌱 Ký ức là nơi thời gian dừng lại, để yêu thương ở lại mãi mãi">
 
 <meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/cuoc_doi_toi/anhbia.png">
@@ -496,6 +496,12 @@ Sau này tôi nhận ra, điều ông muốn dạy con cháu không đơn thuầ
 
 </div>
 
+<div class="voice-wrap">
+ <button onclick="sharePage()">🔗 Chia sẻ Facebook</button>
+
+<button onclick="copyLink()">📋 Copy Link</button>
+</div>
+
 </div>
 
 <!-- NÚT LÊN ĐẦU -->
@@ -509,6 +515,29 @@ id="topBtn">
 </button>
 
 <script>
+
+/* SHARE */
+
+function sharePage(){
+
+const url = encodeURIComponent(location.href);
+
+window.open(
+'https://www.facebook.com/sharer/sharer.php?u=' + url,
+'_blank'
+);
+
+}
+
+/* COPY */
+
+function copyLink(){
+
+navigator.clipboard.writeText(location.href);
+
+alert("Đã copy liên kết!");
+
+}
 
 /* =========================
 FONT SIZE
