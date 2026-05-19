@@ -661,20 +661,8 @@ alt="Ảnh minh họa">
 
 <div class="voice-wrap">
 
-<button onclick="startSpeak()">
-▶
-</button>
-
-<button onclick="pauseSpeak()">
-⏸
-</button>
-
-<button onclick="resumeSpeak()">
-⏯
-</button>
-
-<button onclick="stopSpeak()">
-⏹
+<button id="speakBtn" onclick="toggleSpeak()">
+▶ Đọc bài
 </button>
 
 <!-- FONT TOOL -->
@@ -725,7 +713,7 @@ Cuốn “Đi qua những mùa nhớ” này không chỉ là câu chuyện riê
 </div>
 
 <div class="voice-wrap">
- <button onclick="sharePage()">🔗 Chia sẻ Facebook</button>
+ <button>Vũ Thành Công</button>
 
 <button onclick="copyLink()">📋 Copy Link</button>
 </div>
@@ -763,19 +751,6 @@ id="topBtn">
 
 <script>
 
-/* SHARE */
-
-function sharePage(){
-
-const url = encodeURIComponent(location.href);
-
-window.open(
-'https://www.facebook.com/sharer/sharer.php?u=' + url,
-'_blank'
-);
-
-}
-
 /* COPY */
 
 function copyLink(){
@@ -785,8 +760,6 @@ navigator.clipboard.writeText(location.href);
 alert("Đã copy liên kết!");
 
 }
-
-
 
 /* =========================
 FONT SIZE
@@ -839,14 +812,47 @@ VOICE
 ========================= */
 
 let utterance;
+let isSpeaking = false;
+let isPaused = false;
 
-function startSpeak(){
+const speakBtn =
+document.getElementById("speakBtn");
+
+function toggleSpeak(){
+
+/* Nếu đang đọc → tạm dừng */
+
+if(isSpeaking && !isPaused){
+
+speechSynthesis.pause();
+
+isPaused = true;
+
+speakBtn.innerHTML = "▶ Tiếp tục";
+
+return;
+
+}
+
+/* Nếu đang tạm dừng → tiếp tục */
+
+if(isSpeaking && isPaused){
+
+speechSynthesis.resume();
+
+isPaused = false;
+
+speakBtn.innerHTML = "⏸ Tạm dừng";
+
+return;
+
+}
+
+/* Nếu chưa đọc */
 
 const text =
 document
-.getElementById(
-"readingContent"
-)
+.getElementById("readingContent")
 .innerText;
 
 speechSynthesis.cancel();
@@ -858,27 +864,20 @@ utterance.lang = "vi-VN";
 
 utterance.rate = 1;
 
-speechSynthesis.speak(
-utterance
-);
+utterance.onend = ()=>{
 
-}
+isSpeaking = false;
+isPaused = false;
 
-function pauseSpeak(){
+speakBtn.innerHTML = "▶ Đọc bài";
 
-speechSynthesis.pause();
+};
 
-}
+speechSynthesis.speak(utterance);
 
-function resumeSpeak(){
+isSpeaking = true;
 
-speechSynthesis.resume();
-
-}
-
-function stopSpeak(){
-
-speechSynthesis.cancel();
+speakBtn.innerHTML = "⏸ Tạm dừng";
 
 }
 
