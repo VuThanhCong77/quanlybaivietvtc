@@ -18,8 +18,7 @@ href="../icons/icon192.png"> <link rel="apple-touch-icon" sizes="180x180"
 href="../icons/icon180.png"> <link rel="manifest" href="manifest.json"> 
 <meta name="theme-color" content="#0a7f99">
 
-<link rel="stylesheet"
-href="../css/article.css">
+<link rel="stylesheet" href="../layout.css">
 
 <style>
 
@@ -47,6 +46,16 @@ body{
   line-height:1.9;
 
   overflow-x:hidden;
+}
+
+/* =========================
+HEADER
+========================= */
+
+header{
+    top:0;
+    width:100%;
+    background:#ead10d;
 }
 
 /* =========================
@@ -440,39 +449,6 @@ a{
     font-style:italic;
 }
 
-/* ===== BẬT SÁNG KHI CHỈ CHUỘT VÀO ===== */
-
-.side-list{
-  list-style:none;
-}
-
-.side-list li{
-  padding:12px 0;
-  border-bottom:1px dashed #ddd;
-}
-
-.side-list a{
-  text-decoration:none;
-  color:#0d47a1;
-}
-
-.side-list li a{
-display:block;
-padding:10px 14px;
-border-radius:10px;
-transition:all 0.3s ease;
-color:#222;
-text-decoration:none;
-}
-
-/* Khi đưa chuột vào */
-.side-list li a:hover{
-background:#0d6efd;
-color:#fff;
-box-shadow:0 0 12px rgba(13,110,253,0.5);
-transform:translateX(4px);
-}
-
 /* =========================
 RELATED POSTS BÀI VIẾT LIÊN QUAN
 ========================= */
@@ -628,15 +604,17 @@ onclick="history.back()">
 
 <div class="article">
 
+<header>
 <ul class="side-list">
  <li><a href="hoi-ky-doi-song.html">🌱 ĐI QUA NHỮNG MÙA NHỚ</a></li>
 </ul>
+</header>
 
 <div class="img-box">
 <img
 src="anhbia.png"
 alt="Ảnh minh họa">
-<div style="font-size:13px;color:#3030ef;font-style:italic;margin-top:12px;">
+<div style="font-size:16px;color:#3030ef;font-style:italic;margin-top:16px;">
    Lưu Kiếm, ngày 18 - 05 - 2026
   </div>
 </div>
@@ -644,10 +622,6 @@ alt="Ảnh minh họa">
 </div>
 
 <div class="article">
-
-<ul class="side-list">
- <li><a href="#">🌱 ĐI QUA NHỮNG MÙA NHỚ</a></li>
-</ul>
 
 <h1>LỜI MỞ ĐẦU</h1>
 
