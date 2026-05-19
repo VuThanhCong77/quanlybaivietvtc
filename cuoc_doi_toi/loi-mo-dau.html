@@ -473,6 +473,143 @@ box-shadow:0 0 12px rgba(13,110,253,0.5);
 transform:translateX(4px);
 }
 
+/* =========================
+RELATED POSTS BÀI VIẾT LIÊN QUAN
+========================= */
+
+.related-posts{
+
+  margin-top:50px;
+
+  padding-top:20px;
+
+  border-top:2px dashed #dbe4f0;
+}
+
+.related-posts h2{
+
+  font-size:24px;
+
+  color:#0b4ea2;
+
+  margin-bottom:22px;
+
+  text-align:center;
+}
+
+.related-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+  gap:20px;
+}
+
+.related-card{
+
+  background:#fff;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.08);
+
+  transition:.3s;
+
+  border:1px solid #edf2f7;
+}
+
+.related-card:hover{
+
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.12);
+}
+
+.related-card img{
+
+  width:100%;
+
+  height:170px;
+
+  object-fit:cover;
+}
+
+.related-content{
+
+  padding:16px;
+}
+
+.related-content h3{
+
+  font-size:17px;
+
+  color:#0f172a;
+
+  margin-bottom:10px;
+
+  line-height:1.5;
+}
+
+.related-content p{
+
+  font-size:14px;
+
+  color:#475569;
+
+  line-height:1.7;
+
+  margin-bottom:12px;
+
+  text-align:justify;
+}
+
+.related-content a{
+
+  display:inline-block;
+
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  text-decoration:none;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b4ea2,
+      #199586
+    );
+
+  color:#fff;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  transition:.25s;
+}
+
+.related-content a:hover{
+
+  transform:scale(1.05);
+}
+
+@media(max-width:768px){
+
+  .related-card img{
+
+    height:190px;
+  }
+
+}
+
 </style>
 
 </head>
@@ -597,6 +734,18 @@ Cuốn “Đi qua những mùa nhớ” này không chỉ là câu chuyện riê
 <b>"Hạnh phúc không phải là đứng trên đỉnh cao danh vọng, 
 mà là nhìn thấy quê hương thay da đổi thịt 
 và nụ cười bình yên của những người ta yêu thương."</b>
+</div>
+
+<!-- =========================
+BÀI VIẾT LIÊN QUAN
+========================= -->
+
+<div class="related-posts">
+
+<h2>📚 Bài viết liên quan</h2>
+
+<div id="relatedList" class="related-grid"></div>
+
 </div>
 
 </div>
@@ -793,6 +942,78 @@ iframeHeight:height
 window.onload = sendHeight;
 
 window.onresize = sendHeight;
+
+/* =========================
+BÀI VIẾT LIÊN QUAN
+========================= */
+
+async function loadRelatedPosts(){
+
+try{
+
+const response =
+await fetch('../data/posts.json');
+
+const posts =
+await response.json();
+
+/* URL hiện tại */
+
+const currentPage =
+location.pathname.split("/").pop();
+
+/* Lọc bài cùng chuyên mục */
+
+const related =
+posts.filter(post => {
+
+return !post.url.includes(currentPage)
+
+&& post.category === "Đi qua những mùa nhớ";
+
+}).slice(0,4);
+
+const container =
+document.getElementById(
+"relatedList"
+);
+
+container.innerHTML =
+related.map(post => `
+
+<div class="related-card">
+
+<img src="../${post.image}"
+alt="${post.title}">
+
+<div class="related-content">
+
+<h3>${post.title}</h3>
+
+<p>${post.desc}</p>
+
+<a href="../${post.url}">
+Đọc bài →
+</a>
+
+</div>
+
+</div>
+
+`).join("");
+
+}catch(error){
+
+console.log(
+"Lỗi tải bài liên quan:",
+error
+);
+
+}
+
+}
+
+loadRelatedPosts();
 
 </script>
 
