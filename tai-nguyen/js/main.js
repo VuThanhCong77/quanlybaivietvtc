@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function taiMenu(){
 
-    const response = await fetch("../thanh-phan/menu.html");
+    const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html");
     const html = await response.text();
 
     const el = document.getElementById("menu");
