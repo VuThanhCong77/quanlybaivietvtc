@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nhìn lại chặng đường những năm qua</title>
 
 <!-- THẺ CHIA SẺ MẠNG XÃ HỘI -->
@@ -12,139 +13,251 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/tai-nguyen/anh-bai-viet/nhungnamqua.jpg">
 
 <link rel="icon"
-href="../../tai-nguyen/icons/icon32.ico">
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
 <link rel="icon"
-href="../../tai-nguyen/icons/icon192.ico">
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
 
 <link rel="stylesheet"
-href="../../tai-nguyen/css/menu.css">
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
 
 
 <style>
 body{
-  margin:0;
-   font-family:'Be Vietnam Pro',sans-serif;
-  color:var(--text);
-
-   line-height:1.9;
+    margin:0;
+    font-family:'Be Vietnam Pro',Arial,sans-serif;
+    color:#333;
+    line-height:1.8;
+    background:#f8fafc;
 }
 
-/* CSS RIÊNG CHO BÀI VIẾT */
+
+/* HEADER */
+header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:white;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:10px 15px;
+
+    text-decoration:none;
+    color:#0b4ea2;
+
+    font-weight:bold;
+    font-size:16px;
+
+}
+
+
+.logo img{
+
+    width:42px;
+    height:42px;
+
+    object-fit:contain;
+
+}
+
+
+/* KHUNG BÀI VIẾT */
+
 .article{
-  max-width:1200px;
-  margin:40px auto;
-  padding:35px 45px;
-  background: rgba(255,255,255,0.80);
-  line-height:1.8;
+
+    width:100%;
+    max-width:900px;
+
+    margin:20px auto;
+
+    padding:25px;
+
+    background:#fff;
+
+    border-radius:14px;
+
+    box-sizing:border-box;
+
 }
 
-.article h2{
-  text-align:center;
-  color:#0b4ea2;
-  font-size: 20px;
-  margin: 0;
-}
-
-.article p{
-  text-indent:2em;
-  text-align:justify;
-}
-
-/* NÚT LÊN ĐẦU TRANG */
-#backToTop{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 42px;
-  height: 42px;
-  border: none;
-  border-radius: 50%;
-  background: #0b4ea2;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  display: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  z-index: 9999;
-}
-
-#backToTop:hover{
-  background: #199586;
-}
-/* KHỐI CHIA SẺ */
-.share-box{
-  margin: 15px 0 25px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  font-size: 14px;
-}
-
-.share-btn{
-  padding: 6px 14px;
-  border-radius: 20px;
-  text-decoration: none;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* FACEBOOK */
-.share-btn.fb{
-  background: #1877f2;
-}
-
-/* ZALO */
-.share-btn.zalo{
-  background: #0068ff;
-}
-
-/* COPY LINK */
-.share-btn.copy{
-  background: #6b7280;
-}
-
-/* GỌN KHOẢNG CÁCH HEADER – BÀI VIẾT */
-.page-header{
-  margin-bottom: 10px;
-}
-
-/* KHỐI BÀI VIẾT */
-.article{
-  margin:15px auto 25px;
-  padding:25px 45px;
-}
 
 /* TIÊU ĐỀ */
+
 .article h2{
-  margin-bottom: 6px;
+
+    text-align:center;
+
+    color:#0b4ea2;
+
+    font-size:26px;
+
+    line-height:1.4;
+
+    margin-bottom:15px;
+
 }
 
-/* THÔNG TIN TÁC GIẢ */
+
+
+/* TÁC GIẢ */
+
 .article > div{
-  margin-bottom: 12px;
+
+    text-align:center;
+
+    font-size:14px;
+
 }
 
-/* FOOTER */
-footer{
-  margin-top: 15px;
-  padding: 10px 0;
+
+
+/* NỘI DUNG */
+
+.article p{
+
+    text-indent:2em;
+
+    text-align:justify;
+
+    font-size:17px;
+
+    margin:18px 0;
+
 }
-footer p{
-  margin: 0;
+
+
+
+/* NHÓM NÚT ĐỌC */
+
+.article button{
+
+    border:none;
+
+    padding:9px 14px;
+
+    margin:4px;
+
+    border-radius:20px;
+
+    background:#0b4ea2;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+
+
+/* CHIA SẺ */
+
+.share-box{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:25px;
+
+}
+
+
+
+.share-btn{
+
+    padding:10px 18px;
+
+    border-radius:25px;
+
+    font-size:15px;
+
+}
+
+
+/* LÊN ĐẦU */
+
+#backToTop{
+
+    width:48px;
+
+    height:48px;
+
+    right:15px;
+
+    bottom:15px;
+
+    font-size:22px;
+
+}
+
+.doc-bai{
+
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+margin:15px 0;
+
+}
+
+/* ====================
+   MOBILE
+==================== */
+
+@media(max-width:600px){
+
+.article{
+
+    width:100%;
+
+    margin:0;
+
+    padding:16px;
+
+}
+
+
+.article h2{
+
+    font-size:24px;
+
+    line-height:1.4;
+
+}
+
+
+.article p{
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    text-align:left;
+
+    text-indent:1.5em;
+
+}
+
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-  <a href="../../index.html" class="logo">
-      <img src="../../tai-nguyen/icons/CK.png" alt="Logo">Nhìn lại chặng đường những năm qua
+  <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html" class="logo">
+      <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/CK.png" alt="Logo">Nhìn lại chặng đường những năm qua
   </a>
       
     </header>
@@ -153,10 +266,18 @@ footer p{
 
 <div class="article">
   <h2>Nhìn lại chặng đường những năm qua</h2>
-<button onclick="startSpeak()">🔊 </button>
-<button onclick="pauseSpeak()">⏸ </button>
-<button onclick="resumeSpeak()">▶ </button>
-<button onclick="stopSpeak()">⏹ </button>
+
+<div class="doc-bai">
+
+<button onclick="startSpeak()">🔊 Đọc</button>
+
+<button onclick="pauseSpeak()">⏸ Dừng</button>
+
+<button onclick="resumeSpeak()">▶ Tiếp tục</button>
+
+<button onclick="stopSpeak()">⏹ Tắt</button>
+
+</div>
 
   <div style="color:#0303ef;font-weight:bold">
    🌸 Vũ Thành Công ⏰ 08/02/2026
