@@ -1,10 +1,10 @@
 const CACHE_NAME = "vtc-cache-v1";
 
 const urlsToCache = [
-   "/quanlybaivietvtc/",
-  "/quanlybaivietvtc/index.html",
-  "/quanlybaivietvtc/tai-nguyen/seo/offline.html",
-  "/quanlybaivietvtc/du-lieu/bai-viet.json"
+   "https://vuthanhcong77.github.io/quanlybaivietvtc/",
+  "https://vuthanhcong77.github.io/quanlybaivietvtc/index.html",
+  "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/seo/offline.html",
+  "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"
 ];
 
 // Cài đặt cache
@@ -31,7 +31,7 @@ self.addEventListener("fetch", event => {
       .catch(() => {
 
         return caches.match(
-        "/quanlybaivietvtc/tai-nguyen/seo/offline.html"
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/seo/offline.html"
         );
 
       })
