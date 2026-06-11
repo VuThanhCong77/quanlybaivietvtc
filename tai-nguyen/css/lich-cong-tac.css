@@ -1,0 +1,101 @@
+/* =========================================================
+LICH-CONG-TAC.CSS
+========================================================= */
+
+body{
+  font-family:Segoe UI,Tahoma;
+  padding:20px;
+  background: transparent;
+}
+.container{
+  max-width:1200px;
+  margin:auto;
+  background: rgba(255,255,255,0.92);
+  padding:12px;
+  border-radius:10px;
+}
+
+.hidden{display:none}
+.title-wrap{ display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:4px; }
+.title-wrap img{ height:42px; }
+.title-text{ font-size:20px; font-weight:bold; color:#1a73e8; }
+button{ padding:8px 16px; border:none; border-radius:6px; color:#fff; cursor:pointer; margin:2px;}
+.add{background:#28a745}
+.del{background:#dc3545}
+.exp{background:#1a73e8}
+.imp{background:#6c757d}
+.logout{background:#ff9800; float:right}
+.login-btn{background:#007bff}
+table{ width:100%; border-collapse:collapse; margin-top:10px; }
+th,td{ border:1px solid #ddd; padding:8px; text-align:left; }
+th{ background:#1a73e8; color:#fff; }
+.urgent{ background:#dc3545 !important; color:#fff; font-weight:bold; animation:pulse 1.5s infinite; }
+.past{
+    background:#FFD966 !important;   /* vàng kem */
+    color:#6c757d;
+}
+.past td{
+    color:#6c757d;
+}
+
+@keyframes pulse{ 0%{opacity:1} 50%{opacity:.7} 100%{opacity:1} }
+#adminControls { border:1px dashed #ccc; padding:10px; margin-bottom:10px; border-radius:8px; background:#f9f9f9; }
+.title-text{
+  font-size:20px;
+  font-weight:bold;
+  color:#1a73e8;
+  white-space: nowrap; /* ✅ Luôn giữ trên một hàng */
+}
+
+
+/* Hover desktop */
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,#175fe4,#032a80);
+}
+
+/* Khi nhấn */
+.floating-back:active{
+    transform:scale(0.92);
+}
+
+/* Mobile tối ưu */
+@media(max-width:768px){
+    .floating-back{
+        width:45px;
+        height:45px;
+        font-size:20px;
+        top:15px;
+        right:15px;
+    }
+}
+
+        .box{
+            background:#fff;
+            border:1px solid #18b4db;
+            border-radius:10px;
+            padding:10px;
+        }
+
+        .title{
+            background:#0971d8;
+            color:#fff;
+            text-align:center;
+            padding:6px;
+            border-radius:6px;
+            font-size:14px;
+            margin-bottom:8px;
+        }
+
+        .content{
+            font-size:14px;
+            line-height:1.5;
+        }
+
+        .note{
+            color:#e60a0a;
+            font-weight:bold;
+            margin-top:8px;
+            display:block;
+        }
+

@@ -1,0 +1,348 @@
+/* =========================================================
+TRANG CHUYÊN MỤC
+========================================================= */
+
+.trang-chuyen-muc{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+/* =========================================================
+HERO
+========================================================= */
+
+.hero-bai-viet{
+
+    background:
+    linear-gradient(
+    rgba(255, 255, 255, 0.586),
+    rgba(255, 255, 255, 0.538)
+    ),
+    url("../../tai-nguyen/anh-bia/hoa-sen.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    border-radius:20px;
+
+    margin-bottom:40px;
+
+}
+
+.hero-bai-viet h1{
+
+    font-size:clamp(
+        2rem,
+        4vw,
+        3.2rem
+    );
+
+    margin-bottom:15px;
+
+    color:#0f172a;
+
+}
+
+.hero-bai-viet p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    font-size:1.1rem;
+
+    line-height:1.8;
+
+    color:#64748b;
+
+}
+
+/* =========================================================
+GIỚI THIỆU
+========================================================= */
+
+.gioi-thieu-sach{
+
+    display:grid;
+
+    grid-template-columns:
+    320px 1fr;
+
+    gap:40px;
+
+    align-items:center;
+
+    margin:50px 0;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:#fff;
+
+    box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.08);
+
+}
+
+.anh-gioi-thieu img{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 10px 25px
+    rgba(0,0,0,.15);
+
+}
+
+.noi-dung-gioi-thieu h2{
+
+    margin-bottom:15px;
+
+    color:#0f172a;
+
+}
+
+.noi-dung-gioi-thieu p{
+
+    line-height:1.9;
+
+    margin-bottom:15px;
+
+    color:#475569;
+
+}
+
+/* =========================================================
+THỐNG KÊ
+========================================================= */
+
+.thong-ke{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+
+    margin:50px 0;
+
+}
+
+.thong-ke div{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    box-shadow:
+    0 4px 15px
+    rgba(0,0,0,.08);
+
+}
+
+.thong-ke h3{
+
+    font-size:2rem;
+
+    color:#2563eb;
+
+    margin-bottom:10px;
+
+}
+
+.thong-ke p{
+
+    color:#64748b;
+
+}
+
+/* =========================================================
+MỤC LỤC
+========================================================= */
+
+.danh-sach-bai-viet{
+
+    margin-top:60px;
+
+}
+
+.danh-sach-bai-viet h2{
+
+    margin-bottom:25px;
+
+    color:#0f172a;
+
+}
+
+/* =========================================================
+CARD BÀI VIẾT
+========================================================= */
+
+.card-bai-viet{
+
+    display:flex;
+
+    flex-direction:column;
+
+    text-decoration:none;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    box-shadow:
+    0 4px 20px
+    rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card-bai-viet:hover{
+
+    transform:
+    translateY(-6px);
+
+    box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.12);
+
+}
+
+.card-bai-viet img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.noi-dung-card{
+
+    padding:20px;
+
+}
+
+.noi-dung-card h3{
+
+    margin-bottom:12px;
+
+    color:#0f172a;
+
+    line-height:1.5;
+
+}
+
+.noi-dung-card p{
+
+    color:#64748b;
+
+    line-height:1.7;
+
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+
+    .gioi-thieu-sach{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .thong-ke{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .hero-bai-viet{
+
+        padding:40px 15px;
+
+    }
+
+    .hero-bai-viet h1{
+
+        font-size:2rem;
+
+    }
+
+}
+
+/* ===== MỤC LỤC SÁCH ===== */
+
+.muc-luc-sach{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.muc-luc-sach h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.danh-sach-muc-luc{
+    list-style:none;
+    padding:0;
+}
+
+.danh-sach-muc-luc > li{
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #ddd;
+}
+
+.danh-sach-muc-luc > li > strong{
+    display:block;
+    font-size:1.2rem;
+    color:#8B4513;
+    margin-bottom:8px;
+}
+
+.danh-sach-muc-luc ul{
+    margin:0;
+    padding-left:25px;
+}
+
+.danh-sach-muc-luc ul li{
+    margin:8px 0;
+}
+
+.danh-sach-muc-luc a{
+    color:#333;
+    text-decoration:none;
+    line-height:1.6;
+}
+
+.danh-sach-muc-luc a:hover{
+    color:#c0392b;
+    text-decoration:underline;
+}

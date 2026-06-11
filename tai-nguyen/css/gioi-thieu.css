@@ -1,0 +1,112 @@
+/* =========================
+TỔNG THỂ
+========================= */
+
+body{
+    background: linear-gradient(180deg, #afd7ec, #eedbdb);
+    font-family: Arial, sans-serif;
+}
+
+/* nền nhẹ có chiều sâu */
+.trang-gioi-thieu{
+    max-width: 900px;
+    margin: auto;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.trang-gioi-thieu::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(44,122,123,0.06), transparent 40%),
+        radial-gradient(circle at 80% 60%, rgba(0,0,0,0.03), transparent 40%);
+    pointer-events: none;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero h1{
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: #095e93;
+}
+
+.hero p{
+    color: #4b0442;
+    font-size: 16px;
+    text-align:justify;
+    text-indent:1cm;
+}
+
+p{
+    color: #350361;
+    text-align:justify;
+    text-indent:2cm;
+}
+
+/* =========================
+TIMELINE
+========================= */
+
+.cot-moc{
+    margin: 50px 0;
+    padding-left: 25px;
+    border-left: 3px solid #2c7a7b;
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+    position: relative;
+}
+
+.cot-moc.hien{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* chấm mốc */
+.cot-moc::before{
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: #2c7a7b;
+    position: absolute;
+    left: -8px;
+    top: 8px;
+    border-radius: 50%;
+}
+
+/* tiêu đề */
+.cot-moc h2{
+    font-size: 22px;
+    color: #2c7a7b;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.cot-moc h2::after{
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #2c7a7b, transparent);
+    display: block;
+    margin-top: 6px;
+}
+
+/* trích dẫn */
+.trich-dan{
+    background: #f5f5f5;
+    border-left: 4px solid #999;
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-style: italic;
+}
