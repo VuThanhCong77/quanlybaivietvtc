@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hướng dẫn kê khai tài sản</title>
+
+
+<meta property="og:image:alt"
+content="Hướng dẫn kê khai tài sản">
+
+<meta name="keywords"
+content="Sông Đá Bạc, Lưu Kiếm, Hải Phòng, Vũ Thành Công, câu chuyện cuộc đời, quê hương, tin tức, ký sự, hồi ký, truyền cảm hứng tích cực">
+<meta name="author" content="Vũ Thành Công">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0a7f99">
+
+<link rel="canonical"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/huongdankekhaitaisan.html">
+
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/taisan.jpg">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+ <link rel="icon"
+href="../../tai-nguyen/icons/icon32.ico">
+<link rel="icon"
+href="../../tai-nguyen/icons/icon192.ico">
+
+<link rel="stylesheet"
+href="../../tai-nguyen/css/menu.css">
+
+
+<style>
+body{
+  margin:0;
+   font-family:'Be Vietnam Pro',sans-serif;
+  color:var(--text);
+
+  line-height:1.9;
+}
+
+/* ===== MENU ===== */
+.menu-overlay{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.4);
+  opacity: 0; visibility: hidden;
+  z-index: 998; transition:.3s;
+}
+.menu-overlay.active{opacity:1;visibility:visible;}
+
+.nav-menu{
+  position: fixed; top:0; left:-280px;
+  width:260px; height:100%;
+  background:#fff;
+  z-index:999;
+  padding-top:60px;
+  transition:.3s;
+}
+.nav-menu.active{left:0;}
+.nav-item{border-bottom:1px solid #eee;}
+.nav-link{
+  padding:12px 16px;
+  font-weight:600;
+  color:#0a3a5a;
+  text-decoration:none;
+  cursor:pointer;
+}
+.sub-menu{display:none;background:#f5f9fb;}
+.sub-menu a{display:block;padding:10px 30px;}
+.nav-item.open>.sub-menu{display:block;}
+
+/* SEARCH */
+#search-container-wrapper{
+  max-width:800px;
+  margin:20px auto;
+  padding:0 15px;
+}
+#search-container{
+  display:flex; gap:8px;
+}
+#search-input{
+  flex:1; padding:10px;
+  border:2px solid var(--secondary);
+  border-radius:6px;
+}
+.btn-action,.btn-nav{
+  padding:10px 14px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.btn-action{background:var(--primary);color:#fff;}
+.btn-nav{background:var(--secondary);color:#fff;}
+.btn-nav:disabled{background:#ccc}
+.main-huongdankekhaitaisan{background:rgba(243, 243, 204, 0.973);}
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:20px;}
+h2{
+  border-left:5px solid var(--primary);
+  padding-left:15px;
+}
+
+/* BACK TO TOP */
+#backToTop{
+  position:fixed;
+  bottom:30px; right:30px;
+  width:48px; height:48px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#d1d40b;
+  border:none;
+  cursor:pointer;
+  display:none;
+  z-index:1005;
+}
+
+mark { background: yellow; }
+mark.current-match {
+  background: orange;
+  font-weight: bold;
+}
+
+/* ===== SEARCH NAV FIXED ===== */
+#search-nav-fixed{
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  display: none;
+  gap: 6px;
+  z-index: 1006;
+}
+
+#search-nav-fixed button{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--secondary);
+  color: #fff;
+}
+
+#search-nav-fixed span{
+  text-align: center;
+  font-size: 12px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 0 4px rgba(0,0,0,.2);
+}
+
+p{
+ padding: 6px;
+ text-align:justify;
+}
+/* Nút floating quay lại */
+.floating-back{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#aeb107,#9a9c06);
+    color:white;
+
+    font-size:24px;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+
+    z-index:9999;
+
+    transition:all 0.3s ease;
+}
+
+/* Hover desktop */
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,#175fe4,#032a80);
+}
+
+/* Khi nhấn */
+.floating-back:active{
+    transform:scale(0.92);
+}
+
+/* Mobile tối ưu */
+@media(max-width:768px){
+    .floating-back{
+        width:45px;
+        height:45px;
+        font-size:20px;
+        top:15px;
+        right:15px;
+    }
+}
+/* ===== TỐI ƯU HIỂN THỊ ĐIỆN THOẠI ===== */
+body{
+    font-size:18px;
+    line-height:1.8;
+}
+
+#text-qd20_2026{
+    font-size:20px;
+    line-height:1.9;
+}
+
+h2{
+    font-size:24px;
+}
+
+@media (max-width:768px){
+    body{
+        font-size:18px;
+    }
+
+    #text-qd20_2026{
+        font-size:21px;
+        line-height:2;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    .btn-action,.btn-nav{
+        font-size:18px;
+        padding:6px 6px;
+    }
+}
+</style>
+</head>
+
+<div id="search-nav-fixed">
+  <button id="prev-match">↑</button>
+   <button id="next-match">↓</button>
+</div>
+
+<body>
+<header >
+
+   <a href="../../index.html" class="logo">
+      <img src="../../tai-nguyen/icons/CK.png" alt="Logo">Hướng dẫn kê khai tài sản, thu nhập
+  </a>
+      
+</header>
+
+<div class="page-wrapper">
+
+<div id="search-container-wrapper">
+  <div id="search-container">
+    <input id="search-input" placeholder="Nhập từ khóa...">
+    <button id="search-button" class="btn-action">Tìm</button>
+  </div>
+  <div id="search-results"><span id="match-count"></span></div>
+</div>
+
+ <!-- MAIN -->
+<div class="page-wrapper">
+<main class="main-huongdankekhaitaisan">
+
+ <h2 id="huongdankekhaitaisan-title">Đang tải...</h2>
+<button onclick="startSpeak()">🔊 </button>
+<button onclick="pauseSpeak()">⏸ </button>
+<button onclick="resumeSpeak()">▶ </button>
+<button onclick="stopSpeak()">⏹ </button>
+
+    <div id="text-huongdankekhaitaisan">Đang tải nội dung...</div>
+ 
+</main>
+
+</div>
+
+<button id="backToTop">▲</button>
+
+<script>
+/* MENU */
+
+document.querySelectorAll('.toggle').forEach(t=>t.onclick=()=>t.parentElement.classList.toggle('open'))
+
+/* BACK TO TOP */
+const topBtn=document.getElementById('backToTop')
+window.onscroll=()=>topBtn.style.display=window.scrollY>300?'block':'none'
+topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'})
+</script>
+
+<script>
+/* ===== GLOBAL ===== */
+const huongdankekhaitaisanTitle = document.getElementById("huongdankekhaitaisan-title");
+const huongdankekhaitaisanArea  = document.getElementById("text-huongdankekhaitaisan");
+
+const searchInput = document.getElementById("search-input");
+const searchBtn   = document.getElementById("search-button");
+const prevBtn     = document.getElementById("prev-match");
+const nextBtn     = document.getElementById("next-match");
+const resultBox   = document.getElementById("search-results");
+const countSpan   = document.getElementById("match-count");
+
+let matches = [];
+let currentIndex = -1;
+let originalHTML = "";
+
+/* ===== LOAD huongdankekhaitaisan ===== */
+fetch("huongdankekhaitaisan.json")
+  .then(res => {
+    if (!res.ok) throw new Error("Không tìm thấy huongdankekhaitaisan.json");
+    return res.json();
+  })
+  .then(data => {
+    huongdankekhaitaisanTitle.innerHTML = data.title || "Văn bản";
+    huongdankekhaitaisanArea.innerHTML  = data.huongdankekhaitaisan || "Chưa có nội dung.";
+    originalHTML = huongdankekhaitaisanArea.innerHTML;
+  })
+  .catch(err => {
+    huongdankekhaitaisanTitle.innerHTML = "Lỗi tải văn bản";
+    huongdankekhaitaisanArea.innerHTML  = "❌ Không tải được nội dung.";
+    console.error(err);
+  });
+</script>
+
+<script>
+
+function escapeReg(text){
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+searchBtn.onclick = () => {
+  const keyword = searchInput.value.trim();
+  if (!keyword || !originalHTML) return;
+
+  const regex = new RegExp(`(${escapeReg(keyword)})`, "gi");
+  huongdankekhaitaisanArea.innerHTML = originalHTML.replace(regex, "<mark>$1</mark>");
+
+  matches = huongdankekhaitaisanArea.querySelectorAll("mark");
+  currentIndex = -1;
+
+  if (!matches.length) {
+    alert("Không tìm thấy nội dung phù hợp");
+    return;
+  }
+
+  prevBtn.disabled = false;
+  nextBtn.disabled = false;
+  resultBox.style.display = "block";
+  goNext();
+};
+
+const fixedNav = document.getElementById("search-nav-fixed");
+
+searchBtn.onclick = () => {
+  const keyword = searchInput.value.trim();
+  if (!keyword) return;
+
+  if (!originalHTML) originalHTML = huongdankekhaitaisanArea.innerHTML;
+
+  const regex = new RegExp(`(${escapeReg(keyword)})`, "gi");
+  huongdankekhaitaisanArea.innerHTML = originalHTML.replace(regex, "<mark>$1</mark>");
+
+  matches = huongdankekhaitaisanArea.querySelectorAll("mark");
+  currentIndex = -1;
+
+  if (matches.length === 0) {
+    fixedNav.style.display = "none";
+    alert("Không tìm thấy nội dung phù hợp");
+    return;
+  }
+
+  prevBtn.disabled = false;
+  nextBtn.disabled = false;
+  fixedNav.style.display = "flex";
+  goNext();
+};
+
+/* ======================
+   BACK TO TOP
+====================== */
+
+const topBtn =
+document.getElementById(
+"backToTop"
+);
+
+window.addEventListener(
+"scroll",
+() => {
+
+topBtn.style.display =
+window.scrollY > 300
+? "block"
+: "none";
+
+});
+
+topBtn.onclick = () => {
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+};
+
+/* ===== NAV RESULT ===== */
+function updateMatch(){
+  matches.forEach(m=>m.classList.remove("current-match"));
+
+  const el = matches[currentIndex];
+
+  el.classList.add("current-match");
+
+  el.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+  countSpan.innerText =
+      `${currentIndex+1}/${matches.length}`;
+}
+
+function goNext(){
+  currentIndex=(currentIndex+1)%matches.length;
+  updateMatch();
+}
+
+function goPrev(){
+  currentIndex=(currentIndex-1+matches.length)%matches.length;
+  updateMatch();
+}
+
+nextBtn.onclick=goNext;
+prevBtn.onclick=goPrev;
+
+searchInput.addEventListener("keydown",e=>{
+  if(e.key==="Enter") searchBtn.click();
+});
+</script>
+
+<script>
+let utterance;
+
+function startSpeak() {
+  const text = document.getElementById("text-huongdankekhaitaisan").innerText;
+
+  speechSynthesis.cancel(); // tránh chồng giọng
+
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "vi-VN";
+  utterance.rate = 1;
+
+  speechSynthesis.speak(utterance);
+}
+
+function pauseSpeak() {
+  speechSynthesis.pause();
+}
+
+function resumeSpeak() {
+  speechSynthesis.resume();
+}
+
+function stopSpeak() {
+  speechSynthesis.cancel();
+}
+</script>
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
+
+</body>
+</html>

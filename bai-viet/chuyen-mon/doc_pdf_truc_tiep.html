@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đọc văn bản PDF</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f6f9;
+}
+
+header{
+  background:#b30000;
+  color:white;
+  padding:12px;
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.toolbar{
+  background:#fff;
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+
+select{
+  padding:6px 10px;
+  font-size:14px;
+}
+
+.open-btn{
+  text-align:center;
+  padding:10px;
+  background:#fff;
+  border-bottom:1px solid #ddd;
+}
+
+.open-btn a{
+  background:#b30000;
+  color:#fff;
+  padding:8px 14px;
+  text-decoration:none;
+  border-radius:5px;
+}
+
+.pdf-container{
+  width:100%;
+  height:calc(100vh - 160px);
+}
+
+iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>VĂN BẢN PDF</header>
+
+<div class="toolbar">
+  Chọn văn bản:
+  <select onchange="loadPDF(this.value)">
+<option value="pdf/ytuonghay.pdf">Ý tưởng hay</option>
+ <option value="pdf/Qd20thihanhdieuledang2026.pdf">Quy định 20 thi hành Điều lệ Đảng</option>
+ <option value="pdf/qd21ktgs.pdf">Quy định 21 về kiểm tra, giám sát</option>
+ <option value="pdf/nqtw80vanhoa.pdf">Nghị quyết TW về văn hóa</option>
+ <option value="pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường Lưu Kiếm lần I</option>
+ <option value="pdf/qd19cttt.pdf">Quy định 19 về chính trị, tư tưởng</option>
+ <option value="pdf/triethocmaclenin.pdf">Triết học Mác Lênin</option>
+ <option value="pdf/xhcnhp.pdf">Nghị quyết xây dựng XHCN</option>
+<option value="pdf/nq08chuyendoixanh.pdf">Nghị quyết chuyển đổi xanh</option>
+<option value="pdf/Lich su Luu Ky_A5.pdf">Lưu Kỳ những chặng đường lịch sử</option>
+  </select>
+</div>
+
+<div class="open-btn">
+  <a id="openPDF" target="_blank">Mở PDF toàn màn hình</a>
+</div>
+
+<div class="pdf-container">
+  <iframe id="pdfViewer"></iframe>
+</div>
+
+<script>
+function loadPDF(file){
+  document.getElementById("pdfViewer").src = file;
+  document.getElementById("openPDF").href = file;
+}
+
+window.onload = function(){
+  const firstFile = document.querySelector("select").value;
+  loadPDF(firstFile);
+}
+</script>
+
+</body>
+</html>
