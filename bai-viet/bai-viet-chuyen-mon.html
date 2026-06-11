@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danh sach bai viet</title>
+
+<link rel="icon"
+href="../tai-nguyen/icons/icon32.ico">
+<link rel="icon"
+href="../tai-nguyen/icons/icon192.ico">
+
+
+<!-- =====================================================
+MAIN CSS
+===================================================== -->
+
+<link rel="stylesheet" href="../tai-nguyen/css/danh-sach-bai-viet.css">
+<link rel="stylesheet" href="../tai-nguyen/css/menu.css">
+<link rel="stylesheet" href="../tai-nguyen/css/dieu-huong.css">
+
+</head>
+
+<body>
+
+<!-- =====================================================
+DAU TRANG
+===================================================== -->
+
+<header id="menu"></header>
+
+
+<!-- HERO -->
+<div class="hero-bai-viet">
+    <h1>BÀI VIẾT CHUYÊN MÔN</h1>
+</div>
+
+<!-- TIM KIEM -->
+<div class="tim-kiem">
+    <input id="inputSearch" placeholder="Tìm kiếm bài viết...">
+    <button onclick="timKiem()">Tim</button>
+</div>
+
+<!-- THONG KE -->
+<div class="thong-ke">
+    Tổng số bài viết: <b id="tongSo">0</b>
+</div>
+
+<!-- CONTAINER -->
+<div class="container">
+    <div id="ds-chuyen-mon" class="danh-sach-bai-viet"></div>
+</div>
+
+<!-- =====================================================
+NÚT TRỞ VỀ
+===================================================== -->
+
+<button
+id="nut-tro-ve"
+class="nut-dieu-huong"
+onclick="history.back()">
+
+    ←
+
+</button>
+
+
+<!-- =====================================================
+NÚT LÊN ĐẦU TRANG
+===================================================== -->
+
+<button
+id="nut-len-dau"
+class="nut-dieu-huong"
+onclick="window.scrollTo({
+top:0,
+behavior:'smooth'
+})">
+
+    ↑
+
+</button>
+
+ <script>
+
+async function loadComponent(id, file){
+
+    try{
+
+        const response = await fetch(file);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Lỗi tải component: " + file
+            );
+
+        }
+
+        const html = await response.text();
+
+        document.getElementById(id)
+        .innerHTML = html;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    loadComponent(
+        "menu",
+        "../thanh-phan/menu.html"
+    );
+
+}
+);
+
+</script>
+
+<script src="../tai-nguyen/js/menu.js"></script>
+<script src="../tai-nguyen/js/bai-viet-chuyen-mon.js"></script>
+
+</body>
+</html>

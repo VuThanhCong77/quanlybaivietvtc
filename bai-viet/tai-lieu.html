@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tài liệu</title>
+
+<link rel="icon" href="../tai-nguyen/icons/icon32.ico">
+<link rel="icon" href="../tai-nguyen/icons/icon192.ico">
+
+<link rel="stylesheet" href="../tai-nguyen/css/menu.css">
+
+<style>
+/* ==================================================
+   TRANG TÀI LIỆU
+================================================== */
+
+:root{
+    --primary:#0ab3c9;
+    --primary-dark:#0a7f99;
+    --secondary:#0b4ea2;
+
+    --text:#0a3a5a;
+    --text-light:#08405d;
+
+    --border:#cde7ef;
+    --bg:#ffffff;
+    --bg-soft:#eef6ff;
+
+    --radius:10px;
+    --shadow:0 4px 15px rgba(0,0,0,.08);
+    --transition:.3s ease;
+}
+
+/* ==================================================
+   LAYOUT
+================================================== */
+
+.main-content{
+    background:rgba(255,255,255,.96);
+    line-height:1.8;
+}
+
+.main-grid{
+    width:min(100%,1200px);
+    margin:auto;
+}
+
+/* ==================================================
+   THANH ĐIỀU KHIỂN
+================================================== */
+
+.control-panel{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+
+    margin-bottom:25px;
+    padding-bottom:15px;
+
+    border-bottom:1px solid var(--border);
+}
+
+#search-input{
+    flex:1;
+    max-width:400px;
+
+    padding:10px 14px;
+
+    border:1px solid var(--primary);
+    border-radius:var(--radius);
+
+    font-size:15px;
+    outline:none;
+
+    transition:var(--transition);
+}
+
+#search-input:focus{
+    box-shadow:0 0 0 3px rgba(10,179,201,.15);
+}
+
+#stats-box{
+    padding:10px 15px;
+
+    background:var(--primary);
+    color:#fff;
+
+    border-radius:var(--radius);
+    font-weight:600;
+
+    white-space:nowrap;
+}
+
+/* ==================================================
+   DANH SÁCH FILE
+================================================== */
+
+.file-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+
+    padding:18px 0;
+
+    border-bottom:1px solid var(--border);
+}
+
+.file-info{
+    flex:1;
+}
+
+.file-info h3{
+    margin:0;
+    font-size:18px;
+    line-height:1.5;
+}
+
+.file-info h3 a{
+    color:var(--text);
+    text-decoration:none;
+}
+
+.file-info h3 a:hover{
+    color:var(--primary-dark);
+}
+
+.file-info p{
+    margin:8px 0 0;
+    color:var(--text-light);
+    font-size:14px;
+}
+
+.download-btn{
+    flex-shrink:0;
+
+    padding:10px 18px;
+
+    background:#13ebc7;
+    color:#fff;
+
+    text-decoration:none;
+    border-radius:8px;
+
+    transition:var(--transition);
+}
+
+.download-btn:hover{
+    background:#ebee3b;
+    transform:translateY(-2px);
+}
+
+/* ==================================================
+   KHỐI GHI CHÚ
+================================================== */
+
+.note{
+    margin:20px 0;
+    padding:16px;
+
+    background:var(--bg-soft);
+
+    border-left:4px solid var(--primary-dark);
+    border-radius:var(--radius);
+}
+
+.note h3{
+    margin-top:0;
+}
+
+/* ==================================================
+   DANH SÁCH
+================================================== */
+
+.vuong{
+    margin:0;
+    padding-left:22px;
+    list-style:square;
+}
+
+.vuong li{
+    margin:8px 0;
+}
+
+.vuong a{
+    color:var(--text);
+    text-decoration:none;
+}
+
+.vuong a:hover{
+    color:var(--primary-dark);
+}
+
+/* ==================================================
+   VIDEO
+================================================== */
+
+.sidebar-box{
+    margin:25px 0;
+}
+
+.sidebar-box h3{
+    margin-bottom:12px;
+}
+
+.video-sidebar{
+    overflow:hidden;
+
+    border-radius:12px;
+    box-shadow:var(--shadow);
+}
+
+.video-sidebar iframe{
+    display:block;
+    width:100%;
+    aspect-ratio:16/9;
+    border:none;
+}
+
+/* ==================================================
+   HÌNH ẢNH
+================================================== */
+
+.img-giua{
+    text-align:center;
+    margin:25px 0;
+}
+
+.img-giua img{
+    max-width:100%;
+    height:auto;
+
+    border-radius:12px;
+    box-shadow:var(--shadow);
+}
+
+/* ==================================================
+   NÚT LÊN ĐẦU TRANG
+================================================== */
+
+#backToTop{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+
+    width:46px;
+    height:46px;
+
+    border:none;
+    border-radius:50%;
+
+    background:var(--secondary);
+    color:#fff;
+
+    font-size:20px;
+    cursor:pointer;
+
+    display:none;
+    z-index:9999;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+
+    transition:var(--transition);
+}
+
+#backToTop:hover{
+    transform:translateY(-3px);
+}
+
+/* ==================================================
+   NÚT QUAY LẠI
+================================================== */
+
+.floating-back{
+    position:fixed;
+    top:20px;
+    right:20px;
+
+    width:50px;
+    height:50px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:none;
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #aeb107,
+        #9a9c06
+    );
+
+    color:#fff;
+    font-size:24px;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.25);
+
+    transition:var(--transition);
+}
+
+.floating-back:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(
+        135deg,
+        #08a0b4,
+        #0acddb
+    );
+}
+
+.floating-back:active{
+    transform:scale(.92);
+}
+
+/* ==================================================
+   MENU DESKTOP
+================================================== */
+
+.nav-links{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+
+    padding:8px 0;
+
+    background:rgba(255,255,255,.15);
+}
+
+.nav-links a,
+.logo span{
+    color:#fff;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.nav-links a{
+    white-space:nowrap;
+}
+
+/* ==================================================
+   TOOLTIP
+================================================== */
+
+.tooltip{
+    position:relative;
+    display:inline-block;
+}
+
+.tooltip-text{
+    position:absolute;
+    top:110%;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    padding:6px 10px;
+
+    background:#727e05;
+    color:#fff;
+
+    border-radius:6px;
+
+    opacity:0;
+    visibility:hidden;
+
+    white-space:nowrap;
+
+    transition:var(--transition);
+}
+
+.tooltip:hover .tooltip-text{
+    opacity:1;
+    visibility:visible;
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width:991px){
+
+    .nav-links{
+        display:none;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .control-panel{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    #search-input{
+        max-width:none;
+        width:100%;
+    }
+
+    .file-item{
+        flex-direction:column;
+    }
+
+    .download-btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .floating-back{
+        width:45px;
+        height:45px;
+        top:15px;
+        right:15px;
+        font-size:20px;
+    }
+
+    #backToTop{
+        width:42px;
+        height:42px;
+    }
+
+}
+</style>
+
+
+</head>
+
+<body>
+
+<header id="menu"></header>
+  
+<div class="page-wrapper">
+<main class="main-content">
+<div class="main-grid">
+
+ 
+    <div class="control-panel">
+      <input type="text" id="search-input" placeholder="Tìm kiếm tài liệu..." />
+      <div id="stats-box">📊 Tổng: <span id="document-count">0</span> file</div>
+    </div>
+
+<div class="note">
+<ul class="vuong">
+     <div id="ds-chuyen-mon" class="danh-sach-bai-viet"></div>
+</ul>
+</div>
+
+<div class="note">
+<h3>📖 Kho sách</h3>
+<ul class="vuong">
+<li><a href="https://stbook.vn/hochiminh">Sách điện tử Hồ Chí Minh</a></li>
+<li><a href="https://sites.google.com/view/kho-sach-online/trang-chủ">Kho sách Online</a></li>
+<li><a href="https://sachnoiviet.net/">Sách nói</a></li>
+</ul>
+</div>
+
+<section class="sidebar-box">
+  <h3>🎥 Các bậc chân sư Yogi Ấn Độ</h3>
+
+  <div class="video-sidebar">
+    <iframe 
+       src="https://www.youtube.com/embed/9U8RT-TPkws"
+      title="Video"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section class="sidebar-box">
+  <h3>🎥 Sách nói</h3>
+
+  <div class="video-sidebar">
+    <iframe 
+       src="https://www.youtube.com/embed/IMyDOj45USU"
+      title="Video"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<div class="note">
+<h3>📖 Học tập</h3>
+<ul class="vuong">
+<li><a href="/bai-viet/chuyen-mon/ma_tran.html">Sơ đồ ma trận Eisenhower</a></li>
+</ul>
+</div>
+
+<div class="img-giua"> 
+<img src="../tai-nguyen/anh-bai-viet/sanvuon3.png">
+</div>
+
+</div>
+
+</main>
+
+  </div>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+const JSON_URL = "../du-lieu/chuyen-mon.json";
+
+const listContainer =
+document.getElementById("ds-chuyen-mon");
+
+const searchInput =
+document.getElementById("search-input");
+
+const countBox =
+document.getElementById("document-count");
+
+let allDocs = [];
+
+/* ==========================
+   TẢI DỮ LIỆU
+========================== */
+
+async function loadDocs(){
+
+    try{
+
+        const response =
+        await fetch(JSON_URL);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Không tải được dữ liệu"
+            );
+
+        }
+
+        const data =
+        await response.json();
+
+        allDocs = data;
+
+        render(allDocs);
+
+    }catch(error){
+
+        console.error(error);
+
+        listContainer.innerHTML =
+        "<li>Lỗi tải dữ liệu.</li>";
+
+    }
+
+}
+
+/* ==========================
+   HIỂN THỊ DANH SÁCH
+========================== */
+
+function render(list){
+
+    countBox.textContent =
+    list.length;
+
+    if(!list.length){
+
+        listContainer.innerHTML =
+        "<li>Không tìm thấy tài liệu.</li>";
+
+        return;
+
+    }
+
+    listContainer.innerHTML =
+list.map(item => `
+
+<div class="file-item">
+
+    <div class="file-info">
+
+        <h3>${item.title}</h3>
+
+        <p>${item.desc || ""}</p>
+
+        <small>${item.category}</small>
+
+    </div>
+
+    <a
+      href="${item.url}"
+      class="download-btn">
+
+      Mở
+
+    </a>
+
+</div>
+
+`).join("");
+
+}
+
+/* ==========================
+   TÌM KIẾM
+========================== */
+
+searchInput.addEventListener(
+"input",
+function(){
+
+    const keyword =
+    this.value
+    .toLowerCase()
+    .trim();
+
+    const result =
+    allDocs.filter(item =>
+
+        item.title
+        .toLowerCase()
+        .includes(keyword)
+
+        ||
+
+        (item.desc || "")
+        .toLowerCase()
+        .includes(keyword)
+
+        ||
+
+        (item.category || "")
+        .toLowerCase()
+        .includes(keyword)
+
+    );
+
+    render(result);
+
+}
+);
+
+document.addEventListener(
+"DOMContentLoaded",
+loadDocs
+);
+</script>
+
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
+
+<script>
+const currentPage = location.pathname.split("/").pop();
+
+document.querySelectorAll(".header-nav a, .nav-links a")
+.forEach(link => {
+
+  const linkPage = link.getAttribute("href");
+
+  if(linkPage === currentPage){
+    link.classList.add("active");
+  }
+
+});
+</script>
+<script>
+
+async function loadComponent(id, file){
+
+    try{
+
+        const response = await fetch(file);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Lỗi tải component: " + file
+            );
+
+        }
+
+        const html = await response.text();
+
+        document.getElementById(id)
+        .innerHTML = html;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    loadComponent(
+        "menu",
+        "../thanh-phan/menu.html"
+    );
+
+}
+);
+
+</script>
+
+<script src="../tai-nguyen/js/menu.js"></script>
+
+</body>
+</html>
