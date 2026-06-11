@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vũ Thanh Tùng</title>
+
+<!-- Open Graph chuẩn cho Facebook & Zalo -->
+<meta property="og:title" content="Nơi cha về với đất mẹ">
+<meta property="og:description" content="Sự ra đi của ông để lại niềm tiếc thương sâu sắc đối với gia đình, đồng chí, đồng đội và nhân dân địa phương.">
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/vuthanhtung1.jpg">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/noichayennghi.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vũ Thanh Tùng">
+  
+<link rel="icon"
+href="../../tai-nguyen/icons/icon32.ico">
+<link rel="icon"
+href="../../tai-nguyen/icons/icon192.ico">
+
+<link rel="stylesheet"
+href="../../tai-nguyen/css/menu.css">
+
+
+<style>
+:root{
+  --primary:#0f766e;
+  --secondary:#14532d;
+  --accent:#b45309;
+
+  --bg:#f5f7fa;
+  --card:#ffffff;
+
+  --text:#1f2937;
+  --border:#e5e7eb;
+
+  --shadow:
+  0 4px 20px rgba(0,0,0,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  line-height:1.8;
+  color:var(--text);
+
+  background:
+  linear-gradient(
+  rgba(255,255,255,.80),
+  rgba(255,255,255,.90)),
+  url("/tai-nguyen/anh-bia/bia2.jpg")
+  center/cover no-repeat;
+
+  min-height:100vh;
+}
+
+/* =========================
+   KHUNG CHUNG
+========================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+.section{
+
+  max-width:1200px;
+  margin:auto;
+  background:var(--card);
+  border-radius:14px;
+  padding:30px;
+  margin-bottom:25px;
+
+  box-shadow:var(--shadow);
+}
+
+/* =========================
+   TIÊU ĐỀ
+========================= */
+
+h2{
+  color:var(--secondary);
+
+  font-size:1.6rem;
+
+  margin-bottom:20px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  border-bottom:2px solid #ecf0f1;
+  padding-bottom:12px;
+}
+
+h2 img{
+  width:30px;
+  height:30px;
+  object-fit:cover;
+}
+
+a{
+    text-decoration: none;
+  }
+
+a:hover{
+    background:#fff;
+    color: #eb1515;
+    padding-left: 5px;
+}
+
+/* =========================
+   ĐOẠN VĂN
+========================= */
+
+p{
+  text-align:justify;
+
+  text-indent:1.5rem;
+
+  margin-bottom:14px;
+
+  font-size:1.05rem;
+}
+
+strong,
+b{
+  color:#7c2d12;
+}
+
+/* =========================
+   ẢNH
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(320px,1fr));
+
+  gap:20px;
+}
+
+.card{
+  overflow:hidden;
+  border-radius:12px;
+
+  background:#fff;
+
+  box-shadow:
+  0 3px 10px rgba(0,0,0,.08);
+}
+
+.card img{
+  width:100%;
+  height:100%;
+  display:block;
+
+  transition:.4s;
+}
+
+.card:hover img{
+  transform:scale(1.03);
+}
+
+/* =========================
+   KHUNG TRÍCH DẪN
+========================= */
+
+.box{
+  margin-top:20px;
+
+  background:#fefce8;
+
+  border-left:5px solid var(--accent);
+
+  padding:18px 20px;
+
+  border-radius:8px;
+
+  font-style:italic;
+
+  line-height:1.9;
+}
+
+/* =========================
+   THANH THÍCH - XEM
+========================= */
+
+.action-bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+
+  max-width:1200px;
+  margin:20px auto;
+  padding:0 20px;
+}
+
+.like-box button,
+.share-btn{
+  border:none;
+
+  background:var(--primary);
+
+  color:#fff;
+
+  padding:10px 16px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.like-box button:hover,
+.share-btn:hover{
+  opacity:.9;
+}
+
+.view-box{
+  background:#ecfeff;
+
+  border:1px solid #a5f3fc;
+
+  padding:10px 16px;
+
+  border-radius:8px;
+  
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  max-width:1200px;
+
+  margin:25px auto;
+
+  background:var(--primary);
+
+  color:#fff;
+
+  text-align:center;
+
+  padding:18px;
+
+  border-radius:10px;
+}
+
+/* =========================
+   NÚT LÊN ĐẦU
+========================= */
+
+#backToTop{
+  position:fixed;
+
+  bottom:20px;
+  right:20px;
+
+  width:50px;
+  height:50px;
+
+  border:none;
+  border-radius:50%;
+
+  background:var(--primary);
+  color:#fff;
+
+  font-size:20px;
+
+  display:none;
+
+  cursor:pointer;
+
+  z-index:9999;
+
+  box-shadow:
+  0 5px 15px rgba(0,0,0,.25);
+}
+
+#backToTop:hover{
+  transform:translateY(-3px);
+}
+
+/* =========================
+   NÚT QUAY LẠI
+========================= */
+
+.floating-back{
+  position:fixed;
+
+  top:20px;
+  right:20px;
+
+  width:48px;
+  height:48px;
+
+  border:none;
+  border-radius:50%;
+
+  background:var(--primary);
+
+  color:#fff;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  z-index:9999;
+
+  box-shadow:
+  0 5px 15px rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.floating-back:hover{
+  transform:translateY(-3px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  body{
+    background:#f5f7fa;
+  }
+
+  .container{
+    padding:12px;
+  }
+
+  .section{
+    padding:18px;
+    border-radius:10px;
+  }
+
+  h2{
+    font-size:1.25rem;
+  }
+
+  p{
+    font-size:1rem;
+    text-indent:1rem;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .floating-back,
+  #backToTop{
+    width:42px;
+    height:42px;
+    font-size:18px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../../index.html" class="logo">
+<img src="../../tai-nguyen/icons/CK.png" alt="Logo">
+Nơi cha yên nghỉ
+</a>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="header-nav" id="navMenu">
+<a href="#gioithieu">🌱 Giới thiệu</a>
+<a href="#hinhanh">🌱 Hình ảnh</a>
+<a href="#trian">🌱 Tri ân</a>
+<a href="#tuongniem">🌱 Tưởng niệm</a>
+</nav>
+
+</header>
+
+<div class="page-wrapper">
+
+<div class="action-bar">
+<div class="like-box">
+ <button id="likeBtn">👍 Thích: <span> <b id="likeCount">0</b></span></button>
+</div>
+
+ <div class="view-box">
+👁 Xem: <b id="viewCount">0</b>
+</div>
+</div>
+
+<div class="container">
+
+<div class="grid">
+<div class="card">
+<img src="../../tai-nguyen/anh-bai-viet/vuthanhtung1.jpg" alt="vuthanhtung1">
+</div>
+
+<div class="card">
+<img src="../../tai-nguyen/anh-bai-viet/vuthanhtung2.jpg" alt="vuthanhtung2">
+</div>
+</div>
+
+<div id="gioithieu" class="section">
+<h2><img src="../../tai-nguyen/anh-bai-viet/hoasen.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Câu chuyện về cuộc đời ông Vũ Thanh Tùng</h2>
+<p>
+<b>Trong dòng chảy của lịch sử quê hương Hải Phòng, nơi những vùng đất ven sông giàu truyền thống cách mạng đã hun đúc nên bao thế hệ con người kiên trung, cuộc đời ông Vũ Thanh Tùng là một minh chứng tiêu biểu cho phẩm chất của người đảng viên, người lính và người công dân mẫu mực.</b></p>
+<p>
+Ông Vũ Thanh Tùng sinh ngày 04 tháng 01 năm 1948 (năm Mậu Tý), tại thôn Phúc Nam, xã Lưu Kiếm, huyện Thủy Nguyên – một vùng quê giàu truyền thống cách mạng. Ngôi làng nơi ông lớn lên nằm bên dòng sông Móc (còn gọi là sông Lò Nồi), nối với sông Đá Bạch ở phía Bắc và sông Giá ở phía Nam – những dòng sông đã chứng kiến bao thăng trầm của quê hương. Sinh ra trong một gia đình nông dân nghèo, tuổi thơ của ông gắn liền với đồng ruộng, với những khó khăn nhưng cũng đầy tình người và tinh thần đoàn kết. Chính môi trường ấy đã sớm hình thành trong ông ý chí vươn lên, lòng yêu quê hương và tinh thần trách nhiệm với cộng đồng.
+</p>
+<p>
+Năm 1965, khi đất nước đang trong giai đoạn kháng chiến ác liệt, chàng thanh niên Vũ Thanh Tùng đã sớm tham gia lao động sản xuất tại quê nhà, giữ vai trò tổ phó tổ sản xuất. Nhưng với khát vọng cống hiến lớn hơn, ông nhanh chóng lên đường nhập ngũ.
+Từ tháng 8/1965, ông trở thành chiến sĩ trắc thủ trong đơn vị pháo binh. Với tinh thần cầu tiến, ông tiếp tục được đào tạo tại trường sĩ quan hậu cần, rồi đảm nhiệm vai trò giáo viên, trợ lý huấn luyện trong lĩnh vực quân khí. <br>
++ Năm 1971, ông hành quân vào chiến trường miền Nam – nơi gian khổ và ác liệt nhất. Trong những năm tháng ấy, ông không chỉ hoàn thành tốt nhiệm vụ chuyên môn mà còn giữ vững bản lĩnh chính trị, trở thành Đảng viên Đảng Cộng sản Việt Nam vào ngày 25/01/1973 – một dấu mốc thiêng liêng trong cuộc đời. <br>
++ Trong suốt quá trình công tác tại các đơn vị như BT52, F470, D505 thuộc tuyến vận tải chiến lược 559, ông luôn thể hiện tinh thần trách nhiệm cao, góp phần bảo đảm hậu cần, quân khí cho chiến trường.
+</p>
+<p>
+Sau ngày đất nước thống nhất năm 1975, ông chuyển sang công tác tại thị xã Uông Bí, tỉnh Quảng Ninh. Tại đây, ông đảm nhiệm nhiều vị trí quan trọng như Trưởng ban bảo vệ xí nghiệp đá, cán bộ Ban chỉ huy quân sự, chính trị viên đơn vị hậu cần… Dù trong môi trường nào, ông cũng luôn giữ vững phẩm chất của người lính Cụ Hồ: kỷ luật, tận tụy, công bằng và gần gũi quần chúng.
+</p>
+<p>
+Từ năm 1984, do sức khỏe giảm sút, ông nghỉ chế độ. Tuy nhiên, với tinh thần trách nhiệm, ông vẫn tiếp tục tham gia công tác tại địa phương: <br>
++ Giữ vai trò Chi ủy viên, Trưởng ban kiểm soát Hợp tác xã nông nghiệp Lưu Kỳ<br>
++ Tham gia Ban Thường vụ Hội Cựu chiến binh xã<br>
++ Là Chi hội trưởng, rồi Phó Chủ tịch Hội Cựu chiến binh xã Lưu Kỳ<br>
+Trong suốt quá trình này, ông luôn là hạt nhân đoàn kết, tích cực vận động hội viên phát huy truyền thống “Bộ đội Cụ Hồ”, góp phần xây dựng địa phương ngày càng phát triển.
+</p>
+<p>
+Trải qua hơn nửa thế kỷ đứng trong hàng ngũ của Đảng, ông vinh dự được trao tặng Huy hiệu 30, 40, 45 và 50 năm tuổi Đảng – sự ghi nhận cao quý cho quá trình rèn luyện và cống hiến không ngừng nghỉ. <br>
+<b>Ông cũng được Đảng, Nhà nước trao tặng nhiều phần thưởng cao quý:</b> <br>
++ Huân chương Kháng chiến hạng Ba (năm 1986, do đồng chí Trường Chinh ký) <br>
++ Huân chương Chiến sĩ vẻ vang hạng Nhì, hạng Ba (năm 1979, do đồng chí Tôn Đức Thắng ký) <br>
+Cùng nhiều giấy khen của các cấp chính quyền và tổ chức đoàn thể ghi nhận thành tích trong công tác và phong trào thi đua.
+</p>
+<p>
+Không chỉ là một cán bộ, một người lính tận tụy, trong gia đình, ông là người chồng mẫu mực, người cha hết lòng vì con cháu. Ông luôn quan tâm dạy dỗ, vun đắp nề nếp gia phong, truyền lại những giá trị đạo đức tốt đẹp cho thế hệ sau. <br>
++ Đối với dòng họ, ông là người con hiếu thảo, người cháu lễ phép, luôn tích cực tham gia các hoạt động chung. <br>
++ Đối với làng xóm, ông sống chân thành, cởi mở, đoàn kết, sẵn sàng giúp đỡ mọi người. <br>
++ Đối với xã hội, ông luôn đề cao tinh thần trách nhiệm, công bằng, dân chủ, góp phần xây dựng đời sống cộng đồng ngày càng tốt đẹp.
+</p>
+<p>
+Sau một cuộc đời cống hiến trọn vẹn, ông từ trần vào lúc 10 giờ 20 phút ngày 12 tháng 4 năm 2023 (tức ngày 22 tháng 2 năm Quý Mão), hưởng thọ 76 tuổi. Sự ra đi của ông để lại niềm tiếc thương sâu sắc đối với gia đình, đồng chí, đồng đội và nhân dân địa phương. Nhưng hơn hết, cuộc đời ông đã để lại một tấm gương sáng về đạo đức cách mạng, về tinh thần trách nhiệm và lòng trung thành với Đảng, với Tổ quốc, với Nhân dân.
+</p>
+<p>
+Cuộc đời ông Vũ Thanh Tùng là một hành trình bền bỉ của sự cống hiến: từ người nông dân nghèo vươn lên thành người lính, người cán bộ, người đảng viên ưu tú; từ chiến trường ác liệt đến đời sống hòa bình; từ tuổi trẻ nhiệt huyết đến tuổi già mẫu mực. Đó không chỉ là câu chuyện của một con người, mà còn là hình ảnh tiêu biểu của một thế hệ đã sống, chiến đấu và hy sinh vì độc lập, tự do của Tổ quốc, vì hạnh phúc của Nhân dân.
+</p>
+
+</div>
+
+
+<div id="hinhanh" class="section">
+<h2><img src="../../tai-nguyen/anh-bai-viet/hoasen.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> Một số hình ảnh</h2>
+  
+<div class="grid">
+<div class="card">
+<img src="../../tai-nguyen/anh-bai-viet/vuthanhtung3.jpg" alt="vuthanhtung3">
+</div>
+<div class="card">
+<img src="../../tai-nguyen/anh-bai-viet/vuthanhtung4.jpg" alt="vuthanhtung4">
+</div>
+</div>
+
+<div class="grid">
+<div class="card">
+<img src="../../tai-nguyen/anh-bai-viet/vuthanhtung5.jpg" alt="vuthanhtung5">
+</div>
+<div class="card">
+<img src="../../tai-nguyen/anh-bai-viet/vuthanhtung6.jpg" alt="vuthanhtung6">
+</div>
+</div>
+
+<div class="box">
+ Trần gian là cõi tạm - Đất mẹ là mãi mãi - Ai đến rồi cũng phải đi - Đi rồi để lại chút luyến thương!
+</div>
+
+</div>
+</div>
+
+<div  id="trian" class="section">
+<h2><img src="../../tai-nguyen/anh-bai-viet/hoasen.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> LỜI TRI ÂN</h2>
+<p>Trong cuộc đời mỗi con người, có những tình cảm thiêng liêng mà dù đi hết một đời cũng không thể đong đếm hết được. Nếu tình mẹ là dòng sữa ngọt ngào nuôi con lớn khôn từng ngày, thì tình cha lại là điểm tựa vững chãi, âm thầm mà lớn lao, luôn che chở cho con suốt cả cuộc đời. Với riêng con, cha không chỉ là người sinh thành, dưỡng dục mà còn là tấm gương sáng để con noi theo, là niềm tự hào lớn nhất trong cuộc đời mình.</p>
+
+<p>Cha của con – một người đàn ông bình dị nhưng đã sống một cuộc đời vô cùng đẹp đẽ và đáng kính. Sinh ra trong những năm tháng đất nước còn nhiều khó khăn, cha lớn lên từ gian khó, từ ruộng đồng quê hương nghèo nhưng giàu truyền thống cách mạng. Bằng nghị lực, ý chí và lòng yêu nước sâu sắc, cha đã sớm lựa chọn con đường cống hiến cho Tổ quốc, khoác lên mình màu áo lính, bước vào quân ngũ khi tuổi đời còn rất trẻ.</p>
+
+<p>Suốt những năm tháng chiến tranh và công tác, cha đã dành cả tuổi thanh xuân của mình để phục vụ đất nước, trải qua biết bao gian lao, thử thách nơi chiến trường, nơi đơn vị, nơi những nhiệm vụ mà Tổ quốc giao phó. Đó là những năm tháng mà con hiểu rằng cha đã đánh đổi bằng mồ hôi, nước mắt, bằng tuổi trẻ và cả sức khỏe của mình để góp phần giữ gìn nền độc lập, tự do cho dân tộc. Những huân chương, phần thưởng cao quý mà cha được Đảng, Nhà nước trao tặng không chỉ là niềm tự hào của riêng cha mà còn là niềm tự hào lớn lao của cả gia đình, con cháu mai sau.</p>
+
+<p>Nhưng điều khiến con kính phục và biết ơn cha hơn cả không chỉ nằm ở những thành tích hay sự cống hiến ngoài xã hội, mà chính là cách cha đã sống cho gia đình, cho những người thân yêu của mình. Trong gia đình, cha luôn là người chồng mẫu mực, người cha trách nhiệm, yêu thương vợ con bằng tất cả tấm lòng. Cha không bao giờ nói những lời hoa mỹ, nhưng từng việc cha làm, từng giọt mồ hôi cha đổ xuống đều là minh chứng cho tình yêu thương vô bờ dành cho gia đình.</p>
+
+<p>Cha đã dành cả cuộc đời mình để hy sinh, để lo cho các con được ăn học, trưởng thành, nên người. Cha dạy con không chỉ bằng lời nói mà bằng chính cuộc đời, nhân cách và cách sống của mình. Cha dạy con biết sống trung thực, ngay thẳng; biết yêu thương mọi người; biết sống trách nhiệm với bản thân, gia đình và xã hội; biết kiên cường vượt qua khó khăn và luôn giữ vững lòng tự trọng, danh dự của một con người.</p>
+
+<p>Đối với họ hàng, làng xóm và mọi người xung quanh, cha luôn sống chan hòa, nghĩa tình, chân thành và trách nhiệm. Ai từng tiếp xúc với cha đều kính trọng bởi đức tính khiêm nhường, trung thực và tấm lòng nhân hậu. Cha không chỉ là niềm tự hào của gia đình mà còn là tấm gương sáng trong cộng đồng, được mọi người yêu quý, kính trọng.</p>
+
+<p>Hôm nay, khi nhìn lại chặng đường cuộc đời của cha, con càng thấm thía hơn những hy sinh lặng thầm mà cha đã dành cho chúng con. Có những vất vả cha chưa từng kể, có những nỗi đau cha âm thầm chịu đựng, có những khó khăn cha một mình gánh vác chỉ để các con có được cuộc sống tốt đẹp hơn. Càng trưởng thành, con càng hiểu rằng trên đời này không có tình yêu nào mạnh mẽ, bền bỉ và bao dung như tình yêu của cha mẹ dành cho con cái.</p>
+
+Cha kính yêu!<br>
+<p>Con biết rằng dù có dùng bao nhiêu lời đẹp đẽ cũng không thể diễn tả hết lòng biết ơn sâu nặng mà con dành cho cha. Con chỉ mong rằng cha sẽ luôn hiện diện trong trái tim, trong ký ức và trong từng bước đường con đi như một nguồn động lực, một ánh sáng soi đường để con sống tốt hơn mỗi ngày.</p>
+
+<div class="box">
+Con cảm ơn cha vì đã cho con cuộc sống.<br>
+Cảm ơn cha vì đã dành cả đời để yêu thương, dạy dỗ và che chở cho con.<br>
+Cảm ơn cha vì đã là người cha tuyệt vời nhất trong cuộc đời này.<br>
+Với con, được làm con của cha chính là niềm hạnh phúc, niềm tự hào và may mắn lớn nhất cuộc đời.<br>
+Con mãi mãi yêu thương, kính trọng và biết ơn cha vô hạn.<br>
+</div>
+</div>
+
+<div id="tuongniem" class="section">
+<h2><img src="../../tai-nguyen/anh-bai-viet/hoasen.jpg" alt="" style="height:28px; vertical-align:middle; margin-left:0px;"> LỜI TƯỞNG NIỆM VÀ TRI ÂN
+</h2>
+Kính thưa anh linh của Cha kính yêu!<br>
+Kính thưa gia tiên nội ngoại, cùng toàn thể gia đình, họ hàng, con cháu!<br>
+
+<p>Hôm nay, trong giờ phút thiêng liêng của ngày tưởng niệm, khi cả gia đình sum họp trước anh linh của Cha, lòng con trào dâng biết bao cảm xúc nghẹn ngào, thương nhớ. Dẫu thời gian có trôi qua, dẫu năm tháng có lùi xa, thì hình bóng của Cha – người cha kính yêu, người trụ cột của gia đình – vẫn luôn hiện hữu trong trái tim con với niềm kính trọng, yêu thương và biết ơn vô hạn.</p>
+
+Cha kính yêu của chúng con!<br>
+<p>Cả cuộc đời Cha là một cuộc đời của sự hy sinh, tận tụy và cống hiến. Cha sinh ra trong những năm tháng quê hương, đất nước còn bộn bề khó khăn, lớn lên từ mảnh đất quê nghèo nhưng giàu truyền thống cách mạng. Từ tuổi trẻ, Cha đã mang trong mình ý chí kiên cường, nghị lực phi thường và lòng yêu nước sâu sắc, sẵn sàng cống hiến tuổi thanh xuân của mình cho Tổ quốc, cho Nhân dân.</p>
+
+<p>Cha đã đi qua những năm tháng chiến tranh gian khổ, đã trải qua biết bao khó khăn, hiểm nguy nơi chiến trường, nơi công tác, luôn tận tâm hoàn thành nhiệm vụ mà Đảng, Nhà nước và Nhân dân giao phó. Cuộc đời Cha là minh chứng cho khí chất của người chiến sĩ cách mạng trung kiên, người đảng viên mẫu mực, suốt đời sống và cống hiến vì lý tưởng cao đẹp.</p>
+
+<p>Nhưng đối với chúng con, điều thiêng liêng và cao quý nhất không chỉ là những chiến công, những thành tích hay những phần thưởng Cha đã đạt được, mà chính là tình yêu thương bao la, sự hy sinh thầm lặng Cha dành trọn cho gia đình. Cha là người chồng thủy chung, người cha mẫu mực, luôn hết lòng vì vợ con, vì mái ấm gia đình. Cả cuộc đời Cha tần tảo, hy sinh, chắt chiu từng chút một, dành hết tâm sức để nuôi dạy các con nên người, mong các con trưởng thành, sống tử tế và có ích cho xã hội.v
+
+<p>Cha chưa bao giờ nói nhiều lời yêu thương, nhưng tình yêu của Cha hiện hữu trong từng ánh mắt nghiêm nghị mà trìu mến, trong từng lời dạy bảo ân cần, trong từng việc làm lặng thầm mà sâu nặng nghĩa tình. Cha dạy chúng con biết sống ngay thẳng, trung thực, biết kính trên nhường dưới, biết yêu thương con người, biết sống có trách nhiệm với gia đình và xã hội. Những lời dạy ấy, những bài học ấy đã và sẽ mãi là hành trang quý giá theo chúng con suốt cuộc đời.</p>
+
+<p>Cha còn là người sống nghĩa tình với anh em, họ hàng, làng xóm; luôn chan hòa, cởi mở, chân thành và được mọi người kính trọng, yêu quý. Cuộc đời Cha thanh bạch, giản dị nhưng cao đẹp, là tấm gương sáng để con cháu noi theo.</p>
+
+<p>Ngày Cha rời xa cõi tạm, lòng chúng con đau đớn khôn nguôi. Mất Cha là mất đi một bầu trời yêu thương, mất đi chỗ dựa tinh thần lớn lao nhất của cuộc đời. Dẫu biết sinh tử là quy luật của tạo hóa, nhưng nỗi trống vắng khi không còn Cha bên cạnh vẫn là nỗi đau không gì bù đắp được. Những lúc vui buồn, những khi gặp khó khăn trong cuộc sống, chúng con lại nhớ Cha vô cùng, nhớ giọng nói, nhớ dáng hình, nhớ từng lời dạy bảo thân thương của Cha năm nào.</p>
+
+Cha kính yêu!<br>
+<p>Nếu có thể đánh đổi bất cứ điều gì để được một lần nữa nhìn thấy Cha, nghe Cha gọi một tiếng thân thương, được ngồi bên Cha như những ngày xưa cũ, thì chúng con cũng nguyện lòng. Nhưng giờ đây, Cha đã đi xa, chỉ còn lại trong tim chúng con là nỗi nhớ thương da diết cùng lòng biết ơn vô hạn.</p>
+
+<p>Hôm nay, trước anh linh của Cha, chúng con xin cúi đầu thành kính bày tỏ lòng tri ân sâu sắc nhất:</p>
+
+Cảm ơn Cha đã sinh thành, dưỡng dục chúng con nên người.<br>
+Cảm ơn Cha đã hy sinh cả cuộc đời vì gia đình, vì con cháu.<br>
+Cảm ơn Cha đã để lại cho chúng con một tấm gương sáng ngời về nhân cách, đạo đức và nghị lực sống.<br>
+
+<p>Chúng con nguyện sẽ luôn ghi nhớ công ơn trời biển của Cha, sống đoàn kết, yêu thương nhau, gìn giữ gia phong, tiếp nối những giá trị tốt đẹp mà Cha đã dày công vun đắp; sống sao cho xứng đáng với sự hy sinh, dạy dỗ và kỳ vọng của Cha lúc sinh thời.</p>
+
+Cha kính yêu!<br>
+<p>Dù Cha đã đi về cõi vĩnh hằng, nhưng đối với chúng con, Cha chưa bao giờ rời xa. Cha vẫn luôn sống mãi trong trái tim, trong ký ức và trong từng bước đường đời của mỗi người con, người cháu.</p>
+
+<p>Xin kính dâng lên Cha nén tâm nhang thơm, cùng tấm lòng thành kính, biết ơn và thương nhớ vô hạn của toàn thể gia đình, con cháu.</p>
+
+<div class="box">
+Cầu mong anh linh Cha nơi cõi vĩnh hằng được an yên, thanh thản.<br>
+Chúng con đời đời ghi nhớ công ơn sinh thành, dưỡng dục của Cha.<br>
+Cha mãi mãi sống trong trái tim chúng con!<br>
+</div>
+</div>
+
+<footer>
+NƠI CHA YÊN NGHỈ
+</footer>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button id="backToTop" title="Lên đầu trang">⬆</button>
+
+</div>
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống
+window.addEventListener("scroll", function(){
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+// Cuộn mượt lên đầu trang
+btn.addEventListener("click", function(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+/* ===============================
+   THÍCH TRANG
+   =============================== */
+const API = "https://script.google.com/macros/s/AKfycbxjfwu2JFjKwji5SPaPk8ZPxkL5p3kuzdEWyUazHr9DDBTpT3rbqpTs4ddUcbiYwB_2/exec";
+const likeBtn = document.getElementById("likeBtn");
+const likeCount = document.getElementById("likeCount");
+
+const pageName = "noichayennghi";   // tên trang
+
+function loadLike() {
+  fetch(API + "?action=get&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+    });
+}
+
+loadLike();
+
+likeBtn.addEventListener("click", function () {
+
+  if (localStorage.getItem("liked_" + pageName)) {
+    alert("Bạn đã đồng tình trước đó.");
+    return;
+  }
+
+  fetch(API + "?action=like&page=" + pageName)
+    .then(res => res.text())
+    .then(data => {
+      likeCount.innerText = data;
+      localStorage.setItem("liked_" + pageName, "true");
+    });
+});
+</script>
+
+<script>
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+const postId = "page_noichayennghi"; 
+const viewCount = document.getElementById("viewCount");
+
+async function updateViews(){
+  try{
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      const res = await fetch(VIEW_API + "?postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
+  }
+}
+
+updateViews();
+</script>
+
+<script>
+/* ===== MENU CHÍNH ===== */
+const menuBtn = document.querySelector(".menu-btn");
+const navMenu = document.getElementById("navMenu");
+const overlay = document.getElementById("menuOverlay");
+
+overlay.addEventListener("click", () => {
+  navMenu.classList.remove("open");
+  overlay.classList.remove("show");
+});
+
+/* ===== MENU CẤP 2 ===== */
+document.querySelectorAll(".nav-link.toggle").forEach(toggle => {
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault(); // không nhảy trang
+    const subMenu = this.nextElementSibling;
+    subMenu.classList.toggle("open");
+  });
+});
+</script>
+<button class="floating-back" onclick="history.back()">
+    ←
+</button>
+
+</body>
+</html>
