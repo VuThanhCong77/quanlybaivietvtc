@@ -4,7 +4,7 @@ async function taiBaiVietMoiNhat() {
 
         const response =
         await fetch(
-        "../../du-lieu/bai-viet.json"
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"
         );
 
         const danhSach =
