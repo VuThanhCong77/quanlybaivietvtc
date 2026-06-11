@@ -8,7 +8,7 @@ async function taiBaiViet(){
 
     try{
 
-        const res = await fetch("../du-lieu/chuyen-mon.json");
+        const res = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/chuyen-mon.json");
         const data = await res.json();
 
         danhSachGoc = data;
