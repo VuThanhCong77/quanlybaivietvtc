@@ -4,7 +4,7 @@
 
   "description": "Trang chia sẻ tri thức, giá trị sống và truyền cảm hứng tích cực.",
 
-  "start_url": "/quanlybaivietvtc/index.html",
+  "start_url": "https://vuthanhcong77.github.io/quanlybaivietvtc/index.html",
 
   "scope": "/quanlybaivietvtc/",
 
@@ -18,14 +18,14 @@
 
   "icons": [
     {
-      "src": "/tai-nguyen/icons/icon192.png",
+      "src": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
 
     {
-      "src": "/tai-nguyen/icons/icon512.png",
+      "src": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
