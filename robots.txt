@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap:
+https://vuthanhcong77.github.io/quanlybaivietvtc/sitemap.xml
