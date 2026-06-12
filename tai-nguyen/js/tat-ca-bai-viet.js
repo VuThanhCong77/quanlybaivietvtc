@@ -44,12 +44,14 @@ async function taiTatCaBaiViet() {
 
 });
 
-     danhSachBaiViet =
-    danhSachSapXep;
+danhSachBaiViet =
+danhSachSapXep;
 
-    hienThiTrang();
+khoiTaoPhanTrang();
 
-    capNhatThongKe();
+hienThiTrang();
+
+capNhatThongKe();
 
     }
 
@@ -181,4 +183,11 @@ function hienThiBaiViet(ds){
 
     ).join("");
 
+}
+
+console.log("Đã khởi tạo phân trang");
+
+function trangSau(){
+
+    console.log("Đã bấm nút Sau");
 }
