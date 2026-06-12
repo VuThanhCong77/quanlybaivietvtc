@@ -1,4 +1,199 @@
 [
+  {
+    "id": "cac-phuong-phap-ghi-nho-noi-tieng-tren-the-gioi",
+    "title": "Các phương pháp ghi nhớ nổi tiếng trên thế giới",
+    "desc": "Trong lịch sử giáo dục và khoa học nhận thức, nhiều phương pháp ghi nhớ đã được nghiên cứu, áp dụng và chứng minh hiệu quả. Những phương pháp này không chỉ giúp học sinh, sinh viên học tốt hơn mà còn được các nhà khoa học, diễn giả, chính trị gia, nhà quản lý sử dụng để ghi nhớ lượng thông tin lớn. Dưới đây là các phương pháp ghi nhớ nổi tiếng trên thế giới, được sử dụng rộng rãi và dễ áp dụng.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue1.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/cac-phuong-phap-ghi-nho-noi-tieng-tren-the-gioi.html",
+    "date": "30-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "chuong-trinh-ren-luyen-tri-nho-trong-30-ngay",
+    "title": "Chương trình rèn luyện trí nhớ trong 30 ngày",
+    "desc": "Trí nhớ không phải là năng lực cố định mà có thể rèn luyện thông qua các bài tập phù hợp. Nếu luyện tập đúng phương pháp trong khoảng 30 ngày, khả năng ghi nhớ, tập trung và tư duy sẽ cải thiện rõ rệt. Dưới đây là chương trình rèn luyện trí nhớ trong 30 ngày, được xây dựng theo nguyên tắc từ đơn giản đến phức tạp, mỗi ngày chỉ cần 15–20 phút.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue1.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/chuong-trinh-ren-luyen-tri-nho-trong-30-ngay.html",
+    "date": "30-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "guong-tri-tue",
+    "title": "Gương trí tuệ",
+    "desc": "Trong lịch sử nhân loại, nhiều nhà khoa học đã để lại dấu ấn sâu sắc bằng trí tuệ và những phát minh làm thay đổi thế giới. Những đóng góp của họ không chỉ mở rộng tri thức khoa học mà còn thúc đẩy sự phát triển của nền văn minh nhân loại.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue7.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/guong-tri-tue.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "nghe-thuat-buong-bo-nhung-dieu-khong-can-thiet",
+    "title": "Nghệ thuật buông bỏ những điều không cần thiết",
+    "desc": "Việc buông bỏ những suy nghĩ tiêu cực, những mâu thuẫn không đáng có hay những lo lắng quá mức sẽ giúp tâm trí trở nên thông suốt. Từ đó, mỗi người có thể tập trung năng lượng vào những mục tiêu tích cực và ý nghĩa hơn.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue5.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/nghe-thuat-buong-bo-nhung-dieu-khong-can-thiet.html",
+    "date": "08-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "nhan-thuc-chung-ve-tri-tue",
+    "title": "Nhận thức chung về trí tuệ",
+    "desc": "Phát triển trí tuệ của con người thông qua giáo dục, khoa học và văn hóa chính là con đường quan trọng để xây dựng một xã hội phát triển bền vững.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue1.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/nhan-thuc-chung-ve-tri-tue.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "phat-trien-tri-tue",
+    "title": "Phát triển trí tuệ",
+    "desc": "Phát triển trí tuệ là một quá trình tổng hợp, kết tinh giữa học tập suốt đời, tư duy khoa học, gắn kết lý luận với thực tiễn, tu dưỡng đạo đức và bảo đảm sức khỏe thể chất – tinh thần. Ở tầm vĩ mô, đây không chỉ là yêu cầu đối với mỗi cá nhân mà còn là nền tảng quan trọng cho sự phát triển bền vững của xã hội và quốc gia trong bối cảnh kinh tế tri thức, toàn cầu hóa và chuyển đổi mô hình phát triển",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue6.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/phat-trien-tri-tue.html",
+    "date": "04-01-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "phat-trien-tri-tue-ca-nhan",
+    "title": "Phát triển trí tuệ cá nhân",
+    "desc": "Phát triển trí tuệ không phải là quá trình diễn ra trong một thời gian ngắn mà là kết quả của những thói quen tích cực được duy trì lâu dài.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue8.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/phat-trien-tri-tue-ca-nhan.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "quy-trinh-ren-luyen-tri-nho-tu-don-gian-den-phuc-tap",
+    "title": "Quy trình rèn luyện trí nhớ từ đơn giản đến phức tạp",
+    "desc": "Trí nhớ không phải là khả năng cố định mà có thể rèn luyện và cải thiện theo thời gian. Bộ não cũng giống như cơ bắp, càng luyện tập đúng cách thì càng hoạt động hiệu quả. Việc rèn luyện trí nhớ không cần phương pháp quá phức tạp, mà quan trọng là thực hiện theo một quy trình từ dễ đến khó, từ đơn giản đến nâng cao.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue1.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/quy-trinh-ren-luyen-tri-nho-tu-don-gian-den-phuc-tap.html",
+    "date": "30-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tri-thuc-va-hoc-tap",
+    "title": "Tri thức và học tập",
+    "desc": "Trong xã hội hiện đại, tri thức phát triển với tốc độ rất nhanh. Những kiến thức hôm nay có thể trở nên lạc hậu trong một thời gian ngắn. Vì vậy, học tập không còn là hoạt động chỉ diễn ra trong nhà trường mà trở thành quá trình suốt đời của mỗi con người.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue2.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tri-thuc-va-hoc-tap.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tri-tue-cam-xuc",
+    "title": "Trí tuệ cảm xúc",
+    "desc": "Bên cạnh trí tuệ lý trí, con người còn sở hữu một dạng trí tuệ khác có vai trò rất quan trọng trong cuộc sống, đó là trí tuệ cảm xúc.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue4.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tri-tue-cam-xuc.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tri-tue-con-nguoi-nen-tang-cua-su-phat-trien-ca-nhan-va-xa-hoi",
+    "title": "Trí tuệ con người: nền tảng của sự phát triển cá nhân và xã hội",
+    "desc": "Trí tuệ là tài sản quý giá nhất của con người và là nguồn lực quan trọng nhất của sự phát triển xã hội. Trong lịch sử nhân loại, mọi bước tiến của nền văn minh đều gắn liền với sự phát triển của trí tuệ.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue1.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tri-tue-con-nguoi-nen-tang-cua-su-phat-trien-ca-nhan-va-xa-hoi.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tri-tue-nen-tang-cua-phat-trien-con-nguoi-va-xa-hoi",
+    "title": "Trí tuệ, nền tảng của phát triển con người và xã hội",
+    "desc": "Trí tuệ là sự kết tinh của tri thức, tư duy khoa học, kinh nghiệm thực tiễn và phẩm chất đạo đức. Trí tuệ giúp con người sống đúng, nghĩ đúng, làm đúng và cống hiến có trách nhiệm cho xã hội. Trong bối cảnh đổi mới và hội nhập hiện nay, việc bồi dưỡng và phát huy trí tuệ của mỗi cá nhân và cả cộng đồng chính là nền tảng của tiến bộ, là động lực quan trọng thúc đẩy sự phát triển nhanh và bền vững của đất nước.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tri-tue-nen-tang-cua-phat-trien-con-nguoi-va-xa-hoi.html",
+    "date": "04-01-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tri-tue-trong-lanh-dao-va-quan-ly",
+    "title": "Trí tuệ trong lãnh đạo và quản lý",
+    "desc": "Trong mọi tổ chức và xã hội, vai trò của người lãnh đạo có ý nghĩa quyết định đối với sự phát triển. Một người lãnh đạo giỏi không chỉ cần phẩm chất đạo đức và tinh thần trách nhiệm mà còn phải có trí tuệ lãnh đạo.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue5.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tri-tue-trong-lanh-dao-va-quan-ly.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tri-tue-va-cong-nghe",
+    "title": "Trí tuệ và công nghệ",
+    "desc": "Sự phát triển của công nghệ trong những thập niên gần đây đã đưa nhân loại bước vào kỷ nguyên của trí tuệ nhân tạo (AI)...",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue6.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tri-tue-va-cong-nghe.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tu-duy-va-sang-tao",
+    "title": "Tư duy và sáng tạo",
+    "desc": "Tư duy phản biện là khả năng phân tích, đánh giá và kiểm chứng thông tin một cách khách quan, logic trước khi chấp nhận hoặc đưa ra quyết định. Đây không phải là sự phủ nhận mọi vấn đề, mà là quá trình suy nghĩ độc lập và có cơ sở khoa học.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tritue3.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tu-duy-va-sang-tao.html",
+    "date": "18-03-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
 {
   "id": "du-thao-de-an-sap-xep-to-chuc-lai-to-dan-pho-tren-dia-ban-phuong-luu-kiem-nam-2026",
   "title": "Dự thảo Đề án Sắp xếp, tổ chức lại tổ dân phố trên địa bàn phường Lưu Kiếm năm 2026",
