@@ -1,6 +1,6 @@
 let trangHienTai = 1;
 
-const soBaiMoiTrang = 8;
+const soBaiMoiTrang = 18;
 
 function hienThiTrang() {
 
