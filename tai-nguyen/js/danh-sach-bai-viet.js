@@ -70,10 +70,7 @@ async function taiBaiViet(){
 
 function capNhatGiaoDien(data){
 
-    const tongSo =
-    document.getElementById(
-    "tongSo"
-    );
+ capNhatThongKe(data);
 
     if(tongSo){
 
@@ -175,3 +172,68 @@ function timKiem(){
 }
 
 taiBaiViet();
+
+function capNhatThongKe(data){
+
+    const tongSo =
+    document.getElementById(
+    "tongSo"
+    );
+
+    const tongChuyenMuc =
+    document.getElementById(
+    "tongChuyenMuc"
+    );
+
+    const tongLuotDoc =
+    document.getElementById(
+    "tongLuotDoc"
+    );
+
+    if(tongSo){
+
+        tongSo.textContent =
+        data.length;
+
+    }
+
+    if(tongChuyenMuc){
+
+        const soChuyenMuc =
+
+        new Set(
+
+            data.flatMap(
+            bv => bv.category || []
+            )
+
+        ).size;
+
+        tongChuyenMuc.textContent =
+        soChuyenMuc;
+
+    }
+
+    if(tongLuotDoc){
+
+        const luotDoc =
+
+        data.reduce(
+
+            (tong, bv) =>
+
+            tong +
+            (bv.views || 0),
+
+            0
+
+        );
+
+        tongLuotDoc.textContent =
+        luotDoc.toLocaleString(
+        "vi-VN"
+        );
+
+    }
+
+}
