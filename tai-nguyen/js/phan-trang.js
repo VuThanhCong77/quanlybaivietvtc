@@ -66,7 +66,6 @@ function trangTruoc(){
 
 }
 
-console.log(danhSachBaiViet.length);
 
 function trangSau(){
 
@@ -91,8 +90,6 @@ function trangSau(){
 }
 
 function khoiTaoPhanTrang(){
-
-    console.log("Khoi tao phan trang");
 
     const nutTruoc =
     document.getElementById(
