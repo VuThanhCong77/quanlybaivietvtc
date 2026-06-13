@@ -218,3 +218,5 @@ function toggleChuyenMuc(){
     );
 
 }
+
+console.log("So bai viet:", danhSachBaiViet.length);
