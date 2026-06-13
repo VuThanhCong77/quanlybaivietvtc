@@ -189,3 +189,127 @@ body{
     }
 
 }
+
+/* CHUYÊN MỤC */
+
+.chuyen-muc{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    margin:50px 0;
+
+}
+
+.chuyen-muc a{
+
+    text-decoration:none;
+
+    padding:12px 18px;
+
+    background:#fff;
+
+    border-radius:999px;
+
+    color:#334155;
+
+}
+
+.chuyen-muc .active{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+/* THỐNG KÊ */
+
+.thong-ke{
+
+    max-width:1200px;
+
+    margin:10px auto;
+
+    padding:0 10px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:10px;
+
+}
+
+.thong-ke div{
+
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 2px 8px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.thong-ke div:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.thong-ke h3{
+
+    margin:0;
+
+    font-size:28px;
+
+    color:#1e40af;
+
+    font-weight:700;
+
+}
+
+.thong-ke p{
+
+    margin-top:8px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+.nut-chuyen-muc{
+
+    display:none;
+
+}
+
+@media (max-width:768px){
+
+    .chuyen-muc{
+
+        display:none;
+
+    }
+
+    .nut-chuyen-muc{
+
+        display:flex;
+
+    }
+
+}
