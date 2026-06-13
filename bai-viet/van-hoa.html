@@ -1,249 +1,55 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Văn hóa | Vũ Thành Công</title>
-
-<meta
-name="description"
-content="Chia sẻ tri thức, giá trị sống và truyền cảm hứng tích cực.">
 
 <link rel="icon"
 href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
 <link rel="icon"
 href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
 
+
 <!-- =====================================================
 MAIN CSS
 ===================================================== -->
 
-<link
-rel="stylesheet"
-href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/danh-sach-bai-viet.css">
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/dieu-huong.css">
 
 </head>
 
-<body 
-data-category="Văn hóa"
-data-page="chuyen-muc">
+<body data-category="Văn hóa">
 
 <!-- =====================================================
 DAU TRANG
 ===================================================== -->
 
-<header>
+<header id="menu"></header>
 
-<button
-class="nut-chuyen-muc"
-onclick="toggleChuyenMuc()">
 
- <h1 class="logo">
-
-            <img
-            src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/CK.png"
-            alt="Logo">
-
-	Chuyên mục
-
-    </h1>
-
-</button>
-
-<div
-class="danh-sach-chuyen-muc"
-id="danhSachChuyenMuc">
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html">
-    Trang chủ
-    </a>
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/thu-vien-bai-viet.html">
-    Tất cả
-    </a>
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc.html">
-    Tin tức
-    </a>
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chinh-tri.html">
-    Chính trị
-    </a>
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/van-hoa.html">
-    Văn hóa
-    </a>
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/suc-khoe.html">
-    Sức khỏe
-    </a>
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tri-tue.html">
-    Trí tuệ
-    </a>
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hanh-phuc.html">
-    Hạnh phúc
-    </a>
-
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hoi-ky.html">
-    Hồi ký
-    </a>
-
+<!-- HERO -->
+<div class="hero-bai-viet">
+    <h1>CHUYÊN MỤC VĂN HÓA</h1>
 </div>
 
-</header>
-	
-<!-- =====================================================
-NOI DUNG CHINH
-===================================================== -->
-
-<main class="trang-bai-viet">
-
-    <!-- HERO -->
-
-    <section class="hero-bai-viet">
-
-        <h1>Thư viện bài viết</h1>
-
-        <p>
-
-            Nơi lưu giữ những bài viết,
-            nghiên cứu, trải nghiệm và
-            góc nhìn về cuộc sống.
-
-        </p>
-
+<!-- TIM KIEM -->
 <div class="tim-kiem">
-
-    <input
-    type="text"
-    id="oTimKiem"
-    placeholder="Tìm bài viết...">
-
-    <button>
-
-        🔍
-
-    </button>
-
+    <input id="inputSearch" placeholder="Tìm kiếm bài viết...">
+    <button onclick="timKiem()">Tim</button>
 </div>
 
-    </section>
-
-    <!-- CHUYÊN MỤC -->
-
-<section class="chuyen-muc">
-
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/thu-vien-bai-viet.html" class="active">
-        Tất cả
-        </a>
-
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc.html" class="active">
-        Tin tức
-        </a>
-
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chinh-tri.html" class="active">
-        Chính trị
-        </a>
-
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/van-hoa.html">
-        Văn hóa
-        </a>
-
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/suc-khoe.html" class="active">
-        Sức khỏe
-        </a>
-
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tri-tue.html" class="active">
-        Trí tuệ
-        </a>
-
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hanh-phuc.html" class="active">
-        Hạnh phúc
-        </a>
-
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hoi-ky.html" class="active">
-        Hồi ký
-        </a>
-
-    </section>
-
-    
-    <!-- DANH SÁCH -->
-
-<section class="danh-sach-bai-viet">
-
-    <h2>Văn hóa</h2>
-
-   <div
-id="bai-viet-container"
-class="luoi-bai-viet">
+<!-- THONG KE -->
+<div class="thong-ke">
+    Tổng số bài viết: <b id="tongSo">0</b>
 </div>
 
-</section>
-
-    <!-- PHÂN TRANG -->
-
-<section class="phan-trang">
-
-    <button id="nut-truoc">
-
-        ← Trước
-
-    </button>
-
-    <span id="thong-tin-trang">
-
-        Trang 1 / 1
-
-    </span>
-
-    <button id="nut-sau">
-
-        Sau →
-
-    </button>
-
-</section>
-
-    <!-- THỐNG KÊ -->
-
-<section class="thong-ke">
-
-    <div>
-
-        <h3 id="tong-so-bai-viet">0</h3>
-
-        <p>Bài viết</p>
-
-    </div>
-
-    <div>
-
-        <h3 id="tong-so-chuyen-muc">0</h3>
-
-        <p>Chuyên mục</p>
-
-    </div>
-
-    <div>
-
-        <h3 id="tong-luot-doc">0</h3>
-
-        <p>Lượt đọc</p>
-
-    </div>
-
-</section>
-
-</main>
+<!-- CONTAINER -->
+<div class="container">
+    <div id="danhSach" class="danh-sach-bai-viet"></div>
+</div>
 
 <!-- =====================================================
 NÚT TRỞ VỀ
@@ -275,17 +81,51 @@ behavior:'smooth'
 
 </button>
 
+ <script>
 
-<!-- =====================================================
-JS
-===================================================== -->
+async function loadComponent(id, file){
 
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/bai-viet-moi-nhat.js"></script>
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/chuyen-muc.js"></script>
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/tim-kiem.js"></script>
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/phan-trang.js"></script>
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
+    try{
+
+        const response = await fetch(file);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Lỗi tải component: " + file
+            );
+
+        }
+
+        const html = await response.text();
+
+        document.getElementById(id)
+        .innerHTML = html;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    loadComponent(
+        "menu",
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html"
+    );
+
+}
+);
+
+</script>
+
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/danh-sach-bai-viet.js"></script>
 
 </body>
-
 </html>
