@@ -66,6 +66,8 @@ function trangTruoc(){
 
 }
 
+console.log(danhSachBaiViet.length);
+
 function trangSau(){
 
     const tongTrang =
