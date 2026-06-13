@@ -1,4 +1,5 @@
 let danhSachGoc = [];
+let danhSachDangHienThi = [];
 
 /* =====================================================
    TAI DU LIEU JSON
@@ -8,15 +9,57 @@ async function taiBaiViet(){
 
     try{
 
-        const res = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json");
-        const data = await res.json();
+        const res = await fetch(
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"
+        );
 
-        danhSachGoc = data;
+        const data =
+        await res.json();
 
-        capNhatGiaoDien(data);
+        const chuyenMuc =
+        document.body.dataset.category;
 
-    }catch(err){
-        console.log("Loi tai du lieu:", err);
+        if(chuyenMuc){
+
+            danhSachGoc =
+
+            data.filter(
+            bv =>
+
+                bv.category &&
+
+                bv.category.some(
+                category =>
+
+                    category.toLowerCase() ===
+                    chuyenMuc.toLowerCase()
+
+                )
+
+            );
+
+        }else{
+
+            danhSachGoc = data;
+
+        }
+
+        danhSachDangHienThi =
+        [...danhSachGoc];
+
+        capNhatGiaoDien(
+        danhSachDangHienThi
+        );
+
+    }
+
+    catch(err){
+
+        console.log(
+        "Loi tai du lieu:",
+        err
+        );
+
     }
 
 }
@@ -27,31 +70,65 @@ async function taiBaiViet(){
 
 function capNhatGiaoDien(data){
 
-    document.getElementById("tongSo").innerText = data.length;
+    const tongSo =
+    document.getElementById(
+    "tongSo"
+    );
 
-    const box = document.getElementById("danhSach");
+    if(tongSo){
 
-    box.innerHTML = data.map(bv => `
+        tongSo.innerText =
+        data.length;
+
+    }
+
+    const box =
+    document.getElementById(
+    "danhSach"
+    );
+
+    if(!box) return;
+
+    box.innerHTML =
+
+    data.map(
+    bv => `
 
         <div class="bai-viet-item">
 
-            <img src="${bv.image}" alt="${bv.title}">
+            <img
+            src="${bv.image}"
+            alt="${bv.title}">
 
             <div class="bai-viet-noi-dung">
 
-                <div class="bai-viet-tieu-de">${bv.title}</div>
-                <div class="bai-viet-mo-ta">${bv.desc}</div>
-                <div class="bai-viet-ngay">Ngay dang: ${bv.date}</div>
+                <div class="bai-viet-tieu-de">
+                    ${bv.title}
+                </div>
 
-<a class="bai-viet-xem-them" href="${bv.url}">
-    Xem chi tiet →
-</a>
+                <div class="bai-viet-mo-ta">
+                    ${bv.desc}
+                </div>
+
+                <div class="bai-viet-ngay">
+                    Ngay dang: ${bv.date}
+                </div>
+
+                <a
+                class="bai-viet-xem-them"
+                href="${bv.url}">
+
+                    Xem chi tiet →
+
+                </a>
 
             </div>
 
         </div>
 
-    `).join("");
+    `
+
+    ).join("");
 
 }
 
@@ -61,14 +138,39 @@ function capNhatGiaoDien(data){
 
 function timKiem(){
 
-    const keyword = document.getElementById("inputSearch").value.toLowerCase();
+    const keyword =
 
-    const ketQua = danhSachGoc.filter(bv =>
-        bv.title.toLowerCase().includes(keyword) ||
-        bv.desc.toLowerCase().includes(keyword)
+    document
+    .getElementById(
+    "inputSearch"
+    )
+    .value
+    .toLowerCase()
+    .trim();
+
+    const ketQua =
+
+    danhSachGoc.filter(
+    bv =>
+
+        bv.title
+        .toLowerCase()
+        .includes(keyword)
+
+        ||
+
+        bv.desc
+        .toLowerCase()
+        .includes(keyword)
+
     );
 
-    capNhatGiaoDien(ketQua);
+    danhSachDangHienThi =
+    ketQua;
+
+    capNhatGiaoDien(
+    ketQua
+    );
 
 }
 
