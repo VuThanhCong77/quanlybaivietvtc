@@ -121,17 +121,95 @@ NÚT
 
 }
 
- .button{
+/* =========================================================
+NÚT ĐỒNG TÌNH
+========================================================= */
+
+.khoi-thich{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin:20px 0;
+
+}
+
+#likeBtn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:12px 24px;
 
     border:none;
 
-    padding:12px 20px;
+    border-radius:999px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+    box-shadow:
+    0 4px 12px
+    rgba(37,99,235,.25);
+
+}
+
+#likeBtn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 8px 20px
+    rgba(37,99,235,.35);
+
+}
+
+#likeBtn:active{
+
+    transform:scale(.97);
+
+}
+
+#likeCount{
+
+    min-width:50px;
+
+    padding:10px 16px;
 
     border-radius:999px;
 
-    background:#2462e8;
+    background:#f3f4f6;
 
-    color:#fff;
+    color:#111827;
+
+    font-weight:700;
+
+    text-align:center;
+
+    box-shadow:
+    0 2px 6px
+    rgba(0,0,0,.08);
 
 }
 
