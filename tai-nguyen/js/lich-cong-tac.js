@@ -61,10 +61,10 @@ function render(){
         const thu = tg.toLocaleDateString("vi-VN",{weekday:"long"});
 
 let row = `<tr class="${cls}">
-    <td>${thu}</td>
-    <td>${tg.toLocaleString("vi-VN")}</td>
-    <td>${escapeHTML(i.v)}</td>
-    <td>${trangThai}</td>
+    <td data-label="Thứ">${thu}</td>
+    <td data-label="Ngày giờ">${tg.toLocaleString("vi-VN")}</td>
+    <td data-label="Nội dung">${escapeHTML(i.v)}</td>
+    <td data-label="Trạng thái">${trangThai}</td>
 </tr>`;
 
         body.innerHTML += row;
