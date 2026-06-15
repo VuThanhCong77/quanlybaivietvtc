@@ -28,13 +28,6 @@ DAU TRANG
 
 <header id="menu"></header>
 
-
-<!-- TIM KIEM -->
-<div class="tim-kiem">
-    <input id="inputSearch" placeholder="Tìm kiếm bài viết...">
-    <button onclick="timKiem()">Tim</button>
-</div>
-
 <!-- THONG KE -->
 <section class="thong-ke">
 
@@ -68,45 +61,44 @@ DAU TRANG
 
 </section>
 
-    <!-- CHUYÊN MỤC -->
+        <!-- CHUYÊN MỤC -->
 
-<section class="chuyen-muc">
+<nav class="chuyen-muc">
 
-       <a href="danh-sach-bai-viet.html" class="active">
-        Tất cả
-        </a>
+    <a href="danh-sach-bai-viet.html" class="active">Tất cả</a>
+    <a href="tin-tuc.html">Tin tức</a>
+    
+    <div class="dropdown">
 
-        <a href="tin-tuc.html" class="active">
-        Tin tức
-        </a>
+<button class="dropdown-btn">
+    ☰ Chuyên mục
+</button>
 
-        <a href="chinh-tri.html" class="active">
-        Chính trị
-        </a>
+        <div class="dropdown-menu">
 
-        <a href="van-hoa.html" class="active">
-        Văn hóa
-        </a>
+            <a href="chinh-tri.html">Chính trị</a>
+            <a href="van-hoa.html">Văn hóa</a>
+            <a href="suc-khoe.html">Sức khỏe</a>    
+            <a href="tri-tue.html">Trí tuệ </a>
+            <a href="hanh-phuc.html">Hạnh phúc</a>
+            <a href="hoi-ky.html">Hồi ký</a>
+            <a href="kinh-te.html">Kinh tế (Đang cập nhật)</a>
+            <a href="phap-luat.html">Pháp luật (Đang cập nhật)</a>
+            <a href="du-lich.html">Du lịch (Đang cập nhật)</a>
+            <a href="the-thao.html">Thể thao (Đang cập nhật)</a>
 
-        <a href="suc-khoe.html" class="active">
-        Sức khỏe
-        </a>
+        </div>
 
-        <a href="tri-tue.html" class="active">
-        Trí tuệ
-        </a>
+    </div>
 
-        <a href="hanh-phuc.html">
-        Hạnh phúc
-        </a>
+</nav>
 
-        <a href="hoi-ky.html" class="active">
-        Hồi ký
-        </a>
-
-    </section>
-
-
+<!-- TIM KIEM -->
+<div class="tim-kiem">
+    <input id="inputSearch" placeholder="Tìm kiếm bài viết...">
+    <button onclick="timKiem()">Tim</button>
+</div>
+    
 <!-- CONTAINER -->
 <div class="container">
     <div id="danhSach" class="danh-sach-bai-viet"></div>
