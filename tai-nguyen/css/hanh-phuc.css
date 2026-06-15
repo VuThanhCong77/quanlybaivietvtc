@@ -1,0 +1,159 @@
+/* =====================================================
+CHỈ SỐ HẠNH PHÚC - GIÁ TRỊ CUỘC SỐNG
+===================================================== */
+
+#chisohanhphuc,
+#giatri{
+    padding:40px 20px;
+}
+
+/* Tiêu đề */
+
+.section-title{
+    text-align:center;
+    font-size:2rem;
+    margin-bottom:35px;
+    color:#1b5e20;
+    position:relative;
+    font-weight:700;
+}
+
+.section-title::after{
+    content:"";
+    width:90px;
+    height:4px;
+    background:#4caf50;
+    display:block;
+    margin:12px auto 0;
+    border-radius:10px;
+}
+
+/* Grid */
+
+.index-grid,
+.values{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+    margin-bottom:25px;
+}
+
+/* Card */
+
+.index-box,
+.value{
+    background:#fff;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    transition:all .35s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.index-box:hover,
+.value:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Dải màu trên đầu */
+
+.index-box::before,
+.value::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(90deg,#43a047,#81c784);
+}
+
+/* Số thứ tự */
+
+.index-number{
+    width:55px;
+    height:55px;
+    background:linear-gradient(135deg,#43a047,#66bb6a);
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.2rem;
+    font-weight:bold;
+    margin-bottom:18px;
+    box-shadow:0 5px 15px rgba(67,160,71,0.35);
+}
+
+/* Tiêu đề trong card */
+
+.index-box h3,
+.value h3{
+    color:#1b5e20;
+    font-size:1.25rem;
+    margin-bottom:18px;
+    line-height:1.5;
+}
+
+/* Nội dung */
+
+.index-box p,
+.value p{
+    line-height:1.8;
+    color:#444;
+    text-align:justify;
+    margin-bottom:15px;
+}
+
+/* Link đọc tiếp */
+
+.index-box a{
+    display:inline-block;
+    margin-top:12px;
+    padding:10px 20px;
+    background:#43a047;
+    color:#fff;
+    text-decoration:none;
+    border-radius:30px;
+    transition:all .3s;
+    font-weight:600;
+}
+
+.index-box a:hover{
+    background:#2e7d32;
+    transform:translateY(-2px);
+}
+
+/* Danh sách có dấu chấm */
+
+.value{
+    white-space:pre-line;
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+    .section-title{
+        font-size:1.6rem;
+    }
+
+    .index-box,
+    .value{
+        padding:22px;
+    }
+
+    .index-box h3,
+    .value h3{
+        font-size:1.1rem;
+    }
+}
+
+#chisohanhphuc,
+#giatri{
+    background:#f5faf6;
+    border-radius:25px;
+    margin-bottom:40px;
+}
