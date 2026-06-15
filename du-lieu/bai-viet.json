@@ -1,5 +1,278 @@
 [
   {
+    "id": "30-phut-van-dong-moi-ngay-thoi-quen-nho-loi-ich-lon-cho-suc-khoe",
+    "title": "30 phút vận động mỗi ngày – Thói quen nhỏ, lợi ích lớn cho sức khỏe",
+    "desc": "Sức khỏe không phải là điều tự nhiên có được mãi mãi, mà cần được chăm sóc và rèn luyện thường xuyên. 30 phút vận động mỗi ngày chính là một khoản “đầu tư” đơn giản nhưng vô cùng quý giá cho tương lai của mỗi người.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/30-phut-van-dong-moi-ngay-thoi-quen-nho-loi-ich-lon-cho-suc-khoe.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "biet-on-chia-khoa-cua-su-binh-an",
+    "title": "Biết ơn – chìa khóa của sự bình an",
+    "desc": "Sống với lòng biết ơn chính là một trong những con đường đơn giản nhưng hiệu quả để nuôi dưỡng sức khỏe tinh thần.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/biet-on-chia-khoa-cua-su-binh-an.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "bua-an-can-bang-nen-tang-suc-khoe-cho-moi-gia-dinh",
+    "title": "BỮA ĂN CÂN BẰNG – NỀN TẢNG SỨC KHỎE CHO MỖI GIA ĐÌNH",
+    "desc": "Một bữa cơm đủ chất, cân bằng và đầm ấm – đó chính là điểm khởi đầu đơn giản nhưng bền vững của một cuộc sống khỏe mạnh.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/bua-an-can-bang-nen-tang-suc-khoe-cho-moi-gia-dinh.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "can-bang-giua-cong-viec-va-nghi-ngoi-chia-khoa-cua-cuoc-song-hieu-qua",
+    "title": "CÂN BẰNG GIỮA CÔNG VIỆC VÀ NGHỈ NGƠI – CHÌA KHÓA CỦA CUỘC SỐNG HIỆU QUẢ",
+    "desc": "Có thể nói, trong xã hội hiện đại, người thành công không chỉ là người làm việc nhiều nhất, mà là người biết làm việc hiệu quả và sống một cuộc sống hài hòa. Cân bằng giữa công việc và nghỉ ngơi chính là nghệ thuật sống thông minh, giúp mỗi người duy trì sức khỏe, giữ vững tinh thần và phát triển bền vững trong cả sự nghiệp lẫn cuộc sống.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/can-bang-giua-cong-viec-va-nghi-ngoi-chia-khoa-cua-cuoc-song-hieu-qua.html",
+    "date": "07-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "chu-dong-bao-ve-suc-khoe-trong-xa-hoi-hien-dai",
+    "title": "CHỦ ĐỘNG BẢO VỆ SỨC KHỎE TRONG XÃ HỘI HIỆN ĐẠI",
+    "desc": "Có thể nói, chủ động bảo vệ sức khỏe chính là đầu tư cho tương lai. Khi mỗi người biết trân trọng cơ thể, xây dựng lối sống khoa học và giữ gìn tinh thần tích cực, chúng ta không chỉ nâng cao chất lượng cuộc sống của bản thân mà còn góp phần xây dựng một cộng đồng khỏe mạnh, văn minh và phát triển bền vững.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/chu-dong-bao-ve-suc-khoe-trong-xa-hoi-hien-dai.html",
+    "date": "07-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "danh-thoi-gian-cho-ban-than",
+    "title": "Dành thời gian cho bản thân",
+    "desc": "Yêu thương và quan tâm đến bản thân chính là nền tảng để xây dựng một cuộc sống hài hòa và hạnh phúc.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/danh-thoi-gian-cho-ban-than.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "di-bo-phuong-phap-tap-luyen-don-gian-hieu-qua-cho-moi-nguoi",
+    "title": "Đi bộ – phương pháp tập luyện đơn giản, hiệu quả cho mọi người",
+    "desc": "Trong điều kiện cuộc sống hiện đại, khi nhiều người ít có thời gian cho hoạt động thể chất, đi bộ chính là phương pháp rèn luyện đơn giản, thiết thực và bền vững. Những bước đi nhỏ mỗi ngày sẽ tạo nên nền tảng sức khỏe vững chắc cho tương lai.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/di-bo-phuong-phap-tap-luyen-don-gian-hieu-qua-cho-moi-nguoi.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "kham-suc-khoe-dinh-ky",
+    "title": "KHÁM SỨC KHỎE ĐỊNH KỲ",
+    "desc": "Sức khỏe là nền tảng của chất lượng cuộc sống, của lao động và cống hiến. Vì vậy, mỗi người hãy hình thành thói quen chủ động kiểm tra sức khỏe định kỳ, coi đó như một phần quan trọng của lối sống khoa học và có trách nhiệm với bản thân, gia đình.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/kham-suc-khoe-dinh-ky.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "loi-ich-cua-the-duc-the-thao-doi-voi-suc-khoe-va-cuoc-song",
+    "title": "Lợi ích của thể dục thể thao đối với sức khỏe và cuộc sống",
+    "desc": "Để phát huy những lợi ích đó, mỗi người cần chủ động lựa chọn cho mình một hình thức vận động phù hợp như đi bộ, chạy bộ, đạp xe, tập thể dục buổi sáng hoặc tham gia các môn thể thao yêu thích. Duy trì thói quen luyện tập đều đặn mỗi ngày sẽ tạo nên nền tảng sức khỏe lâu dài.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "/bai-viet/tong-hop/loi-ich-cua-the-duc-the-thao-doi-voi-suc-khoe-va-cuoc-song.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "ngu-du-giac-va-vai-tro-doi-voi-suc-khoe",
+    "title": "Ngủ đủ giấc và vai trò đối với sức khỏe",
+    "desc": "Để có giấc ngủ chất lượng, mỗi người cần hình thành thói quen sinh hoạt khoa học: duy trì thời gian ngủ và thức dậy tương đối cố định, hạn chế sử dụng thiết bị điện tử trước khi ngủ, tránh ăn quá no hoặc sử dụng chất kích thích vào buổi tối, đồng thời tạo môi trường ngủ yên tĩnh và thoải mái. Đối với người trưởng thành, thời gian ngủ trung bình từ 7 đến 8 giờ mỗi ngày được xem là phù hợp để bảo đảm sức khỏe.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/ngu-du-giac-va-vai-tro-doi-voi-suc-khoe.html",
+    "date": "07-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "nhung-nguyen-tac-an-uong-lanh-manh-nen-tang-cho-mot-cuoc-song-khoe-manh",
+    "title": "NHỮNG NGUYÊN TẮC ĂN UỐNG LÀNH MẠNH – NỀN TẢNG CHO MỘT CUỘC SỐNG KHỎE MẠNH",
+    "desc": "Bữa cơm gia đình không chỉ cung cấp dinh dưỡng mà còn là nơi hình thành thói quen ăn uống cho mỗi thành viên, đặc biệt là trẻ nhỏ. Khi mỗi gia đình chú trọng xây dựng bữa ăn khoa học, chúng ta đang góp phần tạo nên một cộng đồng khỏe mạnh và văn minh.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/nhung-nguyen-tac-an-uong-lanh-manh-nen-tang-cho-mot-cuoc-song-khoe-manh.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "phong-benh-hon-chua-benh-minh-triet-song-vi-suc-khoe-con-nguoi",
+    "title": "PHÒNG BỆNH HƠN CHỮA BỆNH – MINH TRIẾT SỐNG VÌ SỨC KHỎE CON NGƯỜI",
+    "desc": "Phòng bệnh hơn chữa bệnh” là một chân lý giản dị nhưng mang ý nghĩa sâu sắc. Bảo vệ sức khỏe không phải là việc làm nhất thời mà là một quá trình lâu dài, đòi hỏi sự kiên trì và ý thức trách nhiệm của mỗi người.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/phong-benh-hon-chua-benh-minh-triet-song-vi-suc-khoe-con-nguoi.html",
+    "date": "07-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "ram-thang-gieng-khoi-nguyen-cua-mot-nam-song-tron-dao-tron-tam",
+    "title": "RẰM THÁNG GIÊNG – KHỞI NGUYÊN CỦA MỘT NĂM SỐNG TRỌN ĐẠO, TRỌN TÂM",
+    "desc": "Ngày 15 tháng Giêng âm lịch hằng năm – Tết Nguyên Tiêu, hay còn gọi là Rằm tháng Giêng – không chỉ là một mốc thời gian theo lịch pháp truyền thống, mà còn là điểm tựa tinh thần đặc biệt trong đời sống văn hóa của dân tộc Việt Nam",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tetnguyentieu.png",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/ram-thang-gieng-khoi-nguyen-cua-mot-nam-song-tron-dao-tron-tam.html",
+    "date": "08-03-2026",
+    "category": [
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "suc-khoe-tai-san-quy-gia-nhat-cua-con-nguoi",
+    "title": "SỨC KHỎE – TÀI SẢN QUÝ GIÁ NHẤT CỦA CON NGƯỜI",
+    "desc": "Mỗi người chúng ta hãy luôn ghi nhớ rằng: tiền bạc có thể kiếm lại, danh vọng có thể gây dựng lại, nhưng sức khỏe khi đã mất đi thì rất khó để phục hồi trọn vẹn. Vì thế, hãy biết trân trọng cơ thể của mình, giữ gìn sức khỏe ngay từ hôm nay, bởi đó chính là nền tảng của mọi hạnh phúc và thành công trong cuộc đời.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/suc-khoe-tai-san-quy-gia-nhat-cua-con-nguoi.html",
+    "date": "07-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "suc-khoe-va-chat-luong-cuoc-song",
+    "title": "SỨC KHỎE VÀ CHẤT LƯỢNG CUỘC SỐNG",
+    "desc": "Sức khỏe tốt hôm nay chính là nền tảng cho hạnh phúc ngày mai và là điều kiện quan trọng để mỗi con người sống có ích, sống có ý nghĩa và đóng góp tích cực cho gia đình cũng như cho xã hội",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/suc-khoe-va-chat-luong-cuoc-song.html",
+    "date": "07-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tam-quan-trong-cua-cac-moi-quan-he-tich-cuc",
+    "title": "Tầm quan trọng của các mối quan hệ tích cực",
+    "desc": "Một mạng lưới quan hệ tốt đẹp chính là nguồn sức mạnh tinh thần quan trọng trong cuộc sống.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tam-quan-trong-cua-cac-moi-quan-he-tich-cuc.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "the-duc-buoi-sang-khoi-dau-ngay-moi-tran-day-nang-luong",
+    "title": "Thể dục buổi sáng – khởi đầu ngày mới tràn đầy năng lượng",
+    "desc": "Một ngày mới bắt đầu từ những hành động nhỏ nhưng ý nghĩa. Thể dục buổi sáng không chỉ là hoạt động rèn luyện thể chất, mà còn là cách để mỗi người chủ động chăm sóc sức khỏe và nâng cao chất lượng cuộc sống.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/the-duc-buoi-sang-khoi-dau-ngay-moi-tran-day-nang-luong.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "thoi-quen-buoi-sang-giup-co-the-khoe-manh",
+    "title": "THÓI QUEN BUỔI SÁNG GIÚP CƠ THỂ KHỎE MẠNH",
+    "desc": "Có thể nói, sức khỏe không phải chỉ được tạo nên từ những biện pháp lớn lao mà bắt đầu từ những thói quen nhỏ mỗi buổi sáng. Khi mỗi người biết trân trọng và chăm sóc cơ thể ngay từ đầu ngày, chúng ta đang đặt nền móng cho một cuộc sống khỏe mạnh, bền vững và hạnh phúc.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/thoi-quen-buoi-sang-giup-co-the-khoe-manh.html",
+    "date": "07-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "thuc-pham-tu-nhien-nen-tang-dinh-duong-lanh-manh-cho-moi-gia-dinh",
+    "title": "THỰC PHẨM TỰ NHIÊN – NỀN TẢNG DINH DƯỠNG LÀNH MẠNH CHO MỖI GIA ĐÌNH",
+    "desc": "Những thay đổi nhỏ nhưng duy trì thường xuyên sẽ tạo nên thói quen dinh dưỡng tốt cho cả gia đình.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/thuc-pham-tu-nhien-nen-tang-dinh-duong-lanh-manh-cho-moi-gia-dinh.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "uong-du-nuoc-moi-ngay-thoi-quen-nho-loi-ich-lon-cho-suc-khoe",
+    "title": "UỐNG ĐỦ NƯỚC MỖI NGÀY – THÓI QUEN NHỎ, LỢI ÍCH LỚN CHO SỨC KHỎE",
+    "desc": "Uống đủ nước không phải là việc lớn lao, nhưng lại mang lại lợi ích rất thiết thực đối với sức khỏe. Khi mỗi người chủ động duy trì thói quen này, cơ thể sẽ khỏe mạnh hơn, tinh thần tỉnh táo hơn và chất lượng cuộc sống cũng được nâng cao.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/uong-du-nuoc-moi-ngay-thoi-quen-nho-loi-ich-lon-cho-suc-khoe.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "xay-dung-loi-song-tinh-than-lanh-manh",
+    "title": "Xây dựng lối sống tinh thần lành mạnh",
+    "desc": "Xây dựng lối sống tinh thần lành mạnh chính là nền tảng để mỗi người hướng tới cuộc sống khỏe mạnh, hạnh phúc và phát triển bền vững.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/xay-dung-loi-song-tinh-than-lanh-manh.html",
+    "date": "08-03-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
   "id": "hanh-phuc-la-gi",
   "title": " HẠNH PHÚC LÀ GÌ?",
   "desc": "Hạnh phúc không phải là có nhiều, mà là biết đủ; không phải là đi tìm, mà là biết nhận ra. Khi con người biết dừng lại một chút, cúi xuống nhìn cuộc đời bằng ánh mắt dịu dàng hơn, thì hạnh phúc – hóa ra – vẫn luôn ở đó, bình dị như bát cơm nóng, như tiếng gọi thân quen, như một ngày bình thường trôi qua trong yên ổn ",
