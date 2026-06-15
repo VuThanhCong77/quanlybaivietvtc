@@ -190,43 +190,6 @@ body{
 
 }
 
-/* CHUYÊN MỤC */
-
-.chuyen-muc{
-
-    display:flex;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-    margin:50px 0;
-
-}
-
-.chuyen-muc a{
-
-    text-decoration:none;
-
-    padding:12px 18px;
-
-    background:#fff;
-
-    border-radius:999px;
-
-    color:#334155;
-
-}
-
-.chuyen-muc .active{
-
-    background:#2563eb;
-
-    color:#fff;
-
-}
 
 /* THỐNG KÊ */
 
@@ -312,4 +275,90 @@ body{
 
     }
 
+}
+
+/* CHUYÊN MỤC */
+
+.chuyen-muc{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:50px 0;
+}
+
+/* Nút chuyên mục */
+
+.chuyen-muc a,
+.dropdown-btn{
+    padding:12px 18px;
+    border:none;
+    border-radius:999px;
+    background:#fff;
+    color:#334155;
+    text-decoration:none;
+    font-size:15px;
+    cursor:pointer;
+    transition:all .3s;
+}
+
+.chuyen-muc a:hover,
+.dropdown-btn:hover{
+    background:#2563eb;
+    color:#fff;
+}
+
+.chuyen-muc .active{
+    background:#2563eb;
+    color:#fff;
+}
+
+/* Dropdown */
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:120%;
+    right:0;
+
+    min-width:220px;
+    background:#fff;
+    border-radius:15px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.15);
+
+    padding:10px;
+
+    display:none;
+    z-index:1000;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    border-radius:10px;
+    margin-bottom:5px;
+}
+
+.dropdown-menu a:last-child{
+    margin-bottom:0;
+}
+
+.dropdown-menu a:hover{
+    background:#f1f5f9;
+    color:#2563eb;
+}
+
+/* Hiện menu khi rê chuột */
+
+.dropdown:hover .dropdown-menu{
+    display:block;
+}
+
+.dropdown-menu.show{
+    display:block;
 }
