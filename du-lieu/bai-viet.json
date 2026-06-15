@@ -1,4 +1,421 @@
 [
+   {
+    "id": "2025-bien-ma-khong-dong",
+    "title": "2025 biến mà không động",
+    "desc": "Dù trước những biến chuyển lớn lao của thời đại và tổ chức bộ máy, Nhân dân ta vẫn giữ vững “cái không động” trong tư tưởng và tấm lòng. Chính sự kiên định ấy đã, đang và sẽ là nền tảng tinh thần vững chắc để đất nước bước tiếp những chặng đường phát triển mới, tự tin, chủ động và bền vững hơn trong những năm tiếp theo",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/khongdong.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/2025-bien-ma-khong-dong.html",
+    "date": "03-01-2026",
+    "category": [
+      "Chính trị"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "an-ninh-phi-truyen-thong-thach-thuc-ngay-nay",
+    "title": "An ninh phí truyền thống, thách thức ngày nay!",
+    "desc": "Ứng phó hiệu quả với các nguy cơ an ninh phi truyền thống, góp phần xây dựng và bảo vệ vững chắc Tổ quốc Việt Nam xã hội chủ nghĩa, hướng tới mục tiêu phát triển bền vững và thịnh vượng trong kỷ nguyên mới",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/an1.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/an-ninh-phi-truyen-thong-thach-thuc-ngay-nay.html",
+    "date": "15-12-2025",
+    "category": [
+      "Chính trị",
+      "An ninh"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "cau-chuyen-tu-8-quy-tac-vang",
+    "title": "Câu chuyện từ \"8 quy tắc vàng\"",
+    "desc": "Kết quả đạt được: 💪 Giữ gìn sức khỏe; 🚀 Làm việc hiệu quả;🧠 Trí tuệ phát triển; ❤️ Mọi người mến yêu.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/8quytacvang.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/cau-chuyen-tu-8-quy-tac-vang.html",
+    "date": "15-12-2025",
+    "category": [
+      "Sức khỏe",
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "cau-chuyen-ve-nhung-nguoi-di-khai-hoang",
+    "title": "Câu chuyện về những người đi khai hoang",
+    "desc": "Bài viết được thể hiện phỏng theo bài \"Hịch tướng sỹ\" của Hưng Đạo Đại Vương Trần Quốc Tuấn",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/cavang.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/cau-chuyen-ve-nhung-nguoi-di-khai-hoang.html",
+    "date": "15-12-2025",
+    "category": [
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "chu-tich-ho-chi-minh-nguoi-thay-vi-dai-cua-cach-mang-viet-nam",
+    "title": "Chủ tịch Hồ Chí Minh, Người thầy vĩ đại của cách mạng Việt Nam",
+    "desc": "Trong lịch sử dựng nước và giữ nước của dân tộc Việt Nam, hiếm có nhân vật lịch sử nào hội tụ đầy đủ tầm vóc trí tuệ, nhân cách đạo đức và sức cảm hóa sâu rộng như Chủ tịch Hồ Chí Minh. Người không chỉ là lãnh tụ thiên tài của Đảng và dân tộc ta, Anh hùng giải phóng dân tộc, Danh nhân văn hóa thế giới, mà còn là người thầy vĩ đại của cách mạng Việt Nam – người đã dạy cho cả dân tộc con đường đi tới độc lập, tự do, hạnh phúc và phát triển bền vững",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/BacHo.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/chu-tich-ho-chi-minh-nguoi-thay-vi-dai-cua-cach-mang-viet-nam.html",
+    "date": "17-12-2025",
+    "category": [
+      "Chính trị",
+      "Giáo dục"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "chuyen-doi-loi-song-va-mo-hinh-phat-trien-kinh-te-do-thi",
+    "title": "Chuyển đổi lối sống và mô hình phát triển kinh tế đô thị",
+    "desc": "Quá trình chuyển đổi từ xã nông thôn lên phường của Lưu Kiếm không chỉ là sự thay đổi về không gian hành chính mà còn là sự tái cấu trúc toàn diện về lối sống, tư duy phát triển và mô hình kinh tế. Bài viết này đưa ra những ý tưởng tiếp cận đô thị hóa như một quá trình xã hội – kinh tế tổng hợp, trong đó con người vừa là chủ thể, vừa là động lực và mục tiêu của phát triển. Bài viết phân tích những yêu cầu đặt ra đối với Lưu Kiếm trong việc xây dựng lối sống đô thị văn minh gắn với phát triển kinh tế theo hướng xanh, hiện đại và bền vững",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/kinhtexanh.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/chuyen-doi-loi-song-va-mo-hinh-phat-trien-kinh-te-do-thi.html",
+    "date": "19-12-2025",
+    "category": [
+      "Kinh tế",
+      "Đô thị"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "cung-co-va-nang-cao-tinh-than-doan-ket-trong-doi-ngu-can-bo-cong-chuc",
+    "title": "Củng cố và nâng cao tinh thần đoàn kết trong đội ngũ cán bộ, công chức",
+    "desc": "Phát huy truyền thống đoàn kết, thống nhất; củng cố niềm tin vào những đổi thay tích cực của đất nước và địa phương; cùng nhau chia sẻ trách nhiệm, hỗ trợ lẫn nhau trong công việc – đó chính là con đường để phường Lưu Kiếm xây dựng đội ngũ cán bộ, công chức vững về chính trị, mạnh về chuyên môn, trong sáng về đạo đức, đủ năng lực đáp ứng yêu cầu nhiệm vụ trong tình hình mới, góp phần thiết thực vào sự phát triển bền vững của địa phương và đất nước.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/doanketlk.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/cung-co-va-nang-cao-tinh-than-doan-ket-trong-doi-ngu-can-bo-cong-chuc.html",
+    "date": "10-01-2026",
+    "category": [
+      "Chính trị"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "cung-ong-cong-ong-tao-mang-nhieu-y-nghia-sau-sac-ve-tin-nguong",
+    "title": "Cúng Ông Công Ông Táo mang nhiều ý nghĩa sâu sắc về tín ngưỡng",
+    "desc": "Cúng Ông Công Ông Táo không chỉ là nghi lễ tâm linh, mà còn là một giá trị văn hóa – đạo đức sâu sắc, góp phần giữ gìn nếp sống gia đình, truyền thống dân tộc và hướng con người tới những điều tốt đẹp trong năm mới.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/ongtao1.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/cung-ong-cong-ong-tao-mang-nhieu-y-nghia-sau-sac-ve-tin-nguong.html",
+    "date": "10-02-2026",
+    "category": [
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "dang-bo-phuong-luu-kiem-doan-ket-doi-moi-phat-trien",
+    "title": "Đảng bộ phường Lưu Kiếm: Đoàn kết, đổi mới, phát triển",
+    "desc": "Năm 2025 là năm có ý nghĩa đặc biệt quan trọng đối với Đảng bộ, chính quyền và Nhân dân phường Lưu Kiếm, là năm diễn ra nhiều sự kiện chính trị trọng đại của đất nước và địa phương. Trong bối cảnh đó, phát huy truyền thống quê hương cách mạng anh hùng, toàn Đảng bộ đã đoàn kết, thống nhất, chủ động, sáng tạo, tập trung cao độ lãnh đạo, chỉ đạo thực hiện thắng lợi các nhiệm vụ chính trị được giao.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/daihoidangbo.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/dang-bo-phuong-luu-kiem-doan-ket-doi-moi-phat-trien.html",
+    "date": "17-12-2025",
+    "category": [
+      "Chính trị"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "dieu-quan-trong-nhat-doi-voi-con-nguoi-trong-qua-trinh-song",
+    "title": "Điều quan trọng nhất đối với con người trong quá trình sống...",
+    "desc": "Trong suốt chiều dài lịch sử phát triển của nhân loại, con người luôn trăn trở đi tìm câu trả lời cho những câu hỏi mang tính bản chất: Con người sống để làm gì? Điều gì là quan trọng nhất đối với mỗi cá nhân? Hạnh phúc thực sự được đo bằng tiêu chí nào? Trả lời những câu hỏi ấy không chỉ mang ý nghĩa triết học, mà còn có giá trị thực tiễn sâu sắc, định hướng hành vi, lối sống, nhân cách và trách nhiệm xã hội của mỗi con người, nhất là trong bối cảnh đất nước đang đẩy mạnh công cuộc đổi mới, hội nhập và chuyển đổi số toàn diện hiện nay",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/muctieu.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/dieu-quan-trong-nhat-doi-voi-con-nguoi-trong-qua-trinh-song.html",
+    "date": "11-01-2026",
+    "category": [
+      "Hạnh phúc"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "hay-de-ganh-lo-xuong-va-vui-song-moi-ngay",
+    "title": "Hãy để gánh lo xuống và vui sống mỗi ngày",
+    "desc": "Hãy vui sống mỗi ngày – để sống đúng với giá trị của con người, của gia đình và của xã hội mà chúng ta đang chung tay xây dựng.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hanhphuc3.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/hay-de-ganh-lo-xuong-va-vui-song-moi-ngay.html",
+    "date": "04-01-2026",
+    "category": [
+      "Hạnh phúc"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "hieu-biet-cau-tao-co-the-nguoi-nen-tang-cham-soc-bao-ve-va-nang-cao-suc-khoe",
+    "title": "Hiểu biết cấu tạo cơ thể người, nền tảng chăm sóc, bảo vệ và nâng cao sức khỏe",
+    "desc": "Hiểu biết về cấu tạo cơ thể người là nền tảng quan trọng để chăm sóc, bảo vệ và nâng cao sức khỏe một cách chủ động, bền vững",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/cothenguoi.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/hieu-biet-cau-tao-co-the-nguoi-nen-tang-cham-soc-bao-ve-va-nang-cao-suc-khoe.html",
+    "date": "07-01-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "hieu-sau-song-chat",
+    "title": "HIỂU SÂU – SỐNG CHẤT",
+    "desc": "Quyết định chiều sâu nhân cách, chất lượng hành động và ý nghĩa của mỗi đời người.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/H2.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/hieu-sau-song-chat.html",
+    "date": "23-01-2026",
+    "category": [
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "kiem-soat-tai-san-thu-nhap",
+    "title": "Kiểm soát tài sản, thu nhập",
+    "desc": "Quy trình kiểm soát tài sản, thu nhập của UBKT cấp xã trong điều kiện thực hiện chính quyền địa phương 2 cấp là một nội dung quan trọng trong công tác kiểm tra, giám sát của Đảng. Việc tổ chức thực hiện nghiêm túc, đúng quy trình, thực chất sẽ góp phần phòng ngừa tham nhũng, tiêu cực, xây dựng tổ chức cơ sở đảng trong sạch, vững mạnh.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/taisan.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/kiem-soat-tai-san-thu-nhap.html",
+    "date": "18-12-2025",
+    "category": [
+      "Kiểm tra",
+      "Tài sản"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "luu-kiem-mot-niem-tin-mot-y-chi-vi-ky-nguyen-moi",
+    "title": "Lưu Kiếm một niềm tin, một ý chí, vì kỷ nguyên mới",
+    "desc": "Bắt đầu cho một kỷ nguyên mới, kỷ nguyên của thời đại công nghệ số, kỷ nguyên vươn mình của dân tộc.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/vuonminh.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/luu-kiem-mot-niem-tin-mot-y-chi-vi-ky-nguyen-moi.html",
+    "date": "15-12-2025",
+    "category": [
+      "Chính trị"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "nang-cao-ban-linh-chinh-tri-cua-can-bo-cong-chuc-lam-cong-tac-kiem-tra-giam-sat",
+    "title": "Nâng cao bản lĩnh chính trị của cán bộ, công chức làm công tác kiểm tra, giám sát",
+    "desc": "Nâng cao bản lĩnh chính trị của cán bộ, công chức làm công tác kiểm tra, giám sát ở cấp xã trong tình hình mới là yêu cầu mang tính tất yếu, khách quan",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/cbkiemtra.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/nang-cao-ban-linh-chinh-tri-cua-can-bo-cong-chuc-lam-cong-tac-kiem-tra-giam-sat.html",
+    "date": "07-01-2026",
+    "category": [
+      "Chính trị",
+      "Kiểm tra"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "nang-cao-chat-luong-giao-duc-trong-giai-doan-moi",
+    "title": "Nâng cao chất lượng giáo dục trong giai đoạn mới",
+    "desc": "Đảng và Nhà nước ta luôn xác định giáo dục và đào tạo là quốc sách hàng đầu, là động lực then chốt thúc đẩy công nghiệp hoá, hiện đại hoá và hội nhập quốc tế.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hoplop12.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/nang-cao-chat-luong-giao-duc-trong-giai-doan-moi.html",
+    "date": "15-12-2025",
+    "category": [
+      "Văn hóa",
+      "Giáo dục"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "nhung-nhip-dap-mua-xuan-trong-dong-chay-doi-moi",
+    "title": "Những nhịp đập mùa xuân trong dòng chảy đổi mới",
+    "desc": "Khi pháo hoa giao thừa bừng sáng trên bầu trời, cũng là lúc mỗi người Việt Nam, dù ở đâu, đều hướng về một năm mới với tâm thế chủ động, trách nhiệm và hy vọng. Tết 2026 vì thế không chỉ là sự tiếp nối truyền thống, mà còn là dấu mốc của niềm tin, của khát vọng vươn lên, xây dựng một Việt Nam phát triển bền vững, giàu bản sắc và nghĩa tình.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/nammoi262.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/nhung-nhip-dap-mua-xuan-trong-dong-chay-doi-moi.html",
+    "date": "16-01-2026",
+    "category": [
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "noi-dung-cot-loi-cua-chu-nghia-xa-hoi-va-chu-nghia-cong-san",
+    "title": "Nội dung cốt lõi của Chủ nghĩa xã hội và Chủ nghĩa cộng sản",
+    "desc": "Cốt lõi của Chủ nghĩa xã hội và Chủ nghĩa cộng sản là hệ giá trị, mục tiêu và nguyên lý tổ chức xã hội hướng tới giải phóng con người, xóa bỏ áp bức, bóc lột, thực hiện công bằng xã hội và phát triển toàn diện con người",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/cnxh2.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/noi-dung-cot-loi-cua-chu-nghia-xa-hoi-va-chu-nghia-cong-san.html",
+    "date": "28-01-2026",
+    "category": [
+      "Chính trị"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "phat-huy-nang-luc-cua-can-bo-cong-chuc-phong-van-hoa-xa-hoi",
+    "title": "Phát huy năng lực của cán bộ, công chức Phòng văn hóa - xã hội",
+    "desc": "Cán bộ Phòng Văn hóa – Xã hội cấp xã phát huy tối đa năng lực và sở trường, chủ động thích ứng với những thay đổi của mô hình chính quyền hai cấp, lấy hiệu quả phục vụ Nhân dân làm mục tiêu cao nhất",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/cbvanhoa.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/phat-huy-nang-luc-cua-can-bo-cong-chuc-phong-van-hoa-xa-hoi.html",
+    "date": "07-01-2026",
+    "category": [
+      "Chính trị",
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "phat-huy-tinh-than-chu-dong-cua-can-bo-cong-chuc-van-phong-cap-xa",
+    "title": "Phát huy tinh thần chủ động của cán bộ, công chức văn phòng cấp xã",
+    "desc": "Phát huy tinh thần chủ động của cán bộ, công chức văn phòng cấp xã trong công tác tham mưu, tổng hợp là yếu tố quan trọng góp phần nâng cao chất lượng lãnh đạo, quản lý ở cơ sở",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/cbvanphong.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/phat-huy-tinh-than-chu-dong-cua-can-bo-cong-chuc-van-phong-cap-xa.html",
+    "date": "07-01-2026",
+    "category": [
+      "Chính trị",
+      "Văn phòng"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "phuong-phap-thuc-duong-ohsawa",
+    "title": "Phương pháp Thực dưỡng Ohsawa",
+    "desc": "Đây là phương pháp ăn uống chú trọng vào việc cân bằng Âm - Dương trong mỗi thức ăn, mỗi bữa ăn và mỗi ngày chúng ta ăn, để đạt được sức khỏe tốt nhất.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anung.png",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/phuong-phap-thuc-duong-ohsawa.html",
+    "date": "15-12-2025",
+    "category": [
+      "Sức khỏe",
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "quan-diem-cua-cac-vi-yogi-ve-co-the-nguoi-va-suc-khoe",
+    "title": "Quan điểm của các vị Yogi về cơ thể người và sức khỏe",
+    "desc": "Sức khỏe là vốn quý nhất của mỗi con người và của toàn xã hội. Trong kho tàng tri thức phương Đông, đặc biệt là triết lý Yoga, các vị yogi đã để lại những quan điểm sâu sắc về cơ thể người và cách gìn giữ sức khỏe. Những quan điểm này đến nay vẫn còn nguyên giá trị thực tiễn, nhất là trong bối cảnh đời sống hiện đại nhiều áp lực, bệnh tật ngày càng có xu hướng trẻ hóa.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/suckhoecuaban.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/quan-diem-cua-cac-vi-yogi-ve-co-the-nguoi-va-suc-khoe.html",
+    "date": "07-01-2026",
+    "category": [
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "que-huong-luu-kiem-anh-hung",
+    "title": "Quê hương Lưu Kiếm anh hùng",
+    "desc": "Lưu Kiếm một vùng đất cổ xưa, đã chứng kiến bao đổi thay của lịch sử và hôm nay trên con đường đổi mới vẫn tiếp tục tiến bước",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/congluukiem.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/que-huong-luu-kiem-anh-hung.html",
+    "date": "15-12-2025",
+    "category": [
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "sac-xuan-tren-que-huong-luu-kiem",
+    "title": "Sắc xuân trên quê hương Lưu Kiếm",
+    "desc": "Xuân trên quê hương Lưu Kiếm là sự hòa quyện giữa truyền thống và đổi mới, giữa nét đẹp văn hóa lâu đời và nhịp sống hiện đại. Đó là sắc xuân của niềm tin, của đoàn kết, của khát vọng vươn lên. Trong ánh nắng xuân ấm áp, quê hương Lưu Kiếm đang từng ngày đổi thay, vững bước trên con đường phát triển, mang theo ước vọng về một năm mới bình yên, hạnh phúc và thành công.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hoadao.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/sac-xuan-tren-que-huong-luu-kiem.html",
+    "date": "16-01-2026",
+    "category": [
+      "Văn hóa"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "song-ban-linh-trong-mot-the-gioi-bien-dong",
+    "title": "Sống bản lĩnh trong một thế giới biến động",
+    "desc": "Cách sống thời hiện đại không nằm ở việc chạy theo xu hướng, mà ở khả năng giữ vững giá trị bản thân giữa dòng chảy đổi thay. Biết làm chủ công nghệ, không ngừng học hỏi, cân bằng đời sống, sống có trách nhiệm và có mục đích chính là nền tảng để con người không chỉ tồn tại, mà còn sống sâu sắc và bền vững trong thời đại hôm nay.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/banlinh.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/song-ban-linh-trong-mot-the-gioi-bien-dong.html",
+    "date": "16-12-2025",
+    "category": [
+      "Chính trị",
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "song-don-gian-cho-doi-thanh-than",
+    "title": "Sống đơn giản cho đời thanh thản",
+    "desc": "Sống đơn giản là con đường để mỗi người làm chủ chính mình, cân bằng giữa “làm việc” và “làm người”, giữa trách nhiệm với xã hội và sự an yên nội tâm. Đó cũng chính là nền tảng để xây dựng một đời sống cá nhân lành mạnh, một cộng đồng bền vững và một xã hội phát triển hài hòa",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/songdongian.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/song-don-gian-cho-doi-thanh-than.html",
+    "date": "03-01-2026",
+    "category": [
+      "Trí tuệ",
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "thien-dinh",
+    "title": "Thiền định",
+    "desc": "Thiền định là quá trình quay về với chính mình, giảm bớt sự chi phối của vọng tưởng, cảm xúc tiêu cực và những xao động từ bên ngoài, qua đó nuôi dưỡng nội lực tinh thần, đạo đức và trí tuệ",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/thiendinh.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/thien-dinh.html",
+    "date": "03-01-2026",
+    "category": [
+      "Trí tuệ",
+      "Sức khỏe"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "tin-nguong-va-ton-giao",
+    "title": "Tín ngưỡng và tôn giáo",
+    "desc": "Việc tôn trọng, phát huy giá trị tích cực của tín ngưỡng, tôn giáo trong khuôn khổ pháp luật là yêu cầu quan trọng trong xây dựng đời sống văn hóa, xã hội lành mạnh hiện nay",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/tongiaotinnguong.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tin-nguong-va-ton-giao.html",
+    "date": "03-01-2026",
+    "category": [
+      "Văn hóa",
+      "Tôn giáo"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "trung-tam-phuc-vu-hanh-chinh-cong-phuong-luu-kiem",
+    "title": "Trung tâm phục vụ hành chính công phường Lưu Kiếm",
+    "desc": "Trung tâm Phục vụ hành chính công phường Lưu Kiếm không chỉ là nơi giải quyết thủ tục hành chính, mà còn là cầu nối giữa chính quyền và Nhân dân. Sự phối hợp, chấp hành và phản hồi tích cực của người dân sẽ góp phần quan trọng vào việc nâng cao chất lượng hoạt động của Trung tâm, xây dựng nền hành chính hiện đại, công khai, minh bạch.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hcc2.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/trung-tam-phuc-vu-hanh-chinh-cong-phuong-luu-kiem.html",
+    "date": "02-02-2026",
+    "category": [
+      "Chính trị"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
+    "id": "truyen-nang-luong-tich-cuc-tu-tu-duong-ban-than-den-trach-nhiem-voi-cong-dong",
+    "title": "Truyền năng lượng tích cực – từ tu dưỡng bản thân đến trách nhiệm với cộng đồng",
+    "desc": "Truyền năng lượng tích cực, vì vậy, trước hết là quá trình tự hoàn thiện. Tự hoàn thiện để sống lành mạnh hơn. Tự hoàn thiện để gia đình hòa thuận hơn. Và tự hoàn thiện để xã hội ổn định, phát triển bền vững hơn.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/nang_luong_tich_cuc.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/truyen-nang-luong-tich-cuc-tu-tu-duong-ban-than-den-trach-nhiem-voi-cong-dong.html",
+    "date": "15-02-2026",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 18
+  }, 
   {
     "id": "30-phut-van-dong-moi-ngay-thoi-quen-nho-loi-ich-lon-cho-suc-khoe",
     "title": "30 phút vận động mỗi ngày – Thói quen nhỏ, lợi ích lớn cho sức khỏe",
