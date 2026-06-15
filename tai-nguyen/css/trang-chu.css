@@ -1098,3 +1098,68 @@ padding: 6px 6px;
 
     font-weight:600;
 }
+
+.quote-box{
+    position: relative;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px 35px;
+    background: linear-gradient(135deg,#ffffff,#f5f7fa);
+    border-left: 6px solid #0d6efd;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: all .3s ease;
+}
+
+.quote-box:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.quote-icon{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 70px;
+    color: rgba(13,110,253,0.12);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.quote-text{
+    position: relative;
+    margin: 0;
+    padding-top: 15px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #333;
+    font-style: italic;
+    z-index: 1;
+}
+
+.quote-author{
+    margin-top: 20px;
+    text-align: right;
+    color: #0d6efd;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+@media (max-width:768px){
+
+    .quote-box{
+        padding: 25px 20px;
+        margin: 20px 15px;
+    }
+
+    .quote-icon{
+        font-size: 55px;
+        left: 15px;
+    }
+
+    .quote-text{
+        font-size: 1rem;
+    }
+}
+
