@@ -67,19 +67,19 @@ Hồi ký
 </a>
 
 <a href="kinh-te.html">
-Kinh tế (Đang cập nhật)
+Kinh tế
 </a>
 
-<a href="phap-luat.html">
-Pháp luật (Đang cập nhật)
+<a href="giao-duc.html">
+Giáo dục
 </a>
 
-<a href="du-lich.html">
-Du lịch (Đang cập nhật)
+<a href="kiem-tra.html">
+Kiểm tra
 </a>
 
 <a href="the-thao.html">
-Thể thao (Đang cập nhật)
+Thể thao
 </a>
 
 </div>
