@@ -1,5 +1,33 @@
 [
   {
+    "id": "nang-cao-ban-linh-chinh-tri-cua-can-bo-cong-chuc-lam-cong-tac-kiem-tra-giam-sat",
+    "title": "Nâng cao bản lĩnh chính trị của cán bộ, công chức làm công tác kiểm tra, giám sát",
+    "desc": "Nâng cao bản lĩnh chính trị của cán bộ, công chức làm công tác kiểm tra, giám sát ở cấp xã trong tình hình mới là yêu cầu mang tính tất yếu, khách quan",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/cbkiemtra.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/nang-cao-ban-linh-chinh-tri-cua-can-bo-cong-chuc-lam-cong-tac-kiem-tra-giam-sat.html",
+    "date": "07-01-2026",
+    "category": [
+      "Chính trị",
+      "Kiểm tra"
+    ],
+    "featured": true,
+    "views": 18
+  },
+{
+    "id": "phat-huy-tinh-than-chu-dong-cua-can-bo-cong-chuc-van-phong-cap-xa",
+    "title": "Phát huy tinh thần chủ động của cán bộ, công chức văn phòng cấp xã",
+    "desc": "Phát huy tinh thần chủ động của cán bộ, công chức văn phòng cấp xã trong công tác tham mưu, tổng hợp là yếu tố quan trọng góp phần nâng cao chất lượng lãnh đạo, quản lý ở cơ sở",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/cbvanphong.jpg",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/phat-huy-tinh-than-chu-dong-cua-can-bo-cong-chuc-van-phong-cap-xa.html",
+    "date": "07-01-2026",
+    "category": [
+      "Chính trị",
+      "Văn phòng"
+    ],
+    "featured": true,
+    "views": 18
+  },
+  {
     "id": "quy-trinh-giai-quyet-don-thu",
     "title": "Quy trình giải quyết đơn thư",
     "desc": "Việc xử lý đơn thư phải công khai về quy trình và thời hạn xử lý cho người khiếu nại, tố cáo biết, nhất là các vụ việc phức tạp, tồn đọng kéo dài",
