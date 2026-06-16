@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Giáo dục | Vũ Thành Công</title>
+
+<link rel="icon"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+<link rel="icon"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
+
+
+<!-- =====================================================
+MAIN CSS
+===================================================== -->
+
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
+
+</head>
+
+<body data-category="Giáo dục">
+
+<!-- =====================================================
+DAU TRANG
+===================================================== -->
+
+<header id="menu"></header>
+
+
+<!-- TIM KIEM -->
+<div class="tim-kiem">
+    <input id="inputSearch" placeholder="Tìm kiếm bài viết...">
+    <button onclick="timKiem()">Tim</button>
+</div>
+
+<!-- THONG KE -->
+<section class="thong-ke">
+
+<div>
+    <h3>GIÁO DỤC</h3>
+</div>
+
+    <div>
+
+        <h3 id="tongSo">0</h3>
+
+        <span>Bài viết</span>
+
+    </div>
+
+    <div>
+
+        <h3 id="tongChuyenMuc">0</h3>
+
+        <span>Chuyên mục</span>
+
+    </div>
+
+    <div>
+
+        <h3 id="tongLuotDoc">0</h3>
+
+        <span>Lượt đọc</span>
+
+    </div>
+
+</section>
+
+    <!-- CHUYÊN MỤC -->
+
+<section class="chuyen-muc">
+
+        <a href="thu-vien-bai-viet.html">
+        Tất cả
+        </a>
+
+        <a href="tin-tuc.html" class="active">
+        Tin tức
+        </a>
+
+        <a href="chinh-tri.html" class="active">
+        Chính trị
+        </a>
+
+        <a href="van-hoa.html" class="active">
+        Văn hóa
+        </a>
+
+        <a href="suc-khoe.html" class="active">
+        Sức khỏe
+        </a>
+
+        <a href="tri-tue.html" class="active">
+        Trí tuệ
+        </a>
+
+        <a href="hanh-phuc.html" class="active">
+        Hạnh phúc
+        </a>
+
+        <a href="hoi-ky.html" class="active">
+        Hồi ký
+        </a>
+
+    </section>
+
+
+<!-- CONTAINER -->
+<div class="container">
+    <div id="danhSach" class="danh-sach-bai-viet"></div>
+</div>
+
+
+<!-- =====================================================
+NÚT TRỞ VỀ
+===================================================== -->
+
+<button
+id="nut-tro-ve"
+class="nut-dieu-huong"
+onclick="history.back()">
+
+    ←
+
+</button>
+
+
+<!-- =====================================================
+NÚT LÊN ĐẦU TRANG
+===================================================== -->
+
+<button
+id="nut-len-dau"
+class="nut-dieu-huong"
+onclick="window.scrollTo({
+top:0,
+behavior:'smooth'
+})">
+
+    ↑
+
+</button>
+
+ <script>
+
+async function loadComponent(id, file){
+
+    try{
+
+        const response = await fetch(file);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Lỗi tải component: " + file
+            );
+
+        }
+
+        const html = await response.text();
+
+        document.getElementById(id)
+        .innerHTML = html;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    loadComponent(
+        "menu",
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html"
+    );
+
+}
+);
+
+</script>
+
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/danh-sach-bai-viet.js"></script>
+
+</body>
+</html>
