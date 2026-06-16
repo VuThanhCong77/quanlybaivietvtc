@@ -755,41 +755,6 @@ FOOTER
 
 }
 
-.quick-links{
-    margin-top: 20px;
-}
-
-.quick-links h2{
-    font-size: 20px;
-    margin-bottom: 15px;
-    border-left: 5px solid #6d066f;
-    padding-left: 10px;
-}
-
-.quick-links-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
-}
-
-.quick-item{
-    display: block;
-    padding: 12px 15px;
-    background: #f5f5f5;
-    border: 1px solid #ddd;
-    text-decoration: none;
-    color: #222;
-    border-radius: 6px;
-    transition: 0.2s ease;
-    font-size: 15px;
-}
-
-.quick-item:hover{
-    background: #212ae2;
-    color: #ffffff;
-    border-color: #053442;
-}
-
 .nut-lien-he button{
 
     border:none;
@@ -1163,3 +1128,48 @@ padding: 6px 6px;
     }
 }
 
+
+.quick-links{
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.quick-item{
+    flex: 1;
+    min-width: 200px;
+
+    display: flex;
+    align-items: center;      /* Căn giữa theo chiều dọc */
+    
+
+    gap: 10px;                /* Khoảng cách giữa ảnh và chữ */
+    padding: 12px 15px;
+
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.quick-item img{
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.quick-links h2{
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-left: 5px solid #6d066f;
+    padding-left: 10px;
+}
+
+.quick-links-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
