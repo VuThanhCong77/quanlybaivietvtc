@@ -46,39 +46,39 @@ html += `
 Chính trị
 </a>
 
-<a href="van-hoa.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/van-hoa.html">
 Văn hóa
 </a>
 
-<a href="suc-khoe.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/suc-khoe.html">
 Sức khỏe
 </a>
 
-<a href="tri-tue.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tri-tue.html">
 Trí tuệ
 </a>
 
-<a href="hanh-phuc.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hanh-phuc.html">
 Hạnh phúc
 </a>
 
-<a href="hoi-ky.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hoi-ky.html">
 Hồi ký
 </a>
 
-<a href="kinh-te.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/kinh-te.html">
 Kinh tế
 </a>
 
-<a href="giao-duc.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/giao-duc.html">
 Giáo dục
 </a>
 
-<a href="kiem-tra.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/kiem-tra.html">
 Kiểm tra
 </a>
 
-<a href="the-thao.html">
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/the-thao.html">
 Thể thao
 </a>
 
