@@ -417,8 +417,8 @@ p{
   bottom:22px;
   right:22px;
 
-  width:55px;
-  height:55px;
+  width:30px;
+  height:30px;
 
   border:none;
   border-radius:50%;
@@ -432,7 +432,7 @@ p{
 
   color:#fff;
 
-  font-size:22px;
+  font-size:16px;
 
   cursor:pointer;
 
