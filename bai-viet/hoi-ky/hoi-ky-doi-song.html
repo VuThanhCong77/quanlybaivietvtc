@@ -115,95 +115,18 @@ về lòng kiên trì và niềm tin trong cuộc sống.
 
     </section>
 
- <!-- MỤC LỤC -->
+<!-- MỤC LỤC -->
 <section class="muc-luc-sach">
 
     <h2>📚 Mục lục</h2>
 
-    <ul class="danh-sach-muc-luc">
+    <div id="mucLucTuDong">
 
-        <li>
-            <strong>LỜI MỞ ĐẦU</strong>
-            <ul>
-                <li>
-                    <a href="loi-mo-dau.html">
-                        Dòng Đá Bạc và những ký ức không thể phai mờ
-                    </a>
-                </li>
-            </ul>
-        </li>
+        <p>Đang tải dữ liệu...</p>
 
-        <li>
-            <strong>CHƯƠNG I Ký ức tuổi thơ</strong>
-            <ul>
-                <li>
-                    <a href="uoc-mo-ben-dong-song.html">
-                        Ước mơ bên dòng sông
-                    </a>
-                </li>
+    </div>
 
-                <li>
-                    <a href="nhung-tro-choi-nguy-hiem.html">
-                        Những trò chơi nguy hiểm
-                    </a>
-                </li>
-
-                                <li>
-                    <a href="su-nhut-nhat-trong-tam-hon-tre-tho.html">
-                        Sự nhút nhát trong tâm hồn trẻ thơ
-                    </a>
-                </li>
-                                <li>
-                    <a href="nhung-trua-he-oi-a.html">
-                        Những trưa hè oi ả
-                    </a>
-                </li>
-				
-            </ul>
-        </li>
-
-        <li>
-            <strong>CHƯƠNG II Dấu ấn</strong>
-            <ul>
-                <li>
-                    <a href="mot-lua-chon-dung-dan-cua-doi-nguoi.html">
-                        Một lựa chọn đúng đắn của đời người
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li>
-            <strong>CHƯƠNG III Những tấm gương</strong>
-            <ul>
-                <li>
-                    <a href="nho-loi-ong-day-nam-nao.html">
-                        Nhớ lời ông dạy năm nào
-                    </a>
-                </li>
-
-                <li>
-                    <a href="cuoc-doi-cha.html">
-                        Cuộc đời cha
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li>
-            <strong>LỜI KẾT</strong>
-            <ul>
-                <li>
-                    <a href="cau-chuyen-ve-mot-con-nguoi-ben-dong-song-da-bac.html">
-                        Câu chuyện về một con người bên dòng sông Đá Bạc
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-    </ul>
-
-</section> 
+</section>
 
 </main>
 
@@ -276,6 +199,111 @@ document.addEventListener(
     );
 
   }
+);
+
+</script>
+
+<script>
+
+/* =====================================================
+TẢI MỤC LỤC TỪ JSON
+===================================================== */
+
+async function taiMucLuc(){
+
+    try{
+
+        const res = await fetch("../../du-lieu/hoi-ky.json");
+
+        const data = await res.json();
+
+        const nhom = {};
+
+        data.forEach(bai=>{
+
+            if(
+                !bai.category ||
+                bai.category.length < 2
+            ) return;
+
+            const chuong = bai.category[1];
+
+            if(!nhom[chuong]){
+
+                nhom[chuong] = [];
+
+            }
+
+            nhom[chuong].push(bai);
+
+        });
+
+        let html = '<ul class="danh-sach-muc-luc">';
+
+        const thuTu = [
+    "Lời mở đầu",
+    "Chương I: Ký ức tuổi thơ",
+    "Chương II: Dấu ấn",
+    "Chương III: Những tấm gương",
+    "Lời kết"
+];
+
+thuTu.forEach(chuong=>{
+
+    if(!nhom[chuong]) return;
+
+    const danhSach = nhom[chuong];
+
+            html += `
+            <li>
+                <strong>${chuong.toUpperCase()}</strong>
+                <ul>
+            `;
+
+            danhSach.forEach(bai=>{
+
+                const tenFile =
+                bai.url.split("/").pop();
+
+                html += `
+                <li>
+                    <a href="${tenFile}">
+                        ${bai.title}
+                    </a>
+                </li>
+                `;
+
+            });
+
+            html += `
+                </ul>
+            </li>
+            `;
+
+        });
+
+        html += "</ul>";
+
+        document.getElementById(
+            "mucLucTuDong"
+        ).innerHTML = html;
+
+    }catch(error){
+
+        document.getElementById(
+            "mucLucTuDong"
+        ).innerHTML =
+        "<p>Không tải được mục lục.</p>";
+
+        console.error(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+taiMucLuc
 );
 
 </script>
