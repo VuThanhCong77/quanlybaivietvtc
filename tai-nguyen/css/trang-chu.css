@@ -1173,3 +1173,71 @@ padding: 6px 6px;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 12px;
 }
+
+/* =====================================================
+THÀNH VIÊN
+===================================================== */
+
+.thanh-vien{
+    padding:20px;
+    background:#fff;
+}
+
+.tieu-de{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+    font-size:22px;
+    font-weight:700;
+    color:#0b2c5f;
+}
+
+.tieu-de span{
+    width:4px;
+    height:24px;
+    background:#c40000;
+}
+
+.thanh-vien-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+}
+
+.tv-card{
+    padding:18px;
+    text-align:center;
+    text-decoration:none;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:#fff;
+    transition:0.3s;
+}
+
+.tv-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.tv-card img{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:50%;
+    border:1px solid #ddd;
+    margin-bottom:12px;
+}
+
+.tv-chucvu{
+    color:#666;
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.tv-ten{
+    color:#002b5b;
+    font-size:18px;
+    font-weight:700;
+    text-transform:uppercase;
+}
