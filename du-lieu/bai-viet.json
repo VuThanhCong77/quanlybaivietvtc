@@ -1,5 +1,44 @@
 [
    {
+  "id": "vinh-hoa-mai",
+  "title": "Vịnh hoa mai",
+  "desc": "Hoa mai không chỉ đẹp về hình thức mà còn hàm chứa ý nghĩa sâu sắc về văn hóa, tinh thần và nhân sinh, là biểu tượng đặc trưng của mùa xuân Việt Nam.",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hoamai.jpg",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/vinh-hoa-mai.html",
+  "date": "27-01-2026",
+  "category": [
+    "Văn hóa"
+  ],
+  "featured": true,
+  "views": 18
+},
+   {
+  "id": "tho-hoa-sen",
+  "title": "Thơ: Hoa sen",
+  "desc": "Hoa sen không chỉ là một loài hoa đẹp, mà còn là biểu tượng tổng hòa của đạo đức, trí tuệ, văn hóa và khát vọng vươn lên của con người Việt Nam",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hoasen.jpg",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tho-hoa-sen.html",
+  "date": "27-01-2026",
+  "category": [
+    "Văn hóa"
+  ],
+  "featured": true,
+  "views": 18
+},
+   {
+  "id": "tho-hoa-dao-ngay-tet",
+  "title": "Thơ: Hoa đào ngày Tết",
+  "desc": "Hoa đào mang ý nghĩa sâu sắc cả về tinh thần và văn hóa, thể hiện khát vọng về cuộc sống tốt đẹp, hòa thuận, phát triển và trường tồn cùng dân tộc.",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hoadao.jpg",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/tho-hoa-dao-ngay-tet.html",
+  "date": "28-01-2026",
+  "category": [
+    "Văn hóa"
+  ],
+  "featured": true,
+  "views": 18
+},
+   {
   "id": "nhung-trua-he-oi-a",
   "title": "Những trưa hè oi ả",
   "desc": "Những trưa hè oi ả năm nào giờ đã lùi xa theo dòng thời gian. Cánh đồng xưa có nhiều đổi thay, cuộc sống hôm nay cũng đủ đầy hơn trước. Thế nhưng mỗi khi nhớ lại, trong tôi vẫn vẹn nguyên hình ảnh những đứa trẻ chân đất, đầu đội nắng, tay cầm chiếc giỏ đựng cua cá, vừa đi vừa cười nói rộn rã trên con đường làng.",
