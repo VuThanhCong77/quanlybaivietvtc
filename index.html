@@ -897,6 +897,53 @@ hãy để lại lời nhắn bên dưới 🌱
 
 </section>
 
+<section class="luoi-1">
+
+<h2>📊 Thống kê</h2>
+
+<div class="thong-ke">
+
+  <div class="box">
+    <div class="so" id="online">0</div>
+    <div class="ten">
+      Đang online
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="so" id="totalViews">0</div>
+    <div class="ten">
+      Tổng lượt xem
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="so" id="todayViews">0</div>
+    <div class="ten">
+      Hôm nay
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="so" id="weekViews">0</div>
+    <div class="ten">
+      7 ngày
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="so" id="topPage">
+      --
+    </div>
+    <div class="ten">
+      Bài nổi bật
+    </div>
+  </div>
+
+</div>
+
+</section>
+	
 </main>
 
 <!-- =====================================================
@@ -931,17 +978,6 @@ FOOTER
 <li>Sống tích cực</li>
 <li>Nghĩ tích cực</li>
 <li>Hành động tích cực</li>
-
-<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/so-do-trang.html">
-▶ Sơ đồ website
-</a></li>
-
-<li><a href="https://maps.app.goo.gl/vz1cNFMWNAHywD5R8">
-🏛 Số 02 đường Đá Bạc – Lưu Kiếm – HP
-</a></li>
-
-<li>👀 Lượt truy cập: <b id="viewCount">0</b></li>
-
 </ul>
 
 </div>
@@ -977,33 +1013,18 @@ Facebook
 </div>
 
 <div>
-<h3>Thống kê</h3>
-<div class="thong-ke">
+<h3>📞 Thông tin</h3>
+<ul>
+<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/so-do-trang.html">
+▶ Sơ đồ website
+</a></li>
 
-  <div class="box">
-    👥 <span id="online">0</span>
-    <small>Đang online</small>
-  </div>
+<li><a href="https://maps.app.goo.gl/vz1cNFMWNAHywD5R8">
+🏛 Số 02 đường Đá Bạc – Lưu Kiếm – HP
+</a></li>
 
-  <div class="box">
-    👁️ <span id="totalViews">0</span>
-    <small>Tổng lượt xem</small>
-  </div>
-
-  <div class="box">
-    📅 <span id="todayViews">0</span>
-    <small>Hôm nay</small>
-  </div>
-
-  <div class="box">
-    📈 <span id="weekViews">0</span>
-    <small>Trong tuần</small>
-  </div>
-
-  <div class="box">
-    🏆 <span id="topPage">--</span>
-    <small>Bài nổi bật</small>
-  </div>
+<li>👀 Lượt truy cập: <b id="viewCount">0</b></li>
+</ul>
 
 </div>
 
@@ -1168,7 +1189,6 @@ navigator.clipboard.writeText(location.href);
 alert("Đã copy liên kết!");
 
 }
-
 </script>
 
 <script>
@@ -1223,75 +1243,6 @@ if ("serviceWorker" in navigator) {
   });
 
 }
-
-</script>
-
-<script>
-let visitorId =
-localStorage.getItem(
-  "visitorId"
-);
-
-if(!visitorId){
-
-  visitorId =
-  crypto.randomUUID();
-
-  localStorage.setItem(
-    "visitorId",
-    visitorId
-  );
-
-}
-
-const API =
-"https://script.google.com/macros/s/AKfycbx4C_W2ev5HX7jpMDSB0GwujaanE0BedhiSoRDX3GforDmcjPjTmi4WZRLORH7i_KEnQw/exec";
-
-async function capNhatThongKe(){
-
-  try{
-
-    const res = await fetch(
-      API +
-      "?page=index&id=" +
-      visitorId
-    );
-
-    const data = await res.json();
-	  console.log(data);
-
-    document.getElementById("online").textContent =
-      data.online;
-
-    document.getElementById("totalViews").textContent =
-      data.totalViews;
-
-    document.getElementById("todayViews").textContent =
-      data.todayViews;
-
-    document.getElementById("weekViews").textContent =
-      data.weekViews;
-
-    document.getElementById("topPage").textContent =
-      data.topPage;
-
-  }catch(err){
-
-    console.error(
-      "Lỗi thống kê:",
-      err
-    );
-
-  }
-
-}
-
-capNhatThongKe();
-
-setInterval(
-  capNhatThongKe,
-  60000
-);
 </script>
 
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
@@ -1304,6 +1255,7 @@ setInterval(
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/thich.js"></script>
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/gop-y.js"></script>
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
-
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/online.js"></script>
+	
 </body>
 </html>
