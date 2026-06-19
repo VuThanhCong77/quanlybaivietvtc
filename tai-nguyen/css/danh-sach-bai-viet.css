@@ -274,10 +274,6 @@ body{
         display:flex;
 
     }
-   
-    .thong-ke{
-        flex-direction:column;
-    }
 }
 
 /* CHUYÊN MỤC */
