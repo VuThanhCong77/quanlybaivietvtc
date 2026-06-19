@@ -1,0 +1,67 @@
+.so-do-trang{
+
+max-width:1200px;
+
+margin:auto;
+
+padding:30px 20px;
+
+}
+
+.tree,
+.tree ul{
+
+list-style:none;
+
+padding-left:30px;
+
+}
+
+.tree li{
+
+position:relative;
+
+padding:8px 0 8px 25px;
+
+line-height:1.6;
+
+}
+
+.tree li::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+height:100%;
+
+border-left:2px solid #d9d9d9;
+
+}
+
+.tree li::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:18px;
+
+width:16px;
+
+border-top:2px solid #d9d9d9;
+
+}
+
+.tree>li::before,
+.tree>li::after{
+
+display:none;
+
+}
