@@ -931,6 +931,17 @@ FOOTER
 <li>Sống tích cực</li>
 <li>Nghĩ tích cực</li>
 <li>Hành động tích cực</li>
+
+<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/so-do-trang.html">
+▶ Sơ đồ website
+</a></li>
+
+<li><a href="https://maps.app.goo.gl/vz1cNFMWNAHywD5R8">
+🏛 Số 02 đường Đá Bạc – Lưu Kiếm – HP
+</a></li>
+
+<li>👀 Lượt truy cập: <b id="viewCount">0</b></li>
+
 </ul>
 
 </div>
@@ -966,23 +977,35 @@ Facebook
 </div>
 
 <div>
+<h3>Thống kê</h3>
+<div class="thong-ke">
 
-<h3>📞 Thông tin</h3>
+  <div class="box">
+    👥 <span id="online">0</span>
+    <small>Đang online</small>
+  </div>
 
-<ul>
-<li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/so-do-trang.html">
-▶ Sơ đồ website
-</a></li>
+  <div class="box">
+    👁️ <span id="totalViews">0</span>
+    <small>Tổng lượt xem</small>
+  </div>
 
-<li><a href="https://maps.app.goo.gl/vz1cNFMWNAHywD5R8">
-🏛 Số 02 đường Đá Bạc – Lưu Kiếm – HP
-</a></li>
+  <div class="box">
+    📅 <span id="todayViews">0</span>
+    <small>Hôm nay</small>
+  </div>
 
-<li>👀 Lượt truy cập: <b id="viewCount">0</b></li>
+  <div class="box">
+    📈 <span id="weekViews">0</span>
+    <small>7 ngày</small>
+  </div>
 
-<li>🟢 Đang online: <strong id="onlineCount">1</strong></li>
-	
-</ul>
+  <div class="box">
+    🏆 <span id="topPage">--</span>
+    <small>Bài nổi bật</small>
+  </div>
+
+</div>
 
 </div>
 
@@ -1204,24 +1227,78 @@ if ("serviceWorker" in navigator) {
 </script>
 
 <script>
-(function(){
-  const KEY = "vtc77_online_users";
-  const TIMEOUT = 90 * 1000; // 90 giây coi là còn online
+let visitorId =
+localStorage.getItem(
+  "visitorId"
+);
 
-  const now = Date.now();
-  let users = JSON.parse(localStorage.getItem(KEY) || "[]");
+if(!visitorId){
 
-  // loại bỏ lượt cũ
-  users = users.filter(t => now - t < TIMEOUT);
+  visitorId =
+  crypto.randomUUID();
 
-  // thêm lượt hiện tại
-  users.push(now);
+  localStorage.setItem(
+    "visitorId",
+    visitorId
+  );
 
-  localStorage.setItem(KEY, JSON.stringify(users));
+}
 
-  const el = document.getElementById("onlineCount");
-  if(el) el.innerText = users.length;
-})();
+const API =
+"https://script.google.com/macros/s/AKfycbx4C_W2ev5HX7jpMDSB0GwujaanE0BedhiSoRDX3GforDmcjPjTmi4WZRLORH7i_KEnQw/exec";
+
+
+async function capNhatThongKe(){
+
+  const res =
+  await fetch(
+
+    API +
+
+    "?page=index&id=" +
+
+    visitorId
+
+  );
+
+const text =
+await res.text();
+
+console.log("API:", text);
+
+  document
+  .getElementById("online")
+  .textContent =
+  data.online;
+
+  document
+  .getElementById("totalViews")
+  .textContent =
+  data.totalViews;
+
+  document
+  .getElementById("todayViews")
+  .textContent =
+  data.todayViews;
+
+  document
+  .getElementById("weekViews")
+  .textContent =
+  data.weekViews;
+
+  document
+  .getElementById("topPage")
+  .textContent =
+  data.topPage;
+
+}
+
+capNhatThongKe();
+
+setInterval(
+  capNhatThongKe,
+  60000
+);
 </script>
 
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
