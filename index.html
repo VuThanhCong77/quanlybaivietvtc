@@ -1247,49 +1247,41 @@ if(!visitorId){
 const API =
 "https://script.google.com/macros/s/AKfycbx4C_W2ev5HX7jpMDSB0GwujaanE0BedhiSoRDX3GforDmcjPjTmi4WZRLORH7i_KEnQw/exec";
 
-
 async function capNhatThongKe(){
 
-  const res =
-  await fetch(
+  try{
 
-    API +
+    const res = await fetch(
+      API +
+      "?page=index&id=" +
+      visitorId
+    );
 
-    "?page=index&id=" +
+    const data = await res.json();
 
-    visitorId
+    document.getElementById("online").textContent =
+      data.online;
 
-  );
+    document.getElementById("totalViews").textContent =
+      data.totalViews;
 
-const text =
-await res.text();
+    document.getElementById("todayViews").textContent =
+      data.todayViews;
 
-console.log("API:", text);
+    document.getElementById("weekViews").textContent =
+      data.weekViews;
 
-  document
-  .getElementById("online")
-  .textContent =
-  data.online;
+    document.getElementById("topPage").textContent =
+      data.topPage;
 
-  document
-  .getElementById("totalViews")
-  .textContent =
-  data.totalViews;
+  }catch(err){
 
-  document
-  .getElementById("todayViews")
-  .textContent =
-  data.todayViews;
+    console.error(
+      "Lỗi thống kê:",
+      err
+    );
 
-  document
-  .getElementById("weekViews")
-  .textContent =
-  data.weekViews;
-
-  document
-  .getElementById("topPage")
-  .textContent =
-  data.topPage;
+  }
 
 }
 
