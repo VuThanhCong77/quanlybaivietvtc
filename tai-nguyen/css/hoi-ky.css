@@ -346,3 +346,29 @@ RESPONSIVE
     color:#c0392b;
     text-decoration:underline;
 }
+
+/* ==================================================
+   VIDEO
+================================================== */
+
+.sidebar-box{
+    margin:25px 0;
+}
+
+.sidebar-box h3{
+    margin-bottom:12px;
+}
+
+.video-sidebar{
+    overflow:hidden;
+
+    border-radius:12px;
+    box-shadow:var(--shadow);
+}
+
+.video-sidebar iframe{
+    display:block;
+    width:100%;
+    aspect-ratio:16/9;
+    border:none;
+}
