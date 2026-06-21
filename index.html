@@ -216,6 +216,11 @@ mà là được nhìn thấy quê hương thay da đổi thịt và nụ cườ
 </div>
 
 <!-- =====================================================
+DANH SACH CÁN BỘ
+===================================================== -->
+<section id="gioi-thieu-can-bo"></section>
+
+<!-- =====================================================
 NGHIỆP VỤ CÔNG TÁC ĐẢNG
 ===================================================== -->
 
@@ -1244,6 +1249,19 @@ if ("serviceWorker" in navigator) {
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/gop-y.js"></script>
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/online.js"></script>
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/can-bo.js"></script>
+
+<script>
+fetch('https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/can-bo.html')
+.then(r => r.text())
+.then(html => {
+
+    document.getElementById('gioi-thieu-can-bo').innerHTML = html;
+
+    khoiTaoCanBo();
+
+});
+</script>
 	
 </body>
 </html>
