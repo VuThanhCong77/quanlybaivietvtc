@@ -1,111 +1,221 @@
 .podcast{
 
     max-width:1200px;
-
     margin:auto;
-
-    padding:20px;
+    padding:15px;
 
 }
 
 #podcast-list{
+
     display:grid;
-    gap:20px;
+    gap:16px;
+
     margin-bottom:180px;
+
 }
 
 .podcast-card{
+
     display:flex;
     gap:15px;
+
     background:#fff;
-    border-radius:12px;
+
+    border-radius:16px;
+
     overflow:hidden;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.podcast-card:hover{
+
+    transform:translateY(-2px);
+
 }
 
 .podcast-thumb{
+
     width:220px;
     height:140px;
+
     object-fit:cover;
+
+    flex-shrink:0;
+
 }
 
 .podcast-content{
-    padding:15px;
-    flex:1;
-}
 
-.podcast-content h3{
-    margin:0 0 10px;
+    flex:1;
+
+    padding:15px;
+
 }
 
 .podcast-category{
+
+    display:inline-block;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    background:#eef5ff;
+
     color:#0066cc;
-    font-size:13px;
-    margin-bottom:5px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+.podcast-content h3{
+
+    margin:0 0 8px;
+
+    font-size:20px;
+
+    line-height:1.4;
+
+}
+
+.podcast-content p{
+
+    margin:0;
+
+    color:#555;
+
+    line-height:1.6;
+
 }
 
 .podcast-actions{
+
     display:flex;
+
     gap:10px;
-    margin-top:10px;
+
+    margin-top:12px;
+
+    flex-wrap:wrap;
+
 }
 
 .podcast-actions button,
 .podcast-actions a{
-    padding:8px 14px;
+
+    padding:10px 16px;
+
     border:none;
-    border-radius:8px;
+
+    border-radius:10px;
+
     text-decoration:none;
+
     cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:600;
+
 }
 
+.podcast-actions button{
 
+    background:#0066cc;
+    color:#fff;
+
+}
+
+.podcast-actions a{
+
+    background:#f2f4f7;
+    color:#333;
+
+}
+
+/* ==========================
+PLAYER
+========================== */
 
 .podcast-player{
+
     position:fixed;
+
     left:0;
     right:0;
     bottom:0;
 
-    background:#ffffff;
+    background:#fff;
+
     border-top:1px solid #ddd;
 
-    padding:12px;
+    padding:10px;
 
     z-index:9999;
 
     box-shadow:0 -2px 12px rgba(0,0,0,.1);
+
 }
 
 .podcast-info{
+
     text-align:center;
-    margin-bottom:10px;
+
+    margin-bottom:8px;
+
 }
 
 .podcast-status{
-    font-size:14px;
+
     color:#0066cc;
+
+    font-size:13px;
+
     font-weight:700;
+
 }
 
 .podcast-chapter{
+
     margin-top:4px;
-    font-size:14px;
+
+    font-size:13px;
+
     color:#666;
+
 }
 
 .podcast-title{
+
     margin-top:4px;
+
     font-size:18px;
+
     font-weight:700;
+
     color:#222;
+
 }
 
 .podcast-controls{
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
-    gap:12px;
+
+    gap:10px;
+
 }
 
 .podcast-controls button{
@@ -114,6 +224,7 @@
     height:48px;
 
     border:none;
+
     border-radius:50%;
 
     cursor:pointer;
@@ -122,34 +233,113 @@
 
     font-size:22px;
 
-    transition:.3s;
-}
-
-.podcast-controls button:hover{
-    transform:scale(1.08);
 }
 
 #playBtn{
-    width:56px;
-    height:56px;
-    font-size:26px;
+
+    width:58px;
+    height:58px;
+
+    font-size:28px;
+
 }
 
-@media(max-width:768px){
+/* ==========================
+MOBILE
+========================== */
+
+@media (max-width:768px){
+
+    .podcast{
+
+        padding:10px;
+
+    }
+
+    .podcast-card{
+
+        flex-direction:column;
+
+    }
+
+    .podcast-thumb{
+
+        width:100%;
+        height:200px;
+
+    }
+
+    .podcast-content{
+
+        padding:12px;
+
+    }
+
+    .podcast-content h3{
+
+        font-size:18px;
+
+    }
+
+    .podcast-content p{
+
+        font-size:14px;
+
+        display:-webkit-box;
+
+        -webkit-line-clamp:3;
+
+        -webkit-box-orient:vertical;
+
+        overflow:hidden;
+
+    }
+
+    .podcast-actions{
+
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .podcast-actions button,
+    .podcast-actions a{
+
+        text-align:center;
+
+        padding:12px;
+
+    }
 
     .podcast-title{
-        font-size:16px;
+
+        font-size:15px;
+
+    }
+
+    .podcast-controls{
+
+        gap:6px;
+
     }
 
     .podcast-controls button{
-        width:44px;
-        height:44px;
-        font-size:20px;
+
+        width:42px;
+        height:42px;
+
+        font-size:18px;
+
     }
 
     #playBtn{
+
         width:52px;
         height:52px;
+
+        font-size:24px;
+
     }
 
 }
