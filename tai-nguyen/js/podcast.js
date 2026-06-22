@@ -9,9 +9,45 @@ LOAD DANH SÁCH BÀI
 async function loadPodcastData() {
 
   const response =
-    await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/hoi-ky.json");
+    await fetch("../du-lieu/hoi-ky.json");
 
   posts = await response.json();
+
+  const order = [
+    "Lời mở đầu",
+    "Chương I: Ký ức tuổi thơ",
+    "Chương II: Dấu ấn",
+    "Chương III: Những tấm gương",
+    "Lời kết"
+  ];
+
+posts.sort((a, b) => {
+
+  const order = [
+    "Lời mở đầu",
+    "Chương I: Ký ức tuổi thơ",
+    "Chương II: Dấu ấn",
+    "Chương III: Những tấm gương",
+    "Lời kết"
+  ];
+
+  const chapterA = a.category?.[1] || "";
+  const chapterB = b.category?.[1] || "";
+
+  const indexA = order.indexOf(chapterA);
+  const indexB = order.indexOf(chapterB);
+
+  if (indexA !== indexB) {
+    return indexA - indexB;
+  }
+
+  const [dA, mA, yA] = a.date.split("-");
+  const [dB, mB, yB] = b.date.split("-");
+
+  return new Date(yB, mB - 1, dB)
+       - new Date(yA, mA - 1, dA);
+
+});
 
 }
 
@@ -73,6 +109,7 @@ function renderPodcastList() {
   });
 
 }
+
 
 /* ==========================
 CẬP NHẬT PLAYER
