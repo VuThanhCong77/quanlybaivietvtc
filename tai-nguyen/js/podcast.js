@@ -1,6 +1,9 @@
 let posts = [];
 let currentIndex = -1;
 let speech = null;
+let speechChunks = [];
+let currentChunkIndex = 0;
+let isStopped = false;
 
 /* ==========================
 LOAD DANH SÁCH BÀI
@@ -129,6 +132,85 @@ function updatePlayer(post) {
 /* ==========================
 ĐỌC BÀI VIẾT
 ========================== */
+function splitText(text, maxLength = 1200) {
+
+  const chunks = [];
+
+  while (text.length > 0) {
+
+    let chunk =
+      text.slice(0, maxLength);
+
+    let lastDot =
+      Math.max(
+        chunk.lastIndexOf("."),
+        chunk.lastIndexOf("!"),
+        chunk.lastIndexOf("?")
+      );
+
+    if (lastDot > 500) {
+
+      chunk =
+        chunk.slice(0, lastDot + 1);
+
+    }
+
+    chunks.push(chunk);
+
+    text =
+      text.slice(chunk.length);
+
+  }
+
+  return chunks;
+
+}
+
+function speakCurrentChunk() {
+
+  if (isStopped) return;
+
+  if (
+    currentChunkIndex >=
+    speechChunks.length
+  ) {
+
+    if (
+      currentIndex <
+      posts.length - 1
+    ) {
+
+      playPodcast(
+        currentIndex + 1
+      );
+
+    }
+
+    return;
+
+  }
+
+  speech =
+    new SpeechSynthesisUtterance(
+      speechChunks[currentChunkIndex]
+    );
+
+  speech.lang = "vi-VN";
+
+  speech.rate = 1;
+
+  speech.onend = () => {
+
+    currentChunkIndex++;
+
+    speakCurrentChunk();
+
+  };
+
+  speechSynthesis.speak(speech);
+
+}
+
 
 async function playPodcast(index) {
 
@@ -141,6 +223,8 @@ async function playPodcast(index) {
   updatePlayer(post);
 
   speechSynthesis.cancel();
+
+  isStopped = false;
 
   const response =
     await fetch(post.url);
@@ -175,27 +259,29 @@ async function playPodcast(index) {
     .querySelectorAll(".sidebar-box")
     .forEach(el => el.remove());
 
-  const text =
-    content.innerText;
+const text =
+  content.innerText
+    .replace(/\s+/g, " ")
+    .trim();
 
-  speech =
-    new SpeechSynthesisUtterance(text);
+console.log(
+  "Độ dài:",
+  text.length
+);
 
-  speech.lang = "vi-VN";
+speechChunks =
+  splitText(text);
 
-  speech.rate = 1;
+currentChunkIndex = 0;
 
-  speech.onend = () => {
+isStopped = false;
 
-    if (currentIndex < posts.length - 1) {
+console.log(
+  "Số đoạn:",
+  speechChunks.length
+);
 
-      playPodcast(currentIndex + 1);
-
-    }
-
-  };
-
-  speechSynthesis.speak(speech);
+speakCurrentChunk();
 
 }
 
@@ -224,6 +310,12 @@ DỪNG
 ========================== */
 
 function stopPodcast() {
+
+  isStopped = true;
+
+  speechChunks = [];
+
+  currentChunkIndex = 0;
 
   speechSynthesis.cancel();
 
