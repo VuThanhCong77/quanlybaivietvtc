@@ -67,6 +67,13 @@ body{
 
 }
 
+.chu-thich-anh{
+  margin-top:8px;
+  font-size:14px;
+  font-style:italic;
+  color:#666;
+}
+
 .cong-cu-bai-viet{
 
     display:flex;
