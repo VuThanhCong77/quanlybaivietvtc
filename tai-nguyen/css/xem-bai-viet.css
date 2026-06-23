@@ -405,4 +405,29 @@ blockquote{
 
 }
 
+.bai-tho{
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.bai-tho h2{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.noi-dung-tho{
+  text-align: center;
+  line-height: 2;
+  font-style: italic;
+}
+
+.tac-gia{
+  text-align: right;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
 
