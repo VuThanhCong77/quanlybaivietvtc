@@ -70,6 +70,10 @@ Hồi ký
 Kinh tế
 </a>
 
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/cong-nghe.html">
+Công nghệ
+</a>
+
 <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/giao-duc.html">
 Giáo dục
 </a>
