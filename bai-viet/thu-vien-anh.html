@@ -184,6 +184,56 @@ body{
 .lightbox{
     cursor: zoom-out;
 }
+
+.nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:50px;
+    color:white;
+    cursor:pointer;
+    user-select:none;
+    padding:10px;
+    z-index:1000;
+}
+
+.prev{
+    left:20px;
+}
+
+.next{
+    right:20px;
+}
+
+.counter{
+    position:absolute;
+    bottom:20px;
+    color:white;
+    font-size:15px;
+    background:rgba(0,0,0,.5);
+    padding:6px 12px;
+    border-radius:20px;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:85%;
+    border-radius:10px;
+}
+
+@media(max-width:768px){
+
+    .nav{
+        font-size:38px;
+    }
+
+    .counter{
+        bottom:10px;
+        font-size:13px;
+    }
+
+}
+
 </style>
 </head>
 
@@ -225,14 +275,24 @@ body{
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
+
     <div class="close" onclick="closeLB()">×</div>
+
+    <div class="nav prev" onclick="prevImg()">❮</div>
+
     <img id="lbImg">
+
+    <div class="nav next" onclick="nextImg()">❯</div>
+
+    <div class="counter" id="counter"></div>
+
 </div>
 
 <script>
 const API_URL = "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/thu-vien-anh.json";
 
 let images = [];
+let currentIndex = 0;
 
 /* LOAD DỮ LIỆU */
 async function loadImages(){
@@ -316,14 +376,50 @@ function render(){
 
 /* LIGHTBOX */
 function openImg(i){
-    if(!images[i]) return;
 
-    images[i].views++;
+    currentIndex = i;
 
-    document.getElementById("lbImg").src = images[i].url;
+    showCurrentImage();
+
+}
+
+function showCurrentImage(){
+
+    if(!images[currentIndex]) return;
+
+    images[currentIndex].views++;
+
+    document.getElementById("lbImg").src =
+        images[currentIndex].url;
+
+    document.getElementById("counter").innerHTML =
+        (currentIndex + 1) + " / " + images.length;
+
     document.getElementById("lightbox").style.display = "flex";
 
     render();
+}
+
+function nextImg(){
+
+    currentIndex++;
+
+    if(currentIndex >= images.length){
+        currentIndex = 0;
+    }
+
+    showCurrentImage();
+}
+
+function prevImg(){
+
+    currentIndex--;
+
+    if(currentIndex < 0){
+        currentIndex = images.length - 1;
+    }
+
+    showCurrentImage();
 }
 
 function closeLB(){
@@ -354,6 +450,54 @@ function exportJSON(){
 
     URL.revokeObjectURL(url);
 }
+
+document.addEventListener("keydown", function(e){
+
+    const lb =
+        document.getElementById("lightbox");
+
+    if(lb.style.display !== "flex") return;
+
+    if(e.key === "ArrowRight"){
+        nextImg();
+    }
+
+    if(e.key === "ArrowLeft"){
+        prevImg();
+    }
+
+    if(e.key === "Escape"){
+        closeLB();
+    }
+
+});
+
+let startX = 0;
+
+document.getElementById("lightbox")
+.addEventListener("touchstart", e => {
+
+    startX = e.touches[0].clientX;
+
+});
+
+document.getElementById("lightbox")
+.addEventListener("touchend", e => {
+
+    let endX = e.changedTouches[0].clientX;
+
+    let diff = startX - endX;
+
+    if(Math.abs(diff) < 50) return;
+
+    if(diff > 0){
+        nextImg();
+    }else{
+        prevImg();
+    }
+
+});
+
 </script>
 
 </div>
