@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>50 Bài viết nổi bật | Vũ Thành Công</title>
+
+<link rel="icon"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+<link rel="icon"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fa;
+color:#222;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.page-title{
+text-align:center;
+margin-bottom:30px;
+font-size:32px;
+font-weight:700;
+}
+
+.top-list{
+display:grid;
+gap:16px;
+}
+
+.post-card{
+display:flex;
+gap:16px;
+background:#fff;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.post-card:hover{
+transform:translateY(-2px);
+}
+
+.rank{
+width:70px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+font-weight:700;
+background:#0d6efd;
+color:#fff;
+}
+
+.post-thumb{
+width:220px;
+height:140px;
+object-fit:cover;
+}
+
+.post-content{
+padding:15px;
+flex:1;
+}
+
+.post-title{
+font-size:20px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.post-desc{
+color:#666;
+line-height:1.6;
+margin-bottom:10px;
+}
+
+.post-meta{
+display:flex;
+gap:20px;
+font-size:14px;
+color:#888;
+margin-bottom:10px;
+}
+
+.read-more{
+display:inline-block;
+padding:8px 14px;
+background:#0d6efd;
+color:#fff;
+text-decoration:none;
+border-radius:6px;
+}
+
+.read-more:hover{
+opacity:.9;
+}
+
+@media(max-width:768px){
+
+.post-card{
+flex-direction:column;
+}
+
+.post-thumb{
+width:100%;
+height:220px;
+}
+
+.rank{
+width:100%;
+height:50px;
+}
+
+}
+
+</style>
+
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
+
+</head>
+
+<body>
+
+<!-- =====================================================
+DAU TRANG
+===================================================== -->
+
+<header id="menu"></header>
+
+<div class="container">
+
+<h1 class="page-title">
+🔥 Top 50 bài viết được xem nhiều nhất
+</h1>
+
+<div id="topPosts" class="top-list">
+
+<p>Đang tải dữ liệu...</p>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+NÚT TRỞ VỀ
+===================================================== -->
+
+<button
+id="nut-tro-ve"
+class="nut-dieu-huong"
+onclick="history.back()">
+
+    ←
+
+</button>
+
+
+<!-- =====================================================
+NÚT LÊN ĐẦU TRANG
+===================================================== -->
+
+<button
+id="nut-len-dau"
+class="nut-dieu-huong"
+onclick="window.scrollTo({
+top:0,
+behavior:'smooth'
+})">
+
+    ↑
+
+</button>
+
+<script>
+
+const VIEW_API =
+"https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+
+async function taiTop50(){
+
+try{
+
+const [postRes,viewRes] = await Promise.all([
+
+fetch(
+"https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"
+),
+
+fetch(
+`${VIEW_API}?mode=list`
+)
+
+]);
+
+const posts =
+await postRes.json();
+
+const views =
+await viewRes.json();
+
+const viewMap = {};
+
+views.forEach(item=>{
+
+viewMap[item.postId] =
+Number(item.views||0);
+
+});
+
+const topPosts = posts
+
+.map(post=>({
+...post,
+views:viewMap[post.id]||0
+}))
+
+.sort((a,b)=>
+b.views-a.views
+)
+
+.slice(0,50);
+
+hienThi(topPosts);
+
+}
+
+catch(err){
+
+console.error(err);
+
+document.getElementById(
+"topPosts"
+).innerHTML =
+
+"<p>Không tải được dữ liệu.</p>";
+
+}
+
+}
+
+function hienThi(data){
+
+const box =
+document.getElementById("topPosts");
+
+box.innerHTML = data.map((post,index)=>`
+
+<div class="post-card">
+
+<div class="rank">
+${index+1}
+</div>
+
+<img
+class="post-thumb"
+src="${post.image}"
+alt="${post.title}">
+
+<div class="post-content">
+
+<div class="post-title">
+${post.title}
+</div>
+
+<div class="post-desc">
+${post.desc || ""}
+</div>
+
+<div class="post-meta">
+
+<span>
+👁️ ${post.views.toLocaleString("vi-VN")} lượt xem
+</span>
+
+<span>
+📅 ${post.date || ""}
+</span>
+
+</div>
+
+<a
+href="${post.url}"
+class="read-more">
+
+Đọc bài →
+
+</a>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+taiTop50();
+
+</script>
+
+<script>
+
+async function loadComponent(id, file){
+
+    try{
+
+        const response = await fetch(file);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Lỗi tải component: " + file
+            );
+
+        }
+
+        const html = await response.text();
+
+        document.getElementById(id)
+        .innerHTML = html;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    loadComponent(
+        "menu",
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html"
+    );
+
+}
+);
+
+</script>
+
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+
+</body>
+</html>
