@@ -42,10 +42,6 @@ async function taiBaiVietNoiBat() {
 
         const baiNoiBat = danhSach
 
-            .filter(
-            bai => bai.id
-            )
-
             .map(bai => ({
 
                 ...bai,
