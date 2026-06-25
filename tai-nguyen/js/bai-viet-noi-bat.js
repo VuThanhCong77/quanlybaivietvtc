@@ -38,14 +38,16 @@ async function taiBaiVietNoiBat() {
 
         });
 
-        /* Chỉ lấy bài xem nhiều */
+        /* Chỉ lấy bài viết xem nhiều */
 
-const baiNoiBat = danhSach
+        const baiNoiBat = danhSach
 
     .map(bai => ({
         ...bai,
         views: viewMap[bai.id] || 0
     }))
+
+    .filter(bai => bai.views > 0)
 
     .sort((a, b) => b.views - a.views)
 
