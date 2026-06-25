@@ -4,15 +4,53 @@ async function taiBaiViet(){
 
     try{
 
-        const res = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json");
-        const data = await res.json();
+        const [resPost, resView] = await Promise.all([
 
-        danhSachGoc = data;
+            fetch(
+                "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"
+            ),
+
+            fetch(
+                `${VIEW_API}?mode=list`
+            )
+
+        ]);
+
+        const data =
+            await resPost.json();
+
+        const thongKe =
+            await resView.json();
+
+        const viewMap = {};
+
+        thongKe.forEach(item => {
+
+            viewMap[item.postId] =
+                Number(item.views || 0);
+
+        });
+
+        danhSachGoc = data.map(bv => ({
+
+            ...bv,
+
+            views:
+                viewMap[bv.id] || 0
+
+        }));
 
         hienThiNoiBat();
 
-    }catch(err){
-        console.log("LOI JSON:", err);
+    }
+
+    catch(err){
+
+        console.log(
+            "LOI JSON:",
+            err
+        );
+
     }
 
 }
@@ -20,34 +58,47 @@ async function taiBaiViet(){
 function hienThiNoiBat(){
 
     const baiNoiBat = danhSachGoc
-        .filter(bv => bv.featured === true)
+
+        .sort(
+            (a, b) =>
+            b.views - a.views
+        )
+
         .slice(0, 6);
 
-    console.log("NOI BAT:", baiNoiBat); // 👈 debug quan trọng
+    const box =
+        document.getElementById(
+            "noiBatList"
+        );
 
-    const box = document.getElementById("noiBatList");
-
-    if(!box){
-        console.log("KHONG TIM THAY noiBatList");
-        return;
-    }
+    if(!box) return;
 
     box.innerHTML = baiNoiBat.map(bv => `
 
         <div class="bai-viet-item">
 
-            <img src="${bv.image}" alt="${bv.title}">
+            <img
+            src="${bv.image}"
+            alt="${bv.title}">
 
             <div class="bai-viet-noi-dung">
 
-                <div class="bai-viet-tieu-de">${bv.title}</div>
+                <div class="bai-viet-tieu-de">
+                    ${bv.title}
+                </div>
 
-                <div class="bai-viet-mo-ta">${bv.desc}</div>
+                <div class="bai-viet-mo-ta">
+                    ${bv.desc}
+                </div>
 
-                <div class="bai-viet-ngay">${bv.date}</div>
+                <div class="bai-viet-ngay">
+                    👁️ ${bv.views.toLocaleString("vi-VN")} lượt xem
+                </div>
 
-                <a class="bai-viet-xem-them" href="${bv.url}">
-                    Xem chi tiet →
+                <a
+                class="bai-viet-xem-them"
+                href="${bv.url}">
+                    Xem chi tiết →
                 </a>
 
             </div>
