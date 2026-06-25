@@ -54,6 +54,26 @@ content="Vũ Thành Công, Lưu Kiếm, Hải Phòng, công tác đảng, kiểm
 }
 </script>
 
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+
+<script>
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+OneSignalDeferred.push(async function(OneSignal) {
+
+await OneSignal.init({
+
+appId: "c3579b49-1073-4fa0-a122-5d5c68db16f0",
+
+notifyButton: {
+enable: true
+}
+
+});
+
+});
+</script>
+
 <link rel="sitemap" type="application/xml" title="Sitemap" href="https://vuthanhcong77.github.io/quanlybaivietvtc/sitemap.xml">
 
 <link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
