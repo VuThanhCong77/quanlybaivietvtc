@@ -38,25 +38,18 @@ async function taiBaiVietNoiBat() {
 
         });
 
-        /* Chỉ lấy bài featured */
+        /* Chỉ lấy bài xem nhiều */
 
-        const baiNoiBat = danhSach
+const baiNoiBat = danhSach
 
-            .map(bai => ({
+    .map(bai => ({
+        ...bai,
+        views: viewMap[bai.id] || 0
+    }))
 
-                ...bai,
+    .sort((a, b) => b.views - a.views)
 
-                views:
-                    viewMap[bai.id] || 0
-
-            }))
-
-            .sort(
-                (a, b) =>
-                b.views - a.views
-            )
-
-            .slice(0, 6);
+    .slice(0, 6);
 
         hienThiBaiVietNoiBat(
             baiNoiBat
