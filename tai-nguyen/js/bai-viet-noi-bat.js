@@ -1,105 +1,126 @@
+const VIEW_API =
+"https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+
 /* =========================================================
 BÀI VIẾT NỔI BẬT
 ========================================================= */
 
-async function taiBaiVietNoiBat(){
+async function taiBaiVietNoiBat() {
 
-    try{
+    try {
 
-        const response =
+        const [postsRes, viewsRes] = await Promise.all([
 
-        await fetch(
-        "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"
-        );
+            fetch(
+                "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"
+            ),
+
+            fetch(
+                `${VIEW_API}?mode=list`
+            )
+
+        ]);
 
         const danhSach =
+            await postsRes.json();
 
-        await response.json();
+        const thongKe =
+            await viewsRes.json();
 
-        const baiNoiBat =
+        /* Tạo bảng tra cứu lượt xem */
 
-        danhSach
+        const viewMap = {};
 
-        .filter(
-        bai =>
-        bai.featured === true
-        )
+        thongKe.forEach(item => {
 
-        .slice(0, 6);
+            viewMap[item.postId] =
+                Number(item.views || 0);
+
+        });
+
+        /* Chỉ lấy bài featured */
+
+        const baiNoiBat = danhSach
+
+            .filter(
+            bai => bai.id
+            )
+
+            .map(bai => ({
+
+                ...bai,
+
+                views:
+                    viewMap[bai.id] || 0
+
+            }))
+
+            .sort(
+                (a, b) =>
+                b.views - a.views
+            )
+
+            .slice(0, 6);
 
         hienThiBaiVietNoiBat(
-        baiNoiBat
+            baiNoiBat
         );
 
     }
 
-    catch(error){
+    catch (error) {
 
         console.error(
-
-        "Loi bai viet noi bat:",
-
-        error
-
+            "Lỗi tải bài viết nổi bật:",
+            error
         );
 
     }
 
 }
 
-function hienThiBaiVietNoiBat(ds){
+function hienThiBaiVietNoiBat(ds) {
 
     const container =
+        document.getElementById(
+            "featuredPosts"
+        );
 
-    document.getElementById(
-    "featuredPosts"
-    );
+    if (!container) return;
 
-    if(!container) return;
+    container.innerHTML = ds.map(bai => `
 
-    container.innerHTML =
+        <a
+        href="${bai.url}"
+        class="card-bai-viet">
 
-    ds.map(
-    bai => `
+            <img
+            src="${bai.image}"
+            alt="${bai.title}">
 
-    <a
-    href="${bai.url}"
-    class="card-bai-viet">
+            <div class="noi-dung-card">
 
-        <img
-        src="${bai.image}"
-        alt="${bai.title}">
+                <h3>
+                    ${bai.title}
+                </h3>
 
-        <div
-        class="noi-dung-card">
+                <p>
+                    ${bai.desc}
+                </p>
 
-            <h3>
+                <div class="meta-bai-viet">
+                    👁️ ${bai.views.toLocaleString("vi-VN")}
+                </div>
 
-                ${bai.title}
+            </div>
 
-            </h3>
+        </a>
 
-            <p>
-
-                ${bai.desc}
-
-            </p>
-
-        </div>
-
-    </a>
-
-    `
-    )
-
-    .join("");
+    `).join("");
 
 }
 
 document.addEventListener(
-
-"DOMContentLoaded",
-
-taiBaiVietNoiBat
-
+    "DOMContentLoaded",
+    taiBaiVietNoiBat
 );
