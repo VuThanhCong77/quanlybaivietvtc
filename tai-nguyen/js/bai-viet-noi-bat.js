@@ -51,7 +51,7 @@ async function taiBaiVietNoiBat() {
 
     .sort((a, b) => b.views - a.views)
 
-    .slice(0, 6);
+    .slice(0, 50);
 
         hienThiBaiVietNoiBat(
             baiNoiBat
