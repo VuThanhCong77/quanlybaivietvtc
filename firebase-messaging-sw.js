@@ -83,7 +83,7 @@ payload.notification.body,
 
 
 icon:
-"/tai-nguyen/icons/CK.png"
+"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/CK.png"
 
 
 }
