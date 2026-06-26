@@ -1,189 +1,78 @@
-// notification.js
-
-
-import { messaging } 
-from "https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js";
-
+import { messaging } from ".firebase-config.js";
 
 import {
 
-getToken,
-onMessage
+    getToken,
+    onMessage
+
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
+
+const vapidKey = "BIUs3ELW2tcEm8It0mD0OGrL1ChD5sBimbDXy3NDIkyUxYthLpxG8A2OD_ROaBUotCjURabPU94o07w47RjPwC";
+
+async function dangKyThongBao() {
+
+    try {
+
+        const permission = await Notification.requestPermission();
+
+        if (permission !== "granted") {
+
+            alert("Bạn chưa cho phép nhận thông báo.");
+
+            return;
+
+        }
+
+        const token = await getToken(messaging, {
+
+            vapidKey
+
+        });
+
+        if (!token) {
+
+            alert("Không lấy được Token.");
+
+            return;
+
+        }
+
+        console.log("FCM TOKEN:", token);
+
+        alert("Đăng ký nhận thông báo thành công!");
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+    }
 
 }
 
-from 
+onMessage(messaging, (payload) => {
 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
+    console.log(payload);
 
+    if (Notification.permission === "granted") {
 
+        new Notification(
 
+            payload.notification.title,
 
-// VAPID KEY
+            {
 
-const vapidKey =
+                body: payload.notification.body,
 
-"BIUs3ELW2tcEm8It0mD0OGrL1ChD5sBimbDXy3NDIkyUxYthLpxG8A2OD_ROaBUotCjURabPU94o07w47RjPwC";
+                icon: payload.notification.icon
 
+            }
 
+        );
 
+    }
 
+});
 
-// Xin quyền thông báo
-
-async function dangKyThongBao(){
-
-
-try{
-
-
-const permission =
-await Notification.requestPermission();
-
-
-
-if(permission !== "granted"){
-
-
-alert("Bạn chưa cho phép nhận thông báo");
-
-
-return;
-
-
-}
-
-
-
-
-// lấy token
-
-
-const token = await getToken(
-
-messaging,
-
-{
-
-vapidKey:vapidKey
-
-}
-
-);
-
-
-
-
-
-if(token){
-
-
-console.log(
-"FCM TOKEN:",
-token
-);
-
-
-
-// gửi về Google Sheet
-
-
-fetch(
-
-"https://script.google.com/macros/s/AKfycbz9NsG-hD4sLY2X_wkxwLpIHEhQJoulVfmUKhmd2HNUbz-jW-QY-CLNrTYt2dxOcIXu/exec",
-
-{
-
-
-method:"POST",
-
-
-body:JSON.stringify({
-
-token:token,
-
-
-time:new Date().toLocaleString()
-
-})
-
-
-}
-
-);
-
-
-
-alert(
-"Đã bật nhận thông báo"
-);
-
-
-
-}
-
-
-
-}
-
-catch(error){
-
-
-console.error(error);
-
-
-}
-
-
-
-}
-
-
-
-
-
-// Nhận thông báo khi đang mở web
-
-
-onMessage(
-
-messaging,
-
-(payload)=>{
-
-
-console.log(
-"Tin nhắn:",
-payload
-);
-
-
-
-new Notification(
-
-payload.notification.title,
-
-{
-
-body:
-payload.notification.body,
-
-icon:
-"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/CK.png"
-
-
-}
-
-);
-
-
-
-}
-
-);
-
-
-
-
-window.dangKyThongBao =
-dangKyThongBao;
+window.dangKyThongBao = dangKyThongBao;

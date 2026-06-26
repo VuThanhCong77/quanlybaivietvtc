@@ -63,10 +63,8 @@ content="Vũ Thành Công, Lưu Kiếm, Hải Phòng, công tác đảng, kiểm
 <link rel="shortcut icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
 <link rel="apple-touch-icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.png">
 
-<link rel="stylesheet"
-      href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
-<link rel="stylesheet" 
-      href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/danh-sach-bai-viet.css">
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/danh-sach-bai-viet.css">
 
 </head>
 
@@ -172,6 +170,9 @@ scrollamount="5">
 </marquee>
 
 </div>
+
+
+<div id="subscribe-container"></div>
 
  <!-- =====================================================
 BÀI VIẾT MỚI NHẤT
@@ -1288,8 +1289,34 @@ fetch('https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/can-bo.html')
 });
 </script>
 
+
+<script>
+fetch("subscribe.html")
+.then(r=>r.text())
+.then(html=>{
+
+document
+.getElementById("subscribe-container")
+.innerHTML=html;
+
+const btn=document.getElementById("btnSubscribe");
+
+if(btn){
+
+btn.onclick=()=>{
+
+dangKyThongBao();
+
+};
+
+}
+
+});
+</script>
+
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js"></script>
+
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/notification.js"></script>
-	
+
 </body>
 </html>
