@@ -1,4 +1,4 @@
-import { messaging } from "https://vuthanhcong77.github.io/quanlybaivietvtc6/firebase-config.js";
+import { messaging } from "https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js";
 
 import {
 
