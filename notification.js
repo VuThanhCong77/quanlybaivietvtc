@@ -2,7 +2,7 @@
 
 
 import { messaging } 
-from "./firebase-config.js";
+from "https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js";
 
 
 import {
@@ -169,7 +169,7 @@ body:
 payload.notification.body,
 
 icon:
-"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/images/logos/logo.png"
+"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/CK.png"
 
 
 }
