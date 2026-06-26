@@ -23,11 +23,14 @@ async function dangKyThongBao() {
 
         }
 
-        const token = await getToken(messaging, {
+const registration = await navigator.serviceWorker.register(
+    "/quanlybaivietvtc/firebase-messaging-sw.js"
+);
 
-            vapidKey
-
-        });
+const token = await getToken(messaging, {
+    vapidKey,
+    serviceWorkerRegistration: registration
+});
 
         if (!token) {
 
