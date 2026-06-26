@@ -1,5 +1,19 @@
 [
   {
+  "id": "mot-so-quy-dinh-moi-cua-dang",
+  "title": "Một số quy định mới của Đảng",
+  "desc": "Xét tặng huy hiệu 35 năm tuổi Đảng và triển khai thực hiện 4 thủ tục hành chính của Đảng trên môi trường mạng",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/huy-hieu-dang.jpg",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc/mot-so-quy-dinh-moi-cua-dang.html",
+  "date": "26-06-2026",
+  "category": [
+    "Tin tức",
+    "Xây dựng đảng"
+  ],
+  "featured": true,
+  "views": 18
+},
+  {
     "id": "nang-cao-ban-linh-chinh-tri-cua-can-bo-cong-chuc-lam-cong-tac-kiem-tra-giam-sat",
     "title": "Nâng cao bản lĩnh chính trị của cán bộ, công chức làm công tác kiểm tra, giám sát",
     "desc": "Nâng cao bản lĩnh chính trị của cán bộ, công chức làm công tác kiểm tra, giám sát ở cấp xã trong tình hình mới là yêu cầu mang tính tất yếu, khách quan",
