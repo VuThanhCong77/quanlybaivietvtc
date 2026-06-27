@@ -11,7 +11,7 @@ import {
 
 const vapidKey = "BIUs3ELW2tcEm8It0mD0OGrL1ChD5sBimbDXy3NDIkyUxYthLpxG8A2OD_ROaBUotCjURabPU94o07w47RjPwC4";
 
-const API_URL = "https://script.google.com/macros/s/AKfycbx1x0gpfR61aluohl-7gdkF45ZVe0zBrjhwrFOsWeiUZerJX6NA6N5TiXFRl-mcF3IS/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbz9NsG-hD4sLY2X_wkxwLpIHEhQJoulVfmUKhmd2HNUbz-jW-QY-CLNrTYt2dxOcIXu/exec";
 
 // ===========================
 // CẬP NHẬT GIAO DIỆN
