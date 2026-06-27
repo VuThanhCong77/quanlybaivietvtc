@@ -149,8 +149,12 @@ Chrome
         }
 
         console.log("FCM TOKEN:",token);
-
+        
+        console.log("Chuẩn bị gửi token lên Apps Script");
+        
         await guiToken(token);
+
+        console.log("Đã vào guiToken()");
 
         capNhatTrangThai("granted");
 
