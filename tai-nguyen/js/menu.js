@@ -15,6 +15,8 @@ function toggleMenu(){
 const btn = document.querySelector('.dropdown-btn');
 const menu = document.querySelector('.dropdown-menu');
 
-btn.addEventListener('click', () => {
-    menu.classList.toggle('show');
-});
+if (btn && menu) {
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('show');
+    });
+}
