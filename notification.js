@@ -49,13 +49,17 @@ async function guiToken(token){
 
     try{
 
-        await fetch(API_URL,{
+        const response = await fetch(API_URL,{
 
             method:"POST",
 
+            headers:{
+                "Content-Type":"application/json"
+            },
+
             body:JSON.stringify({
 
-                token,
+                token:token,
 
                 time:new Date().toISOString(),
 
@@ -65,13 +69,15 @@ async function guiToken(token){
 
         });
 
-    }
+        console.log("Đã gửi lên Apps Script");
+        console.log("HTTP:", response.status);
 
-    console.log("Đã gửi lên Apps Script");
-        
-    catch(e){
+        const text = await response.text();
+        console.log("Kết quả:", text);
 
-        console.error("Không gửi được Token",e);
+    }catch(e){
+
+        console.error("Không gửi được Token", e);
 
     }
 
@@ -226,17 +232,9 @@ window.addEventListener("load",()=>{
 
         if(btn){
 
-            btn.addEventListener(
+  	btn.addEventListener("click", dangKyThongBao);
 
-                "click",
-
-                dangKyThongBao,
-
-                { once:true }
-
-            );
-
-            clearInterval(timer);
+         clearInterval(timer);
 
         }
 
