@@ -1,4 +1,4 @@
-import { messaging } from "./firebase-config.js";
+import { messaging } from "https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js";
 
 import {
     getToken,
@@ -65,7 +65,11 @@ async function guiToken(token){
 
         });
 
-    }catch(e){
+    }
+
+    console.log("Đã gửi lên Apps Script");
+        
+    catch(e){
 
         console.error("Không gửi được Token",e);
 
@@ -79,6 +83,10 @@ async function guiToken(token){
 
 async function dangKyThongBao(){
 
+    console.log("=== Bắt đầu đăng ký ===");
+
+    console.log("Permission:", Notification.permission);
+    
     try{
 
         if(Notification.permission==="denied"){
@@ -122,9 +130,10 @@ Chrome
         await navigator.serviceWorker.register(
 
             "/quanlybaivietvtc/firebase-messaging-sw.js"
+           );
 
-        );
-
+         console.log("Service Worker OK");
+        
         const token=
 
         await getToken(
@@ -140,7 +149,9 @@ Chrome
             }
 
         );
-
+        
+        console.log("TOKEN:", token);
+        
         if(!token){
 
             alert("Không lấy được FCM Token.");
