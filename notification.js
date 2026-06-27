@@ -47,31 +47,23 @@ function capNhatTrangThai(permission) {
 
 async function guiToken(token){
 
-    try{
+    const response = await fetch(API_URL, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    token: token,
+    time: new Date().toISOString(),
+    userAgent: navigator.userAgent
+  })
+});
 
-        await fetch(API_URL,{
-
-            method:"POST",
-
-            body:JSON.stringify({
-
-                token,
-
-                time:new Date().toISOString(),
-
-                userAgent:navigator.userAgent
-
-            })
-
-        });
-
-    }catch(e){
-
-        console.error("Không gửi được Token",e);
-
-    }
+console.log(response.status);
+console.log(await response.text());
 
 }
+
 
 // ===========================
 // ĐĂNG KÝ
