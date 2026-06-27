@@ -1289,6 +1289,14 @@ fetch('https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/can-bo.html')
 });
 </script>
 
+<script>
+fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/subscribe.html")
+.then(r=>r.text())
+.then(html=>{
+    document.getElementById("subscribe-container").innerHTML = html;
+});
+</script>
+	
 <script type="module" src="https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js"></script>
 
 <script type="module" src="https://vuthanhcong77.github.io/quanlybaivietvtc/notification.js"></script>
