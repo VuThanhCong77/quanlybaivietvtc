@@ -69,10 +69,6 @@ const response = await fetch(API_URL, {
 
         console.log(await response.text());
 
-        const text = await response.text();
-        console.log("Kết quả:", text);
-
-    }
 }
 
 // ===========================
