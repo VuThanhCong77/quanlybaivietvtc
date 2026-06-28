@@ -1,4 +1,19 @@
-import { messaging } from "https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js";
+import {
+    messaging,
+    db
+}
+from "https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js";
+
+import {
+
+doc,
+setDoc,
+serverTimestamp
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
     getToken,
@@ -12,6 +27,32 @@ import {
 const vapidKey = "BIUs3ELW2tcEm8It0mD0OGrL1ChD5sBimbDXy3NDIkyUxYthLpxG8A2OD_ROaBUotCjURabPU94o07w47RjPwC4";
 
 const API_URL = "https://script.google.com/macros/s/AKfycbyPLrpQYoZ_CrcJDyyR5OFHe2nABaBxguWv5j4MARnZVbOB2c07_V4apk_GrFhEp1YL/exec";
+
+// ===========================
+// LƯU TOKEN
+// ===========================
+
+async function luuToken(token){
+
+    await setDoc(
+
+        doc(db,"tokens",token),
+
+        {
+
+            token:token,
+
+            updated:serverTimestamp(),
+
+            userAgent:navigator.userAgent
+
+        }
+
+    );
+
+    console.log("Đã lưu Firestore");
+
+}
 
 // ===========================
 // CẬP NHẬT GIAO DIỆN
@@ -39,29 +80,6 @@ function capNhatTrangThai(permission) {
             btn.innerHTML = "🔔 Theo dõi bài viết mới";
     }
 
-}
-
-// ===========================
-// GỬI TOKEN LÊN APPS SCRIPT
-// ===========================
-
-async function guiToken(token) {
-
-    const body =
-        "token=" + encodeURIComponent(token) +
-        "&time=" + encodeURIComponent(new Date().toISOString()) +
-        "&userAgent=" + encodeURIComponent(navigator.userAgent);
-
-    await fetch(API_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: body
-    });
-
-    console.log("Đã gửi");
 }
 
 // ===========================
@@ -151,7 +169,7 @@ Chrome
         
         console.log("Chuẩn bị gửi token lên Apps Script");
         
-        await guiToken(token);
+        await luuToken(token);
 
         console.log("Đã vào guiToken()");
 
