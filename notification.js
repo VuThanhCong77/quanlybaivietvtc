@@ -45,20 +45,42 @@ function capNhatTrangThai(permission) {
 // GỬI TOKEN LÊN APPS SCRIPT
 // ===========================
 
-async function guiToken(token) {
+async function guiToken(token){
 
-  const form = new FormData();
-  form.append("token", token);
-  form.append("time", new Date().toISOString());
-  form.append("userAgent", navigator.userAgent);
+    try{
 
-  const response = await fetch(API_URL, {
-    method: "POST",
-    body: form
-  });
+        const response = await fetch(API_URL,{
 
-  console.log(response.status);
-  console.log(await response.text());
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                token:token,
+
+                time:new Date().toISOString(),
+
+                userAgent:navigator.userAgent
+
+            })
+
+        });
+
+        console.log("Đã gửi lên Apps Script");
+        console.log("HTTP:", response.status);
+
+        const text = await response.text();
+        console.log("Kết quả:", text);
+
+    }catch(e){
+
+        console.error("Không gửi được Token", e);
+
+    }
+
 }
 
 
