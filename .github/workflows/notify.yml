@@ -1,42 +1,43 @@
+:::writing{variant="document" id="74821"}
+```yaml
 name: Notify New Post
 
 on:
-push:
-branches:
-- main
-paths:
-- 'du-lieu/bai-viet.json'
+  push:
+    branches:
+      - main
+    paths:
+      - "du-lieu/bai-viet.json"
 
-workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-notify:
-runs-on: ubuntu-latest
+  notify:
+    runs-on: ubuntu-latest
 
-```
-permissions:
-  contents: write
+    permissions:
+      contents: write
 
-steps:
-  - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-  - uses: actions/setup-node@v4
-    with:
-      node-version: 20
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-  - run: npm install
+      - run: npm install
 
-  - name: Create Firebase Service Account
-    run: |
-      echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > serviceAccount.json
+      - name: Create Firebase Service Account
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > serviceAccount.json
 
-  - name: Send notification
-    run: node scripts/sendNotification.js
+      - name: Send notification
+        run: node scripts/sendNotification.js
 
-  - name: Commit last-post.json
-    run: |
-      git config user.name "github-actions"
-      git config user.email "github-actions@github.com"
-      git add last-post.json
-      git diff --cached --quiet || git commit -m "Update last notified post"
-      git push
+      - name: Commit last-post.json
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add last-post.json
+          git diff --cached --quiet || git commit -m "Update last notified post"
+          git push
