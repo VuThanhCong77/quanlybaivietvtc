@@ -40,4 +40,3 @@ steps:
       git add last-post.json
       git diff --cached --quiet || git commit -m "Update last notified post"
       git push
-```
