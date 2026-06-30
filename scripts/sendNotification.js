@@ -64,12 +64,15 @@ const snapshot = await db.collection("tokens").get();
 const tokens = [];
 
 snapshot.forEach(doc => {
-    const data = doc.data();
-
-    if (data.token) {
-        tokens.push(data.token);
-    }
+    tokens.push(doc.id);
 });
+
+console.log("Số token:", tokens.length);
+
+if (tokens.length === 0) {
+    console.log("Không có token.");
+    process.exit(0);
+}
 
 console.log("Số token:", tokens.length);
 
@@ -112,7 +115,7 @@ for (let i = 0; i < response.responses.length; i++) {
 
     if (!response.responses[i].success) {
 
-        console.log("Token lỗi:", docs[i].id);
+        console.log("Xóa token lỗi:", docs[i].id);
 
         await docs[i].ref.delete();
 
