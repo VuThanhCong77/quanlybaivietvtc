@@ -98,24 +98,6 @@ console.log("Đã gửi:", response.successCount);
 console.log("Lỗi   :", response.failureCount);
 console.log("================================");
 
-const message = {
-    notification: {
-        title: newest.title,
-        body: newest.desc,
-        image: newest.image
-    },
-
-    data: {
-        url: newest.url
-    },
-
-    tokens
-};
-
-data: {
-    url: newest.url,
-    click_action: newest.url
-},
 
 // =========================
 // Xóa token lỗi
