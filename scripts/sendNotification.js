@@ -125,13 +125,21 @@ const docs = snapshot.docs;
 
 for (let i = 0; i < response.responses.length; i++) {
 
-    if (!response.responses[i].success) {
+if (!response.responses[i].success) {
 
-        console.log("Xóa token lỗi:", docs[i].id);
+    const errorCode = response.responses[i].error?.code;
 
+    console.log(errorCode);
+
+    if (
+        errorCode === "messaging/registration-token-not-registered" ||
+        errorCode === "messaging/invalid-registration-token"
+    ) {
+        console.log("Xóa token:", docs[i].id);
         await docs[i].ref.delete();
-
     }
+
+}
 
 }
 
