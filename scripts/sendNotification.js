@@ -70,13 +70,6 @@ snapshot.forEach(doc => {
 console.log("Số token:", tokens.length);
 
 if (tokens.length === 0) {
-    console.log("Không có token.");
-    process.exit(0);
-}
-
-console.log("Số token:", tokens.length);
-
-if (tokens.length === 0) {
     console.log("Không có thiết bị nào đăng ký.");
     process.exit(0);
 }
@@ -104,6 +97,25 @@ console.log("================================");
 console.log("Đã gửi:", response.successCount);
 console.log("Lỗi   :", response.failureCount);
 console.log("================================");
+
+const message = {
+    notification: {
+        title: newest.title,
+        body: newest.desc,
+        image: newest.image
+    },
+
+    data: {
+        url: newest.url
+    },
+
+    tokens
+};
+
+data: {
+    url: newest.url,
+    click_action: newest.url
+},
 
 // =========================
 // Xóa token lỗi
