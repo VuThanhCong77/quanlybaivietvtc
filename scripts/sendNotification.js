@@ -61,12 +61,79 @@ if (last.lastId === newest.id) {
 
 const snapshot = await db.collection("tokens").get();
 
-console.log("Số token:", snapshot.size);
+const tokens = [];
 
 snapshot.forEach(doc => {
+    const data = doc.data();
 
-    console.log(doc.id);
-
+    if (data.token) {
+        tokens.push(data.token);
+    }
 });
 
-console.log("Kiểm tra thành công.");
+console.log("Số token:", tokens.length);
+
+if (tokens.length === 0) {
+    console.log("Không có thiết bị nào đăng ký.");
+    process.exit(0);
+}
+
+// =========================
+// Gửi thông báo
+// =========================
+
+const message = {
+    notification: {
+        title: newest.title,
+        body: newest.desc
+    },
+
+    data: {
+        url: newest.url
+    },
+
+    tokens
+};
+
+const response = await admin.messaging().sendEachForMulticast(message);
+
+console.log("================================");
+console.log("Đã gửi:", response.successCount);
+console.log("Lỗi   :", response.failureCount);
+console.log("================================");
+
+// =========================
+// Xóa token lỗi
+// =========================
+
+const docs = snapshot.docs;
+
+for (let i = 0; i < response.responses.length; i++) {
+
+    if (!response.responses[i].success) {
+
+        console.log("Token lỗi:", docs[i].id);
+
+        await docs[i].ref.delete();
+
+    }
+
+}
+
+// =========================
+// Cập nhật last-post.json
+// =========================
+
+fs.writeFileSync(
+    "last-post.json",
+    JSON.stringify(
+        {
+            lastId: newest.id
+        },
+        null,
+        2
+    )
+);
+
+console.log("Đã cập nhật last-post.json");
+console.log("Hoàn thành.");
