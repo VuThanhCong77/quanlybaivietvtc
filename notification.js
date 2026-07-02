@@ -65,12 +65,12 @@ function capNhatTrangThai(permission) {
     switch (permission) {
 
         case "granted":
-            btn.innerHTML = "✅ Đang nhận";
+            btn.innerHTML = "Đang nhận";
             btn.classList.add("subscribed");
             break;
 
         case "denied":
-            btn.innerHTML = "🚫 Đã chặn";
+            btn.innerHTML = "Đã chặn";
             btn.classList.add("blocked");
             break;
 
