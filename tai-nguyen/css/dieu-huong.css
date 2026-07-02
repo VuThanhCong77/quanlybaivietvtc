@@ -16,11 +16,11 @@ NÚT ĐIỀU HƯỚNG
 
     border-radius:50%;
 
-    background:#8f0545;
+    background:#8f054500;
 
-    color:#ffffff;
+    color:#e90808;
 
-    font-size:16px;
+    font-size:20px;
 
     cursor:pointer;
 
@@ -38,7 +38,7 @@ NÚT ĐIỀU HƯỚNG
 
     transform:translateY(-3px);
 
-    background:#155d99;
+    background:#06ec2d;
 
 }
 
