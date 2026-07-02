@@ -1301,3 +1301,9 @@ THÀNH VIÊN
     cursor:pointer;
     font-weight:bold;
 }
+
+.action-bar{
+    display:flex;
+    align-items:center;
+    gap:12px;              /* Khoảng cách giữa các phần tử */
+    flex-wrap:nowrap;      /* Luôn nằm trên một hàng */
