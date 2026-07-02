@@ -155,7 +155,7 @@ NÚT ĐỒNG TÌNH
 
     background:linear-gradient(
         135deg,
-        #2563eb,
+        #23db0a,
         #1d4ed8
     );
 
@@ -177,11 +177,8 @@ NÚT ĐỒNG TÌNH
 
 #likeBtn:hover{
 
+    background:#b71c1c;
     transform:translateY(-2px);
-
-    box-shadow:
-    0 8px 20px
-    rgba(37,99,235,.35);
 
 }
 
@@ -199,16 +196,16 @@ NÚT ĐỒNG TÌNH
 
     border-radius:999px;
 
-    background:#f3f4f6;
+    background:#23db0a;
 
-    color:#111827;
+    color:#fff;
 
     font-weight:700;
 
     text-align:center;
 
     box-shadow:
-    0 2px 6px
+    0 3px 6px
     rgba(0,0,0,.08);
 
 }
@@ -276,7 +273,7 @@ HERO
 }
 
 .btn-outline {
-  background: #1e6fff;
+  background: #23db0a;
   border: 1px solid #1e6fff;
   color: #fff;
 }
