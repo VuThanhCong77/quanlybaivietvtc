@@ -345,39 +345,27 @@ LƯỚI BÀI VIẾT
 ========================================================= */
 
 .card-bai-viet{
-
-    background:#fff;
-
-    border-radius:var(--bo-goc);
-
-    overflow:hidden;
-
+    display:block;
     text-decoration:none;
-
-    color:inherit;
-
-    box-shadow:var(--bong-do);
-
-    transition:.3s;
-
+    color:#222;
+    background:#fff;
+    border:1px solid #e5e5e5;
+    border-radius:8px;
+    overflow:hidden;
+    transition:.25s;
 }
 
-
 .card-bai-viet:hover{
-
-    transform:translateY(-5px);
-
+    transform:translateY(-3px);
+    box-shadow:0 4px 10px rgba(0,0,0,.12);
 }
 
 
 .card-bai-viet img{
-
     width:100%;
-
-    height:220px;
-
+    aspect-ratio:16/9;
     object-fit:cover;
-
+    display:block;
 }
 
 
@@ -392,14 +380,29 @@ LƯỚI BÀI VIẾT
 
 .card-bai-viet p{
 
-    padding:0 20px 20px;
+    padding:0 10px 10px;
 
     color:#64748b;
 
-    line-height:1.6;
+    line-height:1.2;
 
 }
 
+
+.noi-dung-card{
+    padding:3px 6px;
+}
+
+.noi-dung-card h3{
+    margin:0;
+    font-size:15px;
+    line-height:1.2;
+    font-weight:600;
+
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
 
 /* =========================================================
 CHUYÊN MỤC

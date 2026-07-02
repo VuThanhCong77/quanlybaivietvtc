@@ -249,12 +249,12 @@ blockquote{
 
 .bai-viet-moi{
 
-    padding: 10px 10px;
+    padding: 3px 6px;
 }
 
 .bai-viet-moi h2{
-    margin-bottom: 20px;
-    font-size: 18px;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 /* =====================================================
@@ -262,11 +262,9 @@ blockquote{
 ===================================================== */
 
 .luoi-bai-viet{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 1200px;
-    margin: auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
 }
 
 
