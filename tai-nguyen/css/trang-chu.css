@@ -192,9 +192,9 @@ NÚT ĐỒNG TÌNH
 
     min-width:50px;
 
-    padding:10px 16px;
+    padding:10px 18px;
 
-    border-radius:999px;
+     border-radius:999px;
 
     background:#23db0a;
 
@@ -265,7 +265,7 @@ HERO
 
 .btn {
   padding: 10px 16px;
-  background: #1e6fff;
+  background: #23db0a;
   color: #fff;
   text-decoration: none;
   border-radius: 6px;
@@ -274,7 +274,7 @@ HERO
 
 .btn-outline {
   background: #23db0a;
-  border: 1px solid #1e6fff;
+  border: 1px solid #23db0a;
   color: #fff;
 }
 
