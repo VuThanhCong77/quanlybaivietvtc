@@ -1305,21 +1305,7 @@ THÀNH VIÊN
 .action-bar{
     display:flex;
     align-items:center;
-    gap:10px;
-    margin:12px 0;
-}
-
-.action-bar button,
-.subscribe-btn{
-    padding:6px 14px;
-    border:1px solid #ddd;
-    border-radius:20px;
-    background:#fff;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.action-bar button:hover,
-.subscribe-btn:hover{
-    background:#f5f5f5;
+    top:12px;
+    gap:12px;              /* Khoảng cách giữa các phần tử */
+    flex-wrap:nowrap;      /* Luôn nằm trên một hàng */
 }
