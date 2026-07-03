@@ -1,5 +1,18 @@
 [
    {
+  "id": "tin-bao-khan-cap-con-bao-so-01",
+  "title": "TIN BÃO KHẨN CẤP (Cơn bão số 01)",
+  "desc": "Các địa phương và người dân trong khu vực ảnh hưởng cần theo dõi chặt chẽ diễn biến của bão, cập nhật thường xuyên các bản tin dự báo, cảnh báo; chủ động thực hiện các biện pháp phòng, chống thiên tai theo hướng dẫn của cơ quan chức năng.",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/thoi-tiet-03-07-26.jpg",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc/tin-bao-khan-cap-con-bao-so-01.html",
+  "date": "03-07-2026",
+  "category": [
+    "Tin tức"
+  ],
+  "featured": true,
+  "views": 18
+},
+   {
   "id": "canh-giac-truoc-cac-thu-doan-lua-dao-tren-khong-gian-mang",
   "title": "Cảnh giác trước các thủ đoạn lừa đảo trên không gian mạng",
   "desc": "Mỗi người dân cần nâng cao ý thức cảnh giác khi sử dụng Internet và mạng xã hội. Không cung cấp thông tin cá nhân, số căn cước công dân, thông tin tài khoản ngân hàng, mật khẩu, mã OTP cho bất kỳ ai qua điện thoại hoặc mạng xã hội. Không truy cập các đường dẫn lạ, không quét mã QR không rõ nguồn gốc, không cài đặt các ứng dụng theo yêu cầu của người lạ.",
