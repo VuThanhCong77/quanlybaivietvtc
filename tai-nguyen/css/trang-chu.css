@@ -259,6 +259,8 @@ HERO
 /* Nút */
 .hero-nut {
   display: flex;
+  justify-content: center; /* Căn giữa */
+  align-items: center; /* Căn giữa cả */
   gap: 15px;
   flex-wrap: wrap;
 }
