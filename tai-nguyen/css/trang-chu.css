@@ -1305,7 +1305,7 @@ THÀNH VIÊN
 .action-bar{
     display:flex;
     align-items:center;
-    top:20px;
+    margin-top: 20px;   /* Khoảng cách với hàng trên */
     gap:12px;              /* Khoảng cách giữa các phần tử */
     flex-wrap:nowrap;      /* Luôn nằm trên một hàng */
 }
