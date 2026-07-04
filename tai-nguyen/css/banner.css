@@ -86,3 +86,11 @@
     right:15px;
 
 }
+
+.hero-slide {
+    pointer-events: none;
+}
+
+.hero-slide.active {
+    pointer-events: auto;
+}
