@@ -77,41 +77,40 @@ function hienThiBaiLienQuan(ds){
 
     if(!container) return;
 
-    container.innerHTML =
+    container.innerHTML = ds.map(bai => `
 
-    ds.map(
-    bai => `
+<div class="related-item">
 
-    <a
-    href="${bai.url}"
-    class="card-bai-viet">
+    <a href="${bai.url}" class="related-thumb">
+        <img src="${bai.image}" alt="${bai.title}">
+    </a>
 
-        <img
-        src="${bai.image}"
-        alt="${bai.title}">
+    <div class="related-content">
 
-        <div
-        class="noi-dung-card">
+        <a href="${bai.url}" class="related-title">
+            ${bai.title}
+        </a>
 
-            <h3>
+        <div class="related-desc">
+            ${bai.desc}
+        </div>
 
-                ${bai.title}
+        <div class="related-footer">
 
-            </h3>
+            <span class="related-view">
+                👁 ${bai.views || 0} lượt xem
+            </span>
 
-            <p>
-
-                ${bai.desc}
-
-            </p>
+            <a href="${bai.url}" class="related-link">
+                Xem chi tiết →
+            </a>
 
         </div>
 
-    </a>
+    </div>
 
-    `
-    )
+</div>
 
-    .join("");
+`).join("");
 
 }
