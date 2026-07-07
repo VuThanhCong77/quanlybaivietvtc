@@ -1,0 +1,72 @@
+/* ==========================
+   NÚT KHẢO SÁT TREO GÓC TRÁI
+========================== */
+
+.khao-sat{
+    position: fixed !important;
+    left: 20px !important;
+    bottom: 20px !important;
+
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    margin: 0;
+    padding: 0;
+
+    z-index: 2147483647 !important;
+    pointer-events: auto;
+}
+
+.khao-sat-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 120px;
+    height: 46px;
+    padding: 0 22px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #1976d2;
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    transition: all .3s ease;
+}
+
+.khao-sat-btn:hover{
+    background:#1565c0;
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.khao-sat-btn:active{
+    transform:scale(.96);
+}
+
+.khao-sat-btn:focus{
+    outline:none;
+}
+
+@media (max-width:768px){
+
+    .khao-sat{
+        left:15px !important;
+        bottom:15px !important;
+    }
+
+    .khao-sat-btn{
+        min-width:100px;
+        height:42px;
+        font-size:14px;
+    }
+
+}
