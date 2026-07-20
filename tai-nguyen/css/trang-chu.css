@@ -1260,7 +1260,7 @@ THÀNH VIÊN
 
 .gallery img{
     width:100%;
-    aspect-ratio:9/16;      /* Giữ đúng tỷ lệ 9:16 */
+    aspect-ratio:3/4;      /* Giữ đúng tỷ lệ 3:4 */
     object-fit:cover;
     border:1px solid #ddd;
     border-radius:10px;
