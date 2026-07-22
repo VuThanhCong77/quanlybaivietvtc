@@ -400,6 +400,10 @@ body{
 
     <div class="counter" id="counter"></div>
 
+    <button class="share-btn copy" onclick="copyLink()">
+        🔗 Sao chép
+    </button>
+
     <div class="share-bar">
 
 </div>
@@ -625,20 +629,16 @@ function currentShareUrl(){
 
 }
 
-async function copyLink(){
+// Sao chép liên kết toàn bộ thư viện
+function copyGalleryLink() {
+    return "https://vuthanhcong77.github.io/quanlybaivietvtc/thu-vien-anh.html";
+}
 
-    try{
-
-        await navigator.clipboard.writeText(currentShareUrl());
-
-        alert("Đã sao chép liên kết.");
-
-    }catch{
-
-        prompt("Sao chép liên kết:",currentShareUrl());
-
-    }
-
+// Sao chép liên kết ảnh đang xem
+function copyImageLink() {
+    return window.location.origin +
+           window.location.pathname +
+           "?id=" + images[currentIndex].id;
 }
 
 </script>
