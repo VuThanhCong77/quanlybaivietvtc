@@ -312,14 +312,6 @@ body{
     transform:translateY(-2px);
 }
 
-.fb{
-    background:#1877f2;
-}
-
-.zalo{
-    background:#0068ff;
-}
-
 .copy{
     background:#555;
 }
@@ -386,6 +378,10 @@ body{
 
    <button onclick="exportJSON()">Xuất JSON</button>
 
+   <button class="share-btn copy" onclick="copyLink()">
+        🔗 Sao chép
+    </button>
+
 </div>
 
 <!-- GRID -->
@@ -405,18 +401,6 @@ body{
     <div class="counter" id="counter"></div>
 
     <div class="share-bar">
-
-    <button class="share-btn fb" onclick="shareFacebook()">
-        📘 Facebook
-    </button>
-
-    <button class="share-btn zalo" onclick="shareZalo()">
-        💬 Zalo
-    </button>
-
-    <button class="share-btn copy" onclick="copyLink()">
-        🔗 Sao chép
-    </button>
 
 </div>
 
@@ -638,26 +622,6 @@ function currentShareUrl(){
     // return location.origin + location.pathname + "?id=" + images[currentIndex].id;
 
     return window.location.href;
-
-}
-
-function shareFacebook(){
-
-    window.open(
-        "https://www.facebook.com/sharer/sharer.php?u=" +
-        encodeURIComponent(currentShareUrl()),
-        "_blank"
-    );
-
-}
-
-function shareZalo(){
-
-    window.open(
-        "https://zalo.me/share?url=" +
-        encodeURIComponent(currentShareUrl()),
-        "_blank"
-    );
 
 }
 
