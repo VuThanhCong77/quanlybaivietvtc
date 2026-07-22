@@ -638,23 +638,6 @@ async function copyLink() {
 
 }
 
-async function copyLink() {
-
-    const pageUrl = window.location.origin + window.location.pathname;
-
-    try {
-
-        await navigator.clipboard.writeText(pageUrl);
-
-        alert("Đã sao chép liên kết Thư viện ảnh.");
-
-    } catch {
-
-        prompt("Sao chép liên kết:", pageUrl);
-
-    }
-
-}
 
 // Sao chép liên kết toàn bộ thư viện
 function copyGalleryLink() {
