@@ -3,20 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vũ Thành Công | Thư viện ảnh</title>
 
-<meta property="og:title" content="Vũ Thành Công | Thư viện ảnh">
-<meta property="og:description" content="🌱 Lưu lại những kỷ niệm đã qua">
-<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/ytuonghay.jpg">
-<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
+<title>📷 Thư viện ảnh | Vũ Thành Công</title>
+
+<meta name="description"
+content="Thư viện ảnh lưu giữ những khoảnh khắc đẹp về chính trị, văn hóa, gia đình, du lịch và cuộc sống.">
+
+<meta name="keywords"
+content="Thư viện ảnh, Vũ Thành Công, Chính trị, Du lịch, Gia đình, Văn hóa">
+
+<meta name="author"
+content="Vũ Thành Công">
+
+<meta name="robots"
+content="index,follow">
+
+<link rel="canonical"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/thu-vien-anh.html">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Vũ Thành Công">
 <meta property="og:type" content="website">
-<meta property="og:alt" content="Khoảnh khắc đáng nhớ">
-<meta name="theme-color" content="#0a7f99">
+
+<meta property="og:title"
+content="📷 Thư viện ảnh | Vũ Thành Công">
+
+<meta property="og:description"
+content="Khám phá bộ sưu tập ảnh về hoạt động chính trị, văn hóa, gia đình, du lịch và những khoảnh khắc đáng nhớ.">
+
+<meta property="og:image"
+content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/ytuonghay.jpg">
+
+<meta property="og:image:width"
+content="1200">
+
+<meta property="og:image:height"
+content="630">
+
+<meta property="og:url"
+content="https://vuthanhcong77.github.io/quanlybaivietvtc/thu-vien-anh.html">
+
+<!-- Twitter -->
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="📷 Thư viện ảnh | Vũ Thành Công">
+
+<meta name="twitter:description"
+content="Lưu giữ những khoảnh khắc đẹp của cuộc sống.">
+
+<meta name="twitter:image"
+content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/ytuonghay.jpg">
+
+<meta name="theme-color"
+content="#0a7f99">
     
 <link rel="icon"
 href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+
 <link rel="icon"
 href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
+
+<link rel="apple-touch-icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon512.png">
+
+<link rel="icon" sizes="512x512"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon512.png">
 
 
 <style>
@@ -237,7 +290,69 @@ body{
 
 }
 
+.share-bar{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-top:15px;
+}
+
+.share-btn{
+    border:none;
+    border-radius:8px;
+    padding:10px 16px;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    transition:.25s;
+}
+
+.share-btn:hover{
+    transform:translateY(-2px);
+}
+
+.fb{
+    background:#1877f2;
+}
+
+.zalo{
+    background:#0068ff;
+}
+
+.copy{
+    background:#555;
+}
+
+@media(max-width:768px){
+
+.share-bar{
+    width:95%;
+}
+
+.share-btn{
+    flex:1;
+    font-size:13px;
+    padding:10px;
+}
+
+}
 </style>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"ImageGallery",
+ "name":"Thư viện ảnh Vũ Thành Công",
+ "url":"https://vuthanhcong77.github.io/quanlybaivietvtc/thu-vien-anh.html",
+ "description":"Thư viện ảnh lưu giữ những khoảnh khắc đẹp.",
+ "publisher":{
+   "@type":"Person",
+   "name":"Vũ Thành Công"
+ }
+}
+</script>
+
 </head>
 
 <body>
@@ -288,6 +403,22 @@ body{
     <div class="nav next" onclick="nextImg()">❯</div>
 
     <div class="counter" id="counter"></div>
+
+    <div class="share-bar">
+
+    <button class="share-btn fb" onclick="shareFacebook()">
+        📘 Facebook
+    </button>
+
+    <button class="share-btn zalo" onclick="shareZalo()">
+        💬 Zalo
+    </button>
+
+    <button class="share-btn copy" onclick="copyLink()">
+        🔗 Sao chép
+    </button>
+
+</div>
 
 </div>
 
@@ -500,6 +631,51 @@ document.getElementById("lightbox")
     }
 
 });
+
+function currentShareUrl(){
+
+    // Nếu sau này có ID ảnh thì thay bằng:
+    // return location.origin + location.pathname + "?id=" + images[currentIndex].id;
+
+    return window.location.href;
+
+}
+
+function shareFacebook(){
+
+    window.open(
+        "https://www.facebook.com/sharer/sharer.php?u=" +
+        encodeURIComponent(currentShareUrl()),
+        "_blank"
+    );
+
+}
+
+function shareZalo(){
+
+    window.open(
+        "https://zalo.me/share?url=" +
+        encodeURIComponent(currentShareUrl()),
+        "_blank"
+    );
+
+}
+
+async function copyLink(){
+
+    try{
+
+        await navigator.clipboard.writeText(currentShareUrl());
+
+        alert("Đã sao chép liên kết.");
+
+    }catch{
+
+        prompt("Sao chép liên kết:",currentShareUrl());
+
+    }
+
+}
 
 </script>
 
