@@ -622,34 +622,17 @@ document.getElementById("lightbox")
 
 async function copyLink() {
 
-    const pageUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/thu-vien-anh.html";
+    const url = window.location.href;
 
-    try {
-
-        await navigator.clipboard.writeText(pageUrl);
-
-        alert("Đã sao chép liên kết Thư viện ảnh.");
-
-    } catch {
-
-        prompt("Sao chép liên kết:", pageUrl);
-
+    try{
+        await navigator.clipboard.writeText(url);
+        alert("Đã sao chép liên kết.");
+    }catch(e){
+        prompt("Sao chép liên kết:", url);
     }
 
 }
 
-
-// Sao chép liên kết toàn bộ thư viện
-function copyGalleryLink() {
-    return "https://vuthanhcong77.github.io/quanlybaivietvtc/thu-vien-anh.html";
-}
-
-// Sao chép liên kết ảnh đang xem
-function copyImageLink() {
-    return window.location.origin +
-           window.location.pathname +
-           "?id=" + images[currentIndex].id;
-}
 </script>
 
 </div>
