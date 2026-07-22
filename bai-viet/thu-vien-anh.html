@@ -620,12 +620,39 @@ document.getElementById("lightbox")
 
 });
 
-function currentShareUrl(){
+async function copyLink() {
 
-    // Nếu sau này có ID ảnh thì thay bằng:
-    // return location.origin + location.pathname + "?id=" + images[currentIndex].id;
+    const pageUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/thu-vien-anh.html";
 
-    return window.location.href;
+    try {
+
+        await navigator.clipboard.writeText(pageUrl);
+
+        alert("Đã sao chép liên kết Thư viện ảnh.");
+
+    } catch {
+
+        prompt("Sao chép liên kết:", pageUrl);
+
+    }
+
+}
+
+async function copyLink() {
+
+    const pageUrl = window.location.origin + window.location.pathname;
+
+    try {
+
+        await navigator.clipboard.writeText(pageUrl);
+
+        alert("Đã sao chép liên kết Thư viện ảnh.");
+
+    } catch {
+
+        prompt("Sao chép liên kết:", pageUrl);
+
+    }
 
 }
 
@@ -640,7 +667,6 @@ function copyImageLink() {
            window.location.pathname +
            "?id=" + images[currentIndex].id;
 }
-
 </script>
 
 </div>
