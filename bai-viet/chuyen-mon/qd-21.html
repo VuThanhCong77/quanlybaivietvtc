@@ -265,12 +265,12 @@ body{
 <span id="resultBox"></span>
 
 <div class ="button">
-<button onclick="TTS.speak()">🔊</button>
+<button id="ttsBtn">🔊</button>
 <button onclick="TTS.pause()">⏸</button>
 <button onclick="TTS.resume()">▶</button>
 <button onclick="TTS.stop()">⏹</button>
 </div>
-  
+
 </div>
 
 </header>
@@ -287,6 +287,7 @@ body{
 <h2 id="page-title">Đang tải...</h2>
 
 <div class="content-page" id="content">Đang tải...</div>
+
 
 </div>
 </div>
@@ -405,17 +406,64 @@ function updateMatch(){
 TTS
 ===================== */
 const TTS = {
-  speak(){
-    const text = document.getElementById("content").innerText;
+  utterance: null,
+
+  speak() {
+
     speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang="vi-VN";
-    speechSynthesis.speak(u);
+
+    const text = document.getElementById("content").innerText.trim();
+
+    if (!text) {
+      alert("Không có nội dung để đọc.");
+      return;
+    }
+
+    this.utterance = new SpeechSynthesisUtterance(text);
+
+    // tìm giọng tiếng Việt
+    const voices = speechSynthesis.getVoices();
+
+    const viVoice = voices.find(v =>
+      v.lang.toLowerCase().includes("vi")
+    );
+
+    if (viVoice) {
+      this.utterance.voice = viVoice;
+    }
+
+    this.utterance.lang = "vi-VN";
+    this.utterance.rate = 1;
+    this.utterance.pitch = 1;
+    this.utterance.volume = 1;
+
+    // Android Chrome cần delay một chút
+    setTimeout(() => {
+      speechSynthesis.speak(this.utterance);
+    }, 200);
   },
-  pause(){speechSynthesis.pause();},
-  resume(){speechSynthesis.resume();},
-  stop(){speechSynthesis.cancel();}
+
+  pause() {
+    speechSynthesis.pause();
+  },
+
+  resume() {
+    speechSynthesis.resume();
+  },
+
+  stop() {
+    speechSynthesis.cancel();
+  }
 };
+
+// tải danh sách voice
+speechSynthesis.onvoiceschanged = () => {
+  speechSynthesis.getVoices();
+};
+
+document.getElementById("ttsBtn").addEventListener("click", () => {
+    TTS.speak();
+});
 
 /* =====================
 EVENTS
