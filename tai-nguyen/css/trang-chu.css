@@ -1338,13 +1338,17 @@ THÀNH VIÊN
 
     border-radius:12px;
 
+    font-size:14px;
+
+    color:#053a8a;
+
 }
 
 .tac-gia-trang-chu img{
 
-    width:80px;
+    width:100px;
 
-    height:80px;
+    height:100px;
 
     border-radius:50%;
 
