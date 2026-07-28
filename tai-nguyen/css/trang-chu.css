@@ -1323,3 +1323,31 @@ THÀNH VIÊN
     gap:12px;              /* Khoảng cách giữa các phần tử */
     flex-wrap:nowrap;      /* Luôn nằm trên một hàng */
 }
+
+.tac-gia-trang-chu{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:12px;
+
+    padding:12px;
+
+    background:#d4f325;
+
+    border-radius:12px;
+
+}
+
+.tac-gia-trang-chu img{
+
+    width:80px;
+
+    height:80px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
