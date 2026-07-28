@@ -803,6 +803,11 @@ FOOTER
 THEO LĨNH VỰC
 ========================================================= */
 
+.thu-vien-anh{
+    background:#d7e6e4;
+    padding: 12px 12px;
+}
+
 .theo-linh-vuc{
     padding: 20px 20px;
     background: #f5f7fa;
@@ -812,6 +817,7 @@ THEO LĨNH VỰC
 .thu-vien-anh h2,
 .gop-y h2{
     font-size: 18px;
+    padding: 12px 12px;
 }
 
 .khung-linh-vuc{
@@ -834,6 +840,7 @@ THEO LĨNH VỰC
 .bai-noi-bat{
     text-decoration: none;
     color: inherit;
+    padding: 12px 12px;
 }
 
 a{
