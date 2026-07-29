@@ -1332,33 +1332,52 @@ THÀNH VIÊN
 }
 
 .tac-gia-trang-chu{
-
     display:flex;
-
-    gap:12px;
-
+    align-items:center;
+    gap:15px;
     margin-top:12px;
-
-    padding:12px;
-
-    background:#d4f325;
-
+    padding:15px;
+    background:#eef8e8;
     border-radius:12px;
-
-    font-size:14px;
-
-    color:#053a8a;
-
 }
 
 .tac-gia-trang-chu img{
-
     width:100px;
-
     height:100px;
-
     border-radius:50%;
-
     object-fit:cover;
+    flex-shrink:0;
+}
+
+.noi-dung-tac-gia{
+    flex:1;
+}
+
+.menu-tac-gia{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 12px;
+}
+
+.menu-tac-gia a{
+    text-decoration:none;
+    color:#005b9a;
+    font-weight:500;
+}
+
+.menu-tac-gia a:hover{
+    color:#d60000;
+}
+
+@media(max-width:768px){
+
+    .tac-gia-trang-chu{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .menu-tac-gia{
+        justify-content:center;
+    }
 
 }
