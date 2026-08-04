@@ -1,4 +1,17 @@
 [
+   {
+  "id": "hd-danh-gia-kpi",
+  "title": "Hướng dẫn đánh giá cán bộ theo KPI",
+  "desc": "Đánh giá cán boojtheo KPI",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/codang.jpg",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/hd-danh-gia-kpi.html",
+  "date": "07-08-2026",
+  "category": [
+    "Xây dựng đảng"
+  ],
+  "featured": true,
+  "views": 18
+},
   {
   "id": "xay-dung-van-hoa-cong-vu-sau-sap-xep-to-chuc-bo-may",
   "title": "Xây dựng văn hóa công vụ sau sắp xếp tổ chức bộ máy",
