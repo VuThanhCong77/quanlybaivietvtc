@@ -43,7 +43,9 @@
 
     padding:25px;
 
-    color:#fff;
+    font-size: 14px;
+
+    color:#080686;
 
     background:rgba(10, 192, 122, 0.932);
 
@@ -90,4 +92,14 @@
 
 .hero-slide.active {
     pointer-events: auto;
+}
+
+@media(max-width:768px){
+
+    .hero-caption{
+
+    font-size: 12px;
+      
+    }
+
 }
