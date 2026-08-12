@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Mã Đáo Thành Công là không gian chia sẻ tri thức công tác, trải nghiệm đời sống và năng lượng sống tích cực, hướng đến một cộng đồng hạnh phúc." />
+  <title>Mã Đáo Thành Công | Giới thiệu ngắn gọn</title>
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.88);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.12);
+      --accent: #7cf7d4;
+      --accent2:#7aa7ff;
+
+      --radius: 18px;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --max: 980px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(122,167,255,.22), transparent 55%),
+        radial-gradient(900px 650px at 85% 20%, rgba(124,247,212,.18), transparent 50%),
+        radial-gradient(1200px 900px at 50% 100%, rgba(255,255,255,.06), transparent 55%),
+        var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.6;
+      letter-spacing: .2px;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:focus-visible, button:focus-visible{
+      outline: 3px solid rgba(124,247,212,.6);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    .wrap{
+      width:min(var(--max), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, rgba(11,18,32,.85), rgba(11,18,32,.55));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 0;
+    }
+
+    .logo{
+      width:38px;
+      height:38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,247,212,.95), rgba(122,167,255,.95));
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
+      flex:0 0 auto;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      font-weight: 650;
+      letter-spacing:.6px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .brand p{
+      margin:0;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+
+    .links{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .links a{
+      padding:10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .links a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.18);
+      color: var(--text);
+    }
+
+    main{ padding: 34px 0 56px; }
+
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero-inner{
+      padding: 28px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items:start;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+    }
+    .dot{
+      width:8px; height:8px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(124,247,212,.12);
+    }
+
+    .hero h2{
+      margin: 14px 0 10px;
+      font-size: clamp(24px, 3.2vw, 38px);
+      line-height: 1.18;
+      letter-spacing:-.5px;
+    }
+
+    .hero p{
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.22);
+    }
+    .btn.primary{
+      border-color: rgba(124,247,212,.35);
+      background: linear-gradient(135deg, rgba(124,247,212,.18), rgba(122,167,255,.16));
+    }
+
+    .meta{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .meta h3{
+      margin:0 0 8px;
+      font-size: 14px;
+      letter-spacing:.2px;
+    }
+    .meta ul{
+      margin:0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta li{ margin: 6px 0; }
+
+    section{
+      margin-top: 22px;
+      padding: 22px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+    }
+
+    section h3{
+      margin:0 0 10px;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .card{
+      padding: 16px;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      min-height: 132px;
+    }
+    .card strong{
+      display:block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+      margin: 6px 8px 0 0;
+    }
+
+    footer{
+      padding: 26px 0 38px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: linear-gradient(to top, rgba(11,18,32,.85), rgba(11,18,32,0));
+    }
+
+    .foot{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .small{
+      font-size: 13px;
+      margin:0;
+      max-width: 75ch;
+    }
+
+    @media (max-width: 860px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .links{ display:none; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <nav class="nav" aria-label="Điều hướng chính">
+        <a class="brand" href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html" aria-label="Về đầu trang">
+          <span class="logo" aria-hidden="true"></span>
+          <span style="min-width:0">
+            <h1>Mã Đáo Thành Công</h1>
+            <p>Tri thức, đời sống, hạnh phúc và năng lượng tích cực</p>
+          </span>
+        </a>
+
+        <div class="links" aria-label="Liên kết nhanh">
+          <a href="#muc-dich">Mục đích</a>
+          <a href="#pham-vi">Phạm vi</a>
+          <a href="#gia-tri">Giá trị</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap">
+
+      <article class="hero" aria-label="Giới thiệu ngắn gọn về website">
+        <div class="hero-inner">
+          <div>
+            <div class="kicker"><span class="dot" aria-hidden="true"></span><span>Một không gian chia sẻ mang tính ứng dụng và giàu cảm xúc</span></div>
+
+            <h2>Chạm vào tri thức, giữ lại điều tích cực, và biến “học được” thành “làm được”.</h2>
+
+            <p>
+              <strong>Mã Đáo Thành Công</strong> là website cá nhân của <strong>Vũ Thành Công</strong>, được xây dựng như một điểm hẹn
+              để <strong>chia sẻ tri thức nghiệp vụ</strong>, kết nối những câu chuyện đời sống và
+              <strong>lan tỏa lối sống tích cực</strong>. Ở đây, nội dung không chỉ để đọc mà còn để áp dụng, để cùng nhau
+              sống tốt hơn mỗi ngày.
+            </p>
+
+            <div class="cta" role="group" aria-label="Hành động nhanh">
+              <a class="btn primary" href="#pham-vi">Khám phá phạm vi nội dung</a>
+              <a class="btn" href="#gia-tri">Xem giá trị mang lại</a>
+            </div>
+          </div>
+
+          <aside class="meta" aria-label="Tóm tắt nhanh">
+            <h3>Điểm nhấn cốt lõi</h3>
+            <ul>
+              <li><strong>Mục đích:</strong> Chia sẻ, kết nối, lan tỏa năng lượng tích cực.</li>
+              <li><strong>Trọng tâm:</strong> Nghiệp vụ, chính quyền cơ sở, đời sống và hạnh phúc.</li>
+              <li><strong>Tinh thần:</strong> Tối giản, dễ đọc, dễ tìm, dễ áp dụng.</li>
+            </ul>
+          </aside>
+        </div>
+      </article>
+
+      <section id="muc-dich" aria-label="Mục đích và sứ mệnh">
+        <h3>Mục đích và sứ mệnh</h3>
+        <p class="small">
+          Website ra đời để gom những điều có giá trị vào một nơi: kiến thức phục vụ công việc, góc nhìn phục vụ cuộc sống,
+          và những chia sẻ giúp mỗi người <strong>tự tin hơn trong hành động</strong>, <strong>bình an hơn trong tâm trí</strong>.
+        </p>
+
+        <div aria-label="Từ khóa định hướng">
+          <span class="pill">Chia sẻ tri thức</span>
+          <span class="pill">Lan tỏa tích cực</span>
+          <span class="pill">Kết nối cộng đồng</span>
+          <span class="pill">Ứng dụng thực tiễn</span>
+        </div>
+      </section>
+
+      <section id="pham-vi" aria-label="Phạm vi nội dung">
+        <h3>Phạm vi nội dung</h3>
+        <div class="grid" role="list">
+          <div class="card" role="listitem">
+            <strong>Nghiệp vụ công tác</strong>
+            <p>
+              Tài liệu và chia sẻ phục vụ công việc, hướng đến sự rõ ràng, chuẩn mực và hiệu quả trong triển khai.
+            </p>
+          </div>
+
+          <div class="card" role="listitem">
+            <strong>Xây dựng chính quyền</strong>
+            <p>
+              Những nội dung gần dân, sát việc, chú trọng cải cách, phục vụ và tính minh bạch trong hoạt động cơ sở.
+            </p>
+          </div>
+
+          <div class="card" role="listitem">
+            <strong>Đời sống và hạnh phúc</strong>
+            <p>
+              Sức khỏe, trí tuệ, gia đình, thói quen tốt và các góc nhìn giúp sống tối giản mà sâu sắc.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="gia-tri" aria-label="Giá trị mang lại cho người dùng">
+        <h3>Giá trị người dùng nhận được</h3>
+        <div class="grid" role="list">
+          <div class="card" role="listitem">
+            <strong>Tiết kiệm thời gian tra cứu</strong>
+            <p>
+              Nội dung được nhóm theo chủ đề rõ ràng, giúp bạn “đi đúng chỗ” ngay từ lần đầu truy cập.
+            </p>
+          </div>
+
+          <div class="card" role="listitem">
+            <strong>Tăng tính ứng dụng</strong>
+            <p>
+              Tập trung vào điều có thể áp dụng: nguyên tắc, gợi ý thực hành và góc nhìn giải quyết vấn đề.
+            </p>
+          </div>
+
+          <div class="card" role="listitem">
+            <strong>Giữ nhịp sống tích cực</strong>
+            <p>
+              Mỗi bài viết là một lời nhắc nhẹ nhàng: chăm mình tốt hơn, sống tử tế hơn, và bền bỉ hơn.
+            </p>
+          </div>
+        </div>
+
+        <p class="small" style="margin-top:14px;">
+          Dù bạn là người làm công tác chuyên môn, người quan tâm đến hoạt động cơ sở, hay đơn giản chỉ muốn tìm
+          một nơi để đọc điều tử tế mỗi ngày, bạn đều có thể bắt đầu từ những điều nhỏ tại đây.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <p class="small">
+          <strong>Mã Đáo Thành Công</strong> hướng đến trải nghiệm tối giản: nội dung rõ ràng, nhịp đọc thoải mái,
+          và cảm giác “ở lại được” sau khi xem xong.
+        </p>
+        <p class="small" style="margin:0;">
+          <a class="btn" href="#top" aria-label="Quay lại đầu trang">Lên đầu trang</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
