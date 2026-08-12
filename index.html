@@ -163,6 +163,48 @@ Nơi kết nối, chia sẻ và lan tỏa những năng lượng sống tích c�
 
 <a href="https://dichvucong.bocongan.gov.vn/?home=1" class="btn" title="Cổng dịch vụ công Bộ công an">Dịch vụ công</a>
 <a href="gioi-thieu.html" class="btn btn-outline">Giới thiệu</a>
+
+            <!-- NÚT PHÁT / DỪNG MP3 -->
+<button id="btnPhatMP3" type="button">
+    ▶
+</button>
+
+<audio id="audioMP3" preload="metadata">
+    <source src="https://vuthanhcong77.github.io/quanlybaivietvtc/am-thanh/cau-chuyen-cu-toi.mp3" type="audio/mpeg">
+    Trình duyệt không hỗ trợ phát âm thanh.
+</audio>
+
+<script>
+const btnPhatMP3 = document.getElementById("btnPhatMP3");
+const audioMP3 = document.getElementById("audioMP3");
+
+btnPhatMP3.addEventListener("click", function () {
+
+    if (audioMP3.paused) {
+
+        audioMP3.play();
+
+        btnPhatMP3.innerHTML = "⏹";
+
+    } else {
+
+        audioMP3.pause();
+        audioMP3.currentTime = 0;
+
+        btnPhatMP3.innerHTML = "▶";
+    }
+
+});
+
+/* Khi MP3 phát hết */
+audioMP3.addEventListener("ended", function () {
+
+    btnPhatMP3.innerHTML = "▶";
+    audioMP3.currentTime = 0;
+
+});
+</script>
+	
 </div>
 	
 <div class="action-bar">
