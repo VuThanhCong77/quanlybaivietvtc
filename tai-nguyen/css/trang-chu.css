@@ -1381,3 +1381,23 @@ THÀNH VIÊN
     }
 
 }
+
+#btnPhatMP3{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#0a7f99;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+#btnPhatMP3:hover{
+    opacity:0.85;
+}
+
+#btnPhatMP3:active{
+    transform:scale(0.97);
+}
