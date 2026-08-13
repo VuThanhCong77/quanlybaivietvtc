@@ -6,7 +6,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Thư viện âm nhạc</title>
+<title>Thư viện âm nhạc | Vũ Thành Công</title>
 
 <meta property="og:title" content="Vũ Thành Công | Thư viện âm nhạc">
 <meta property="og:description" content="🎵 Nơi chia sẻ, lan tỏa những năng lượng tích cực về cuộc sống">
@@ -16,12 +16,13 @@
 <meta property="og:alt" content="Giá trị cuộc sống">
 <meta name="theme-color" content="#0a7f99">
 
+<link rel="icon"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+<link rel="icon"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
+
 
 <style>
-
-/* =========================================================
-   CÀI ĐẶT CHUNG
-========================================================= */
 
 *{
     box-sizing:border-box;
@@ -32,643 +33,265 @@ html{
 }
 
 body{
-
     margin:0;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #063b4a,
-            #0a7f99
-        );
-
-    color:#fff;
-
-    min-height:100vh;
-
+    font-family:Arial, Helvetica, sans-serif;
+    background:transparent;
+    color:#610404;
+    min-height:auto;
+    padding:0;
 }
-
-
-/* =========================================================
-   KHUNG CHÍNH
-========================================================= */
 
 .container{
-
     width:100%;
-
-    max-width:1000px;
-
+    max-width:920px;
     margin:auto;
-
-    padding:25px 15px 50px;
-
+    padding:10px;
 }
 
-
-/* =========================================================
-   TIÊU ĐỀ
-========================================================= */
-
 .header{
-
     text-align:center;
-
-    margin-bottom:25px;
-
+    margin-bottom:12px;
 }
 
 .header h1{
-
     margin:0;
-
-    font-size:30px;
-
+    font-size:20px;
     font-weight:700;
-
 }
 
 .header p{
-
-    margin:8px 0 0;
-
+    margin:4px 0 0;
     opacity:.8;
-
-    font-size:15px;
-
+    font-size:13px;
 }
-
-
-/* =========================================================
-   PLAYER
-========================================================= */
 
 .player{
-
-    background:
-        rgba(255,255,255,.12);
-
-    border:
-        1px solid
-        rgba(255,255,255,.18);
-
-    backdrop-filter:
-        blur(15px);
-
-    -webkit-backdrop-filter:
-        blur(15px);
-
-    border-radius:25px;
-
-    padding:30px;
-
-    box-shadow:
-        0 15px 45px
-        rgba(0,0,0,.25);
-
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 8px 24px rgba(0,0,0,.18);
 }
 
-
-/* =========================================================
-   ĐĨA NHẠC
-========================================================= */
-
 .album{
-
-    width:170px;
-
-    height:170px;
-
-    margin:0 auto 20px;
-
+    width:90px;
+    height:90px;
+    margin:0 auto 12px;
     border-radius:50%;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
-    font-size:65px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0ab3c9,
-            #07596b
-        );
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.35);
-
+    font-size:36px;
+    background:linear-gradient(135deg,#0ab3c9,#07596b);
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
 }
 
 .album.playing{
-
-    animation:
-        rotateDisk
-        8s linear infinite;
-
+    animation:rotateDisk 8s linear infinite;
 }
 
 @keyframes rotateDisk{
-
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
 }
-
-
-/* =========================================================
-   TÊN BÀI
-========================================================= */
 
 .song-name{
-
     text-align:center;
-
-    font-size:22px;
-
+    font-size:16px;
     font-weight:bold;
-
-    margin-bottom:20px;
-
-    min-height:28px;
-
+    margin-bottom:12px;
+    min-height:22px;
     white-space:nowrap;
-
     overflow:hidden;
-
     text-overflow:ellipsis;
-
 }
 
-
-/* =========================================================
-   TIẾN TRÌNH
-========================================================= */
-
 .progress-box{
-
     width:100%;
-
 }
 
 .progress{
-
     width:100%;
-
-    height:6px;
-
+    height:5px;
     cursor:pointer;
-
 }
 
 .time{
-
     display:flex;
-
     justify-content:space-between;
-
-    margin-top:7px;
-
-    font-size:13px;
-
+    margin-top:6px;
+    font-size:12px;
     opacity:.75;
-
 }
 
-
-/* =========================================================
-   ĐIỀU KHIỂN
-========================================================= */
-
 .controls{
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
-    gap:15px;
-
-    margin:25px 0;
-
+    gap:10px;
+    margin:16px 0;
 }
 
 .control{
-
-    width:48px;
-
-    height:48px;
-
+    width:40px;
+    height:40px;
     border:none;
-
     border-radius:50%;
-
-    background:
-        rgba(255,255,255,.18);
-
-    color:#fff;
-
-    font-size:20px;
-
+    background:rgba(18, 204, 195, 0.959);
+    color:#500404;
+    font-size:18px;
     cursor:pointer;
-
     transition:.2s;
-
 }
 
 .control:hover{
-
-    transform:scale(1.08);
-
-    background:
-        rgba(255,255,255,.3);
-
+    transform:scale(1.06);
+    background:rgba(255,255,255,.3);
 }
 
 .play{
-
-    width:72px;
-
-    height:72px;
-
-    font-size:30px;
-
+    width:56px;
+    height:56px;
+    font-size:24px;
     background:#fff;
-
     color:#087f98;
-
 }
 
 .play:hover{
-
-    background:#f2f2f2;
-
+    background:#3dccb4;
 }
 
-
-/* =========================================================
-   ÂM LƯỢNG
-========================================================= */
-
 .volume{
-
-    max-width:300px;
-
+    max-width:220px;
     margin:auto;
-
     display:flex;
-
     align-items:center;
-
-    gap:10px;
-
+    gap:8px;
 }
 
 .volume input{
-
     flex:1;
-
 }
 
-
-/* =========================================================
-   NÚT CHỨC NĂNG
-========================================================= */
-
 .options{
-
     display:flex;
-
     justify-content:center;
-
     flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-top:20px;
-
+    gap:8px;
+    margin-top:14px;
 }
 
 .option{
-
     border:none;
-
-    border-radius:20px;
-
-    padding:9px 15px;
-
-    background:
-        rgba(255,255,255,.15);
-
-    color:#fff;
-
+    border-radius:16px;
+    padding:7px 12px;
+    background:rgba(255,255,255,.15);
+    color:#640404;
     cursor:pointer;
-
+    font-size:13px;
 }
 
 .option:hover{
-
-    background:
-        rgba(255,255,255,.25);
-
+    background:rgba(255,255,255,.25);
 }
 
 .option.active{
-
     background:#fff;
-
     color:#087f98;
-
 }
 
-
-/* =========================================================
-   PLAYLIST
-========================================================= */
-
 .playlist{
-
-    margin-top:25px;
-
-    background:
-        rgba(0,0,0,.15);
-
-    border-radius:20px;
-
-    padding:18px;
-
+    margin-top:14px;
+    background:rgba(0,0,0,.15);
+    border-radius:16px;
+    padding:14px;
 }
 
 .playlist-top{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    gap:15px;
-
-    margin-bottom:15px;
-
+    gap:10px;
+    margin-bottom:10px;
 }
 
 .playlist-title{
-
     margin:0;
-
-    font-size:19px;
-
+    font-size:16px;
 }
 
 .count{
-
     opacity:.7;
-
-    font-size:14px;
-
+    font-size:13px;
 }
-
-
-/* =========================================================
-   TÌM KIẾM
-========================================================= */
 
 .search{
-
     width:100%;
-
-    padding:12px 15px;
-
+    padding:10px 12px;
     border:none;
-
     outline:none;
-
-    border-radius:12px;
-
-    margin-bottom:12px;
-
-    font-size:15px;
-
+    border-radius:10px;
+    margin-bottom:10px;
+    font-size:14px;
 }
 
-
-/* =========================================================
-   DANH SÁCH
-========================================================= */
-
 .song-list{
-
-    max-height:500px;
-
+    max-height:150px;
     overflow-y:auto;
-
 }
 
 .song-item{
-
     display:flex;
-
     align-items:center;
-
-    gap:12px;
-
-    padding:13px 12px;
-
-    border-radius:11px;
-
+    gap:10px;
+    padding:10px;
+    border-radius:10px;
     cursor:pointer;
-
     transition:.2s;
-
+    font-size:14px;
 }
 
 .song-item:hover{
-
-    background:
-        rgba(255,255,255,.10);
-
+    background:rgba(255,255,255,.10);
 }
 
 .song-item.active{
-
-    background:
-        rgba(255,255,255,.20);
-
+    background:rgba(255,255,255,.20);
 }
 
 .song-number{
-
-    width:30px;
-
-    min-width:30px;
-
+    width:24px;
+    min-width:24px;
     text-align:center;
-
     opacity:.7;
-
+    font-size:13px;
 }
 
 .song-icon{
-
-    width:30px;
-
-    min-width:30px;
-
+    width:24px;
+    min-width:24px;
 }
 
 .song-title{
-
     flex:1;
-
     min-width:0;
-
     white-space:nowrap;
-
     overflow:hidden;
-
     text-overflow:ellipsis;
-
 }
 
-.loading{
-
-    text-align:center;
-
-    padding:30px;
-
-    opacity:.8;
-
-}
-
-.error{
-
-    text-align:center;
-
-    padding:25px;
-
-    line-height:1.6;
-
-}
-
+.loading,
+.error,
 .empty{
-
     text-align:center;
-
-    padding:30px;
-
-    opacity:.7;
-
+    padding:18px;
+   
 }
 
+a {color:#500505; margin:10px; text-decoration:none; font-weight:bold}
 
-/* =========================================================
-   THÔNG BÁO
-========================================================= */
-
-.status{
-
-    text-align:center;
-
-    margin-top:12px;
-
-    font-size:13px;
-
-    opacity:.7;
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:600px){
-
-    .container{
-
-        padding:
-            15px
-            10px
-            40px;
-
-    }
-
-    .player{
-
-        padding:20px 15px;
-
-        border-radius:20px;
-
-    }
-
-    .header h1{
-
-        font-size:20px;
-
-    }
-
-    .album{
-
-        width:140px;
-
-        height:140px;
-
-        font-size:55px;
-
-    }
-
-    .song-name{
-
-        font-size:18px;
-
-    }
-
-    .control{
-
-        width:44px;
-
-        height:44px;
-
-    }
-
-    .play{
-
-        width:64px;
-
-        height:64px;
-
-    }
-
-    .playlist-top{
-
-        align-items:flex-start;
-
-        flex-direction:column;
-
-        gap:5px;
-
-    }
-
-}
-
-a {color:#fff; margin:10px; text-decoration:none; font-weight:bold}
-      
 </style>
 
 </head>
@@ -684,18 +307,14 @@ a {color:#fff; margin:10px; text-decoration:none; font-weight:bold}
          TIÊU ĐỀ
     ====================================================== -->
 
-    <div class="header">
-
-        <h1>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html">🎵 THƯ VIỆN ÂM NHẠC</a> 
-        </h1>
-
-        <p>
-          Tác giả: Vũ Thành Công + AI
-        </p>
-
-    </div>
-
+   <div class="header">
+    <h1>
+       <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html">🎵 THƯ VIỆN ÂM NHẠC</a> 
+    </h1>
+    <p>
+      Tác giả: Vũ Thành Công + AI
+    </p>
+</div>
 
 
     <!-- =====================================================
