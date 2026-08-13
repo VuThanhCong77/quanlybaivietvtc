@@ -1381,3 +1381,41 @@ THÀNH VIÊN
     }
 
 }
+
+/* =========================================================
+   SECTION ÂM NHẠC - vừa khít với music.html
+========================================================= */
+
+section.am-nhac {
+    width: 100%;
+    max-width: 1040px;       /* hơn 1000px một chút để có padding */
+    margin: 0 auto;
+    padding: 20px 15px;
+    box-sizing: border-box;
+}
+
+section.am-nhac iframe {
+    width: 100%;
+    height: 900px;           /* đủ hiển thị player + playlist ~500px */
+    border: none;
+    border-radius: 25px;     /* khớp border-radius của .player */
+    display: block;
+    overflow: hidden;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, #18b9e6, #92dcec); /* khớp bg của music.html */
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+    section.am-nhac {
+        padding: 10px 8px;
+    }
+
+    section.am-nhac iframe {
+        height: 820px;
+        border-radius: 20px;
+    }
+}
