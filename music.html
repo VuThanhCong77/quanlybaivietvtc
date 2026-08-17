@@ -1,45 +1,33 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thư viện âm nhạc | Vũ Thành Công</title>
-
-<meta name="description"
-content="Nơi chia sẻ những âm lượng tích cực về cuộc sống">
-
-<meta name="keywords"
-content="Vũ Thành Công, Lưu Kiếm, Hải Phòng, thế giới âm nhạc">
-
+<meta name="description" content="Thư viện âm nhạc của Vũ Thành Công - Nơi chia sẻ những âm lượng tích cực về cuộc sống">
+<meta name="keywords" content="Vũ Thành Công, Lưu Kiếm, Hải Phòng, thế giới âm nhạc">
 <meta property="og:title" content="Vũ Thành Công | Thư viện âm nhạc">
-<meta property="og:description" content="🎵  Nơi chia sẻ, lan tỏa những năng lượng tích cực về cuộc sống">
+<meta property="og:description" content="🎵 Nơi chia sẻ, lan tỏa những năng lượng tích cực về cuộc sống">
 <meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/am-nhac-vu-thanh-cong.jpg">
-<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/music.html">
 <meta property="og:type" content="website">
 <meta property="og:alt" content="Giá trị cuộc sống">
 <meta name="theme-color" content="#0a7f99">
-
 <meta name="robots" content="index, follow">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vũ Thành Công">
+<meta name="twitter:title" content="Vũ Thành Công | Thư viện âm nhạc">
 <meta name="twitter:description" content="🎵 Nơi chia sẻ tri thức và lan tỏa giá trị sống tích cực">
 <meta name="twitter:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/am-nhac-vu-thanh-cong.jpg">
 <meta property="og:site_name" content="Vũ Thành Công">
 <meta name="author" content="Vũ Thành Công">
-
-<link rel="canonical" href="https://vuthanhcong77.github.io/quanlybaivietvtc/">
-
+<link rel="canonical" href="https://vuthanhcong77.github.io/quanlybaivietvtc/music.html">
 <link rel="manifest" href="https://vuthanhcong77.github.io/quanlybaivietvtc/manifest.json">
-
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
  "@type":"Person",
  "name":"Vũ Thành Công",
- "url":"https://vuthanhcong77.github.io/quanlybaivietvtc/",
+ "url":"https://vuthanhcong77.github.io/quanlybaivietvtc/music.html",
  "jobTitle":"Thế giới âm nhạc",
  "address":{
    "@type":"PostalAddress",
@@ -48,24 +36,15 @@ content="Vũ Thành Công, Lưu Kiếm, Hải Phòng, thế giới âm nhạc">
  }
 }
 </script>
-
-
-<link rel="icon"
-href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
-<link rel="icon"
-href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
-
-
+<link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+<link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
 <style>
-
 *{
     box-sizing:border-box;
 }
-
 html{
     scroll-behavior:smooth;
 }
-
 body{
     margin:0;
     font-family:Arial, Helvetica, sans-serif;
@@ -74,31 +53,26 @@ body{
     min-height:auto;
     padding:0;
 }
-
 .container{
     width:100%;
     max-width:920px;
     margin:auto;
     padding:10px;
 }
-
 .header{
     text-align:center;
     margin-bottom:12px;
 }
-
 .header h1{
     margin:0;
     font-size:20px;
     font-weight:700;
 }
-
 .header p{
     margin:4px 0 0;
     opacity:.8;
     font-size:13px;
 }
-
 .player{
     background:rgba(19, 173, 212, 0.801);
     border:1px solid rgb(2, 46, 49);
@@ -108,7 +82,6 @@ body{
     padding:18px;
     box-shadow:0 8px 24px rgba(0, 0, 0, 0.596);
 }
-
 .album{
     width:90px;
     height:90px;
@@ -121,16 +94,13 @@ body{
     background:linear-gradient(135deg,#0ab3c9,#07596b);
     box-shadow:0 8px 20px rgba(0,0,0,.25);
 }
-
 .album.playing{
     animation:rotateDisk 8s linear infinite;
 }
-
 @keyframes rotateDisk{
     from{transform:rotate(0deg);}
     to{transform:rotate(360deg);}
 }
-
 .song-name{
     text-align:center;
     font-size:16px;
@@ -141,17 +111,14 @@ body{
     overflow:hidden;
     text-overflow:ellipsis;
 }
-
 .progress-box{
     width:100%;
 }
-
 .progress{
     width:100%;
     height:5px;
     cursor:pointer;
 }
-
 .time{
     display:flex;
     justify-content:space-between;
@@ -159,7 +126,6 @@ body{
     font-size:12px;
     opacity:.75;
 }
-
 .controls{
     display:flex;
     justify-content:center;
@@ -167,7 +133,6 @@ body{
     gap:10px;
     margin:16px 0;
 }
-
 .control{
     width:40px;
     height:40px;
@@ -179,12 +144,10 @@ body{
     cursor:pointer;
     transition:.2s;
 }
-
 .control:hover{
     transform:scale(1.06);
     background:rgba(255,255,255,.3);
 }
-
 .play{
     width:56px;
     height:56px;
@@ -192,11 +155,9 @@ body{
     background:#0cdb16;
     color:#d809d8;
 }
-
 .play:hover{
     background:#3dccb4;
 }
-
 .volume{
     max-width:220px;
     margin:auto;
@@ -204,11 +165,9 @@ body{
     align-items:center;
     gap:8px;
 }
-
 .volume input{
     flex:1;
 }
-
 .options{
     display:flex;
     justify-content:center;
@@ -216,7 +175,6 @@ body{
     gap:8px;
     margin-top:14px;
 }
-
 .option{
     border:none;
     border-radius:16px;
@@ -226,23 +184,19 @@ body{
     cursor:pointer;
     font-size:13px;
 }
-
 .option:hover{
     background:rgba(255,255,255,.25);
 }
-
 .option.active{
     background:#dfc908;
     color:#087f98;
 }
-
 .playlist{
     margin-top:14px;
     background:rgba(0,0,0,.15);
     border-radius:16px;
     padding:14px;
 }
-
 .playlist-top{
     display:flex;
     align-items:center;
@@ -250,17 +204,14 @@ body{
     gap:10px;
     margin-bottom:10px;
 }
-
 .playlist-title{
     margin:0;
     font-size:16px;
 }
-
 .count{
     opacity:.7;
     font-size:13px;
 }
-
 .search{
     width:100%;
     padding:10px 12px;
@@ -270,12 +221,10 @@ body{
     margin-bottom:10px;
     font-size:14px;
 }
-
 .song-list{
     max-height:300px;
     overflow-y:auto;
 }
-
 .song-item{
     display:flex;
     align-items:center;
@@ -286,15 +235,12 @@ body{
     transition:.2s;
     font-size:14px;
 }
-
 .song-item:hover{
     background:rgba(255,255,255,.10);
 }
-
 .song-item.active{
     background:rgba(255,255,255,.20);
 }
-
 .song-number{
     width:24px;
     min-width:24px;
@@ -302,12 +248,10 @@ body{
     opacity:.7;
     font-size:13px;
 }
-
 .song-icon{
     width:24px;
     min-width:24px;
 }
-
 .song-title{
     flex:1;
     min-width:0;
@@ -315,7 +259,6 @@ body{
     overflow:hidden;
     text-overflow:ellipsis;
 }
-
 .loading,
 .error,
 .empty{
@@ -323,473 +266,279 @@ body{
     padding:18px;
    
 }
-
 a {color:#f3e520; margin:10px; text-decoration:none; font-weight:bold}
-
+/* Responsive adjustments for share buttons */
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+.share-button {
+    background: rgba(18, 204, 195, 0.959);
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #500404;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+.share-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+.share-status {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #d7e606;
+    min-height: 20px;
+}
+@media (max-width: 480px) {
+    .album {
+        width: 150px !important;
+        height: 150px !important;
+        font-size: 28px;
+    }
+    .play {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+    .control {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+}
 </style>
-
 </head>
-
-
 <body>
-
-
 <div class="container">
-
-
-    <!-- =====================================================
-         TIÊU ĐỀ
-    ====================================================== -->
-
-   <div class="header">
-    <h1>
-       <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html">🎵 THƯ VIỆN ÂM NHẠC</a> 
-    </h1>
-    <p>
-      Tác giả: Vũ Thành Công + AI
-    </p>
+<div class="header">
+<h1>
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html">🎵 THƯ VIỆN ÂM NHẠC</a>
+</h1>
+<p>
+Tác giả: Vũ Thành Công + AI
+</p>
 </div>
-
-
-    <!-- =====================================================
-         PLAYER
-    ====================================================== -->
-
-    <div class="player">
-
-
-<div
-    id="album"
-    class="album"
-    style="
-        background-image: url('https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/am-nhac-vu-thanh-cong.jpg');
-        background-size: cover;
-        background-position: center;
-        width: 200px;
-        height: 200px;
-    ">
+<div class="player">
+<div id="album" class="album" style="background-image: url('https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/am-nhac-vu-thanh-cong.jpg'); background-size: cover; background-position: center; width: 200px; height: 200px;">
 </div>
-
-
-
-
-        <div
-            id="songName"
-            class="song-name">
-
-            Đang tải danh sách nhạc...
-
-        </div>
-
-
-
-        <!-- TIẾN TRÌNH -->
-
-        <div class="progress-box">
-
-            <input
-                id="progress"
-                class="progress"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-            <div class="time">
-
-                <span id="currentTime">
-                    00:00
-                </span>
-
-                <span id="duration">
-                    00:00
-                </span>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ĐIỀU KHIỂN -->
-
-        <div class="controls">
-
-
-            <button
-                id="prevBtn"
-                class="control"
-                title="Bài trước">
-
-                ⏮
-
-            </button>
-
-
-
-            <button
-                id="playBtn"
-                class="control play"
-                title="Phát / Dừng">
-
-                ▶
-
-            </button>
-
-
-
-            <button
-                id="nextBtn"
-                class="control"
-                title="Bài tiếp">
-
-                ⏭
-
-            </button>
-
-
-        </div>
-
-
-
-        <!-- ÂM LƯỢNG -->
-
-        <div class="volume">
-
-            <span id="volumeIcon">
-                🔊
-            </span>
-
-            <input
-                id="volume"
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value="1"
-            >
-
-        </div>
-
-
-
-        <!-- CHỨC NĂNG -->
-
-        <div class="options">
-
-
-            <button
-                id="shuffleBtn"
-                class="option">
-
-                🔀 Ngẫu nhiên
-
-            </button>
-
-
-            <button
-                id="repeatBtn"
-                class="option">
-
-                🔁 Lặp danh sách
-
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =====================================================
-         PLAYLIST
-    ====================================================== -->
-
-    <div class="playlist">
-
-
-        <div class="playlist-top">
-
-            <h2 class="playlist-title">
-
-                📀 Danh sách MP3
-
-            </h2>
-
-
-            <div
-                id="count"
-                class="count">
-
-                Đang tải...
-
-            </div>
-
-        </div>
-
-
-
-        <input
-            id="search"
-            class="search"
-            type="search"
-            placeholder="🔍 Tìm kiếm bài hát..."
-        >
-
-
-
-        <div
-            id="songList"
-            class="song-list">
-
-            <div class="loading">
-
-                ⏳ Đang tải danh sách MP3...
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="status"
-            class="status">
-
-        </div>
-
-
-    </div>
-
-
+<div id="songName" class="song-name">
+Đang tải danh sách nhạc...
 </div>
-
-
-
-<!-- =========================================================
-     AUDIO
-========================================================= -->
-
-<audio
-    id="audio"
-    preload="metadata">
+<div class="progress-box">
+<input id="progress" class="progress" type="range" min="0" max="100" value="0">
+<div class="time">
+<span id="currentTime">
+00:00
+</span>
+<span id="duration">
+00:00
+</span>
+</div>
+</div>
+<div class="controls">
+<button id="prevBtn" class="control" title="Bài trước">
+⏮
+</button>
+<button id="playBtn" class="control play" title="Phát / Dừng">
+▶
+</button>
+<button id="nextBtn" class="control" title="Bài tiếp">
+⏭
+</button>
+</div>
+<div class="volume">
+<span id="volumeIcon">
+🔊
+</span>
+<input id="volume" type="range" min="0" max="1" step="0.01" value="1">
+</div>
+<div class="options">
+<button id="shuffleBtn" class="option">
+🔀 Ngẫu nhiên
+</button>
+<button id="repeatBtn" class="option">
+🔁 Lặp danh sách
+</button>
+</div>
+<div class="share-buttons">
+<button id="btnWebShare" class="share-button" title="Chia sẻ trang này">
+📤 Chia sẻ
+</button>
+<button id="btnCopyLink" class="share-button" title="Sao chép liên kết">
+📋 Sao chép liên kết
+</button>
+</div>
+<div id="shareStatus" class="share-status" aria-live="polite" role="status"></div>
+</div>
+<div class="playlist">
+<div class="playlist-top">
+<h2 class="playlist-title">
+📀 Danh sách MP3
+</h2>
+<div id="count" class="count">
+Đang tải...
+</div>
+</div>
+<input id="search" class="search" type="search" placeholder="🔍 Tìm kiếm bài hát...">
+<div id="songList" class="song-list">
+<div class="loading">
+⏳ Đang tải danh sách MP3...
+</div>
+</div>
+<div id="status" class="status">
+</div>
+</div>
+</div>
+<audio id="audio" preload="metadata">
 </audio>
-
-
-
 <script>
-
 /* =========================================================
    CẤU HÌNH GITHUB
 ========================================================= */
-
 const GITHUB_OWNER =
     "VuThanhCong77";
-
 const GITHUB_REPO =
     "quanlybaivietvtc";
-
 const GITHUB_BRANCH =
     "main";
-
 const AUDIO_FOLDER =
     "am-thanh";
-
-
 /*
    API lấy danh sách file:
-
    https://api.github.com/repos/
    VuThanhCong77/
    quanlybaivietvtc/
    contents/am-thanh
 */
-
 const API_URL =
     `https://api.github.com/repos/` +
     `${GITHUB_OWNER}/` +
     `${GITHUB_REPO}/` +
     `contents/${AUDIO_FOLDER}` +
     `?ref=${GITHUB_BRANCH}`;
-
-
 /*
    URL MP3 trực tiếp trên GitHub Pages
 */
-
 const AUDIO_BASE_URL =
     `https://${GITHUB_OWNER.toLowerCase()}.github.io/` +
     `${GITHUB_REPO}/` +
     `${AUDIO_FOLDER}/`;
-
-
 /* =========================================================
    DOM
 ========================================================= */
-
 const audio =
     document.getElementById("audio");
-
 const playBtn =
     document.getElementById("playBtn");
-
 const prevBtn =
     document.getElementById("prevBtn");
-
 const nextBtn =
     document.getElementById("nextBtn");
-
 const progress =
     document.getElementById("progress");
-
 const currentTime =
     document.getElementById("currentTime");
-
 const duration =
     document.getElementById("duration");
-
 const volume =
     document.getElementById("volume");
-
 const volumeIcon =
     document.getElementById("volumeIcon");
-
 const album =
     document.getElementById("album");
-
 const songName =
     document.getElementById("songName");
-
 const songList =
     document.getElementById("songList");
-
 const search =
     document.getElementById("search");
-
 const count =
     document.getElementById("count");
-
 const status =
     document.getElementById("status");
-
 const shuffleBtn =
     document.getElementById("shuffleBtn");
-
 const repeatBtn =
     document.getElementById("repeatBtn");
-
-
+const btnWebShare =
+    document.getElementById("btnWebShare");
+const btnCopyLink =
+    document.getElementById("btnCopyLink");
+const shareStatus =
+    document.getElementById("shareStatus");
 /* =========================================================
    BIẾN
 ========================================================= */
-
 let songs = [];
-
 let filteredSongs = [];
-
 let currentIndex = 0;
-
 let shuffle = false;
-
 let repeat = false;
-
-
 /* =========================================================
    CHUYỂN TÊN FILE
 ========================================================= */
-
 function decodeFileName(name){
-
     try{
-
         return decodeURIComponent(name);
-
     }catch{
-
         return name;
-
     }
-
 }
-
-
 /* =========================================================
    BỎ ĐUÔI MP3
 ========================================================= */
-
 function cleanName(name){
-
     return name
         .replace(/\.[^/.]+$/,"")
         .replace(/[_-]+/g," ")
         .trim();
-
 }
-
-
 /* =========================================================
    FORMAT THỜI GIAN
 ========================================================= */
-
 function formatTime(seconds){
-
     if(
         !Number.isFinite(seconds) ||
         seconds < 0
     ){
-
         return "00:00";
-
     }
-
-
     const minutes =
         Math.floor(seconds / 60);
-
     const secondsPart =
         Math.floor(seconds % 60);
-
-
     return (
         String(minutes).padStart(2,"0")
         + ":"
         +
         String(secondsPart).padStart(2,"0")
     );
-
 }
-
-
 /* =========================================================
    ESCAPE HTML
 ========================================================= */
-
 function escapeHTML(text){
-
     return String(text)
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-
 }
-
-
 /* =========================================================
    TẢI DANH SÁCH MP3 TỪ GITHUB
 ========================================================= */
-
 async function loadSongs(){
-
     try{
-
         status.textContent =
             "Đang kết nối GitHub...";
-
-
         const response =
             await fetch(
                 API_URL,
@@ -798,82 +547,55 @@ async function loadSongs(){
                         "Accept":
                         "application/vnd.github+json"
                     },
-
                     cache:"no-store"
                 }
             );
-
-
         if(!response.ok){
-
             throw new Error(
                 "GitHub API HTTP " +
                 response.status
             );
-
         }
-
-
         const data =
             await response.json();
-
-
         if(!Array.isArray(data)){
-
             throw new Error(
                 "Thư mục am-thanh không trả về danh sách file."
             );
-
         }
-
-
         /*
            Chỉ lấy file MP3
         */
-
         songs =
             data
             .filter(item => {
-
                 return (
                     item.type === "file" &&
                     /\.mp3$/i.test(item.name)
                 );
-
             })
             .map(item => {
-
                 const fileName =
                     decodeFileName(
                         item.name
                     );
-
-
                 return {
-
                     name:
                         cleanName(
                             fileName
                         ),
-
                     fileName:
                         fileName,
-
                     url:
                         AUDIO_BASE_URL +
                         encodeURIComponent(
                             fileName
                         )
-
                 };
-
             });
-
-
         /*
            Sắp xếp theo tên
         */
-
         songs.sort(
             (a,b)=>
                 a.name.localeCompare(
@@ -884,94 +606,52 @@ async function loadSongs(){
                     }
                 )
         );
-
-
         filteredSongs =
             [...songs];
-
-
         count.textContent =
             songs.length +
             " bài";
-
-
         if(!songs.length){
-
             songName.textContent =
                 "Chưa có file MP3";
-
             songList.innerHTML = `
-
                 <div class="empty">
-
                     📂 Thư mục
                     <strong>am-thanh</strong>
                     chưa có file MP3.
-
                 </div>
-
             `;
-
             status.textContent =
                 "Không tìm thấy MP3.";
-
             return;
-
         }
-
-
         currentIndex = 0;
-
-
         renderPlaylist();
-
-
         loadSong();
-
-
         status.textContent =
             "✓ Đã tải " +
             songs.length +
             " bài hát";
-
-
     }catch(error){
-
         console.error(error);
-
-
         songName.textContent =
             "Không thể tải danh sách nhạc";
-
-
         songList.innerHTML = `
-
             <div class="error">
-
                 ❌ Không thể tải danh sách MP3.
-
                 <br><br>
-
                 Kiểm tra:
-
                 <br>
-
                 • Repository có công khai không?
-
                 <br>
-
                 • Thư mục
                 <strong>am-thanh</strong>
                 có tồn tại không?
-
                 <br>
-
                 • File có đúng phần mở rộng
                 <strong>.mp3</strong>
                 không?
-
                 <br><br>
-
                 <button
                     onclick="loadSongs()"
                     style="
@@ -983,669 +663,393 @@ async function loadSongs(){
                 >
                     🔄 Thử lại
                 </button>
-
             </div>
-
         `;
-
-
         count.textContent =
             "Lỗi";
-
-
         status.textContent =
             error.message;
-
     }
-
 }
-
-
 /* =========================================================
    HIỂN THỊ PLAYLIST
 ========================================================= */
-
 function renderPlaylist(){
-
     songList.innerHTML = "";
-
-
     if(!filteredSongs.length){
-
         songList.innerHTML = `
-
             <div class="empty">
-
                 Không tìm thấy bài hát phù hợp.
-
             </div>
-
         `;
-
         return;
-
     }
-
-
     filteredSongs.forEach(
         (song,index)=>{
-
-
             const item =
                 document.createElement(
                     "div"
                 );
-
-
             item.className =
                 "song-item";
-
-
             /*
                Xác định bài hiện tại
             */
-
             const originalIndex =
                 songs.indexOf(song);
-
-
             if(
                 originalIndex ===
                 currentIndex
             ){
-
                 item.classList.add(
                     "active"
                 );
-
             }
-
-
             item.innerHTML = `
-
                 <div class="song-number">
-
                     ${index + 1}
-
                 </div>
-
                 <div class="song-icon">
-
                     🎵
-
                 </div>
-
                 <div class="song-title">
-
                     ${escapeHTML(
                         song.name
                     )}
-
                 </div>
-
             `;
-
-
             item.addEventListener(
                 "click",
                 ()=>{
-
                     currentIndex =
                         songs.indexOf(
                             song
                         );
-
                     loadSong();
-
                     playSong();
-
                 }
             );
-
-
             songList.appendChild(
                 item
             );
-
         }
     );
-
 }
-
-
 /* =========================================================
    NẠP BÀI HIỆN TẠI
 ========================================================= */
-
 function loadSong(){
-
     if(!songs.length){
-
         return;
-
     }
-
-
     const song =
         songs[currentIndex];
-
-
     if(!song){
-
         return;
-
     }
-
-
     audio.src =
         song.url;
-
-
     songName.textContent =
         song.name;
-
-
     progress.value = 0;
-
-
     currentTime.textContent =
         "00:00";
-
-
     duration.textContent =
         "00:00";
-
-
     renderPlaylist();
-
-
     /*
        Cuộn đến bài hiện tại
     */
-
     setTimeout(
         scrollCurrentIntoView,
         100
     );
-
 }
-
-
 /* =========================================================
    CUỘN ĐẾN BÀI HIỆN TẠI
 ========================================================= */
-
 function scrollCurrentIntoView(){
-
     const active =
         document.querySelector(
             ".song-item.active"
         );
-
-
     if(active){
-
         active.scrollIntoView({
-
             behavior:"smooth",
-
             block:"nearest"
-
         });
-
     }
-
 }
-
-
 /* =========================================================
    PHÁT
 ========================================================= */
-
 function playSong(){
-
     if(!songs.length){
-
         return;
-
     }
-
-
     audio.play()
         .then(()=>{
-
             playBtn.textContent =
                 "⏸";
-
             album.classList.add(
                 "playing"
             );
-
         })
         .catch(error=>{
-
             console.log(
                 "Không thể phát:",
                 error
             );
-
         });
-
 }
-
-
 /* =========================================================
    DỪNG
 ========================================================= */
-
 function pauseSong(){
-
     audio.pause();
-
-
     playBtn.textContent =
         "▶";
-
-
     album.classList.remove(
         "playing"
     );
-
 }
-
-
 /* =========================================================
    PHÁT / DỪNG
 ========================================================= */
-
 playBtn.addEventListener(
     "click",
     ()=>{
-
         if(!songs.length){
-
             loadSongs();
-
             return;
-
         }
-
-
         if(audio.paused){
-
             playSong();
-
         }else{
-
             pauseSong();
-
         }
-
     }
 );
-
-
 /* =========================================================
    BÀI TIẾP THEO
 ========================================================= */
-
 function nextSong(){
-
     if(!songs.length){
-
         return;
-
     }
-
-
     if(shuffle){
-
         if(songs.length === 1){
-
             currentIndex = 0;
-
         }else{
-
             let next;
-
             do{
-
                 next =
                     Math.floor(
                         Math.random()
                         *
                         songs.length
                     );
-
             }while(
                 next ===
                 currentIndex
             );
-
-
             currentIndex =
                 next;
-
         }
-
     }else{
-
         currentIndex++;
-
-
         if(
             currentIndex >=
             songs.length
         ){
-
             currentIndex = 0;
-
         }
-
     }
-
-
     loadSong();
-
     playSong();
-
 }
-
-
 /* =========================================================
    BÀI TRƯỚC
 ========================================================= */
-
 function previousSong(){
-
     if(!songs.length){
-
         return;
-
     }
-
-
     /*
        Nếu đã nghe quá 3 giây
        thì quay lại đầu bài
     */
-
     if(audio.currentTime > 3){
-
         audio.currentTime = 0;
-
         return;
-
     }
-
-
     currentIndex--;
-
-
     if(currentIndex < 0){
-
         currentIndex =
             songs.length - 1;
-
     }
-
-
     loadSong();
-
     playSong();
-
 }
-
-
 nextBtn.addEventListener(
     "click",
     nextSong
 );
-
-
 prevBtn.addEventListener(
     "click",
     previousSong
 );
-
-
 /* =========================================================
    AUDIO TIMEUPDATE
 ========================================================= */
-
 audio.addEventListener(
     "timeupdate",
     ()=>{
-
         if(!audio.duration){
-
             return;
-
         }
-
-
         const percent =
             (
                 audio.currentTime /
                 audio.duration
             ) * 100;
-
-
         progress.value =
             percent;
-
-
         currentTime.textContent =
             formatTime(
                 audio.currentTime
             );
-
     }
 );
-
-
 /* =========================================================
    METADATA
 ========================================================= */
-
 audio.addEventListener(
     "loadedmetadata",
     ()=>{
-
         duration.textContent =
             formatTime(
                 audio.duration
             );
-
     }
 );
-
-
 /* =========================================================
    TUA NHẠC
 ========================================================= */
-
 progress.addEventListener(
     "input",
     ()=>{
-
         if(!audio.duration){
-
             return;
-
         }
-
-
         audio.currentTime =
             (
                 progress.value /
                 100
             ) *
             audio.duration;
-
     }
 );
-
-
 /* =========================================================
    ÂM LƯỢNG
 ========================================================= */
-
 volume.addEventListener(
     "input",
     ()=>{
-
         audio.volume =
             Number(
                 volume.value
             );
-
-
         updateVolumeIcon();
-
     }
 );
-
-
 function updateVolumeIcon(){
-
     const v =
         Number(
             volume.value
         );
-
-
     if(v === 0){
-
         volumeIcon.textContent =
             "🔇";
-
     }else if(v < .5){
-
         volumeIcon.textContent =
             "🔉";
-
     }else{
-
         volumeIcon.textContent =
             "🔊";
-
     }
-
 }
-
-
 /* =========================================================
    NGẪU NHIÊN
 ========================================================= */
-
 shuffleBtn.addEventListener(
     "click",
     ()=>{
-
         shuffle =
             !shuffle;
-
-
         shuffleBtn.classList.toggle(
             "active",
             shuffle
         );
-
     }
 );
-
-
 /* =========================================================
    LẶP DANH SÁCH
 ========================================================= */
-
 repeatBtn.addEventListener(
     "click",
     ()=>{
-
         repeat =
             !repeat;
-
-
         repeatBtn.classList.toggle(
             "active",
             repeat
         );
-
-
         if(repeat){
-
             repeatBtn.textContent =
                 "🔁 Lặp bài";
-
         }else{
-
             repeatBtn.textContent =
                 "🔁 Lặp danh sách";
-
         }
-
     }
 );
-
-
 /* =========================================================
    KHI BÀI HÁT KẾT THÚC
 ========================================================= */
-
 audio.addEventListener(
     "ended",
     ()=>{
-
         /*
            Nếu bật lặp:
            phát lại chính bài hiện tại
         */
-
         if(repeat){
-
             audio.currentTime = 0;
-
             playSong();
-
             return;
-
         }
-
-
         /*
            Nếu không lặp:
            sang bài tiếp
         */
-
         nextSong();
-
     }
 );
-
-
 /* =========================================================
    TÌM KIẾM
 ========================================================= */
-
 search.addEventListener(
     "input",
     ()=>{
-
         const keyword =
             search.value
                 .trim()
                 .toLowerCase();
-
-
         if(!keyword){
-
             filteredSongs =
                 [...songs];
-
         }else{
-
             filteredSongs =
                 songs.filter(
                     song =>
@@ -1655,156 +1059,135 @@ search.addEventListener(
                                 keyword
                             )
                 );
-
         }
-
-
         renderPlaylist();
-
     }
 );
-
-
 /* =========================================================
    PHÍM TẮT
 ========================================================= */
-
 document.addEventListener(
     "keydown",
     event=>{
-
         /*
            Space:
            Phát / Dừng
         */
-
         if(
             event.code === "Space" &&
             event.target.tagName !== "INPUT"
         ){
-
             event.preventDefault();
-
             playBtn.click();
-
         }
-
-
         /*
            Mũi tên phải:
            tua +5 giây
         */
-
         if(
             event.code === "ArrowRight"
         ){
-
             if(audio.duration){
-
                 audio.currentTime =
                     Math.min(
                         audio.duration,
                         audio.currentTime + 5
                     );
-
             }
-
         }
-
-
         /*
            Mũi tên trái:
            tua -5 giây
         */
-
         if(
             event.code === "ArrowLeft"
         ){
-
             if(audio.duration){
-
                 audio.currentTime =
                     Math.max(
                         0,
                         audio.currentTime - 5
                     );
-
             }
-
         }
-
     }
 );
-
-
 /* =========================================================
    KHI AUDIO PLAY
 ========================================================= */
-
 audio.addEventListener(
     "play",
     ()=>{
-
         playBtn.textContent =
             "⏸";
-
         album.classList.add(
             "playing"
         );
-
     }
 );
-
-
 /* =========================================================
    KHI AUDIO PAUSE
 ========================================================= */
-
 audio.addEventListener(
     "pause",
     ()=>{
-
         playBtn.textContent =
             "▶";
-
         album.classList.remove(
             "playing"
         );
-
     }
 );
-
-
 /* =========================================================
    XỬ LÝ LỖI AUDIO
 ========================================================= */
-
 audio.addEventListener(
     "error",
     ()=>{
-
         status.textContent =
             "⚠ Không thể phát file: " +
             (
                 songs[currentIndex]
                 ?.name || ""
             );
-
     }
 );
-
-
+/* =========================================================
+   CHIA SẺ WEB SHARE API VÀ SAO CHÉP LIÊN KẾT
+========================================================= */
+btnWebShare.addEventListener("click", async () => {
+    const shareData = {
+        title: document.title,
+        text: "Thư viện âm nhạc của Vũ Thành Công",
+        url: window.location.href
+    };
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+            shareStatus.textContent = "👍 Đã chia sẻ thành công!";
+        } catch (err) {
+            shareStatus.textContent = "❌ Chia sẻ bị hủy hoặc lỗi.";
+            console.error("Lỗi chia sẻ:", err);
+        }
+    } else {
+        shareStatus.textContent = "⚠ Trình duyệt không hỗ trợ Web Share API.";
+    }
+});
+btnCopyLink.addEventListener("click", async () => {
+    try {
+        await navigator.clipboard.writeText(window.location.href);
+        shareStatus.textContent = "✅ Đã sao chép liên kết!";
+    } catch (err) {
+        shareStatus.textContent = "❌ Không thể sao chép liên kết.";
+        console.error("Lỗi sao chép:", err);
+    }
+});
 /* =========================================================
    KHỞI TẠO
 ========================================================= */
-
 audio.volume = 1;
-
 updateVolumeIcon();
-
 loadSongs();
-
 </script>
-
 </body>
 </html>
