@@ -1,0 +1,168 @@
+/* Khối chuyên mục Hải Phòng */
+.hp-feature-section {
+    padding: 70px 20px;
+    background: #f5f8fb;
+}
+
+.hp-feature-container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* Hộp nội dung chính */
+.quote-box-hp{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 35px;
+    align-items: center;
+    min-height: 300px;
+    padding: 45px;
+    overflow: hidden;
+    border-radius: 24px;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #eef5fb 100%
+    );
+    border: 1px solid #dce7f0;
+    box-shadow: 0 15px 40px rgba(24, 71, 112, 0.12);
+}
+
+/* Biểu tượng trích dẫn */
+.quote-icon-hp {
+    position: absolute;
+    top: 12px;
+    left: 25px;
+    color: #c51f2a;
+    font-family: Georgia, serif;
+    font-size: 78px;
+    line-height: 1;
+    opacity: 0.18;
+}
+
+/* Nội dung */
+.quote-content-hp {
+    position: relative;
+    z-index: 1;
+}
+
+.section-label-hp {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #b21e2b;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quote-content-hp h2 {
+    margin: 0 0 18px;
+    color: #123c64;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.2;
+}
+
+.quote-text-hp {
+    max-width: 700px;
+    margin: 0 0 12px;
+    color: #263746;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+.quote-summary-hp {
+    max-width: 700px;
+    margin: 0 0 25px;
+    color: #5c6b78;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Nút liên kết */
+.hp-feature-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 22px;
+    border-radius: 8px;
+    background: #b21e2b;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.hp-feature-button span {
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.hp-feature-button:hover {
+    background: #87151f;
+    transform: translateY(-3px);
+}
+
+.hp-feature-button:hover span {
+    transform: translateX(5px);
+}
+
+/* Ảnh minh họa */
+.quote-image {
+    height: 320px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.quote-image a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.quote-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.quote-image:hover img {
+    transform: scale(1.08);
+}
+
+/* Hiển thị trên điện thoại */
+@media (max-width: 768px) {
+    .hp-feature-section {
+        padding: 45px 15px;
+    }
+
+    .quote-box {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 35px 25px;
+    }
+
+    .quote-content h2 {
+        font-size: 30px;
+    }
+
+    .quote-text {
+        font-size: 18px;
+    }
+
+    .quote-image {
+        height: 210px;
+        order: -1;
+    }
+
+    .quote-icon {
+        left: 15px;
+        font-size: 65px;
+    }
+}
