@@ -1,0 +1,37 @@
+/* variables.css */
+
+:root {
+    /* Màu chủ đạo */
+    --mau-chinh: #0f2a5f;
+    --mau-chinh-dam: #091d42;
+    --mau-phu: #475569;
+    --mau-nhan: #2563eb;
+    --mau-nhan-dam: #1d4ed8;
+
+    /* Màu nền */
+    --mau-nen: #f8fafc;
+    --mau-nen-phu: #eff6ff;
+    --mau-the: #ffffff;
+
+    /* Màu trạng thái */
+    --mau-thanh-cong: #16a34a;
+    --mau-canh-bao: #d97706;
+    --mau-loi: #dc2626;
+
+    /* Màu chữ */
+    --mau-chu: #1e293b;
+    --mau-chu-phu: #64748b;
+    --mau-chu-trang: #ffffff;
+
+    /* Viền, bo góc, bóng */
+    --mau-vien: #e2e8f0;
+    --bo-goc-nho: 10px;
+    --bo-goc: 16px;
+    --bo-goc-lon: 24px;
+
+    --bong-nhe: 0 2px 10px rgba(15, 42, 95, 0.06);
+    --bong-vua: 0 8px 24px rgba(15, 42, 95, 0.10);
+    --bong-manh: 0 14px 35px rgba(15, 42, 95, 0.14);
+
+    --chuyen-dong: all 0.25s ease;
+}

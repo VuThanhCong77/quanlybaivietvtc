@@ -1,23 +1,23 @@
+/* =========================================================
+   MAIN.CSS — Điểm nhập duy nhất của toàn bộ CSS
+========================================================= */
+
+/* 1. Biến và reset — PHẢI đứng đầu */
+@import url("variables.css");
+@import url("reset.css");
+
+/* 2. Layout và component dùng chung */
 @import url("trang-chu.css");
-
 @import url("menu.css");
-
-@import url("gioi-thieu.css");
-
-@import url("xem-bai-viet.css");
-
 @import url("dieu-huong.css");
-
-@import url("hoi-ky.css");
-
-@import url("danh-sach-bai-viet.css");
-
-@import url("hanh-phuc.css");
-
-@import url("so-do-trang.css");
-
-@import url("can-bo.css");
-
+@import url("banner.css");
 @import url("subscribe.css");
 
-@import url("banner.css");
+/* 3. Các trang riêng */
+@import url("gioi-thieu.css");
+@import url("xem-bai-viet.css");
+@import url("danh-sach-bai-viet.css");
+@import url("hoi-ky.css");
+@import url("hanh-phuc.css");
+@import url("can-bo.css");
+@import url("so-do-trang.css");
