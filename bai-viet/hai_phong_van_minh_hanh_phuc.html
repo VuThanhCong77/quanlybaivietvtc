@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hải Phòng: Văn minh - Hạnh phúc</title>
+<meta name="description" content="Xây dựng và triển khai các mô hình Chủ nghĩa xã hội gắn với Con người Xã hội chủ nghĩa tại Hải Phòng giai đoạn 2026 - 2030 và những năm tiếp theo." />
+<meta property="og:title" content="Hải Phòng 2026 - 2030: Văn minh - Hạnh phúc" />
+<meta property="og:description" content="Xây dựng và triển khai các mô hình Chủ nghĩa xã hội gắn với Con người Xã hội chủ nghĩa tại Hải Phòng giai đoạn 2026 - 2030 và những năm tiếp theo." />
+<meta property="og:type" content="website" />
+<style>
+/* Reset & base */
+*, *::before, *::after {
+box-sizing: border-box;
+}
+body {
+margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: #fff; color: #003366;
+line-height: 1.6;
+scroll-behavior: smooth;
+}
+a {
+color: #d32f2f; /* đỏ nhấn */
+text-decoration: none;
+}
+a:hover, a:focus {
+text-decoration: underline;
+outline-offset: 2px;
+}
+h1, h2, h3, h4 {
+margin-top: 0;
+color: #003366;
+}
+h1 {
+font-size: 2.5rem;
+font-weight: 700;
+line-height: 1.1;
+}
+h2 {
+font-size: 2rem;
+margin-bottom: 0.5em;
+}
+h3 {
+font-size: 1.5rem;
+margin-bottom: 0.5em;
+}
+p {
+margin: 0 0 1em 0;
+}
+button {
+cursor: pointer;
+border: none;
+border-radius: 4px;
+font-weight: 600;
+font-size: 1rem;
+padding: 0.6em 1.2em;
+background-color: #004a99; /* xanh biển Hải Phòng */
+color: #fff;
+transition: background-color 0.3s ease;
+}
+button:hover, button:focus {
+background-color: #003366;
+outline-offset: 2px;
+}
+/* Container */
+.container {
+max-width: 1100px;
+margin: 0 auto;
+padding: 0 1rem;
+}
+/* Sticky Navigation */
+nav {
+position: sticky;
+top: 0;
+background: #003366;
+color: #fff;
+text-align: center;
+z-index: 1000;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+nav .container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0.5rem 0;
+}
+nav .logo {
+font-weight: 700;
+font-size: 1.25rem;
+color: #ffd54f; /* vàng nhẹ */
+user-select: none;
+}
+nav ul {
+list-style: none;
+display: flex;
+gap: 1.25rem;
+margin: 0;
+padding: 0;
+}
+nav ul li a {
+color: #fff;
+font-weight: 600;
+padding: 0.5rem 0.75rem;
+display: block;
+}
+nav ul li a:hover, nav ul li a:focus {
+background-color: #d32f2f;
+border-radius: 4px;
+outline-offset: 2px;
+}
+/* Mobile menu */
+.menu-toggle {
+display: none;
+flex-direction: column;
+justify-content: center;
+width: 30px;
+height: 30px;
+cursor: pointer;
+}
+.menu-toggle span {
+height: 3px;
+background: #fff;
+margin: 4px 0;
+border-radius: 2px;
+transition: 0.3s;
+}
+/* Show mobile menu */
+@media (max-width: 768px) {
+nav ul {
+position: fixed;
+top: 56px;
+right: 0;
+background: #003366;
+height: calc(100% - 56px);
+width: 220px;
+flex-direction: column;
+padding-top: 1rem;
+transform: translateX(100%);
+transition: transform 0.3s ease;
+}
+nav ul.open {
+transform: translateX(0);
+}
+nav ul li {
+margin-bottom: 1rem;
+}
+.menu-toggle {
+display: flex;
+}
+}
+/* Hero Section */
+#hero {
+background: linear-gradient(135deg, #004a99 0%, #007acc 100%);
+color: #fff;
+padding: 4rem 1rem 6rem 1rem;
+text-align: center;
+position: relative;
+}
+#hero h1 {
+font-size: 3rem;
+font-weight: 900;
+letter-spacing: 0.1em;
+margin-bottom: 0.5rem;
+text-transform: uppercase;
+text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
+#hero p {
+font-size: 1.25rem;
+max-width: 600px;
+margin: 0 auto 2rem auto;
+font-weight: 500;
+text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+#hero .cta-buttons {
+display: flex;
+justify-content: center;
+gap: 1rem;
+flex-wrap: wrap;
+}
+#hero .cta-buttons button {
+background-color: #d32f2f;
+padding: 0.75rem 1.5rem;
+font-size: 1.1rem;
+border-radius: 6px;
+box-shadow: 0 4px 8px rgba(211,47,47,0.4);
+transition: background-color 0.3s ease;
+}
+#hero .cta-buttons button:hover, #hero .cta-buttons button:focus {
+background-color: #b71c1c;
+outline-offset: 3px;
+}
+/* Section Titles */
+section > h2 {
+border-bottom: 3px solid #d32f2f;
+padding-bottom: 0.25rem;
+margin-bottom: 1rem;
+color: #003366;
+}
+/* Vision Section */
+#vision {
+background: #e3f2fd; /* nhẹ nhàng xanh biển */
+padding: 3rem 1rem;
+color: #003366;
+}
+#vision .values {
+display: flex;
+flex-wrap: wrap;
+gap: 1rem;
+justify-content: center;
+margin-top: 1.5rem;
+}
+#vision .value {
+background: #fff;
+border-radius: 8px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+flex: 1 1 140px;
+max-width: 180px;
+padding: 1rem;
+text-align: center;
+font-weight: 700;
+color: #004a99;
+user-select: none;
+}
+/* Meaning Section */
+#meaning {
+padding: 3rem 1rem;
+max-width: 900px;
+margin: 0 auto;
+}
+#meaning h3 {
+margin-top: 2rem;
+color: #004a99;
+}
+#meaning ul {
+list-style: none;
+padding-left: 0;
+}
+#meaning ul li {
+position: relative;
+padding-left: 1.5em;
+margin-bottom: 0.75rem;
+}
+#meaning ul li::before {
+content: "✔️";
+position: absolute;
+left: 0;
+top: 0;
+font-size: 1.1rem;
+line-height: 1;
+}
+/* Models Section */
+#models {
+background: #e8f0fe;
+padding: 3rem 1rem;
+max-width: 1100px;
+margin: 0 auto;
+}
+#models .group {
+margin-bottom: 2rem;
+}
+#models .group h3 {
+color: #003366;
+margin-bottom: 1rem;
+border-left: 6px solid #d32f2f;
+padding-left: 0.5rem;
+}
+#models .cards {
+display: grid;
+grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+gap: 1rem;
+}
+#models .card {
+background: #fff;
+border-radius: 8px;
+box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+padding: 1rem 1.25rem;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+transition: box-shadow 0.3s ease;
+}
+#models .card:hover, #models .card:focus-within {
+box-shadow: 0 4px 16px rgb(0 0 0 / 0.15);
+outline: none;
+}
+#models .card h4 {
+margin: 0 0 0.5rem 0;
+color: #004a99;
+font-weight: 700;
+}
+#models .card p {
+margin: 0.25rem 0;
+flex-grow: 1;
+color: #333;
+}
+#models .highlight {
+font-weight: 700;
+color: #d32f2f;
+}
+/* Criteria Section */
+#criteria {
+padding: 3rem 1rem;
+max-width: 1100px;
+margin: 0 auto;
+}
+#criteria .dashboard {
+display: grid;
+grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+gap: 1rem;
+}
+#criteria .tile {
+background: #fff;
+border-radius: 8px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+padding: 1rem 1.25rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
+color: #004a99;
+font-weight: 600;
+user-select: none;
+}
+#criteria .tile:hover, #criteria .tile:focus {
+background-color: #d32f2f;
+color: #fff;
+outline-offset: 3px;
+}
+#criteria .details {
+margin-top: 1rem;
+background: #f5f9ff;
+border-radius: 6px;
+padding: 1rem;
+color: #003366;
+font-weight: 400;
+display: none;
+}
+#criteria .details.active {
+display: block;
+}
+/* Person Section */
+#person {
+background: #e3f2fd;
+padding: 3rem 1rem;
+max-width: 700px;
+margin: 0 auto;
+}
+#person ul {
+list-style: none;
+padding-left: 0;
+}
+#person ul li {
+position: relative;
+padding-left: 2em;
+margin-bottom: 1rem;
+font-weight: 600;
+color: #004a99;
+}
+#person ul li::before {
+content: "✔️";
+position: absolute;
+left: 0;
+top: 0;
+font-size: 1.3rem;
+line-height: 1;
+}
+/* Roadmap Section */
+#roadmap {
+padding: 3rem 1rem;
+max-width: 900px;
+margin: 0 auto;
+}
+#roadmap .timeline {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+position: relative;
+padding-left: 1.5rem;
+border-left: 3px solid #d32f2f;
+}
+#roadmap .timeline-item {
+position: relative;
+padding-left: 1rem;
+}
+#roadmap .timeline-item::before {
+content: attr(data-year);
+position: absolute;
+left: -4.5rem;
+top: 0;
+background: #d32f2f;
+color: #fff;
+font-weight: 700;
+padding: 0.25rem 0.75rem;
+border-radius: 4px;
+font-size: 1rem;
+user-select: none;
+}
+#roadmap .timeline-item p {
+margin: 0.25rem 0 0 0;
+color: #003366;
+}
+/* Participation Section */
+#participation {
+background: #e8f0fe;
+padding: 3rem 1rem;
+max-width: 700px;
+margin: 0 auto;
+}
+#participation form {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+#participation label {
+font-weight: 600;
+color: #004a99;
+}
+#participation input[type="text"],
+#participation input[type="email"],
+#participation select,
+#participation textarea {
+padding: 0.5rem;
+border: 1.5px solid #004a99;
+border-radius: 6px;
+font-size: 1rem;
+font-family: inherit;
+resize: vertical;
+transition: border-color 0.3s ease;
+}
+#participation input[type="text"]:focus,
+#participation input[type="email"]:focus,
+#participation select:focus,
+#participation textarea:focus {
+border-color: #d32f2f;
+outline: none;
+}
+#participation textarea {
+min-height: 100px;
+}
+#participation button[type="submit"] {
+align-self: flex-start;
+background-color: #004a99;
+color: #fff;
+padding: 0.75rem 1.5rem;
+font-weight: 700;
+border-radius: 6px;
+box-shadow: 0 4px 8px rgba(0,74,153,0.4);
+transition: background-color 0.3s ease;
+}
+#participation button[type="submit"]:hover,
+#participation button[type="submit"]:focus {
+background-color: #003366;
+outline-offset: 3px;
+}
+#participation .message {
+margin-top: 1rem;
+font-weight: 600;
+color: #004a99;
+}
+/* Source Section */
+#source {
+background: #003366;
+color: #ffd54f;
+padding: 2rem 1rem;
+font-size: 0.9rem;
+text-align: center;
+user-select: none;
+}
+/* Scroll to top button */
+#scrollTopBtn {
+position: fixed;
+bottom: 2rem;
+right: 2rem;
+background-color: #d32f2f;
+color: #fff;
+border: none;
+border-radius: 50%;
+width: 44px;
+height: 44px;
+font-size: 1.5rem;
+display: none;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 4px 8px rgba(211,47,47,0.5);
+z-index: 1100;
+transition: background-color 0.3s ease;
+}
+#scrollTopBtn:hover, #scrollTopBtn:focus {
+background-color: #b71c1c;
+outline-offset: 3px;
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav aria-label="Điều hướng chính">
+<div class="container">
+<div class="logo" tabindex="0">Hải Phòng</div>
+<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Mở menu điều hướng">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<ul id="primary-menu" role="menubar">
+<li role="none">
+<a href="#hero" role="menuitem" tabindex="0">Trang chủ</a>
+</li>
+<li role="none">
+<a href="#vision" role="menuitem" tabindex="0">Tầm nhìn</a>
+</li>
+<li role="none">
+<a href="#meaning" role="menuitem" tabindex="0">Ý nghĩa</a>
+</li>
+<li role="none">
+<a href="#models" role="menuitem" tabindex="0">11 Mô hình</a>
+</li>
+<li role="none">
+<a href="#criteria" role="menuitem" tabindex="0">Bộ tiêu chí</a>
+</li>
+<li role="none">
+<a href="#person" role="menuitem" tabindex="0">Con người XHCN</a>
+</li>
+<li role="none">
+<a href="#roadmap" role="menuitem" tabindex="0">Lộ trình</a>
+</li>
+<li role="none">
+<a href="#participation" role="menuitem" tabindex="0">Tham gia</a>
+</li>
+<li role="none">
+<a href="#source" role="menuitem" tabindex="0">Nguồn</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Hero Section -->
+<section id="hero" role="banner" aria-label="Thông điệp chính Hải Phòng 2026 - 2030">
+<div class="container">
+<h1 style="color: #e3e709;">VĂN MINH - HẠNH PHÚC</h1>
+<p style="color: #fff;"><strong>Giai đoạn 2026 - 2030</strong><br />Xây dựng và triển khai các mô hình Chủ nghĩa xã hội gắn với Con người Xã hội chủ nghĩa tại thành phố Hải Phòng và những năm tiếp theo.</p>
+<div class="cta-buttons" role="group" aria-label="Nút hành động chính">
+<button type="button" onclick="document.getElementById('models').scrollIntoView({behavior:'smooth'})" aria-label="Khám phá 11 mô hình trọng tâm">Khám phá 11 mô hình trọng tâm</button>
+<button type="button" onclick="document.getElementById('criteria').scrollIntoView({behavior:'smooth'})" aria-label="Xem bộ tiêu chí Văn minh - Hạnh phúc">Bộ tiêu chí Văn minh - Hạnh phúc</button>
+<button type="button" onclick="document.getElementById('participation').scrollIntoView({behavior:'smooth'})" aria-label="Tham gia cùng cộng đồng Hải Phòng">Tham gia cùng cộng đồng</button>
+</div>
+</div>
+</section>
+<!-- Vision Section -->
+<section id="vision" aria-labelledby="vision-title">
+<div class="container">
+<h2 id="vision-title">Tầm nhìn, sứ mệnh, giá trị cốt lõi</h2>
+<article aria-label="Tầm nhìn">
+<h3>🌟 Tầm nhìn</h3>
+<p>Đến <strong>2030</strong>, Hải Phòng trở thành <strong>“Thành phố Văn minh - Hạnh phúc”</strong>, hình mẫu tiêu biểu của mô hình Chủ nghĩa xã hội trong kỷ nguyên mới, với kinh tế phát triển cao, xã hội dân chủ, công bằng, văn minh, con người phát triển toàn diện, chính quyền hiện đại, minh bạch, phục vụ Nhân dân.</p>
+</article>
+<article aria-label="Sứ mệnh">
+<h3>🧩 Sứ mệnh</h3>
+<ul>
+<li>Xây dựng thiết chế, chính sách và phong trào để mỗi người dân có cơ hội phát triển.</li>
+<li>Gắn tăng trưởng kinh tế với an sinh, công bằng, văn hóa, môi trường, quốc phòng - an ninh.</li>
+<li>Phát huy vai trò làm chủ của Nhân dân theo phương châm “dân biết, dân bàn, dân làm, dân kiểm tra, dân giám sát, dân thụ hưởng”.</li>
+</ul>
+</article>
+<article aria-label="Giá trị cốt lõi">
+<h3>🧱 Giá trị cốt lõi</h3>
+<div class="values" role="list" aria-label="5 giá trị cốt lõi">
+<div class="value" role="listitem" aria-label="Nhân văn">🤝 Nhân văn</div>
+<div class="value" role="listitem" aria-label="Kỷ cương">⚖️ Kỷ cương</div>
+<div class="value" role="listitem" aria-label="Sáng tạo">💡 Sáng tạo</div>
+<div class="value" role="listitem" aria-label="Đoàn kết">🤜🤛 Đoàn kết</div>
+<div class="value" role="listitem" aria-label="Phụng sự">🙏 Phụng sự</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Meaning Section -->
+<section id="meaning" aria-labelledby="meaning-title">
+<div class="container">
+<h2 id="meaning-title">“Hải Phòng Văn minh - Hạnh phúc” nghĩa là gì?</h2>
+<article aria-label="Giải thích Văn minh">
+<h3>🏙️ Văn minh</h3>
+<ul>
+<li>Hạ tầng đồng bộ, đô thị thông minh, hệ sinh thái số, dữ liệu lớn.</li>
+<li>Môi trường sống trong lành, giảm ô nhiễm, xử lý rác thải hiệu quả.</li>
+<li>Văn hóa ứng xử chuẩn mực, tuân thủ pháp luật, tinh thần cộng đồng.</li>
+<li>Giáo dục, y tế tiên tiến, an ninh trật tự đảm bảo.</li>
+</ul>
+</article>
+<article aria-label="Giải thích Hạnh phúc">
+<h3>😊 Hạnh phúc</h3>
+<ul>
+<li>Người dân hài lòng về cuộc sống, thu nhập, nhà ở, dịch vụ công.</li>
+<li>Sức khỏe thể chất và tinh thần được chăm lo.</li>
+<li>Quan hệ xã hội tốt đẹp, không phân biệt đối xử, hòa nhập.</li>
+<li>Cơ hội phát triển cho mọi người, cảm giác an toàn và được bảo vệ.</li>
+<li>Giá trị nhân văn được lan tỏa.</li>
+</ul>
+</article>
+</div>
+</section>
+<!-- Models Section -->
+<section id="models" aria-labelledby="models-title">
+<div class="container">
+<h2 id="models-title">11 mô hình trọng tâm</h2>
+<!-- Group A -->
+<div class="group" aria-label="Nhóm A: Xây dựng Đảng và hệ thống chính trị">
+<h3>🏛️ A. Xây dựng Đảng và hệ thống chính trị (03 mô hình)</h3>
+<div class="cards">
+<article class="card" tabindex="0" aria-labelledby="model1-title" aria-describedby="model1-desc">
+<h4 id="model1-title">Chính quyền thân thiện</h4>
+<p id="model1-desc"><strong>Mục tiêu:</strong> Đến hết <span class="highlight">2027</span>, <strong>100% cấp xã đạt chuẩn “Chính quyền thân thiện”</strong>, <strong>100% sở ngành đạt chuẩn “Công sở thân thiện”</strong>.</p>
+<p><em>“Thủ tục nhanh hơn, nụ cười nhiều hơn, minh bạch rõ hơn.”</em></p>
+<p><strong>Đơn vị chủ trì:</strong> Sở Nội vụ</p>
+</article>
+<article class="card" tabindex="0" aria-labelledby="model2-title" aria-describedby="model2-desc">
+<h4 id="model2-title">Thành phố thượng tôn và tuân thủ pháp luật</h4>
+<p id="model2-desc"><strong>Trọng tâm:</strong> Pháp luật là tối thượng, phổ biến giáo dục pháp luật sâu rộng, kiểm tra xử lý văn bản kịp thời, nâng cao khả năng tiếp cận pháp luật.</p>
+<p><strong>Đơn vị chủ trì:</strong> Sở Tư pháp</p>
+</article>
+<article class="card" tabindex="0" aria-labelledby="model3-title" aria-describedby="model3-desc">
+<h4 id="model3-title">Thành phố văn minh; xã, phường hạnh phúc</h4>
+<p id="model3-desc"><strong>Mục tiêu:</strong> Hình thành bộ tiêu chí, bảng xếp hạng cấp xã, báo cáo thường niên.</p>
+<p><em>Hướng tới top 100 - 120 thành phố đáng sống vào <span class="highlight">2030</span>.</em></p>
+<p><strong>Đơn vị chủ trì:</strong> MTTQ Việt Nam TP</p>
+</article>
+</div>
+</div>
+<!-- Group B -->
+<div class="group" aria-label="Nhóm B: Phát triển kinh tế">
+<h3>🏗️ B. Phát triển kinh tế (02 mô hình)</h3>
+<div class="cards">
+<article class="card" tabindex="0" aria-labelledby="model4-title" aria-describedby="model4-desc">
+<h4 id="model4-title">Thành phố đổi mới sáng tạo</h4>
+<p id="model4-desc"><strong>Điểm nhấn:</strong> Công viên khoa học, quỹ đầu tư mạo hiểm, trung tâm đổi mới sáng tạo, nâng tỷ lệ doanh nghiệp đổi mới sáng tạo.</p>
+<p><strong>Đơn vị chủ trì:</strong> Sở KH&CN</p>
+</article>
+<article class="card" tabindex="0" aria-labelledby="model5-title" aria-describedby="model5-desc">
+<h4 id="model5-title">Cụm công nghiệp sinh thái</h4>
+<p id="model5-desc"><strong>Mục tiêu:</strong> Đến <span class="highlight">2030</span> hình thành <strong>1 - 2 cụm công nghiệp sinh thái</strong>, thúc đẩy liên kết ngành.</p>
+<p><strong>Đơn vị chủ trì:</strong> Sở Công Thương</p>
+</article>
+</div>
+</div>
+<!-- Group C -->
+<div class="group" aria-label="Nhóm C: Văn hóa, xã hội">
+<h3>🌿 C. Văn hóa, xã hội (04 mô hình)</h3>
+<div class="cards">
+<article class="card" tabindex="0" aria-labelledby="model6-title" aria-describedby="model6-desc">
+<h4 id="model6-title">Nhà ở xã hội chủ nghĩa: Công bằng - Nhân văn - Đoàn kết</h4>
+<p id="model6-desc"><strong>Mục tiêu:</strong> Giai đoạn <span class="highlight">2026 - 2030</span> đưa ra thị trường ít nhất <strong>32.845 căn</strong>, đạt tối thiểu <strong>49.400 căn</strong> vào cuối <span class="highlight">2030</span>.</p>
+<p><strong>Đơn vị chủ trì:</strong> Sở Xây dựng</p>
+</article>
+<article class="card" tabindex="0" aria-labelledby="model7-title" aria-describedby="model7-desc">
+<h4 id="model7-title">Thành phố âm nhạc</h4>
+<p id="model7-desc"><strong>Trục văn hóa:</strong> Âm nhạc là động lực phát triển con người và thương hiệu đô thị; hướng tới UNESCO Creative Cities (âm nhạc).</p>
+<p><strong>Đơn vị chủ trì:</strong> Sở VH-TT&DL</p>
+</article>
+<article class="card" tabindex="0" aria-labelledby="model8-title" aria-describedby="model8-desc">
+<h4 id="model8-title">Du lịch xanh: không nhựa dùng một lần</h4>
+<p id="model8-desc"><strong>Mục tiêu:</strong> Đến <span class="highlight">2030</span>, 100% điểm du lịch ven biển không dùng nhựa 1 lần; có lộ trình thí điểm <span class="highlight">2026 - 2027</span>.</p>
+<p><strong>Đơn vị chủ trì:</strong> Sở NN&MT</p>
+</article>
+<article class="card" tabindex="0" aria-labelledby="model9-title" aria-describedby="model9-desc">
+<h4 id="model9-title">Chăm sóc sức khỏe toàn dân, toàn diện</h4>
+<p id="model9-desc"><strong>Mục tiêu:</strong> Theo lộ trình BHYT và quản lý sức khỏe tại tuyến cơ sở; định hướng từ <span class="highlight">2030</span> trở đi khám tại trạm y tế được miễn viện phí (thanh toán bằng BHYT và nguồn hỗ trợ).</p>
+<p><strong>Đơn vị chủ trì:</strong> Sở Y tế</p>
+</article>
+</div>
+</div>
+<!-- Group D -->
+<div class="group" aria-label="Nhóm D: Củng cố, phát huy phẩm chất và năng lực con người">
+<h3>📚 D. Củng cố, phát huy phẩm chất và năng lực con người (02 mô hình)</h3>
+<div class="cards">
+<article class="card" tabindex="0" aria-labelledby="model10-title" aria-describedby="model10-desc">
+<h4 id="model10-title">Trường học XHCN</h4>
+<p id="model10-desc"><strong>Thí điểm mô hình mẫu:</strong> Tại 09 trường giai đoạn <span class="highlight">2026 - 2030</span>, chuẩn bị nhân rộng <span class="highlight">2030 - 2035</span>.</p>
+<p><strong>Đơn vị chủ trì:</strong> Sở GD&ĐT</p>
+</article>
+<article class="card" tabindex="0" aria-labelledby="model11-title" aria-describedby="model11-desc">
+<h4 id="model11-title">Chi đoàn XHCN gắn với đoàn viên XHCN</h4>
+<p id="model11-desc"><strong>Chỉ tiêu:</strong> Đến <span class="highlight">2030</span>, 80% chi đoàn đạt danh hiệu, 80% đoàn viên đạt danh hiệu.</p>
+<p><strong>Đơn vị chủ trì:</strong> Thành đoàn</p>
+</article>
+</div>
+</div>
+</div>
+</section>
+<!-- Criteria Section -->
+<section id="criteria" aria-labelledby="criteria-title">
+<div class="container">
+<h2 id="criteria-title">Bộ tiêu chí đánh giá xây dựng Chủ nghĩa xã hội tại Hải Phòng</h2>
+<div class="dashboard" role="list" aria-label="8 nhóm tiêu chí xây dựng Chủ nghĩa xã hội tại Hải Phòng">
+<button class="tile" aria-expanded="false" aria-controls="criteria1" aria-haspopup="true" type="button">Dân giàu, thành phố vững mạnh; dân chủ, công bằng, văn minh</button>
+<button class="tile" aria-expanded="false" aria-controls="criteria2" aria-haspopup="true" type="button">Nhân dân làm chủ, đồng hành, thụ hưởng</button>
+<button class="tile" aria-expanded="false" aria-controls="criteria3" aria-haspopup="true" type="button">Kinh tế phát triển cao: xanh, số, tuần hoàn, hội nhập</button>
+<button class="tile" aria-expanded="false" aria-controls="criteria4" aria-haspopup="true" type="button">Văn hóa hiện đại, nhân văn, giàu bản sắc</button>
+<button class="tile" aria-expanded="false" aria-controls="criteria5" aria-haspopup="true" type="button">Cuộc sống ấm no, tự do, hạnh phúc; phát triển toàn diện</button>
+<button class="tile" aria-expanded="false" aria-controls="criteria6" aria-haspopup="true" type="button">Bền vững, bình đẳng, vì con người</button>
+<button class="tile" aria-expanded="false" aria-controls="criteria7" aria-haspopup="true" type="button">Chính quyền kiến tạo, liêm chính, hành động, phục vụ Nhân dân</button>
+<button class="tile" aria-expanded="false" aria-controls="criteria8" aria-haspopup="true" type="button">Quốc phòng, an ninh vững mạnh; hợp tác hữu nghị</button>
+</div>
+<div id="criteria1" class="details" role="region" aria-live="polite" aria-label="Chi tiết tiêu chí 1">
+<p>Tiêu chí về phát triển kinh tế bền vững, xã hội dân chủ, công bằng và văn minh, đảm bảo đời sống người dân ngày càng tốt hơn.</p>
+</div>
+<div id="criteria2" class="details" role="region" aria-live="polite" aria-label="Chi tiết tiêu chí 2">
+<p>Nhân dân được tham gia làm chủ, đồng hành cùng chính quyền và thụ hưởng thành quả phát triển.</p>
+</div>
+<div id="criteria3" class="details" role="region" aria-live="polite" aria-label="Chi tiết tiêu chí 3">
+<p>Phát triển kinh tế xanh, số hóa, tuần hoàn và hội nhập quốc tế sâu rộng.</p>
+</div>
+<div id="criteria4" class="details" role="region" aria-live="polite" aria-label="Chi tiết tiêu chí 4">
+<p>Văn hóa hiện đại, nhân văn, giàu bản sắc dân tộc, góp phần nâng cao đời sống tinh thần.</p>
+</div>
+<div id="criteria5" class="details" role="region" aria-live="polite" aria-label="Chi tiết tiêu chí 5">
+<p>Đảm bảo cuộc sống ấm no, tự do, hạnh phúc và phát triển toàn diện cho mọi người dân.</p>
+</div>
+<div id="criteria6" class="details" role="region" aria-live="polite" aria-label="Chi tiết tiêu chí 6">
+<p>Phát triển bền vững, bình đẳng, đặt con người làm trung tâm.</p>
+</div>
+<div id="criteria7" class="details" role="region" aria-live="polite" aria-label="Chi tiết tiêu chí 7">
+<p>Chính quyền kiến tạo, liêm chính, hành động hiệu quả, phục vụ Nhân dân tận tâm.</p>
+</div>
+<div id="criteria8" class="details" role="region" aria-live="polite" aria-label="Chi tiết tiêu chí 8">
+<p>Quốc phòng, an ninh vững mạnh, tăng cường hợp tác hữu nghị trong và ngoài nước.</p>
+</div>
+<h3 style="margin-top:3rem;">6 phẩm chất con người Xã hội chủ nghĩa Hải Phòng</h3>
+<ul aria-label="6 phẩm chất con người XHCN Hải Phòng">
+<li>Yêu nước, yêu Hải Phòng, kiên định mục tiêu Độc lập dân tộc gắn liền CNXH</li>
+<li>Trung thực, thẳng thắn, nghĩa tình</li>
+<li>Khát vọng cống hiến, dám hy sinh vì lợi ích chung</li>
+<li>Bản lĩnh, đổi mới sáng tạo, hội nhập</li>
+<li>Đoàn kết, trách nhiệm, kỷ cương, thượng tôn pháp luật</li>
+<li>Tự chủ, tự tin, tự lực, tự cường, tự hào dân tộc</li>
+</ul>
+</div>
+</section>
+<!-- Person Section -->
+<section id="person" aria-labelledby="person-title">
+<div class="container">
+<h2 id="person-title">Con người XHCN Hải Phòng</h2>
+<p>6 phẩm chất nổi bật của con người xã hội chủ nghĩa Hải Phòng được thể hiện qua:</p>
+<ul>
+<li>Yêu nước, yêu Hải Phòng, kiên định mục tiêu Độc lập dân tộc gắn liền CNXH</li>
+<li>Trung thực, thẳng thắn, nghĩa tình</li>
+<li>Khát vọng cống hiến, dám hy sinh vì lợi ích chung</li>
+<li>Bản lĩnh, đổi mới sáng tạo, hội nhập</li>
+<li>Đoàn kết, trách nhiệm, kỷ cương, thượng tôn pháp luật</li>
+<li>Tự chủ, tự tin, tự lực, tự cường, tự hào dân tộc</li>
+</ul>
+</div>
+</section>
+<!-- Roadmap Section -->
+<section id="roadmap" aria-labelledby="roadmap-title">
+<div class="container">
+<h2 id="roadmap-title">Lộ trình 2026 - 2030 và định hướng sau 2030</h2>
+<div class="timeline" role="list" aria-label="Timeline lộ trình phát triển Hải Phòng 2026 đến 2030 và sau 2030">
+<div class="timeline-item" role="listitem" data-year="2026">
+<p>Khởi động, ban hành kế hoạch, xây bộ công cụ, truyền thông tổng thể.</p>
+</div>
+<div class="timeline-item" role="listitem" data-year="2027">
+<p>Hoàn thiện các chuẩn/công nhận sớm (điển hình “chính quyền thân thiện”).</p>
+</div>
+<div class="timeline-item" role="listitem" data-year="2028">
+<p>Mở rộng, tăng tốc các mô hình văn hóa, y tế, giáo dục, môi trường.</p>
+</div>
+<div class="timeline-item" role="listitem" data-year="2029">
+<p>Chuẩn hóa, đo lường, điều chỉnh theo dữ liệu và phản hồi xã hội.</p>
+</div>
+<div class="timeline-item" role="listitem" data-year="2030">
+<p>Tổng kết giai đoạn, công bố kết quả, chuẩn bị nhân rộng sau 2030.</p>
+</div>
+<div class="timeline-item" role="listitem" data-year="2031 >">
+<p>Định hướng phát triển bền vững, nhân rộng mô hình, nâng cao chất lượng cuộc sống.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Participation Section -->
+<section id="participation" aria-labelledby="participation-title">
+<div class="container">
+<h2 id="participation-title">Tham gia cùng Hải Phòng</h2>
+<p>Bạn có thể đóng góp theo 3 cách:</p>
+<ul>
+<li><strong>Góp ý:</strong> Đề xuất sáng kiến, phản ánh bất cập, hiến kế mô hình.</li>
+<li><strong>Tham gia:</strong> Tình nguyện cộng đồng, truyền thông, CLB, hoạt động xanh.</li>
+<li><strong>Lan tỏa:</strong> Chia sẻ câu chuyện người tốt việc tốt, mô hình hiệu quả.</li>
+</ul>
+<form id="participation-form" aria-label="Form góp ý và tham gia cùng Hải Phòng">
+<label for="name">Họ tên (tuỳ chọn):</label>
+<input type="text" id="name" name="name" placeholder="Nhập họ tên của bạn" aria-describedby="name-desc" />
+<label for="email">Email (tuỳ chọn):</label>
+<input type="email" id="email" name="email" placeholder="Nhập email của bạn" aria-describedby="email-desc" />
+<label for="topic">Nhóm chủ đề:</label>
+<select id="topic" name="topic" required aria-required="true">
+<option value="" disabled selected>Chọn nhóm chủ đề</option>
+<option value="Chính quyền">Chính quyền</option>
+<option value="Pháp luật">Pháp luật</option>
+<option value="Văn minh hạnh phúc">Văn minh - Hạnh phúc</option>
+<option value="Đổi mới sáng tạo">Đổi mới sáng tạo</option>
+<option value="Nhà ở">Nhà ở</option>
+<option value="Âm nhạc">Âm nhạc</option>
+<option value="Du lịch xanh">Du lịch xanh</option>
+<option value="Y tế">Y tế</option>
+<option value="Trường học">Trường học</option>
+<option value="Thanh niên">Thanh niên</option>
+</select>
+<label for="content">Nội dung góp ý:</label>
+<textarea id="content" name="content" placeholder="Viết nội dung góp ý của bạn ở đây..." required aria-required="true"></textarea>
+<button type="submit" aria-label="Gửi góp ý và tham gia">Gửi</button>
+<div class="message" role="alert" aria-live="polite" id="form-message"></div>
+</form>
+</div>
+</section>
+<!-- Source Section -->
+<footer id="source" aria-label="Thông tin nguồn và lưu ý">
+<div class="container">
+<p style="color: #fff;">Nội dung được biên soạn theo Nghị quyết về xây dựng và triển khai thực hiện một số mô hình Chủ nghĩa xã hội gắn với con người Xã hội chủ nghĩa tại thành phố Hải Phòng giai đoạn 2026 - 2030 và những năm tiếp theo.</p>
+<p style="color: #fff;"><em>Các chỉ tiêu, số liệu cần được đối chiếu với văn bản chính thức và cập nhật theo quyết định của cơ quan có thẩm quyền.</em></p>
+</div>
+</footer>
+<!-- Scroll to top button -->
+<button id="scrollTopBtn" aria-label="Cuộn lên đầu trang" title="Cuộn lên đầu trang">⬆️</button>
+<script>
+// Menu toggle for mobile
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.getElementById('primary-menu');
+menuToggle.addEventListener('click', () => {
+const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+menuToggle.setAttribute('aria-expanded', !expanded);
+menu.classList.toggle('open');
+});
+// Close menu when clicking a menu link (mobile)
+menu.querySelectorAll('a').forEach(link => {
+link.addEventListener('click', () => {
+if(window.innerWidth <= 768) {
+menu.classList.remove('open');
+menuToggle.setAttribute('aria-expanded', false);
+}
+});
+});
+// Criteria dashboard toggle details
+const tiles = document.querySelectorAll('#criteria .tile');
+tiles.forEach(tile => {
+tile.addEventListener('click', () => {
+const controlsId = tile.getAttribute('aria-controls');
+const details = document.getElementById(controlsId);
+const expanded = tile.getAttribute('aria-expanded') === 'true';
+// Close all details
+tiles.forEach(t => {
+t.setAttribute('aria-expanded', 'false');
+const d = document.getElementById(t.getAttribute('aria-controls'));
+if(d) d.classList.remove('active');
+});
+// Toggle current
+if(!expanded) {
+tile.setAttribute('aria-expanded', 'true');
+if(details) details.classList.add('active');
+details?.focus();
+}
+});
+});
+// Scroll to top button
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+if(window.scrollY > 300) {
+scrollBtn.style.display = 'flex';
+} else {
+scrollBtn.style.display = 'none';
+}
+});
+scrollBtn.addEventListener('click', () => {
+window.scrollTo({top: 0, behavior: 'smooth'});
+scrollBtn.blur();
+});
+// Participation form submit simulation
+const form = document.getElementById('participation-form');
+const message = document.getElementById('form-message');
+form.addEventListener('submit', e => {
+e.preventDefault();
+// Simple validation
+if(!form.topic.value) {
+message.textContent = 'Vui lòng chọn nhóm chủ đề.';
+form.topic.focus();
+return;
+}
+if(!form.content.value.trim()) {
+message.textContent = 'Vui lòng nhập nội dung góp ý.';
+form.content.focus();
+return;
+}
+// Simulate submit
+message.textContent = 'Cảm ơn bạn đã gửi góp ý! Chúng tôi sẽ xem xét và phản hồi sớm nhất.';
+form.reset();
+form.topic.focus();
+});
+// Accessibility: prefers-reduced-motion support
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+if(prefersReducedMotion.matches) {
+document.documentElement.style.scrollBehavior = 'auto';
+}
+</script>
+</body>
+</html>
