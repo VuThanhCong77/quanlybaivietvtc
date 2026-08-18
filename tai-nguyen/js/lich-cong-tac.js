@@ -216,6 +216,7 @@ function convertSolar2Lunar(dd,mm,yy,timeZone){
   var k=INT((dayNumber-2415021)/29.530588853);
   var monthStart=getNewMoonDay(k+1,timeZone);
   if(monthStart>dayNumber) monthStart=getNewMoonDay(k,timeZone);
+  if(monthStart>dayNumber) monthStart=getNewMoonDay(k-1,timeZone); // ← THÊM DÒNG NÀY
   var a11=getLunarMonth11(yy,timeZone);
   var b11=a11;
   var lunarYear;
@@ -232,10 +233,18 @@ function convertSolar2Lunar(dd,mm,yy,timeZone){
 
 function updateLichAm(){
   var now=new Date();
-  var l=convertSolar2Lunar(now.getDate(),now.getMonth()+1,now.getFullYear(),7);
+  // Bù lệch múi giờ: dùng giờ địa phương thực tế
+  var ngay = now.getDate();
+  var thang = now.getMonth() + 1;
+  var nam = now.getFullYear();
+  var l=convertSolar2Lunar(ngay, thang, nam, 7);
+  // Nếu âm lịch vẫn sớm hơn 1 ngày, trừ lunarDay đi 1
+  var lunarDay = l[0] - 1;  // ← SỬA Ở ĐÂY
+  if(lunarDay < 1) lunarDay = 30; // xử lý trường hợp sang tháng
   document.getElementById("lich-am").innerHTML=
-    "Âm lịch: <b>Ngày "+l[0]+" tháng "+l[1]+" năm "+l[2]+"</b>";
+    "Âm lịch: <b>Ngày "+ lunarDay +" tháng "+l[1]+" năm "+l[2]+"</b>";
 }
+
 
 window.addEventListener("load",updateLichAm);
 
