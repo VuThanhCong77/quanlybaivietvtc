@@ -138,31 +138,64 @@
 
 /* Hiển thị trên điện thoại */
 @media (max-width: 768px) {
+
+    /* Thu hẹp padding chung để tiết kiệm diện tích */
     .hp-feature-section {
-        padding: 45px 15px;
+        padding: 40px 12px;
     }
 
-    .quote-box {
+    /* Chuyển sang bố cục dọc – ảnh hiển thị trước nội dung */
+    .quote-box-hp {
         grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 35px 25px;
+        gap: 20px;
+        padding: 30px 22px;
     }
 
-    .quote-content h2 {
-        font-size: 30px;
-    }
-
-    .quote-text {
-        font-size: 18px;
-    }
-
+    /* Ảnh minh họa */
     .quote-image {
-        height: 210px;
-        order: -1;
+        /* ► Đặt chiều cao cố định đủ lớn để ảnh không bị cắt  */
+        height: 42vw;              /* ~163 px trên màn 390 px */
+        max-height: 240px;         /* tránh ảnh quá cao trên tablet */
+        order: -1;                 /* đẩy ảnh lên trên phần text */
+        width: 100%;
+        border-radius: 14px;
     }
 
-    .quote-icon {
-        left: 15px;
-        font-size: 65px;
+    .quote-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
-}
+
+    /* Icon trích dẫn thu nhỏ để không che nội dung */
+    .quote-icon-hp {
+        left: 15px;
+        top: 10px;
+        font-size: 60px;
+    }
+
+    /* Cỡ chữ linh hoạt hơn cho màn hình nhỏ */
+    .quote-content-hp h2 {
+        font-size: clamp(24px, 6vw, 32px);
+        margin-bottom: 14px;
+    }
+
+    .quote-text-hp {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+
+    .quote-summary-hp {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    /* Nút CTA chiếm toàn bộ chiều ngang dễ bấm */
+    .hp-feature-button {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 0;
+        font-size: 16px;
+    }
+    }
+    
