@@ -251,7 +251,8 @@ blockquote{
 
 .bai-viet-moi h2{
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 18px;
+    color: #1127ee;
 }
 
 /* =====================================================
@@ -314,6 +315,7 @@ blockquote{
 .bai-viet-noi-bat h2{
     margin-bottom: 20px;
     font-size: 18px;
+    color: #1127ee;
 }
 
 /* =========================

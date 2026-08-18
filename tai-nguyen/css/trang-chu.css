@@ -475,7 +475,7 @@ CHUYÊN MỤC
 
     padding:12px;
 
-    color:#fff;
+    color:#031ae9;
 
     font-weight:600;
 
@@ -819,6 +819,7 @@ THEO LĨNH VỰC
 .gop-y h2{
     font-size: 18px;
     padding: 12px 12px;
+    color: #031ae9;
 }
 
 .khung-linh-vuc{
@@ -1168,8 +1169,8 @@ padding: 6px 6px;
     padding: 10px 12px;
 
     text-decoration: none;
-    color: #fff;
-    background: #067180;
+    color: #2e0cf1;
+    background: #06728000;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0);
 
