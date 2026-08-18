@@ -244,7 +244,7 @@ blockquote{
 ===================================================== */
 
 .bai-viet-moi{
-    background:#cfe0f1;
+    background:#cfe0f100;
 
     padding: 3px 6px;
 }
@@ -349,14 +349,14 @@ blockquote{
 }
 
 .khung-phu{
-    background: #fff;
+    background: #ffffff00;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,.06);
 }
 
 .khung-phu h3{
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 8px;
 }
 
