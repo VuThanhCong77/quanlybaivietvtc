@@ -15,6 +15,7 @@
 
 /* 3. Các trang riêng */
 @import url("gioi-thieu.css");
+@import url("nghiep-vu.css");
 @import url("xem-bai-viet.css");
 @import url("hai-phong.css");
 @import url("danh-sach-bai-viet.css");
