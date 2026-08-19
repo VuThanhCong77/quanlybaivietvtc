@@ -154,7 +154,7 @@
     /* Ảnh minh họa */
     .quote-image {
         /* ► Đặt chiều cao cố định đủ lớn để ảnh không bị cắt  */
-        height: 50vw;              /* ~163 px trên màn 390 px */
+        height: 54vw;              /* ~163 px trên màn 390 px */
         max-height: 240px;         /* tránh ảnh quá cao trên tablet */
         order: -1;                 /* đẩy ảnh lên trên phần text */
         width: 100%;
