@@ -1,0 +1,312 @@
+
+/* =====================================================
+   NGHIỆP VỤ CÔNG TÁC ĐẢNG
+===================================================== */
+
+/* Khu vực tổng */
+.theo-linh-vuc {
+    width: min(1200px, calc(100% - 32px));
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #fffdf8, #f8f9fb);
+    border: 1px solid #eeeeee;
+    border-radius: 24px;
+    box-shadow: var(--do-bong);
+}
+
+/* Liên kết đầu mục */
+.theo-linh-vuc > .quick-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+    margin: 0 auto 30px;
+    padding: 13px 24px;
+    color: #ffffff;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--mau-chu-dao), var(--mau-do-dam));
+    border-radius: 999px;
+    box-shadow: 0 8px 18px rgba(181, 18, 27, 0.25);
+    transition: 0.3s ease;
+}
+
+.theo-linh-vuc > .quick-item:hover {
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(181, 18, 27, 0.35);
+}
+
+.theo-linh-vuc > .quick-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    padding: 6px;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.theo-linh-vuc > .quick-item h2 {
+    margin: 0;
+    font-size: clamp(18px, 2vw, 25px);
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+/* Lưới các chuyên mục */
+.khung-linh-vuc {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* Thẻ chuyên mục */
+.o-chuyen-muc {
+    position: relative;
+    overflow: hidden;
+    padding: 0 20px 20px;
+    background: #ffffff;
+    border: 1px solid var(--vien);
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(28, 39, 49, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.o-chuyen-muc::before {
+    content: "";
+    display: block;
+    height: 6px;
+    margin: 0 -20px 18px;
+    background: linear-gradient(90deg, var(--mau-chu-dao), var(--mau-vang));
+}
+
+.o-chuyen-muc:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 16px 32px rgba(28, 39, 49, 0.14);
+}
+
+/* Bài viết nổi bật */
+.bai-noi-bat {
+    display: block;
+    overflow: hidden;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 15px;
+    background: #272727;
+}
+
+.anh-bai-viet {
+    position: relative;
+    min-height: 220px;
+    overflow: hidden;
+    background:
+        linear-gradient(135deg, #8e0e16, #d7a928);
+}
+
+.anh-bai-viet::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78),
+        rgba(0, 0, 0, 0.10) 65%,
+        transparent
+    );
+    pointer-events: none;
+}
+
+.anh-bai-viet img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.bai-noi-bat:hover .anh-bai-viet img {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+/* Nội dung nằm trên ảnh */
+.overlay {
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+    bottom: 18px;
+    left: 20px;
+}
+
+.overlay .nhan {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 5px 11px;
+    color: #3f3000;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--mau-vang);
+    border-radius: 999px;
+}
+
+.overlay h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(19px, 2vw, 25px);
+    line-height: 1.3;
+}
+
+/* Danh sách bài viết */
+.o-chuyen-muc ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.o-chuyen-muc li {
+    position: relative;
+    border-bottom: 1px dashed #e1e3e7;
+}
+
+.o-chuyen-muc li:last-child {
+    border-bottom: 0;
+}
+
+.o-chuyen-muc li a {
+    display: block;
+    position: relative;
+    padding: 13px 8px 13px 25px;
+    color: var(--mau-chu);
+    font-size: 15px;
+    line-height: 1.55;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.o-chuyen-muc li a::before {
+    content: "›";
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    color: var(--mau-chu-dao);
+    font-size: 22px;
+    font-weight: 800;
+    transition: transform 0.25s ease;
+}
+
+.o-chuyen-muc li a:hover {
+    padding-left: 31px;
+    color: var(--mau-chu-dao);
+    background: #fff8f4;
+}
+
+.o-chuyen-muc li a:hover::before {
+    transform: translateX(4px);
+}
+
+/* Hiển thị khi danh sách được JavaScript tải dữ liệu */
+.o-chuyen-muc ul:empty {
+    display: none;
+}
+
+/* Tạo khoảng cách phù hợp nếu danh sách trống */
+.o-chuyen-muc .bai-noi-bat + ul:empty {
+    margin-top: 0;
+}
+
+/* Hiệu ứng khi đang tải */
+.overlay h3:only-child {
+    animation: nhap-nhay 1.4s infinite ease-in-out;
+}
+
+@keyframes nhap-nhay {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+
+/* Responsive cho máy tính bảng */
+@media (max-width: 768px) {
+    .theo-linh-vuc {
+        width: min(100% - 20px, 650px);
+        margin: 25px auto;
+        padding: 20px 14px;
+        border-radius: 18px;
+    }
+
+    .khung-linh-vuc {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .o-chuyen-muc {
+        padding-right: 15px;
+        padding-left: 15px;
+        border-radius: 16px;
+    }
+
+    .o-chuyen-muc::before {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .anh-bai-viet,
+    .anh-bai-viet img {
+        min-height: 200px;
+        height: 200px;
+    }
+}
+
+/* Responsive cho điện thoại nhỏ */
+@media (max-width: 480px) {
+    .theo-linh-vuc > .quick-item {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 14px;
+        text-align: center;
+    }
+
+    .theo-linh-vuc > .quick-item h2 {
+        font-size: 18px;
+    }
+
+    .theo-linh-vuc > .quick-item img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .overlay {
+        right: 15px;
+        bottom: 14px;
+        left: 15px;
+    }
+
+    .overlay h3 {
+        font-size: 19px;
+    }
+
+    .o-chuyen-muc li a {
+        font-size: 14px;
+    }
+}
+
+/* Tôn trọng thiết lập giảm chuyển động */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
