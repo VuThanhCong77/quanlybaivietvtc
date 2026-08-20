@@ -1,363 +1,608 @@
 /* =====================================================
-   TONG THE TRANG
+   RESET VÀ THIẾT LẬP CHUNG
 ===================================================== */
 
-body{
-    font-family: Arial, sans-serif;
+html {
+    width: 100%;
+    min-height: 100%;
     margin: 0;
-    background: #f4f6f8;
+    padding: 0;
+    scroll-behavior: smooth;
 }
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: #f8fafc;
+    color: #1e293b;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input {
+    font: inherit;
+}
+
 
 /* =====================================================
-   HERO
+   MENU ĐẦU TRANG
 ===================================================== */
 
-.hero-bai-viet{
-
-    max-width: 1200px;
-    width: calc(100% - 20px); /* chừa mép 2 bên */
-    margin: 10px auto 0 auto;
-    position: sticky;
-    top: 0;
-    text-align:center;
-    padding:20px 10px;
-    background:#ddd;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
-
+#menu {
+    width: 100%;
+    position: relative;
+    z-index: 1000;
 }
 
-.hero-bai-viet h1{
-    font-size:18px;
-    margin-bottom:10px;
-}
-
-.hero-bai-viet p{
-    max-width:700px;
-    margin:auto;
-    line-height:1.8;
-}
 
 /* =====================================================
-   THANH TIM KIEM
+   HERO BÀI VIẾT
 ===================================================== */
 
-.tim-kiem{
-
-    max-width:600px;
-    margin:20px auto 10px;
-    display:flex;
-
+.hero-bai-viet {
+    width: min(calc(100% - 32px), 1200px);
+    margin: 20px auto 0;
+    padding: 28px 20px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
 }
 
-.tim-kiem input{
-
-    flex:1;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:999px 0 0 999px;
-    outline:none;
-
+.hero-bai-viet h1 {
+    margin: 0 0 10px;
+    color: #1e3a8a;
+    font-size: clamp(24px, 4vw, 38px);
+    line-height: 1.2;
 }
 
-.tim-kiem button{
-
-    padding:0 16px;
-    border:none;
-    background:#2563eb;
-    color:#fff;
-    border-radius:0 999px 999px 0;
-    cursor:pointer;
-
+.hero-bai-viet p {
+    max-width: 720px;
+    margin: 0 auto;
+    color: #64748b;
+    font-size: 16px;
 }
+
 
 /* =====================================================
-   THONG KE BAI VIET
+   KHU VỰC THỐNG KÊ
 ===================================================== */
 
-.thong-ke{
-
-    text-align:center;
-    font-size:14px;
-    color:#444;
-    margin:10px 0 20px;
-
+.thong-ke {
+    width: min(calc(100% - 32px), 1200px);
+    margin: 32px auto;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1.3fr repeat(3, 1fr);
+    gap: 18px;
+    align-items: stretch;
+    background: linear-gradient(135deg, #f8fbff, #eef5ff);
+    border: 1px solid #dbeafe;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(30, 80, 140, 0.08);
 }
+
+
+/* Ô tiêu đề BÀI VIẾT */
+
+.thong-ke > div:first-child {
+    min-height: 150px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #d1f117, #789706);
+    border-radius: 16px;
+}
+
+.thong-ke > div:first-child h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+
+/* Các ô số liệu */
+
+.thong-ke > div:not(:first-child) {
+    min-height: 150px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thong-ke > div:not(:first-child):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.15);
+}
+
+
+/* Số liệu */
+
+.thong-ke > div:not(:first-child) h3 {
+    margin: 0 0 8px;
+    color: #1d4ed8;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1;
+}
+
+
+/* Mô tả số liệu */
+
+.thong-ke span {
+    color: #64748b;
+    font-size: 15px;
+    font-weight: 600;
+}
+
 
 /* =====================================================
-   CONTAINER
+   CHUYÊN MỤC
 ===================================================== */
 
-.container{
-
-    max-width:1200px;
-    margin:10px auto;
-    padding:10px;
-
+#menu-chuyen-muc {
+    width: 100%;
 }
 
-/* =====================================================
-   DANH SACH BAI VIET
-===================================================== */
-
-.danh-sach-bai-viet{
-
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-
+.chuyen-muc {
+    width: min(calc(100% - 32px), 1200px);
+    margin: 28px auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-/* =====================================================
-   ITEM BAI VIET
-===================================================== */
-
-.bai-viet-item{
-
-    display:flex;
-    background:#fff;
-    border-radius:8px;
-    overflow:hidden;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-    transition:.2s;
-
-}
-
-.bai-viet-item:hover{
-    transform:translateX(4px);
-}
-
-/* ANH */
-
-.bai-viet-item img{
-
-    width:160px;
-    height:110px;
-    object-fit:cover;
-    flex-shrink:0;
-
-}
-
-/* NOI DUNG */
-
-.bai-viet-noi-dung{
-
-    padding:12px 15px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-}
-
-.bai-viet-tieu-de{
-    font-size:17px;
-    font-weight:bold;
-    margin-bottom:6px;
-}
-
-.bai-viet-mo-ta{
-    font-size:14px;
-    color:#555;
-    margin-bottom:6px;
-}
-
-.bai-viet-ngay{
-    font-size:12px;
-    color:#888;
-}
-
-.bai-viet-xem-them{
-    margin-top:6px;
-    font-size:13px;
-    color:#2563eb;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width:768px){
-
-    .bai-viet-item{
-        flex-direction:column;
-    }
-
-    .bai-viet-item img{
-        width:100%;
-        height:280px;
-    }
-
-}
-
-
-/* THỐNG KÊ */
-
-.thong-ke{
-
-    max-width:1200px;
-
-    margin:10px auto;
-
-    padding:0 10px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(180px,1fr));
-
-    gap:10px;
-
-}
-
-.thong-ke div{
-
-    background:#fff;
-
-    border-radius:12px;
-
-    padding:20px;
-
-    text-align:center;
-
-    box-shadow:
-    0 2px 8px rgba(0,0,0,.08);
-
-    transition:.3s;
-
-}
-
-.thong-ke div:hover{
-
-    transform:translateY(-3px);
-
-}
-
-.thong-ke h3{
-
-    margin:0;
-
-    font-size:28px;
-
-    color:#1e40af;
-
-    font-weight:700;
-
-}
-
-.thong-ke p{
-
-    margin-top:8px;
-
-    color:#666;
-
-    font-size:14px;
-
-}
-
-.nut-chuyen-muc{
-
-    display:none;
-
-}
-
-@media (max-width:768px){
-
-    .chuyen-muc{
-
-        display:none;
-
-    }
-
-    .nut-chuyen-muc{
-
-        display:flex;
-
-    }
-}
-
-/* CHUYÊN MỤC */
-
-.chuyen-muc{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin:50px 0;
-}
 
 /* Nút chuyên mục */
 
 .chuyen-muc a,
-.dropdown-btn{
-    padding:12px 18px;
-    border:none;
-    border-radius:999px;
-    background:#fff;
-    color:#334155;
-    text-decoration:none;
-    font-size:15px;
-    cursor:pointer;
-    transition:all .3s;
+.dropdown-btn {
+    padding: 11px 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #334155;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .chuyen-muc a:hover,
-.dropdown-btn:hover{
-    background:#2563eb;
-    color:#fff;
+.dropdown-btn:hover,
+.chuyen-muc .active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
 }
 
-.chuyen-muc .active{
-    background:#2563eb;
-    color:#fff;
-}
 
 /* Dropdown */
 
-.dropdown{
-    position:relative;
+.dropdown {
+    position: relative;
 }
 
-.dropdown-menu{
-    position:absolute;
-    top:120%;
-    right:0;
-
-    min-width:220px;
-    background:#fff;
-    border-radius:15px;
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.15);
-
-    padding:10px;
-
-    display:none;
-    z-index:1000;
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 100;
+    min-width: 220px;
+    padding: 10px;
+    display: none;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
 }
 
-.dropdown-menu a{
-    display:block;
-    padding:12px 15px;
-    border-radius:10px;
-    margin-bottom:5px;
+.dropdown-menu a {
+    width: 100%;
+    margin: 0 0 5px;
+    padding: 11px 14px;
+    display: block;
+    border: none;
+    border-radius: 9px;
 }
 
-.dropdown-menu a:last-child{
-    margin-bottom:0;
+.dropdown-menu a:last-child {
+    margin-bottom: 0;
 }
 
-.dropdown-menu a:hover{
-    background:#f1f5f9;
-    color:#2563eb;
+.dropdown-menu a:hover {
+    background: #eff6ff;
+    color: #2563eb;
 }
 
-/* Hiện menu khi rê chuột */
-
-.dropdown:hover .dropdown-menu{
-    display:block;
+.dropdown:hover .dropdown-menu,
+.dropdown-menu.show {
+    display: block;
 }
 
-.dropdown-menu.show{
-    display:block;
+
+/* Nút chuyên mục trên điện thoại */
+
+.nut-chuyen-muc {
+    display: none;
+}
+
+
+/* =====================================================
+   THANH TÌM KIẾM
+===================================================== */
+
+.tim-kiem {
+    width: min(calc(100% - 32px), 600px);
+    margin: 24px auto;
+    display: flex;
+    align-items: stretch;
+}
+
+.tim-kiem input {
+    min-width: 0;
+    flex: 1;
+    padding: 12px 18px;
+    border: 1px solid #cbd5e1;
+    border-right: none;
+    border-radius: 999px 0 0 999px;
+    outline: none;
+    background: #ffffff;
+    color: #1e293b;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tim-kiem input::placeholder {
+    color: #94a3b8;
+}
+
+.tim-kiem input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.tim-kiem button {
+    padding: 0 20px;
+    border: 1px solid #2563eb;
+    border-radius: 0 999px 999px 0;
+    background: #2563eb;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.tim-kiem button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =====================================================
+   CONTAINER DANH SÁCH
+===================================================== */
+
+.container {
+    width: min(calc(100% - 32px), 1200px);
+    margin: 28px auto 50px;
+    padding: 0;
+}
+
+.danh-sach-bai-viet {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* =====================================================
+   MỘT BÀI VIẾT
+===================================================== */
+
+.bai-viet-item {
+    width: 100%;
+    min-height: 120px;
+    display: flex;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bai-viet-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+
+/* Ảnh bài viết */
+
+.bai-viet-item img {
+    width: 180px;
+    height: 125px;
+    flex: 0 0 180px;
+    object-fit: cover;
+    background: #e2e8f0;
+}
+
+
+/* Nội dung bài viết */
+
+.bai-viet-noi-dung {
+    min-width: 0;
+    flex: 1;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bai-viet-tieu-de {
+    margin: 0 0 7px;
+    color: #1e3a8a;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.bai-viet-mo-ta {
+    margin: 0 0 7px;
+    overflow: hidden;
+    color: #64748b;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.bai-viet-ngay {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.bai-viet-xem-them {
+    width: fit-content;
+    margin-top: 8px;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.bai-viet-xem-them:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   NÚT ĐIỀU HƯỚNG
+===================================================== */
+
+.nut-dieu-huong {
+    width: 42px;
+    height: 42px;
+    position: fixed;
+    right: 20px;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.nut-dieu-huong:hover {
+    transform: scale(1.08);
+    background: #1d4ed8;
+}
+
+#nut-tro-ve {
+    bottom: 75px;
+}
+
+#nut-len-dau {
+    right: 20px;
+    bottom: 20px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+    .thong-ke {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .thong-ke > div:first-child {
+        grid-column: 1 / -1;
+        min-height: 105px;
+    }
+
+    .thong-ke > div:not(:first-child) {
+        min-height: 135px;
+    }
+
+    .bai-viet-item img {
+        width: 160px;
+        flex-basis: 160px;
+    }
+}
+
+
+/* =====================================================
+   ĐIỆN THOẠI
+===================================================== */
+
+@media (max-width: 768px) {
+    .hero-bai-viet,
+    .thong-ke,
+    .tim-kiem,
+    .container,
+    .chuyen-muc {
+        width: calc(100% - 24px);
+    }
+
+    .chuyen-muc {
+        margin: 20px auto;
+    }
+
+    .bai-viet-item {
+        flex-direction: column;
+    }
+
+    .bai-viet-item img {
+        width: 100%;
+        height: 220px;
+        flex-basis: auto;
+    }
+
+    .bai-viet-noi-dung {
+        padding: 15px;
+    }
+}
+
+
+/* =====================================================
+   ĐIỆN THOẠI NHỎ
+===================================================== */
+
+@media (max-width: 520px) {
+    .hero-bai-viet {
+        margin-top: 12px;
+        padding: 22px 15px;
+        border-radius: 14px;
+    }
+
+    .hero-bai-viet p {
+        font-size: 14px;
+    }
+
+    .thong-ke {
+        width: calc(100% - 20px);
+        margin: 22px auto;
+        padding: 14px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        border-radius: 16px;
+    }
+
+    .thong-ke > div:first-child {
+        min-height: 78px;
+        padding: 18px;
+    }
+
+    .thong-ke > div:not(:first-child) {
+        min-height: 115px;
+    }
+
+    .chuyen-muc {
+        width: calc(100% - 20px);
+        gap: 8px;
+    }
+
+    .chuyen-muc a,
+    .dropdown-btn {
+        padding: 9px 13px;
+        font-size: 14px;
+    }
+
+    .dropdown-menu {
+        position: fixed;
+        top: auto;
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+    }
+
+    .tim-kiem {
+        width: calc(100% - 20px);
+    }
+
+    .tim-kiem input {
+        padding: 11px 14px;
+        font-size: 14px;
+    }
+
+    .tim-kiem button {
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+    .container {
+        width: calc(100% - 20px);
+        margin-bottom: 35px;
+    }
+
+    .bai-viet-item img {
+        height: 190px;
+    }
+
+    .bai-viet-tieu-de {
+        font-size: 16px;
+    }
+
+    .bai-viet-mo-ta {
+        font-size: 13px;
+    }
+
+    .nut-dieu-huong {
+        right: 12px;
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    #nut-tro-ve {
+        bottom: 62px;
+    }
+
+    #nut-len-dau {
+        right: 12px;
+        bottom: 14px;
+    }
 }
