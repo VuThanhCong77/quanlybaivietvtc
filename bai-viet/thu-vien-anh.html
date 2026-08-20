@@ -302,27 +302,56 @@ body {
     transform: rotate(90deg);
 }
 
-
 @media (max-width: 768px) {
+
     .container {
-        width: 100%;
         margin: 0;
         border-radius: 0;
         box-shadow: none;
     }
 
+    /* TOOLBAR GỌN HƠN TRÊN ĐIỆN THOẠI */
     .toolbar {
-        flex-direction: column;
-        align-items: stretch;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        padding: 10px;
+        background: #f8fafc;
     }
 
     .toolbar input,
     .toolbar select,
-    .toolbar button,
-    .share-btn {
+    .toolbar button {
         width: 100%;
+        min-width: 0;
+        min-height: 38px;
+        padding: 8px 10px;
+        font-size: 13px;
     }
 
+    /* URL và tiêu đề chiếm toàn bộ hàng */
+    #imgUrl,
+    #imgTitle,
+    #search {
+        grid-column: 1 / -1;
+    }
+
+    /* Danh mục và nút thêm nằm cùng một hàng */
+    #imgCat {
+        grid-column: 1;
+    }
+
+    .toolbar button[noscript="addImage()"] {
+        grid-column: 2;
+    }
+
+    /* Nút xuất JSON và sao chép chia đôi chiều ngang */
+    .toolbar button[noscript="exportJSON"],
+    .toolbar .copy {
+        grid-column: span 1;
+    }
+
+    /* GRID ẢNH */
     .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
@@ -330,40 +359,40 @@ body {
     }
 
     .card img {
-        aspect-ratio: 1 / 1;
+        height: 120px;
     }
 
     .info {
-        min-height: 76px;
         padding: 8px;
         font-size: 12px;
     }
 
-    .lightbox {
-        padding: 12px;
-    }
-
+    /* LIGHTBOX */
     .lightbox img {
-        max-width: 95vw;
-        max-height: 72vh;
-        border-radius: 6px;
+        max-width: 95%;
+        max-height: 70%;
     }
 
     .nav {
-        width: 38px;
-        height: 48px;
-        font-size: 32px;
-        line-height: 44px;
+        font-size: 38px;
     }
 
-    .prev {
-        left: 4px;
+    .counter {
+        bottom: 10px;
+        font-size: 13px;
     }
 
-    .next {
-        right: 4px;
+    .share-bar {
+        width: 95%;
+    }
+
+    .share-btn {
+        flex: 1;
+        font-size: 13px;
+        padding: 10px;
     }
 }
+
 
 @media (max-width: 380px) {
     .grid {
