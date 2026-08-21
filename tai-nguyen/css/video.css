@@ -1,0 +1,208 @@
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 40px 16px;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, #243b72, transparent 40%),
+        linear-gradient(135deg, #070b16, #111827);
+    }
+
+    .video-section {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section-heading .label {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      color: #0c4d9c;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .section-heading h1 {
+      margin-bottom: 12px;
+      font-size: clamp(30px, 5vw, 52px);
+    }
+
+    .section-heading h1 span {
+      color: #60a5fa;
+    }
+
+    .section-heading p {
+      color: #0c55ad;
+      line-height: 1.6;
+    }
+
+    .video-card {
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(37, 99, 235, 0.2);
+      backdrop-filter: blur(15px);
+    }
+
+    .video-box {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+    }
+
+    .video-box video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000000;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.25);
+      transition: opacity 0.3s ease;
+    }
+
+    .video-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .play-button {
+      width: 76px;
+      height: 76px;
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      color: #ffffff;
+      background: #2563eb;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow:
+        0 0 0 8px rgba(255, 255, 255, 0.12),
+        0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: 0.3s ease;
+    }
+
+    .play-button:hover {
+      transform: scale(1.1);
+      background: #3b82f6;
+    }
+
+    .video-info {
+      padding: 24px;
+    }
+
+    .video-info h2 {
+      margin-bottom: 8px;
+      color: #cf0f0f;
+      font-size: clamp(21px, 3vw, 30px);
+    }
+
+    .video-info p {
+      min-height: 24px;
+      color: #073e80;
+      line-height: 1.6;
+    }
+
+    .video-counter {
+      margin-top: 14px;
+      color: #094385;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .video-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .nav-button {
+      min-width: 130px;
+      padding: 13px 20px;
+      border: 1px solid rgb(255, 255, 255);
+      border-radius: 999px;
+      color: #e51919;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .nav-button:hover:not(:disabled) {
+      border-color: #89fa60;
+      background: #0bbb31;
+      transform: translateY(-2px);
+    }
+
+    .nav-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+    }
+
+    .loading,
+    .error,
+    .empty {
+      padding: 50px 20px;
+      text-align: center;
+      color: #cbd5e1;
+    }
+
+    .error {
+      color: #fca5a5;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 25px 12px;
+      }
+
+      .video-info {
+        padding: 18px;
+      }
+
+      .video-navigation {
+        gap: 8px;
+      }
+
+      .nav-button {
+        min-width: 0;
+        flex: 1;
+        padding: 12px 8px;
+        font-size: 13px;
+      }
+
+      .play-button {
+        width: 64px;
+        height: 64px;
+      }
+    }
+  
