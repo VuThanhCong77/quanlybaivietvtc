@@ -311,6 +311,42 @@ mà là được nhìn thấy quê hương thay da đổi thịt và nụ cườ
 </div>
 
 <!-- =====================================================
+VIDEO
+===================================================== -->
+
+       <article class="video-card">
+
+      <div class="video-box">
+        <video id="mainVideo" preload="metadata" playsinline>
+          Trình duyệt của bạn không hỗ trợ phát video.
+        </video>
+
+        <div id="videoOverlay" class="video-overlay">
+          <button id="playButton" class="play-button" aria-label="Phát video">
+            ▶
+          </button>
+        </div>
+      </div>
+
+      <div class="video-info">
+        <h2 id="videoTitle">Đang tải video...</h2>
+        <p id="videoDescription"></p>
+        <div id="videoCounter" class="video-counter"></div>
+      </div>
+
+    </article>
+
+    <div class="video-navigation">
+      <button id="previousButton" class="nav-button">
+        ← Trước
+      </button>
+
+      <button id="nextButton" class="nav-button">
+        Tiếp theo →
+      </button>
+    </div>
+	
+<!-- =====================================================
 DANH SACH CÁN BỘ
 ===================================================== -->
 <section class="chinh-quyen">
@@ -1417,6 +1453,136 @@ fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/subscribe.html")
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-bdJC13AYmDhd9MVQimJrgkgnh4rpJPMSm2sH8X-9Xr80QA/viewform?usp=publish-editor">Góp ý</a>
     </button>
 </div>
+
+<!-- Video -->
+    <script>
+    const videoListUrl =
+      "https://vuthanhcong77.github.io/quanlybaivietvtc/videos.json";
+
+    const mainVideo = document.getElementById("mainVideo");
+    const playButton = document.getElementById("playButton");
+    const videoOverlay = document.getElementById("videoOverlay");
+    const videoTitle = document.getElementById("videoTitle");
+    const videoDescription = document.getElementById("videoDescription");
+    const videoCounter = document.getElementById("videoCounter");
+    const previousButton = document.getElementById("previousButton");
+    const nextButton = document.getElementById("nextButton");
+
+    let videos = [];
+    let currentIndex = 0;
+
+    async function loadVideoList() {
+      try {
+        const response = await fetch(`${videoListUrl}?v=${Date.now()}`);
+
+        if (!response.ok) {
+          throw new Error("Không thể tải videos.json");
+        }
+
+        videos = await response.json();
+
+        if (!Array.isArray(videos) || videos.length === 0) {
+          videoTitle.textContent = "Chưa có video";
+          videoDescription.textContent = "";
+          videoCounter.textContent = "";
+          previousButton.disabled = true;
+          nextButton.disabled = true;
+          return;
+        }
+
+        currentIndex = 0;
+        showVideo(currentIndex);
+
+      } catch (error) {
+        console.error(error);
+
+        videoTitle.textContent = "Không thể tải danh sách video";
+        videoDescription.textContent =
+          "Vui lòng kiểm tra đường dẫn file videos.json.";
+        videoCounter.textContent = "";
+
+        previousButton.disabled = true;
+        nextButton.disabled = true;
+      }
+    }
+
+    function showVideo(index) {
+      const selectedVideo = videos[index];
+
+      if (!selectedVideo) {
+        return;
+      }
+
+      // Dừng video đang chạy
+      mainVideo.pause();
+
+      // Ẩn lớp điều khiển đang phát
+      videoOverlay.classList.remove("hidden");
+
+      // Cập nhật thông tin
+      videoTitle.textContent = selectedVideo.title || "Video không có tiêu đề";
+      videoDescription.textContent =
+        selectedVideo.description || "";
+
+      videoCounter.textContent =
+        `Video ${index + 1} / ${videos.length}`;
+
+      // Cập nhật ảnh đại diện nếu có
+      if (selectedVideo.poster) {
+        mainVideo.poster = selectedVideo.poster;
+      } else {
+        mainVideo.removeAttribute("poster");
+      }
+
+      /*
+        Chỉ thay đổi source của một thẻ video duy nhất.
+        Vì vậy các video khác chưa được tải và chưa hiển thị.
+      */
+      mainVideo.src = selectedVideo.url;
+      mainVideo.load();
+
+      // Cập nhật trạng thái nút
+      previousButton.disabled = index === 0;
+      nextButton.disabled = index === videos.length - 1;
+    }
+
+    playButton.addEventListener("click", async () => {
+      try {
+        await mainVideo.play();
+        videoOverlay.classList.add("hidden");
+      } catch (error) {
+        console.error(error);
+        alert("Không thể phát video này. Hãy kiểm tra đường dẫn file MP4.");
+      }
+    });
+
+    mainVideo.addEventListener("click", () => {
+      if (!mainVideo.paused) {
+        mainVideo.pause();
+        videoOverlay.classList.remove("hidden");
+      }
+    });
+
+    mainVideo.addEventListener("ended", () => {
+      videoOverlay.classList.remove("hidden");
+    });
+
+    previousButton.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showVideo(currentIndex);
+      }
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (currentIndex < videos.length - 1) {
+        currentIndex++;
+        showVideo(currentIndex);
+      }
+    });
+
+    loadVideoList();
+  </script>
 	
 </body>
 </html>
