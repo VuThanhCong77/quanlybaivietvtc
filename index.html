@@ -1575,6 +1575,34 @@ fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/subscribe.html")
 
     loadVideoList();
   </script>
+
+	<script>
+function toggleLienKet() {
+    const danhSach = document.getElementById("danh-sach-lienket");
+    const muiTen = document.getElementById("muiten-lienket");
+
+    danhSach.classList.toggle("show");
+
+    if (danhSach.classList.contains("show")) {
+        muiTen.textContent = "▲";
+    } else {
+        muiTen.textContent = "▼";
+    }
+}
+
+/* Bấm ra ngoài thì tự đóng */
+document.addEventListener("click", function(event) {
+    const hop = document.querySelector(".lien-ket-ngoai");
+
+    if (!hop.contains(event.target)) {
+        document.getElementById("danh-sach-lienket")
+            .classList.remove("show");
+
+        document.getElementById("muiten-lienket")
+            .textContent = "▼";
+    }
+});
+</script>
 	
 </body>
 </html>
