@@ -1173,3 +1173,69 @@ section.am-nhac iframe {
         animation-duration: 0.01ms !important;
     }
 }
+
+/* =========================================================
+   HỘP LIÊN KẾT NGOÀI
+========================================================= */
+
+.lien-ket-ngoai {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Nút chính */
+.lien-ket-toggle {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    padding: 11px 15px;
+    background: #0a7f99;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.lien-ket-toggle:hover {
+    background: #086b80;
+}
+
+/* Danh sách xổ xuống */
+.lien-ket-list {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 5px);
+    z-index: 9999;
+
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+
+    overflow: hidden;
+}
+
+/* Khi mở */
+.lien-ket-list.show {
+    display: block;
+}
+
+/* Từng liên kết */
+.lien-ket-list a {
+    display: block;
+    padding: 11px 14px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    transition: all 0.2s ease;
+}
