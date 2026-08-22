@@ -65,7 +65,7 @@ function capNhatTrangThai(permission) {
     switch (permission) {
 
         case "granted":
-            btn.innerHTML = "✓ Đã theo dõi";
+            btn.innerHTML = "✓";
             btn.classList.add("subscribed");
             break;
 
