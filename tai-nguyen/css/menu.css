@@ -340,3 +340,95 @@ RESPONSIVE
         width: 88vw;
     }
 }
+
+/* =========================
+   MENU DESKTOP 2 TẦNG
+========================= */
+.menu-desktop{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+.menu-desktop-item{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.menu-desktop-item > a{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+/* Mũi tên */
+.menu-desktop .chev{
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Submenu */
+.submenu{
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 260px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: 160ms ease;
+  z-index: 9999;
+}
+
+.submenu a{
+  display: block;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.submenu a:hover{
+  background: rgba(0,0,0,0.05);
+}
+
+/* Hover để mở submenu */
+.menu-desktop-item.has-submenu:hover .submenu{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Nếu menu sát phải màn hình, bạn có thể đổi submenu bám phải:
+   .submenu{ left:auto; right:0; } */
+
+/* =========================
+   ẨN MENU DESKTOP TRÊN ĐIỆN THOẠI
+========================= */
+
+.nut-menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-desktop {
+    display: none !important;
+  }
+
+  .nut-menu {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
