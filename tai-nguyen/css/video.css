@@ -150,7 +150,7 @@
       border: 1px solid rgb(255, 255, 255);
       border-radius: 999px;
       color: #e51919;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgb(22, 236, 172);
       font-size: 15px;
       font-weight: bold;
       cursor: pointer;
@@ -158,8 +158,8 @@
     }
 
     .nav-button:hover:not(:disabled) {
-      border-color: #89fa60;
-      background: #0bbb31;
+      border-color: #faf760;
+      background: #bbb80b;
       transform: translateY(-2px);
     }
 
