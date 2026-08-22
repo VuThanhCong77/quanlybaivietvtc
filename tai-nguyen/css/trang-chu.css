@@ -142,6 +142,122 @@ section {
 }
 
 /* =========================================================
+5.1 THANH TIỆN ÍCH
+Không ảnh hưởng CSS .btn cũ
+========================================================= */
+
+.thanh-tien-ich{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:100%;
+    margin:12px auto;
+
+    border:1px solid #ddd;
+    border-radius:6px;
+
+    overflow:hidden;
+    background:#fff;
+}
+
+
+/* Các nút .btn chỉ trong thanh này */
+
+.thanh-tien-ich .btn{
+    flex:0 0 auto;
+
+    margin:0;
+    border-radius:0;
+
+    border-right:1px solid #ddd;
+}
+
+
+/* Nút Thích */
+
+.thanh-tien-ich #likeBtn{
+    flex:0 0 auto;
+
+    min-height:42px;
+    padding:0 18px;
+
+    border:none;
+    border-right:1px solid #ddd;
+
+    background:#fff;
+
+    color:#333;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all 0.25s ease;
+}
+
+.thanh-tien-ich #likeBtn:hover{
+    background:#0a7f99;
+    color:#fff;
+}
+
+
+/* Số lượt thích */
+
+.thanh-tien-ich #likeCount{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:60px;
+    min-height:42px;
+
+    padding:0 15px;
+
+    border-right:1px solid #ddd;
+
+    font-weight:700;
+    color:#c0392b;
+}
+
+
+/* Khu vực nút Theo dõi */
+
+.thanh-tien-ich #subscribe-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:42px;
+
+    padding:0 15px;
+}
+
+
+/* =========================================================
+5.2 MOBILE
+========================================================= */
+
+@media (max-width:768px){
+
+    .thanh-tien-ich{
+        justify-content:flex-start;
+        overflow-x:auto;
+
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .thanh-tien-ich .btn,
+    .thanh-tien-ich #likeBtn,
+    .thanh-tien-ich #likeCount,
+    .thanh-tien-ich #subscribe-container{
+        flex:0 0 auto;
+    }
+
+}
+
+/* =========================================================
    6. HERO
 ========================================================= */
 
