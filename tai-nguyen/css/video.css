@@ -120,7 +120,7 @@
     .video-info h2 {
       margin-bottom: 8px;
       color: #cf0f0f;
-      font-size: clamp(21px, 3vw, 30px);
+      font-size: 16px;
     }
 
     .video-info p {
