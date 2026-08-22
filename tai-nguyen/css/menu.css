@@ -1,207 +1,342 @@
 /* =========================================================
-MENU
+MENU MỘT TẦNG
 ========================================================= */
 
-.menu{
-    max-width: 1200px;
-    width: calc(100% - 20px); /* chừa mép 2 bên */
-    margin: 10px auto 0 auto;
-    border-radius: 6px;
+body.menu-open {
+    overflow: hidden;
+}
+
+.menu {
     position: sticky;
     top: 0;
     z-index: 9999;
+
+    width: calc(100% - 20px);
+    max-width: 1200px;
+
+    margin: 10px auto 0;
+
+    border-radius: 8px;
+
     background:
-    linear-gradient(
-    rgba(255, 255, 255, 0.586),
-    rgba(255, 255, 255, 0.538)
-    ),
-    url("https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bia/sen-trang-tri.jpg");
-    box-shadow: 0 2px 15px rgba(0,0,0,.08);
-}
+        linear-gradient(
+            rgba(255, 255, 255, 0.75),
+            rgba(255, 255, 255, 0.70)
+        );
+       
+    }
 
-.menu-top{
 
-    height:60px;
+/* =========================================================
+THANH MENU TRÊN
+========================================================= */
 
-    display:flex;
+.menu-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-    align-items:center;
+    width: 100%;
+    min-height: 62px;
 
-    justify-content:space-between;
-
-    padding:0 15px;
-
-}
-
-.logo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    text-decoration:none;
-
-    color:#0f172a;
-
-    font-weight:700;
-
-}
-
-.logo img{
-
-    width:40px;
-
-    height:40px;
-
-    border-radius:50%;
-
-}
-
-.nut-menu{
-
-    border:none;
-
-    background:#cee407;
-    font-size:1.6rem;
-
-    cursor:pointer;
-
+    padding: 8px 12px;
+    box-sizing: border-box;
 }
 
 
 /* =========================================================
-OVERLAY
+LOGO
 ========================================================= */
 
-.menu-overlay{
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
 
-    position:fixed;
+    flex: 0 0 auto;
 
-    inset:0;
-
-    background:
-    rgba(0,0,0,.4);
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transition:.3s;
-
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
-.menu-overlay.active{
+.logo img {
+    width: 40px;
+    height: 40px;
 
-    opacity:1;
-
-    visibility:visible;
-
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 
 /* =========================================================
-DRAWER
+MENU DESKTOP MỘT TẦNG
 ========================================================= */
 
-.menu-drawer{
+.menu-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 3px;
 
-    position:fixed;
-
-    top:0;
-
-    left:-320px;
-
-    width:300px;
-
-    height:100vh;
-
-    background:#fff;
-
-    transition:.3s;
-
-    overflow-y:auto;
-
-    box-shadow:
-    5px 0 20px
-    rgba(0,0,0,.15);
-
+    flex: 1;
 }
 
-.menu-drawer.active{
 
-    left:0;
+/* =========================================================
+LIÊN KẾT MENU
+========================================================= */
 
+.menu-desktop-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 9px 10px;
+
+    border-radius: 8px;
+
+    color: #1f2937;
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
-.drawer-header{
-
-    height:60px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 15px;
-
-    border-bottom:
-    1px solid #fff;
-
+.menu-desktop-item:hover,
+.menu-desktop-item:focus-visible {
+    background: #e8f6f8;
+    color: #0a7f99;
+    outline: none;
 }
 
-.nut-dong{
 
-    border:none;
+/* =========================================================
+NÚT MENU ĐIỆN THOẠI
+========================================================= */
 
-    background:none;
+.nut-menu {
+    display: none;
+    align-items: center;
+    justify-content: center;
 
-    font-size:1.3rem;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
 
-    cursor:pointer;
+    border: none;
+    border-radius: 10px;
 
+    background: #0a7f99;
+    color: #ffffff;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-.drawer-body{
-
-    padding:10px;
-
+.nut-menu:hover,
+.nut-menu:focus-visible {
+    background: #08677d;
+    transform: scale(1.04);
+    outline: none;
 }
 
-.drawer-body a{
 
-    display:block;
+/* =========================================================
+LỚP PHỦ
+========================================================= */
 
-    padding:14px;
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99998;
 
-    margin-bottom:4px;
+    background: rgba(0, 0, 0, 0.45);
 
-    text-decoration:none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 
-    color:#334155;
-
-    border-radius:10px;
-
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
 }
 
-.drawer-body a:hover{
-
-    background:#f1f5f9;
-
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
-.tieu-de-menu{
 
-    padding:15px 14px;
+/* =========================================================
+MENU ĐIỆN THOẠI
+========================================================= */
 
-    font-size:.9rem;
+.menu-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
 
-    font-weight:700;
+    width: min(310px, 86vw);
+    height: 100vh;
 
-    text-transform:uppercase;
+    box-sizing: border-box;
 
-    color:#64748b;
+    background: #ffffff;
 
+    overflow-y: auto;
+
+    transform: translateX(-105%);
+    transition: transform 0.3s ease;
+
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.menu-drawer.active {
+    transform: translateX(0);
+}
+
+
+/* =========================================================
+ĐẦU MENU ĐIỆN THOẠI
+========================================================= */
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 60px;
+    padding: 0 15px;
+
+    background: #f8fafc;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.drawer-header h3 {
+    margin: 0;
+
+    color: #0f172a;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+NÚT ĐÓNG
+========================================================= */
+
+.nut-dong {
+    border: none;
+    background: transparent;
+
+    color: #334155;
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.nut-dong:hover,
+.nut-dong:focus-visible {
+    color: #0a7f99;
+    outline: none;
+}
+
+
+/* =========================================================
+DANH SÁCH MENU ĐIỆN THOẠI
+========================================================= */
+
+.drawer-body {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+    padding: 10px;
+}
+
+.drawer-body a {
+    display: block;
+
+    padding: 13px 12px;
+
+    border-radius: 9px;
+
+    color: #334155;
+    text-decoration: none;
+    font-size: 15px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.drawer-body a:hover,
+.drawer-body a:focus-visible,
+.drawer-body a:active {
+    background: #e8f6f8;
+    color: #0a7f99;
+    outline: none;
+}
+
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+/* Máy tính bảng và điện thoại */
+@media (max-width: 1000px) {
+
+    .menu {
+        width: calc(100% - 12px);
+        margin-top: 6px;
+    }
+
+    .menu-desktop {
+        display: none;
+    }
+
+    .nut-menu {
+        display: flex;
+        margin-left: auto;
+    }
+}
+
+
+/* Điện thoại nhỏ */
+@media (max-width: 420px) {
+
+    .menu-top {
+        min-height: 56px;
+        padding: 7px 8px;
+    }
+
+    .logo img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .logo span {
+        font-size: 13px;
+    }
+
+    .menu-drawer {
+        width: 88vw;
+    }
 }
