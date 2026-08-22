@@ -1,82 +1,185 @@
-<nav class="menu">
+<nav class="menu" id="mainMenu">
 
     <div class="menu-top">
 
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html" title="Trang chủ"
-        class="logo">
+        <!-- LOGO -->
+        <a
+            href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html"
+            class="logo"
+            title="Trang chủ">
 
             <img
-            src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.png"
-            alt="Logo">
+                src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.png"
+                alt="Logo">
 
             <span>Vũ Thành Công</span>
-
         </a>
 
+
+        <!-- MENU MỘT TẦNG TRÊN MÁY TÍNH -->
+        <nav class="menu-desktop" aria-label="Menu chính">
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/danh-sach-bai-viet.html" class="menu-desktop-item">
+Bài viết
+</a>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc.html" class="menu-desktop-item">
+Tin tức
+</a>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chinh-tri.html" class="menu-desktop-item">
+Chính trị
+</a>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/van-hoa.html" class="menu-desktop-item">
+Văn hóa
+</a>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/suc-khoe.html" class="menu-desktop-item">
+Sức khỏe
+</a>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tri-tue.html" class="menu-desktop-item">
+Trí tuệ
+</a>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hanh-phuc.html" class="menu-desktop-item">
+Hạnh phúc
+</a>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/cong-nghe.html" class="menu-desktop-item">
+Công nghệ
+</a>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/giao-duc.html" class="menu-desktop-item">
+Giáo dục
+</a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tai-lieu.html" class="menu-desktop-item">
+                Tài liệu
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/lich-cong-tac.html" class="menu-desktop-item">
+                Lịch
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/podcast/Podcast.html" class="menu-desktop-item">
+                Podcast
+            </a>
+
+            <a
+                href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/soan-bai-viet.html"
+                class="menu-desktop-item">
+
+                Soạn bài
+            </a>
+
+        </nav>
+
+
+        <!-- NÚT MENU ĐIỆN THOẠI -->
         <button
-        class="nut-menu"
-        onclick="toggleMenu()">
+            type="button"
+            class="nut-menu"
+            id="nutMenu"
+            aria-label="Mở menu"
+            aria-controls="menuDrawer"
+            aria-expanded="false">
 
             ☰
-
         </button>
 
     </div>
 
-    <div
-    class="menu-overlay"
-    id="menuOverlay"
-    onclick="toggleMenu()"></div>
 
+    <!-- LỚP PHỦ -->
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+        aria-hidden="true">
+    </div>
+
+
+    <!-- MENU ĐIỆN THOẠI MỘT TẦNG -->
     <aside
-    class="menu-drawer"
-    id="menuDrawer">
+        class="menu-drawer"
+        id="menuDrawer"
+        aria-label="Danh mục website"
+        aria-hidden="true">
 
         <div class="drawer-header">
 
             <h3>☰ DANH MỤC</h3>
 
             <button
-            class="nut-dong"
-            onclick="toggleMenu()">
+                type="button"
+                class="nut-dong"
+                id="nutDong"
+                aria-label="Đóng menu">
 
                 ✕
-
             </button>
 
         </div>
 
-        <div class="luoi-1">
 
-           <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/gioi-thieu-web.html" class="quick-item">Tổng quan Web</a>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/gioi-thieu.html" class="quick-item">👤 Giới thiệu</a>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/danh-sach-bai-viet.html" class="quick-item">📚 Bài viết</a>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tai-lieu.html" class="quick-item">
-                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/bua-liem.png" alt="Tài liệu chuyên môn" title="Tài liệu chuyên môn">
-                Tài liệu</a>
-            
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/thu-vien-anh.html" class="quick-item">🖼️ Thư viện ảnh</a>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/lich-cong-tac.html" class="quick-item">📅 Lịch công tác</a>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/kiemtra_giamsat.html" class="quick-item">
-                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/bua-liem.png" alt="Kiểm tra, giám sát của Đảng" title="Kiểm tra, giám sát của Đảng">
-                Kiểm tra, giám sát</a>
-            
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/bienniensukien.html" class="quick-item">
-                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/bua-liem.png" alt="Biên niên sự kiện" title="Biên niên sự kiện">
-                Biên niên sự kiện</a>
-            
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/baucu26.html" class="quick-item">
-                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/bua-liem.png" alt="Bầu cử Quốc hội, HĐND năm 2026" title="Bầu cử Quốc hội, HĐND năm 2026">
-                Bầu cử 2026</a>
-            
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/bai-viet-chuyen-mon.html" class="quick-item">
-                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/bua-liem.png" alt="Nghiệp vụ công tác Đảng" title="Nghiệp vụ công tác Đảng">
-                Nghiệp vụ công tác Đảng</a>
-            
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hoi-ky/hoi-ky-doi-song.html" class="quick-item">📖 Đi qua những mùa nhớ</a>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/podcast/Podcast.html" class="quick-item">🎙 podcast</a>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hoi-ky/noichayennghi.html" class="quick-item">🌱 Nơi cha về với đất mẹ</a>
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/soan-bai-viet.html" class="quick-item">📝 Soạn bài viết</a>
+        <div class="drawer-body">
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/gioi-thieu-web.html">
+                🌐 Tổng quan Web
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/gioi-thieu.html">
+                👤 Giới thiệu
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/danh-sach-bai-viet.html">
+                📰 Bài viết
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/kiemtra_giamsat.html">
+                🛠 Kiểm tra, giám sát
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/bienniensukien.html">
+                📅 Biên niên sự kiện
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/baucu26.html">
+                🗳️ Bầu cử 2026
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/bai-viet-chuyen-mon.html">
+                📚 Nghiệp vụ công tác Đảng
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tai-lieu.html">
+                📄 Tài liệu
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/thu-vien-anh.html">
+                🖼️ Thư viện ảnh
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/lich-cong-tac.html">
+                📅 Lịch công tác
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hoi-ky/hoi-ky-doi-song.html">
+                📖 Đi qua những mùa nhớ
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/hoi-ky/noichayennghi.html">
+                🌱 Nơi cha về với đất mẹ
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/podcast/Podcast.html">
+                🎙️ Podcast
+            </a>
+
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/soan-bai-viet.html">
+                📝 Soạn bài viết
+            </a>
 
         </div>
 
