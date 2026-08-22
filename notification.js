@@ -65,7 +65,7 @@ function capNhatTrangThai(permission) {
     switch (permission) {
 
         case "granted":
-            btn.innerHTML = "Đang nhận";
+            btn.innerHTML = "✓ Đã theo dõi";
             btn.classList.add("subscribed");
             break;
 
@@ -75,7 +75,7 @@ function capNhatTrangThai(permission) {
             break;
 
         default:
-            btn.innerHTML = "🔔 Theo dõi bài viết mới";
+            btn.innerHTML = "+ Theo dõi";
     }
 
 }
