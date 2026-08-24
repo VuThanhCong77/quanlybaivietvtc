@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sổ nhật ký điện tử cá nhân</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+ --blue:#096b80;--cyan:#0ab3c9;--red:#b9342a;--gold:#c99b35;
+ --paper:#fffdf7;--ink:#27343a;--muted:#708087;--line:#dce6e9;
+ --bg:#edf3f5;--shadow:0 14px 40px #17343d18
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#fff 0,#edf4f6 65%,#e3ecef 100%);
+ color:var(--ink);font-family: Arial, Helvetica, sans-serif}
+button,input,select,textarea{font:inherit}
+.app{max-width:1500px;margin:auto;padding:18px}
+.top{
+ background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border-radius:22px;
+ padding:22px 25px;box-shadow:var(--shadow);position:relative;overflow:hidden
+}
+.top:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+ background:#fff1;right:-80px;top:-130px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:55px;height:55px;border-radius:15px;background:#fff2;display:grid;place-items:center;font-size:31px}
+h1{font:700 31px Georgia,serif;margin:0}
+.top p{margin:6px 0 0;opacity:.9}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+button,.file-label{
+ border:1px solid #d9e5e8;background:#fff;color:var(--blue);border-radius:10px;
+ padding:10px 13px;cursor:pointer;font-weight:700;box-shadow:0 3px 10px #0000000d
+}
+button:hover,.file-label:hover{transform:translateY(-1px)}
+.primary{background:var(--blue)!important;color:#fff!important;border-color:var(--blue)!important}
+.gold{background:#fff8e6!important;color:#8b6415!important;border-color:#ead6a0!important}
+.danger{color:#a52920!important}.file-label input{display:none}
+.layout{display:grid;grid-template-columns:355px 1fr;gap:18px}
+.panel,.paper{background:var(--paper);border:1px solid #dce7ea;border-radius:19px;box-shadow:var(--shadow)}
+.panel{padding:15px}
+.panel h2{font:700 20px Georgia,serif;margin:4px 5px 12px;color:var(--blue)}
+.search{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px}
+.filterrow{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
+.filterrow select{padding:9px;border:1px solid var(--line);border-radius:9px;background:white}
+.entries{margin-top:11px;max-height:570px;overflow:auto}
+.entry{padding:13px;border-left:4px solid transparent;border-bottom:1px solid #edf1f2;cursor:pointer}
+.entry:hover,.entry.active{background:#edf8fa;border-left-color:var(--cyan)}
+.entry .date{font-size:11px;color:var(--muted)}
+.entry .title{font-weight:700;margin:5px 0;line-height:1.3}
+.entry .tag{font-size:11px;color:var(--blue)}
+.stats{margin-top:12px;padding:12px;border-radius:12px;background:#f1f8fa;font-size:12px;line-height:1.7}
+.paper{padding:31px 40px;min-height:730px;position:relative}
+.paper:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+ background:linear-gradient(var(--red),#e5b1aa,var(--red));border-radius:19px 0 0 19px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+label{display:block;font-size:12px;font-weight:700;color:#5e6d73;margin-bottom:5px}
+input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+.title-input{font:700 29px Georgia,serif;border:0;border-bottom:2px solid var(--line);border-radius:0;padding:6px 0;background:transparent}
+.full{grid-column:1/-1}
+.section{margin-top:19px}.section-title{
+ font:700 16px Georgia,serif;color:var(--blue);padding-bottom:7px;
+ border-bottom:1px solid var(--line);margin-bottom:9px
+}
+textarea{min-height:125px;resize:vertical;line-height:1.65}
+.actions{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:18px}
+.small{font-size:11px;color:var(--muted)}
+.modal{
+ display:none;position:fixed;inset:0;background:#172d3388;z-index:20;padding:20px;overflow:auto
+}
+.modal.show{display:block}.modalbox{max-width:900px;margin:40px auto;background:white;border-radius:18px;padding:22px;box-shadow:0 20px 60px #0005}
+.modalhead{display:flex;justify-content:space-between;align-items:center}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:15px}
+.calhead,.calday{padding:9px;text-align:center}.calhead{font-weight:bold;color:var(--blue);font-size:12px}
+.calday{border:1px solid #edf0f1;border-radius:9px;min-height:68px;background:#fff;cursor:pointer}
+.calday:hover{background:#eef9fb}.calday.muted{opacity:.35}.calday.has{border-color:#8bcbd5;background:#f0fbfc}
+.calday strong{display:block}.calday small{color:var(--blue)}
+.lock{
+ position:fixed;inset:0;background:linear-gradient(135deg,#075d70,#0ab3c9);z-index:50;
+ display:flex;align-items:center;justify-content:center;padding:20px
+}
+.lockbox{background:white;width:min(420px,100%);padding:30px;border-radius:20px;text-align:center;box-shadow:0 20px 70px #0004}
+.lockbox h2{font:700 27px Georgia,serif;color:var(--blue)}
+.lockbox input{margin:8px 0}
+.hidden{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.entries{max-height:300px}.paper{padding:23px 20px}}
+@media(max-width:620px){.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.title-input{font-size:24px}}
+@media print{
+ body{background:#fff}.app{padding:0}.top,.toolbar,.panel,.actions,.small{display:none!important}
+ .layout{display:block}.paper{border:0;box-shadow:none;padding:10mm;min-height:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="lock" class="lock hidden">
+ <div class="lockbox">
+  <div style="font-size:42px">🔐</div>
+  <h2>Sổ nhật ký cá nhân</h2>
+  <p>Nhập mật khẩu để mở sổ.</p>
+  <input id="passInput" type="password" placeholder="Mật khẩu" onkeydown="if(event.key==='Enter')unlock()">
+  <button class="primary" onclick="unlock()">Mở sổ</button>
+  <p class="small">Mật khẩu chỉ được lưu dưới dạng mã băm trong trình duyệt.</p>
+ </div>
+</div>
+
+<div class="app">
+<header class="top">
+ <div class="brand"><div class="logo">📖</div><div>
+  <h1>SỔ NHẬT KÝ ĐIỆN TỬ</h1>
+  <p>Lưu giữ từng ngày, từng kỷ niệm, từng suy ngẫm của cuộc đời.</p>
+ </div></div>
+</header>
+
+<div class="toolbar">
+ <button class="primary" onclick="newEntry()">＋ Nhật ký mới</button>
+ <button onclick="saveEntry()">💾 Lưu</button>
+ <button onclick="openCalendar()">📅 Lịch</button>
+ <button onclick="showStats()">📊 Thống kê</button>
+ <button onclick="exportJSON()">⬇ JSON</button>
+ <label class="file-label">⬆ Nhập JSON <input type="file" accept=".json" onchange="importJSON(event)"></label>
+ <button onclick="exportPDF()">📄 PDF</button>
+ <button onclick="printDiary()">🖨 In</button>
+ <button class="gold" onclick="changePassword()">🔐 Khóa sổ</button>
+</div>
+
+<div class="layout">
+<aside class="panel">
+ <h2>Mục lục nhật ký</h2>
+ <input id="search" class="search" placeholder="🔎 Tìm nội dung..." oninput="renderList()">
+ <div class="filterrow">
+  <select id="filterCat" onchange="renderList()"><option value="">Tất cả loại</option>
+   <option>Đời sống</option><option>Công việc</option><option>Gia đình</option><option>Sức khỏe</option>
+   <option>Học tập</option><option>Du lịch</option><option>Suy ngẫm</option><option>Kỷ niệm</option><option>Khác</option>
+  </select>
+  <select id="filterYear" onchange="renderList()"><option value="">Tất cả năm</option></select>
+ </div>
+ <div class="entries" id="entries"></div>
+ <div class="stats" id="stats"></div>
+</aside>
+
+<main class="paper">
+ <div class="form-grid">
+  <div class="full"><input id="title" class="title-input" placeholder="HÀNH TRÌNH SỐNG HÔM QUA" oninput="autosave()"></div>
+  <div><label>Ngày</label><input id="date" type="date" onchange="autosave()"></div>
+  <div><label>Thời gian</label><input id="time" type="time" onchange="autosave()"></div>
+  <div><label>Địa điểm</label><input id="place" placeholder="Nơi ghi nhật ký..." oninput="autosave()"></div>
+  <div><label>Phân loại</label><select id="category" onchange="autosave()">
+   <option>Đời sống</option><option>Công việc</option><option>Gia đình</option><option>Sức khỏe</option>
+   <option>Học tập</option><option>Du lịch</option><option>Suy ngẫm</option><option>Kỷ niệm</option><option>Khác</option>
+  </select></div>
+  <div><label>Tâm trạng</label><select id="mood" onchange="autosave()">
+   <option>😊 Vui</option><option>🙂 Bình thường</option><option>😌 Bình yên</option>
+   <option>🤔 Suy nghĩ</option><option>😔 Buồn</option><option>💪 Quyết tâm</option>
+  </select></div>
+  <div><label>Mức độ quan trọng</label><select id="priority" onchange="autosave()">
+   <option>Bình thường</option><option>Quan trọng</option><option>Đặc biệt</option>
+  </select></div>
+ </div>
+
+ <section class="section"><div class="section-title">NỘI DUNG NHẬT KÝ</div>
+  <textarea id="content" placeholder="Hôm nay tôi đã làm gì? Điều gì đáng nhớ?..." oninput="autosave()"></textarea>
+ </section>
+ <section class="section"><div class="section-title">GHI CHÚ / SUY NGẪM</div>
+  <textarea id="reflection" placeholder="Bài học, cảm xúc, điều rút ra..." oninput="autosave()"></textarea>
+ </section>
+ <section class="section"><div class="section-title">VIỆC CẦN THEO DÕI</div>
+  <textarea id="todo" placeholder="Công việc hoặc dự định tiếp theo..." oninput="autosave()"></textarea>
+ </section>
+ <section class="section"><div class="section-title">DẤU ẤN TRONG NGÀY</div>
+  <textarea id="memory" placeholder="Một câu nói, một người, một khoảnh khắc muốn lưu giữ..." oninput="autosave()"></textarea>
+ </section>
+
+ <div class="actions">
+  <span class="small" id="status">Dữ liệu được lưu trong trình duyệt.</span>
+  <div><button class="danger" onclick="deleteEntry()">🗑 Xóa</button>
+   <button class="primary" onclick="saveEntry()">Lưu nhật ký</button></div>
+ </div>
+</main>
+</div>
+</div>
+
+<div id="calendarModal" class="modal"><div class="modalbox">
+ <div class="modalhead"><h2>📅 Lịch nhật ký</h2><button onclick="closeModal('calendarModal')">✕</button></div>
+ <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+  <button onclick="moveMonth(-1)">‹</button><b id="monthTitle"></b><button onclick="moveMonth(1)">›</button>
+ </div>
+ <div id="calendar" class="calendar"></div>
+</div></div>
+
+<div id="statsModal" class="modal"><div class="modalbox">
+ <div class="modalhead"><h2>📊 Thống kê nhật ký</h2><button onclick="closeModal('statsModal')">✕</button></div>
+ <div id="statsContent" style="line-height:2"></div>
+</div></div>
+
+<script>
+const KEY="nhatky_ca_nhan_v2";
+let data=JSON.parse(localStorage.getItem(KEY)||"[]");
+let currentId=null, calendarDate=new Date();
+let autosaveTimer;
+
+const $=id=>document.getElementById(id);
+const today=()=>{let d=new Date(),z=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())}`};
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const val=id=>$(id).value;
+const setv=(id,v)=>$(id).value=v??"";
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+function status(t){$("status").textContent=t}
+function newEntry(){
+ currentId=null;
+ ["title","place","content","reflection","todo","memory"].forEach(x=>setv(x,""));
+ setv("date",today());setv("time",new Date().toTimeString().slice(0,5));
+ setv("category","Đời sống");setv("mood","😊 Vui");setv("priority","Bình thường");
+ renderList();$("title").focus()
+}
+function collect(){
+ return {id:currentId||uid(),title:val("title")||"Không có tiêu đề",date:val("date")||today(),
+ time:val("time"),place:val("place"),category:val("category"),mood:val("mood"),priority:val("priority"),
+ content:val("content"),reflection:val("reflection"),todo:val("todo"),memory:val("memory"),
+ updatedAt:new Date().toISOString()};
+}
+function saveEntry(){
+ let e=collect(),i=data.findIndex(x=>x.id===e.id);
+ if(i>=0)data[i]=e;else data.unshift(e);
+ currentId=e.id;persist();renderList();status("Đã lưu nhật ký ✓")
+}
+function autosave(){clearTimeout(autosaveTimer);autosaveTimer=setTimeout(()=>{if(val("title")||val("content"))saveEntry()},800)}
+function loadEntry(id){
+ let e=data.find(x=>x.id===id);if(!e)return;currentId=id;
+ ["title","date","time","place","category","mood","priority","content","reflection","todo","memory"].forEach(k=>setv(k,e[k]));
+ renderList()
+}
+function deleteEntry(){
+ if(!currentId){newEntry();return}
+ if(confirm("Xóa trang nhật ký này?")){data=data.filter(x=>x.id!==currentId);persist();newEntry();status("Đã xóa")}
+}
+function renderList(){
+ let q=val("search").toLowerCase(),cat=val("filterCat"),yr=val("filterYear");
+ let arr=data.filter(e=>(!cat||e.category===cat)&&(!yr||e.date.startsWith(yr))&&
+  (e.title+" "+e.date+" "+e.content+" "+e.reflection+" "+e.category).toLowerCase().includes(q));
+ $("entries").innerHTML=arr.map(e=>`<div class="entry ${e.id===currentId?"active":""}" onclick="loadEntry('${e.id}')">
+ <div class="date">${e.date} ${e.time||""}</div><div class="title">${esc(e.title)}</div>
+ <div class="tag">${esc(e.category)} · ${esc(e.mood||"")}${e.priority==="Đặc biệt"?" · ⭐":""}</div></div>`).join("")
+ ||'<div class="small" style="padding:15px">Chưa có nhật ký phù hợp.</div>';
+ $("stats").innerHTML=`Tổng trang: <b>${data.length}</b><br>Hiển thị: <b>${arr.length}</b><br>
+ Năm nay: <b>${data.filter(e=>e.date.startsWith(new Date().getFullYear()+"")).length}</b>`;
+ fillYears()
+}
+function fillYears(){
+ let s=$("filterYear"),old=s.value,ys=[...new Set(data.map(e=>e.date?.slice(0,4)).filter(Boolean))].sort().reverse();
+ s.innerHTML='<option value="">Tất cả năm</option>'+ys.map(y=>`<option>${y}</option>`).join("");s.value=ys.includes(old)?old:""
+}
+function exportJSON(){
+ let blob=new Blob([JSON.stringify({version:2,exportedAt:new Date().toISOString(),entries:data},null,2)],
+ {type:"application/json;charset=utf-8"});download(blob,"so-nhat-ky-backup.json")
+}
+function importJSON(ev){
+ let f=ev.target.files[0];if(!f)return;let r=new FileReader();
+ r.onload=()=>{try{let x=JSON.parse(r.result),arr=Array.isArray(x)?x:x.entries;if(!Array.isArray(arr))throw 0;
+ data=arr;persist();newEntry();renderList();status("Đã nhập dữ liệu JSON ✓")}catch{alert("File JSON không đúng định dạng.")}};
+ r.readAsText(f);ev.target.value=""
+}
+function download(blob,name){let a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();
+ setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+
+function openCalendar(){calendarDate=new Date();renderCalendar();$("calendarModal").classList.add("show")}
+function closeModal(id){$(id).classList.remove("show")}
+function moveMonth(n){calendarDate.setMonth(calendarDate.getMonth()+n);renderCalendar()}
+function renderCalendar(){
+ let y=calendarDate.getFullYear(),m=calendarDate.getMonth(),names=["T2","T3","T4","T5","T6","T7","CN"];
+ $("monthTitle").textContent=`Tháng ${m+1}/${y}`;
+ let first=(new Date(y,m,1).getDay()+6)%7,days=new Date(y,m+1,0).getDate(),html=names.map(n=>`<div class="calhead">${n}</div>`).join("");
+ for(let i=0;i<first;i++)html+='<div class="calday muted"></div>';
+ for(let d=1;d<=days;d++){
+  let ds=`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+  let es=data.filter(e=>e.date===ds),has=es.length;
+  html+=`<div class="calday ${has?"has":""}" onclick="calendarSelect('${ds}')"><strong>${d}</strong>
+  ${has?`<small>${es.length} trang</small>`:""}</div>`
+ }
+ $("calendar").innerHTML=html
+}
+function calendarSelect(ds){
+ let e=data.find(x=>x.date===ds);if(e){loadEntry(e.id);closeModal("calendarModal")}else{
+  newEntry();setv("date",ds);closeModal("calendarModal")
+ }
+}
+function showStats(){
+ let cats={};data.forEach(e=>cats[e.category]=(cats[e.category]||0)+1);
+ let years={};data.forEach(e=>{let y=e.date?.slice(0,4)||"Không rõ";years[y]=(years[y]||0)+1});
+ let moods={};data.forEach(e=>moods[e.mood]=(moods[e.mood]||0)+1);
+ $("statsContent").innerHTML=`<p><b>Tổng số trang:</b> ${data.length}</p>
+ <p><b>Ngày có nhật ký:</b> ${new Set(data.map(e=>e.date)).size}</p>
+ <p><b>Theo phân loại:</b><br>${Object.entries(cats).map(([k,v])=>`• ${esc(k)}: ${v}`).join("<br>")||"Chưa có dữ liệu"}</p>
+ <p><b>Theo năm:</b><br>${Object.entries(years).sort().map(([k,v])=>`• ${k}: ${v}`).join("<br>")}</p>
+ <p><b>Tâm trạng:</b><br>${Object.entries(moods).map(([k,v])=>`• ${esc(k)}: ${v}`).join("<br>")}</p>`;
+ $("statsModal").classList.add("show")
+}
+
+async function exportPDF(){
+ let e=collect(),{jsPDF}=window.jspdf,doc=new jsPDF({unit:"mm",format:"a4"}),M=18,y=20;
+ doc.setFont("helvetica","bold");doc.setFontSize(21);doc.text("SO NHAT KY CA NHAN",M,y);y+=10;
+ doc.setFont("helvetica","normal");doc.setFontSize(10);
+ doc.text(`Ngay: ${e.date} | Thoi gian: ${e.time||""}`,M,y);y+=6;
+ doc.text(`Dia diem: ${e.place||""} | Phan loai: ${e.category}`,M,y);y+=6;
+ doc.text(`Tam trang: ${e.mood||""} | Muc do: ${e.priority}`,M,y);y+=10;
+ [["TIEU DE",e.title],["NOI DUNG NHAT KY",e.content],["GHI CHU / SUY NGAM",e.reflection],
+ ["VIEC CAN THEO DOI",e.todo],["DAU AN TRONG NGAY",e.memory]].forEach(a=>{y=pdfSection(doc,a[0],a[1],y,M)});
+ doc.save(`nhat-ky-${e.date}.pdf`);status("Đã xuất PDF ✓")
+}
+function pdfSection(doc,t,text,y,M){
+ if(y>265){doc.addPage();y=18}doc.setFont("helvetica","bold");doc.setFontSize(12);doc.text(t,M,y);y+=6;
+ doc.setFont("helvetica","normal");doc.setFontSize(10);
+ let lines=doc.splitTextToSize(text||"(Khong co noi dung)",174);
+ for(let l of lines){if(y>278){doc.addPage();y=18}doc.text(l,M,y);y+=5}return y+6
+}
+function printDiary(){window.print()}
+
+async function sha256(s){let b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));
+ return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+async function changePassword(){
+ let old=localStorage.getItem("nhatky_pass");
+ if(old){let p=prompt("Nhập mật khẩu hiện tại:");if(await sha256(p||"")!==old){alert("Mật khẩu không đúng.");return}}
+ let a=prompt("Nhập mật khẩu mới (để trống nếu muốn bỏ khóa):");
+ if(a===null)return;
+ if(!a){localStorage.removeItem("nhatky_pass");alert("Đã bỏ mật khẩu.");return}
+ let b=prompt("Nhập lại mật khẩu:");
+ if(a!==b){alert("Mật khẩu nhập lại không khớp.");return}
+ localStorage.setItem("nhatky_pass",await sha256(a));alert("Đã đặt mật khẩu. Sổ sẽ yêu cầu mật khẩu khi mở lại trang.")
+}
+async function unlock(){
+ let p=val("passInput"),h=localStorage.getItem("nhatky_pass");
+ if(await sha256(p)===h){$("lock").classList.add("hidden");$("passInput").value=""}else alert("Mật khẩu không đúng.")
+}
+async function checkLock(){if(localStorage.getItem("nhatky_pass"))$("lock").classList.remove("hidden")}
+
+if(data.length)loadEntry(data[0].id);else newEntry();renderList();checkLock();
+</script>
+</body>
+</html>
