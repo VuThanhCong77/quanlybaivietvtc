@@ -80,87 +80,6 @@ input {
 }
 
 
-/* =====================================================
-   KHU VỰC THỐNG KÊ
-===================================================== */
-
-.thong-ke {
-    width: min(calc(100% - 32px), 1200px);
-    margin: 32px auto;
-    padding: 24px;
-    display: grid;
-    grid-template-columns: 1.3fr repeat(3, 1fr);
-    gap: 18px;
-    align-items: stretch;
-    background: linear-gradient(135deg, #f8fbff, #eef5ff);
-    border: 1px solid #dbeafe;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(30, 80, 140, 0.08);
-}
-
-
-/* Ô tiêu đề BÀI VIẾT */
-
-.thong-ke > div:first-child {
-    min-height: 150px;
-    padding: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(135deg, #d1f117, #789706);
-    border-radius: 16px;
-}
-
-.thong-ke > div:first-child h3 {
-    margin: 0;
-    color: #ffffff;
-    font-size: clamp(22px, 3vw, 32px);
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-
-
-/* Các ô số liệu */
-
-.thong-ke > div:not(:first-child) {
-    min-height: 150px;
-    padding: 20px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.thong-ke > div:not(:first-child):hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.15);
-}
-
-
-/* Số liệu */
-
-.thong-ke > div:not(:first-child) h3 {
-    margin: 0 0 8px;
-    color: #1d4ed8;
-    font-size: clamp(30px, 4vw, 44px);
-    font-weight: 800;
-    line-height: 1;
-}
-
-
-/* Mô tả số liệu */
-
-.thong-ke span {
-    color: #64748b;
-    font-size: 15px;
-    font-weight: 600;
-}
 
 
 /* =====================================================
@@ -454,19 +373,7 @@ input {
 ===================================================== */
 
 @media (max-width: 850px) {
-    .thong-ke {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .thong-ke > div:first-child {
-        grid-column: 1 / -1;
-        min-height: 105px;
-    }
-
-    .thong-ke > div:not(:first-child) {
-        min-height: 135px;
-    }
-
+    
     .bai-viet-item img {
         width: 160px;
         flex-basis: 160px;
@@ -480,7 +387,6 @@ input {
 
 @media (max-width: 768px) {
     .hero-bai-viet,
-    .thong-ke,
     .tim-kiem,
     .container,
     .chuyen-muc {
@@ -520,24 +426,6 @@ input {
 
     .hero-bai-viet p {
         font-size: 14px;
-    }
-
-    .thong-ke {
-        width: calc(100% - 20px);
-        margin: 22px auto;
-        padding: 14px;
-        grid-template-columns: 1fr;
-        gap: 12px;
-        border-radius: 16px;
-    }
-
-    .thong-ke > div:first-child {
-        min-height: 78px;
-        padding: 18px;
-    }
-
-    .thong-ke > div:not(:first-child) {
-        min-height: 115px;
     }
 
     .chuyen-muc {
@@ -605,4 +493,191 @@ input {
         right: 12px;
         bottom: 14px;
     }
+}
+
+/* =====================================================
+   KHU VỰC THỐNG KÊ
+===================================================== */
+
+.thong-ke {
+
+    width: min(calc(100% - 32px), 1200px);
+
+    margin: 32px auto;
+
+    padding: 24px;
+
+    display: grid;
+
+    /* 6 ô nằm trên cùng một hàng */
+    grid-template-columns: 1.3fr repeat(5, 1fr);
+
+    gap: 18px;
+
+    align-items: stretch;
+
+    background: linear-gradient(135deg, #f8fbff, #eef5ff);
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(30, 80, 140, 0.08);
+
+}
+
+
+/* Ô tiêu đề THỐNG KÊ */
+
+.thong-ke > div:first-child {
+
+    min-height: 150px;
+
+    padding: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background: linear-gradient(135deg, #d1f117, #789706);
+
+    border-radius: 16px;
+
+}
+
+.thong-ke > div:first-child h3 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(22px, 3vw, 32px);
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* Các ô số liệu */
+
+.thong-ke > div:not(:first-child) {
+
+    min-height: 150px;
+
+    padding: 20px 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.thong-ke > div:not(:first-child):hover {
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.15);
+
+}
+
+
+/* Số liệu */
+
+.thong-ke > div:not(:first-child) h3 {
+
+    margin: 0 0 8px;
+
+    color: #1d4ed8;
+
+    font-size: clamp(24px, 2.5vw, 44px);
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    /* Không làm số hoặc tên bài quá dài phá bố cục */
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* Mô tả số liệu */
+
+.thong-ke span {
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   ĐIỆN THOẠI
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .thong-ke {
+
+        grid-template-columns: repeat(2, 1fr);
+
+        padding: 15px;
+
+        gap: 12px;
+
+    }
+
+    .thong-ke > div:first-child {
+
+        grid-column: 1 / -1;
+
+        min-height: 90px;
+
+    }
+
+    .thong-ke > div:first-child h3 {
+
+        font-size: 26px;
+
+    }
+
+    .thong-ke > div:not(:first-child) {
+
+        min-height: 110px;
+
+        padding: 15px 10px;
+
+    }
+
+    .thong-ke > div:not(:first-child) h3 {
+
+        font-size: 28px;
+
+    }
+
 }

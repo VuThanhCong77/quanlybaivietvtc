@@ -341,77 +341,191 @@ RESPONSIVE
     }
 }
 
-/* =========================
+
+/* =========================================================
    MENU DESKTOP 2 TẦNG
-========================= */
+========================================================= */
+
 .menu-desktop{
-  display:flex;
-  align-items:center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 3px;
+    flex: 1;
 }
+
+
+/* Mục menu cha */
 
 .menu-desktop-item{
-  position: relative;
-  display: inline-flex;
-  align-items: center;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
 }
+
+
+/* Link menu tầng 1 */
 
 .menu-desktop-item > a{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 12px;
-  text-decoration: none;
-  border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 9px 10px;
+
+    border-radius: 8px;
+
+    color: #1f2937;
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
 }
+
+
+/* Hiệu ứng menu tầng 1 */
+
+.menu-desktop-item > a:hover,
+.menu-desktop-item > a:focus-visible,
+.menu-desktop-item.has-submenu:hover > a{
+    background: #e8f6f8;
+    color: #0a7f99;
+    outline: none;
+}
+
 
 /* Mũi tên */
+
 .menu-desktop .chev{
-  font-size: 12px;
-  opacity: 0.8;
+    font-size: 12px;
+    opacity: 0.8;
+    transition: transform 0.2s ease;
 }
 
-/* Submenu */
+
+/* =========================================================
+   MENU TẦNG 2
+========================================================= */
+
 .submenu{
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  min-width: 260px;
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 12px;
-  padding: 8px;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.12);
 
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(6px);
-  transition: 160ms ease;
-  z-index: 9999;
+    position: absolute;
+
+    /* KHÔNG tạo khoảng trống giữa menu cha và menu con */
+    top: 100%;
+
+    left: 0;
+
+    min-width: 260px;
+
+    margin-top: 0;
+
+    padding: 8px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0,0,0,0.08);
+
+    border-radius: 12px;
+
+    box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: translateY(6px);
+
+    transition:
+        opacity 0.16s ease,
+        visibility 0.16s ease,
+        transform 0.16s ease;
+
+    z-index: 99999;
+
 }
+
+
+/* Các mục menu tầng 2 */
 
 .submenu a{
-  display: block;
-  padding: 10px 10px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: inherit;
-  white-space: nowrap;
+
+    display: block;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    color: #1f2937;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
-.submenu a:hover{
-  background: rgba(0,0,0,0.05);
+
+.submenu a:hover,
+.submenu a:focus-visible{
+
+    background: #e8f6f8;
+
+    color: #0a7f99;
+
+    outline: none;
+
 }
 
-/* Hover để mở submenu */
-.menu-desktop-item.has-submenu:hover .submenu{
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+
+/* =========================================================
+   MỞ MENU TẦNG 2
+========================================================= */
+
+.menu-desktop-item.has-submenu:hover .submenu,
+.menu-desktop-item.has-submenu:focus-within .submenu{
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: translateY(0);
+
 }
 
-/* Nếu menu sát phải màn hình, bạn có thể đổi submenu bám phải:
-   .submenu{ left:auto; right:0; } */
+
+/* Xoay mũi tên khi mở */
+
+.menu-desktop-item.has-submenu:hover .chev,
+.menu-desktop-item.has-submenu:focus-within .chev{
+
+    transform: rotate(180deg);
+
+}
+
+
+/* =========================================================
+   MENU CUỐI BÁM VỀ PHÍA PHẢI
+========================================================= */
+
+.menu-desktop-item:last-child .submenu{
+    left: auto;
+    right: 0;
+}
 
 /* =========================
    ẨN MENU DESKTOP TRÊN ĐIỆN THOẠI
