@@ -1240,3 +1240,173 @@ section.am-nhac iframe {
     transition: all 0.2s ease;
     text-align: left;
 }
+
+/* =========================================================
+   TÌM KIẾM TRANG CHỦ
+========================================================= */
+
+.tim-kiem-trang-chu {
+    width: 100%;
+    max-width: 900px;
+    margin: 15px auto;
+    position: relative;
+}
+
+.tim-kiem-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.tim-kiem-box input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 14px 15px;
+    font-size: 16px;
+    background: transparent;
+}
+
+.tim-kiem-box button {
+    border: none;
+    background: #0a7f99;
+    color: #ffffff;
+    min-width: 55px;
+    height: 48px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.tim-kiem-box button:hover {
+    background: #086b80;
+}
+
+/* Kết quả tìm kiếm */
+
+#ketQuaTimKiemTrangChu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    max-height: 500px;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    z-index: 9999;
+}
+
+.ket-qua-tim-kiem-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eeeeee;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.ket-qua-tim-kiem-item:hover {
+    background: #f5f5f5;
+}
+
+.ket-qua-tim-kiem-item strong {
+    display: block;
+    color: #0a7f99;
+    margin-bottom: 5px;
+}
+
+.ket-qua-tim-kiem-item span {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+}
+
+.tim-kiem-thong-bao {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+/* Highlight nội dung tìm thấy */
+
+.highlight-tim-kiem {
+    background: #fff176;
+    color: #000;
+    padding: 2px 3px;
+    border-radius: 2px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .tim-kiem-trang-chu {
+        width: calc(100% - 20px);
+    }
+
+    .tim-kiem-box input {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .tim-kiem-box button {
+        height: 45px;
+        min-width: 50px;
+    }
+
+}
+
+/* =========================================================
+   HIGHLIGHT VỊ TRÍ TÌM KIẾM
+========================================================= */
+
+.highlight-tim-kiem-trang-chu {
+    background: #ffeb3b;
+    color: #000;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    animation: nhapNhayTuKhoa 1s infinite;
+}
+
+.vi-tri-tim-thay {
+    animation: lamNoiBatViTri 1.5s ease-in-out;
+}
+
+@keyframes nhapNhayTuKhoa {
+
+    0% {
+        background: #ffeb3b;
+    }
+
+    50% {
+        background: #ff9800;
+    }
+
+    100% {
+        background: #ffeb3b;
+    }
+
+}
+
+@keyframes lamNoiBatViTri {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
