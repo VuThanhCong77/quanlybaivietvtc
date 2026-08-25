@@ -283,6 +283,7 @@ Không ảnh hưởng CSS .btn cũ
 
 .hero-van-ban {
     display: flex;
+    background: #dcfce7;
     flex-direction: column;
     justify-content: center;
     width: 50%;
@@ -1409,4 +1410,38 @@ section.am-nhac iframe {
         transform: scale(1);
     }
 
+}
+
+/* =========================================================
+   5 TIN TỨC MỚI NHẤT
+========================================================= */
+
+#latest-news-box {
+    width: 100%;
+    text-align: left !important;
+}
+
+#latest-news-box .news-title {
+    display: block !important;
+    width: 100%;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #ddd;
+
+    color: #333 !important;
+
+    font-size: 14px;
+
+    font-weight: normal !important; /* Chữ bình thường */
+
+    line-height: 1.2;
+
+    text-align: left !important;
+
+    text-decoration: none !important;
+}
+
+#latest-news-box .news-title:hover {
+    color: #0a7f99 !important;
 }
