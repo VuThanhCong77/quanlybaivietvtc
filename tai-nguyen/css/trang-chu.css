@@ -1445,3 +1445,12 @@ section.am-nhac iframe {
 #latest-news-box .news-title:hover {
     color: #0a7f99 !important;
 }
+
+.hero-side h2 {
+    margin: 0 0 15px;
+    padding-bottom: 10px;
+
+    border-bottom: 2px solid #0a7f99;
+
+    text-align: left;
+}
