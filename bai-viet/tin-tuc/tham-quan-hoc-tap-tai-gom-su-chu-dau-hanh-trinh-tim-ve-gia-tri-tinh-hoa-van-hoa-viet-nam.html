@@ -144,6 +144,8 @@ href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
 data-post-id="tham-quan-hoc-tap-tai-gom-su-chu-dau-hanh-trinh-tim-ve-gia-tri-tinh-hoa-van-hoa-viet-nam"
 data-page="chi-tiet">
 
+<header id="menu"></header>
+        
 <main class="trang-bai-viet">
 
 <nav class="duong-dan">
@@ -419,6 +421,50 @@ fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/subscribe.html")
 });
 </script>
 
+<script>
 
+async function loadComponent(id, file){
+
+    try{
+
+        const response = await fetch(file);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Lỗi tải component: " + file
+            );
+
+        }
+
+        const html = await response.text();
+
+        document.getElementById(id)
+        .innerHTML = html;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    loadComponent(
+        "menu",
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html"
+    );
+
+  }
+);
+
+</script>
+
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+    
 </body>
 </html>
