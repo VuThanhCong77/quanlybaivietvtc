@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hướng dẫn viết bài</title>
+
+    <style>
+        /* =========================================================
+           HƯỚNG DẪN VIẾT BÀI
+        ========================================================= */
+
+        .huong-dan-viet-bai {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .huong-dan-viet-bai h1 {
+            color: #0a7f99;
+            border-bottom: 3px solid #0ab3c9;
+            padding-bottom: 10px;
+        }
+
+        .huong-dan-viet-bai h2 {
+            margin-top: 35px;
+            color: #c0392b;
+            padding-left: 12px;
+            border-left: 5px solid #0a7f99;
+        }
+
+        .huong-dan-viet-bai h3 {
+            color: #0a7f99;
+            margin-top: 25px;
+        }
+
+        .huong-dan-viet-bai p {
+            text-align: justify;
+        }
+
+        .huong-dan-viet-bai .ghi-chu {
+            background: #f4f8fa;
+            border-left: 5px solid #0a7f99;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .huong-dan-viet-bai .ma-html {
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+            line-height: 1.6;
+        }
+
+        .huong-dan-viet-bai code {
+            background: #f1f1f1;
+            color: #c0392b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+        }
+
+        /* Danh sách */
+
+        .huong-dan-viet-bai ul,
+        .huong-dan-viet-bai ol {
+            padding-left: 30px;
+        }
+
+        /* Trích dẫn */
+
+        .huong-dan-viet-bai blockquote {
+            margin: 20px 0;
+            padding: 15px 20px;
+            background: #f7f7f7;
+            border-left: 5px solid #0a7f99;
+            font-style: italic;
+        }
+
+        /* Ảnh bài viết */
+
+        .anh-bia {
+            max-width: 700px;
+            margin: 25px auto;
+            text-align: center;
+        }
+
+        .anh-bia img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .chu-thich-anh {
+            margin-top: 8px;
+            font-size: 14px;
+            font-style: italic;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+
+            .huong-dan-viet-bai {
+                margin: 15px 10px;
+                padding: 20px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="huong-dan-viet-bai">
+
+    <h1>HƯỚNG DẪN VIẾT BÀI BẰNG HTML</h1>
+
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/soan-bai-viet.html">📝 Về trang bài viết</a>
+
+    <p>
+        Dưới đây là các thẻ HTML cơ bản thường sử dụng khi biên soạn
+        nội dung bài viết trên website.
+    </p>
+
+    <div class="ghi-chu">
+        <strong>Lưu ý:</strong> Khi viết bài, chỉ sử dụng các thẻ HTML
+        cần thiết để bảo đảm nội dung rõ ràng, thống nhất và dễ đọc.
+    </div>
+
+
+    <!-- =====================================================
+         1. TIÊU ĐỀ CHÍNH
+    ====================================================== -->
+
+    <h2>1. Tiêu đề chính của bài viết</h2>
+
+    <p>
+        Sử dụng thẻ <code>&lt;h1&gt;&lt;/h1&gt;</code>
+        cho tiêu đề chính của bài viết.
+    </p>
+
+    <div class="ma-html">
+&lt;h1&gt;Tiêu đề bài viết&lt;/h1&gt;
+    </div>
+
+
+    <!-- =====================================================
+         2. ĐOẠN VĂN
+    ====================================================== -->
+
+    <h2>2. Viết đoạn văn</h2>
+
+    <p>
+        Sử dụng thẻ <code>&lt;p&gt;&lt;/p&gt;</code>
+        để viết các đoạn văn trong bài.
+    </p>
+
+    <div class="ma-html">
+&lt;p&gt;
+    Đây là đoạn mở đầu của bài viết.
+    Nội dung giới thiệu khái quát vấn đề được đề cập.
+&lt;/p&gt;
+    </div>
+
+
+    <!-- =====================================================
+         3. CHỮ IN NGHIÊNG
+    ====================================================== -->
+
+    <h2>3. Nội dung cần nhấn mạnh bằng chữ nghiêng</h2>
+
+    <p>
+        Sử dụng thẻ <code>&lt;em&gt;&lt;/em&gt;</code>
+        để làm nổi bật nội dung bằng chữ nghiêng.
+    </p>
+
+    <div class="ma-html">
+&lt;p&gt;
+    &lt;em&gt;Đây là nội dung cần nhấn mạnh.&lt;/em&gt;
+&lt;/p&gt;
+    </div>
+
+
+    <!-- =====================================================
+         4. XUỐNG DÒNG
+    ====================================================== -->
+
+    <h2>4. Xuống dòng trong cùng một đoạn văn</h2>
+
+    <p>
+        Sử dụng thẻ <code>&lt;br&gt;</code>
+        để xuống dòng mà không tạo thành một đoạn văn mới.
+    </p>
+
+    <div class="ma-html">
+&lt;p&gt;
+    Dòng thứ nhất&lt;br&gt;
+    Dòng thứ hai
+&lt;/p&gt;
+    </div>
+
+
+    <!-- =====================================================
+         5. TIÊU ĐỀ NỘI DUNG
+    ====================================================== -->
+
+    <h2>5. Tiêu đề các phần trong bài viết</h2>
+
+    <p>
+        Sử dụng thẻ <code>&lt;h2&gt;&lt;/h2&gt;</code>
+        cho các phần nội dung chính.
+    </p>
+
+    <div class="ma-html">
+&lt;h2&gt;1. Nội dung thứ nhất&lt;/h2&gt;
+
+&lt;p&gt;
+    Đây là nội dung của phần thứ nhất trong bài viết.
+&lt;/p&gt;
+    </div>
+
+
+    <!-- =====================================================
+         6. DANH SÁCH KHÔNG ĐÁNH SỐ
+    ====================================================== -->
+
+    <h2>6. Danh sách nội dung không đánh số</h2>
+
+    <p>
+        Sử dụng <code>&lt;ul&gt;</code> và <code>&lt;li&gt;</code>
+        để tạo danh sách có dấu chấm đầu dòng.
+    </p>
+
+    <div class="ma-html">
+&lt;ul&gt;
+    &lt;li&gt;Nội dung thứ nhất về A&lt;/li&gt;
+    &lt;li&gt;Nội dung thứ hai về B&lt;/li&gt;
+&lt;/ul&gt;
+    </div>
+
+
+    <!-- =====================================================
+         7. CHỮ ĐẬM
+    ====================================================== -->
+
+    <h2>7. Nội dung quan trọng cần in đậm</h2>
+
+    <p>
+        Sử dụng thẻ <code>&lt;strong&gt;&lt;/strong&gt;</code>
+        để nhấn mạnh nội dung quan trọng.
+    </p>
+
+    <div class="ma-html">
+&lt;p&gt;
+    &lt;strong&gt;
+        Nội dung quan trọng cần nhấn mạnh.
+    &lt;/strong&gt;
+&lt;/p&gt;
+    </div>
+
+
+    <!-- =====================================================
+         8. DANH SÁCH ĐÁNH SỐ
+    ====================================================== -->
+
+    <h2>8. Danh sách có thứ tự</h2>
+
+    <p>
+        Sử dụng <code>&lt;ol&gt;</code> và <code>&lt;li&gt;</code>
+        để tạo danh sách được đánh số thứ tự.
+    </p>
+
+    <div class="ma-html">
+&lt;ol&gt;
+    &lt;li&gt;Bước thứ nhất&lt;/li&gt;
+    &lt;li&gt;Bước thứ hai&lt;/li&gt;
+&lt;/ol&gt;
+    </div>
+
+
+    <!-- =====================================================
+         9. TRÍCH DẪN
+    ====================================================== -->
+
+    <h2>9. Trích dẫn nội dung quan trọng</h2>
+
+    <p>
+        Sử dụng thẻ <code>&lt;blockquote&gt;&lt;/blockquote&gt;</code>
+        cho các đoạn trích dẫn hoặc nội dung cần trình bày riêng.
+    </p>
+
+    <div class="ma-html">
+&lt;blockquote&gt;
+    Đây là một đoạn trích dẫn quan trọng.
+&lt;/blockquote&gt;
+    </div>
+
+
+    <!-- =====================================================
+         10. KẾT LUẬN
+    ====================================================== -->
+
+    <h2>10. Phần kết luận</h2>
+
+    <p>
+        Phần kết luận có thể sử dụng thẻ tiêu đề và thẻ đoạn văn
+        như sau:
+    </p>
+
+    <div class="ma-html">
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+
+&lt;p&gt;
+    Đây là nội dung kết luận của bài viết.
+&lt;/p&gt;
+    </div>
+
+
+    <!-- =====================================================
+         11. CHÈN HÌNH ẢNH
+    ====================================================== -->
+
+    <h2>11. Chèn hình ảnh vào bài viết</h2>
+
+    <p>
+        Sử dụng đoạn mã dưới đây để chèn hình ảnh và chú thích ảnh:
+    </p>
+
+    <div class="ma-html">
+&lt;div class="anh-bia"&gt;
+
+    &lt;img
+        src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anh.jpg"
+        alt="Hình ảnh"&gt;
+
+    &lt;div class="chu-thich-anh"&gt;
+        Hình ảnh
+    &lt;/div&gt;
+
+&lt;/div&gt;
+    </div>
+
+
+    <!-- =====================================================
+         MẪU BÀI VIẾT HOÀN CHỈNH
+    ====================================================== -->
+
+    <h2>12. Mẫu cấu trúc bài viết hoàn chỉnh</h2>
+
+    <div class="ma-html">
+&lt;h1&gt;Tiêu đề bài viết&lt;/h1&gt;
+
+&lt;p&gt;
+    Đây là đoạn mở đầu của bài viết.
+    Nội dung giới thiệu khái quát vấn đề được đề cập.
+&lt;/p&gt;
+
+&lt;p&gt;
+    &lt;em&gt;Đây là nội dung cần nhấn mạnh.&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;h2&gt;1. Nội dung thứ nhất&lt;/h2&gt;
+
+&lt;p&gt;
+    Đây là nội dung của phần thứ nhất trong bài viết.
+&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;Nội dung thứ nhất về A&lt;/li&gt;
+    &lt;li&gt;Nội dung thứ hai về B&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+    &lt;strong&gt;
+        Nội dung quan trọng cần nhấn mạnh.
+    &lt;/strong&gt;
+&lt;/p&gt;
+
+&lt;h2&gt;2. Nội dung thứ hai&lt;/h2&gt;
+
+&lt;p&gt;
+    Đây là đoạn văn tiếp theo của bài viết.
+&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;Bước thứ nhất&lt;/li&gt;
+    &lt;li&gt;Bước thứ hai&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+    Đây là một đoạn trích dẫn quan trọng.
+&lt;/blockquote&gt;
+
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+
+&lt;p&gt;
+    Đây là nội dung kết luận của bài viết.
+&lt;/p&gt;
+
+&lt;div class="anh-bia"&gt;
+
+    &lt;img
+        src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anh.jpg"
+        alt="Hình ảnh"&gt;
+
+    &lt;div class="chu-thich-anh"&gt;
+        Hình ảnh
+    &lt;/div&gt;
+
+&lt;/div&gt;
+    </div>
+
+
+    <div class="ghi-chu">
+        <strong>Gợi ý:</strong> Khi bắt đầu viết một bài mới,
+        có thể sao chép phần <strong>Mẫu cấu trúc bài viết hoàn chỉnh</strong>
+        ở trên, sau đó thay thế nội dung mẫu bằng nội dung thực tế.
+    </div>
+
+</div>
+
+</body>
+</html>
