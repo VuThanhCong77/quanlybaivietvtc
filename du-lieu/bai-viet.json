@@ -13,6 +13,20 @@
   "featured": true,
   "views": 18
 },
+{
+  "id": "vhuong_dan_chung_thuc_ban_sao",
+  "title": "Hướng dẫn chứng thực bản sao từ bản chính trên cổng dịch vụ công",
+  "desc": "Dịch vụ công toàn trình",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hcc1.jpg",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc/huong_dan_chung_thuc_ban_sao.html",
+  "date": "27-08-2026",
+  "category": [
+    "Chính trị",
+    "Hành chính công"
+  ],
+  "featured": true,
+  "views": 18
+},
    {
   "id": "chuong-trinh-hanh-dong-cua-can-bo-duoc-phe-duyet-quy-hoach-chuc-danh-chu-nhiem-uy-ban-kiem-tra-dang-uy-phuong-giam-doc-trung-tam-phuc-vu-hanh-chinh-cong",
   "title": "Chương trình hành động của cán bộ được phê duyệt quy hoạch chức danh Chủ nhiệm Ủy ban kiểm tra Đảng ủy phường; Giám đốc Trung tâm phục vụ hành chính công",
@@ -160,7 +174,7 @@
   "date": "11-08-2026",
   "category": [
     "Văn hóa",
-    "Chính trị"
+    "Hành chính công"
   ],
   "featured": true,
   "views": 18
@@ -1068,7 +1082,8 @@
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/trung-tam-phuc-vu-hanh-chinh-cong-phuong-luu-kiem.html",
     "date": "02-02-2026",
     "category": [
-      "Chính trị"
+      "Chính trị",
+      "Hành chính công"
     ],
     "featured": true,
     "views": 18
@@ -1646,7 +1661,7 @@
   "date": "11-06-2026",
   "category": [
     "Tin tức",
-    "Chính trị"
+    "Hành chính công"
   ],
   "featured": true,
   "views": 18
@@ -1836,7 +1851,7 @@
   "date": "10-04-2026",
   "category": [
     "Tin tức",
-    "Chính trị"
+    "Hành chính công"
   ],
   "featured": true,
   "views": 18
