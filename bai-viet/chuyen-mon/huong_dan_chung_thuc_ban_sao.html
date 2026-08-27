@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn Trình Tự Thực Hiện Các Bước Vào Cổng Dịch Vụ Công Và Thực Hiện Chứng Thực Bản Sao Từ Bản Chính</title>
+
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hcc1.jpg">
+
+<link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+<link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
+
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
+
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #004085;
+            --accent-color: #28a745;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #6c757d;
+            --border-color: #e9ecef;
+            --warning-bg: #fff3cd;
+            --warning-border: #ffeba8;
+            --warning-text: #856404;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .intro {
+            font-style: italic;
+            color: var(--text-muted);
+            background: #eef5fc;
+            padding: 12px 20px;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-title {
+            display: flex;
+            align-items: center;
+            color: var(--secondary-color);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .step-content li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 8px;
+        }
+
+        .step-content li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 18px;
+            position: absolute;
+            left: 8px;
+            top: -2px;
+        }
+
+        .note-box {
+            background-color: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            color: var(--warning-text);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .note-box h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .note-box ul {
+            padding-left: 20px;
+        }
+
+        .note-box li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            .step-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div id="menu"></div>
+
+        <h1>Hướng Dẫn Trình Tự Thực Hiện Các Bước Vào Cổng Dịch Vụ Công Và Thực Hiện Chứng Thực Bản Sao Từ Bản Chính</h1>
+    </header>
+
+    <div class="intro">
+        Để thực hiện thủ tục chứng thực bản sao từ bản chính trên môi trường điện tử, công dân thực hiện theo trình tự các bước sau:
+    </div>
+
+    <div class="step-list">
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">1</span> Bước 1. Chuẩn bị hồ sơ, giấy tờ
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px; font-weight: 600;">Công dân chuẩn bị:</p>
+                <ul>
+                    <li>Bản chính giấy tờ, văn bản cần chứng thực;</li>
+                    <li>Bản sao của giấy tờ, văn bản cần chứng thực (nếu cơ quan thực hiện thủ tục yêu cầu);</li>
+                    <li>Căn cước công dân hoặc giấy tờ tùy thân hợp lệ;</li>
+                    <li>Thiết bị có kết nối internet như máy tính hoặc điện thoại thông minh.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">2</span> Bước 2. Truy cập Cổng Dịch vụ công
+            </div>
+            <div class="step-content">
+                <ul>
+                    <li>Công dân mở trình duyệt trên máy tính hoặc điện thoại và truy cập Cổng Dịch vụ công trực tuyến theo địa chỉ do cơ quan nhà nước có thẩm quyền cung cấp (https://dichvucong.gov.vn/)</li>
+                    <li>Sau khi truy cập, lựa chọn chức năng “Đăng nhập” hoặc “Đăng ký” nếu chưa có tài khoản.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">3</span> Bước 3. Đăng nhập tài khoản
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px;">Công dân có thể đăng nhập thông qua các phương thức phù hợp như:</p>
+                <ul>
+                    <li>Tài khoản định danh điện tử;</li>
+                    <li>Tài khoản Cổng Dịch vụ công;</li>
+                    <li>Các phương thức đăng nhập khác được hệ thống hỗ trợ.</li>
+                </ul>
+                <p style="margin-top: 8px;">Sau khi đăng nhập thành công, kiểm tra và cập nhật đầy đủ thông tin cá nhân theo yêu cầu của hệ thống.</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">4</span> Bước 4. Tìm kiếm thủ tục hành chính
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px;">Tại giao diện Cổng Dịch vụ công:</p>
+                <ul>
+                    <li>Chọn mục “Dịch vụ công trực tuyến” hoặc “Thủ tục hành chính”;</li>
+                    <li>Nhập từ khóa tìm kiếm: “Chứng thực bản sao từ bản chính”;</li>
+                    <li>Lựa chọn đúng thủ tục hành chính cần thực hiện;</li>
+                    <li>Xem kỹ thành phần hồ sơ, trình tự thực hiện, thời hạn giải quyết, lệ phí và cơ quan có thẩm quyền.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">5</span> Bước 5. Lựa chọn cơ quan thực hiện thủ tục
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px;">Công dân lựa chọn:</p>
+                <ul>
+                    <li>Địa phương thực hiện (Thành phố Hải Phòng, nhìn qua bên trái tìm danh sách xã, phường cần thực hiện. Ví dụ: <em>UBND phường Lưu Kiếm ở số gần 100</em>);</li>
+                    <li>Cơ quan có thẩm quyền tiếp nhận hồ sơ;</li>
+                    <li>Hình thức nộp hồ sơ phù hợp theo hướng dẫn của hệ thống.</li>
+                </ul>
+                <p style="margin-top: 8px;"><em>Đối với trường hợp thực hiện tại địa phương, công dân lựa chọn cơ quan có thẩm quyền chứng thực theo quy định.</em></p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">6</span> Bước 6. Kê khai thông tin hồ sơ
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px;">Công dân chọn chức năng “Nộp trực tuyến” và thực hiện:</p>
+                <ul>
+                    <li>Kê khai đầy đủ các thông tin cá nhân;</li>
+                    <li>Nhập thông tin liên quan đến giấy tờ, văn bản đề nghị chứng thực;</li>
+                    <li>Kiểm tra lại toàn bộ nội dung đã kê khai trước khi gửi hồ sơ.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">7</span> Bước 7. Tải lên các thành phần hồ sơ
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px;">Công dân tải lên hệ thống các tài liệu theo yêu cầu, bảo đảm:</p>
+                <ul>
+                    <li>Ảnh chụp hoặc bản quét rõ ràng, đầy đủ nội dung;</li>
+                    <li>Đúng định dạng và dung lượng tệp theo quy định;</li>
+                    <li>Thông tin trong hồ sơ điện tử bảo đảm chính xác, thống nhất.</li>
+                </ul>
+                <p style="margin-top: 8px; color: #d9534f; font-weight: 500;">📌 Lưu ý: Đối với một số trường hợp, công dân vẫn phải xuất trình bản chính để cơ quan có thẩm quyền kiểm tra, đối chiếu theo quy định.</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">8</span> Bước 8. Nộp hồ sơ và nhận mã hồ sơ
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px;">Sau khi kiểm tra đầy đủ thông tin, công dân:</p>
+                <ul>
+                    <li>Tích chọn xác nhận các nội dung theo yêu cầu;</li>
+                    <li>Nhấn nút “Nộp hồ sơ”;</li>
+                    <li>Lưu lại mã hồ sơ hoặc phiếu tiếp nhận để thuận tiện cho việc tra cứu.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">9</span> Bước 9. Theo dõi quá trình giải quyết
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px;">Công dân đăng nhập vào Cổng Dịch vụ công và sử dụng mã hồ sơ để:</p>
+                <ul>
+                    <li>Theo dõi tình trạng tiếp nhận và giải quyết hồ sơ;</li>
+                    <li>Nhận thông báo yêu cầu bổ sung, hoàn thiện hồ sơ nếu có;</li>
+                    <li>Theo dõi thời gian và kết quả giải quyết thủ tục.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-title">
+                <span class="step-number">10</span> Bước 10. Nhận kết quả
+            </div>
+            <div class="step-content">
+                <p style="margin-bottom: 8px;">Khi hồ sơ được giải quyết, công dân thực hiện nhận kết quả theo hình thức đã đăng ký, bao gồm:</p>
+                <ul>
+                    <li>Nhận trực tiếp tại cơ quan có thẩm quyền;</li>
+                    <li>Nhận kết quả điện tử;</li>
+                    <li>Nhận qua dịch vụ bưu chính công ích, nếu có đăng ký.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="note-box">
+        <h2>⚠️ Một số lưu ý quan trọng</h2>
+        <ul>
+            <li>Chỉ thực hiện chứng thực đối với các giấy tờ, văn bản thuộc trường hợp được chứng thực theo quy định.</li>
+            <li>Bản chính phải hợp lệ, không thuộc trường hợp bị tẩy xóa, sửa chữa, hư hỏng hoặc không đủ điều kiện chứng thực.</li>
+            <li>Thông tin kê khai trên Cổng Dịch vụ công phải chính xác, đầy đủ.</li>
+            <li>Thường xuyên theo dõi thông báo trên hệ thống để kịp thời bổ sung hồ sơ khi được yêu cầu.</li>
+            <li>Lưu giữ mã hồ sơ để thuận tiện cho việc tra cứu và nhận kết quả.</li>
+        </ul>
+    </div>
+
+    <footer>
+        Việc thực hiện thủ tục hành chính trên Cổng Dịch vụ công góp phần tiết kiệm thời gian, công khai, minh bạch quy trình giải quyết và nâng cao chất lượng phục vụ người dân, tổ chức.
+    </footer>
+</div>
+
+
+<script>
+
+async function loadComponent(id, file){
+
+    try{
+
+        const response = await fetch(file);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Lỗi tải component: " + file
+            );
+
+        }
+
+        const html = await response.text();
+
+        document.getElementById(id)
+        .innerHTML = html;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    loadComponent(
+        "menu",
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html"
+    );
+
+  }
+);
+
+</script>
+
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+
+</body>
+</html>
