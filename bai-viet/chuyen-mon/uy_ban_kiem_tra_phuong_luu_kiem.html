@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ủy Ban Kiểm Tra Đảng Ủy Phường Lưu Kiếm</title>
+
+<!-- Open Graph chuẩn cho Facebook & Zalo -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chuyên đề kiểm tra - giám sát">
+<meta property="og:description" content="Nâng cao hiệu lực, hiệu quả công tác kiểm tra, giám sát – góp phần xây dựng Đảng trong sạch, vững mạnh">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/uy_ban_kiem_tra_phuong_luu_kiem.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/VuThanhCong77/quanlybaivietvtc/tai-nguyen/anh-bai-viet/ubkt.jpg">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/">
+
+<link rel="icon"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+<link rel="icon"
+href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
+
+    <style>
+        :root {
+            --primary-red: #da251d; /* Màu đỏ cờ / Đảng */
+            --dark-red: #900c3f;
+            --gold-yellow: #ffcc00; /* Màu vàng sao / búa liềm */
+            --bg-gray: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-main: #023e41;
+            --text-sub: #555555;
+            --border-color: #e2e8f0;
+            --accent-blue: #0056b3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Top Header / Banner */
+        .top-bar {
+            background-color: #0d80ad;
+            color: #eee;
+            padding: 6px 20px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-main {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold-yellow);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .header-main h2 {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-yellow);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .header-main h1 {
+            font-size: 26px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .header-main p {
+            font-size: 14px;
+            opacity: 0.95;
+            font-style: italic;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-container li a {
+            display: block;
+            padding: 14px 18px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .nav-container li a:hover, .nav-container li a.active {
+            color: var(--primary-red);
+            background-color: #fff0f0;
+            border-bottom: 3px solid var(--primary-red);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        /* Card Section */
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-red);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-red);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Activity Article Item */
+        .activity-item {
+            display: flex;
+            gap: 15px;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .activity-thumb {
+            width: 120px;
+            height: 80px;
+            background-color: #e2e8f0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .activity-content h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .activity-content h3 a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .activity-content h3 a:hover {
+            color: var(--primary-red);
+        }
+
+        .activity-meta {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        .activity-desc {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.4;
+        }
+
+        /* Grid Function / Duty */
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .function-item {
+            background: #fafafa;
+            border-left: 4px solid var(--primary-red);
+            padding: 15px;
+            border-radius: 4px;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .function-item h3 {
+            font-size: 15px;
+            color: var(--dark-red);
+            margin-bottom: 8px;
+        }
+
+        .function-item p {
+            font-size: 13px;
+            color: var(--text-sub);
+        }
+
+        /* Denunciation / Feedback Form */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-red);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--dark-red);
+        }
+
+        /* Table */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .info-table th, .info-table td {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .info-table th {
+            background-color: #fff0f0;
+            color: var(--dark-red);
+            font-weight: 700;
+        }
+
+        /* News & Regulations List */
+        .news-list {
+            list-style: none;
+        }
+
+        .news-item {
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .news-item a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .news-item a:hover {
+            color: var(--primary-red);
+        }
+
+        .news-tag {
+            font-size: 11px;
+            background: #e9ecef;
+            color: var(--text-sub);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Contact & Hotline Box */
+        .hotline-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border: 1px solid #ffe8a1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+
+        .hotline-box h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #533f03;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #024141;
+            color: #ccc;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 40px;
+            border-top: 4px solid var(--primary-red);
+        }
+
+        footer strong {
+            color: #fff;
+        }
+
+        
+/* CSS KHU VỰC ẢNH UBKT - 1 CỘT, CHIỀU CAO 280PX */
+.ubkt-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: #f356de;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 280px; /* Chiều cao cố định 280px */
+    object-fit: cover; /* Tự động căn chỉnh hình ảnh vừa khung mà không bị bóp méo */
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(4, 163, 168, 0.75);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 12px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+
+@media (max-width: 768px) {
+    .google-form-container iframe {
+        height: 800px; /* Tăng chiều cao trên điện thoại để không bị giật trang khi điền */
+    }
+}
+
+/* ĐIỀU CHỈNH RESPONSIVE CHO ĐIỆN THOẠI (< 768PX) */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Khối bài viết chuyển sang dạng dọc */
+    .activity-item {
+        flex-direction: column;
+    }
+
+    /* Sửa lỗi ảnh bị kéo dẹt trên điện thoại */
+    .activity-thumb {
+        width: 100%;
+        height: auto;           /* Tự động tính chiều cao theo tỉ lệ */
+        aspect-ratio: 16 / 9;   /* Cố định tỉ lệ chuẩn 16:9 cho ảnh */
+        object-fit: cover;      /* Cắt cúp vừa vặn, không làm méo hình */
+    }
+
+    /* Khối ảnh sidebar trên điện thoại (nếu cần tự co giãn) */
+    .gallery-item img {
+        height: 250px;          /* Giảm chiều cao ảnh sidebar xuống 250px trên điện thoại cho đỡ tốn diện tích */
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <span>🚩 ĐẢNG CỘNG SẢN VIỆT NAM QUANG VINH MUÔN NĂM</span>
+        <span>Đảng ủy Phường Lưu Kiếm - TP. Hải Phòng</span>
+    </div>
+
+    <!-- Main Header -->
+    <header class="header-main">
+        <h2>ĐẢNG BỘ PHƯỜNG LƯU KIẾM</h2>
+        <h1>ỦY BAN KIỂM TRA ĐẢNG ỦY PHƯỜNG LƯU KIẾM</h1>
+        <p>"Tập trung, minh bạch, công tâm, khách quan, tuân thủ kỷ luật Đảng và pháp luật của Nhà nước"</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-container">
+            <li><a href="../../index.html" class="active">Trang chủ</a></li>
+            <li><a href="#hoat-dong">Tin tức</a></li>
+            <li><a href="#chuc-nang">Chức năng & Nhiệm vụ</a></li>
+            <li><a href="#co-cau">Cơ cấu tổ chức</a></li>
+            <li><a href="#van-ban">Văn bản</a></li>
+            <li><a href="#tiep-dan">Tiếp công dân</a></li>
+            <li><a href="#phan-anh">Gửi phản ánh</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container">
+
+        <!-- Left Column: Main Content -->
+        <main>
+   
+            <!-- TÌM VÀ HIỂN THỊ BÀI VIẾT CÓ TỪ KHÓA "KIỂM TRA" -->
+            <section class="card" id="hoat-dong">
+                <div class="card-title">
+                    <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/kiemtradang.png" alt="Ủy ban kiểm tra"  title="Ủy ban kiểm tra">
+                    Tin tức
+                </div>
+                <div id="activity-container">
+                    <p style="font-size: 13px; color: #777;">Đang tìm kiếm bài viết liên quan đến công tác "Kiểm tra"...</p>
+                </div>
+            </section>
+        
+            <!-- Giới thiệu & Chức năng nhiệm vụ -->
+            <section class="card" id="chuc-nang">
+                <div class="card-title">
+                    <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/kiemtradang.png" alt="Ủy ban kiểm tra"  title="Ủy ban kiểm tra">
+                    Chức năng & Nhiệm nụ trọng tâm
+                </div>
+                <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-sub);">
+                    Ủy ban Kiểm tra Đảng ủy phường Lưu Kiếm là cơ quan kiểm tra, giám sát chuyên trách của Đảng ủy phường, thực hiện các nhiệm vụ do Điều lệ Đảng quy định và do Đảng ủy, Ban Thường vụ Đảng ủy phường giao:
+                </p>
+                <div class="function-grid">
+                    <div class="function-item">
+                        <h3>1. Kiểm tra Đảng viên & Tổ chức Đảng</h3>
+                        <p>Kiểm tra Đảng viên (kể cả Cấp ủy viên) và tổ chức Đảng cấp dưới khi có dấu hiệu vi phạm tiêu chuẩn, nhiệm vụ.</p>
+                    </div>
+                    <div class="function-item">
+                        <h3>2. Giám sát chuyên đề</h3>
+                        <p>Thực hiện giám sát chuyên đề đối với Chi bộ trực thuộc và cán bộ, đảng viên trong việc chấp hành Nghị quyết, Chỉ thị.</p>
+                    </div>
+                    <div class="function-item">
+                        <h3>3. Giải quyết Tố cáo & Khiếu nại</h3>
+                        <p>Tiếp nhận, xử lý, giải quyết đơn thư tố cáo tổ chức Đảng, Đảng viên và giải quyết khiếu nại kỷ luật Đảng theo thẩm quyền.</p>
+                    </div>
+                    <div class="function-item">
+                        <h3>4. Kiểm tra tài chính Đảng</h3>
+                        <p>Kiểm tra việc thu, nộp, quản lý và sử dụng đảng phí, tài chính Đảng của các Chi bộ trực thuộc Đảng bộ phường.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cơ cấu tổ chức -->
+            <section class="card" id="co-cau">
+                <div class="card-title">
+                    <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/kiemtradang.png" alt="Ủy ban kiểm tra"  title="Ủy ban kiểm tra">
+                    Cơ Cấu nhân sự Ủy ban Kiểm tra
+                </div>
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>Chức danh</th>
+                            <th>Nhiệm vụ phân công</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Chủ nhiệm UBKT Đảng ủy</strong></td>
+                            <td>Phụ trách chung, chịu trách nhiệm trước Đảng ủy, Ban Thường vụ về công tác kiểm tra, giám sát.</td>
+                            <td>Ủy viên BTV Đảng ủy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phó Chủ nhiệm UBKT Đảng ủy</strong></td>
+                            <td>Trực tiếp xử lý công việc thường xuyên, tiếp công dân, tiếp nhận và phân loại đơn thư phản ánh, tố cáo.</td>
+                            <td>Chuyên trách</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ủy viên UBKT Đảng ủy</strong></td>
+                            <td>Theo dõi, phụ trách công tác kiểm tra, giám sát tại các Đảng bộ, Chi bộ</td>
+                            <td>Chuyên trách</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+           
+           <!-- GỬI PHẢN ÁNH / TỐ CÁO -->
+<section class="card" id="phan-anh">
+    <div class="card-title">
+        <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/kiemtradang.png" alt="Ủy ban kiểm tra"  title="Ủy ban kiểm tra">
+        Gửi thông tin phản ánh tới UBKT Đảng Ủy
+    </div>
+    <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 15px;">
+        * Thông tin phản ánh, kiến nghị của công dân và cán bộ, đảng viên được bảo mật hoàn toàn theo quy định của Đảng và Pháp luật.
+    </p>
+
+    <form id="formPhanAnh">
+        <div class="form-group">
+            <label>Họ và tên người gửi (Có thể để trống nếu muốn ẩn danh):</label>
+            <input type="text" name="hoTen" class="form-control" placeholder="Nguyễn Văn A...">
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại / Email liên hệ:</label>
+            <input type="text" name="lienHe" class="form-control" placeholder="098x.xxx.xxx / email@example.com">
+        </div>
+        <div class="form-group">
+            <label>Đối tượng được phản ánh / Tố cáo (Tổ chức Đảng hoặc Đảng viên):</label>
+            <input type="text" name="doiTuong" class="form-control" placeholder="Ghi rõ tên Chi bộ hoặc Họ tên cán bộ, đảng viên..." required>
+        </div>
+        <div class="form-group">
+            <label>Nội dung phản ánh / Tố cáo chi tiết:</label>
+            <textarea name="noiDung" class="form-control" placeholder="Nêu rõ thời gian, địa điểm, hành vi có dấu hiệu vi phạm..." required></textarea>
+        </div>
+        <button type="submit" id="btnGuiForm" class="btn-submit">GỬI THÔNG TIN PHẢN ÁNH</button>
+    </form>
+</section>
+
+
+            <!-- Văn bản - Quy định -->
+            <section class="card" id="van-ban">
+
+                <div class="card-title">
+                    <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/kiemtradang.png" alt="Ủy ban kiểm tra"  title="Ủy ban kiểm tra">
+                    Văn bản & Quy định của Đảng về công tác Kiểm tra
+                </div>
+
+                <ul class="news-list">
+
+                    <li class="news-item">
+                        <a href="https://ubkttw.vn/tai-lieu-tu-lieu&site=104764">Trang Tài liệu - Tư liệu của Ủy ban kiểm tra Trung ương Đảng</a>
+                        <span class="news-tag">Trung ương</span>
+                    </li>
+
+                    <li class="news-item">
+                        <a href="qd-21.html">Quy định số 21-QĐ/TW về công tác kiểm tra, giám sát và kỷ luật của Đảng</a>
+                        <span class="news-tag">Trung ương</span>
+                    </li>
+                    <li class="news-item">
+                        <a href="hd02-nhung-dieu-dang-vien-khong-duoc-lam.html">Hướng dẫn sô 02-HD/UBKTTW thực hiện Quy định số 207-QĐ/TW </a>
+                        <span class="news-tag">Trung ương</span>
+                    </li>
+                    <li class="news-item">
+                        <a href="qd69.html">Quy định số 69-QĐ/TW về kỷ luật tổ chức đảng, đảng viên vi phạm</a>
+                        <span class="news-tag">Trung ương</span>
+                    </li>
+                    <li class="news-item">
+                        <a href="Hdsinhhoatchibo50.html">Hướng dẫn sinh hoạt chi bộ theo Chỉ thị 50 năm 2025 của Ban bí thư</a>
+                        <span class="news-tag">Đảng ủy phường</span>
+                    </li>
+
+                    <li class="news-item">
+                        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/HDkiemtragiamsatchibo.html">
+                            Hướng dẫn nghiệp vụ công tác kiểm tra, giám sát</a>
+                        <span class="news-tag">Đảng ủy phưởng</span>
+                    </li>
+                    <li class="news-item">
+                        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/mot-so-nhiem-vu-cua-dang-bo-chi-bo-co-so-chi-bo-truc-thuoc-ve-cong-tac-kiem-tra-giam-sat.html">
+                            Nhiệm vụ công tác kiểm tra, giám sát của chi bộ</a>
+                        <span class="news-tag">Đảng ủy phường</span>
+                    </li>
+
+                </ul>
+            </section>
+
+        </main>
+
+          <!-- Right Column: Sidebar -->
+<aside>
+    <!-- KHU VỰC ẢNH TIÊU BIỂU CỦA UBKT (MỚI BỔ SUNG) -->
+    <div class="card gallery-card">
+        <div class="card-title" style="font-size: 16px;">📸 Hình ảnh hoạt động tiêu biểu</div>
+        <div class="ubkt-gallery">
+            <div class="gallery-item">
+                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/H (1).jpg" alt="Ủy ban kiểm tra phường tham dự Đại hội">
+                <span class="gallery-caption">Ủy ban kiểm tra phường tham dự Đại hội Đảng bộ phường lần thứ nhất</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/H (2).jpg" alt="UBKT thăm nguyên cán bộ lãnh đạo UBKT huyện ủy Thủy Nguyên">
+                <span class="gallery-caption">UBKT thăm nguyên cán bộ lãnh đạo UBKT huyện ủy Thủy Nguyên</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/H (4).jpg" alt="UBKT thăm nguyên cán bộ lãnh đạo UBKT huyện ủy Thủy Nguyên">
+                <span class="gallery-caption">UBKT thăm nguyên cán bộ lãnh đạo UBKT huyện ủy Thủy Nguyên</span>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- ĐƯỜNG DÂY NÓNG -->
+    <div class="hotline-box">
+        <h3>📞 Đường dây nóng UBKT</h3>
+        <p style="font-size: 13px; margin-bottom: 8px;">Tiếp nhận thông tin tố cáo, phản ánh vi phạm kỷ luật Đảng 24/7:</p>
+        <p style="font-size: 18px; font-weight: 800; color: var(--primary-red);">0225.3xxx.xxx</p>
+        <p style="font-size: 13px; margin-top: 5px;">Hòm thư điện tử: <strong>vucong2020@gmail.com</strong></p>
+    </div>
+
+    <!-- LỊCH TIẾP CÔNG DÂN -->
+    <div class="card" id="tiep-dan">
+        <div class="card-title" style="font-size: 16px;">🗓️ Lịch tiếp công dân & đảng viên</div>
+        <div style="font-size: 13px; color: var(--text-main);">
+            <p style="margin-bottom: 8px;"><strong>Đồng chí Chủ nhiệm UBKT Đảng ủy:</strong> Tiếp định kỳ vào Thứ 5 hàng tuần.</p>
+            <p style="margin-bottom: 8px;"><strong>Cán bộ Thường trực UBKT:</strong> Tiếp công dân và nhận đơn thư tất cả các ngày làm việc trong tuần (Thứ 2 đến Thứ 6).</p>
+            <hr style="margin: 10px 0; border: none; border-top: 1px dashed var(--border-color);">
+            <p><strong>Thời gian:</strong></p>
+            <p>• Sáng: 07:30 – 11:30</p>
+            <p>• Chiều: 13:30 – 17:00</p>
+            <p><strong>Địa điểm:</strong> Phòng Tiếp dân - Trụ sở Đảng ủy phường Lưu Kiếm.</p>
+        </div>
+    </div>
+
+    <!-- NGUYÊN TẮC LÀM VIỆC -->
+    <div class="card" style="background: #fafafa;">
+        <div class="card-title" style="font-size: 16px;">⚖️ Nguyên tắc làm việc</div>
+        <ul style="font-size: 13px; color: var(--text-sub); padding-left: 18px;">
+            <li style="margin-bottom: 6px;">Thực hiện nghiêm túc nguyên tắc Tập trung dân chủ.</li>
+            <li style="margin-bottom: 6px;">Chủ động, tích cực, phòng ngừa là chính.</li>
+            <li style="margin-bottom: 6px;">Cung cấp thông tin chính xác, đúng thẩm quyền.</li>
+            <li style="margin-bottom: 6px;">Bảo vệ người tố cáo đúng quy định.</li>
+        </ul>
+    </div>
+</aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>ỦY BAN KIỂM TRA ĐẢNG ỦY PHƯỜNG LƯU KIẾM</strong></p>
+        <p>Địa chỉ: Trụ sở Đảng ủy phường Lưu Kiếm, TP. Hải Phòng</p>
+        <p style="font-size: 12px; margin-top: 8px; color: #c2e404;">Trang thông tin điện tử phục vụ công tác kiểm tra, giám sát và thi hành kỷ luật Đảng cấp cơ sở.</p>
+    </footer>
+
+<!-- SCRIPT LỌC VÀ HIỂN THỊ BÀI VIẾT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const jsonUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json";
+            const container = document.getElementById("activity-container");
+            const keyword = "kiểm tra"; // Từ khóa cần lọc
+
+            fetch(jsonUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Không thể tải file dữ liệu bài viết");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    container.innerHTML = "";
+
+                    // Lọc bài viết có chứa chữ "Kiểm tra" trong tiêu đề, mô tả hoặc danh mục
+                    const filteredPosts = data.filter(post => {
+                        const titleMatch = post.title && post.title.toLowerCase().includes(keyword);
+                        const descMatch = post.desc && post.desc.toLowerCase().includes(keyword);
+                        
+                        // Kiểm tra trong mảng category nếu có
+                        const categoryMatch = Array.isArray(post.category) && post.category.some(cat => cat.toLowerCase().includes(keyword));
+
+                        return titleMatch || descMatch || categoryMatch;
+                    });
+
+                    // Lấy tối đa 5 bài viết thỏa mãn điều kiện
+                    const top5Filtered = filteredPosts.slice(0, 6);
+
+                    if (top5Filtered.length === 0) {
+                        container.innerHTML = `<p style='font-size:13px; color:#666;'>Không tìm thấy bài viết nào chứa từ khóa "${keyword}".</p>`;
+                        return;
+                    }
+
+                    // Render danh sách bài viết đã lọc out ra giao diện
+                    top5Filtered.forEach(post => {
+                        const categories = Array.isArray(post.category) ? post.category.join(", ") : "Tin tức";
+                        const imageSrc = post.image || "https://via.placeholder.com/130x85?text=Kiem+Tra";
+
+                        const htmlItem = `
+                            <div class="activity-item">
+                                <img class="activity-thumb" src="${imageSrc}" alt="${post.title}" onerror="this.src='https://via.placeholder.com/130x85?text=Kiem+Tra'">
+                                <div class="activity-content">
+                                    <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
+                                    <div class="activity-meta">🗓️ Ngày ${post.date} | 🏷️ ${categories}</div>
+                                    <p class="activity-desc">${post.desc}</p>
+                                </div>
+                            </div>
+                        `;
+                        container.insertAdjacentHTML("beforeend", htmlItem);
+                    });
+                })
+                .catch(error => {
+                    console.error("Lỗi:", error);
+                    container.innerHTML = "<p style='font-size:13px; color:red;'>Không thể tải danh sách bài viết tự động.</p>";
+                });
+        });
+    </script>
+
+<!-- SCRIPT GỬI DỮ LIỆU VỀ GOOGLE SHEET -->
+<script>
+    document.getElementById('formPhanAnh').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('btnGuiForm');
+        const originalBtnText = btn.innerText;
+
+        // VÔ HIỆU HÓA NÚT BẤM TRÁNH NGƯỜI DÙNG CLICK NHIỀU LẦN
+        btn.disabled = true;
+        btn.innerText = "⏳ Đang gửi dữ liệu...";
+
+        // *** DÁN URL GOOGLE APPS SCRIPT CỦA BẠN VÀO DƯỚI ĐÂY ***
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzGgrXKUS5GVRCc4CX0dVg-RA91rHMbmwgzDhU-vsxraIkKOzKl_kjx1XkSIy-CAoCyKA/exec";
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: new FormData(this)
+        })
+        .then(response => {
+            alert('Cảm ơn bạn đã gửi thông tin! Ủy ban Kiểm tra Đảng ủy sẽ tiếp nhận và xử lý theo quy định.');
+            this.reset(); // Xóa sạch dữ liệu trên form sau khi gửi thành công
+        })
+        .catch(error => {
+            console.error('Lỗi!', error.message);
+            alert('Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại sau.');
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerText = originalBtnText;
+        });
+    });
+</script>
+
+</body>
+</html>
