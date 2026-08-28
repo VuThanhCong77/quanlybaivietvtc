@@ -348,21 +348,18 @@
             .header-main h1 { font-size: 14px; }
             .header-main h2 { font-size: 14px; }
 
-        /* Khối bài viết chuyển sang dạng dọc */
-    .activity-item {
+           .activity-item {
         flex-direction: column;
     }
 
-    /* Sửa lỗi ảnh bị kéo dẹt trên điện thoại */
-    .activity-thumb {
+           .activity-thumb {
         width: 100%;
         height: auto;           /* Tự động tính chiều cao theo tỉ lệ */
         aspect-ratio: 16 / 9;   /* Cố định tỉ lệ chuẩn 16:9 cho ảnh */
         object-fit: cover;      /* Cắt cúp vừa vặn, không làm méo hình */
     }
 
-    /* Khối ảnh sidebar trên điện thoại (nếu cần tự co giãn) */
-    .gallery-item img {
+           .gallery-item img {
         height: 250px;          /* Giảm chiều cao ảnh sidebar xuống 250px trên điện thoại cho đỡ tốn diện tích */
     }
             
@@ -388,10 +385,5 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .news-item {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
+           }
   
