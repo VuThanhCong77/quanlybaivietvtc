@@ -19,7 +19,7 @@ href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.
 MAIN CSS
 ===================================================== -->
 
-<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/hanh-chinh-cong.css">
+<link rel="stylesheet" href="../../tai-nguyen/css/hanh-chinh-cong.css">
 
 
 </head>
@@ -34,13 +34,17 @@ MAIN CSS
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <ul class="nav-container">
-            <li><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html" class="active">Trang chủ</a></li>
+        <button class="menu-toggle" id="menuToggle">
+            <span>☰ Danh mục dịch vụ</span>
+            <span style="font-size: 12px;">▼</span>
+        </button>
+        <ul class="nav-container" id="navContainer">
+            <li><a href="../../index.html" class="active">Trang chủ</a></li>
             <li><a href="#thu-tuc">Thủ tục hành chính</a></li>
             <li><a href="#tin-tuc">Tin tức</a></li>
             <li><a href="#lich-lam-viec">Lịch làm việc</a></li>
             <li><a href="#thong-bao">Thông báo</a></li>
-            <li><a href="#lien-he">Phản ánh</a></li>
+            <li><a href="#lien-he">Liên hệ</a></li>
         </ul>
     </nav>
 
@@ -228,7 +232,48 @@ MAIN CSS
         <p style="font-size: 12px; margin-top: 8px; color: #d7ee05;">Trang thông tin hướng dẫn dịch vụ công trực tuyến và tra cứu thủ tục hành chính cấp phường.</p>
     </footer>
 
-               
+    <!-- Nút Lên Đầu Trang -->
+    <button class="back-to-top" id="backToTop" title="Lên đầu trang">▲</button>
+
+            <script>
+            // 1. Xử lý Toggle Menu trên Mobile
+            const menuToggle = document.getElementById('menuToggle');
+            const navContainer = document.getElementById('navContainer');
+            const menuArrow = document.getElementById('menuArrow');
+
+            menuToggle.addEventListener('click', function() {
+                navContainer.classList.toggle('show');
+                menuArrow.textContent = navContainer.classList.contains('show') ? '▲' : '▼';
+            });
+
+            // Tự đóng menu sau khi bấm chọn 1 mục
+            document.querySelectorAll('.nav-container a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navContainer.classList.remove('show');
+                    menuArrow.textContent = '▼';
+                });
+            });
+
+            // 2. Xử lý Nút Lên Đầu Trang (Back to Top)
+            const backToTopBtn = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            </script>
+
             <script>
 
  	document.addEventListener("DOMContentLoaded", function () {
@@ -315,6 +360,7 @@ MAIN CSS
             });
 
     </script>
+
 
 </body>
 </html>
