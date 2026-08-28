@@ -345,8 +345,26 @@
 
         /* MÀN HÌNH MÁY TÍNH (Dàn trang 2 cột khi màn hình > 768px) */
         @media (min-width: 769px) {
-            .header-main h1 { font-size: 16px; }
-            .header-main h2 { font-size: 13px; }
+            .header-main h1 { font-size: 14px; }
+            .header-main h2 { font-size: 14px; }
+
+        /* Khối bài viết chuyển sang dạng dọc */
+    .activity-item {
+        flex-direction: column;
+    }
+
+    /* Sửa lỗi ảnh bị kéo dẹt trên điện thoại */
+    .activity-thumb {
+        width: 100%;
+        height: auto;           /* Tự động tính chiều cao theo tỉ lệ */
+        aspect-ratio: 16 / 9;   /* Cố định tỉ lệ chuẩn 16:9 cho ảnh */
+        object-fit: cover;      /* Cắt cúp vừa vặn, không làm méo hình */
+    }
+
+    /* Khối ảnh sidebar trên điện thoại (nếu cần tự co giãn) */
+    .gallery-item img {
+        height: 250px;          /* Giảm chiều cao ảnh sidebar xuống 250px trên điện thoại cho đỡ tốn diện tích */
+    }
             
             .menu-toggle { display: none; }
             .nav-container {
