@@ -204,10 +204,19 @@ MAIN CSS
             <div class="gallery-item">
                 <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/hcc2.jpg" alt="Trung tâm phục vụ hành chính công cấp xã">
                 <span class="gallery-caption"><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/chuc-nang-nhiem-vu-cua-trung-tam-hanh-chinh-cong-cap-xa">Trung tâm phục vụ hành chính công cấp xã</a></span>
-            </div>
-            
+            </div>     
         </div>
     </div>
+
+            <!-- Thẻ Chia Sẻ Trang Web -->
+            <div class="card">
+                <div class="card-title">🔗 Chia sẻ trang này</div>
+                <p style="font-size: 13px; margin-bottom: 10px; color: var(--text-sub);">Chia sẻ liên kết Cổng dịch vụ công Phường Lưu Kiếm tới người thân, bạn bè:</p>
+                <button class="btn-share" id="btnShare">
+                    <span>↗️</span>
+                    <span>Chia sẻ ngay</span>
+                </button>
+            </div>
 
         </aside>
 
@@ -219,9 +228,12 @@ MAIN CSS
         <p style="font-size: 12px; margin-top: 8px; color: #d7ee05;">Trang thông tin hướng dẫn dịch vụ công trực tuyến và tra cứu thủ tục hành chính cấp phường.</p>
     </footer>
 
-                // Fetch News và Lọc theo "Hành chính công"
+               
             <script>
-        document.addEventListener("DOMContentLoaded", function () {
+
+ 	document.addEventListener("DOMContentLoaded", function () {
+
+     // Fetch News và Lọc theo "Hành chính công"
             const jsonUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json";
             const container = document.getElementById("activity-container");
             const keyword = "hành chính công"; // Từ khóa cần lọc
@@ -278,6 +290,30 @@ MAIN CSS
                     container.innerHTML = "<p style='font-size:13px; color:red;'>Không thể tải danh sách bài viết tự động.</p>";
                 });
         });
+
+           // Xử lý nút Chia sẻ
+            const btnShare = document.getElementById('btnShare');
+            btnShare.addEventListener('click', function() {
+                const shareData = {
+                    title: 'Trung Tâm Phục Vụ Hành Chính Công - Phường Lưu Kiếm',
+                    text: 'Trang thông tin hướng dẫn dịch vụ công trực tuyến và tra cứu thủ tục hành chính cấp phường.',
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .catch((error) => console.log('Đã hủy chia sẻ', error));
+                } else {
+                    navigator.clipboard.writeText(window.location.href)
+                        .then(() => {
+                            alert('Đã sao chép liên kết trang web vào bộ nhớ tạm!');
+                        })
+                        .catch(() => {
+                            alert('Không thể sao chép liên kết.');
+                        });
+                }
+            });
+
     </script>
 
 </body>
