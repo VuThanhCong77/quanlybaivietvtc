@@ -345,8 +345,8 @@
 
         /* MÀN HÌNH MÁY TÍNH (Dàn trang 2 cột khi màn hình > 768px) */
         @media (min-width: 769px) {
-            .header-main h1 { font-size: 24px; }
-            .header-main h2 { font-size: 14px; }
+            .header-main h1 { font-size: 16px; }
+            .header-main h2 { font-size: 13px; }
             
             .menu-toggle { display: none; }
             .nav-container {
