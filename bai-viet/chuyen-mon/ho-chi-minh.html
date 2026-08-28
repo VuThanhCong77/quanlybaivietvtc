@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh</title>.
+
+    <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #b71c1c;
+            max-width: 1200px;
+            margin: 0 auto; /* Thêm dòng này để căn giữa header */
+            color: #fff;
+            padding: 12px 12px;
+            text-align: center;
+            border-bottom: 4px solid #ffd54f;
+        }
+        header h1 {
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        /* CỘT 1: BÀI VIẾT TỪ JSON */
+        .main-content {
+            flex: 2;
+            min-width: 320px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        .section-title {
+            color: #b71c1c;
+            border-bottom: 2px solid #b71c1c;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        /* KHU VỰC THANH TÌM KIẾM */
+        .search-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px 14px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-box input:focus {
+            border-color: #b71c1c;
+        }
+        .search-box button {
+            padding: 10px 18px;
+            background-color: #b71c1c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .search-box button:hover {
+            background-color: #8e0000;
+        }
+
+        /* DANH SÁCH BÀI VIẾT */
+        .post-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .post-item:last-child {
+            border-bottom: none;
+        }
+        .post-thumb {
+            width: 160px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .post-info {
+            flex-grow: 1;
+        }
+        .post-title {
+            font-size: 16px;
+            color: #1a237e;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .post-title:hover {
+            color: #b71c1c;
+        }
+        .post-meta {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+        .post-desc {
+            font-size: 13.5px;
+            color: #444;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* CỘT 2: THÔNG TIN BÁC HỒ & LIÊN KẾT */
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .widget {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        .widget img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .widget-title {
+            font-size: 16px;
+            color: #b71c1c;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 6px;
+        }
+        .external-links {
+            list-style: none;
+        }
+        .external-links li {
+            margin-bottom: 8px;
+        }
+        .external-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 13.5px;
+            display: block;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-left: 3px solid #b71c1c;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+        .external-links a:hover {
+            background: #b71c1c;
+            color: #fff;
+            padding-left: 15px;
+        }
+        .loading, .no-data {
+            font-style: italic;
+            color: #666;
+            padding: 10px 0;
+        }
+    /* CSS Nút Lên Đầu Trang */
+    .back-to-top {
+        position: fixed;
+        bottom: 25px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        background-color: #c8102e; /* Màu đỏ chủ đạo */
+        color: #ffffff;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 99999; /* Đảm bảo luôn nằm trên cùng */
+        
+        /* Hiệu ứng ẩn/hiện mượt mà */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Hiển thị nút khi cuộn xuống */
+    .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Hiệu ứng khi bấm vào */
+    .back-to-top:active {
+        transform: scale(0.9);
+        background-color: #8b0000;
+    }
+
+        @media (max-width: 768px) {
+            .post-item {
+                flex-direction: column;
+            }
+
+            header h1 {
+            font-size: 14px;
+            }
+
+            .post-thumb {
+                width: 100%;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+
+        <div id="menu"></div>
+
+        <h1>Học tập, thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh</h1>
+    </header>
+
+    <div class="container">
+        <!-- CỘT 1: BÀI VIẾT VÀ TÌM KIẾM -->
+        <main class="main-content">
+            <h2 class="section-title">Bài viết - Chuyên đề</h2>
+
+            <!-- KHU VỰC Ô VÀ NÚT TÌM KIẾM -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Nhập từ khóa tìm kiếm bài viết...">
+                <button id="search-btn">Tìm kiếm</button>
+            </div>
+
+            <!-- DANH SÁCH BÀI VIẾT -->
+            <div id="posts-container">
+                <p class="loading">Đang tải dữ liệu bài viết...</p>
+            </div>
+        </main>
+
+        <!-- CỘT 2: TƯ LIỆU BÁC HỒ & LIÊN KẾT NGOÀI -->
+        <aside class="sidebar">
+            <div class="widget">
+                <h3 class="widget-title">Chủ tịch Hồ Chí Minh</h3>
+                <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/BacHo.jpg" alt="Chủ tịch Hồ Chí Minh" onerror="this.src='https://via.placeholder.com/400x260?text=Chu+Tich+Ho+Chi+Minh'">
+                <p style="font-size: 13.5px; text-align: justify;">Chủ tịch Hồ Chí Minh (1890–1969) là vị lãnh tụ thiên tài, Người thầy vĩ đại của cách mạng Việt Nam, Anh hùng giải phóng dân tộc, Danh nhân văn hóa thế giới. Người đã để lại cho toàn Đảng, toàn dân ta một di sản tinh thần vô giá: Tư tưởng, đạo đức, phương pháp và phong cách Hồ Chí Minh.</p>
+            </div>
+
+            <div class="widget">
+                <h3 class="widget-title">Liên kết hữu ích</h3>
+                <ul class="external-links">
+                    <li>
+                        <a href="https://hochiminh.vn/" target="_blank" rel="noopener">Trang thông tin Tư tưởng Hồ Chí Minh</a>
+                    </li>
+                    <li>
+                        <a href="https://tulieuvankien.dangcongsan.vn/" target="_blank" rel="noopener">Tư liệu Văn kiện Đảng</a>
+                    </li>
+                    <li>
+                        <a href="http://baochinhphu.vn/" target="_blank" rel="noopener">Báo Điện tử Chính phủ</a>
+                    </li>
+                    <li>
+                        <a href="https://nhandan.vn/" target="_blank" rel="noopener">Báo Nhân Dân</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- HTML Nút Lên Đầu Trang -->
+<button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">▲</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const backToTopBtn = document.getElementById('backToTop');
+
+        // Bật/tắt nút dựa trên vị trí cuộn trang (chỉ cần cuộn 100px là xuất hiện)
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Xử lý sự kiện cuộn mượt lên đầu trang khi bấm
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+    <!-- SCRIPT TÌM KIẾM & RENDER DỮ LIỆU -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("posts-container");
+            const searchInput = document.getElementById("search-input");
+            const searchBtn = document.getElementById("search-btn");
+
+            let hoChiMinhPosts = []; // Lưu danh sách bài viết đã lọc chủ đề Bác Hồ
+
+            // Tải dữ liệu JSON
+            fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json")
+                .then(response => {
+                    if (!response.ok) throw new Error('Không thể tải file dữ liệu');
+                    return response.json();
+                })
+                .then(data => {
+                    // Lọc ban đầu: Chỉ lấy các bài viết có liên quan tới "Hồ Chí Minh"
+                    const mainTopicKeyword = "hồ chí minh";
+                    hoChiMinhPosts = data.filter(post => {
+                        const titleMatch = post.title && post.title.toLowerCase().includes(mainTopicKeyword);
+                        const descMatch = post.desc && post.desc.toLowerCase().includes(mainTopicKeyword);
+                        const categoryMatch = post.category && Array.isArray(post.category) && post.category.some(cat => cat.toLowerCase().includes(mainTopicKeyword));
+                        return titleMatch || descMatch || categoryMatch;
+                    });
+
+                    // Hiển thị danh sách ban đầu
+                    renderPosts(hoChiMinhPosts);
+                })
+                .catch(error => {
+                    console.error('Lỗi:', error);
+                    container.innerHTML = `<p style="color: red;">Đã xảy ra lỗi khi tải dữ liệu bài viết (Kiểm tra đường dẫn <code>/du-lieu/bai-viet.json</code>).</p>`;
+                });
+
+            // Hàm hiển thị danh sách bài viết ra màn hình
+            function renderPosts(posts) {
+                if (posts.length === 0) {
+                    container.innerHTML = "<p class='no-data'>Không tìm thấy bài viết nào phù hợp.</p>";
+                    return;
+                }
+
+                let html = "";
+                posts.forEach(post => {
+                    const imageUrl = post.image || 'https://via.placeholder.com/160x100?text=No+Image';
+                    html += `
+                        <article class="post-item">
+                            <a href="${post.url || '#'}" target="_blank">
+                                <img class="post-thumb" src="${imageUrl}" alt="${post.title}">
+                            </a>
+                            <div class="post-info">
+                                <a class="post-title" href="${post.url || '#'}" target="_blank">${post.title}</a>
+                                <div class="post-meta">
+                                    <span>📅 ${post.date || 'Chưa cập nhật'}</span>
+                                    ${post.category ? ` | 📁 ${post.category.join(', ')}` : ''}
+                                </div>
+                                <div class="post-desc">${post.desc || ''}</div>
+                            </div>
+                        </article>
+                    `;
+                });
+                container.innerHTML = html;
+            }
+
+            // Xử lý sự kiện Tìm kiếm
+            function executeSearch() {
+                const query = searchInput.value.trim().toLowerCase();
+                
+                // Lọc tiếp trên danh sách bài viết chủ đề Hồ Chí Minh
+                const results = hoChiMinhPosts.filter(post => {
+                    const titleMatch = post.title && post.title.toLowerCase().includes(query);
+                    const descMatch = post.desc && post.desc.toLowerCase().includes(query);
+                    return titleMatch || descMatch;
+                });
+
+                renderPosts(results);
+            }
+
+            // Click nút "Tìm kiếm"
+            searchBtn.addEventListener("click", executeSearch);
+
+            // Tìm kiếm trực tiếp khi gõ chữ (Real-time search) hoặc nhấn Enter
+            searchInput.addEventListener("input", executeSearch);
+            searchInput.addEventListener("keypress", function(e) {
+                if (e.key === "Enter") {
+                    executeSearch();
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+
+async function loadComponent(id, file){
+
+    try{
+
+        const response = await fetch(file);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Lỗi tải component: " + file
+            );
+
+        }
+
+        const html = await response.text();
+
+        document.getElementById(id)
+        .innerHTML = html;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    loadComponent(
+        "menu",
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html"
+    );
+
+}
+);
+
+</script>
+
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+
+</body>
+</html>
