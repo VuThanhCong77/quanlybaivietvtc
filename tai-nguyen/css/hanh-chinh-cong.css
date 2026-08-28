@@ -345,6 +345,28 @@ footer {
     margin-top: 20px;
 }
 
+   /* Nút Chia sẻ */
+        .btn-share {
+            background-color: #0084ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .btn-share:hover {
+            background-color: #006bce;
+        }
+        
 /* MÀN HÌNH MÁY TÍNH (>= 768px) */
 @media (min-width: 768px) {
     .header-main h1 { font-size: 22px; } /* Đã sửa: Tăng kích thước tiêu đề trên máy tính */
