@@ -413,7 +413,7 @@ input {
 
     .dropdown-menu {
         /* Giới hạn chiều cao tối đa khoảng 60-70% màn hình điện thoại */
-        max-height: 60vh; 
+        max-height: 90vh; 
         
         /* Cho phép cuộn nội dung bên trong menu khi vượt quá chiều cao */
         overflow-y: auto; 
@@ -460,6 +460,21 @@ input {
         right: 10px;
         left: 10px;
         min-width: auto;
+    }
+
+       .dropdown-menu {
+        /* Giới hạn chiều cao tối đa khoảng 60-70% màn hình điện thoại */
+        max-height: 90vh; 
+        
+        /* Cho phép cuộn nội dung bên trong menu khi vượt quá chiều cao */
+        overflow-y: auto; 
+        
+        /* Hỗ trợ cuộn mượt trên thiết bị iOS */
+        -webkit-overflow-scrolling: touch; 
+        
+        /* Cố định lại vị trí hiển thị để không bị đẩy mất */
+        right: 0;
+        left: 0;
     }
 
     .tim-kiem {
