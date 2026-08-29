@@ -166,6 +166,42 @@ MAIN CSS
         <!-- Right Column: Sidebar -->
         <aside>
 
+                <!-- KHU VỰC PHÁT NHẠC -->
+
+<div style="font-family: Arial, sans-serif; max-width: 400px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+  
+<div class="card-title">🎵 Bài hát: Người cán bộ phường thời chuyển đổi số <em>- Vũ Thành Công + AI</em></div>
+
+  <audio id="myAudio">
+    <source src="https://vuthanhcong77.github.io/quanlybaivietvtc/am-thanh/Bài ca người cán bộ phường thời chuyển đổi số.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Nút Phát/Tạm dừng -->
+  <div style="margin-bottom: 15px; text-align: center;">
+    <button id="playBtn" onclick="togglePlay()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
+      ▶ Phát nhạc
+    </button>
+  </div>
+
+  <!-- Thanh tiến trình thời gian -->
+  <div style="margin-bottom: 15px;">
+    <label style="display: block; font-size: 14px; margin-bottom: 5px;">Thời gian:</label>
+    <input type="range" id="seekSlider" value="0" max="100" style="width: 100%; cursor: pointer;" oninput="seekAudio()">
+    <div style="display: flex; justify-content: space-between; font-size: 12px; color: #666; margin-top: 3px;">
+      <span id="currentTime">00:00</span>
+      <span id="durationTime">00:00</span>
+    </div>
+  </div>
+
+  <!-- Thanh điều chỉnh âm lượng -->
+  <div>
+    <label style="display: block; font-size: 14px; margin-bottom: 5px;">Âm lượng:</label>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" style="width: 100%; cursor: pointer;" oninput="setVolume()">
+  </div>
+
+</div>
+
+
             <!-- Trạng thái hoạt động & Giờ làm việc -->
             <div class="card" id="lich-lam-viec">
                 <div class="card-title">⏰ Giờ làm việc</div>
@@ -360,6 +396,66 @@ MAIN CSS
             });
 
     </script>
+
+<script>
+  const audio = document.getElementById("myAudio");
+  const playBtn = document.getElementById("playBtn");
+  const seekSlider = document.getElementById("seekSlider");
+  const volumeSlider = document.getElementById("volumeSlider");
+  const currentTimeText = document.getElementById("currentTime");
+  const durationTimeText = document.getElementById("durationTime");
+
+  // Đổi trạng thái Play/Pause
+  function togglePlay() {
+    if (audio.paused) {
+      audio.play();
+      playBtn.innerHTML = "⏸ Tạm dừng";
+    } else {
+      audio.pause();
+      playBtn.innerHTML = "▶ Phát nhạc";
+    }
+  }
+
+  // Định dạng thời gian từ giây sang mm:ss
+  function formatTime(seconds) {
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+  }
+
+  // Cập nhật tổng thời lượng bài hát khi file đã tải xong thông tin
+  audio.onloadedmetadata = function() {
+    durationTimeText.innerText = formatTime(audio.duration);
+  };
+
+  // Cập nhật thanh tiến trình theo thời gian phát thực tế
+  audio.ontimeupdate = function() {
+    if (audio.duration) {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      seekSlider.value = percentage;
+      currentTimeText.innerText = formatTime(audio.currentTime);
+    }
+  };
+
+  // Tua nhạc khi kéo thanh thời gian
+  function seekAudio() {
+    if (audio.duration) {
+      audio.currentTime = (seekSlider.value / 100) * audio.duration;
+    }
+  }
+
+  // Thay đổi âm lượng
+  function setVolume() {
+    audio.volume = volumeSlider.value;
+  }
+
+  // Tự động trả về nút Play khi chạy xong bài
+  audio.onended = function() {
+    playBtn.innerHTML = "▶ Phát nhạc";
+    seekSlider.value = 0;
+    currentTimeText.innerText = "00:00";
+  };
+</script>
 
 
 </body>
