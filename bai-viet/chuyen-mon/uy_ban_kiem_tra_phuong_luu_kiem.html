@@ -106,6 +106,13 @@ href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.
                         <h3>4. Kiểm tra tài chính Đảng</h3>
                         <p>Kiểm tra việc thu, nộp, quản lý và sử dụng đảng phí, tài chính Đảng của các Chi bộ trực thuộc Đảng bộ phường.</p>
                     </div>
+
+                    <div class="function-item">
+                        <h3>5. Chức năng, nhiệm vụ, thẩm quyền</h3>
+                        <p><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/chuc-nang-nhiem-vu-va-tham-quyen-cua-ubkt-cap-xa.html">
+                            Theo Quy định 21-QĐ/TW ban hành ngày 11/4/2026 của Ban chấp hành Trung ương</a></p>
+                    </div>
+
                 </div>
             </section>
 
@@ -125,17 +132,17 @@ href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Chủ nhiệm UBKT Đảng ủy</strong></td>
+                            <td><strong>Chủ nhiệm UBKT Đảng ủy, Vũ Văn Cảnh</strong></td>
                             <td>Phụ trách chung, chịu trách nhiệm trước Đảng ủy, Ban Thường vụ về công tác kiểm tra, giám sát.</td>
                             <td>Ủy viên BTV Đảng ủy</td>
                         </tr>
                         <tr>
-                            <td><strong>Phó Chủ nhiệm UBKT Đảng ủy</strong></td>
+                            <td><strong>Phó Chủ nhiệm UBKT Đảng ủy, Vũ Thành Công và Đỗ Văn Kiên</strong></td>
                             <td>Trực tiếp xử lý công việc thường xuyên, tiếp công dân, tiếp nhận và phân loại đơn thư phản ánh, tố cáo.</td>
                             <td>Chuyên trách</td>
                         </tr>
                         <tr>
-                            <td><strong>Ủy viên UBKT Đảng ủy</strong></td>
+                            <td><strong>Ủy viên UBKT Đảng ủy, Nguyễn Thị Thu Hà và Mạc Anh Tiến</strong></td>
                             <td>Theo dõi, phụ trách công tác kiểm tra, giám sát tại các Đảng bộ, Chi bộ</td>
                             <td>Chuyên trách</td>
                         </tr>
@@ -304,65 +311,62 @@ href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.
 
 
 <!-- SCRIPT LỌC VÀ HIỂN THỊ BÀI VIẾT -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const jsonUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json";
-            const container = document.getElementById("activity-container");
-            const keyword = "kiểm tra"; // Từ khóa cần lọc
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const jsonUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json";
+        const container = document.getElementById("activity-container");
+        const keyword = "kiểm tra"; // Từ khóa cần lọc
 
-            fetch(jsonUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Không thể tải file dữ liệu bài viết");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    container.innerHTML = "";
+        fetch(jsonUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Không thể tải file dữ liệu bài viết");
+                }
+                return response.json();
+            })
+            .then(data => {
+                container.innerHTML = "";
 
-                    // Lọc bài viết có chứa chữ "Kiểm tra" trong tiêu đề, mô tả hoặc danh mục
-                    const filteredPosts = data.filter(post => {
-                        const titleMatch = post.title && post.title.toLowerCase().includes(keyword);
-                        const descMatch = post.desc && post.desc.toLowerCase().includes(keyword);
-                        
-                        // Kiểm tra trong mảng category nếu có
-                        const categoryMatch = Array.isArray(post.category) && post.category.some(cat => cat.toLowerCase().includes(keyword));
+                // Lọc tất cả bài viết có chứa chữ "Kiểm tra" trong tiêu đề, mô tả hoặc danh mục
+                const filteredPosts = data.filter(post => {
+                    const titleMatch = post.title && post.title.toLowerCase().includes(keyword);
+                    const descMatch = post.desc && post.desc.toLowerCase().includes(keyword);
+                    
+                    // Kiểm tra trong mảng category nếu có
+                    const categoryMatch = Array.isArray(post.category) && post.category.some(cat => cat.toLowerCase().includes(keyword));
 
-                        return titleMatch || descMatch || categoryMatch;
-                    });
-
-                    // Lấy tối đa 5 bài viết thỏa mãn điều kiện
-                    const top5Filtered = filteredPosts.slice(0, 6);
-
-                    if (top5Filtered.length === 0) {
-                        container.innerHTML = `<p style='font-size:13px; color:#666;'>Không tìm thấy bài viết nào chứa từ khóa "${keyword}".</p>`;
-                        return;
-                    }
-
-                    // Render danh sách bài viết đã lọc out ra giao diện
-                    top5Filtered.forEach(post => {
-                        const categories = Array.isArray(post.category) ? post.category.join(", ") : "Tin tức";
-                        const imageSrc = post.image || "https://via.placeholder.com/130x85?text=Kiem+Tra";
-
-                        const htmlItem = `
-                            <div class="activity-item">
-                                <img class="activity-thumb" src="${imageSrc}" alt="${post.title}" onerror="this.src='https://via.placeholder.com/130x85?text=Kiem+Tra'">
-                                <div class="activity-content">
-                                    <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
-                                    <div class="activity-meta">🗓️ Ngày ${post.date} | 🏷️ ${categories}</div>
-                                    <p class="activity-desc">${post.desc}</p>
-                                </div>
-                            </div>
-                        `;
-                        container.insertAdjacentHTML("beforeend", htmlItem);
-                    });
-                })
-                .catch(error => {
-                    console.error("Lỗi:", error);
-                    container.innerHTML = "<p style='font-size:13px; color:red;'>Không thể tải danh sách bài viết tự động.</p>";
+                    return titleMatch || descMatch || categoryMatch;
                 });
-        });
-    </script>
+
+                if (filteredPosts.length === 0) {
+                    container.innerHTML = `<p style='font-size:13px; color:#666;'>Không tìm thấy bài viết nào chứa từ khóa "${keyword}".</p>`;
+                    return;
+                }
+
+                // Render toàn bộ danh sách bài viết đã lọc ra giao diện
+                filteredPosts.forEach(post => {
+                    const categories = Array.isArray(post.category) ? post.category.join(", ") : "Tin tức";
+                    const imageSrc = post.image || "https://via.placeholder.com/130x85?text=Kiem+Tra";
+
+                    const htmlItem = `
+                        <div class="activity-item">
+                            <img class="activity-thumb" src="${imageSrc}" alt="${post.title}" onerror="this.src='https://via.placeholder.com/130x85?text=Kiem+Tra'">
+                            <div class="activity-content">
+                                <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
+                                <div class="activity-meta">🗓️ Ngày ${post.date} | 🏷️ ${categories}</div>
+                                <p class="activity-desc">${post.desc}</p>
+                            </div>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML("beforeend", htmlItem);
+                });
+            })
+            .catch(error => {
+                console.error("Lỗi:", error);
+                container.innerHTML = "<p style='font-size:13px; color:red;'>Không thể tải danh sách bài viết tự động.</p>";
+            });
+    });
+</script>
 
 <!-- SCRIPT GỬI DỮ LIỆU VỀ GOOGLE SHEET -->
 <script>
