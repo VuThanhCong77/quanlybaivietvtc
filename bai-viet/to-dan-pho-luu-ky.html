@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hồ sơ điện tử Tổ dân phố Lưu Kỳ - Phường Lưu Kiếm">
+    <meta name="theme-color" content="#0a7f99">
+    <title>Tổ dân phố Lưu Kỳ - Phường Lưu Kiếm</title>
+
+    <!-- Cấu hình Open Graph (Hình ảnh và thông tin hiển thị khi chia sẻ Facebook, Zalo,...) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vuthanhcong77.github.io/quanlybaivietvtc/to-dan-pho-luu-ky.html">
+<meta property="og:title" content="Tổ dân phố Lưu Kỳ - Phường Lưu Kiếm">
+<meta property="og:description" content="Hồ sơ điện tử Tổ dân phố Lưu Kỳ - Phường Lưu Kiếm, TP. Hải Phòng. Tìm hiểu lịch sử khai hoang 1965, danh thắng 16 núi đá vôi, địa lý, kinh tế và tin tức cộng đồng.">
+<meta property="og:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Tổ dân phố Lưu Kỳ">
+
+<!-- Thẻ hỗ trợ xem trước khi chia sẻ qua Twitter/X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tổ dân phố Lưu Kỳ - Phường Lưu Kiếm">
+<meta name="twitter:description" content="Hồ sơ điện tử Tổ dân phố Lưu Kỳ - Phường Lưu Kiếm, TP. Hải Phòng.">
+<meta name="twitter:image" content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky2.jpg">
+
+    <link rel="icon"
+        href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+    <link rel="icon"
+        href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
+
+    <style>
+        :root{
+            --primary:#0a7f99;
+            --primary-light:#0ab3c9;
+            --accent:#c0392b;
+            --dark:#17323a;
+            --text:#263238;
+            --muted:#68777d;
+            --light:#f4f8f9;
+            --white:#fff;
+            --border:#dce7ea;
+            --shadow:0 8px 24px rgba(20,60,70,.10);
+            --radius:16px;
+        }
+
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth}
+        body{
+            font-family:Arial,Roboto,sans-serif;
+            color:var(--text);
+            background:#f7fafb;
+            line-height:1.65;
+        }
+        a{text-decoration:none;color:inherit}
+        img{max-width:100%;display:block}
+
+        .topbar{
+            background:var(--dark);
+            color:#fff;
+            font-size:14px;
+        }
+        .topbar-inner{
+            max-width:1500px;
+            margin:auto;
+            padding:8px 24px;
+            display:flex;
+            justify-content:space-between;
+            gap:20px;
+        }
+
+        header{
+            position:sticky;
+            top:0;
+            z-index:1000;
+            background:rgba(255,255,255,.96);
+            box-shadow:0 2px 12px rgba(0,0,0,.08);
+            backdrop-filter:blur(10px);
+        }
+        .header-inner{
+            max-width:1500px;
+            margin:auto;
+            min-height:70px;
+            padding:0 24px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:20px;
+        }
+        .brand{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            min-width:220px;
+        }
+        .brand-logo{
+            width:46px;height:46px;
+            border-radius:50%;
+            background:linear-gradient(135deg,var(--accent),#8e241a);
+            color:#fff;
+            display:grid;
+            place-items:center;
+            font-size:20px;
+            font-weight:bold;
+        }
+        .brand h1{
+            font-size:18px;
+            color:var(--primary);
+            line-height:1.2;
+        }
+        .brand span{font-size:12px;color:var(--muted)}
+
+        nav ul{
+            list-style:none;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:flex-end;
+            gap:4px;
+        }
+        nav a{
+            display:block;
+            padding:10px 12px;
+            border-radius:99px;
+            font-size:14px;
+            font-weight:600;
+            color:#40545a;
+        }
+        nav a:hover,nav a.active{
+            background:#eaf7f9;
+            color:var(--primary);
+        }
+
+        .hero{
+            min-height:480px;
+            display:flex;
+            align-items:center;
+            position:relative;
+            overflow:hidden;
+            background:
+              linear-gradient(90deg,rgba(4,37,45,.82),rgba(4,37,45,.45),rgba(4,37,45,.18)),
+              url("https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky2.jpg") center/cover no-repeat,
+              linear-gradient(135deg,#0a7f99,#17323a);
+            color:#fff;
+        }
+        .hero-inner{
+            width:100%;
+            max-width:1500px;
+            margin:auto;
+            padding:70px 24px;
+        }
+        .hero-label{
+            display:inline-block;
+            padding:6px 12px;
+            border:1px solid rgba(255,255,255,.45);
+            border-radius:999px;
+            background:rgba(0,0,0,.16);
+            font-size:14px;
+            margin-bottom:15px;
+        }
+        .hero h2{
+            max-width:850px;
+            font-size:clamp(34px,5vw,62px);
+            line-height:1.12;
+            margin-bottom:15px;
+            text-transform:uppercase;
+        }
+        .hero p{
+            max-width:760px;
+            font-size:18px;
+            color:#eef9fb;
+        }
+        .hero-buttons{
+            margin-top:28px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+        }
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding:12px 19px;
+            border-radius:10px;
+            font-weight:bold;
+            border:1px solid rgba(255,255,255,.35);
+            cursor:pointer;
+        }
+        .btn-primary{background:#fff;color:var(--primary)}
+        .btn-outline{color:#fff;background:rgba(255,255,255,.10)}
+        .btn-share{background:var(--accent);color:#fff;border:none}
+        .btn-share:hover{background:#a93226}
+
+        .container{
+            max-width:1500px;
+            margin:auto;
+            padding:0 24px;
+        }
+        section{padding:62px 0}
+        .section-head{
+            margin-bottom:28px;
+            text-align:center;
+        }
+        .section-head .eyebrow{
+            color:var(--accent);
+            font-weight:bold;
+            text-transform:uppercase;
+            font-size:13px;
+            letter-spacing:.8px;
+        }
+        .section-head h2{
+            color:var(--dark);
+            font-size:30px;
+            margin:5px 0;
+        }
+        .section-head p{
+            max-width:760px;
+            margin:auto;
+            color:var(--muted);
+        }
+
+        .intro-grid{
+            display:grid;
+            grid-template-columns:1.15fr .85fr;
+            gap:28px;
+            align-items:stretch;
+        }
+        .card{
+            background:var(--white);
+            border:1px solid var(--border);
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+            padding:28px;
+        }
+        .card h3{color:var(--primary);margin-bottom:12px}
+        .card p + p{margin-top:10px}
+
+        .facts{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:12px;
+        }
+        .fact{
+            padding:18px;
+            border-radius:12px;
+            background:var(--light);
+            border:1px solid var(--border);
+            text-align:center;
+        }
+        .fact strong{
+            display:block;
+            color:var(--primary);
+            font-size:26px;
+        }
+        .fact span{font-size:13px;color:var(--muted)}
+
+        .stats{
+            background:#edf7f8;
+            border-top:1px solid #d7ecef;
+            border-bottom:1px solid #d7ecef;
+        }
+        .stats-grid{
+            display:grid;
+            grid-template-columns:repeat(6,1fr);
+            gap:12px;
+        }
+        .stat{
+            text-align:center;
+            padding:15px 8px;
+        }
+        .stat strong{
+            display:block;
+            color:var(--primary);
+            font-size:26px;
+        }
+        .stat span{font-size:13px;color:#56666b}
+
+        .timeline{
+            position:relative;
+            max-width:900px;
+            margin:auto;
+        }
+        .timeline:before{
+            content:"";
+            position:absolute;
+            left:17px;top:0;bottom:0;
+            width:2px;
+            background:#cfe4e8;
+        }
+        .timeline-item{
+            position:relative;
+            padding-left:55px;
+            margin-bottom:26px;
+        }
+        .timeline-dot{
+            position:absolute;
+            left:8px;top:4px;
+            width:20px;height:20px;
+            border-radius:50%;
+            background:var(--primary);
+            border:4px solid #dff3f6;
+        }
+        .timeline-item strong{color:var(--accent)}
+
+        .org-grid,.news-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:20px;
+        }
+        .org-card,.news-card{
+            background:#fff;
+            border:1px solid var(--border);
+            border-radius:var(--radius);
+            overflow:hidden;
+            box-shadow:var(--shadow);
+        }
+        .org-card{padding:25px}
+        .icon{
+            width:48px;height:48px;
+            display:grid;
+            place-items:center;
+            border-radius:12px;
+            background:#eaf7f9;
+            font-size:23px;
+            margin-bottom:15px;
+        }
+        .org-card h3,.news-card h3{
+            color:var(--dark);
+            margin-bottom:8px;
+        }
+        .org-card p,.news-card p{
+            color:var(--muted);
+            font-size:14px;
+        }
+
+        /* STYLES BÀI VIẾT TỪ API */
+        .news-card{
+            display:flex;
+            flex-direction:column;
+            transition:transform .2s;
+        }
+        .news-card:hover{transform:translateY(-4px)}
+        .news-image{
+            width:100%;
+            height:200px;
+            object-fit:cover;
+            background:#eef6f7;
+        }
+        .news-content{
+            padding:20px;
+            display:flex;
+            flex-direction:column;
+            flex-grow:1;
+        }
+        .news-meta{
+            font-size:12px;
+            color:var(--accent);
+            margin-bottom:8px;
+            font-weight:bold;
+            display:flex;
+            gap:10px;
+        }
+        .news-card h3{
+            font-size:17px;
+            line-height:1.4;
+            margin-bottom:10px;
+            color:var(--dark);
+        }
+        .news-card p{
+            font-size:14px;
+            color:var(--muted);
+            display:-webkit-box;
+            -webkit-line-clamp:3;
+            -webkit-box-orient:vertical;
+            overflow:hidden;
+            margin-bottom:15px;
+        }
+        .news-link{
+            margin-top:auto;
+            color:var(--primary);
+            font-weight:bold;
+            font-size:14px;
+            display:inline-flex;
+            align-items:center;
+            gap:4px;
+        }
+        .loading-box{
+            grid-column:1/-1;
+            text-align:center;
+            padding:40px;
+            color:var(--muted);
+        }
+
+        /* NÚT CHIA SẺ VÀ POPUP */
+        .share-container{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            flex-wrap:wrap;
+        }
+        .share-btn-item{
+            padding:8px 14px;
+            border-radius:8px;
+            font-size:13px;
+            font-weight:bold;
+            color:#fff;
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            cursor:pointer;
+            border:none;
+        }
+        .share-fb{background:#1877f2}
+        .share-zalo{background:#0068ff}
+        .share-copy{background:#546e7a}
+
+        .gallery{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:16px;
+        }
+        .gallery figure{
+            overflow:hidden;
+            border-radius:12px;
+            background:#dfeaec;
+            position:relative;
+            box-shadow:var(--shadow);
+            border:1px solid var(--border);
+            display:flex;
+            flex-direction:column;
+        }
+        .gallery .img-wrapper{
+            aspect-ratio:4/3;
+            overflow:hidden;
+        }
+        .gallery img{
+            width:100%;height:100%;
+            object-fit:cover;
+            transition:transform .35s;
+        }
+        .gallery figure:hover img{transform:scale(1.05)}
+        .gallery figcaption{
+            padding:12px;
+            font-size:13px;
+            color:var(--dark);
+            font-weight:bold;
+            background:#fff;
+            text-align:center;
+            border-top:1px solid var(--border);
+        }
+
+        .map-box{
+            min-height:300px;
+            border-radius:var(--radius);
+            background:
+              linear-gradient(45deg,rgba(10,127,153,.08) 25%,transparent 25%),
+              linear-gradient(-45deg,rgba(10,127,153,.08) 25%,transparent 25%),
+              #eef6f7;
+            background-size:40px 40px;
+            border:1px solid var(--border);
+            display:grid;
+            place-items:center;
+            text-align:center;
+            padding:30px;
+        }
+        .map-box strong{font-size:25px;color:var(--primary)}
+        .map-box p{color:var(--muted);margin:8px 0 18px}
+        .map-link{
+            background:var(--primary);
+            color:#fff;
+            padding:11px 17px;
+            border-radius:99px;
+            font-weight:bold;
+        }
+
+        .contact-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+        .contact-list{list-style:none;display:grid;gap:10px}
+        .contact-list li{
+            padding:12px 0;
+            border-bottom:1px dashed var(--border);
+        }
+
+        footer{
+            background:var(--dark);
+            color:#dce9ec;
+            padding:40px 0;
+        }
+        .footer-grid{
+            display:grid;
+            grid-template-columns:1.4fr 1fr 1fr;
+            gap:30px;
+        }
+        footer h3{color:#fff;margin-bottom:10px}
+        footer p,footer li{font-size:14px;color:#bfd0d4}
+        footer ul{list-style:none;display:grid;gap:6px}
+
+        .back-top{
+            position:fixed;
+            right:18px;
+            bottom:18px;
+            width:44px;height:44px;
+            border:0;
+            border-radius:50%;
+            background:var(--primary);
+            color:#fff;
+            cursor:pointer;
+            box-shadow:0 5px 18px rgba(0,0,0,.2);
+            font-size:18px;
+        }
+
+        /* CSS BỔ SUNG CHO PHẦN TIN BÀI (ACTIVITY CONTAINER) */
+#activity-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.activity-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(20, 60, 70, 0.15);
+}
+
+.activity-thumb {
+    width: 140px;
+    height: 95px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background: #eef6f7;
+}
+
+.activity-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.activity-content h3 {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+}
+
+.activity-content h3 a {
+    color: var(--dark);
+    transition: color 0.2s;
+}
+
+.activity-content h3 a:hover {
+    color: var(--primary);
+}
+
+.activity-meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.activity-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 600px) {
+    .activity-item {
+        flex-direction: column;
+    }
+    .activity-thumb {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+        @media(max-width:1100px){
+            .stats-grid{grid-template-columns:repeat(3,1fr)}
+            .intro-grid,.contact-grid{grid-template-columns:1fr}
+            .org-grid,.news-grid,.gallery{grid-template-columns:repeat(2,1fr)}
+            nav{display:none}
+        }
+        @media(max-width:700px){
+            .topbar-inner{padding:7px 15px;font-size:12px}
+            .header-inner,.container,.hero-inner{padding-left:15px;padding-right:15px}
+            .brand h1{font-size:16px}
+            section{padding:45px 0}
+            .hero{min-height:430px}
+            .hero h2{font-size:34px}
+            .stats-grid{grid-template-columns:repeat(2,1fr)}
+            .facts{grid-template-columns:repeat(2,1fr)}
+            .org-grid,.news-grid,.footer-grid,.gallery{grid-template-columns:1fr}
+            .card{padding:20px}
+        }
+
+        /* Nút Menu Hamburger trên mobile */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+@media(max-width:1100px){
+    /* Hiển thị nút Hamburger */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Định dạng lại nav thành menu thả xuống */
+    nav {
+        display: none; /* Mặc định ẩn */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        padding: 15px 24px;
+        border-top: 1px solid var(--border);
+    }
+
+    /* Class hiển thị menu khi bấm nút */
+    nav.active {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    nav a {
+        padding: 10px 15px;
+        border-radius: 8px;
+    }
+}
+    </style>
+
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="topbar-inner">
+            <span>PHƯỜNG LƯU KIẾM</span>
+            <span>Hồ sơ điện tử Tổ dân phố Lưu Kỳ</span>
+        </div>
+    </div>
+
+    <header>
+    <div class="header-inner">
+        <a class="brand" href="../index.html">
+            <div class="brand-logo">LK</div>
+            <div>
+                <h1>TỔ DÂN PHỐ LƯU KỲ</h1>
+                <span>Phường Lưu Kiếm</span>
+            </div>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Mở menu">☰</button>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a class="active" href="../index.html">Trang chủ</a></li>
+                <li><a href="#lich-su">Lịch sử</a></li>
+                <li><a href="#dieu-kien">Địa lý & Kinh tế</a></li>
+                <li><a href="#tin-tuc">Tin bài Lưu Kỳ</a></li>
+                <li><a href="#di-tich">Di tích & Văn hóa</a></li>
+                <li><a href="#to-chuc">Tổ chức</a></li>
+                <li><a href="#thu-vien">Thư viện ảnh</a></li>
+                <li><a href="#lien-he">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main id="trang-chu">
+
+        <section class="hero">
+            <div class="hero-inner">
+                <span class="hero-label">HỒ SƠ ĐIỆN TỬ TỔ DÂN PHỐ</span>
+                <h2>Tổ dân phố Lưu Kỳ</h2>
+                <p>
+                    Vùng đất có truyền thống khai hoang ven sông Đá Bạc từ năm 1965. Nơi giao thoa giữa núi đá vôi trù phú, sông nước hữu tình và tinh thần đoàn kết kiên cường.
+                </p>
+                <div class="hero-buttons">
+                    <a class="btn btn-primary" href="#gioi-thieu">Khám phá Lưu Kỳ</a>
+                    <button class="btn btn-share" onclick="shareWebsite()">
+                        🔗 Chia sẻ trang
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="gioi-thieu">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Về chúng tôi</div>
+                    <h2>Giới thiệu chung</h2>
+                    <p>Khái quát về vị trí, dân cư và quy mô phát triển của Tổ dân phố Lưu Kỳ.</p>
+                </div>
+
+                <div class="intro-grid">
+                    <article class="card">
+                        <h3>Tổ dân phố Lưu Kỳ – Phường Lưu Kiếm</h3>
+                        <p>
+                            Tổ dân phố Lưu Kỳ nằm ở phía Bắc phường Lưu Kiếm, trải rộng trên diện tích tự nhiên <strong>422,48 ha</strong>. Mảnh đất được bao bọc bởi những con sông lịch sử như sông Đá Bạc, sông Móc và 16 quả núi đá vôi hùng vĩ.
+                        </p>
+                        <p>
+                            Khởi đầu từ chặng đường gian khổ khai hoang mở đất năm 1965 với 192 hộ dân ban đầu, trải qua nhiều giai đoạn phát triển, đến nay Lưu Kỳ đã trở thành một cộng đồng dân cư trù phú, phát triển toàn diện về kinh tế, văn hóa và xã hội.
+                        </p>
+                    </article>
+
+                    <div class="facts">
+                        <div class="fact"><strong>1.004</strong><span>Hộ dân (2026)</span></div>
+                        <div class="fact"><strong>3.095</strong><span>Nhân khẩu (2026)</span></div>
+                        <div class="fact"><strong>60</strong><span>Đảng viên</span></div>
+                        <div class="fact"><strong>422,48 ha</strong><span>Diện tích tự nhiên</span></div>
+                        <div class="fact"><strong>16</strong><span>Quả núi đá vôi</span></div>
+                        <div class="fact"><strong>1965</strong><span>Năm khai hoang</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat"><strong>1965</strong><span>Khai hoang</span></div>
+                    <div class="stat"><strong>1973</strong><span>Thôn Lưu Kỳ</span></div>
+                    <div class="stat"><strong>2004</strong><span>Xã Lưu Kỳ</span></div>
+                    <div class="stat"><strong>2025</strong><span>TDP Lưu Kỳ 1 & 2</span></div>
+                    <div class="stat"><strong>2026</strong><span>TDP Lưu Kỳ</span></div>
+                    <div class="stat"><strong>100%</strong><span>Đường bê tông/nhựa</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lich-su">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Truyền thống</div>
+                    <h2>Lịch sử hình thành và phát triển</h2>
+                    <p>Các mốc lịch sử quan trọng đánh dấu hành trình xây dựng và trưởng thành của mảnh đất Lưu Kỳ.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <strong>1965 – Khai hoang mở đất</strong>
+                        <p>Nhân dân 4 xã: Lưu Kiếm, Minh Tân, Thủy Sơn, Phục Lễ thuộc huyện Thủy Nguyên về bãi bồi ven sông Đá Bạc khai hoang lập nghiệp. Tổng số gồm 181 hộ, 3 hộ gia đình quân nhân và 8 hộ từ Dốc Đỏ (tổng 192 hộ).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <strong>1973 – 2003: Thành lập Thôn Lưu Kỳ</strong>
+                        <p>Chính thức trở thành một thôn thuộc xã Lưu Kiếm, huyện Thủy Nguyên, Hải Phòng. Nhân dân kiên trì bám đất, phát triển nông nghiệp và hạ tầng.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <strong>10/01/2004 – Thành lập Xã Lưu Kỳ</strong>
+                        <p>Thành lập xã Lưu Kỳ theo Nghị định số 18/2004/NĐ-CP của Chính phủ. Khi thành lập xã, số hộ còn gắn bó tại đây là 159 hộ.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <strong>2025 – Thành Tổ dân phố Lưu Kỳ 1 và Lưu Kỳ 2</strong>
+                        <p>Sắp xếp địa giới hành chính, trở thành TDP Lưu Kỳ 1 và TDP Lưu Kỳ 2 thuộc phường Lưu Kiếm.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <strong>2026 – Trở lại thành Tổ dân phố Lưu Kỳ</strong>
+                        <p>Sáp nhập hợp nhất lại thành Tổ dân phố Lưu Kỳ thống nhất thuộc phường Lưu Kiếm, củng cố sức mạnh đại đoàn kết toàn dân.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dieu-kien" style="background:#f0f6f7">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Tiềm năng</div>
+                    <h2>Địa lý - Hạ tầng & Kinh tế</h2>
+                    <p>Đặc điểm tự nhiên, hạ tầng giao thông hiện đại và cấu trúc kinh tế đa dạng của Lưu Kỳ.</p>
+                </div>
+
+                <div class="org-grid">
+                    <article class="org-card">
+                        <div class="icon">🗺️</div>
+                        <h3>Vị trí địa lý</h3>
+                        <p><strong>Phía Đông:</strong> Giáp phường Bạch Đằng</p>
+                        <p><strong>Phía Tây:</strong> Giáp TDP Liên Khê và Mai Động</p>
+                        <p><strong>Phía Bắc:</strong> Giáp phường Phương Nam (Quảng Ninh)</p>
+                        <p><strong>Phía Nam:</strong> Giáp TDP Phúc Nam và Phúc Liệt</p>
+                    </article>
+
+                    <article class="org-card">
+                        <div class="icon">🛣️</div>
+                        <h3>Hạ tầng giao thông</h3>
+                        <p><strong>Đường Lưu Kỳ:</strong> Dài 1.840m, rộng 7m, vỉa hè 2m (Giao QL10 - đê Đá Bạc).</p>
+                        <p><strong>Đường Hàm Long:</strong> Dài 1.814m, rộng 5,5-7m, vỉa hè 2m.</p>
+                        <p>100% các tuyến đường đã bê tông hóa, nhựa hóa, có điện thắp sáng và cây xanh.</p>
+                    </article>
+
+                    <article class="org-card">
+                        <div class="icon">📊</div>
+                        <h3>Cơ cấu kinh tế</h3>
+                        <p><strong>Dịch vụ & Ngành nghề khác:</strong> 50,2% (phát huy lợi thế QL10, sông Đá Bạc, VLXD).</p>
+                        <p><strong>Trồng trọt:</strong> 28,9%</p>
+                        <p><strong>Chăn nuôi:</strong> 20,9%</p>
+                    </article>
+
+                    <article class="org-card">
+                        <div class="icon">🌾</div>
+                        <h3>Sản phẩm đặc trưng</h3>
+                        <p><strong>Nông sản:</strong> Lúa, Rau muống Lưu Kỳ, Dê núi.</p>
+                        <p><strong>Sản phẩm OCOP:</strong> Rượu OCOP "Đất Cảng".</p>
+                        <p><strong>Công nghiệp - DV:</strong> Khai thác, chế biến, kinh doanh vật liệu xây dựng, chất đốt.</p>
+                    </article>
+
+                    <article class="org-card">
+                        <div class="icon">🏫</div>
+                        <h3>Công trình giáo dục</h3>
+                        <p><strong>Tiểu học:</strong> Trường Tiểu học Lưu Kiếm (Phân hiệu Lưu Kỳ).</p>
+                        <p><strong>Mầm non:</strong> Trường Mầm non Liên Khê (Phân hiệu Lưu Kỳ).</p>
+                    </article>
+
+                    <article class="org-card">
+                        <div class="icon">🏔️</div>
+                        <h3>Danh thắng 16 núi đá vôi</h3>
+                        <p>Gồm các ngọn núi hùng vĩ: Phượng Hoàng (155m), Ba Đồng (118m), Hàm Long (100m), Nồi Xôi (83m), Đầu Lân (47m), Ông Cụ (42m), Hang Chuông (39m), Gà Chọi, Độc Lập, Con Xà, Kim Quy, Xa Kể, Cửa Hang, Đượng Cây, Hàm Ếch, Ba Mèo.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHUYÊN MỤC TIN BÀI LỌC TỪ API TIN TỨC -->
+        <section id="tin-tuc">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Cập nhật tin tức</div>
+                    <h2>Tin tức & Bài viết về Lưu Kỳ</h2>
+                    <p>Chuyên mục tổng hợp các tin tức, hoạt động liên quan đến Tổ dân phố Lưu Kỳ từ hệ thống.</p>
+                </div>
+
+         <div id="activity-container">
+                    <p style="font-size: 13px; color: #777;">Đang tìm kiếm bài viết liên quan đến Lưu Kỳ</p>
+                </div>
+         </div>
+        </section>
+
+        <section id="di-tich" style="background:#f0f6f7">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Tín ngưỡng & Tinh hoa</div>
+                    <h2>Di tích lịch sử - Văn hóa & Ẩm thực</h2>
+                    <p>Những nét đẹp đời sống tâm linh, lễ hội truyền thống và ẩm thực độc đáo tại Lưu Kỳ.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <article class="card">
+                        <h3>Chùa Ngọc Sơn & Lễ hội Kỳ Phúc</h3>
+                        <p>
+                            <strong>Chùa Ngọc Sơn</strong> có diện tích 5.356,9 m², khởi dựng từ năm 1998. Chùa đã qua các mốc trùng tu lớn: năm 2010 xây Đại hùng bảo điện, năm 2019 xây Tổ đường và năm 2023 hoàn thành Cổng Tam quan khang trang.
+                        </p>
+                        <p>
+                            <strong>Lễ hội hàng năm:</strong> Ngày <strong>10 tháng 01 âm lịch</strong>, nhân dân mở Lễ hội dâng hương kỳ phúc tưởng nhớ công ơn Hưng Đạo Đại Vương Trần Quốc Tuấn và các vị Thành hoàng làng, cầu nguyện Quốc thái dân an.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Ẩm thực đặc trưng Lưu Kỳ</h3>
+                        <p>
+                            Nhờ đặc điểm địa hình núi đá vôi kết hợp vùng đồng ruộng bãi bồi, Lưu Kỳ nổi tiếng với các món ăn đặc sản mang hương vị đặc trưng vùng miền:
+                        </p>
+                        <ul class="contact-list" style="margin-top:10px">
+                            <li><strong>Thịt Dê núi Lưu Kỳ:</strong> Dê chăn thả tự do trên 16 quả núi đá vôi, thịt săn chắc, thơm ngon.</li>
+                            <li><strong>Rau muống Lưu Kỳ:</strong> Trồng trên thổ nhưỡng đặc thù, ngọn xanh giòn, vị ngọt đậm đà.</li>
+                            <li><strong>Rượu OCOP "Đất Cảng":</strong> Sản phẩm OCOP khẳng định thương hiệu địa phương.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="to-chuc">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Cộng đồng</div>
+                    <h2>Bộ máy tổ chức Tổ dân phố</h2>
+                    <p>Lãnh đạo Chi bộ và Ban quản lý Tổ dân phố Lưu Kỳ.</p>
+                </div>
+
+                <div class="org-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <article class="org-card">
+                        <div class="icon">🏛️</div>
+                        <h3>Chi bộ TDP Lưu Kỳ</h3>
+                        <p><strong>Bí thư Chi bộ:</strong> Ông Đào Văn Mạnh</p>
+                        <p><strong>Tổng số đảng viên:</strong> 60 đồng chí</p>
+                        <p>Lãnh đạo toàn diện công tác xây dựng Đảng, chính trị, kinh tế và đời sống xã hội tại địa bàn.</p>
+                    </article>
+
+                    <article class="org-card">
+                        <div class="icon">👥</div>
+                        <h3>Ban Quản lý Tổ dân phố</h3>
+                        <p><strong>Tổ trưởng TDP:</strong> Bà Nguyễn Thị Hạnh</p>
+                        <p><strong>Quy mô quản lý:</strong> 1.004 hộ dân / 3.095 nhân khẩu</p>
+                        <p>Tổ chức thực hiện hiệu quả các nhiệm vụ chính trị, quản lý cộng đồng và phong trào thi đua.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="thu-vien" style="background:#f0f6f7">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Hình ảnh tư liệu</div>
+                    <h2>Thư viện ảnh Tổ dân phố Lưu Kỳ</h2>
+                    <p>Bộ ảnh ghi lại truyền thống lịch sử, cảnh quan tự nhiên và hoạt động cộng đồng Lưu Kỳ.</p>
+                </div>
+
+                <div class="gallery">
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky2.jpg" alt="Phong cảnh Lưu Kỳ"></div>
+                        <figcaption>Phong cảnh cảnh quan Tổ dân phố Lưu Kỳ</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky%20(8).jpg" alt="Cổng chùa Ngọc Sơn"></div>
+                        <figcaption>Cổng chùa Ngọc Sơn tại Lưu Kỳ</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/huong-giang.jpg" alt="Đầm sen bên núi đá vôi"></div>
+                        <figcaption>Đầm sen bên dãy núi đá vôi Lưu Kỳ</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anhluuky%20(1).jpg" alt="Bản đồ khai hoang 1965"></div>
+                        <figcaption>Bản đồ thời kỳ khai hoang ven sông Đá Bạc 1965</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anhluuky%20(2).jpg" alt="Làm đường qua sông Hang Lương"></div>
+                        <figcaption>Làm đường qua sông Hang Lương thời kỳ khai hoang</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anhluuky%20(3).jpg" alt="Nhà thời kỳ đầu khai hoang"></div>
+                        <figcaption>Ngôi nhà thời kỳ đầu khai hoang Lưu Kỳ</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anhluuky%20(5).jpg" alt="Trường cấp 1 2 Lưu Kỳ"></div>
+                        <figcaption>Trường cấp 1 + 2 Lưu Kỳ</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anhluuky%20(6).jpg" alt="Trụ sở HTX Nông nghiệp 1985"></div>
+                        <figcaption>Trụ sở HTX Nông nghiệp Lưu Kỳ (xây dựng 1985)</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky%20(15).jpg" alt="Trụ sở xã Lưu Kỳ cũ"></div>
+                        <figcaption>Trụ sở xã Lưu Kỳ cũ (Nay là BCH Quân sự phường Lưu Kiếm)</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky%20(24).jpg" alt="Kỷ niệm 20 năm thành lập xã"></div>
+                        <figcaption>Kỷ niệm 20 năm thành lập xã Lưu Kỳ (2004 - 2024)</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/sap-nhap-tdp.jpg" alt="Bản đồ sáp nhập 2026"></div>
+                        <figcaption>Bản đồ phường Lưu Kiếm sau sáp nhập TDP năm 2026</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky%20(4).jpg" alt="Tiếp xúc tân binh"></div>
+                        <figcaption>Lễ tiếp xúc tân binh lên đường nhập ngũ tại Lưu Kỳ</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky%20(2).jpg" alt="Hoạt động văn nghệ"></div>
+                        <figcaption>Hoạt động văn nghệ quần chúng tại Lưu Kỳ</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky%20(3).jpg" alt="Hoạt động thể thao"></div>
+                        <figcaption>Phong trào thể dục thể thao Tổ dân phố</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky%20(14).jpg" alt="Hoạt động nhân đạo"></div>
+                        <figcaption>Hoạt động nhân đạo, từ thiện tại Lưu Kỳ</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/sdb.jpg" alt="Trẻ em tắm sông Đá Bạc"></div>
+                        <figcaption>Trẻ em vui chơi, tắm trên sông Đá Bạc</figcaption>
+                    </figure>
+
+                    <figure>
+                        <div class="img-wrapper"><img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/san-vuon-nhat.jpg" alt="Mô hình Xanh Sạch Đẹp"></div>
+                        <figcaption>Gia đình góp phần vào mô hình Xanh – Sạch – Đẹp</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Địa bàn</div>
+                    <h2>Vị trí – Bản đồ Google Maps</h2>
+                    <p>Vị trí địa lý chính xác của Tổ dân phố Lưu Kỳ trên Google Maps.</p>
+                </div>
+
+                <div class="map-box">
+                    <div>
+                        <strong>📍 TỔ DÂN PHỐ LƯU KỲ</strong>
+                        <p>Phường Lưu Kiếm – Thành phố Hải Phòng</p>
+                        <a class="map-link" href="https://maps.app.goo.gl/yAGUSDe3o63d89HYA" target="_blank" rel="noopener">Mở vị trí trên Google Maps ↗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lien-he" style="background:#f0f6f7">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Kết nối</div>
+                    <h2>Thông tin liên hệ & Chia sẻ</h2>
+                    <p>Thông tin liên hệ Ban quản lý Tổ dân phố và các công cụ chia sẻ trang web.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <article class="card">
+                        <h3>Thông tin Tổ dân phố Lưu Kỳ</h3>
+                        <ul class="contact-list">
+                            <li><strong>Bí thư Chi bộ:</strong> Ông Đào Văn Mạnh</li>
+                            <li><strong>Tổ trưởng TDP:</strong> Bà Nguyễn Thị Hạnh</li>
+                            <li><strong>Nhà văn hóa:</strong> Nhà văn hóa TDP Lưu Kỳ</li>
+                            <li><strong>Địa chỉ:</strong> Tổ dân phố Lưu Kỳ, phường Lưu Kiếm, TP. Hải Phòng</li>
+                        </ul>
+                    </article>
+
+                    <article class="card">
+                        <h3>Chia sẻ trang web này</h3>
+                        <p>Hãy cùng lan tỏa các thông tin hữu ích về Tổ dân phố Lưu Kỳ tới bà con nhân dân và cộng đồng:</p>
+                        <div class="share-container" style="margin-top:20px">
+                            <button class="share-btn-item share-fb" onclick="shareFacebook()">
+                                Facebook
+                            </button>
+                            <button class="share-btn-item share-zalo" onclick="shareZalo()">
+                                Zalo
+                            </button>
+                            <button class="share-btn-item share-copy" onclick="copyPageUrl()">
+                                📋 Sao chép Link
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>TỔ DÂN PHỐ LƯU KỲ</h3>
+                    <p>Hồ sơ điện tử chính thức giới thiệu cộng đồng dân cư thuộc phường Lưu Kiếm, Hải Phòng.</p>
+                </div>
+                <div>
+                    <h3>Nội dung</h3>
+                    <ul>
+                        <li><a href="#gioi-thieu">Giới thiệu</a></li>
+                        <li><a href="#lich-su">Lịch sử khai hoang</a></li>
+                        <li><a href="#tin-tuc">Tin tức Lưu Kỳ</a></li>
+                        <li><a href="#thu-vien">Thư viện ảnh</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Quản trị</h3>
+                    <p>Cập nhật nội dung: BQT Tổ dân phố Lưu Kỳ</p>
+                    <p>Năm cập nhật: 2026</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-top" id="backTop" title="Lên đầu trang">↑</button>
+
+    <script>
+        // 1. CHỨC NĂNG CHIA SẺ TRANG WEB
+        function shareWebsite() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Tổ dân phố Lưu Kỳ - Phường Lưu Kiếm',
+                    text: 'Hồ sơ điện tử và thông tin về Tổ dân phố Lưu Kỳ, phường Lưu Kiếm, Hải Phòng.',
+                    url: window.location.href,
+                }).catch(err => console.log('Lỗi chia sẻ:', err));
+            } else {
+                copyPageUrl();
+            }
+        }
+
+        function shareFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
+
+        function shareZalo() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://zalo.me/share?url=${url}`, '_blank');
+        }
+
+        function copyPageUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Đã sao chép liên kết trang web vào bộ nhớ tạm!');
+            }).catch(() => {
+                alert('Khay nhớ tạm không khả dụng. Bạn có thể tự sao chép đường dẫn trên trình duyệt.');
+            });
+        }
+
+        // 2. CHỨC NĂNG LOAD TỰ ĐỘNG BÀI VIẾT TỪ API JSON VÀ LỌC TỪ KHÓA "LƯU KỲ"
+ document.addEventListener("DOMContentLoaded", function () {
+        const jsonUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json";
+        const container = document.getElementById("activity-container");
+        const keyword = "lưu kỳ"; // Từ khóa cần lọc
+
+        fetch(jsonUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Không thể tải file dữ liệu bài viết");
+                }
+                return response.json();
+            })
+            .then(data => {
+                container.innerHTML = "";
+
+                // Lọc tất cả bài viết có chứa chữ "Kiểm tra" trong tiêu đề, mô tả hoặc danh mục
+                const filteredPosts = data.filter(post => {
+                    const titleMatch = post.title && post.title.toLowerCase().includes(keyword);
+                    const descMatch = post.desc && post.desc.toLowerCase().includes(keyword);
+                    
+                    // Kiểm tra trong mảng category nếu có
+                    const categoryMatch = Array.isArray(post.category) && post.category.some(cat => cat.toLowerCase().includes(keyword));
+
+                    return titleMatch || descMatch || categoryMatch;
+                });
+
+                if (filteredPosts.length === 0) {
+                    container.innerHTML = `<p style='font-size:13px; color:#666;'>Không tìm thấy bài viết nào chứa từ khóa "${keyword}".</p>`;
+                    return;
+                }
+
+                // Render toàn bộ danh sách bài viết đã lọc ra giao diện
+                filteredPosts.forEach(post => {
+                    const categories = Array.isArray(post.category) ? post.category.join(", ") : "Tin tức";
+                    const imageSrc = post.image || "https://via.placeholder.com/130x85?text=Luu+Ky";
+
+                    const htmlItem = `
+                        <div class="activity-item">
+                            <img class="activity-thumb" src="${imageSrc}" alt="${post.title}" onerror="this.src='https://via.placeholder.com/130x85?text=Luu+Ky'">
+                            <div class="activity-content">
+                                <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
+                                <div class="activity-meta">🗓️ Ngày ${post.date} | 🏷️ ${categories}</div>
+                                <p class="activity-desc">${post.desc}</p>
+                            </div>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML("beforeend", htmlItem);
+                });
+            })
+            .catch(error => {
+                console.error("Lỗi:", error);
+                container.innerHTML = "<p style='font-size:13px; color:red;'>Không thể tải danh sách bài viết tự động.</p>";
+            });
+    });
+
+        // 3. CUỘN TRANG VÀ NÚT LÊN ĐẦU TRANG
+        const backTop = document.getElementById("backTop");
+
+        window.addEventListener("scroll", () => {
+            backTop.style.display = window.scrollY > 400 ? "block" : "none";
+        });
+
+        backTop.addEventListener("click", () => {
+            window.scrollTo({top:0, behavior:"smooth"});
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener("click", function(e){
+                const target = document.querySelector(this.getAttribute("href"));
+                if(target){
+                    e.preventDefault();
+                    target.scrollIntoView({behavior:"smooth", block:"start"});
+                }
+            });
+        });
+
+        // Xử lý bật/tắt Menu trên điện thoại
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+
+menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+    // Đổi icon ☰ thành ✕ khi mở menu
+    menuToggle.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+});
+
+// Tự động đóng menu khi người dùng bấm vào một mục liên kết
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+        menuToggle.textContent = '☰';
+    });
+});
+
+    </script>
+
+</body>
+</html>
