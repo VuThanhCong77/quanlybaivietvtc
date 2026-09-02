@@ -98,7 +98,7 @@ MAIN CSS
 
                 <!-- Nút Phát/Tạm dừng nhạc -->
                 <button id="playBtn" onclick="togglePlay()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
-                    ▶ Phát nhạc
+                    ▶ 
                 </button>
             </div>
         </div>
@@ -659,7 +659,7 @@ document.querySelectorAll('nav a').forEach(link => {
       playBtn.innerHTML = "⏸";
     } else {
       audio.pause();
-      playBtn.innerHTML = "▶ Nhạc";
+      playBtn.innerHTML = "▶";
     }
   }
 
@@ -687,7 +687,7 @@ document.querySelectorAll('nav a').forEach(link => {
  
   // Tự động trả về nút Play khi chạy xong bài
   audio.onended = function() {
-    playBtn.innerHTML = "▶ Nhạc";
+    playBtn.innerHTML = "▶";
     seekSlider.value = 0;
     currentTimeText.innerText = "00:00";
   };
