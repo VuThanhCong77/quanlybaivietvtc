@@ -656,10 +656,10 @@ document.querySelectorAll('nav a').forEach(link => {
   function togglePlay() {
     if (audio.paused) {
       audio.play();
-      playBtn.innerHTML = "⏸ Tạm dừng";
+      playBtn.innerHTML = "⏸";
     } else {
       audio.pause();
-      playBtn.innerHTML = "▶ Phát nhạc";
+      playBtn.innerHTML = "▶ Nhạc";
     }
   }
 
@@ -687,7 +687,7 @@ document.querySelectorAll('nav a').forEach(link => {
  
   // Tự động trả về nút Play khi chạy xong bài
   audio.onended = function() {
-    playBtn.innerHTML = "▶ Phát nhạc";
+    playBtn.innerHTML = "▶ Nhạc";
     seekSlider.value = 0;
     currentTimeText.innerText = "00:00";
   };
