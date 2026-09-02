@@ -705,12 +705,25 @@
                     Vùng đất có truyền thống khai hoang ven sông Đá Bạc từ năm 1965. Nơi giao thoa giữa núi đá vôi trù phú, sông nước hữu tình và tinh thần đoàn kết kiên cường.
                 </p>
                 <div class="hero-buttons">
-                    <a class="btn btn-primary" href="#gioi-thieu">Khám phá Lưu Kỳ</a>
+                    <a class="btn btn-primary" href="#gioi-thieu">Giới thiệu</a>
                     <button class="btn btn-share" onclick="shareWebsite()">
-                        🔗 Chia sẻ trang
+                        🔗 Chia sẻ
                     </button>
-                </div>
-            </div>
+                        
+          <!-- KHU VỰC PHÁT NHẠC -->
+ 
+    <audio id="myAudio">
+    <source src="https://vuthanhcong77.github.io/quanlybaivietvtc/am-thanh/Lưu Kỳ, Hạ Long Trên Cạn.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Nút Phát/Tạm dừng -->
+     <button id="playBtn" onclick="togglePlay()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
+      ▶ Phát nhạc
+    </button>
+  
+      </div>
+      </div>
+  
         </section>
 
         <section id="gioi-thieu">
@@ -1240,6 +1253,55 @@ document.querySelectorAll('nav a').forEach(link => {
 });
 
     </script>
+
+   <script>
+  const audio = document.getElementById("myAudio");
+  const playBtn = document.getElementById("playBtn");
+  const seekSlider = document.getElementById("seekSlider");
+  const volumeSlider = document.getElementById("volumeSlider");
+  const currentTimeText = document.getElementById("currentTime");
+  const durationTimeText = document.getElementById("durationTime");
+
+  // Đổi trạng thái Play/Pause
+  function togglePlay() {
+    if (audio.paused) {
+      audio.play();
+      playBtn.innerHTML = "⏸ Tạm dừng";
+    } else {
+      audio.pause();
+      playBtn.innerHTML = "▶ Phát nhạc";
+    }
+  }
+
+  // Định dạng thời gian từ giây sang mm:ss
+  function formatTime(seconds) {
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+  }
+
+  // Cập nhật tổng thời lượng bài hát khi file đã tải xong thông tin
+  audio.onloadedmetadata = function() {
+    durationTimeText.innerText = formatTime(audio.duration);
+  };
+
+  // Cập nhật thanh tiến trình theo thời gian phát thực tế
+  audio.ontimeupdate = function() {
+    if (audio.duration) {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      seekSlider.value = percentage;
+      currentTimeText.innerText = formatTime(audio.currentTime);
+    }
+  };
+
+ 
+  // Tự động trả về nút Play khi chạy xong bài
+  audio.onended = function() {
+    playBtn.innerHTML = "▶ Phát nhạc";
+    seekSlider.value = 0;
+    currentTimeText.innerText = "00:00";
+  };
+</script>
 
 </body>
 </html>
