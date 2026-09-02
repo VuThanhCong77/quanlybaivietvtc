@@ -655,6 +655,45 @@
         border-radius: 8px;
     }
 }
+
+/* Thiết lập bố cục Grid tỷ lệ 2:1 cho Hero */
+.hero-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Tỷ lệ 2:1 */
+    gap: 30px;
+    align-items: center;
+}
+
+/* Cột video bên phải */
+.hero-video {
+    width: 100%;
+}
+
+/* Tự động giữ khung hình chuẩn 16:9 cho video */
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.video-container iframe,
+.video-container video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Responsive: Chuyển về 1 cột khi xem trên điện thoại hoặc màn hình hẹp */
+@media (max-width: 992px) {
+    .hero-inner {
+        grid-template-columns: 1fr; /* Thu về 1 cột */
+        gap: 24px;
+    }
+}
     </style>
 
 </head>
@@ -697,34 +736,44 @@
 
     <main id="trang-chu">
 
-        <section class="hero">
-            <div class="hero-inner">
-                <span class="hero-label">HỒ SƠ ĐIỆN TỬ TỔ DÂN PHỐ</span>
-                <h2>Tổ dân phố Lưu Kỳ</h2>
-                <p>
-                    Vùng đất có truyền thống khai hoang ven sông Đá Bạc từ năm 1965. Nơi giao thoa giữa núi đá vôi trù phú, sông nước hữu tình và tinh thần đoàn kết kiên cường.
-                </p>
-                <div class="hero-buttons">
-                    <a class="btn btn-primary" href="#gioi-thieu">Giới thiệu</a>
-                    <button class="btn btn-share" onclick="shareWebsite()">
-                        🔗 Chia sẻ
-                    </button>
-                        
-          <!-- KHU VỰC PHÁT NHẠC -->
- 
-    <audio id="myAudio">
-    <source src="https://vuthanhcong77.github.io/quanlybaivietvtc/am-thanh/Lưu Kỳ, Hạ Long Trên Cạn.mp3" type="audio/mpeg">
-  </audio>
+<section class="hero">
+    <div class="hero-inner">
+        <!-- CỘT 1 (BÊN TRÁI): NỘI DUNG VÀ PHÁT NHẠC (Chiếm 2 phần) -->
+        <div class="hero-content">
+            <span class="hero-label">HỒ SƠ ĐIỆN TỬ TỔ DÂN PHỐ</span>
+            <h2>Tổ dân phố Lưu Kỳ</h2>
+            <p>
+                Vùng đất có truyền thống khai hoang ven sông Đá Bạc từ năm 1965. Nơi giao thoa giữa núi đá vôi trù phú, sông nước hữu tình và tinh thần đoàn kết kiên cường.
+            </p>
+            <div class="hero-buttons">
+                <a class="btn btn-primary" href="#gioi-thieu">Giới thiệu</a>
+                <button class="btn btn-share" onclick="shareWebsite()">
+                    🔗 Chia sẻ
+                </button>
+                
+                <!-- KHU VỰC PHÁT NHẠC -->
+                <audio id="myAudio">
+                    <source src="https://vuthanhcong77.github.io/quanlybaivietvtc/am-thanh/Lưu Kỳ, Hạ Long Trên Cạn.mp3" type="audio/mpeg">
+                </audio>
 
-  <!-- Nút Phát/Tạm dừng -->
-     <button id="playBtn" onclick="togglePlay()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
-      ▶ Phát nhạc
-    </button>
-  
-      </div>
-      </div>
-  
-        </section>
+                <!-- Nút Phát/Tạm dừng nhạc -->
+                <button id="playBtn" onclick="togglePlay()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
+                    ▶ Phát nhạc
+                </button>
+            </div>
+        </div>
+
+        <!-- CỘT 2 (BÊN PHẢI): VIDEO TUYÊN TRUYỀN MP4 (Chiếm 1 phần) -->
+        <div class="hero-video">
+            <div class="video-container">
+                <video controls playsinline poster="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky2.jpg">
+                    <source src="https://vuthanhcong77.github.io/quanlybaivietvtc/videos/luu-ky-phan-loai-rac-thai.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ phát video HTML5.
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section id="gioi-thieu">
             <div class="container">
