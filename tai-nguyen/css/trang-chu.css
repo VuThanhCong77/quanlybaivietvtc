@@ -1454,3 +1454,74 @@ section.am-nhac iframe {
 
     text-align: left;
 }
+
+/* =========================================================
+   DANH SÁCH TỔ DÂN PHỐ
+========================================================= */
+
+       /* Khung chứa tổng quát */
+        .tdp-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Tiêu đề khu vực */
+        .tdp-title {
+            text-align: center;
+            color: #0056b3;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 20px;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+        }
+
+        /* Lưới hiển thị danh sách các tổ */
+        .tdp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        /* Thẻ liên kết từng Tổ dân phố */
+        .tdp-card {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            background-color: #ffffff;
+            color: #333333;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hiệu ứng khi rê chuột vào */
+        .tdp-card:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Thêm đoạn này vào cuối phần <style> của bạn */
+        @media (max-width: 768px) {
+            .tdp-grid {
+                /* Cố định hiển thị 2 cột có kích thước bằng nhau */
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px; /* Giảm bớt khoảng cách để tránh tràn màn hình */
+            }
+
+            .tdp-card {
+                padding: 10px 5px;
+                font-size: 13px; /* Hạ cỡ chữ xuống một chút để không bị đè chữ */
+                text-align: left;
+            }
+        }
