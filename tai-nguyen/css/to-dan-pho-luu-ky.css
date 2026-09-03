@@ -23,13 +23,13 @@
         a{text-decoration:none;color:inherit}
         img{max-width:100%;display:block}
 
-        .topbar{
-            background:var(--dark);
-            color:#fff;
-            font-size:14px;
+        .topbar, footer {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .topbar-inner{
-            max-width:1500px;
+            max-width:1200px;
             margin:auto;
             padding:8px 24px;
             display:flex;
@@ -37,16 +37,18 @@
             gap:20px;
         }
 
-        header{
-            position:sticky;
-            top:0;
-            z-index:1000;
-            background:rgba(255,255,255,.96);
-            box-shadow:0 2px 12px rgba(0,0,0,.08);
-            backdrop-filter:blur(10px);
+        header {
+            width: 100%;
+            max-width: 1200px;          
+            margin: 0 auto; /* Thêm căn giữa */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, .96);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+            backdrop-filter: blur(10px);
         }
-        .header-inner{
-            max-width:1500px;
+        .header-inner{            
             margin:auto;
             min-height:70px;
             padding:0 24px;
@@ -98,21 +100,32 @@
             color:var(--primary);
         }
 
-        .hero{
-            min-height:480px;
-            display:flex;
-            align-items:center;
-            position:relative;
-            overflow:hidden;
+        /* Bao bọc toàn bộ trang, giới hạn 1200px và căn giữa */
+        .mai {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff; /* Tùy chọn: giúp trang có phông nền nhất quán */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); /* Tùy chọn: tạo viền bóng nhẹ 2 bên */
+        }
+
+        .hero {            
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
             background:
-              linear-gradient(90deg,rgba(4,37,45,.82),rgba(4,37,45,.45),rgba(4,37,45,.18)),
-              url("https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/luuky2.jpg") center/cover no-repeat,
-              linear-gradient(135deg,#0a7f99,#17323a);
-            color:#fff;
+            linear-gradient(90deg,rgba(15, 127, 155, 0.82),rgba(3, 44, 56, 0.3),rgba(2, 52, 65, 0.18)),
+            url("https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/ytuonghay.jpg") center/cover no-repeat,
+            linear-gradient(135deg,#0faccf,#021c24);
+            color: #eff305;
+            width: 100%;
+            max-width: 1200px; /* Giới hạn chiều rộng */
+            margin: 0 auto;    /* Căn giữa */
         }
         .hero-inner{
             width:100%;
-            max-width:1500px;
+            max-width:1200px;
             margin:auto;
             padding:70px 24px;
         }
@@ -158,9 +171,7 @@
         .btn-share{background:var(--accent);color:#fff;border:none}
         .btn-share:hover{background:#a93226}
 
-        .container{
-            max-width:1200px;
-            margin:auto;
+        .container{            
             padding:0 24px;
         }
         section{padding:62px 0}
