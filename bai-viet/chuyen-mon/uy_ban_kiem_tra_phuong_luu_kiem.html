@@ -561,5 +561,31 @@ href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.
   };
 </script>
 
+<script>
+const VIEW_API = "https://script.google.com/macros/s/AKfycbxi8dkZZjOCRR6IcyVYA2qP0t9ce94UCdeV-xSMrWpqk87ebV-uBfIcTQmjycV_5R4bWw/exec";
+
+const postId = "uy_ban_kiem_tra_phuong_luu_kiem"; 
+const viewCount = document.getElementById("viewCount");
+
+async function updateViews(){
+  try{
+    if(!sessionStorage.getItem("viewed_" + postId)){
+      const res = await fetch(VIEW_API + "?action=increment&postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+      sessionStorage.setItem("viewed_" + postId, "true");
+    }else{
+      const res = await fetch(VIEW_API + "?postId=" + postId);
+      const data = await res.json();
+      viewCount.innerText = data.views;
+    }
+  }catch(err){
+    console.log("Lỗi view:", err);
+  }
+}
+
+updateViews();
+</script>
+    
 </body>
 </html>
