@@ -673,3 +673,10 @@
         gap: 24px;
     }
 }
+
+           .avatar{
+            width:80px;height:80px;
+            border-radius:50%;
+            background:#dcecef center/cover no-repeat;
+            margin-bottom:15px;
+        }
