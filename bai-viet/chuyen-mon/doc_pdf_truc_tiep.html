@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Đọc văn bản PDF</title>
 
+  <link rel="icon"
+href="../../tai-nguyen/icons/icon32.ico">
+<link rel="icon"
+href="../../tai-nguyen/icons/icon192.ico">
+
 <style>
 body{
   margin:0;
@@ -12,51 +17,33 @@ body{
   background:#f4f6f9;
 }
 
-header{
-  background:#07a4e2;
-  color:white;
-  padding:12px;
-  text-align:center;
-  font-size:18px;
-  font-weight:bold;
-}
+        .select-container {
+            margin-bottom: 15px;
+            max-width: 100%;
+        }
 
-.toolbar{
-  background:#fff;
-  padding:10px;
-  border-bottom:1px solid #ddd;
-}
+        /* Tùy chỉnh giao diện nút xổ xuống cho đẹp và dễ bấm trên điện thoại */
+        .pdf-select {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 12px;
+            font-size: 15px;
+            border: 1px solid #007bff;
+            border-radius: 6px;
+            background-color: #ffffff;
+            color: #333;
+            outline: none;
+            cursor: pointer;
+        }
 
-select{
-  padding:6px 10px;
-  font-size:14px;
-}
+        iframe { 
+            width: 100%; 
+            height: 75vh; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            background-color: #fff;
+        }
 
-.open-btn{
-  text-align:center;
-  padding:10px;
-  background:#fff;
-  border-bottom:1px solid #ddd;
-}
-
-.open-btn a{
-  background:#b30000;
-  color:#fff;
-  padding:8px 14px;
-  text-decoration:none;
-  border-radius:5px;
-}
-
-.pdf-container{
-  width:100%;
-  height:calc(100vh - 160px);
-}
-
-iframe{
-  width:100%;
-  height:100%;
-  border:none;
-}
 </style>
 
 <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
@@ -71,48 +58,63 @@ iframe{
 
 </header>
 
+    <div class="select-container">
+        <label for="pdfSelect" style="display: block; margin-bottom: 5px; font-weight: bold;">Chọn văn bản cần xem:</label>
+        <select id="pdfSelect" class="pdf-select" onchange="viewPDF(this.value)">
 
-<div class="toolbar">
-  Chọn văn bản:
-  <select onchange="loadPDF(this.value)">
- <option value="pdf/qdtw208.pdf">Quy định 208 thi hành Điều lệ Đảng</option>
- <option value="pdf/hd02-2026-thi-hanh-dieu-le-dang.pdf">Hướng dẫn 02 thi hành Điều lệ Đảng</option>
- <option value="pdf/ytuonghay.pdf">Ý tưởng hay</option>
- <option value="pdf/qdtw207.pdf">Quy định 207 những điều đảng viên không được làm</option>
- <option value="pdf/hdubkttw02-2026.pdf">Hướng dẫn thi hành quy định những điều đảng viên không được làm</option>
- <option value="pdf/qd21ktgs.pdf">Quy định 21 về kiểm tra, giám sát</option>
- <option value="pdf/nqtw80vanhoa.pdf">Nghị quyết TW về văn hóa</option>
- <option value="pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường Lưu Kiếm lần I</option>
- <option value="pdf/qd19cttt.pdf">Quy định 19 về chính trị, tư tưởng</option>
- <option value="pdf/triethocmaclenin.pdf">Triết học Mác Lênin</option>
- <option value="pdf/xhcnhp.pdf">Nghị quyết xây dựng XHCN</option>
-<option value="pdf/nq08chuyendoixanh.pdf">Nghị quyết chuyển đổi xanh</option>
-<option value="pdf/Lich su Luu Ky_A5.pdf">Lưu Kỳ những chặng đường lịch sử</option>
-  </select>
-</div>
+            /* Văn bản về công tác kiểm tra, giám sát */
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Nq05vekiemtragiamsat2026.pdf">Nghị quyết 05 về kiểm tra, giám sát</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd21ktgs.pdf">Quy định 21 về kiểm tra, giám sát</option>
+            <option value="#"> Hướng dẫn thực hiện Quy định 21</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qdtw207.pdf">Quy định 207 những điều đảng viên không được làm</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/hdubkttw02-2026.pdf">Hướng dẫn thi hành quy định những điều đảng viên không được làm</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-89-2022.pdf">Quyết định 89 quy trình kiểm tra, giám sát 2022</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-354-2021.pdf">Quyết định 354 quy trình kiểm tra, giám sát 2021</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-331-2025.pdf">Quyết định 331 quy trình kiểm tra, giám sát 2025</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/hd-quy-trinh-ktgs2026.pdf">Hướng dẫn Quy trình KTGS 2026</option>
 
-<div class="open-btn">
-  <a id="openPDF" target="_blank">Mở PDF toàn màn hình</a>
-</div>
+             /* Văn bản về Quy điịnh, Nghị quyết */
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qdtw208.pdf">Quy định 208 thi hành Điều lệ Đảng</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/hd02-2026-thi-hanh-dieu-le-dang.pdf">Hướng dẫn 02 thi hành Điều lệ Đảng</option>
 
-<div class="pdf-container">
-  <iframe id="pdfViewer"></iframe>
-</div>
+            
+
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/nqtw80vanhoa.pdf">Nghị quyết TW về văn hóa</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd19cttt.pdf">Quy định 19 về chính trị, tư tưởng</option>
+            
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/xhcnhp.pdf">Nghị quyết xây dựng XHCN</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/nq08chuyendoixanh.pdf">Nghị quyết chuyển đổi xanh</option>
+
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Nq Dai hoi Dang bo phuong lan 1.pdf">Nghị quyết Đại hội Đảng bộ phường Lưu Kiếm lần I</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Ct hanh cong thuc hien Nq Dh Dang bo phuong lan 1.pdf">Chương trình thực Nghị quyết Đại hội Đảng bộ phường lần I</option>
+
+             /* Văn bản học tập, nghiên cứu */
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/533pl2.pdf">Chức danh ở cấp xã</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/triethocmaclenin.pdf">Triết học Mác Lênin</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Bi-mat-cua-mot-tri-nho-sieu-pham.pdf">Bí mật trí nhớ siêu phàm</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Lich su Luu Ky_A5.pdf">Lưu Kỳ những chặng đường lịch sử</option>
+
+             /* Văn bản tham khảo */
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/ytuonghay.pdf">Ý tưởng hay</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 1.pdf">Bác sĩ tốt nhất là chính mình tập 1</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 2.pdf">Bác sĩ tốt nhất là chính mình tập 2</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 3.pdf">Bác sĩ tốt nhất là chính mình tập 3</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 4.pdf">Bác sĩ tốt nhất là chính mình tập 4</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 5.pdf">Bác sĩ tốt nhất là chính mình tập 5</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 6.pdf">Bác sĩ tốt nhất là chính mình tập 6</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 7.pdf">Bác sĩ tốt nhất là chính mình tập 7</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 8.pdf">Bác sĩ tốt nhất là chính mình tập 8</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 9.pdf">Bác sĩ tốt nhất là chính mình tập 9</option>
+            <option value="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Nhanto_Enzyme.pdf">Nhân tố Enzyme</option>
+
+            </select>
+    </div>
+
+    <iframe id="pdf-frame" src=""></iframe>
+
+
 
 <script>
-function loadPDF(file){
-  document.getElementById("pdfViewer").src = file;
-  document.getElementById("openPDF").href = file;
-}
-
-window.onload = function(){
-  const firstFile = document.querySelector("select").value;
-  loadPDF(firstFile);
-}
-</script>
-
-<script>
-
 async function loadComponent(id, file){
 
     try{
@@ -151,8 +153,27 @@ document.addEventListener(
 
   }
 );
-
 </script>
+
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+
+<script>
+        function getGoogleViewerUrl(url) {
+            return 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true';
+        }
+
+        function viewPDF(fileUrl) {
+            document.getElementById('pdf-frame').src = getGoogleViewerUrl(fileUrl);
+        }
+
+        // Tự động tải file đầu tiên có trong danh sách khi vừa mở trang
+        window.onload = function() {
+            const selectElement = document.getElementById('pdf-select') || document.getElementById('pdfSelect');
+            if (selectElement && selectElement.value) {
+                viewPDF(selectElement.value);
+            }
+        };
+</script>
+
 </body>
 </html>
