@@ -229,6 +229,27 @@ href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.
                 </ul>
             </section>
 
+                        <!-- KHU VỰC XEM TÀI LIỆU -->
+
+    <div class="pdf-wrapper">
+        <h2>Tài liệu nghiệp vụ</h2>
+
+        <div class="pdf-menu">
+            <button class="btn-pdf active" onclick="changePDF('https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-89-2022.pdf', this)">Quyết định 89-2022</button>
+
+            <button class="btn-pdf" onclick="changePDF('https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-354-2021.pdf', this)">Quyết định 354-2021</button>
+
+ <button class="btn-pdf" onclick="changePDF('https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-331-2025.pdf', this)">Quyết định 331-2025</button>
+
+            <button class="btn-pdf" onclick="changePDF('https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/hd-quy-trinh-ktgs2026.pdf', this)">Hướng dẫn 02-2026</button>
+
+        </div>
+
+        <iframe id="pdf-viewer" src="file1.pdf#toolbar=1" type="application/pdf">
+            Trình duyệt của bạn không hỗ trợ xem file PDF.
+        </iframe>
+    </div>
+
         </main>
 
           <!-- Right Column: Sidebar -->
@@ -586,6 +607,18 @@ async function updateViews(){
 
 updateViews();
 </script>
+
+    <script>
+        function changePDF(fileUrl, element) {
+            // Cập nhật đường dẫn file cho iframe
+            document.getElementById('pdf-viewer').src = fileUrl + '#toolbar=1';
+
+            // Đổi trạng thái active cho nút được bấm
+            let buttons = document.querySelectorAll('.btn-pdf');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
     
 </body>
 </html>
