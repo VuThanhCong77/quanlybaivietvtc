@@ -43,9 +43,8 @@
         href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
     <link rel="icon"
         href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
-
     
-<!-- =====================================================
+   <!-- =====================================================
 MAIN CSS
 ===================================================== -->
 
@@ -125,19 +124,35 @@ MAIN CSS
 </section>
 
         <!-- CHUYÊN MỤC TIN BÀI LỌC TỪ API TIN TỨC -->
-        <section id="tin-tuc">
-            <div class="container">
-                <div class="section-head">
-                    
-                    <h2>Tin tức & Bài viết</h2>
-                    <p>Chuyên mục tổng hợp các tin tức, hoạt động liên quan đến Tổ dân phố Lưu Kỳ từ hệ thống.</p>
-                </div>
+<section id="tin-tuc">
+    <div class="container">
+        <div class="row-two-columns">
 
-         <div id="activity-container">
-                    <p style="font-size: 13px; color: #777;">Đang tìm kiếm bài viết liên quan đến Lưu Kỳ</p>
+            <!-- Cột trái: Tiêu đề & Giới thiệu -->
+            <div class="column-item">
+                <div class="section-head">
+                    <h2>XÂY DỰNG CHÍNH QUYỀN</h2>
+                    <p>Tin tức & Bài viết liên quan đến Tổ dân phố</p>
                 </div>
-         </div>
-        </section>
+                    <div id="activity-container">
+                    <p style="font-size: 13px; color: #777;">Đang tìm kiếm bài viết liên quan đến Lưu Kỳ</p>
+                    </div>
+            </div>
+
+            <!-- Cột phải: Hiển thị danh sách bài viết lọc theo "Chi bộ" -->
+            <div class="column-item">
+               <div class="section-head">
+                    <h2>XÂY DỰNG ĐẢNG</h2>
+                    <p>Bài viết liên quan đến Chi bộ</p>
+                </div>
+                <div id="activity-container2">
+                    <p style="font-size: 13px; color: #11047e;">Đang tải bài viết...</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
 
     
         <section id="gioi-thieu">
@@ -536,6 +551,8 @@ MAIN CSS
 
     <button class="back-top" id="backTop" title="Lên đầu trang">↑</button>
 
+    <script src="../tai-nguyen/js/danh-sach-6-bai-viet-noi-bat.js"></script>
+
     <script>
         // 1. CHỨC NĂNG CHIA SẺ TRANG WEB
         function shareWebsite() {
@@ -624,7 +641,66 @@ MAIN CSS
             });
     });
 
-        // 3. CUỘN TRANG VÀ NÚT LÊN ĐẦU TRANG
+ 
+        // 2.1 LỌC DỮ LIỆU THEO: Chi bộ
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Tải dữ liệu từ file JSON
+        fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/chuyen-mon.json")
+            .then(response => response.json())
+            .then(data => {
+                // Lọc bài viết có chứa từ "Chi bộ" hoặc "Chí bộ" trong mảng/chuỗi category
+                const filteredPosts = data.filter(item => {
+                    if (!item.category) return false;
+                    
+                    // Trường hợp category là Mảng (Array)
+                    if (Array.isArray(item.category)) {
+                        return item.category.some(cat => cat.toLowerCase().includes("chi bộ") || cat.toLowerCase().includes("chí bộ"));
+                    }
+                    
+                    // Trường hợp category là Chuỗi (String, ví dụ: "[Hướng dẫn, Chi bộ]")
+                    if (typeof item.category === "string") {
+                        return item.category.toLowerCase().includes("chi bộ") || item.category.toLowerCase().includes("chí bộ");
+                    }
+                    
+                    return false;
+                });
+
+                const container = document.getElementById("activity-container2");
+
+                if (filteredPosts.length === 0) {
+                    container.innerHTML = `<p style="font-size: 13px; color: #777;">Không tìm thấy bài viết liên quan đến Chi bộ.</p>`;
+                    return;
+                }
+
+                // Tạo HTML danh sách bài viết
+                let htmlContent = '<div class="post-list">';
+                filteredPosts.forEach(post => {
+                    htmlContent += `
+                        <div class="post-card">
+                            <a href="${post.url}" target="_blank" class="post-thumb">
+                                <img src="${post.image}" alt="${post.title}" loading="lazy">
+                            </a>
+                            <div class="post-info">
+                                <span class="post-date">${post.date || ''}</span>
+                                <h3 class="post-title"><a href="${post.url}" target="_blank">${post.title}</a></h3>
+                                <p class="post-desc">${post.desc || ''}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                htmlContent += '</div>';
+
+                container.innerHTML = htmlContent;
+            })
+            .catch(error => {
+                console.error("Lỗi khi tải JSON:", error);
+                document.getElementById("activity-container").innerHTML = 
+                    `<p style="font-size: 13px; color: red;">Không thể tải danh sách bài viết.</p>`;
+            });
+    });
+
+     // 3. CUỘN TRANG VÀ NÚT LÊN ĐẦU TRANG
         const backTop = document.getElementById("backTop");
 
         window.addEventListener("scroll", () => {
