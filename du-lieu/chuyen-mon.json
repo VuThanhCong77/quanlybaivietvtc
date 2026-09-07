@@ -1,4 +1,20 @@
 [
+      {
+  "id": "quy-dinh-212-qd-tw-ky-luat-dang",
+  "title": "Quy định 212-QĐ/TW, Kỷ luật Tổ chức đảng và Đảng viên",
+  "desc": "Quy định 212-QĐ/TW: Kỷ luật Đảng được cập nhật toàn diện, kể cả vi phạm liên quan đến trí tuệ nhân tạo",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/kiem-tra.jpg",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc/quy-dinh-212-qd-tw-ky-luat-dang.html",
+  "date": "06-09-2026",
+  "scheduledTime": "",
+  "category": [
+    "Tin tức",
+    "Chi bộ",
+    "Kiểm tra"
+  ],
+  "featured": true,
+  "views": 36
+   },
    {
   "id": "tuyen-truyen-quy-dinh-207-qdtw-ngay-2672026-cua-ban-chap-hanh-trung-uong-dang",
   "title": "Tuyên truyền: Quy định 207-QĐ/TW, ngày 26/7/2026",
@@ -12,7 +28,7 @@
     "Chi bộ"
   ],
   "featured": true,
-  "views": 0
+  "views": 36
 },
    {
   "id": "chuong-trinh-hanh-dong-cua-can-bo-duoc-phe-duyet-quy-hoach-chuc-danh-chu-nhiem-uy-ban-kiem-tra-dang-uy-phuong-giam-doc-trung-tam-phuc-vu-hanh-chinh-cong",
