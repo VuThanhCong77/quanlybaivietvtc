@@ -86,6 +86,21 @@ section {
     background: var(--mau-loi);
 }
 
+#site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #0a7f99; /* Màu nền menu */
+    
+    /* Thiết lập kích thước và căn giữa */
+    width: 100%;             /* Luôn mở rộng full chiều rộng trên màn hình nhỏ */
+    max-width: 1200px;       /* Giới hạn độ rộng tối đa 1200px trên màn hình lớn */
+    margin: 0 auto;          /* Căn giữa phần tử ra giữa trang */
+    
+    /* (Tùy chọn) Thêm bóng mỏng để tách biệt với nội dung bên dưới khi cuộn */
+    box-shadow: 0 2px 5px rgba(234, 238, 11, 0.808); 
+}
+
 /* =========================================================
    4. THÔNG BÁO
 ========================================================= */
