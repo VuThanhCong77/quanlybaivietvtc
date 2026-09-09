@@ -326,3 +326,25 @@ footer {
         height: 280px; /* Trả lại 280px chuẩn cho sidebar trên Desktop */
     }
 }
+
+/* Tối ưu cuộn mượt cho Mobile */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 100%; /* Đổi từ 450px thành 100% để tự co giãn */
+}
+
+.info-table th, 
+.info-table td {
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    font-size: 13px;
+    text-align: left;
+    word-break: break-word; /* Tự động xuống dòng khi văn bản quá dài */
+}
