@@ -47,20 +47,20 @@ MAIN CSS
 </head>
 <body>
 
-      <!-- Main Header -->
-    <header class="header-main">
-        <h2>ỦY BAN NHÂN DÂN PHƯỜNG LƯU KIẾM</h2>
-        <h1>TRUNG TÂM PHỤC VỤ HÀNH CHÍNH CÔNG</h1>
-        <p>Phục vụ nhân dân - Công khai - Minh bạch - Nhanh chóng - Đúng pháp luật</p>
-    </header>
+    <header>
+    <div class="header-inner">
+        <a class="brand" href="../index.html">
+            <div class="brand-logo">KT</div>
+            <div>
+         <h1>TTPV HÀNH CHÍNH CÔNG</h1>
+         <span>Phường Lưu Kiếm</span>      
+            </div>
+        </a>
+    
+        <button class="menu-toggle" id="menuToggle" aria-label="Mở menu">☰</button>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <button class="menu-toggle" id="menuToggle">
-            <span>☰ Danh mục</span>
-            <span style="font-size: 12px;">▼</span>
-        </button>
-        <ul class="nav-container" id="navContainer">
+        <nav id="mainNav">
+        <ul>
             <li><a href="../../index.html" class="active">Trang chủ</a></li>
             <li><a href="#thu-tuc">Thủ tục hành chính</a></li>
             <li><a href="#tin-tuc">Tin tức</a></li>
@@ -69,7 +69,8 @@ MAIN CSS
             <li><a href="#lien-he">Liên hệ</a></li>
         </ul>
     </nav>
-
+    </header>
+    
     <!-- Main Content Container -->
     <div class="container">
 
@@ -294,21 +295,21 @@ MAIN CSS
     <button class="back-to-top" id="backToTop" title="Lên đầu trang">▲</button>
 
             <script>
-            // 1. Xử lý Toggle Menu trên Mobile
+           // 1. Xử lý bật/tắt Menu trên điện thoại
             const menuToggle = document.getElementById('menuToggle');
-            const navContainer = document.getElementById('navContainer');
-            const menuArrow = document.getElementById('menuArrow');
+            const mainNav = document.getElementById('mainNav');
 
-            menuToggle.addEventListener('click', function() {
-                navContainer.classList.toggle('show');
-                menuArrow.textContent = navContainer.classList.contains('show') ? '▲' : '▼';
+            menuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                // Đổi icon ☰ thành ✕ khi mở menu
+                menuToggle.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
             });
 
-            // Tự đóng menu sau khi bấm chọn 1 mục
-            document.querySelectorAll('.nav-container a').forEach(link => {
+            // Tự động đóng menu khi người dùng bấm vào một mục liên kết
+            document.querySelectorAll('nav a').forEach(link => {
                 link.addEventListener('click', () => {
-                    navContainer.classList.remove('show');
-                    menuArrow.textContent = '▼';
+                    mainNav.classList.remove('active');
+                    menuToggle.textContent = '☰';
                 });
             });
 
