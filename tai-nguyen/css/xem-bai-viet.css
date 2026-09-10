@@ -762,3 +762,30 @@ textarea:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================================
+   17. XEM VIDEO
+========================================================= */
+
+.video-container {
+    max-width: 100%;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Giới hạn chiều cao để không bị đè màn hình */
+    border-radius: 8px; /* Tùy chọn: bo góc video cho hiện đại */
+    background-color: #000;
+    display: block;
+}
+
+.video-caption {
+    font-size: 14px;
+    font-style: italic;
+    color: #555;
+    margin-top: 8px;
+    text-align: center;
+}
