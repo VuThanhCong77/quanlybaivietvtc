@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viết bài chính luận tự động</title>
+<style>
+:root{--primary:#087fbd;--primary2:#0b5f91;--bg:#f3f7fa;--card:#fff;--text:#1f2937;--muted:#64748b;--border:#dbe4ea;--danger:#b42318;--ok:#087443}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:Arial,"Segoe UI",sans-serif;color:var(--text);line-height:1.6}
+header{background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;padding:24px 18px}
+header .wrap,.wrap{max-width:1450px;margin:auto} h1{margin:0 0 4px;font-size:28px} header p{margin:0;opacity:.92}
+main{padding:20px 14px}.grid{display:grid;grid-template-columns:430px 1fr;gap:18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 3px 14px #0b38550b;margin-bottom:18px}
+h2{font-size:19px;margin:0 0 14px;color:var(--primary2);border-bottom:1px solid var(--border);padding-bottom:9px}
+h3{font-size:17px;margin:18px 0 8px;color:var(--primary2)} label{display:block;font-weight:700;margin:11px 0 5px}
+input,textarea,select{width:100%;border:1px solid #cbd5df;border-radius:8px;padding:10px 11px;font:inherit;background:#fff}
+textarea{min-height:90px;resize:vertical}.small{font-size:13px;color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{border:0;border-radius:8px;padding:10px 13px;font-weight:700;cursor:pointer;font-size:14px}
+.primary{background:var(--primary);color:#fff}.secondary{background:#e8f2f8;color:var(--primary2)}.dark{background:#334155;color:#fff}.danger{background:#fee4e2;color:var(--danger)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.result{min-height:70px;white-space:pre-wrap}
+.title-option{padding:9px 10px;border:1px solid var(--border);border-radius:8px;margin:7px 0;background:#fafcfd;cursor:pointer}.title-option:hover{border-color:var(--primary);background:#f0f9ff}
+.badge{display:inline-block;background:#e7f5ed;color:var(--ok);padding:3px 8px;border-radius:20px;font-size:12px;font-weight:700}
+.notice{padding:10px 12px;border-left:4px solid var(--primary);background:#f0f8fc;border-radius:6px;font-size:13px}
+.score{font-size:28px;font-weight:800;color:var(--primary2)}
+.article{font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.8}.article h1{text-align:center;color:#183b56;font-family:Arial,sans-serif;font-size:27px}.article h2{font-family:Arial,sans-serif;margin-top:24px}.article .sapo{font-weight:700;font-style:italic;color:#475569}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 30px}
+@media(max-width:950px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}h1{font-size:23px}}
+@media print{header,.input-panel,.top-actions,footer{display:none!important}main{padding:0}.grid{display:block}.card{border:0;box-shadow:none}.article{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<h1>✍️ Viết bài chính luận tự động</h1>
+<p>Không cần máy chủ - Dữ liệu làm việc được lưu cục bộ trên trình duyệt</p>
+</div>
+</header>
+
+<main class="wrap">
+<div class="grid">
+<section class="input-panel">
+<div class="card">
+<h2>1. Thông tin đầu vào</h2>
+<label>Chủ đề *</label>
+<input id="topic" placeholder="Ví dụ: Xây dựng văn hóa công vụ sau sắp xếp tổ chức bộ máy">
+
+<label>Sự kiện / bối cảnh</label>
+<textarea id="event" placeholder="Nêu sự kiện, thực tiễn, vấn đề đang được quan tâm..."></textarea>
+
+<label>Số liệu / kết quả</label>
+<textarea id="data" placeholder="Nhập số liệu chính xác, kèm thời điểm hoặc nguồn nếu có..."></textarea>
+
+<label>Dẫn chứng / văn bản liên quan</label>
+<textarea id="evidence" placeholder="Sự kiện, mô hình, văn bản, kết quả thực tế..."></textarea>
+
+<label>Đối tượng</label>
+<select id="audience">
+<option>Nhân dân</option><option>Cán bộ, đảng viên</option><option>Cán bộ, công chức</option>
+<option>Đoàn viên, hội viên</option><option>Doanh nghiệp</option><option>Cộng đồng dân cư</option>
+</select>
+
+<div class="row">
+<div><label>Mục đích</label><select id="purpose">
+<option>Tuyên truyền, định hướng</option><option>Phân tích, bình luận</option><option>Giải thích chính sách</option><option>Phản biện, đấu tranh</option><option>Giới thiệu mô hình, cách làm</option>
+</select></div>
+<div><label>Độ dài</label><select id="length">
+<option value="short">800–1.200 chữ</option><option value="medium" selected>1.500–2.000 chữ</option><option value="long">2.000–2.500 chữ</option>
+</select></div>
+</div>
+
+<label>Yêu cầu riêng</label>
+<textarea id="extra" placeholder="Ví dụ: phong cách Đảng – Nhà nước; nhấn mạnh kiểm tra, giám sát; tránh khẩu hiệu..."></textarea>
+
+<div class="actions">
+<button class="primary" onclick="generate()">✍️ Tạo bài chính luận</button>
+<button class="secondary" onclick="saveDraft()">💾 Lưu dữ liệu</button>
+<button class="secondary" onclick="loadDraft()">↩️ Nạp dữ liệu</button>
+<button class="danger" onclick="clearAll()">🗑 Xóa</button>
+</div>
+</div>
+
+<div class="card">
+<h2>2. Công cụ biên tập</h2>
+<div class="notice">Công cụ này tạo <b>bản thảo khung</b> từ dữ liệu đã nhập. Không tự tạo số liệu, văn bản pháp lý, phát biểu hoặc kết luận thực tế chưa được cung cấp.</div>
+<div class="actions">
+<button class="dark" onclick="copyArticle()">📋 Sao chép bài</button>
+<button class="secondary" onclick="exportHTML()">📄 Xuất HTML</button>
+<button class="secondary" onclick="printArticle()">🖨 In</button>
+</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>3. Kết quả phân tích</h2>
+<div id="analysis" class="result small">Chưa có dữ liệu. Nhập thông tin bên trái và chọn “Tạo bài chính luận”.</div>
+</div>
+
+<div class="card">
+<h2>4. Tiêu đề đề xuất</h2>
+<div id="titles" class="result">—</div>
+</div>
+
+<div class="card">
+<h2>5. Luận đề</h2>
+<div id="thesis" class="result">—</div>
+</div>
+
+<div class="card">
+<h2>6. Hệ thống luận điểm</h2>
+<div id="points" class="result">—</div>
+</div>
+
+<div class="card">
+<h2>7. Bản thảo hoàn chỉnh</h2>
+<div class="top-actions actions">
+<button class="secondary" onclick="copyArticle()">📋 Sao chép</button>
+<button class="secondary" onclick="exportHTML()">📄 Xuất HTML</button>
+<button class="dark" onclick="printArticle()">🖨 In bài</button>
+</div>
+<article id="article" class="article">
+<p>Chưa tạo bài viết.</p>
+</article>
+</div>
+
+<div class="card">
+<h2>8. Kiểm tra chất lượng</h2>
+<div id="quality">—</div>
+</div>
+</section>
+</div>
+</main>
+<footer>Bộ khung viết bài chính luận tự động · Chạy hoàn toàn cục bộ</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+let current={};
+
+function clean(s){return (s||'').trim();}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function sentence(s){s=clean(s);return s?s.replace(/[.!?]+$/,'')+'.':'';}
+
+function generate(){
+ const topic=clean($('topic').value);
+ if(!topic){alert('Vui lòng nhập Chủ đề.');$('topic').focus();return}
+ const event=clean($('event').value), data=clean($('data').value), evidence=clean($('evidence').value);
+ const audience=$('audience').value,purpose=$('purpose').value,extra=clean($('extra').value);
+ const points=buildPoints(topic);
+ const thesis=buildThesis(topic);
+ const titles=buildTitles(topic);
+ current={topic,event,data,evidence,audience,purpose,extra,points,thesis,titles};
+ $('analysis').innerHTML=`<span class="badge">Đã phân tích</span><br><br><b>Chủ đề:</b> ${esc(topic)}<br><b>Đối tượng:</b> ${esc(audience)}<br><b>Mục đích:</b> ${esc(purpose)}<br><b>Định hướng:</b> ${esc(extra||'Phong cách chính luận Đảng – Nhà nước, chính xác, chặt chẽ, có căn cứ.')}`;
+ $('titles').innerHTML=titles.map((t,i)=>`<div class="title-option" onclick="chooseTitle(${i})"><b>${i+1}.</b> ${esc(t)}</div>`).join('');
+ $('thesis').textContent=thesis;
+ $('points').innerHTML=points.map((p,i)=>`<p><b>Luận điểm ${i+1}.</b> ${esc(p)}</p>`).join('');
+ $('article').innerHTML=buildArticle(current, titles[0]);
+ $('quality').innerHTML=qualityCheck(current);
+ saveDraft(true);
+}
+
+function buildTitles(t){
+ return [
+ `${t} – yêu cầu từ thực tiễn`,
+ `Nhìn từ ${t.toLowerCase()}: trách nhiệm và hành động`,
+ `${t}: từ nhận thức đến hành động`,
+ `Để ${t.toLowerCase()} đi vào thực tiễn`,
+ `${t} – nền tảng tạo chuyển biến bền vững`
+ ];
+}
+function buildThesis(t){
+ return `${t} cần được nhìn nhận từ yêu cầu thực tiễn, gắn với trách nhiệm cụ thể, hiệu quả thực hiện nhiệm vụ và những chuyển biến thiết thực đối với ${$('audience').value.toLowerCase()}.`;
+}
+function buildPoints(t){
+ return [
+ `${t} là vấn đề có ý nghĩa thiết thực trong bối cảnh hiện nay.`,
+ `Thực tiễn đặt ra yêu cầu phải chuyển mạnh từ nhận thức sang hành động cụ thể.`,
+ `Kết quả đạt được cần được đánh giá bằng hiệu quả thực chất, không chỉ bằng số lượng công việc đã triển khai.`,
+ `Những hạn chế, bất cập cần được nhận diện đúng nguyên nhân và xác định rõ trách nhiệm.`,
+ `Công tác lãnh đạo, chỉ đạo, tổ chức thực hiện và kiểm tra, giám sát phải được tiến hành đồng bộ.`,
+ `Giải pháp bền vững là biến chủ trương thành việc làm thường xuyên, có tiêu chí đánh giá và có cơ chế kiểm tra, chấn chỉnh.`
+ ];
+}
+
+function splitData(s){
+ if(!s)return `<p><em>Chưa có số liệu cụ thể được cung cấp. Không tự bổ sung số liệu.</em></p>`;
+ return `<p>${esc(s).replace(/\n+/g,'</p><p>')}</p>`;
+}
+function splitEvidence(s){
+ if(!s)return `<p><em>Chưa có dẫn chứng cụ thể được cung cấp.</em></p>`;
+ return `<p>${esc(s).replace(/\n+/g,'</p><p>')}</p>`;
+}
+function buildArticle(c,title){
+ const p=c.points;
+ return `
+ <h1>${esc(title)}</h1>
+ <p class="sapo">${esc('Trong bối cảnh '+c.topic.toLowerCase()+', yêu cầu đặt ra không chỉ là nhận thức đúng mà còn phải tổ chức thực hiện hiệu quả, gắn trách nhiệm với kết quả và tạo chuyển biến thiết thực trong đời sống. Đây cũng là nội dung cần được nhìn nhận một cách khách quan, toàn diện, trên cơ sở thực tiễn và những căn cứ đã được xác nhận.')}</p>
+ <h2>1. Đặt vấn đề</h2>
+ <p>${esc(c.event||('Thực tiễn đang đặt ra yêu cầu quan tâm đúng mức đến '+c.topic.toLowerCase()+'.'))}</p>
+ <p>${esc(buildThesis(c.topic))}</p>
+ <h2>2. ${esc(p[0])}</h2>
+ <p>${esc('Đây không chỉ là yêu cầu trước mắt mà còn liên quan trực tiếp đến chất lượng thực hiện nhiệm vụ. Khi vấn đề được nhận diện đúng, các cơ quan, tổ chức và cá nhân có cơ sở xác định rõ trách nhiệm, lựa chọn cách làm phù hợp và kiểm soát kết quả thực hiện. Vì vậy, cần đặt vấn đề trong tổng thể nhiệm vụ chính trị và yêu cầu thực tiễn.')}</p>
+ <h2>3. ${esc(p[1])}</h2>
+ <p>${esc('Khoảng cách giữa chủ trương và kết quả thường không nằm ở việc thiếu nhận thức, mà ở khâu tổ chức thực hiện. Mỗi nhiệm vụ cần được cụ thể hóa thành công việc, tiến độ, người chịu trách nhiệm và kết quả có thể kiểm chứng. Đây là cơ sở để hạn chế hình thức và nâng cao hiệu quả.')}</p>
+ <h2>4. ${esc(p[2])}</h2>
+ ${splitData(c.data)}
+ <p>${esc('Số liệu, nếu có, cần được đặt đúng bối cảnh và phân tích về ý nghĩa. Một con số chỉ thực sự có giá trị chính luận khi giúp làm rõ xu hướng, kết quả hoặc vấn đề cần quan tâm. Vì vậy, không nên sử dụng số liệu chưa được kiểm chứng hoặc tách khỏi nguồn và thời điểm.')}</p>
+ <h2>5. Dẫn chứng và thực tiễn</h2>
+ ${splitEvidence(c.evidence)}
+ <p>${esc('Những dẫn chứng trên cần được xem xét trong mối liên hệ với mục tiêu chung, qua đó làm rõ điều gì đã làm được, điều gì còn hạn chế và bài học nào có thể rút ra. Thực tiễn là cơ sở quan trọng để kiểm chứng nhận định và nâng cao sức thuyết phục của bài viết.')}</p>
+ <h2>6. Những vấn đề đặt ra và phản biện</h2>
+ <p>${esc('Có thể xuất hiện cách nhìn cho rằng chỉ cần hoàn thành các nhiệm vụ theo kế hoạch là đã đạt yêu cầu. Tuy nhiên, cách nhìn này chưa đầy đủ nếu chưa xem xét chất lượng, hiệu quả và tác động thực tế. Điều cần quan tâm là kết quả có thực chất hay không, trách nhiệm có rõ hay không và những hạn chế phát sinh đã được nhận diện, chấn chỉnh kịp thời hay chưa.')}</p>
+ <p>${esc('Vì vậy, phản biện chính luận cần dựa trên căn cứ, không cực đoan, không quy kết khi chưa đủ thông tin; đồng thời phải hướng tới cách nhìn toàn diện và giải pháp xây dựng.')}</p>
+ <h2>7. ${esc(p[3])}</h2>
+ <p>${esc('Đánh giá hạn chế phải đi cùng phân tích nguyên nhân khách quan, chủ quan và trách nhiệm của các chủ thể liên quan. Đối với những nội dung thuộc thẩm quyền của tổ chức, cá nhân nào thì cần xác định rõ trách nhiệm của tổ chức, cá nhân đó trên cơ sở chức năng, nhiệm vụ và quy định hiện hành.')}</p>
+ <h2>8. ${esc(p[4])}</h2>
+ <p>${esc('Lãnh đạo, chỉ đạo phải gắn với kiểm tra, giám sát; kiểm tra, giám sát không chỉ nhằm phát hiện vi phạm mà còn để phòng ngừa, nhắc nhở, chấn chỉnh và bảo vệ những cách làm đúng. Đối với công tác xây dựng Đảng, cần đặc biệt chú trọng tính chủ động, thường xuyên và phòng ngừa từ sớm.')}</p>
+ <h2>9. Giải pháp</h2>
+ <ol>
+ <li>Xác định rõ mục tiêu, nhiệm vụ và kết quả cần đạt.</li>
+ <li>Phân công rõ người, rõ việc, rõ thời hạn và rõ trách nhiệm.</li>
+ <li>Gắn tổ chức thực hiện với kiểm tra, giám sát và đánh giá kết quả.</li>
+ <li>Kịp thời biểu dương cách làm hiệu quả; chấn chỉnh những hạn chế, thiếu sót.</li>
+ <li>Định kỳ rà soát, cập nhật giải pháp trên cơ sở thực tiễn và phản ánh chính đáng của người dân.</li>
+ </ol>
+ <h2>10. Kết luận</h2>
+ <p>${esc('Từ thực tiễn có thể khẳng định rằng '+c.topic.toLowerCase()+' chỉ thực sự tạo ra giá trị khi được chuyển hóa thành những hành động cụ thể, có trách nhiệm và có kết quả kiểm chứng được. Mỗi tổ chức, mỗi cán bộ, đảng viên cần biến nhận thức thành việc làm; mỗi nhiệm vụ cần gắn với trách nhiệm; mỗi kết quả cần được đánh giá bằng hiệu quả thực chất.')}</p>
+ <p><strong>${esc('Chủ trương đúng phải được tổ chức thực hiện nghiêm túc; trách nhiệm rõ phải đi cùng kết quả cụ thể; kiểm tra, giám sát phải hướng tới phòng ngừa, chấn chỉnh và xây dựng. Đó là nền tảng để tạo chuyển biến bền vững và củng cố niềm tin của Nhân dân.')}</strong></p>`;
+}
+function chooseTitle(i){
+ if(!current.topic)return;
+ $('article').innerHTML=buildArticle(current,current.titles[i]);
+}
+function qualityCheck(c){
+ let score=50, notes=[];
+ if(c.topic)score+=10; if(c.event)score+=10; else notes.push('Bổ sung sự kiện/bối cảnh để tăng tính thực tiễn.');
+ if(c.data)score+=10; else notes.push('Chưa có số liệu; không tự bổ sung số liệu.');
+ if(c.evidence)score+=10; else notes.push('Nên bổ sung dẫn chứng hoặc căn cứ xác thực.');
+ if(c.extra)score+=5;
+ score=Math.min(score,100);
+ return `<div class="score">${score}/100</div><p><b>Đánh giá:</b> ${score>=85?'Khá tốt':score>=70?'Có thể sử dụng làm bản thảo':'Cần bổ sung dữ liệu trước khi hoàn thiện'}</p>${notes.length?'<ul>'+notes.map(n=>'<li>'+esc(n)+'</li>').join('')+'</ul>':'<p>Đầu vào cơ bản đầy đủ. Trước khi đăng cần kiểm chứng lần cuối về số liệu, tên riêng, chức danh, văn bản và sự kiện.</p>'}`;
+}
+function articleText(){
+ const tmp=document.createElement('div');tmp.innerHTML=$('article').innerHTML;
+ return tmp.innerText.replace(/\n{3,}/g,'\n\n').trim();
+}
+async function copyArticle(){
+ if(!$('article').innerText.trim()||$('article').innerText.includes('Chưa tạo bài')){alert('Chưa có bài viết.');return}
+ try{await navigator.clipboard.writeText(articleText());alert('Đã sao chép bài viết.')}catch(e){prompt('Sao chép nội dung dưới đây:',articleText())}
+}
+function exportHTML(){
+ if(!current.topic){alert('Chưa có bài viết.');return}
+ const content=$('article').innerHTML;
+ const doc=`<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(current.titles[0])}</title><style>body{max-width:900px;margin:40px auto;padding:0 20px;font-family:Arial,sans-serif;line-height:1.75;color:#222}article{font-family:Georgia,serif;font-size:17px}h1{text-align:center;font-family:Arial;color:#17405f}h2{font-family:Arial;color:#17405f;margin-top:25px}.sapo{font-weight:700;font-style:italic}</style></head><body><article>${content}</article></body></html>`;
+ const blob=new Blob([doc],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob);
+ const a=document.createElement('a');a.href=url;a.download='bai-chinh-luan.html';a.click();URL.revokeObjectURL(url);
+}
+function printArticle(){window.print()}
+function saveDraft(silent=false){
+ const obj={topic:$('topic').value,event:$('event').value,data:$('data').value,evidence:$('evidence').value,audience:$('audience').value,purpose:$('purpose').value,length:$('length').value,extra:$('extra').value};
+ localStorage.setItem('boKhungChinhLuan',JSON.stringify(obj)); if(!silent)alert('Đã lưu dữ liệu trên thiết bị này.');
+}
+function loadDraft(){
+ const x=localStorage.getItem('boKhungChinhLuan');if(!x){alert('Chưa có dữ liệu đã lưu.');return}
+ const o=JSON.parse(x);Object.keys(o).forEach(k=>{if($(k))$(k).value=o[k]});generate();
+}
+function clearAll(){
+ if(!confirm('Xóa toàn bộ dữ liệu đang nhập và bản thảo?'))return;
+ ['topic','event','data','evidence','extra'].forEach(id=>$(id).value='');
+ $('analysis').textContent='Chưa có dữ liệu.';$('titles').textContent='—';$('thesis').textContent='—';$('points').textContent='—';$('article').innerHTML='<p>Chưa tạo bài viết.</p>';$('quality').textContent='—';
+}
+</script>
+</body>
+</html>
