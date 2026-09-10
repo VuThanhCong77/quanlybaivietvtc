@@ -3,148 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trình tạo bài viết</title>
+<title>Hệ Thống Soạn Bài, Sửa Bài & Đăng Bài - Vũ Thành Công</title>
 
 <link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
 <link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
 <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* ===========================
-   GIAO DIỆN CHUNG
-=========================== */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --dark-bg: #1e1e1e;
+    --light-bg: #f8f9fa;
+    --border-color: #d0d7de;
 }
 
-body{
-    font-family:"Segoe UI", Arial, sans-serif;
-    background:#eef2f7;
-    color:#333;
-    max-width:1300px;
-    margin:30px auto;
-    padding:30px;
-    line-height:1.6;
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: #eef2f7;
+    color: #333;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+    line-height: 1.6;
 }
 
-h1{
-    text-align:center;
-    margin-bottom:30px;
-    color:#0d6efd;
-    font-size:34px;
-    font-weight:700;
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 30px;
+    font-weight: 700;
 }
 
-form,
-.main-box{
-    background:#fff;
-    border-radius:12px;
-    padding:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-label{
-    display:block;
-    margin:18px 0 8px;
-    font-size:15px;
-    font-weight:600;
-    color:#444;
+.main-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
 }
 
-input,
-textarea,
-select{
-    width:100%;
-    padding:12px 15px;
-    border:1px solid #d0d7de;
-    border-radius:8px;
-    font-size:15px;
-    transition:.25s;
-    background:#fff;
+.main-box, .sidebar-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-    outline:none;
-    border-color:#0d6efd;
-    box-shadow:0 0 8px rgba(13,110,253,.25);
+label {
+    display: block;
+    margin: 14px 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
 }
 
-textarea{
-    resize:vertical;
+input, textarea, select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all .2s;
+    background: #fff;
 }
 
-.short-text{
-    min-height:80px;
-    max-height:150px;
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(13,110,253,.2);
 }
 
-.long-text{
-    min-height:650px;
-    font-family:Consolas, monospace;
-    font-size:15px;
+/* Rich Text Editor Styling */
+.editor-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    background: #f1f3f5;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
 }
 
-button{
-    background:#0d6efd;
-    color:white;
-    border:none;
-    border-radius:8px;
-    padding:12px 24px;
-    margin-top:20px;
-    margin-right:10px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.25s;
+.editor-toolbar button {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    margin: 0;
 }
 
-button:hover{
-    background:#0b5ed7;
-    transform:translateY(-2px);
-    box-shadow:0 5px 15px rgba(13,110,253,.25);
+.editor-toolbar button:hover {
+    background: #e9ecef;
+    transform: none;
+    box-shadow: none;
 }
 
-button:active{
-    transform:scale(.98);
+#editor-content {
+    min-height: 400px;
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 8px 8px;
+    padding: 15px;
+    background: #fff;
 }
 
-#output{
-    margin-top:30px;
-    height:420px;
-    background:#1e1e1e;
-    color:#00ff66;
-    border:none;
-    border-radius:10px;
-    padding:15px;
-    font-family:Consolas, monospace;
-    font-size:14px;
-    white-space:pre;
-    overflow:auto;
+#editor-content:focus {
+    outline: none;
+    border-color: var(--primary-color);
 }
 
-.button-group{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:20px;
+.html-toggle-btn {
+    float: right;
+    font-size: 12px;
+    background: #6c757d;
+    padding: 4px 8px;
 }
 
-@media(max-width:768px){
-    body{
-        padding:15px;
-        margin:10px;
-    }
-    h1{
-        font-size:26px;
-    }
-    button{
-        width:100%;
-        margin-right:0;
-    }
+/* Action Buttons */
+button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button.btn-success { background: var(--success-color); }
+button.btn-warning { background: var(--warning-color); color: #000; }
+button.btn-danger { background: var(--danger-color); }
+button.btn-secondary { background: #6c757d; }
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#output {
+    margin-top: 20px;
+    height: 250px;
+    background: var(--dark-bg);
+    color: #00ff66;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+.config-card {
+    background: #f8f9fa;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.badge-draft { background: #ffe3e3; color: #c92a2a; }
+.badge-pub { background: #d3f9d8; color: #2b8a3e; }
+
+@media(max-width: 992px){
+    .main-layout { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -152,92 +215,226 @@ button:active{
 
 <header id="menu"></header>
 
-<h1>📝 SOẠN BÀI VIẾT</h1>
-   
-<h2><a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/huong-dan-soan-bai.html">📝 Hướng dẫn soạn bài viết</a></h2>
+<h1>📝 SOẠN, SỬA & ĐĂNG BÀI VIẾT</h1>
 
-<div class="main-box">
-    <label>Tên tệp (Slug)</label>
-    <input id="postId" placeholder="loi-mo-dau">
-
-    <label>Tiêu đề</label>
-    <input id="title">
-
-    <label>Mô tả</label>
-    <textarea id="desc" class="short-text"></textarea>
-
-    <label>Ngày viết</label>
-    <input id="date" value="01-06-2026">
-
-    <label for="scheduledTime">📅 Đặt lịch đăng bài</label>
-    <input type="datetime-local" id="scheduledTime">
-
-    <label>Danh mục</label>
-    <input id="category" value="Tin tức, Chính trị">
-
-    <label>📂 Thư mục lưu</label>
-    <select id="folder">
-        <option value="tin-tuc">Tin tức</option>
-        <option value="tong-hop">Tổng hợp</option>
-        <option value="chuyen-mon">Chuyên môn</option>
-        <option value="hoi-ky">Hồi ký</option>
-    </select>
-
-    <label>🖼 Ảnh bìa</label>
-    <input id="image" value="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anh.jpg">
-
-    <label>📝 Nội dung bài viết (HTML)</label>
-    <textarea id="content" class="long-text">
-<h2>Tiêu đề mục</h2>
-<p>Nội dung bài viết...</p>
-<div class="anh-bia">
-  <img src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anh.jpg" alt="Mô tả ảnh">
-  <div class="chu-thich-anh">Mô tả ảnh</div>
+<div class="top-bar">
+    <div>
+        <strong>Chế độ hoạt động:</strong> 
+        <span id="status-badge" class="badge badge-draft">Đang Soạn Bản Nháp</span>
+    </div>
+    <div style="display:flex; gap:10px;">
+        <label for="importFile" style="margin:0;" class="button btn-secondary">
+            <i class="fas fa-file-import"></i> Mở bài cũ để Sửa
+        </label>
+        <input type="file" id="importFile" accept=".html,.json" style="display:none" onchange="importBaiViet(event)">
+        <button onclick="lamMoiForm()" class="btn-secondary"><i class="fas fa-plus"></i> Tạo mới</button>
+    </div>
 </div>
-    </textarea>
 
-    <div class="button-group">
-        <button onclick="taoHTML()">📄 Tạo HTML</button>
-        <button onclick="taiFile()">💾 Tải HTML</button>
-        <button onclick="xuatTatCa()">📦 HTML + JSON</button>
+<div class="main-layout">
+    <!-- CỘT TRÁI: NỘI DUNG CHÍNH -->
+    <div class="main-box">
+        <label>Tiêu đề bài viết</label>
+        <input id="title" placeholder="Nhập tiêu đề bài viết...">
+
+        <label>Tên tệp URL (Slug)</label>
+        <input id="postId" placeholder="tu-dong-tao-slug">
+
+        <label>Tóm tắt / Mô tả bài viết</label>
+        <textarea id="desc" rows="3" placeholder="Viết mô tả ngắn gọn thu hút người đọc..."></textarea>
+
+        <label>
+            📝 Nội dung bài viết
+            <button class="html-toggle-btn" onclick="toggleHtmlMode()"><i class="fas fa-code"></i> Chuyển Code/Visual</button>
+        </label>
+        
+        <!-- Thanh công cụ Rich Text -->
+        <div class="editor-toolbar" id="editorToolbar">
+            <button onclick="execCmd('bold')" title="In đậm"><i class="fas fa-bold"></i></button>
+            <button onclick="execCmd('italic')" title="In nghiêng"><i class="fas fa-italic"></i></button>
+            <button onclick="execCmd('underline')" title="Gạch chân"><i class="fas fa-underline"></i></button>
+            <button onclick="execCmd('formatBlock', 'h2')" title="Tiêu đề 2">H2</button>
+            <button onclick="execCmd('formatBlock', 'h3')" title="Tiêu đề 3">H3</button>
+            <button onclick="execCmd('insertUnorderedList')" title="Danh sách"><i class="fas fa-list-ul"></i></button>
+            <button onclick="execCmd('insertOrderedList')" title="Danh sách số"><i class="fas fa-list-ol"></i></button>
+            <button onclick="chenAnh()" title="Chèn ảnh"><i class="fas fa-image"></i></button>
+            <button onclick="chenLink()" title="Chèn liên kết"><i class="fas fa-link"></i></button>
+            <button onclick="execCmd('formatBlock', 'blockquote')" title="Trích dẫn"><i class="fas fa-quote-left"></i></button>
+            <button onclick="execCmd('removeFormat')" title="Xóa định dạng"><i class="fas fa-eraser"></i></button>
+        </div>
+
+        <div id="editor-content" contenteditable="true">
+            <h2>Tiêu đề mục</h2>
+            <p>Nội dung bài viết bắt đầu tại đây...</p>
+        </div>
+        <textarea id="content-raw" style="display:none;" class="long-text"></textarea>
+
+        <div class="button-group">
+            <button onclick="taoHTML()"><i class="fas fa-eye"></i> Xem Mã HTML</button>
+            <button onclick="taiFileHTML()" class="btn-secondary"><i class="fas fa-file-code"></i> Tải HTML</button>
+            <button onclick="xuatTatCa()" class="btn-secondary"><i class="fas fa-box"></i> Tải HTML + JSON</button>
+            <button onclick="dangBaiLenGithub()" class="btn-success"><i class="fas fa-cloud-upload-alt"></i> Đăng Trực Tiếp (GitHub)</button>
+        </div>
+
+        <label style="margin-top: 20px;">Mã xuất ra (Console Output):</label>
+        <textarea id="output" readonly placeholder="Mã HTML/JSON hoặc Nhật ký đăng bài sẽ xuất hiện tại đây..."></textarea>
     </div>
 
-    <textarea id="output" readonly></textarea>
+    <!-- CỘT PHẢI: CẤU HÌNH & METADATA -->
+    <div class="sidebar-box">
+        <h3><i class="fas fa-cog"></i> Cấu hình bài viết</h3>
+        
+        <label>📂 Thư mục lưu</label>
+        <select id="folder">
+            <option value="tin-tuc">Tin tức</option>
+            <option value="tong-hop">Tổng hợp</option>
+            <option value="chuyen-mon">Chuyên môn</option>
+            <option value="hoi-ky">Hồi ký</option>
+        </select>
+
+        <label>Danh mục (cách nhau bởi dấu phẩy)</label>
+        <input id="category" value="Tin tức, Chính trị">
+
+        <label>📅 Ngày viết</label>
+        <input id="date" type="text">
+
+        <label for="scheduledTime">⏰ Lịch đăng tự động (Nếu có)</label>
+        <input type="datetime-local" id="scheduledTime">
+
+        <label>🖼 Đường dẫn Ảnh bìa</label>
+        <input id="image" value="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/anh.jpg">
+        <div id="image-preview" style="margin-top:10px; text-align:center;">
+            <img id="img-preview-tag" src="" style="max-width:100%; max-height:150px; border-radius:6px; display:none;">
+        </div>
+
+        <hr style="margin:20px 0; border:0; border-top:1px solid var(--border-color);">
+
+        <div class="config-card">
+            <h4><i class="fab fa-github"></i> Cấu hình Đăng Bài API</h4>
+            <p style="font-size:12px; color:#666; margin-bottom:10px;">Nhập Personal Access Token (PAT) để đăng trực tiếp lên GitHub Repository.</p>
+            
+            <label>GitHub Repo (user/repo)</label>
+            <input id="ghRepo" value="vuthanhcong77/quanlybaivietvtc">
+            
+            <label>GitHub Branch</label>
+            <input id="ghBranch" value="main">
+
+            <label>GitHub Personal Token</label>
+            <input id="ghToken" type="password" placeholder="ghp_xxxxxxxxxxxx">
+        </div>
+    </div>
 </div>
 
 <script>
-let htmlContent = "";
 const BASE = "https://vuthanhcong77.github.io/quanlybaivietvtc";
+let isRawMode = false;
+let generatedHtmlContent = "";
+
+// Tự động thiết lập ngày hiện tại
+document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    document.getElementById("date").value = `${dd}-${mm}-${yyyy}`;
+    
+    // Khôi phục GitHub Token đã lưu (nếu có)
+    if(localStorage.getItem("gh_token")) {
+        document.getElementById("ghToken").value = localStorage.getItem("gh_token");
+    }
+    
+    capNhatAnhXemTruoc();
+});
+
+// Xem trước ảnh bìa
+document.getElementById("image").addEventListener("change", capNhatAnhXemTruoc);
+function capNhatAnhXemTruoc() {
+    const url = document.getElementById("image").value;
+    const imgTag = document.getElementById("img-preview-tag");
+    if(url) {
+        imgTag.src = url;
+        imgTag.style.display = "block";
+    } else {
+        imgTag.style.display = "none";
+    }
+}
+
+// Chuyển Đổi Slug
+function toSlug(text) {
+    return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd').replace(/[^a-z0-9\s-]/g, '')
+        .trim().replace(/\s+/g, '-').replace(/-+/g, '-');
+}
+document.getElementById('title').addEventListener('input', function() {
+    document.getElementById('postId').value = toSlug(this.value);
+});
+
+// Trình soạn thảo Wysiwyg
+function execCmd(command, value = null) {
+    document.execCommand(command, false, value);
+}
+function chenAnh() {
+    const url = prompt("Nhập liên kết hình ảnh:");
+    if (url) execCmd('insertImage', url);
+}
+function chenLink() {
+    const url = prompt("Nhập đường dẫn URL:");
+    if (url) execCmd('createLink', url);
+}
+
+function toggleHtmlMode() {
+    const editor = document.getElementById("editor-content");
+    const raw = document.getElementById("content-raw");
+    const toolbar = document.getElementById("editorToolbar");
+
+    if (!isRawMode) {
+        raw.value = editor.innerHTML;
+        editor.style.display = "none";
+        raw.style.display = "block";
+        toolbar.style.opacity = "0.5";
+        toolbar.style.pointerEvents = "none";
+        isRawMode = true;
+    } else {
+        editor.innerHTML = raw.value;
+        raw.style.display = "none";
+        editor.style.display = "block";
+        toolbar.style.opacity = "1";
+        toolbar.style.pointerEvents = "auto";
+        isRawMode = false;
+    }
+}
+
+function getNoiDungBaiViet() {
+    if (isRawMode) {
+        return document.getElementById("content-raw").value;
+    }
+    return document.getElementById("editor-content").innerHTML;
+}
 
 function imageUrl(path){
     if(!path) return "";
-    if(path.startsWith("http")){
-        return path;
-    }
+    if(path.startsWith("http")) return path;
     return BASE + "/" + path.replace(/^(\.\.\/)+/,"");
 }
 
+// Tạo cấu trúc mã HTML hoàn chỉnh
 function taoHTML(){
     const folder = document.getElementById("folder").value;
     const folderName = {
-        "tin-tuc":"Tin tức",
-        "tong-hop":"Tổng hợp",
-        "chuyen-mon":"Chuyên môn",
-        "hoi-ky":"Chuyên môn",
-        "hoi-ky":"Hồi ký"
+        "tin-tuc":"Tin tức", "tong-hop":"Tổng hợp",
+        "chuyen-mon":"Chuyên môn", "hoi-ky":"Hồi ký"
     }[folder] || "Tin tức";
 
-    const postId = document.getElementById("postId").value;
+    const postId = document.getElementById("postId").value || "bai-viet-moi";
     const PAGE = `${BASE}/bai-viet/${folder}/${postId}.html`;
     const title = document.getElementById("title").value;
     const desc = document.getElementById("desc").value;
     const date = document.getElementById("date").value;
-    const scheduledTime = document.getElementById("scheduledTime").value;
     const category = document.getElementById("category").value;
     const image = document.getElementById("image").value;
-    const content = document.getElementById("content").value;
+    const content = getNoiDungBaiViet();
 
-    htmlContent = `<!DOCTYPE html>
+    generatedHtmlContent = `<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -280,26 +477,17 @@ function taoHTML(){
   "image":"${imageUrl(image)}",
   "datePublished":"${date}",
   "dateModified":"${date}",
-  "author":{
-    "@type":"Person",
-    "name":"Vũ Thành Công"
-  },
+  "author":{"@type":"Person","name":"Vũ Thành Công"},
   "publisher":{
     "@type":"Organization",
     "name":"Vũ Thành Công",
-    "logo":{
-      "@type":"ImageObject",
-      "url":"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.png"
-    }
+    "logo":{"@type":"ImageObject","url":"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.png"}
   },
-  "mainEntityOfPage":{
-    "@id":"${PAGE}"
-  },
+  "mainEntityOfPage":{"@id":"${PAGE}"},
   "inLanguage":"vi"
 }
 <\/script>
 
-<!-- FONT + ICON + BOOTSTRAP -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -312,7 +500,6 @@ function taoHTML(){
 </head>
 
 <body data-post-id="${postId}" data-page="chi-tiet">
-
 <header id="menu"></header>
 
 <main class="trang-bai-viet">
@@ -324,16 +511,14 @@ function taoHTML(){
 
 <header class="header-bai-viet">
 <h1>${title}</h1>
-
 <div class="quote-box">
     <div class="quote-icon">❝</div>
     <p class="quote-text">${desc}</p>
 </div>
-
 <div class="meta-bai-viet">
 <span>✍️ Vũ Thành Công</span>
 <span>📅 ${date}</span>
-<span>📂 ${category.split(",").map(item => item.trim()).join(" · ")}</span>
+<span>📂 ${category.split(",").map(i => i.trim()).join(" · ")}</span>
 <span>👁️ Lượt xem <span id="viewCount">0</span></span>
 </div>
 </header>
@@ -383,7 +568,6 @@ ${content}
 <div id="fb-message"></div>
 </div>
 </section>
-
 </main>
 
 <button id="nut-tro-ve" class="nut-dieu-huong" onclick="history.back()">←</button>
@@ -403,118 +587,288 @@ ${content}
 
 <script>
 fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/subscribe.html")
-.then(r=>r.text())
-.then(html=>{
-    document.getElementById("subscribe-container").innerHTML = html;
-});
+.then(r=>r.text()).then(html=>{ document.getElementById("subscribe-container").innerHTML = html; });
 
 async function loadComponent(id, file){
     try{
         const response = await fetch(file);
         if(!response.ok) throw new Error("Lỗi tải component: " + file);
-        const html = await response.text();
-        document.getElementById(id).innerHTML = html;
-    }catch(error){
-        console.log(error);
-    }
+        document.getElementById(id).innerHTML = await response.text();
+    }catch(e){ console.log(e); }
 }
-
 document.addEventListener("DOMContentLoaded", ()=>{
     loadComponent("menu", "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html");
 });
 <\/script>
-
 <\/body>
 <\/html>`;
 
-    document.getElementById("output").value = htmlContent;
+    document.getElementById("output").value = generatedHtmlContent;
 }
 
-function taiFile(){
-    if(!htmlContent) taoHTML();
-    
-    const filename = (document.getElementById("postId").value || "bai-viet") + ".html";
-    const blob = new Blob([htmlContent], {type:"text/html;charset=utf-8"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    a.click();
-}
-
+// Xuất JSON Metadata
 function taoJsonMetadata(){
     const folder = document.getElementById("folder").value;
     const postId = document.getElementById("postId").value;
-    const PAGE = `${BASE}/bai-viet/${folder}/${postId}.html`;
-    const title = document.getElementById("title").value;
-    const desc = document.getElementById("desc").value;
-    const image = document.getElementById("image").value;
-    const date = document.getElementById("date").value;
-    const scheduledTime = document.getElementById("scheduledTime").value; // SỬA LỖI: Đã lấy giá trị scheduledTime
-    const category = document.getElementById("category").value;
-
     return {
         id: postId,
-        title: title,
-        desc: desc,
-        image: image,
-        url: PAGE,
-        date: date,
-        scheduledTime: scheduledTime, // Giá trị thời gian đặt lịch
-        category: category.split(",").map(item => item.trim()),
+        title: document.getElementById("title").value,
+        desc: document.getElementById("desc").value,
+        image: document.getElementById("image").value,
+        url: `${BASE}/bai-viet/${folder}/${postId}.html`,
+        date: document.getElementById("date").value,
+        scheduledTime: document.getElementById("scheduledTime").value,
+        category: document.getElementById("category").value.split(",").map(i => i.trim()),
         featured: true,
         views: 0
     };
 }
 
-function taiJson(){
-    const data = taoJsonMetadata();
-    const filename = (document.getElementById("postId").value || "bai-viet") + ".json";
-    const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json;charset=utf-8"});
+// Tải Tệp Về Máy
+function taiFileHTML(){
+    taoHTML();
+    const filename = (document.getElementById("postId").value || "bai-viet") + ".html";
+    const blob = new Blob([generatedHtmlContent], {type:"text/html;charset=utf-8"});
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = filename;
     a.click();
 }
 
-async function xuatTatCa(){
-    taoHTML();
-    taiFile();
-    setTimeout(taiJson, 500);
+function xuatTatCa(){
+    taiFileHTML();
+    setTimeout(() => {
+        const data = taoJsonMetadata();
+        const filename = (document.getElementById("postId").value || "bai-viet") + ".json";
+        const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json;charset=utf-8"});
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
+    }, 500);
 }
 
-function toSlug(text) {
-  return text
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/đ/g, 'd')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+// Đọc Tệp Bài Viết Cũ Để Chỉnh Sửa
+function importBaiViet(e) {
+    const file = e.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const content = event.target.result;
+
+        if (file.name.endsWith('.json')) {
+            try {
+                const data = JSON.parse(content);
+                document.getElementById("title").value = data.title || "";
+                document.getElementById("postId").value = data.id || "";
+                document.getElementById("desc").value = data.desc || "";
+                document.getElementById("image").value = data.image || "";
+                document.getElementById("date").value = data.date || "";
+                document.getElementById("scheduledTime").value = data.scheduledTime || "";
+                if(data.category) document.getElementById("category").value = data.category.join(", ");
+                capNhatAnhXemTruoc();
+                alert("Đã nhập thành công tệp metadata JSON!");
+            } catch(err) { alert("Lỗi khi mở tệp JSON!"); }
+        } else if (file.name.endsWith('.html')) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(content, 'text/html');
+
+            document.getElementById("title").value = doc.querySelector("h1") ? doc.querySelector("h1").innerText : "";
+            document.getElementById("desc").value = doc.querySelector(".quote-text") ? doc.querySelector(".quote-text").innerText : "";
+            
+            const articleContent = doc.querySelector("#readingContent");
+            if (articleContent) {
+                document.getElementById("editor-content").innerHTML = articleContent.innerHTML;
+            }
+
+            const imgTag = doc.querySelector(".anh-bia img");
+            if(imgTag) document.getElementById("image").value = imgTag.src;
+
+            capNhatAnhXemTruoc();
+            document.getElementById("status-badge").innerText = "Đang Sửa Bài Viết";
+            document.getElementById("status-badge").className = "badge badge-pub";
+            alert("Đã nạp nội dung bài viết HTML vào trình biên soạn!");
+        }
+    };
+    reader.readAsText(file);
 }
 
-const titleInput = document.getElementById('title');
-const postIdInput = document.getElementById('postId');
-
-titleInput.addEventListener('input', function () {
-  postIdInput.value = toSlug(this.value);
-});
-
-async function loadComponent(id, file){
-    try{
-        const response = await fetch(file);
-        if(!response.ok) throw new Error("Lỗi tải component: " + file);
-        const html = await response.text();
-        document.getElementById(id).innerHTML = html;
-    }catch(error){
-        console.log(error);
+function lamMoiForm() {
+    if(confirm("Bạn có chắc chắn muốn làm mới trang để soạn bài viết mới?")) {
+        window.location.reload();
     }
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    loadComponent("menu", "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html");
-});
+// ĐẨY FILE LÊN GITHUB
+async function dangBaiLenGithub() {
+    const token = document.getElementById("ghToken").value.trim();
+    const repo = document.getElementById("ghRepo").value.trim();
+    const branch = document.getElementById("ghBranch").value.trim();
+    const folder = document.getElementById("folder").value;
+    const postId = document.getElementById("postId").value.trim();
+
+    if (!token) {
+        alert("Vui lòng nhập GitHub Personal Access Token!");
+        return;
+    }
+    if (!postId) {
+        alert("Tên tệp (Slug) không được để trống!");
+        return;
+    }
+
+    localStorage.setItem("gh_token", token);
+    taoHTML();
+
+    const outputConsole = document.getElementById("output");
+    outputConsole.value = "🚀 Đang kết nối GitHub API...\n";
+
+    const filePath = `bai-viet/${folder}/${postId}.html`;
+    const jsonPath = `du-lieu/bai-viet.json`;
+
+    try {
+        // 1. Đăng/Cập nhật file HTML bài viết
+        outputConsole.value += `-> Đang xử lý file HTML: ${filePath}...\n`;
+        const resHtml = await pushFileToGithub(repo, branch, token, filePath, generatedHtmlContent, `Cập nhật bài viết HTML: ${postId}`);
+        outputConsole.value += `   [HTML] ${resHtml}\n`;
+
+        // 2. Tải file du-lieu/bai-viet.json từ GitHub API
+        outputConsole.value += `-> Đang tải file tổng hợp JSON: ${jsonPath}...\n`;
+        
+        let listPosts = [];
+        let jsonSha = "";
+
+        const checkJsonUrl = `https://api.github.com/repos/${repo}/contents/${jsonPath}?ref=${branch}`;
+        
+        let getJsonRes;
+        try {
+            getJsonRes = await fetch(checkJsonUrl, {
+                headers: { 
+                    "Authorization": `Bearer ${token}`,
+                    "Accept": "application/vnd.github.v3+json"
+                }
+            });
+        } catch (netErr) {
+            throw new Error("Lỗi kết nối mạng hoặc API GitHub bị chặn (Failed to fetch). Vui lòng kiểm tra lại kết nối Wifi/4G hoặc tắt AdBlock!");
+        }
+
+        if (getJsonRes.ok) {
+            const jsonFileData = await getJsonRes.json();
+            jsonSha = jsonFileData.sha;
+            
+            // Giải mã Base64 sang chuỗi UTF-8 chuẩn
+            const rawContent = jsonFileData.content.replace(/\s/g, '');
+            const binaryStr = atob(rawContent);
+            const bytes = new Uint8Array(binaryStr.length);
+            for (let i = 0; i < binaryStr.length; i++) {
+                bytes[i] = binaryStr.charCodeAt(i);
+            }
+            const decodedJsonText = new TextDecoder("utf-8").decode(bytes);
+            
+            listPosts = JSON.parse(decodedJsonText);
+        } else if (getJsonRes.status === 404) {
+            outputConsole.value += `   [JSON] Chưa có file du-lieu/bai-viet.json, sẽ tạo mới!\n`;
+            listPosts = [];
+        } else {
+            throw new Error(`GitHub API trả về lỗi HTTP ${getJsonRes.status}`);
+        }
+
+        // 3. Cập nhật mảng JSON
+        const newPostData = taoJsonMetadata();
+        const index = listPosts.findIndex(item => item.id === postId);
+
+        if (index !== -1) {
+            newPostData.views = listPosts[index].views || 0;
+            listPosts[index] = newPostData;
+            outputConsole.value += `   [JSON] Tìm thấy bài viết cũ, cập nhật dữ liệu...\n`;
+        } else {
+            listPosts.unshift(newPostData);
+            outputConsole.value += `   [JSON] Thêm bài viết mới vào mảng JSON...\n`;
+        }
+
+        // 4. Ghi đè file JSON lên GitHub
+        const updatedJsonString = JSON.stringify(listPosts, null, 2);
+        const resJson = await pushFileToGithub(repo, branch, token, jsonPath, updatedJsonString, `Cập nhật danh sách bài viết: ${postId}`, jsonSha);
+        outputConsole.value += `   [JSON] ${resJson}\n`;
+
+        outputConsole.value += "✅ ĐÃ CẬP NHẬT/ĐĂNG BÀI VIẾT VÀ TỆP DỮ LIỆU CÔNG KHAI THÀNH CÔNG!";
+        alert("Đăng/Cập nhật bài viết thành công!");
+
+    } catch (error) {
+        outputConsole.value += `❌ LỖI: ${error.message}\n`;
+        alert("Có lỗi xảy ra: " + error.message);
+    }
+}
+// HÀM ĐẨY FILE LÊN GITHUB (BỔ SUNG CHỐNG CACHE API MẠNH NHẤT)
+async function pushFileToGithub(repo, branch, token, path, content, commitMessage, forcedSha = "") {
+    const url = `https://api.github.com/repos/${repo}/contents/${path}`;
+    let sha = forcedSha;
+
+    if (!sha) {
+        try {
+            const checkUrl = `${url}?ref=${branch}`;
+            const getRes = await fetch(checkUrl, {
+                headers: { 
+                    "Authorization": `Bearer ${token}`,
+                    "Accept": "application/vnd.github.v3+json",
+                    // Bổ sung các header chống Cache nghiêm ngặt của GitHub
+                    "Cache-Control": "no-cache, no-store, must-revalidate",
+                    "Pragma": "no-cache",
+                    "If-None-Match": "" // Ép GitHub bỏ qua Etag Cache, tải dữ liệu mới nhất
+                }
+            });
+
+            if (getRes.ok) {
+                const fileData = await getRes.json();
+                sha = fileData.sha;
+            } else if (getRes.status !== 404) {
+                const errData = await getRes.json();
+                throw new Error(`Lỗi kiểm tra file (${getRes.status}): ${errData.message}`);
+            }
+        } catch(e) {
+            if (e.message.includes("Lỗi kiểm tra file")) throw e;
+        }
+    }
+
+    const bytes = new TextEncoder().encode(content);
+    let binary = '';
+    for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    const base64Content = btoa(binary);
+
+    const bodyData = {
+        message: commitMessage,
+        content: base64Content,
+        branch: branch
+    };
+    
+    if (sha) {
+        bodyData.sha = sha;
+    }
+
+    const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github.v3+json"
+        },
+        body: JSON.stringify(bodyData)
+    });
+
+    if (!response.ok) {
+        const errData = await response.json();
+        // Bẫy lỗi đặc thù khi API GitHub vẫn bị nghẽn cache cục bộ
+        if (response.status === 422 && errData.message.includes("sha")) {
+            throw new Error("Tệp đã tồn tại trên GitHub nhưng máy chủ đang bị nghẽn Cache. Vui lòng đợi khoảng 30 giây và bấm Đăng lại!");
+        }
+        throw new Error(errData.message || `Lỗi HTTP ${response.status}`);
+    }
+
+    return sha ? "Ghi đè/Cập nhật file thành công!" : "Tạo file mới thành công!";
+}
+
 </script>
 
 </body>
