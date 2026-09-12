@@ -778,7 +778,7 @@ function taiComponentPhu() {
     // Tải thông tin cán bộ
     const containerCanBo = document.getElementById('gioi-thieu-can-bo');
     if (containerCanBo) {
-        fetch('/thanh-phan/can-bo.html')
+        fetch('https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/can-bo.html')
             .then(r => r.text())
             .then(html => {
                 containerCanBo.innerHTML = html;
