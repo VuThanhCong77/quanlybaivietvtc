@@ -298,7 +298,7 @@ Không ảnh hưởng CSS .btn cũ
 
 .hero-van-ban {
     display: flex;
-    background: #dcfce7;
+    background: #ebefec00;
     flex-direction: column;
     justify-content: center;
     width: 50%;
@@ -307,14 +307,14 @@ Không ảnh hưởng CSS .btn cũ
 .hero-van-ban h1 {
     margin-bottom: 16px;
     color: var(--mau-chinh-dam);
-    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-size: 14px;
     line-height: 1.15;
 }
 
 .hero-van-ban p {
     margin-bottom: 24px;
     color: var(--mau-phu);
-    line-height: 1.8;
+    line-height: 1.3;
 }
 
 .hero-nut {
@@ -1082,27 +1082,59 @@ section.am-nhac iframe {
 }
 
 /* =========================================================
-   23. RESPONSIVE
+   23. RESPONSIVE DI ĐỘNG (CHUẨN HIỂN THỊ ẢNH & KHÔNG BỊ ẨN)
 ========================================================= */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+
     main {
         width: min(100% - 24px, 1200px);
     }
 
     section {
-        margin: 56px 0;
+        margin: 36px 0;
     }
 
+    /* Bố cục Hero chuyển sang dạng cột */
     .hero-noi-dung {
+        display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 20px !important; /* Thu hẹp khoảng cách giữa Slider và Tiêu đề */
         text-align: center;
+        padding-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .hero-banner,
     .hero-van-ban {
-        width: 100%;
+        width: 100% !important;
+        margin-top: 0 !important;
+    }
+
+    .hero-van-ban {
+        padding-top: 5px !important;
+    }
+
+    /* Đặt chiều cao/tỷ lệ rõ ràng cho Slider để không bị sập chiều cao về 0 */
+    .hero-slider,
+    .hero-slides {
+        width: 100% !important;
+        height: 260px !important; /* Đặt chiều cao khung cố định cho di động */
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        position: relative;
+    }
+
+    /* Cấu hình hiển thị ảnh đại diện trọn vẹn */
+    .hero-slides img,
+    .hero-slider img {
+        width: 100% !important;
+        height: 100% !important; /* Phủ kín 100% chiều cao 220px của khung chứa */
+        object-fit: contain !important; /* Ảnh co lại hiển thị ĐẦY ĐỦ, không bị xén mép */
+        object-position: center !important; /* Căn ảnh vào giữa */
+        background-color: #f0f0f0; /* Nền xám nhẹ làm đệm nếu ảnh quá ngắn so với khung */
+        display: block;
+        margin: 0 auto !important;
     }
 
     .hero-nut {
