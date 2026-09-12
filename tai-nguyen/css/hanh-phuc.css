@@ -3,10 +3,12 @@ CHỈ SỐ HẠNH PHÚC - GIÁ TRỊ CUỘC SỐNG
 ===================================================== */
 
 #chisohanhphuc,
-#giatri{
-    padding:40px 20px;
+#giatri {
+    padding: 40px 20px;
+    background: #f5faf6;
+    border-radius: 25px;
+    margin-bottom: 40px;
 }
-
 /* Tiêu đề */
 
 .section-title{
@@ -149,11 +151,4 @@ CHỈ SỐ HẠNH PHÚC - GIÁ TRỊ CUỘC SỐNG
     .value h3{
         font-size:1.1rem;
     }
-}
-
-#chisohanhphuc,
-#giatri{
-    background:#f5faf6;
-    border-radius:25px;
-    margin-bottom:40px;
 }

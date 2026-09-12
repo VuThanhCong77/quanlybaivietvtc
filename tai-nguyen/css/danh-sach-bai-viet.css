@@ -328,46 +328,6 @@ input {
     text-decoration: underline;
 }
 
-
-/* =====================================================
-   NÚT ĐIỀU HƯỚNG
-===================================================== */
-
-.nut-dieu-huong {
-    width: 42px;
-    height: 42px;
-    position: fixed;
-    right: 20px;
-    z-index: 900;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 50%;
-    background: #2563eb;
-    color: #ffffff;
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-    transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.nut-dieu-huong:hover {
-    transform: scale(1.08);
-    background: #1d4ed8;
-}
-
-#nut-tro-ve {
-    bottom: 75px;
-}
-
-#nut-len-dau {
-    right: 20px;
-    bottom: 20px;
-}
-
-
 /* =====================================================
    TABLET
 ===================================================== */
@@ -485,28 +445,13 @@ input {
         font-size: 13px;
     }
 
-    .nut-dieu-huong {
-        right: 12px;
-        width: 38px;
-        height: 38px;
-        font-size: 20px;
-    }
-
-    #nut-tro-ve {
-        bottom: 62px;
-    }
-
-    #nut-len-dau {
-        right: 12px;
-        bottom: 14px;
-    }
 }
 
 /* =====================================================
    KHU VỰC THỐNG KÊ
 ===================================================== */
 
-.thong-ke {
+.thong-ke-bai-viet {
 
     width: min(calc(100% - 32px), 1200px);
 
@@ -536,7 +481,7 @@ input {
 
 /* Ô tiêu đề THỐNG KÊ */
 
-.thong-ke > div:first-child {
+.thong-ke-bai-viet > div:first-child {
 
     min-height: 150px;
 
@@ -556,7 +501,7 @@ input {
 
 }
 
-.thong-ke > div:first-child h3 {
+.thong-ke-bai-viet > div:first-child h3 {
 
     margin: 0;
 
@@ -573,7 +518,7 @@ input {
 
 /* Các ô số liệu */
 
-.thong-ke > div:not(:first-child) {
+.thong-ke-bai-viet > div:not(:first-child) {
 
     min-height: 150px;
 
@@ -599,7 +544,7 @@ input {
 
 }
 
-.thong-ke > div:not(:first-child):hover {
+.thong-ke-bai-viet > div:not(:first-child):hover {
 
     transform: translateY(-5px);
 
@@ -610,7 +555,7 @@ input {
 
 /* Số liệu */
 
-.thong-ke > div:not(:first-child) h3 {
+.thong-ke-bai-viet > div:not(:first-child) h3 {
 
     margin: 0 0 8px;
 
@@ -632,7 +577,7 @@ input {
 
 /* Mô tả số liệu */
 
-.thong-ke span {
+.thong-ke-bai-viet span {
 
     color: #64748b;
 
@@ -649,7 +594,7 @@ input {
 
 @media (max-width: 768px) {
 
-    .thong-ke {
+    .thong-ke-bai-viet {
 
         grid-template-columns: repeat(2, 1fr);
 
@@ -659,7 +604,7 @@ input {
 
     }
 
-    .thong-ke > div:first-child {
+    .thong-ke-bai-viet > div:first-child {
 
         grid-column: 1 / -1;
 
@@ -667,13 +612,13 @@ input {
 
     }
 
-    .thong-ke > div:first-child h3 {
+    .thong-ke-bai-viet > div:first-child h3 {
 
         font-size: 26px;
 
     }
 
-    .thong-ke > div:not(:first-child) {
+    .thong-ke-bai-viet > div:not(:first-child) {
 
         min-height: 110px;
 
@@ -681,7 +626,7 @@ input {
 
     }
 
-    .thong-ke > div:not(:first-child) h3 {
+    .thong-ke-bai-viet > div:not(:first-child) h3 {
 
         font-size: 28px;
 

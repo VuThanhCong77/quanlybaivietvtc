@@ -25,6 +25,14 @@
 
 }
 
+.hero-slide {
+    pointer-events: none;
+}
+
+.hero-slide.active {
+    pointer-events: auto;
+}
+
 .hero-slide img{
 
     width:100%;
@@ -86,13 +94,6 @@
 
 }
 
-.hero-slide {
-    pointer-events: none;
-}
-
-.hero-slide.active {
-    pointer-events: auto;
-}
 
 @media(max-width:768px){
 
