@@ -78,7 +78,7 @@ async function taiMenu() {
     const el = document.getElementById("menu");
     if (!el) return;
     try {
-        const response = await fetch("/thanh-phan/menu.html");
+        const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html");
         const html = await response.text();
         el.innerHTML = html;
     } catch (err) {
@@ -99,7 +99,7 @@ async function taiBannerMoiNhat() {
     if (!slides) return;
 
     try {
-        const response = await fetch("/du-lieu/bai-viet.json");
+        const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json");
         const danhSach = await response.json();
 
         const baiMoi = [...danhSach]
@@ -163,7 +163,7 @@ async function taiBannerMoiNhat() {
     try {
         // Gửi 2 yêu cầu cùng lúc để tiết kiệm thời gian chờ mạng
         const [resPost, resView] = await Promise.all([
-            fetch("/du-lieu/bai-viet.json"),
+            fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"),
             fetch(`${VIEW_API}?mode=list`)
         ]);
 
@@ -182,7 +182,7 @@ async function loadLatestNews() {
     if (!container) return;
 
     try {
-        const response = await fetch("/du-lieu/bai-viet.json");
+        const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json");
         const data = await response.json();
         const posts = Array.isArray(data) ? data : (data.posts || []);
 
@@ -219,7 +219,7 @@ async function taiBaiVietMoiNhat() {
     if (!container) return;
 
     try {
-        const response = await fetch("/du-lieu/bai-viet.json");
+        const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json");
         const danhSach = await response.json();
 
         const baiVietMoiNhat = [...danhSach]
@@ -247,7 +247,7 @@ async function taiBaiVietMoiNhat() {
 async function taiBaiViet() {
     try {
         const [resPost, resView] = await Promise.all([
-            fetch("/du-lieu/bai-viet.json"),
+            fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"),
             fetch(`${VIEW_API}?mode=list`)
         ]);
 
@@ -294,7 +294,7 @@ function hienThiNoiBat() {
 // 3.4. Chuyên mục chuyên môn (Văn phòng, Xây dựng Đảng, Kiểm tra, Chi bộ)
 async function taiChuyenMucChuyenMon() {
     try {
-        const res = await fetch("/du-lieu/chuyen-mon.json");
+        const res = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/chuyen-mon.json");
         const data = await res.json();
 
         const config = [
