@@ -33,7 +33,7 @@ content="📷 Thư viện ảnh | Vũ Thành Công">
 content="Khám phá bộ sưu tập ảnh về hoạt động chính trị, văn hóa, gia đình, du lịch và những khoảnh khắc đáng nhớ.">
 
 <meta property="og:image"
-content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/2026hcm1.jpg">
+content="../tai-nguyen/anh/2026hcm1.webp">
 
 <meta property="og:image:width"
 content="1200">
@@ -55,21 +55,21 @@ content="📷 Thư viện ảnh | Vũ Thành Công">
 content="Lưu giữ những khoảnh khắc đẹp của cuộc sống.">
 
 <meta name="twitter:image"
-content="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/2026hcm1.jpg">
+content="../tai-nguyen/anh/2026hcm1.webp">
 
 <meta name="theme-color"
 content="#0a7f99">
     
 <link rel="icon"
-href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
+href="../tai-nguyen/icons/icon32.ico">
 
 <link rel="icon"
-href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
+href="../tai-nguyen/icons/icon192.ico">
 
-<link rel="apple-touch-icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon512.png">
+<link rel="apple-touch-icon" href="../tai-nguyen/icons/icon512.webp">
 
 <link rel="icon" sizes="512x512"
-href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon512.png">
+href="../tai-nguyen/icons/icon512.webp">
 
 
 <style>
@@ -565,7 +565,7 @@ body {
 <div class="container">
 
 <div class="header" >
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html">📷</a>
+    <a href="../index.html">📷</a>
     | Thư viện ảnh
 </div>
 
@@ -622,7 +622,7 @@ body {
 </div>
 
 <script>
-const API_URL = "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/thu-vien-anh.json";
+const API_URL = "../du-lieu/thu-vien-anh.json";
 
 let images = [];
 let currentIndex = 0;
@@ -636,8 +636,8 @@ async function loadImages(){
         // nếu file rỗng thì dùng mặc định
         if(!Array.isArray(images) || images.length === 0){
             images = [
-                {id:1,url:"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/1.png",title:"Phong cảnh",cat:"Du lịch",featured:true,views:0},
-                {id:2,url:"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/ytuonghay.jpg",title:"Thiên nhiên",cat:"Gia đình",featured:false,views:0}
+                {id:1,url:"../tai-nguyen/anh/1.webp",title:"Phong cảnh",cat:"Du lịch",featured:true,views:0},
+                {id:2,url:"../tai-nguyen/anh/ytuonghay.webp",title:"Thiên nhiên",cat:"Gia đình",featured:false,views:0}
             ];
         }
 
@@ -647,7 +647,7 @@ async function loadImages(){
         console.log("Lỗi load JSON:", e);
 
         images = [
-            {id:1,url:"https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bai-viet/1.png",title:"Phong cảnh",cat:"Du lịch",featured:true,views:0}
+            {id:1,url:"../tai-nguyen/anh/1.webp",title:"Phong cảnh",cat:"Du lịch",featured:true,views:0}
         ];
 
         render();
@@ -693,7 +693,7 @@ function render(){
 
         card.innerHTML = `
             ${img.featured ? '<div class="badge">Nổi bật</div>' : ""}
-            <img src="${img.url}" alt="${img.title || "Ảnh trong thư viện"}" loading="lazy">
+            <img loading="lazy" src="${img.url}" alt="${img.title || "Ảnh trong thư viện"}" loading="lazy">
             <div class="info">
                 <b>${img.title}</b><br>
                 <span>${img.cat}</span><br>
