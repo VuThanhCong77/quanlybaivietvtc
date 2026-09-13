@@ -12,80 +12,8 @@ const pageId = document.body.dataset.postId || "index";
 
 
 /* ==========================================================================
-   1. KHU VUC: MENU MOBILE & DRAWER
+   1. KHU VUC: MENU MOBILE & DRAWER DÙNG CHUNG JS MENU
    ========================================================================== */
-
-(function () {
-    "use strict";
-
-    function getElements() {
-        return {
-            button: document.getElementById("nutMenu"),
-            closeButton: document.getElementById("nutDong"),
-            drawer: document.getElementById("menuDrawer"),
-            overlay: document.getElementById("menuOverlay")
-        };
-    }
-
-    function setMenuState(isOpen) {
-        const elements = getElements();
-        if (!elements.drawer || !elements.overlay) return;
-
-        elements.drawer.classList.toggle("active", isOpen);
-        elements.overlay.classList.toggle("active", isOpen);
-
-        elements.drawer.setAttribute("aria-hidden", String(!isOpen));
-        elements.overlay.setAttribute("aria-hidden", String(!isOpen));
-        document.body.classList.toggle("menu-open", isOpen);
-
-        if (elements.button) {
-            elements.button.setAttribute("aria-expanded", String(isOpen));
-        }
-    }
-
-    window.toggleMenu = function () {
-        const elements = getElements();
-        if (!elements.drawer) return;
-        const isOpen = elements.drawer.classList.contains("active");
-        setMenuState(!isOpen);
-    };
-
-    window.closeMenu = function () {
-        setMenuState(false);
-    };
-
-    document.addEventListener("click", function (event) {
-        const target = event.target;
-        if (target.closest("#nutMenu")) {
-            window.toggleMenu();
-            return;
-        }
-        if (target.closest("#nutDong") || target.closest("#menuOverlay")) {
-            window.closeMenu();
-            return;
-        }
-        if (target.closest(".drawer-body a") && window.innerWidth <= 1000) {
-            window.closeMenu();
-        }
-    });
-
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") window.closeMenu();
-    });
-})();
-
-async function taiMenu() {
-    const el = document.getElementById("menu");
-    if (!el) return;
-    try {
-        const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html");
-        const html = await response.text();
-        el.innerHTML = html;
-    } catch (err) {
-        console.error("Lỗi tải menu:", err);
-    }
-}
-
 
 /* ==========================================================================
    2. KHU VUC: SLIDER HERO BANNER
