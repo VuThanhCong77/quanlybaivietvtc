@@ -62,8 +62,11 @@ content="Vũ Thành Công, Lưu Kiếm, Hải Phòng, công tác đảng, kiểm
 
 <link rel="shortcut icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
 <link rel="apple-touch-icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.webp">
-<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
-<script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/trang-chu.js"></script>
+
+<link rel="stylesheet" href="/tai-nguyen/css/main.css">
+
+<!-- Nhúng 1 file JS duy nhất đã gộp với thuộc tính defer -->
+  <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/trang-chu.js"></script>
 
 </head>
 
@@ -113,7 +116,8 @@ HEADER
       <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/ho-chi-minh.html">📚 Tư tưởng Hồ Chí Minh</a>
       <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chinh-tri.html">🏛️ Chính trị</a>
       <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/uy_ban_kiem_tra_phuong_luu_kiem.html">🛠️ Kiểm tra, giám sát</a>
-     </div>
+      <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet-chuyen-mon.html">📚 Nghiệp vụ công tác Đảng</a>
+    </div>
   </div>
 
   <!-- TIN TỨC (2 tầng) -->
@@ -134,7 +138,7 @@ HEADER
       <span class="chev">▾</span>
 
     <div class="submenu" role="menu" aria-label="Nghiên cứu">
-      <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/bai-viet-chuyen-mon.html">🔬 Nghiên cứu – Trao đổi</a>
+      <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet-chuyen-mon.html">🔬 Nghiên cứu – Trao đổi</a>
       <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/gioi-thieu-web.html">🌐 Tổng quan Website</a>
       <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/gioi-thieu.html">👤 Giới thiệu</a>
       <a role="menuitem" href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/trung_tam_hanh_chinh_cong_phuong_luu_kiem.html">📚 TT hành chính công</a>
@@ -307,7 +311,7 @@ HEADER
                  5. NGHIÊN CỨU – TRAO ĐỔI
             ================================================== -->
 
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/bai-viet-chuyen-mon.html">🔬 Nghiên cứu – Trao đổi</a>
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet-chuyen-mon.html">🔬 Nghiên cứu – Trao đổi</a>
             <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/to-dan-pho-luu-ky.html">📍 Tổ dân phố Lưu Kỳ</a>
             
             <!-- =================================================
@@ -512,8 +516,32 @@ TIỆN ÍCH
 
 </section>
 
-	<!-- TIM KIEM CHUNG TOAN WEBSITE-->
-<div id="thanh-tim-kiem-chung"></div>
+<!-- ================================
+TÌM KIẾM NỘI DUNG TRÊN TRANG CHỦ
+================================ -->
+
+<div class="tim-kiem-trang-chu">
+    <div class="tim-kiem-box">
+
+        <input
+            type="text"
+            id="oTimKiemTrangChu"
+            placeholder="Nhập từ khóa cần tìm trên trang..."
+            autocomplete="off"
+        >
+
+        <button
+            type="button"
+            id="nutTimKiemTrangChu"
+            title="Tìm kiếm"
+        >
+            🔍
+        </button>
+
+    </div>
+
+    <div id="ketQuaTimKiemTrangChu"></div>
+</div>
 
 <!-- ================================
 CHỦ ĐỂ QUAN TRỌNG
@@ -747,7 +775,7 @@ THÀNH VIÊN
 
     <div class="thanh-vien-grid">
 
-        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/podcast/Podcast.html" class="tv-card" title="Podcast">
+        <a href="/podcast/Podcast.html" class="tv-card" title="Podcast">
             <img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/vtc1.webp" alt="Vũ Thành Công">
             <div class="tv-chucvu">🎙 Tác giả</div>
             <div class="tv-ten">Vũ Thành Công</div>
@@ -797,7 +825,7 @@ BÀI VIẾT NỔI BẬT
                 <h3>CHUYÊN MỤC</h3>
 
     <div class="luoi-1">
-    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/uy_ban_kiem_tra_phuong_luu_kiem.html" class="quick-item">
+    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/uy_ban_kiem_tra_phuong_luu_kiem.html" class="quick-item">
         <img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/bua-liem.webp" alt="Kiểm tra, giám sát của Đảng" title="Kiểm tra, giám sát của Đảng">
         Kiểm tra, giám sát</a>
 
@@ -1551,6 +1579,7 @@ Facebook
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-bdJC13AYmDhd9MVQimJrgkgnh4rpJPMSm2sH8X-9Xr80QA/viewform?usp=publish-editor">Góp ý</a>
     </button>
 </div>
+
 
 </body>
 </html>
