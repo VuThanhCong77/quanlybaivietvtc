@@ -9,6 +9,7 @@
 /* 2. Layout và component dùng chung */
 @import url("trang-chu.css");
 @import url("menu.css");
+@import url("tim-kiem.css");
 @import url("dieu-huong.css");
 @import url("banner.css");
 @import url("subscribe.css");

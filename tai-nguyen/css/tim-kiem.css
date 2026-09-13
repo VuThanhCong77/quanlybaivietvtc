@@ -1,0 +1,380 @@
+/* =========================================================
+   THANH TIM KIEM CHUNG TOAN WEBSITE
+   File: tai-nguyen/css/tim-kiem.css
+   Khong su dung lai .btn de tranh anh huong CSS cu
+========================================================= */
+
+.tim-kiem-chung {
+    width: 100%;
+    max-width: 900px;
+    margin: 12px auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.tim-kiem-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.tim-kiem-o {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    background: #fff;
+    border: 1px solid #d7e4ec;
+    border-radius: 25px;
+    box-sizing: border-box;
+    transition: border-color .2s ease,
+                box-shadow .2s ease;
+}
+
+.tim-kiem-o:focus-within {
+    border-color: #0099DA;
+    box-shadow: 0 0 0 3px rgba(0,153,218,.12);
+}
+
+.tim-kiem-bieu-tuong {
+    flex: 0 0 auto;
+    padding-left: 15px;
+    font-size: 18px;
+    line-height: 1;
+}
+
+#o-tim-kiem {
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    padding: 0 42px 0 10px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #17324d;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+#o-tim-kiem::placeholder {
+    color: #7a8a96;
+}
+
+.nut-xoa-tim-kiem {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #78909c;
+    font-size: 22px;
+    line-height: 28px;
+    cursor: pointer;
+    display: none;
+}
+
+.nut-xoa-tim-kiem:hover {
+    background: #eef5f8;
+    color: #0099DA;
+}
+
+.nut-thuc-hien-tim-kiem {
+    flex: 0 0 auto;
+    height: 44px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 22px;
+    background: #0099DA;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease,
+                transform .2s ease;
+}
+
+.nut-thuc-hien-tim-kiem:hover {
+    background: #007fb5;
+}
+
+.nut-thuc-hien-tim-kiem:active {
+    transform: scale(.97);
+}
+
+
+/* =========================================================
+   GOI Y
+========================================================= */
+
+.goi-y-tim-kiem {
+    position: relative;
+    z-index: 10000;
+    margin-top: 5px;
+    background: #fff;
+    border: 1px solid #dbe7ed;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.10);
+    overflow: hidden;
+}
+
+.goi-y-item {
+    display: block;
+    width: 100%;
+    padding: 11px 15px;
+    border: 0;
+    border-bottom: 1px solid #edf2f5;
+    background: #fff;
+    text-align: left;
+    color: #17324d;
+    cursor: pointer;
+}
+
+.goi-y-item:hover {
+    background: #f1f9fd;
+    color: #007fb5;
+}
+
+.goi-y-item:last-child {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   KET QUA
+========================================================= */
+
+.ket-qua-tim-kiem {
+    width: calc(100% - 20px);
+    max-width: 1100px;
+    margin: 15px auto 25px;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid #dce8ee;
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 18px rgba(0,0,0,.06);
+}
+
+.ket-qua-tieu-de {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.ket-qua-tieu-de h2 {
+    margin: 0;
+    color: #006c9e;
+    font-size: 21px;
+}
+
+.dong-ket-qua-tim-kiem {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: #f1f5f7;
+    color: #667781;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.dong-ket-qua-tim-kiem:hover {
+    background: #e5eef2;
+    color: #d33;
+}
+
+
+/* =========================================================
+   BO LOC
+========================================================= */
+
+.bo-loc-tim-kiem {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 15px;
+}
+
+.bo-loc-item {
+    padding: 7px 12px;
+    border: 1px solid #cbdde6;
+    border-radius: 18px;
+    background: #fff;
+    color: #42616f;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.bo-loc-item:hover,
+.bo-loc-item.active {
+    border-color: #0099DA;
+    background: #0099DA;
+    color: #fff;
+}
+
+
+/* =========================================================
+   THONG BAO
+========================================================= */
+
+.thong-bao-ket-qua {
+    margin-bottom: 12px;
+    color: #667781;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   THE KET QUA
+========================================================= */
+
+.danh-sach-ket-qua {
+    display: grid;
+    gap: 12px;
+}
+
+.the-ket-qua {
+    display: block;
+    padding: 15px;
+    border: 1px solid #e0e9ee;
+    border-radius: 10px;
+    background: #fff;
+    text-decoration: none !important;
+    color: inherit;
+    transition: border-color .2s ease,
+                box-shadow .2s ease,
+                transform .2s ease;
+}
+
+.the-ket-qua:hover {
+    border-color: #0099DA;
+    box-shadow: 0 4px 15px rgba(0,153,218,.10);
+    transform: translateY(-1px);
+}
+
+.the-ket-qua h3 {
+    margin: 0 0 7px;
+    color: #006c9e;
+    font-size: 17px;
+    line-height: 1.4;
+}
+
+.the-ket-qua p {
+    margin: 0 0 8px;
+    color: #596c76;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.thong-tin-bai-viet {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: #7b8b93;
+    font-size: 12px;
+}
+
+.the-chuyen-muc {
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: #edf8fc;
+    color: #0084ba;
+}
+
+.tim-kiem-tu-khoa {
+    background: #fff3a6;
+    color: inherit;
+    padding: 0 2px;
+}
+
+
+/* =========================================================
+   KHONG CO KET QUA
+========================================================= */
+
+.khong-co-ket-qua {
+    padding: 30px 15px;
+    text-align: center;
+    color: #75858d;
+}
+
+.khong-co-ket-qua strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #52636b;
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .tim-kiem-chung {
+        margin: 8px auto;
+        padding: 0 8px;
+    }
+
+    .tim-kiem-form {
+        gap: 6px;
+    }
+
+    .nut-thuc-hien-tim-kiem {
+        width: 44px;
+        padding: 0;
+        font-size: 0;
+    }
+
+    .nut-thuc-hien-tim-kiem::before {
+        content: "🔎";
+        font-size: 17px;
+    }
+
+    #o-tim-kiem {
+        height: 42px;
+        font-size: 14px;
+    }
+
+    .ket-qua-tim-kiem {
+        width: calc(100% - 12px);
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .ket-qua-tieu-de h2 {
+        font-size: 18px;
+    }
+
+    .bo-loc-tim-kiem {
+        gap: 5px;
+    }
+
+    .bo-loc-item {
+        padding: 6px 9px;
+        font-size: 12px;
+    }
+
+    .the-ket-qua {
+        padding: 12px;
+    }
+
+    .the-ket-qua h3 {
+        font-size: 16px;
+    }
+
+    .the-ket-qua p {
+        font-size: 13px;
+    }
+}
