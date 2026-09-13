@@ -1,0 +1,166 @@
+<!-- =========================================================
+     THANH TIM KIEM CHUNG TOAN WEBSITE
+     File: thanh-phan/tim-kiem.html
+========================================================= -->
+
+<div class="tim-kiem-chung">
+
+    <form id="form-tim-kiem" class="tim-kiem-form" role="search">
+
+        <div class="tim-kiem-o">
+
+            <span class="tim-kiem-bieu-tuong" aria-hidden="true">
+                🔎
+            </span>
+
+            <input
+                type="search"
+                id="o-tim-kiem"
+                name="q"
+                placeholder="Tìm kiếm bài viết..."
+                autocomplete="off"
+                aria-label="Tìm kiếm bài viết"
+            >
+
+            <button
+                type="button"
+                id="xoa-tim-kiem"
+                class="nut-xoa-tim-kiem"
+                aria-label="Xóa từ khóa"
+                title="Xóa"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <button
+            type="submit"
+            class="nut-thuc-hien-tim-kiem"
+        >
+            Tìm kiếm
+        </button>
+
+    </form>
+
+    <!-- Gợi ý khi nhập -->
+    <div
+        id="goi-y-tim-kiem"
+        class="goi-y-tim-kiem"
+        hidden
+    ></div>
+
+</div>
+
+<!-- =========================================================
+     KHU VUC HIEN THI KET QUA
+========================================================= -->
+
+<section
+    id="ket-qua-tim-kiem"
+    class="ket-qua-tim-kiem"
+    aria-live="polite"
+    hidden
+>
+
+    <div class="ket-qua-tieu-de">
+        <h2>Kết quả tìm kiếm</h2>
+
+        <button
+            type="button"
+            id="dong-ket-qua-tim-kiem"
+            class="dong-ket-qua-tim-kiem"
+            aria-label="Đóng kết quả"
+            title="Đóng"
+        >
+            ×
+        </button>
+    </div>
+
+    <div class="bo-loc-tim-kiem">
+
+        <button
+            type="button"
+            class="bo-loc-item active"
+            data-category="all"
+        >
+            Tất cả
+        </button>
+
+        <button
+            type="button"
+            class="bo-loc-item"
+            data-category="Tin tức"
+        >
+            Tin tức
+        </button>
+
+        <button
+            type="button"
+            class="bo-loc-item"
+            data-category="Chính trị"
+        >
+            Chính trị
+        </button>
+
+        <button
+            type="button"
+            class="bo-loc-item"
+            data-category="Văn hóa"
+        >
+            Văn hóa
+        </button>
+
+        <button
+            type="button"
+            class="bo-loc-item"
+            data-category="Sức khỏe"
+        >
+            Sức khỏe
+        </button>
+
+        <button
+            type="button"
+            class="bo-loc-item"
+            data-category="Trí tuệ"
+        >
+            Trí tuệ
+        </button>
+
+        <button
+            type="button"
+            class="bo-loc-item"
+            data-category="Hạnh phúc"
+        >
+            Hạnh phúc
+        </button>
+
+        <button
+            type="button"
+            class="bo-loc-item"
+            data-category="Hồi ký"
+        >
+            Hồi ký
+        </button>
+
+        <button
+            type="button"
+            class="bo-loc-item"
+            data-category="Kinh tế-Công nghệ"
+        >
+            Kinh tế - Công nghệ
+        </button>
+
+    </div>
+
+    <div
+        id="thong-bao-ket-qua"
+        class="thong-bao-ket-qua"
+    ></div>
+
+    <div
+        id="danh-sach-ket-qua"
+        class="danh-sach-ket-qua"
+    ></div>
+
+</section>
