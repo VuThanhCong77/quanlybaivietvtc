@@ -12,8 +12,80 @@ const pageId = document.body.dataset.postId || "index";
 
 
 /* ==========================================================================
-   1. KHU VUC: MENU MOBILE & DRAWER DÙNG CHUNG
+   1. KHU VUC: MENU MOBILE & DRAWER
    ========================================================================== */
+
+(function () {
+    "use strict";
+
+    function getElements() {
+        return {
+            button: document.getElementById("nutMenu"),
+            closeButton: document.getElementById("nutDong"),
+            drawer: document.getElementById("menuDrawer"),
+            overlay: document.getElementById("menuOverlay")
+        };
+    }
+
+    function setMenuState(isOpen) {
+        const elements = getElements();
+        if (!elements.drawer || !elements.overlay) return;
+
+        elements.drawer.classList.toggle("active", isOpen);
+        elements.overlay.classList.toggle("active", isOpen);
+
+        elements.drawer.setAttribute("aria-hidden", String(!isOpen));
+        elements.overlay.setAttribute("aria-hidden", String(!isOpen));
+        document.body.classList.toggle("menu-open", isOpen);
+
+        if (elements.button) {
+            elements.button.setAttribute("aria-expanded", String(isOpen));
+        }
+    }
+
+    window.toggleMenu = function () {
+        const elements = getElements();
+        if (!elements.drawer) return;
+        const isOpen = elements.drawer.classList.contains("active");
+        setMenuState(!isOpen);
+    };
+
+    window.closeMenu = function () {
+        setMenuState(false);
+    };
+
+    document.addEventListener("click", function (event) {
+        const target = event.target;
+        if (target.closest("#nutMenu")) {
+            window.toggleMenu();
+            return;
+        }
+        if (target.closest("#nutDong") || target.closest("#menuOverlay")) {
+            window.closeMenu();
+            return;
+        }
+        if (target.closest(".drawer-body a") && window.innerWidth <= 1000) {
+            window.closeMenu();
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") window.closeMenu();
+    });
+})();
+
+async function taiMenu() {
+    const el = document.getElementById("menu");
+    if (!el) return;
+    try {
+        const response = await fetch("/thanh-phan/menu.html");
+        const html = await response.text();
+        el.innerHTML = html;
+    } catch (err) {
+        console.error("Lỗi tải menu:", err);
+    }
+}
+
 
 /* ==========================================================================
    2. KHU VUC: SLIDER HERO BANNER
@@ -27,7 +99,7 @@ async function taiBannerMoiNhat() {
     if (!slides) return;
 
     try {
-        const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json");
+        const response = await fetch("/du-lieu/bai-viet.json");
         const danhSach = await response.json();
 
         const baiMoi = [...danhSach]
@@ -87,30 +159,13 @@ async function taiBannerMoiNhat() {
    3. KHU VUC: QUAN LY & HIEN THI BAI VIET
    ========================================================================== */
 
-   async function taiBaiViet() {
-    try {
-        // Gửi 2 yêu cầu cùng lúc để tiết kiệm thời gian chờ mạng
-        const [resPost, resView] = await Promise.all([
-            fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"),
-            fetch(`${VIEW_API}?mode=list`)
-        ]);
-
-        const data = await resPost.json();
-        const thongKe = await resView.json();
-        
-        // Tiến hành ghép dữ liệu và hiển thị
-    } catch (err) {
-        console.error("Lỗi tải dữ liệu bài viết:", err);
-    }
-}
-
 // 3.1. Tin tức mới nhất (Side Header)
 async function loadLatestNews() {
     const container = document.getElementById("latest-news-box");
     if (!container) return;
 
     try {
-        const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json");
+        const response = await fetch("/du-lieu/bai-viet.json");
         const data = await response.json();
         const posts = Array.isArray(data) ? data : (data.posts || []);
 
@@ -147,7 +202,7 @@ async function taiBaiVietMoiNhat() {
     if (!container) return;
 
     try {
-        const response = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json");
+        const response = await fetch("/du-lieu/bai-viet.json");
         const danhSach = await response.json();
 
         const baiVietMoiNhat = [...danhSach]
@@ -175,7 +230,7 @@ async function taiBaiVietMoiNhat() {
 async function taiBaiViet() {
     try {
         const [resPost, resView] = await Promise.all([
-            fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json"),
+            fetch("/du-lieu/bai-viet.json"),
             fetch(`${VIEW_API}?mode=list`)
         ]);
 
@@ -222,7 +277,7 @@ function hienThiNoiBat() {
 // 3.4. Chuyên mục chuyên môn (Văn phòng, Xây dựng Đảng, Kiểm tra, Chi bộ)
 async function taiChuyenMucChuyenMon() {
     try {
-        const res = await fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/chuyen-mon.json");
+        const res = await fetch("/du-lieu/chuyen-mon.json");
         const data = await res.json();
 
         const config = [
@@ -265,6 +320,130 @@ async function taiChuyenMucChuyenMon() {
         console.error("Lỗi tải chuyên mục chuyên môn:", err);
     }
 }
+
+
+/* ==========================================================
+   4. KHU VUC: TIM KIEM NOI DUNG TRONG TRANG
+   ========================================================== */
+
+function khoiTaoTimKiem() {
+    const oTimKiem = document.getElementById("oTimKiemTrangChu");
+    const nutTimKiem = document.getElementById("nutTimKiemTrangChu");
+    const ketQua = document.getElementById("ketQuaTimKiemTrangChu");
+
+    if (!oTimKiem || !nutTimKiem || !ketQua) return;
+
+    function xoaHighlightCu() {
+        document.querySelectorAll(".highlight-tim-kiem-trang-chu").forEach(el => {
+            const parent = el.parentNode;
+            parent.replaceChild(document.createTextNode(el.textContent), el);
+            parent.normalize();
+        });
+    }
+
+    function highlightTuKhoa(phanTu, tuKhoa) {
+        if (!phanTu || !tuKhoa) return;
+        const regex = new RegExp("(" + tuKhoa.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+
+        function duyetNode(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                if (regex.test(node.nodeValue)) {
+                    const span = document.createElement("span");
+                    span.innerHTML = node.nodeValue.replace(regex, '<mark class="highlight-tim-kiem-trang-chu">$1</mark>');
+                    node.parentNode.replaceChild(span, node);
+                }
+            } else {
+                Array.from(node.childNodes).forEach(duyetNode);
+            }
+        }
+        duyetNode(phanTu);
+    }
+
+    function diDenKetQua(id, tuKhoa) {
+        const phanTu = document.getElementById(id);
+        if (!phanTu) return;
+
+        ketQua.style.display = "none";
+        xoaHighlightCu();
+        highlightTuKhoa(phanTu, tuKhoa);
+
+        setTimeout(() => {
+            phanTu.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
+
+        phanTu.classList.add("vi-tri-tim-thay");
+        setTimeout(() => {
+            phanTu.classList.remove("vi-tri-tim-thay");
+        }, 3000);
+    }
+
+    function timKiemNoiDung() {
+        const tuKhoa = oTimKiem.value.trim().toLowerCase();
+        if (tuKhoa.length < 2) {
+            ketQua.style.display = "block";
+            ketQua.innerHTML = `<div class="tim-kiem-thong-bao">Vui lòng nhập ít nhất 2 ký tự để tìm kiếm.</div>`;
+            return;
+        }
+
+        xoaHighlightCu();
+        const danhSach = document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, a, article, .bai-viet, .tin-tuc, .noi-dung, .hoi-ky");
+        let ketQuaHTML = "";
+        let soKetQua = 0;
+
+        danhSach.forEach(phanTu => {
+            const noiDung = phanTu.innerText.trim().replace(/\s+/g, " ");
+            if (noiDung && noiDung.toLowerCase().includes(tuKhoa)) {
+                if (!phanTu.id) {
+                    phanTu.id = "ket-qua-tim-kiem-" + Date.now() + "-" + soKetQua;
+                }
+
+                let viTri = noiDung.toLowerCase().indexOf(tuKhoa);
+                let batDau = Math.max(0, viTri - 80);
+                let ketThuc = Math.min(noiDung.length, viTri + tuKhoa.length + 120);
+                let doanNoiDung = noiDung.substring(batDau, ketThuc);
+
+                const regex = new RegExp("(" + tuKhoa.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+                doanNoiDung = doanNoiDung.replace(regex, '<mark>$1</mark>');
+
+                soKetQua++;
+                ketQuaHTML += `
+                    <div class="ket-qua-tim-kiem-item" data-id="${phanTu.id}">
+                        <strong>Kết quả ${soKetQua}</strong>
+                        <span>${batDau > 0 ? "..." : ""}${doanNoiDung}${ketThuc < noiDung.length ? "..." : ""}</span>
+                    </div>
+                `;
+            }
+        });
+
+        ketQua.style.display = "block";
+        if (soKetQua === 0) {
+            ketQua.innerHTML = `<div class="tim-kiem-thong-bao">Không tìm thấy nội dung phù hợp với: <strong>${oTimKiem.value}</strong></div>`;
+        } else {
+            ketQua.innerHTML = `
+                <div class="tim-kiem-thong-bao">Tìm thấy <strong>${soKetQua}</strong> kết quả. Nhấn vào kết quả để đi đến vị trí.</div>
+                ${ketQuaHTML}
+            `;
+
+            document.querySelectorAll(".ket-qua-tim-kiem-item").forEach(item => {
+                item.addEventListener("click", function () {
+                    diDenKetQua(this.dataset.id, tuKhoa);
+                });
+            });
+        }
+    }
+
+    nutTimKiem.addEventListener("click", timKiemNoiDung);
+    oTimKiem.addEventListener("keydown", e => { if (e.key === "Enter") timKiemNoiDung(); });
+    oTimKiem.addEventListener("input", function () {
+        if (this.value.trim().length >= 2) timKiemNoiDung();
+        else ketQua.style.display = "none";
+    });
+
+    document.addEventListener("click", e => {
+        if (!e.target.closest(".tim-kiem-trang-chu")) ketQua.style.display = "none";
+    });
+}
+
 
 /* ==========================================================
    5. KHU VUC: TRINHI PHAT VIDEO
@@ -582,7 +761,7 @@ function taiComponentPhu() {
     // Tải thông tin cán bộ
     const containerCanBo = document.getElementById('gioi-thieu-can-bo');
     if (containerCanBo) {
-        fetch('https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/can-bo.html')
+        fetch('/thanh-phan/can-bo.html')
             .then(r => r.text())
             .then(html => {
                 containerCanBo.innerHTML = html;
@@ -632,6 +811,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(capNhatThongKe, 60000);
 
     // 4. Khởi tạo chức năng chung
+    khoiTaoTimKiem();
     taiBannerMoiNhat();
     loadLatestNews();
     taiBaiViet();
