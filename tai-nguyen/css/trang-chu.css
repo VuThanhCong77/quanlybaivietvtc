@@ -298,7 +298,6 @@ Không ảnh hưởng CSS .btn cũ
 
 .hero-van-ban {
     display: flex;
-    background: #ebefec00;
     flex-direction: column;
     justify-content: center;
     width: 50%;
@@ -306,9 +305,9 @@ Không ảnh hưởng CSS .btn cũ
 
 .hero-van-ban h1 {
     margin-bottom: 16px;
-    color: var(--mau-chinh-dam);
-    font-size: 14px;
-    line-height: 1.15;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1;
 }
 
 .hero-van-ban p {
