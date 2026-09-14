@@ -285,7 +285,7 @@ Không ảnh hưởng CSS .btn cũ
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    gap: 20px;
 }
 
 .hero-banner {
