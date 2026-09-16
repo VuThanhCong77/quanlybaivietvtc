@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sổ tay điện tử Lưu Kỳ — Năm 2024</title>
+<meta name="description" content="Sổ tay điện tử Lưu Kỳ năm 2024">
+
+<style>
+  
+:root{
+ --primary:#007fb5;--primary2:#00a6dc;--navy:#073c59;--ink:#183547;
+ --muted:#6a7e8a;--bg:#eef7fb;--card:#fff;--line:#d7e7ee;
+ --shadow:0 10px 30px rgba(14,70,96,.10);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;line-height:1.7}
+button,input{font:inherit}
+.top{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.topin{max-width:1500px;margin:auto;padding:9px 18px;display:flex;align-items:center;gap:12px}
+.logo{display:flex;gap:10px;align-items:center;min-width:270px}.logoicon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;font-weight:800}
+.logo b{display:block;color:var(--navy);font-size:15px}.logo small{color:var(--muted)}
+.search{flex:1;display:flex;gap:7px}.search input{width:100%;padding:10px 13px;border:1px solid var(--line);border-radius:11px;outline:0}
+.search input:focus{border-color:var(--primary);box-shadow:0 0 0 3px #dff4fb}
+.btn{border:1px solid var(--line);background:#fff;color:var(--navy);padding:9px 12px;border-radius:10px;cursor:pointer}.btn:hover{border-color:var(--primary);color:var(--primary)}
+.nav{background:var(--navy);color:#fff}.navin{max-width:1500px;margin:auto;padding:0 18px;display:flex;gap:3px;overflow:auto}
+.nav a{color:#fff;text-decoration:none;padding:10px 13px;white-space:nowrap;font-size:13px}.nav a:hover{background:#0b5576}
+.container{max-width:1500px;margin:auto;padding:0 18px 60px}
+.dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-4px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;box-shadow:var(--shadow)}.stat small{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;color:var(--navy);font-size:20px;margin-top:2px}
+.quick{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:var(--shadow)}.quick h2{margin:0 0 12px;color:var(--navy);font-size:19px}.cats{display:flex;gap:8px;flex-wrap:wrap}.cat{background:#eef8fc;border:1px solid #d5edf6;color:#17617b;padding:8px 11px;border-radius:999px;cursor:pointer}.cat:hover{background:#dcf3fb}
+.grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:20px;margin-top:20px}
+.sidebar{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:16px;position:sticky;top:102px;align-self:start;max-height:calc(100vh - 120px);overflow:auto}.sidebar h2{font-size:18px;color:var(--navy);margin:0 0 9px}.toc{list-style:none;padding:0;margin:0}.toc li{margin:2px 0}.toc a{display:block;text-decoration:none;color:#45616f;padding:5px 8px;border-radius:8px;font-size:12.5px}.toc a:hover{background:#edf8fc;color:var(--primary)}.toc .l3 a{padding-left:17px}.toc .l4 a{padding-left:29px;font-size:12px}
+.book{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:clamp(22px,4vw,55px)}
+.book h2{color:var(--primary);font-size:25px;margin:34px 0 14px;padding-bottom:7px;border-bottom:2px solid #dff0f6}.book h3{color:#205a72;font-size:20px;margin:28px 0 10px}.book h4{color:#2d687e;font-size:17px;margin:23px 0 8px}.book p{margin:8px 0;text-align:justify;overflow-wrap:anywhere}.book p.bullet{padding-left:18px;text-indent:-12px}
+mark{background:#fff0a5;border-radius:3px}.no{display:none;padding:15px;border:1px solid #eed78d;background:#fff8df;border-radius:10px;margin-bottom:15px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:0 18px 35px}
+@media(max-width:1000px){.dashboard{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.sidebar{position:relative;top:0;max-height:260px}}
+@media(max-width:650px){.topin{flex-wrap:wrap}.logo{min-width:0}.search{order:3;flex-basis:100%}.nav a{font-size:12px;padding:9px}.heroBox{padding:32px 22px;border-radius:17px}.dashboard{grid-template-columns:1fr 1fr}.stat strong{font-size:17px}.book{padding:20px 16px}.book p{text-align:left}}
+@media(print){.top,.nav,.sidebar,.quick,.dashboard,footer{display:none!important}.hero{margin:0}.heroBox{background:#fff;color:#000;box-shadow:none;border-bottom:2px solid #000;border-radius:0}.grid{display:block}.book{box-shadow:none;border:0;padding:0}.book h2{break-before:page}}
+
+</style>
+
+</head>
+<body>
+<header class="top">
+ <div class="topin">
+  <div class="logo"><div class="logoicon">LK</div><div><b>SỔ TAY ĐIỆN TỬ LƯU KỲ</b><small>Thông tin tổng hợp • Năm 2024</small></div></div>
+  <div class="search"><input id="search" type="search" placeholder="Tìm kiếm nội dung, số liệu, chỉ tiêu..."><button class="btn" id="clear">Xóa</button></div>
+  <button class="btn" id="print">In</button>
+ </div>
+ <nav class="nav"><div class="navin">
+  <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/to-dan-pho-luu-ky.html">TDP Lưu Kỳ</a><a href="#chi-so">Chỉ số nổi bật</a><a href="#tra-cuu">Tra cứu nhanh</a><a href="#noi-dung">Toàn văn</a><a href="#muc-luc">Mục lục</a>
+ </div></nav>
+</header>
+
+<main class="container">
+<section class="dashboard" id="chi-so">
+ <div class="stat"><small>Diện tích tự nhiên</small><strong>443,2 ha</strong></div><div class="stat"><small>Dân số</small><strong>2.768 người</strong></div><div class="stat"><small>Tổng số hộ</small><strong>950 hộ</strong></div><div class="stat"><small>Thu nhập bình quân</small><strong>88,1 triệu đồng/người/năm</strong></div><div class="stat"><small>Bảo hiểm y tế</small><strong>2.634/2.768 người • 95,15%</strong></div><div class="stat"><small>Nhà ở đạt chuẩn</small><strong>950/950 nhà • 100%</strong></div><div class="stat"><small>Hộ nghèo</small><strong>0 hộ</strong></div><div class="stat"><small>Lao động qua đào tạo</small><strong>1.457/1.650 người • 88,30%</strong></div>
+</section>
+
+<section class="quick" id="tra-cuu">
+ <h2>Tra cứu nhanh</h2><div class="cats"><button class="cat" data-q="quy hoạch, Quyết định số 408/QĐ-TTg"><span>Quy hoạch</span></button>
+<button class="cat" data-q="Giao thông, km, đường xã, đường thôn"><span>Giao thông</span></button>
+<button class="cat" data-q="Thủy lợi, phòng, chống thiên tai"><span>Thủy lợi &amp; PCTT</span></button>
+<button class="cat" data-q="Điện, trạm biến áp, đường dây"><span>Điện</span></button>
+<button class="cat" data-q="Giáo dục, trường, học sinh"><span>Giáo dục</span></button>
+<button class="cat" data-q="Văn hoá, nhà văn hóa, thể thao"><span>Văn hóa</span></button>
+<button class="cat" data-q="Thông tin và truyền thông, Internet, hồ sơ"><span>Thông tin &amp; truyền thông</span></button>
+<button class="cat" data-q="Nhà ở dân cư, Thu nhập, Nghèo đa chiều"><span>Nhà ở – Thu nhập</span></button>
+<button class="cat" data-q="Lao động, Hợp tác xã, OCOP"><span>Lao động – Kinh tế</span></button>
+<button class="cat" data-q="Y tế, bảo hiểm y tế, sức khỏe điện tử"><span>Y tế</span></button>
+<button class="cat" data-q="Hành chính công, TTHC, Một cửa"><span>Hành chính công</span></button>
+<button class="cat" data-q="Tiếp cận pháp luật, hòa giải"><span>Pháp luật</span></button>
+<button class="cat" data-q="Môi trường, chất thải, nước sạch"><span>Môi trường</span></button></div>
+</section>
+
+<section class="grid" id="noi-dung">
+ <aside class="sidebar" id="muc-luc"><h2>📑 Mục lục sổ tay</h2><div id="count"></div><ol class="toc"><li class="l2"><a href="#m1">I. Đặc điểm tình hình chung</a></li>
+<li class="l3"><a href="#m2">1. Tổng quan về điều kiện tự nhiên, kinh tế - xã hội của xã</a></li>
+<li class="l3"><a href="#m3">2. Thuận lợi</a></li>
+<li class="l3"><a href="#m4">3. Khó khăn</a></li>
+<li class="l2"><a href="#m5">II. Một số nội dung cụ thể</a></li>
+<li class="l3"><a href="#m6">1. Xã Lưu Kỳ được công nhận đạt chuẩn nông thôn mới năm 2019 tại Quyết định số 483/QĐ-CT ngày 28/02/2020 của UBND thành phố Hải Phòng.</a></li>
+<li class="l3"><a href="#m7">2. Ngành – Lĩnh vực</a></li>
+<li class="l4"><a href="#m8">2.1. Quy hoạch</a></li>
+<li class="l4"><a href="#m9">2.2. Giao thông</a></li>
+<li class="l4"><a href="#m10">2.3. Thủy lợi và phòng, chống thiên tai</a></li>
+<li class="l4"><a href="#m11">2.4. Điện</a></li>
+<li class="l4"><a href="#m12">2.5. Giáo dục</a></li>
+<li class="l4"><a href="#m13">2.6. Văn hoá</a></li>
+<li class="l4"><a href="#m14">2.7. Cơ sở hạ tầng thương mại nông thôn</a></li>
+<li class="l4"><a href="#m15">2.8. Thông tin và truyền thông</a></li>
+<li class="l4"><a href="#m16">8.1. Có điểm phục vụ bưu chính đáp ứng cung cấp dịch vụ công trực
+tuyến cho người dân: Đạt</a></li>
+<li class="l4"><a href="#m17">8.2. Tỷ lệ thuê bao sử dụng điện thoại thông minh: ≥ 85%: Đạt</a></li>
+<li class="l4"><a href="#m18">8.3. Có dịch vụ báo chí truyền thông: Đạt</a></li>
+<li class="l4"><a href="#m19">8.4. Có ứng dụng công nghệ thông tin trong công tác quản lý, điều hành
+phục vụ đời sống kinh tế - xã hội: Đạt</a></li>
+<li class="l4"><a href="#m20">8.5. Có mạng Wifi miễn phí ở các điểm công cộng: Đạt</a></li>
+<li class="l4"><a href="#m21">2.9. Nhà ở dân cư</a></li>
+<li class="l4"><a href="#m22">2.10. Thu nhập</a></li>
+<li class="l4"><a href="#m23">2.11. Nghèo đa chiều</a></li>
+<li class="l4"><a href="#m24">2.12. Lao động</a></li>
+<li class="l4"><a href="#m25">2.13. Tổ chức sản xuất và phát triển kinh tế nông thôn</a></li>
+<li class="l4"><a href="#m26">2.14. Y tế</a></li>
+<li class="l4"><a href="#m27">2.15. Hành chính công</a></li>
+<li class="l4"><a href="#m28">2.16. Tiếp cận pháp luật</a></li>
+<li class="l4"><a href="#m29">2.17. Môi trường</a></li>
+<li class="l3"><a href="#m30">18. Chất lượng môi trường sống</a></li>
+<li class="l4"><a href="#m31">2.19. Quốc phòng và an ninh</a></li></ol></aside>
+ <article class="book" id="book">
+  <div id="no" class="no">Không tìm thấy nội dung phù hợp với từ khóa.</div>
+  <p class="">SỔ TỔNG HỢP LƯU KỲ</p>
+<p class="">năm 2024</p>
+<h2 id="m1">I. Đặc điểm tình hình chung</h2>
+<h3 id="m2">1. Tổng quan về điều kiện tự nhiên, kinh tế - xã hội của xã</h3>
+<p class="">Xã Lưu Kỳ nằm ở phía Bắc của huyện Thuỷ Nguyên, cách trung tâm huyện 10km; xã có địa giới hành chính: Phía Đông giáp xã Gia Minh và xã Lưu Kiếm, phía Tây giáp xã Liên Khê, phía Nam giáp xã Lưu Kiếm, phía Bắc giáp sông Đá Bạc (Phường Phương Nam – TP Uông Bí – Tỉnh Quảng Ninh). Tổng diện tích đất tự nhiên của xã là 443,2 ha trong đó: đất nông nghiệp 219,03 ha; đất phi nông nghiệp 166,37 ha; đất chưa sử dụng 57,79 ha.</p>
+<p class="">Đến nay, kinh tế - xã hội của địa phương có bước phát triển rõ rệt, thu nhập và mức sống của người dân trên địa bàn xã đã được cải thiện và từng bước nâng cao chất lượng sống; môi trường sinh thái được bảo vệ và phát triển; quốc phòng và an ninh, an toàn xã hội được bảo vệ và giữ vững.</p>
+<h3 id="m3">2. Thuận lợi</h3>
+<p class="bullet">- Xã Lưu Kỳ có Quốc lộ 10 và sông Đá Bạc chạy qua, tạo thuận lợi đi lại và giao thương của người dân; là một xã có hệ thống giao thông đường thủy và hệ thống giao thông đường bộ được đầu tư xây dựng mới thuận tiện cho giao thương, buôn bán, phát triển công nghiệp, tiểu thủ công nghiệp cùng các loại hình dịch vụ thúc đẩy phát triển kinh tế.</p>
+<p class="bullet">- Cơ cấu kinh tế đang có sự chuyển dịch tích cực theo hướng tăng tỷ trọng ngành thương mại – dịch vụ, CN-TTCN, giảm dần tỷ trọng ngành nông nghiệp.</p>
+<p class="bullet">- Trên địa bàn xã có các doanh nghiệp sản xuất vôi xuất khẩu, chế biến than mỏ và 15 cơ sở kinh doanh vừa và nhỏ sản xuất kinh doanh nhiều lĩnh vực ngành hàng, tạo nguồn việc làm lớn, giải quyết việc làm cho lao động địa phương.</p>
+<h3 id="m4">3. Khó khăn</h3>
+<p class="bullet">- Do thu nhập của người dân chưa cao, doanh nghiệp còn ít, nguồn thu ngân sách còn hạn hẹp... nên công tác xã hội hoá khi thực hiện xây dựng nông thôn mới, nông thôn mới nâng cao và nông thôn mới kiểu mẫu của xã còn nhiều hạn chế.</p>
+<p class="bullet">- Công tác tuyên truyền, vận động Nhân dân thực hiện Chương trình xây dựng nông thôn mới, nông thôn mới nâng cao và nông thôn mới kiểu mẫu còn gặp nhiều khóa khăn do một số hội viên và người dân chưa có ý thức chung tay xây dựng nông thôn mới, nông thôn mới nâng cao và nông thôn mới kiểu mẫu.</p>
+<h2 id="m5">II. Một số nội dung cụ thể</h2>
+<h3 id="m6">1. Xã Lưu Kỳ được công nhận đạt chuẩn nông thôn mới năm 2019 tại Quyết định số 483/QĐ-CT ngày 28/02/2020 của UBND thành phố Hải Phòng.</h3>
+<h3 id="m7">2. Ngành – Lĩnh vực</h3>
+<h4 id="m8">2.1. Quy hoạch</h4>
+<p class="">Ngày 13/5/2024, Thủ tướng Chính phủ ban hành Quyết định số 408/QĐ-TTg về việc phê duyệt Quy hoạch chung đô thị mới Thủy Nguyên, thành phố Hải Phòng đến năm 2045. Theo đó toàn bộ địa giới hành chính  xã Lưu Kỳ nằm trong phạm vi nghiên cứu của Đồ án Quy hoạch chung đô thị mới Thủy Nguyên, thành phố Hải Phòng đến năm 2045 đã được phê duyệt</p>
+<p class="">Tiêu chí 1.1 và tiêu chí 1.2 của xã Lưu Kỳ đã đạt vì xã Lưu Kỳ nằm trong phạm vi nghiên cứu của Đồ án Quy hoạch chung đô thị mới Thủy Nguyên, thành phố Hải Phòng đến năm 2045 đã được Thủ tướng Chính phủ phê duyệt.</p>
+<p class="">Tiêu chí 1.3. Xã Lưu Kỳ có quy hoạch đấu giá đất ở khu Hàm Long theo Quyết định số 2467/QĐ-UBND ngày 15/8/2023 của Uỷ ban nhân dân thành phố Hải Phòng về việc giao đất cho Uỷ ban nhân dân huyện Thuỷ Nguyên để đầu tư xây dựng cơ sở hạ tầng phục vụ khu đấu giá quyền sử dụng đất vào mục đích làm nhà ở tại khu Hàm Long (thôn Lưu Kỳ 2), xã Lưu Kỳ, huyện Thuỷ Nguyên với diện tích 2.957,5 m2 phù hợp với tình hình kinh tế - xã hội của địa phương và phù hợp với định hướng đô thị hóa theo quy hoạch cấp trên. Và Ủy ban nhân dân huyện Thủy Nguyên đã có Quyết định số 2210/QĐ-UBND ngày 10/4/2020 về phê duyệt Quy hoạch chi tiết khu đấu giá quyền sử dụng đất làm nhà ở tại khu Hàm Long (Thôn Lưu Kỳ 2), xã Lưu Kỳ.</p>
+<h4 id="m9">2.2. Giao thông</h4>
+<p class="bullet">+ Chỉ tiêu 2.1: Đạt 100% (5,3/5,3 km) đường xã được nhựa hóa, mặt đường rộng từ 4m – 7m, có rãnh thoát nước, điện chiếu sáng, biển báo chỉ dẫn giao thông, gờ giảm tốc, cây xanh.</p>
+<p class="bullet">+ Chỉ tiêu 2.2: Đạt 100% (8,74/8,74 km) đường thôn, liên thôn được nhựa hoá và bê tông hoá mặt đường rộng từ 3m –5m, có rãnh thoát nước, điện chiếu sáng, biển báo chỉ dẫn giao thông, gờ giảm tốc, cây xanh.</p>
+<p class="bullet">+ Chỉ tiêu 2.3: Đạt 100% (6,42/6,42 km) mặt đường được bê tông hóa rộng từ 2,5m - 4,5m, đảm bảo sáng - xanh - sạch - đẹp</p>
+<p class="bullet">+ Chỉ tiêu 2.4: Đạt 100% (6,46/6,46 km) đường trục chính nội đồng được bê tông hoá và cứng hoá; mặt đường rộng từ 2m - 3m, đảm bảo cho sản xuất và vận chuyển hàng hóa thuận tiện quanh năm.</p>
+<h4 id="m10">2.3. Thủy lợi và phòng, chống thiên tai</h4>
+<p class="bullet">+ Chỉ tiêu 3.1. Diện tích gieo trồng cả năm được tưới 228,66 ha (Lúa 180,24 ha; Cây vụ đông 13ha; Cây hè thu 8ha; Cây ăn quả 27,42ha), diện tích gieo trồng cả năm cần tưới theo kế hoạch 228,66 ha. Tỷ lệ diện tích đất sản xuất nông nghiệp được tưới chủ động đạt 100%.</p>
+<p class="bullet">+ Chỉ tiêu 3.2. Xã Lưu Kỳ có 01 tổ chức thủy lợi cơ sở là Hợp tác xã sản xuất kinh doanh dịch vụ nông nghiệp Lưu Kỳ thành lập năm 1998, đã chuyển đổi hoạt động theo Luật Hợp tác xã năm 2012, lĩnh vực sản xuất kinh doanh dịch vụ nông nghiệp, trong đó có lĩnh vực thủy lợi, hoạt động hiệu quả, bền vững.</p>
+<p class="bullet">+ Chỉ tiêu 3.3. Cây lúa là cây trồng chủ lực của địa phương; diện tích trồng lúa được sử dụng nước tiết kiệm theo phương pháp ướt khô xen kẽ (hay gọi là nông - lộ - phơi) là 32,5/130,2ha, đạt 25%.</p>
+<p class="bullet">+ Chỉ tiêu 3.4. Hệ thống công trình thuỷ lợi được bảo trì hàng năm:</p>
+<p class="bullet">- Tổng số 35 công trình, gồm: 10 kênh cấp nước (Dài 11,298km) 5 mương tưới sau trạm bơm (Dài 3,36 km), 15 cống nội đồng; 03 trạm bơm điện và 01 trạm bơm dầu tưới nội đồng.</p>
+<p class="bullet">- 100% công trình thuỷ lợi được bảo trì thường xuyên, sử dụng có hiệu quả bền vững, không để gây úng lụt hay hạn hán tại địa phương.</p>
+<p class="bullet">+ Chỉ tiêu 3.5. Thường xuyên kiểm kê, kiểm soát các nguồn nước thải xả vào công trình thủy lợi.</p>
+<p class="">Đối với nước thải khu dân cư: xã có 02 thôn với tổng số hộ là 950 hộ, 100% hộ gia đình hiện nay đều sử dụng nhà vệ sinh tự hoại (bể 3 ngăn) đảm bảo yêu cầu và được đấu nối với hệ thống thoát nước chung của khu dân cư trước khi chảy vào hệ thống thủy lợi, gồm: sông Móc, kênh Đá Bạc, kênh Giu Gia, kênh Hàm Long.</p>
+<p class="">Đối với các cơ sở sản xuất, kinh doanh, dịch vụ: Có 01 cơ sở sản xuất vôi (Công ty cổ phần quốc tế Đức Hoà) được xử lý qua hệ thống bể lọc đảm bảo an toàn, được kiểm định thường xuyên đảm bảo chất lượng nước khi xả thải ra kênh Điệu Tú.</p>
+<p class="">Theo Giấy xác nhận hoàn thành công trình bảo vệ môi trường số 06/GXN-STNMT ngày 23/01/2018 của Giám đốc Sở Tài nguyên và Môi trường thành phố Hải Phòng và Giấy phép số 3849/GP-UBND ngày 22/12/2020 của Ủy ban nhân dân thành phố Hải Phòng về việc xả nước thải vào hệ thống công trình thủy lợi. Thì Công ty Cổ phần Quốc tế Đức Hòa thực hiện việc quan trắc chất lượng nước thải sau xử lý tại vị trí xả thải (tần suất 03 tháng/lần). Sở Nông nghiệp &amp; phát triển nông thôn, Sở Tài nguyên &amp; môi trường, Công ty TNHH MTV khai thác công trình thủy lợi Thủy Nguyên, Phòng tài nguyên &amp; môi trường huyện Thủy Nguyên có trách nhiệm tổng hợp và theo dõi kết quả quan trắc. Khi tiến hành lấy mẫu phân tích chất lượng nước thải có sự giám sát của chính quyền địa phương và  Công ty TNHH MTV khai thác công trình thủy lợi Thủy Nguyên.</p>
+<p class="">Ủy ban nhân dân huyện Thủy Nguyên, Sở Nông nghiệp &amp; phát triển nông thôn, Sở Tài nguyên &amp; môi trường, Chi cục thủy lợi &amp; phòng chống thiên tai, Công ty TNHH MTV khai thác công trình thủy lợi Thủy Nguyên có chức năng kiểm tra việc thực hiện Giấy phép về việc xả nước thải vào hệ thống công trình thủy lợi.</p>
+<p class="bullet">+ Chỉ tiêu 3.6. Tổ chức bộ máy thực hiện công tác phòng, chống thiên tai thường xuyên được kiện toàn theo quy định của pháp luật. Các hoạt động phòng chống thiên tai được triển khai chủ động và có hiệu quả, đảm bảo phòng chống thiên tai theo phương châm 4 tại chỗ (Chỉ huy tại chỗ; Lực lượng tại chỗ; Vật tư, phương tiện tại chỗ; Hậu cần tại chỗ).</p>
+<p class="">Hàng năm UBND xã tổ chức tổng kết công tác PCTT-TKCN và triển khai kế hoạch PCTT-TKCN, rà soát vật tư theo phương châm 4 tại chỗ để phục vụ công tác PCTT và TKCN, tổ chức báo động, huy động lực lượng diễn tập, các hoạt động PCTT-TKCN được thực hiện có hiệu quả đáp ứng yêu cầu. Hệ thống thủy lợi trên địa bàn xã cơ bản đáp ứng yêu cầu về PCTT và TKCN, phục vụ tốt cho sản xuất nông nghiệp và dân sinh.</p>
+<p class="">Hệ thống thu nhận, truyền tải và cung cấp thông tin dự báo, cảnh báo và ứng phó thiên tai đảm bảo 100% người dân được tiếp nhận một cách kịp thời, đầy đủ.</p>
+<p class="">Những điểm có nguy cơ cao về rủi ro thiên tai được lắp đặt hệ thống hướng dẫn, cảnh báo.</p>
+<h4 id="m11">2.4. Điện</h4>
+<p class="">Hiện nay toàn bộ hệ thống điện trên địa bàn xã do Điện lực Thủy Nguyên trực thuộc Công ty TNHH MTV Điện lực Hải Phòng quản lý vận hành và thực hiện ký hợp đồng bán điện trực tiếp đến 100% hộ dân, các thôn đã có hệ thống chiếu sáng trên các tuyến đường chính và trong thôn. Hệ thống lưới điện hạ thế, đảm bảo an toàn, chất lượng điện năng từng bước được cải thiện theo đúng quy định của ngành điện đáp ứng được yêu cầu sinh hoạt và sản xuất dân sinh. Đối với công tác bảo đảm an toàn đường dây và cho người sử dụng điện hàng tuần, tháng thường xuyên phát quang hành lang lưới điện và kiểm tra, thay thế nếu dây sau công tơ đến các hộ không đảm bảo an toàn cấp điện.</p>
+<p class="">Thường xuyên tuyên truyền, nâng cao kiến thức và hiểu biết về sử dụng điện trong nhân dân, đảm bảo sử dụng điện an toàn, tiết kiệm và hiệu quả.</p>
+<p class="">Hàng năm địa phương vẫn thường xuyên cùng các đơn vị cung cấp điện trên địa bàn thực hiện rà soát, cải tạo, nâng cấp hệ thống lưới điện của địa phương hàng năm để duy trì đảm bảo hệ thống điện cung cấp an toàn, tin cậy phục vụ cho sinh hoạt và sản xuất của người dân.</p>
+<p class="bullet">* Về hồ sơ pháp lý đầu tư xây dựng công trình điện: Các công trình hệ thống lưới điện trung áp, lưới điện hạ áp trên địa bàn xã Lưu Kỳ có đầy đủ hồ sơ pháp lý đầu tư xây dựng công trình điện (quyết định phê duyệt, hồ sơ thiết kế, hồ sơ nghiệm thu) do các đơn vị điện lực quản lý, lưu trữ theo quy định.</p>
+<p class="bullet">* Về hiện trạng hệ thống điện trên địa bàn xã:</p>
+<p class="bullet">+ Trạm biến áp: Trên địa bàn xã có 05 TBA với tổng công suất 1.690KVA (Lưu Kỳ 1: 400KVA; Lưu Kỳ 2: 320KVA; Lưu Kỳ 3: 320KVA; Lưu Kỳ 4: 400KVA; Lưu Kỳ 5: 250KVA), trong đó 03 trạm biến áp treo, 02 trạm bằng. Các TBA được thiết kế, xây dựng tuân thủ quy chuẩn, tiêu chuẩn kỹ thuật chuyên ngành điện; Hiện nay, các trạm biến áp, đường dây trung, hạ thế được kiểm định an toàn kỹ thuật theo định kỳ, đảm bảo yêu cầu kỹ thuật theo quy chuẩn, quy phạm, có các thông số kỹ thuật đảm bảo cung ứng điện an toàn, tin cậy, ổn định cho các khách hàng sử dụng điện; đảm bảo an toàn hành lang lưới điện và mỹ quan khu dân cư.</p>
+<p class="bullet">+ Tổng chiều dài đường dây trung áp nổi 2,5 km, chủng loại, tiết diện đường dây: AC70mm2, AC/XLPE 70mm2, AC 185 mm2, kết cấu chịu lực: 98% cột tròn bê tông cốt thép, còn lại là cột BTCT chữ H. Toàn bộ hệ thống lưới điện trung áp hiện đảm bảo tiêu chuẩn vận hành theo quy định.</p>
+<p class="bullet">+ Đường dây trung áp ngầm: 1,04 km, chiều sâu chôn cáp theo quy định, có đầy đủ viên báo cáp ngầm, đảm bảo hành lang lưới điện theo quy định.</p>
+<p class="bullet">+ Tổng chiều dài đường dây hạ áp: 15,2 km, 100% sử dụng cáp vặn xoắn, chủng loại AL/XLPE có tiết diện từ 4x25mm2 đến 4x120. Cột điện:  Các cột điện được xây dựng 100% cột bê tông; trong đó: 67,86% cột tròn bê tông cốt thép (380/560 cột), còn lại là cột BTCT chữ H 180 cột. Toàn bộ hệ thống lưới điện hạ áp đảm bảo tiêu chuẩn vận hành theo quy định.</p>
+<p class="bullet">+ Dây dẫn về hộ gia đình sau công tơ và công tơ: Dây sau công tơ sử dụng 100% dây bọc cách điện, có tiết diện phù hợp với công suất sử dụng của hộ gia đình. Chiều dài từ công tơ về hộ đảm bảo khoảng cách theo quy định; công tơ được kiểm định định kỳ đạt tiêu chuẩn vận hành, hòm công tơ được đảm bảo chất lượng, an toàn.</p>
+<p class="bullet">+ Điện trong nhà: bảng điện tổng có aptomat, ổ cắm, đường dây đều đảm bảo cách điện, sử dụng an toàn.</p>
+<p class="bullet">+ Tổng công suất tiêu thụ của người dân: 1.352kVA/1.690kVA, tương đương 80% khả năng cung ứng của hệ thống. Với nguồn công suất trên, hệ thống điện vẫn đảm bảo khả năng cung ứng cho người dân và doanh nghiệp trong tương lai.</p>
+<p class="bullet">* Về công tác đầu tư cải tạo nâng cấp:</p>
+<p class="">Trong các năm vừa qua, đơn vị cung cấp và bán lẻ điện đều chủ động đầu tư, cải tạo hệ thống trạm biến áp và đường dây: 600m đường dây, 01 TBA.</p>
+<p class="bullet">* Về an toàn điện: cao độ tĩnh không và chiều rộng hành lang an toàn lưới điện đều đảm bảo an toàn; hệ thống đường dây cao áp đều có hệ thống biển cảnh báo nguy hiểm, không có vi phạm hành lang lưới điện, không có cây xanh có thể gãy đổ vào đường dây. Nhìn chung hệ thống điện cấp điện cho người dân đáp ứng tiêu chuẩn kỹ thuật; cao độ tĩnh không và chiều rộng hành lang an toàn lưới điện đều đảm bảo theo quy định hiện hành theo Nghị định 14/2014/NĐ -CP</p>
+<p class="bullet">* Về chất lượng cung cấp điện: đảm bảo dòng điện làm việc không vượt quá dòng điện điện định mức của dây dẫn; điện áp cuối đường dây không vượt quá phạm vi ±5%, -10% điện áp định mức.</p>
+<p class="bullet">* Về vận hành: có đầy đủ các quy trình kiểm tra an toàn, khắc phục sửa chữa sự cố.</p>
+<p class="bullet">* Tỷ lệ số hộ đăng ký trực tiếp và được sử dụng điện thường xuyên, an toàn từ các nguồn :</p>
+<p class="bullet">- Tổng số hộ dân trên địa bàn xã: 950 hộ</p>
+<p class="bullet">- Hệ thống điện trên địa bàn xã được cung cấp nguồn từ 100% nguồn lưới điện quốc gia. Tỷ lệ số hộ được ký hợp đồng trực tiếp và sử dụng điện sinh hoạt, sản xuất thường xuyên đảm bảo an toàn, tin cậy và ổn định từ các nguồn là 950/950 hộ, đạt 100%</p>
+<h4 id="m12">2.5. Giáo dục</h4>
+<p class="">Tổng số trường: 03 trường, trong đó: có 02 điểm trường thuộc các trường là: Điểm trường Tiểu học Lưu Kỳ thuộc Trường Tiểu học Lưu Kiếm; điểm trường THCS Lưu Kỳ thuộc Trường THCS Lưu Kiếm.</p>
+<p class="bullet">+ Chỉ tiêu 5.1. Các trường có cơ sở vật chất, trang thiết bị dạy học đạt chuẩn: cả 3 trường trên địa bàn xã đạt chuẩn cơ sở vật chất mức độ 1 trở lên.</p>
+<p class="">Trường Mầm non: đạt chuẩn quốc gia tại Quyết định số số 2827/QĐ-UBND ngày 26/12/2006 của UBND thành phố Hải Phòng. Đang tiếp tục đầu tư đảm bảo đạt chuẩn mức độ 2 năm 2024.</p>
+<p class="">Trường Tiểu học Lưu Kiếm: Điểm trường khu Lưu Kỳ đạt chuẩn mức độ 1 theo Quyết định số 2051/QĐ-UBND, ngày 30/8/2019 của UBND thành phố Hải Phòng (sáp nhập với tiểu học Lưu Kiếm theo Quyết định số 684/QĐ-UBND, ngày 14/02/2023 của UBND huyện Thuỷ Nguyên)</p>
+<p class="">Trường THCS Lưu Kiếm được công nhận đạt chuẩn quốc gia mức độ 2 theo Quyết định số 2054/QĐ-UBND ngày 17/7/2023 của UBND thành phố Hải Phòng.</p>
+<p class="bullet">+ Chỉ tiêu 5.2: Đạt 100% (54/54 trẻ) trong độ tuổi mầm non được đến trường, xã đạt chuẩn phổ cập mầm non 5 tuổi tại Quyết định số 11192/QĐ-UBND, 27/12/2023 của UBND huyện Thuỷ Nguyên về công nhận lại kết quả 35 xã và 02 thị trấn trên địa bàn huyện đạt chuẩn phổ cập giáo dục, xóa mù chữ năm 2023.</p>
+<p class="bullet">+ Chỉ tiêu 5.3. Đạt 100% chuẩn phổ cập giáo dục tiểu học và THCS đạt mức độ 3, trong đó: Tiểu học: 298/298 học sinh; THCS: 162/162 học sinh (Quyết định số 11192/QĐ-UBND, 27/12/2023 của UBND huyện Thuỷ Nguyên về công nhận lại kết quả 35 xã và 02 thị trấn trên địa bàn huyện đạt chuẩn phổ cập giáo dục, xóa mù chữ năm 2023).</p>
+<p class="bullet">+ Chỉ tiêu 5.4. Có ≥ 90% số người trong độ tuổi từ 15 đến 60 được công nhận đạt chuẩn biết chữ mức độ 2, Quyết định số 11192/QĐ-UBND, 27/12/2023 của UBND huyện Thuỷ Nguyên về công nhận lại kết quả 35 xã và 02 thị trấn trên địa bàn huyện đạt chuẩn phổ cập giáo dục, xóa mù chữ năm 2023.</p>
+<p class="bullet">+ Chỉ tiêu 5.5. Cộng đồng học tập của xã được đánh giá và xếp loại: Tốt (Quyết định số 10487/QĐ-UBND ngày 12/12/2023 của UBND huyện Thuỷ Nguyên về việc công nhận kết quả đánh giá, xếp loại “Cộng đồng học tập” cho 35 xã, 02 thị trấn năm 2023).</p>
+<p class="bullet">+ Chỉ tiêu 5.6. Có mô hình giáo dục thể chất cho học sinh rèn luyện thể lực, kỹ năng, sức bền: Trường Mầm non, Tiểu học, Trung học cơ sở đều có mô hình, tiết học về vận động ngoài trời. Tổ chức các trò chơi vận động từ 30 – 35 phút, gồm các hoạt động chạy, nhảy, bật xa để phát triển cơ chân, cơ tay giúp học sinh phát triển về thể chất, nâng cao sức khoẻ, sự bền bỉ, dẻo dai góp phần nâng cao chất lượng học tập.</p>
+<h4 id="m13">2.6. Văn hoá</h4>
+<p class="bullet">+ Chỉ tiêu 6.1.</p>
+<p class="bullet">*  Hệ thống thiết chế văn hóa xã, thôn đạt chuẩn:</p>
+<p class="">Nhà văn hoá xã: Xã có 01 nhà văn hoá đa năng nằm trong khuôn viên UBND xã, diện tích 500m2, hội trường có 250 chỗ ngồi, bố trí đầy đủ  bàn, ghế, tăng âm, loa máy, phòng đài phát thanh để phục vụ hoạt động văn hóa, thể thao theo quy định.</p>
+<p class="">Nhà văn hóa thôn: hiện xã có 02 nhà văn hóa thôn được quy hoạch và xây dựng đảm bảo theo quy định, gồm:</p>
+<p class="">Thôn Lưu Kỳ 1: Diện tích sử dụng 1.544 m2, trong đó: diện tích xây dựng nhà văn hóa thôn là 107m2, với 120 chỗ ngồi được trang bị đầy đủ bàn ghế và đủ hệ thống trang thiết bị (loa máy, bàn, ghế,... ), đáp ứng cơ bản nhu cầu sinh hoạt của nhân dân; năm 2024, nhà văn hoá thôn đã được thành phố đầu tư cải tạo, nâng cấp để đảm bảo cho các hoạt động văn hoá, thể dục - thể thao của người dân theo quy định (Văn bản số 3262/UBND-NN ngày 28/12/2023 của UBND thành phố Hải Phòng về việc chấp thuận danh mục công trình xã nông thôn mới huyện Thuỷ Nguyên năm 2024).</p>
+<p class="">Thôn Lưu Kỳ 2: Diện tích sử dụng 564 m2, trong đó: diện tích xây dựng nhà văn hóa thôn là 110m2, với 120 chỗ ngồi được trang bị đầy đủ bàn ghế và đủ hệ thống trang thiết bị (loa máy, bàn, ghế,... ), đáp ứng cơ bản nhu cầu sinh hoạt của nhân dân.</p>
+<p class="bullet">- Có lắp đặt các dụng cụ thể dục thể thao ngoài trời ở điểm công cộng:</p>
+<p class="">Khu thể thao xã (sân bóng đá) nằm đối diện với UBND xã có diện tích 8.867 m2 Trung tâm văn hóa, thể thao xã bao gồm: Sân bóng đá, nhà vệ sinh, cây xanh với diện tích 8.867 m2 có đầy đủ các công trình phụ trợ gồm nhà vệ sinh, nhà để xe và sân trước của Nhà văn hoá được lắp đặt hệ thống dụng cụ thể thao ngoài trời phục vụ người dân tham gia thể dục - thể thao theo quy định, đồng thời cũng là khu thể thao phục vụ cho thôn Lưu Kỳ 2 đã lắp đặt các dụng cụ thể thao ngoài trời, gồm: 01 bộ khung lưới bóng chuyền hơi, 01 xà đơn, 01 xà kép, 01 thiết bị xoay hông, 01 thiết bị tập tay, 01 thiết bị đi bộ trên không. Khu thể thao thôn Lưu Kỳ 1 đã được lắp đặt dụng cụ ngoài trời, gồm: 02 bộ khung lưới bóng chuyền hơi, 01 bộ khung lưới cầu lông, 01 xà đơn, 01 xà kép, 01 thiết bị tập tay, 01 thiết bị tập cơ bụng, 01 thiết bị tập cơ lưng; tỷ lệ số thôn có các dụng cụ thể thao ngoài trời đạt 100% (02/02 thôn).</p>
+<p class="bullet">- Các hoạt động văn hóa, văn nghệ, thể dục thể thao được tổ chức thường xuyên: Tại các thôn và xã đều tổ chức liên hoan văn nghệ giữa các đội văn nghệ thôn, tổ chức thi đấu bóng chuyền hơi cho người cao tuổi và hội phụ nữ, các giải bóng đá, cầu lông giao hữu; đồng thời vào các dịp kỷ niệm ngày lễ lớn của đất nước, thành phố, huyện, các dịp kỷ niệm ngày thành lập các tổ chức Hội, dịp tết Nguyên đán tại các thôn và xã đều tổ chức liên hoan văn nghệ giữa các đội văn nghệ thôn, tổ chức thi đấu giao hữu bóng chuyền hơn, bóng đá với các xã bạn...</p>
+<p class="bullet">+ Tiêu chí 6.2. Xã Lưu Kỳ không có di sản văn hoá được công nhận. Tuy nhiên, xã có một quần thể Đền, Chùa Ngọc Sơn được xây dựng năm 1998 trên đỉnh núi Ngọc, năm 2010 xây dựng lại ngôi Đại hùng Bảo điện và đến năm 2019 xây dựng thêm một ngôi Tổ đường, năm 2023 xây dựng cổng tam quan.</p>
+<p class="">Khu vực Chùa, Đền thờ các vị Phật và Tiết chế Hưng Đạo Đại Vương Trần Quốc Tuấn có diện tích 5.558 m2 đã được cấp giấy chứng nhận quyền sử dụng đất (Số BU 367022, cấp ngày 30/6/2024, Giám đốc Sở Tài nguyên và Môi trường thành phố Hải Phòng). Khuôn viên của Chùa, Đền được xây dựng cơ bản đảm bảo xanh – sạch – đẹp đáp ứng được nhu cầu sinh hoạt tôn giáo và tâm linh của người dân địa phương. Hàng năm tổ chức lễ hội truyền thống đảm bảo đúng pháp luật, tạo tinh thần phấn khởi cho nhân dân địa phương.</p>
+<p class="bullet">+ Tiêu chí 6.3. Năm 2023 xã có 02/02 thôn được công nhận danh hiệu Thôn văn hóa, 01/01 Làng văn hóa đạt 100%  theo Quyết định số 9748/QĐ-UBND, 16/11/2023 của UBND huyện Thuỷ Nguyên về công nhận danh hiệu Làng văn hoá, Thôn văn hoá năm 2023, trong đó 02 thôn được công nhận danh hiệu 3 năm liên tục được tặng Giấy khen đạt 100%; Năm 2023 xã có 840 gia đình được công nhận đạt danh hiệu gia đình văn hóa đạt 94,06%, trong đó trong đó có 145 gia đình đạt gia đình văn hoá 3 năm liên tiếp được tặng giấy khen đạt 17,26%.</p>
+<h4 id="m14">2.7. Cơ sở hạ tầng thương mại nông thôn</h4>
+<p class="">(1) Thực hiện tiêu chí số 7 của bộ tiêu chí nông thôn mới giai đoạn 2021-2025</p>
+<p class="">Trên địa bàn xã Lưu Kỳ có cửa hàng tiện lợi (Cửa hàng kinh doanh tổng hợp) của hộ kinh doanh Trần Thị Thanh Loan, địa chỉ thôn 2, xã Lưu Kỳ, Thủy Nguyên, Hải Phòng.</p>
+<p class="bullet">- Cửa hàng có bảng hiệu thể hiện tên cửa hàng, địa chỉ, số điện thoại: 093 428 4256</p>
+<p class="bullet">- Thời gian mở của từ 06 giờ 30 phút đến 22 giờ 00 phút hàng ngày, thuận lợi cho việc mua sắm của nhân dân.</p>
+<p class="bullet">- Diện tích xây dựng 60m2, với trên 200 tên hàng, kinh doanh dịch vụ đa dạng các mặt hàng thiết yếu đáp ứng nhu cầu của nhân dân.</p>
+<p class="bullet">- Cửa hàng được xây dựng kiên cố đảm bảo các yêu cầu về an toàn phòng cháy chữa cháy, vệ sinh môi trường, thuận tiện cho khách hàng.</p>
+<p class="bullet">- Có đầy đủ các trang thiết bị cần thiết ( kệ, giá...). Hàng hóa được sắp xếp, ghi chép, ghi giá sản phẩm đầy đủ một cách văn minh, khoa học, thuận lợi cho việc mua sắm, theo dõi, kiểm tra và quản lý.</p>
+<p class="bullet">- Hàng hóa, dịch vụ kinh doanh tại cửa hàng kinh doanh không thuộc danh mục cấm kinh doanh theo quy định của pháp luật. Đối với các hàng hóa, dịch vụ kinh doanh có điều kiện đảm bảo đáp ứng theo quy định của pháp luật hiện hành.</p>
+<p class="bullet">- Ngoài ra còn có các cửa hàng tạp hóa khác trên địa bàn cũng đã cơ bản đáp ứng được nhu cầu sinh hoạt của người dân.</p>
+<p class="">(2) Thực hiện tiêu chí số 7 Bộ tiêu chí nông thôn mới nâng cao:</p>
+<p class="">Hiện nay trên địa bàn xã Lưu Kỳ có cửa hàng tiện lợi của hộ kinh doanh Trần Thị Thanh Loan, cung cấp các mặt hàng thiết yếu đáp ứng nhu cầu sinh hoạt của nhân dân địa phương. Do xã Lưu Kỳ nằm trong đề án sát nhập đơn vị hành chính với xã Lưu Kiếm nên không có nhu cầu xây dựng chợ. Do đó đề nghị không xem xét Tiêu chí “Có mô hình chợ thí điểm đảm bảo an toàn thực phẩm, hoặc chợ đáp ứng yêu cầu chung theo tiêu chuẩn chợ kinh doanh thực phẩm” vào tiêu chí nông thôn mới nâng cao của xã.</p>
+<h4 id="m15">2.8. Thông tin và truyền thông</h4>
+<p class="">8.1 Xã có điểm phục vụ bưu chính:</p>
+<p class="">Xã có điểm phục vụ bưu chính là xã có ít nhất một điểm phục vụ bưu
+chính đáp ứng được các điều kiện sau:</p>
+<p class="">a) Về cơ sở vật chất:</p>
+<p class="bullet">- Do xã nằm gần điểm Bưu cục Cầu Giá, nên không xây dựng điểm bưu chính riêng của xã và bố trí nhân viên bưu chính phục vụ công tác bưu chính trên địa bàn, Bưu cục Cầu Giá có cơ sở vật chất khang trang, có treo biển tên điểm phục vụ. Đảm bảo cung cấp các dịch vụ chi trả bảo hiểm xã hội và trung gian thu tiền sử dụng điện, nước của các hộ dân trên địa bàn xã...</p>
+<p class="bullet">- Quy định giờ mở cửa buổi sáng 8h00- 11h00; Giờ mở cửa buổi chiều
+14h00-17h00 Nghỉ Chủ nhật và các ngày lễ.</p>
+<p class="bullet">- Thời gian mở cửa phục vụ phải đảm bảo tối thiểu 4 giờ/ngày làm việc:
+mở cửa 6 tiếng/ngày làm việc.</p>
+<p class="">b) Về dịch vụ: Tại điểm phục vụ, có cân đến 5kg đảm bảo cung cấp các
+dịch vụ:</p>
+<p class="bullet">- Dịch vụ thư có địa chỉ nhận, khối lượng đơn chiếc đến 02 kg;</p>
+<p class="bullet">- Dịch vụ gói, kiện hàng hóa có khối lượng đơn chiếc đến 05 kg.</p>
+<p class="">8.2 Xã có dịch vụ viễn thông internet: Đạt</p>
+<p class="">Xã có dịch vụ viễn thông, Internet là xã đáp ứng được các điều kiện sau:</p>
+<p class="">a) Xã có các đơn vị cung cấp dịch vụ viễn thông, Internet gồm VNPT, Viettel, cung cấp dịch vụ Internet và phủ sóng mạng 3G, 4G đến các 100% thôn và cung cấp đường truyền internet đến hộ gia đình có nhu cầu. Tổng số thuê bao di động  thông minh 1.867/2.093 thuê bao, đạt 89,2%.</p>
+<p class="">b) Dịch vụ viễn thông, Internet trên địa bàn xã đáp ứng tiêu chuẩn theo Quy chuẩn kỹ thuật quốc gia về chất lượng dịch vụ truy cập Internet ADSL (Mã số QCVN 34:2011/BTTTT).</p>
+<p class="">8.3 Xã có đài truyền thanh và hệ thống loa đến các thôn: Đạt
+Xã có đài truyền thanh và hệ thống loa đến các thôn là xã đáp ứng được
+các điều kiện sau:</p>
+<p class="">a) Xã có đài truyền thanh theo hướng dẫn của Bộ Thông tin và Truyền
+thông (bao gồm đài truyền thanh có dây, đài truyền thanh không dây FM, đài
+truyền thanh ứng dụng công nghệ thông tin, viễn thông): Đài truyền thanh của
+xã sử dụng truyền thanh không dây với 10 cụm loa phát thanh tại 02/02 thôn.</p>
+<p class="">b) 100% số thôn trong xã có hệ thống loa hoạt động: Các cụm loa trên địa
+bàn vẫn đang trong tình trạng hoạt động tốt đảm bảo phủ sóng đến 100% hộ dân
+trên địa bàn xã.</p>
+<p class="">8.4 Xã có ứng dụng công nghệ thông tin trong công tác quản lý, điều
+hành: Đạt</p>
+<p class="">a) Tỷ lệ máy vi tính/số cán bộ, công chức của xã đạt 100% lãnh
+đạo, công chức xã được trang bị máy tính làm việc.</p>
+<p class="">b) Xã có sử dụng ít nhất 04 phần mềm ứng dụng sau:</p>
+<p class="bullet">- Hệ thống quản lý văn bản và điều hành: Xã vận hành có hiệu quả Hệ
+thống quản lý văn bản và điều hành (http://qlvb.hpnet.vn), 100% các cán bộ
+công chức được cấp tài khoản, giao việc trình ký văn bản trên hệ thống. Lập hồ
+sơ công việc điện tử trên hệ thống</p>
+<p class="bullet">- Hệ thống thư điện tử chính thức của cơ quan nhà nước: cán bộ công
+chức xã sử dụng thư điện tử công vụ để trao đổi công việc.</p>
+<p class="bullet">- Hệ thống một cửa điện tử: Vận hành thường xuyên và hiệu quả hệ thống
+Một cửa điện tử và Dịch vụ công trực tuyến thành phố. 100% hồ sơ giải quyết
+thủ tục hành chính được cập nhật trên hệ thống.</p>
+<p class="bullet">- Cổng/trang thông tin điện tử có chức năng cung cấp thông tin phục vụ
+công tác quản lý, điều hành và cung cấp dịch vụ công trực tuyến: Xã có Cổng
+thông tin điện tử http://luuky.thuynguyen.haiphong.gov.vn cung cấp đăng tải thông tin chỉ đạo, điều hành, tuyên truyền, công khai thủ tục hành chính trên địa bàn xã; có Zalo nhóm để kịp thời thông tin, điều hành nhiệm vụ của địa phương; Zalo Official Account phục vụ công tác tuyên truyền chủ trương, chính sách, nhiệm vụ của địa phương đến người dân được kịp thời https://oa.zalo.me/manage/content/article/</p>
+<p class="">c) Tính từ ngày 01/01/2023 đến ngày 31/12/2023, tổng số hồ sơ thủ tục hành chính đã tiếp nhận 453 hồ sơ (mức độ 3: 449 hồ sơ; Mức độ 4: 04 hồ sơ) và được xử lý đúng hạn là 100%. Tính từ ngày 01/01/2024 đến ngày 01/8/2024 đã tiếp nhận và giải quyết 203/203 hồ sơ (Trong đó tiếp nhận qua Hệ thống thông tin một cửa điện tử 32/32 hồ sơ (một phần: 24 hồ sơ, toàn trình: 08 hồ sơ) đạt 100%; Dịch vụ công liên thông: Khai sinh, khai tử: 20 hồ sơ đạt 100%; Chứng thực bản sao từ bản chính trên cổng dịch vụ công quốc gia: 151 hồ sơ.</p>
+<p class="bullet">* Tiêu chí số 8 về Thông tin và truyền thông trong Bộ tiêu chí quốc
+gia về xã nông thôn mới nâng cao</p>
+<p class="">a. Yêu cầu của tiêu chí:</p>
+<h4 id="m16">8.1. Có điểm phục vụ bưu chính đáp ứng cung cấp dịch vụ công trực
+tuyến cho người dân: Đạt</h4>
+<p class="">Ngoài việc đáp ứng các điều kiện của xã đạt chuẩn, điểm phục vụ bưu
+chính tại xã phải có khả năng phục vụ nhu cầu sử dụng dịch vụ công trực tuyến
+của người dân:</p>
+<p class="bullet">- Do xã nằm gần điểm Bưu cục Cầu Giá, nên không xây dựng điểm bưu chính riêng của xã và bố trí nhân viên bưu chính phục vụ công tác bưu chính trên địa bàn, Bưu cục Cầu Giá có treo biển tên điểm phục vụ; có niêm yết
+giờ mở cửa, có dịch vụ gói, kiện hàng hóa đơn chiếc đến 5kg, có máy tính kết nối internet đáp ứng cung cấp dịch vụ công trực t uyến cho người dân, tuyên truyền cho người dân sử dụng dịch vụ công trực tuyến.</p>
+<h4 id="m17">8.2. Tỷ lệ thuê bao sử dụng điện thoại thông minh: ≥ 85%: Đạt</h4>
+<p class="">Thuê bao sử dụng điện thoại thông minh theo độ tuổi lao động của xã: 1.867/2.093 thuê bao, đạt 89,2%.</p>
+<h4 id="m18">8.3. Có dịch vụ báo chí truyền thông: Đạt</h4>
+<p class="">a) - Hệ thống loa hoạt động thường xuyên: hiện tại xã đã đảm bảo 2/2 thôn của xã với 10 cụm loa, hệ thống loa truyền thanh luôn được đầu tư nâng cấp đảm bảo chất lượng truyền tải thông tin đến mọi người dân trên địa bàn xã.</p>
+<p class="bullet">- Cổng/trang thông tin điện tử của xã cung cấp đầy đủ thông tin phục vụ công tác quản lý, điều hành và cung cấp dịch vụ công trực tuyến  http://luuky.thuynguyen.haiphong.gov.vn/ Có Zalo nhóm để kịp thời thông tin, điều hành nhiệm vụ của địa phương; Zalo Official Account phục vụ công tác tuyên truyền chủ trương, chính sách, nhiệm vụ của địa phương đến người dân được kịp thời https://oa.zalo.me/manage/content/article/</p>
+<p class="">b) 100% số thôn trong xã có hộ gia đình thu xem được 01 trong số các
+phương thức truyền hình vệ tinh, cáp, số mặt đất, truyền hình qua mạng Internet. Trên địa bàn xã 100% các hộ gia đình có ti vi xem được nhiều kênh truyền hình
+qua các vệ tinh, số mặt đất, mạng intenet. Xem các ứng dụng kết nối internet
+trên ti vi như: VTV Go, FPT Play...</p>
+<p class="">c) Có ít nhất một điểm cung cấp xuất bản phẩm: Xã có 01 điểm cung cấp
+xuất bản phẩm là Bưu cục Cầu Giá và tủ sách pháp luật của xã. Bưu điện đảm bảo tốt dịch vụ báo chí truyền thông trên địa bàn với nhiều ấn phẩm phong phú: sách, báo, lịch...  đáp ứng nhu cầu của độc giả cũng như công tác truyền thông, tuyên truyền của  địa phương.  Tủ sách pháp luật của xã được đặt tại bộ phận tiếp nhận và trả kết quả của xã.</p>
+<h4 id="m19">8.4. Có ứng dụng công nghệ thông tin trong công tác quản lý, điều hành
+phục vụ đời sống kinh tế - xã hội: Đạt</h4>
+<p class="">a) Tính từ ngày 01/01/2023 đến ngày 31/12/2023, tổng số hồ sơ thủ tục hành chính đã tiếp nhận 453 hồ sơ (mức độ 3: 449 hồ sơ; Mức độ 4: 04 hồ sơ) và được xử lý đúng hạn là 100%. Tính từ ngày 01/01/2024 đến ngày 01/8/2024 đã tiếp nhận và giải quyết 203/203 hồ sơ (Trong đó tiếp nhận qua Hệ thống thông tin một cửa điện tử 32/32 hồ sơ (một phần: 24 hồ sơ, toàn trình: 08 hồ sơ) đạt 100%; Dịch vụ công liên thông: Khai sinh, khai tử: 20 hồ sơ đạt 100%; Chứng thực bản sao từ bản chính trên cổng dịch vụ công quốc gia: 151 hồ sơ.</p>
+<p class="">b) Tỷ lệ cán bộ, công chức cấp xã được bồi dưỡng, tập huấn kiến thức, kỹ
+năng số và an toàn thông tin đạt 100% cán bộ, công chức cấp xã được bồi dưỡng, tập huấn kiến thức, kỹ năng số và an toàn thông tin</p>
+<p class="">c) Tỷ lệ người dân trong độ tuổi lao động được phổ biến kiến thức về sử
+dụng máy tính và kỹ năng số cơ bản đạt: Tổ công nghệ số cộng đồng
+các thôn trong đó có lực lượng Đoàn thanh niên thôn là lực lượng nòng cốt tổ
+chức nhiều đợt đến các hộ gia đình, nhà văn hóa thôn để phổ biến kiến thức
+về sử dụng máy tính và kỹ năng số cho người dân đạt trên 80%. Tổ chức tập
+huấn kỹ năng số cho tổ công nghệ số cộng đồng tại Nhà văn hoá xã.</p>
+<p class="">d) Sản phẩm OCOP: Hiện tại xã có sản phẩm rượu Đất Cảng của hộ kinh doanh Nguyễn Thế Lực, xã Lưu Kỳ - huyện Thuỷ Nguyên đạt OCOP 3 sao (***) tại Quyết định số 5974/QĐ-UBND ngày 26/6/2024 của UBND huyện Thuỷ Nguyên. Sản phẩm được niêm yết và chào bán ở cả 2 phương thức là trực tiếp và bán qua các kênh thông tin điện tử https://ruoudatcang.vn/</p>
+<p class="">đ) Bộ Thông tin và Truyền thông ban hành văn bản 1096 ngày 03/4/2023 tạm dừng triển khai gắn biển địa chỉ số.</p>
+<h4 id="m20">8.5. Có mạng Wifi miễn phí ở các điểm công cộng: Đạt</h4>
+<p class="">Các điểm công cộng tại xã (khu vực trung tâm xã, Trạm y tế, nhà văn hóa thôn …) đều được lắp đặt mạng wifi miễn phí. Thường xuyên nâng cấp hệ thống đảm bảo đáp ứng yêu cầu của tiêu chí.</p>
+<h4 id="m21">2.9. Nhà ở dân cư</h4>
+<p class="">Trên địa bàn xã không còn nhà tạm, nhà dột nát; tỷ lệ nhà đạt chuẩn của Bộ Xây dựng đạt 100% (950/950 nhà); nhà ở đảm bảo 3 cứng (nền cứng, khung cứng, mái cứng), diện tích nhà ở từ 14m2/người trở lên, diện tích tối thiểu căn nhà lớn hơn 30m2 (đối với hộ đơn thân đảm bảo lớn hơn 18m2), niên hạn sử dụng công trình nhà ở trên 20 năm, có các công trình phụ trợ nhà vệ sinh, bếp được bố trí hợp vệ sinh, thuận tiện cho sinh hoạt, thu gom các loại chất thải.</p>
+<h4 id="m22">2.10. Thu nhập</h4>
+<p class="">Hiện nay tổng số dân của xã Lưu Kỳ là 2.768 người. Kết quả đánh giá năm  2024, thu nhập bình quân đầu người đạt 88,1 triệu đồng/người/năm</p>
+<h4 id="m23">2.11. Nghèo đa chiều</h4>
+<p class="">Tổng số hộ của xã là 950 hộ; tính đến tháng 6 năm 2024 xã không còn hộ nghèo, số hộ cận nghèo còn là 09 hộ, trong đó 03 hộ không còn khả năng lao động, 06 hộ còn khả năng lao động.</p>
+<p class="">x100 = 0,63%</p>
+<p class="">Tỉ lệ nghèo đa chiều năm 2024 của xã là: 0,63% (0,0% + 0,63%)</p>
+<h4 id="m24">2.12. Lao động</h4>
+<p class="bullet">+ Chỉ tiêu 12.1. Số lao động đã qua đào tạo là: 1.457/1.650 người, chiếm 88,30% tổng số lao động.</p>
+<p class="bullet">+ Chỉ tiêu 12.2. Tỷ lệ lao động qua đào tạo có bằng cấp, chứng chỉ là: 686/1.650 người, chiếm tỉ lệ 41,58% tổng số lao động.</p>
+<h4 id="m25">2.13. Tổ chức sản xuất và phát triển kinh tế nông thôn</h4>
+<p class="bullet">+ Chỉ tiêu 13.1. Xã Lưu Kỳ có 01 hợp tác xã sản xuất kinh doanh dịch vụ nông nghiệp Lưu Kỳ thành lập năm 1998, đã chuyển đổi hoạt động theo Luật HTX năm 2012 vào năm 2015; số thành viên tham gia HTX đến tháng 12/2023 là 317 thành viên; dịch vụ cơ bản của HTX là: cung cấp dịch vụ cho các thành viên, hộ gia đình sản xuất nông nghiệp trên địa bàn xã như tưới tiêu, phân phối giống, vật tư nông nghiệp, thường xuyên tổ chức tập huấn, áp dụng khoa học kỹ thuật tiên tiến trong đồng ruộng cho năng suất cao, dịch vụ nước sạch nông thôn, thu gom rác thải sinh hoạt ... hoạt động hiệu quả và có lãi (năm 2021: 32,97 triệu đồng, năm 2022: 40,52 triệu đồng, năm 2023: 41,85 triệu đồng), Hợp tác xã có hợp đồng liên kết với Công  ty TNHH liên doanh Việt Long để sản xuất lúa giống tại địa phương.</p>
+<p class="bullet">+ Chỉ tiêu 13.2. Hiện tại, xã có 01 sản phẩm rượu Đất Cảng của Hộ kinh doanh Nguyễn Thế Lực, xã Lưu Kỳ - huyện Thuỷ Nguyên đạt OCOP 3 sao (***) tại Quyết định số 5974/QĐ-UBND ngày 26/6/2024 của UBND huyện Thuỷ Nguyên (sản phẩm hết thời hạn và được đánh giá lại năm 2024).</p>
+<p class="bullet">+ Chỉ tiêu 13.3. Xã Lưu Kỳ đã thực hiện cơ giới hóa các khâu trong quá trình sản xuất như làm đất, phun thuốc trừ sâu bằng máy bơm chạy bin giải quyết các khâu lao động nặng nhọc, tăng năng suất, chất lượng sản phẩm. Hợp tác xã có hợp đồng liên kết với Công  ty TNHH liên doanh Việt Long để sản xuất lúa giống tại xứ đồng Hàm Long Đông xã Lưu Kỳ với diện tích 5,2 ha hoạt động đạt hiệu quả.</p>
+<p class="bullet">+ Chỉ tiêu 13.4. Xã Lưu Kỳ đã ứng dụng công nghệ số vào truy xuất nguồn gốc đối với 01 sản phẩm OCOP Rượu Đất Cảng và đang từng bước hoàn thiện ứng dụng chuyển đổi số để thực hiện truy xuất nguồn gốc đối với một số sản phẩm chủ lực khác của xã.</p>
+<p class="bullet">+ Chỉ tiêu 13.5. Sản phẩm chủ lực của xã được bán qua kênh thương mại điện tử, đó là sản phẩm OCOP Rượu Đất Cảng và qua các kênh thương mại điện tử như: https://hoaphuong.gov.vn/;https://www.nongsantaybac.com/;https://nongsan.haiphong.gov.vn/; https://vietecomm.com/; https://dunghangviet.vn/</p>
+<p class="bullet">+ Chỉ tiêu 13.6. Xã có vùng nguyên liệu tập trung là tại cánh đồng thôn Lưu Kỳ 2, đã có hồ sơ gửi Chi cục Trồng trọt và Bảo vệ thực vật Hải Phòng đề nghị cấp mã vùng trồng cho sản phẩm cây lúa với diện tích 1.162 m2 (hộ ông Đào Văn Lợi) và sản xuất theo quy trình VietGap đối với sản phẩm nuôi cá chim, diện tích 11.000 m2 (hộ ông Nguyễn Hữu Nguyên)</p>
+<p class="bullet">+ Chỉ tiêu 13.7. Hiện nay xã có cổng thông tin điện tử tại địa chỉ http://luuky.thuynguyen.haiphong.gov.vn/ để tăng tải các thông tin kinh tế, văn hóa, xã hội của xã. Xã cũng đã có trang mạng xã hội: https://www.facebook.com/profile.php?id=61556583227509 (Văn hoá &amp; Du lịch Lưu Kỳ) đây là fanpage quảng bá hình ảnh các điểm du lịch, nét văn hóa đặc sắc của xã để nhân dân được biết.</p>
+<p class="bullet">+ Chỉ tiêu 13.8. Hiện nay, Hội Nông dân xã Lưu Kỳ đã có mô hình tổ hợp tác nuôi trồng thuỷ sản với quy mô 16.990 m2 của 09 hộ gia đình, tổ đã được tiếp cận nguồn vốn vay từ Quỹ hỗ trợ nông dân huyện Thủy Nguyên với tổng vốn vay 300 triệu đồng và đang được triển khai đem lại hiệu quả.</p>
+<h4 id="m26">2.14. Y tế</h4>
+<p class="bullet">+ Chỉ tiêu 14.1. Tỷ lệ người dân tham gia bảo hiểm y tế đến 31/7/2024: là 2.634/2.768 người đạt 95,15%</p>
+<p class="bullet">+ Chỉ tiêu 14.2. Xã đã ban hành kế hoạch, tuyên truyền và điều tra, thống kê thông tin để phục vụ cho việc lập sổ theo dõi, quản lý sức khỏe điện tử trên địa bàn xã; đến nay số người dân được thu thập thông tin để lập cơ sở dữ liệu điện tử về sức khỏe đạt trên 92%</p>
+<p class="bullet">+ Chỉ tiêu 14.3. Xã đã tăng cường tuyên truyền cho người dân trên địa bàn thực hiện khám chữa bệnh từ xa, tư vấn bệnh từ xa đạt trên 42%.</p>
+<p class="bullet">+ Chỉ tiêu 14.4. Xã đã tuyên truyền vận động người dân thực hiện tốt sổ khám chữa bệnh điện tử khi đi khám bệnh tại các cơ sở y tế.</p>
+<h4 id="m27">2.15. Hành chính công</h4>
+<p class="bullet">+ Chỉ tiêu 15.1. Xã đã có 01 hộp thư điện tử công vụ do UBND thành phố cấp; hệ thống quản lý nhiệm vụ và hệ thống quản lý điện tử một cửa từ huyện xuống xã; có cổng thông tin điện tử phục vụ giải quyết thủ tục hành chính.</p>
+<p class="">100% cán bộ của xã tham gia thực hiện giải quyết thủ tục hành chính được cấp tài khoản để vận hành, sử dụng Hệ thống thông tin giải quyết thủ tục hành chính thành phố. 100% thủ tục hành chính được giải quyết trên hệ thống Một cửa điện tử. Tính từ ngày 01/01/2023 đến ngày 31/12/2023, tổng số hồ sơ thủ tục hành chính đã tiếp nhận 453 hồ sơ (mức độ 3: 449 hồ sơ; Mức độ 4: 04 hồ sơ) và được xử lý đúng hạn là 100%. Tính từ ngày 01/01/2024 đến ngày 01/8/2024 đã tiếp nhận và giải quyết 203/203 hồ sơ (Trong đó tiếp nhận qua Hệ thống thông tin một cửa điện tử 32/32 hồ sơ (một phần: 24 hồ sơ, toàn trình: 08 hồ sơ) đạt 100%; Dịch vụ công liên thông: Khai sinh, khai tử: 20 hồ sơ đạt 100%; Chứng thực bản sao từ bản chính trên cổng dịch vụ công quốc gia: 151 hồ sơ. Không có hồ sơ quá hạn.</p>
+<p class="">Cổng thông tin điện tử của xã http://luuky.thuynguyen.haiphong.gov.vn/:  cung cấp thông tin phục vụ người dân, doanh nghiệp được thường xuyên, liên tục.</p>
+<p class="">Hệ thống văn phòng điện tử đã được triển khai đồng bộ đến 100% cán bộ công chức. Các văn bản được gửi qua mạng đạt tỷ lệ cao (trừ những văn bản mật hoặc tuyệt mật). 100% văn bản nội bộ của xã được thực hiện dưới dạng điện tử.</p>
+<p class="bullet">+ Chỉ tiêu 15.2:  Hiện tại xã đã thực hiện dịch vụ công trực tuyến một phần và toàn trình do bộ phận trực một cửa hướng dẫn và thực hiện (Trong đó số lượng thủ tục hành chính được cung cấp 1 phần là 54 thủ tục và toàn trình là 51 thủ tục). 100% lãnh đạo, công chức xã tham gia giải quyết TTHC của xã được cấp tài khoản trên hệ thống Một cửa điện tử và Dịch vụ công trực tuyến thành phố, trên Cổng dịch vụ công quốc gia để tiếp nhận hồ sơ trực tuyến do các tổ chức, cá nhân gửi qua Cổng dịch vụ công trực tuyến của quốc gia hoặc Cổng dịch vụ công trực tuyến của thành phố. Hồ sơ trực tuyến của xã chủ yếu phát sinh ở lĩnh vực Tư pháp, Lao động - thương binh xã hội.</p>
+<p class="bullet">+ Chỉ tiêu 15.3. Giải quyết các thủ tục hành chính đảm bảo đúng quy định:</p>
+<p class="">Thực hiện việc niêm yết công khai, đầy đủ, đúng quy định: địa chỉ cơ quan, địa chỉ thư tín, số điện thoại đường dây nóng về thủ tục hành chính (TTHC), địa chỉ website, địa chỉ email, danh sách công chức thực hiện việc tiếp nhận phản ánh, kiến nghị của cá nhân, tổ chức.</p>
+<p class="">Thủ tục hành chính được công khai đầy đủ, kịp thời, đúng quy định tại nơi tiếp nhận, giải quyết TTHC của Ủy ban nhân dân xã.</p>
+<p class="">Việc tiếp nhận, giải quyết TTHC tại Ủy ban nhân dân xã đảm bảo đúng quy định về thực hiện cơ chế một cửa, một cửa liên thông và áp dụng quy trình theo dõi việc tiếp nhận, xử lý hồ sơ, trả kết quả giải quyết trên Hệ thống thống thông tin giải quyết TTHC cấp tỉnh: Tính từ ngày 01/01/2023 đến ngày 31/12/2023, tổng số hồ sơ thủ tục hành chính đã tiếp nhận 453 hồ sơ (mức độ 3: 449 hồ sơ; Mức độ 4: 04 hồ sơ) và được xử lý đúng hạn là 100%. Tính từ ngày 01/01/2024 đến ngày 01/8/2024 đã tiếp nhận và giải quyết 203/203 hồ sơ (Trong đó tiếp nhận qua Hệ thống thông tin một cửa điện tử 32/32 hồ sơ (một phần: 24 hồ sơ, toàn trình: 08 hồ sơ) đạt 100%; Dịch vụ công liên thông: Khai sinh, khai tử: 20 hồ sơ đạt 100%; Chứng thực bản sao từ bản chính trên cổng dịch vụ công quốc gia: 151 hồ sơ. Không có hồ sơ quá hạn.</p>
+<p class="">Về số hóa hồ sơ, kết quả giải quyết TTHC trong tiếp nhận, giải quyết TTHC theo đúng quy định, đáp ứng mục tiêu số hóa được giao. Đã thực hiện số hóa 100% kết quả giải quyết TTHC.</p>
+<p class="">Trong 03 (ba) năm liên tục liền kề trước năm xét công nhận, kết quả giải quyết hồ sơ TTHC của xã được giải quyết đúng hoặc sớm hạn đạt 100% đối với hồ sơ TTHC thuộc thẩm quyền giải quyết của xã và 100% đối với hồ sơ thực hiện theo cơ chế một cửa liên thông tại bước tiếp nhận, xử lý ở xã: Năm 2023, 100% đối với TTHC thuộc thẩm quyền và 95% đối với TTHC liên thông (đánh giá trên hệ thống phần mềm chấm điểm chỉ số CCHC).</p>
+<p class="">Về thực hiện xin lỗi công khai theo quy định khi giải quyết hồ sơ TTHC quá hạn tại Bộ phận Một cửa xã: Năm 2023, không có hồ sơ quá hạn, chậm giải quyết.</p>
+<p class="">Xử lý phản ánh, kiến nghị, khiếu nại, tố cáo của cá nhân, tổ chức đối với TTHC thuộc thẩm quyền giải quyết. Năm 2023, Không có kết quả giải quyết TTHC phải sửa đổi do lỗi của xã, không nhận được ý kiến phản ánh của cá nhân, tổ chức..</p>
+<p class="">Năm liền kề trước năm xét công nhận và tại thời điểm xét công nhận, chỉ số đánh giá chất lượng phục vụ người dân và doanh nghiệp trong thực hiện TTHC, cung cấp dịch vụ công của xã được xếp loại xuất sắc: (Quyết định số 743/QĐ-UBND ngày 23/01/2024 của UBND huyện Thuỷ Nguyên).</p>
+<p class="">Mức độ hài lòng của người dân, doanh nghiệp về giải quyết thủ tục hành chính của xã: Năm 2023, theo chỉ số sự hài lòng SIPAS về đánh giá mức độ hài lòng của người dân, doanh nghiệp đạt tỷ lệ 96,86%.</p>
+<p class="">Chủ tịch Ủy ban nhân dân xã thực hiện công tác tiếp công dân theo quy định: UBND xã đã bố trí phòng tiếp dân, bố trí đầy đủ cơ sở vật chất, ban hành nội quy, quy chế công khai (Quyết định số 49/QĐ-UBND ngày 25/7/2017 của UBND xã Lưu Kỳ về ban hành Nội quy tiếp công dân tại trụ sở UBND xã Lưu Kỳ; Quyết định số 01/QĐ-UBND ngày 04/01/2022 Ban hành Quy chế tiếp công dân của UBND xã Lưu Kỳ; Thông báo số 01/TB-UBND ngày 06/01/2023 lịch tiếp công dân của Chủ tịch UBND xã Lưu Kỳ năm 2023; Thông báo số 01/TB-UBND ngày 09/01/2024 lịch tiếp công dân của Chủ tịch UBND xã Lưu Kỳ năm 2024) và thực hiện tiếp dân theo đúng quy địn (có hình ảnh và tài liệu kiểm chứng gửi kèm theo).</p>
+<p class="">Đơn khiếu nại thuộc thẩm quyền của Chủ tịch Ủy ban nhân dân xã được giải quyết đảm bảo quy định: Năm 2023, không có phát sinh đơn thư khiếu nại vượt cấp.</p>
+<h4 id="m28">2.16. Tiếp cận pháp luật</h4>
+<p class="bullet">+ Chỉ tiêu 16.1. Thường xuyên tại các hội nghị ở xã, thôn Uỷ ban nhân dân xã và các tổ chức đoàn thể đều lồng ghép việc tuyên truyền phổ biến pháp luật đến cán bộ, hội viên và nhân dân, trong đó tập trung vào một số pháp luật liên quan đến đất đai, hôn nhân và gia đình, bảo vệ bà mẹ và trẻ em, phòng chống bạo lực gia đình …. Uỷ ban nhân dân xã và Hội LHPN Hội Phụ nữ xã cũng đã phối hợp triển khai mô hình "Cán bộ phụ nữ tham gia hòa giải ở cơ sở" trên địa bàn xã Lưu Kỳ, tạo thuận lợi cho việc giải quyết nhanh, kịp thời các vụ mâu thuẫn trong nhân dân không để dẫn đến tranh chấp hay mâu thuẫn lớn cần đến sự can thiệp của pháp luật.</p>
+<p class="bullet">+ Chỉ tiêu 16.2. Trong những năm qua trên địa bàn xã đã sảy ra nhiều vụ mâu thuẫn, tranh chấp nhỏ đã được chính quyền, các tổ chức hội kịp thời tham gia không phải tổ chức các cuộc hoà giải theo quy định của pháp thuật. Năm 2024 (tính từ ngày 01/01/2024 đến 01/8/2024), cũng đã hoà giải thành công 100% mâu thuẫn, tranh chấp, vi phạm thuộc phạm vi hòa giải được hòa giải (01/01 sự việc).</p>
+<p class="bullet">+ Chỉ tiêu 16.3. Năm 2024 (tính từ ngày 01/01/2024 đến 01/8/2024), trên địa bàn xã Lưu Kỳ có 01 công dân có yêu cầu trợ giúp pháp lý và đã được trợ giúp.</p>
+<h4 id="m29">2.17. Môi trường</h4>
+<p class="bullet">+ Chỉ tiêu 17.1. Qua kiểm tra các khu vực chăn nuôi và khu ao nuôi trên địa bàn xã không phát hiện việc xả thải và gây ô nhiễm môi trường; các hộ gia đình chăn nuôi đều xây dựng các bể để xử lý chất thải trong chăn nuôi, tạo nguồn phân bón tái sử dụng vào mục đích sản xuất nông nghiệp thân thiện với môi trường.</p>
+<p class="bullet">+ Chỉ tiêu 17.2. Trên địa bàn xã có 85 hộ nuôi trồng thủy sản, 01 cơ sở sản xuất rượu. Các hộ sản xuất đều đảm bảo quy định về bảo vệ môi trường (Không có ô nhiễm môi trường trên địa bàn xã).</p>
+<p class="bullet">+ Chỉ tiêu 17.3. Chất thải rắn không nguy hại phát sinh trên địa bàn được Hợp tác xã chịu trách nhiệm thu gom và Công ty kho vận Phú Hưng vận chuyển đưa về nhà máy để xử lý. Tổng khối lượng chất thải rắn không nguy hại được thu gom, xử lý theo quy định là 1.095/1.095 tấn/năm, đạt 100%; không có rác thải tồn ứ trên địa bàn.</p>
+<p class="bullet">+ Chỉ tiêu 17.4. Hộ gia đình thực hiện thu gom, xử lý nước thải sinh hoạt bằng biện pháp phù hợp 750/950 hộ, đạt 78,95% (nước thải phát sinh của hộ gia đình được thu gom và xử lý qua hệ thống hố ga và bể tự hoại trước khi thải vào hệ thống thoát nước chung của khu dân cư)</p>
+<p class="bullet">+ Chỉ tiêu 17.5. Lưu Kỳ là xã thuần nông, do đó các phụ phẩm hữu cơ phát sinh trong sinh hoạt của các hộ gia đình tại địa phương đều được tận dụng làm phân bón cho các loại cây trồng trong vườn nhà, trừ một số hộ diện tích đất ở ít không còn vườn thì được thu gom, xử lý ở bãi rác tập trung của huyện và thành phố. Hộ gia đình phân loại chất thải rắn tại nguồn là 645/950 hộ đạt 67,37% (Rác hữu cơ 0,8 tấn/ngày; rác tái chế được 1 tấn/ngày; rác thải khác 1,2 tấn/ngày)</p>
+<p class="bullet">+ Chỉ tiêu 17.6. Chất thải rắn nguy hại phát sinh trên địa bàn được thu gom và xử lý rác để xử lý là 0,03/0,03 tấn/năm đạt tỷ lệ 100%.</p>
+<p class="">Đối với vỏ bao gói thuốc bảo vệ  thực vật sau sử dụng: Bao bì thuốc bảo vệ thực vật sau khi sử dụng được các hộ dân bỏ vào bể bê tông có nắp đậy đã được đặt tại các điểm, các vị trí phù hợp trên cánh đồng. Định kỳ 6 tháng/1 lần chuyển giao cho đơn vị có đủ chức năng đến thu gom, vận chuyển, xử lý theo quy định.</p>
+<p class="">Đối với chất thải y tế: Hiện trên địa bàn xã có 01 trạm y tế, chất thải y tế được thu gom và vận chuyển đến Trung tâm Y tế huyện để ký hợp đồng với đơn vị có đủ chức năng xử lý theo đúng quy định đạt tỷ lệ 100%.</p>
+<p class="bullet">+ Chỉ tiêu 17.7. Chất thải hữu cơ, phụ phẩm nông nghiệp được thu gom, tái sử dụng và tái chế thành nguyên liệu, nhiên liệu và các sản phẩm thân thiện với môi trường.</p>
+<p class="">Đối với chất thải là rơm rạ (cây lúa) sau thu hoạch được xử lý bằng cách bừa vùi ngay tại ruộng và có sử dụng chế phẩm sinh học để xử lý bổ trợ đảm bảo thiện với môi trường; tỷ lệ được xử lý đạt 90,43% (955/1.056 tấn/năm).</p>
+<p class="">Đối với chất thải trong chăn nuôi: các hộ chăn nuôi xử dụng đệm lót sinh học hoặc xây bể bioga để xử lý chất thải và làm phân bón cho cây trồng; lượng chất thải được thu gom, tái sử dụng là 345/365 tấn/năm, đạt 94,5%</p>
+<p class="bullet">+ Chỉ tiêu 17.8. Hiện nay trên địa bàn xã trên địa bàn xã có 09 hộ chăn nuôi với quy mô từ 10 con trở lên: Hộ ông Lê Hồng Tự, Nguyễn Khắc Tiến chăn nuôi gà (02 hộ); Hộ ông Phạm Văn Tuyến, Phạm Văn Phinh chăn nuôi dê (02 hộ); Hộ ông Nguyễn Hữu Cường, Tạ Văn Huấn chăn nuôi trâu, bò (02 hộ), Hộ ông Phạm Văn Hưng, bà Đỗ Thị Hẳn, Phạm Văn Hà chăn nuôi lợn (03 hộ); các hộ chăn nuôi đều thực hiện các biện pháp đảm bảo các quy định về vệ sinh chăn nuôi thú y và bảo vệ môi trường, đạt tỷ lệ 100%.</p>
+<p class="bullet">+ Chỉ tiêu 17.9. Xã có 02/02 nghĩa trang đáp ứng các quy định của pháp luật và theo quy hoạch: Nghĩa trang Con Xà (Diện tích 6.390 m2), nghĩa trang Đượng Cây (Diện tích 6.609 m2). Các nghĩa trang được quản lý và sử dụng đảm bảo các quy định tại Nghị định số 23/2016/NĐ-CP ngày 05/4/2016 của Chính phủ, đáp ứng yêu cầu của quy chuẩn QCVN 01:2021/BXD, QCVN 07-10:2016/BXD của Bộ Xây dựng và phù hợp với định hướng quy hoạch nghĩa trang của thành phố Hải Phòng đến năm 2025 được Ủy ban nhân dân thành phố phê duyệt tại Quyết định số 2731/QĐ-UBND ngày 07/11/2016. Hàng năm, các nghĩa trang được duy tu, bảo dưỡng; các nghĩa trang đều có các khu riêng biệt như: Khu hung táng, khu chôn cất 01 lần, khu cát táng; nghĩa trang nằm xa khu dân cư, được bố trí diện tích đất trồng cây xanh cách ly, không gây ô nhiễm nguồn nước, đảm bảo các quy định về xây dựng, môi trường; các nghĩa trang đều có quy chế quản lý nghĩa trang theo quy định của UBND xã Lưu Kỳ được ban hành năm 2018 và được thay đổi vào năm 2024 theo Quyết định số 19/QĐ-UBND, ngày 28/02/2024 của Uỷ ban nhân dân xã về việc ban hành Quy chế và sử dụng nghĩa trang nhân dân xã Lưu Kỳ, huyện Thủy Nguyên, TP Hải Phòng.</p>
+<p class="bullet">+ Chỉ tiêu 17.10. Trên địa bàn xã không có cơ sở hỏa táng, toàn bộ cơ sở hỏa táng được thực hiện tại cơ sở hỏa táng tập trung của thành phố. Tỷ lệ người dân trên địa bàn xã sử dụng hình thức hỏa táng năm 2023 đạt 68,42% (13/19 người); năm 2024 (6 tháng đầu năm 2024) đạt 70% (7/10 người).</p>
+<p class="bullet">+ Chỉ tiêu 17.11. Tổng diện tích đất trồng cây xanh sử dụng công cộng 14.985 m2 (Đường vào bãi cọc Cao Quỳ 7.035 m2; Trường học, Trạm y tế, Chùa, Sân văn hoá xã và thôn, đường trục xã, khu trụ sở của xã 7.950 m2), đảm bảo 5,41m2/người (14.985 m2/2.768 người).</p>
+<p class="bullet">+ Chỉ tiêu 17.12. Tỷ lệ chất thải nhựa phát sinh trên địa bàn được thu gom, tái sử dụng, tái chế, xử lý theo quy định là 81,8/87,8 tấn/năm, đạt 93,17% (87,8/1.095 tấn, chiếm 8,01% tổng lượng rác thải phát sinh trên đại bàn xã)</p>
+<h3 id="m30">18. Chất lượng môi trường sống</h3>
+<p class="bullet">+ Chỉ tiêu 18.1. Toàn xã 950/950 hộ dân được sử dụng nước sạch từ nhà máy nước sạch của Công ty cổ phần nước và Môi trường Trung Nam (Công suất 700m3/ngày-đêm, chất lượng nước đạt quy chuẩn QCVN 01:2018/BYT – Quy chuẩn kỹ thuật quốc gia về chất lượng nước ăn uống) đạt 100%.</p>
+<p class="bullet">+ Chỉ tiêu 18.2. Cấp nước sinh hoạt trên địa bàn xã đạt bình quân 83,93 lít/người/ngày-đêm.</p>
+<p class="bullet">+ Chỉ tiêu 18.3. Có 01/01 công trình cấp nước tập trung của Công ty cổ phần nước và Môi trường Trung Nam có tổ chức quản lý, khai thức hoạt động bền vững, đạt 100% (Hệ thống đường ống dẫn nước, đồng hồ đo nước…), trong đó nhà máy nước sạch nằm ngoài địa bàn xã, hệ thống cấp nước trên địa bàn xã được quản lý và vận hành đảm bảo, đạt tỷ lệ 100%.</p>
+<p class="bullet">+ Chỉ tiêu 18.4. Hàng năm UBND xã đều tổ chức tập huấn về an toàn thực phẩm cho các hộ gia đình và cơ sở sản xuất, kinh doanh thực phẩm, đạt 100% (14/14 hộ, cơ sở).</p>
+<p class="bullet">+ Chỉ tiêu 18.5. Trên địa bàn xã trong những năm qua không xảy ra sự cố về an toàn thực phẩm trong phạm vi quản lý của UBND xã.</p>
+<p class="bullet">+ Chỉ tiêu 18.6. Trên địa bàn xã có 14 cơ sở sơ chế, chế biến thực phẩm nông lâm thủy sản được tập huấn về an toàn thực phẩm 100% (trong đó: Huyện quản lý 02 cơ sở; xã quản lý 12 hộ, cơ sở)</p>
+<p class="bullet">+ Chỉ tiêu 18.7. Số hộ có nhà tắm, thiết bị chứa nước sinh hoạt hợp vệ sinh, nhà tiêu an toàn và đảm bảo 3 sạch: 950/950 hộ, đạt 100% (các hộ tại xã có nhà tắm kín đáo, có tường và mái che; 100% số hộ có bể trữ nước sinh hoạt bằng bồn inox hoặc nhựa, có những gia đình xây bằng gạch và bê tông có dung tích giao động từ 1 - 5 m3/hộ đảm bảo có nơi lưu giữ nước sạch cho sinh hoạt. Kết quả này cho thấy đời sống vật chất của người dân được cải thiện thì nhận thức và trách nhiệm về vệ sinh môi trường càng được nâng cao, đáp ứng tiêu chí 3 sạch trong cuộc vận động “Xây dựng gia đình 5 không 3 sạch” do Trung ương Hội Liên hiệp phụ nữ Việt Nam phát động).</p>
+<p class="bullet">+ Chỉ tiêu 18.8. Trên địa bàn xã không có bãi chôn lấp chất thải rắn, chất thải sinh hoạt. Toàn bộ lượng chất thải rắn, rác thải sinh hoạt trên địa bàn xã do Hợp tác xã chịu trách nhiệm thu gom rác thải từ các hộ dân và được công ty kho vận Phú Hưng chuyển về nhà máy xử lý rác của huyện và thành phố. Đảm bảo vệ vinh môi trường đạt 100%.</p>
+<h4 id="m31">2.19. Quốc phòng và an ninh</h4>
+<p class="bullet">+ Chỉ tiêu 19.1. Ủy ban nhân dân xã chỉ đạo Ban Chỉ huy Quân sự xã xây dựng Kế hoạch xây dựng lực lượng, huấn luyện, hoạt động, bảo đảm chế độ, chính sách cho lực lượng dân quân giai đoạn 2021 - 2025 và từng năm trình cấp có thẩm quyền phê duyệt đúng quy định. Chủ trì phối hợp với các ban, ngành tham mưu xây dựng, rà soát, điều chỉnh, bổ sung kịp thời các văn kiện, quy chế, kế hoạch về công tác quốc phòng, quân sự địa phương. Tổ chức thực hiện tốt các quy chế, kế hoạch hoạt động phối hợp của lực lượng dân quân với các lực lượng liên quan theo quy định tại Nghị định số 02/2020/NĐ-CP ngày 30/6/2020 của Chính phủ: Thông tư số 43/2020 TT-BQP ngày 23/04/2020 của Bộ trưởng Bộ Quốc phòng và các văn bản pháp luật khác có liên quan.</p>
+<p class="">Ban Chỉ huy Quân sự xã đã biên chế đủ 04 chức danh: Chỉ huy trưởng, Chính trị viên, Phó Chỉ huy trưởng, Chính trị viên phó; đúng cơ cấu, thành phần, Chỉ huy Trưởng có trình độ trung cấp ngành quân sự cơ sở, trong đó có 75% Ban chỉ huy đạt trình độ đại học 01 đồng chí sơ cấp đạt 25%. Có phòng làm việc riêng; có trang, thiết bị làm việc đúng quy định; 75% cán bộ Ban Chỉ huy Quân sự xã là đảng viên.</p>
+<p class="">Xã đã thực hiện tốt công tác phổ biến kiến thức về quốc phòng và an ninh cho toàn dân; bồi dưỡng kiến thức về quốc phòng và an ninh cho các đối tượng 3 và 4 là 50 người bảo đảm chất lượng; giáo dục quốc phòng và an ninh cho học sinh theo quy định của pháp luật.</p>
+<p class="">Xây dựng, huấn luyện, hoạt động của lực lượng dân quân của xã: Tổ chức biên chế lực lượng dân quân có chất lượng đã đáp ứng yêu cầu nhiệm vụ quốc phòng, quân sự địa phương; xã đã biên chế đủ 01 trung đội dân quân cơ động (28 đ/c), 06 tổ dân quân binh chủng (18 đ/c), 02 tổ dân quân tại chỗ (6 đ/c); đăng ký, quản lý, bảo quản và sử dụng vũ khí, vật liệu nổ quân dụng, công cụ hỗ trợ, trang thiết bị, phương tiện kỹ thuật thực hiện đúng Thông tư số 76/2020/TT-BQP ngày 23/6/2020 và Thông tư số 77/2020/TT-BQP ngày 23/6/2020 của Bộ trưởng Bộ Quốc phòng.</p>
+<p class="">Làm tốt công tác bồi dưỡng, phát triển đảng viên trong lực lượng dân quân xã, có tỷ lệ đảng viên trong lực lượng dân quân là 21% (vượt chỉ tiêu là 3% so với Kết luận số 41/KL/TW của Ban Bí thư là 18%); thôn đội trưởng, tiểu đội trưởng dân quân thường trực, trung đội trưởng dân quân thường trực, trung đội trưởng dân quân cơ động là đảng viên.</p>
+<p class="">Hằng năm, các đối tượng dân quân xã được giáo dục chính trị, pháp luật; huấn luyện quân sự đúng nội dung, thời gian, chương trình theo Thông tư số 69/2020/TT-BQP ngày 15/6/2020 của Bộ trưởng Bộ Quốc phòng, kết quả có 100% đạt yêu cầu, tỷ lệ khá, giỏi đạt trên 81%, an toàn tuyệt đối.</p>
+<p class="">Duy trì nghiêm chế độ trực sẵn sàng chiến đấu theo Thông tư số 43/2020/TT-BQP ngày 23/4/2020 của Bộ trưởng Bộ Quốc phòng. Phối hợp với các lực lượng nắm chắc tình hình địa bàn</p>
+<p class="">Duy trì nền nếp hoạt động phối hợp của Ban chỉ huy quân sự xã với các ban, ngành, đoàn thể địa phương, làm tốt công tác tuyên truyền cho cán bộ, đảng viên, đoàn viên, hội viên và Nhân dân nâng cao nhận thức, trách nhiệm trong xây dựng và bảo vệ Tổ quốc trong tình hình mới. Thực hiện tốt quy chế phối hợp của dân quân tự vệ với các lực lượng trong hoạt động bảo vệ an ninh chính trị, trật tự, an toàn xã hội ở cơ sở theo quy định tại Nghị định số 02/2020/NĐ-CP ngày 30/6/2020 của Chính phủ và các quy định khác của pháp luật; bảo vệ và tham gia tuyên truyền, giải quyết các vụ việc phức tạp xảy ra ở địa phương, không để phát sinh thành "điểm nóng".</p>
+<p class="">Xã đã duy trì thường xuyên 01 trung đội dân quân (28 đ/c) làm nòng cốt trong đội xung kích phòng chống thiên tai; trong nhiệm kỳ tổ chức diễn tập chiến đấu phòng thủ cấp xã 01 lần và tham gia các cuộc diễn tập khu vực phòng thủ, phòng thủ dân sự của Huyện và Ban CHQS huyện đúng quy định, có chất lượng tốt, bảo đảm an toàn.</p>
+<p class="">Hằng năm, xã đã thực hiện tốt trình tự, thủ tục đăng ký, quản lý công dân trong độ tuổi thực hiện nghĩa vụ đạt 100% chỉ tiêu cấp trên giao; tham gia lực lượng dân quân đạt 1,33% so với dân số; xét duyệt, kết nạp dân quân mới đạt từ 23% đến 27% so với tổng số dân quân và trao quyết định công nhận dân quân đã hoàn thành nghĩa vụ tham gia lực lượng dân quân xã theo đúng quy định của pháp luật.</p>
+<p class="">Xây dựng và quản lý lực lượng dự bị động viên: Xã Lưu Kỳ đã thực hiện tốt công tác đăng ký, quản lý 48 đồng chí, hằng năm tổ chức đăng ký đầy đủ quân nhân dự bị và 04 phương tiện theo quy định của Luật Lực lượng dự bị động viên và chỉ tiêu Ban CHQS huyện giao; sẵn sàng động viên khi có lệnh của cấp có thẩm quyền.</p>
+<p class="">Công tác tuyển quân, tuyển sinh: Xã Lưu Kỳ đã tiến hành đăng ký, quản lý 100% công dân Nam trong độ tuổi thực hiện nghĩa vụ quân sự sẵn sàng nhập ngũ; hoàn thành 100% chi tiêu giao quân; Hàng năm tuyển chọn, gọi 05 đến 07 công dân nhập ngũ bảo đảm chất lượng, đúng pháp luật.</p>
+<p class="">Thực hiện chế độ, chính sách, giải quyết khiếu nại, tố cáo: Xã Lưu Kỳ đã thực hiện đúng chế độ, chính sách cho lực lượng dân quân và lực lượng dự bị động viên; chính sách hậu phương quân đội theo quy định của pháp luật; giải quyết tốt các vấn đề mới nảy sinh, không để xảy ra vụ việc khiếu nại, tố cáo liên quan đến công tác quân sự, quốc phòng ở địa phương.</p>
+<p class="">Kết hợp kinh tế - xã hội với quốc phòng: Thực hiện có hiệu quả việc kết hợp kinh tế - xã hội với quốc phòng, bảo đảm tuân thủ quy định tại khoản 2 Điều 15 Luật Quốc phòng và Nghị định số 164/2018/NĐ-CP ngày 21/12/2018 của Chính phủ. Thực hiện có hiệu quả Phong trào "Quân đội chung sức xây dựng nông thôn mới". Tích cực tuyên truyền vận động Nhân dân thực hiện tốt đường lối, chủ trương của Đảng, chính sách, pháp luật của Nhà nước. Phối hợp thực hiện tốt chính sách xã hội, chính sách hậu phương quân đội. Tích cực tham gia xây dựng cơ sở chính trị vững mạnh toàn diện.</p>
+<p class="bullet">+ Chỉ tiêu 19.2. Xã đã tập trung thực hiện tốt công tác đảm bảo an ninh trật tự, xây dựng phong trào “Toàn dân bảo vệ an ninh Tổ quốc”; đẩy mạnh tuyên truyền cho nhân dân nâng cao cảnh giác trước âm mưu, thủ đoạn hoạt động của các thế lực thù địch; tích cực tham gia phòng chống tội phạm, tệ nạn xã hội, giữ gìn an ninh trật tự. Đồng thời, phát huy vai trò của Mặt trận tổ quốc, các đoàn thể và cả hệ thống chính trị trong giải quyết hiệu quả những vấn đề nổi cộm, bức xúc, không để phát sinh thành điểm nóng, phức tạp về an ninh trật tự.</p>
+<p class="">An ninh chính trị: Thường xuyên nắm bắt tình hình tư tưởng của nhân dân liên quan đến những biến động chính trị trong và ngoài nước; quản lý chặt chẽ các công dân nước ngoài tạm trú trên địa bàn xã.</p>
+<p class="">Hàng năm hoàn thiện hồ sơ, phát lệnh gọi và bàn giao công dân làm nghĩa vụ công an nhân dân đạt 100% chỉ tiêu được giao.</p>
+<p class="">Trật tự, an toàn xã hội: Thường xuyên kiện toàn, giao ban Ban chỉ đạo và triển khai thực hiện về quản lý vũ khí, vật liệu nổ, công cụ hỗ trợ; quản lý và sử dụng pháo; cấm nhập khẩu, buôn bán, vận chuyển, tàng trữ, đốt và thả đèn trời . Tổ chức ký cam kết không nhập khẩu, buôn bán, vận chuyển, tàng trữ, pháo nổ, đốt và thả đèn trời đến 100% các công ty, doanh nghiệp, trường học và các hộ kinh doanh trên địa bàn. Duy trì mô hình “Camera an ninh” nhằm góp phần giữ gìn an ninh trật tự tại địa phương được tốt hơn.</p>
+<p class="">Thực hiện tốt Đề án 06 của Chính phủ: Hướng dẫn nhân dân sử dụng dịch vụ công để giải quyết các thủ tục hành chính liên quan đến cư trú, đăng ký xe.  Làm sạch dữ liệu dân cư, đảm bảo “đúng, đủ, sạch, sống” với 950 hộ, 3.108 khẩu. Cập nhật 100% dữ liệu liên quan đến các vấn đề an sinh xã hội, thành viên các tổ chức hội… Phối hợp đổi và làm mới căn cước công dân đạt chỉ tiêu được giao.</p>
+<p class="">Quản lý chặt chẽ các đối tượng có tiền án, tiền sự; đối tượng nghiện, nghi nghiện ma túy trên địa bàn; lập hồ sơ quản lý sau cai nghiện, hồ sơ cai nghiện bắt buộc, hồ sơ cai nghiện tại cộng đồng đảm bảo đạt chỉ tiêu được giao hàng năm.</p>
+<p class="">Phòng cháy, chữa cháy: Thành lập đoàn kiểm tra an toàn PCCC. Kiểm tra và xử phạt vi phạm hành chính về PCCC; Duy trì thực hiện có hiệu quả mô hình 02 thôn an toàn PCCC, 01 tổ liên gia an toàn PCCC, 24 điểm chữa cháy công cộng.</p>
+<p class="">An toàn giao thông: Thực hiện công tác đăng ký cấp mới xe mô tô, xe máy điện, xe dưới 50cc, cấp đổi cấp lại đăng ký xe cho công dân đảm bảo theo quy định. Tổ chức ra mắt và thực hiện có hiệu quả mô hình “Cổng trường an toàn giao thông” trên địa bàn xã. Trên địa bàn xã không có công dân cư trú trên địa bàn phạm tội nghiêm trọng và gây tai nạn</p>
+<p class="">Xã đã đẩy mạnh công tác nghiệp vụ, rà soát, quản lý chặt các đối tượng, đấu tranh triệt phá các tệ nạn xã hội. Thành lập tổ chức hoạt động của các Tổ bảo vệ an ninh trật tự tại cơ sở; xây dựng lực lượng công an xã, tạo điều kiện để lực lượng này đủ năng lực, trình độ, giải quyết, xử lý các tình huống liên quan đến an ninh chính trị, trật tự an toàn xã hội tại cơ sở.</p>
+ </article>
+</section>
+</main>
+<footer>Sổ tay điện tử Lưu Kỳ • Chuyển đổi từ tài liệu gốc “Sổ tổng hợp Lưu Kỳ.docx” • Không tự ý thay đổi số liệu.</footer>
+
+<script>
+
+const input=document.getElementById('search');
+const clear=document.getElementById('clear');
+const count=document.getElementById('count');
+const no=document.getElementById('no');
+const book=document.getElementById('book');
+const nodes=[...book.querySelectorAll('p,h2,h3,h4')];
+
+function unmark(){
+ book.querySelectorAll('mark').forEach(m=>{
+  const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();
+ });
+}
+function runSearch(q){
+ unmark(); q=q.trim().toLowerCase(); let hits=0;
+ nodes.forEach(el=>{
+  el.style.display='';
+  if(!q)return;
+  if(el.textContent.toLowerCase().includes(q)){
+   hits++;
+   const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+   el.innerHTML=el.textContent.replace(re,'<mark>$1</mark>');
+  }else el.style.display='none';
+ });
+ count.textContent=q?`Tìm thấy ${hits} mục phù hợp`:'';
+ no.style.display=q&&hits===0?'block':'none';
+}
+input.addEventListener('input',()=>runSearch(input.value));
+clear.addEventListener('click',()=>{input.value='';runSearch('');input.focus()});
+document.querySelectorAll('.cat').forEach(b=>b.addEventListener('click',()=>{
+ input.value=b.dataset.q.split(',')[0];runSearch(input.value);book.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+document.getElementById('print').addEventListener('click',()=>window.print());
+document.getElementById('home').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+document.addEventListener('keydown',e=>{
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='f'){e.preventDefault();input.focus()}
+});
+
+</script>
+
+</body>
+</html>
