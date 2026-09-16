@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
 <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/tim-kiem.css">
 
-<script  defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/tim-kiem-chung.js"></script>
-<script  defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
 
 <style>
 /* ==================================================
@@ -451,9 +449,7 @@
 
 <div class="note">
    <h3>📖 Tài liệu chuyên môn</h3>
-<ul class="vuong">
-     <div id="ds-chuyen-mon" class="danh-sach-bai-viet"></div>
-</ul>
+   <div id="ds-chuyen-mon" class="danh-sach-bai-viet"></div>
 </div>
 
 <div class="note">
@@ -552,36 +548,21 @@ let allDocs = [];
 ========================== */
 
 async function loadDocs(){
-
     try{
-
-        const response =
-        await fetch(JSON_URL);
+        const response = await fetch(JSON_URL);
 
         if(!response.ok){
-
-            throw new Error(
-                "Không tải được dữ liệu"
-            );
-
+            throw new Error("Không tải được dữ liệu");
         }
 
-        const data =
-        await response.json();
-
+        const data = await response.json();
         allDocs = data;
-
         render(allDocs);
 
     }catch(error){
-
         console.error(error);
-
-        listContainer.innerHTML =
-        "<li>Lỗi tải dữ liệu.</li>";
-
+        listContainer.innerHTML = "<li>Lỗi tải dữ liệu.</li>";
     }
-
 }
 
 /* ==========================
@@ -589,155 +570,37 @@ async function loadDocs(){
 ========================== */
 
 function render(list){
-
-    countBox.textContent =
-    list.length;
+    countBox.textContent = list.length;
 
     if(!list.length){
-
-        listContainer.innerHTML =
-        "<li>Không tìm thấy tài liệu.</li>";
-
+        listContainer.innerHTML = "<li>Không tìm thấy tài liệu.</li>";
         return;
-
     }
 
-    listContainer.innerHTML =
-list.map(item => `
-
-<div class="file-item">
-
-    <div class="file-info">
-
-        <h3>${item.title}</h3>
-
-        <p>${item.desc || ""}</p>
-
-        <small>${item.category}</small>
-
-    </div>
-
-    <a
-      href="${item.url}"
-      class="download-btn">
-
-      Mở
-
-    </a>
-
-</div>
-
-`).join("");
-
+    listContainer.innerHTML = list.map(item => `
+        <div class="file-item">
+            <div class="file-info">
+                <h3>${item.title}</h3>
+                <p>${item.desc || ""}</p>
+                <small>${item.category || ""}</small>
+            </div>
+            <a href="${item.url}" class="download-btn" target="_blank">Mở</a>
+        </div>
+    `).join("");
 }
 
-/* ==========================
-   TÌM KIẾM
-========================== */
+// KHẮC PHỤC LỖI: Gọi hàm để bắt đầu tải dữ liệu khi trang web chạy
+loadDocs();
 
-searchInput.addEventListener(
-"input",
-function(){
-
-    const keyword =
-    this.value
-    .toLowerCase()
-    .trim();
-
-    const result =
-    allDocs.filter(item =>
-
-        item.title
-        .toLowerCase()
-        .includes(keyword)
-
-        ||
-
-        (item.desc || "")
-        .toLowerCase()
-        .includes(keyword)
-
-        ||
-
-        (item.category || "")
-        .toLowerCase()
-        .includes(keyword)
-
-    );
-
-    render(result);
-
-}
-);
-
-document.addEventListener(
-"DOMContentLoaded",
-loadDocs
-);
 </script>
 
 <button class="floating-back" onclick="history.back()">
     ←
 </button>
 
-<script>
-const currentPage = location.pathname.split("/").pop();
-
-document.querySelectorAll(".header-nav a, .nav-links a")
-.forEach(link => {
-
-  const linkPage = link.getAttribute("href");
-
-  if(linkPage === currentPage){
-    link.classList.add("active");
-  }
-
-});
-</script>
-<script>
-
-async function loadComponent(id, file){
-
-    try{
-
-        const response = await fetch(file);
-
-        if(!response.ok){
-
-            throw new Error(
-                "Lỗi tải component: " + file
-            );
-
-        }
-
-        const html = await response.text();
-
-        document.getElementById(id)
-        .innerHTML = html;
-
-    }catch(error){
-
-        console.log(error);
-
-    }
-
-}
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-    loadComponent(
-        "menu",
-        "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html"
-    );
-
-}
-);
-
-</script>
-
-<script src="../tai-nguyen/js/menu.js"></script>
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/tim-kiem-chung.js"></script>
 
 </body>
 </html>
