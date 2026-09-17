@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Nhiên - Sức Khỏe & Hạnh Phúc</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            softBg: '#f8faf6',
+                            cream: '#fdfbf7',
+                            darkGreen: '#0f291e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Be Vietnam Pro', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #fdfbf7;
+            color: #2d3748;
+        }
+
+        /* Breathing Circle Animation */
+        .breath-circle {
+            transition: all 4s ease-in-out;
+        }
+        .breath-inhale {
+            transform: scale(1.6);
+            background-color: rgba(134, 239, 172, 0.4);
+            border-color: #22c55e;
+        }
+        .breath-hold {
+            transform: scale(1.6);
+            background-color: rgba(254, 240, 138, 0.4);
+            border-color: #eab308;
+        }
+        .breath-exhale {
+            transform: scale(1);
+            background-color: rgba(191, 219, 254, 0.4);
+            border-color: #3b82f6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #86efac;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+
+        /* Soft Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(220, 252, 231, 0.6);
+        }
+
+        /* Ripple Pulse */
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-200 selection:text-brand-900">
+
+    <header class="sticky top-0 z-50 glass-card shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-white shadow-md shadow-brand-200 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid font-bold fa-leaf text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-brand-900 block leading-none">AN NHIÊN</span>
+                    <span class="text-xs text-brand-600 font-medium tracking-widest uppercase">Wellness & Mind</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium text-gray-700">
+                <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Trang chủ</a>
+                <a href="#pillar-body" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Thân</a>
+                <a href="#pillar-mind" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Tâm</a>
+                <a href="#pillar-spirit" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Trí</a>
+                <a href="#tools" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Công cụ</a>
+                <a href="#blog" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Góc chia sẻ</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#tools" class="px-5 py-2.5 rounded-xl bg-brand-700 text-white font-medium text-sm shadow-md shadow-brand-700/20 hover:bg-brand-800 hover:shadow-lg transition-all transform active:scale-95 flex items-center gap-2">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    Bắt đầu ngay
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-brand-700 hover:bg-brand-50 focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-b border-brand-100 px-4 pt-2 pb-6 space-y-2 transition-all">
+            <a href="#home" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Trang chủ</a>
+            <a href="#pillar-body" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Thân - Dinh Dưỡng</a>
+            <a href="#pillar-mind" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Tâm - Thiền Định</a>
+            <a href="#pillar-spirit" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Trí - Thói Quen</a>
+            <a href="#tools" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Công cụ tương tác</a>
+            <a href="#blog" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Góc chia sẻ</a>
+            <a href="#tools" class="block text-center mt-4 w-full px-5 py-2.5 rounded-xl bg-brand-700 text-white font-medium shadow-md">
+                Bắt đầu trải nghiệm
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section id="home" class="relative overflow-hidden pt-8 pb-20 md:pt-16 md:pb-28">
+            <!-- Background Decorative Orbs -->
+            <div class="absolute top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl -z-10 animate-pulse-soft"></div>
+            <div class="absolute bottom-0 right-10 w-80 h-80 bg-emerald-100/50 rounded-full blur-3xl -z-10"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-100/80 text-brand-800 text-xs sm:text-sm font-semibold tracking-wide border border-brand-200 shadow-sm">
+                        <i class="fa-solid fa-sparkles text-brand-600"></i>
+                        <span>Nơi bình yên bắt đầu cho Thân - Tâm - Trí</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-brand-darkGreen tracking-tight leading-tight">
+                        Sống khỏe mỗi ngày<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-teal-600">Nuôi dưỡng Hạnh phúc</span>
+                    </h1>
+
+                    <!-- Dynamic Quote Box -->
+                    <div class="glass-card p-6 rounded-2xl shadow-sm border border-brand-100 max-w-2xl mx-auto my-6 relative min-h-[110px] flex items-center justify-center">
+                        <i class="fa-solid fa-quote-left text-brand-200 text-3xl absolute top-3 left-4"></i>
+                        <p id="quote-text" class="text-base sm:text-lg text-gray-700 italic font-medium relative z-10 px-6 transition-opacity duration-500">
+                            "Hạnh phúc không phải là điểm đến, mà là hành trình trân trọng từng phút giây hiện tại."
+                        </p>
+                        <i class="fa-solid fa-quote-right text-brand-200 text-3xl absolute bottom-3 right-4"></i>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                        <a href="#tools" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-brand-700 hover:bg-brand-800 text-white font-semibold shadow-lg shadow-brand-700/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-wind"></i>
+                            Tập hít thở thư giãn
+                        </a>
+                        <a href="#pillar-body" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-white hover:bg-brand-50 text-brand-800 font-semibold border border-brand-200 shadow-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-compass"></i>
+                            Khám phá lối sống
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pillars" class="py-16 bg-white/60 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-brand-darkGreen">3 Trụ cột cho sự cân bằng</h2>
+                    <p class="text-gray-600 mt-2">Nuôi dưỡng toàn diện từ thể chất đến cảm xúc và tâm trí</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Pillar 1: Thân -->
+                    <div id="pillar-body" class="bg-gradient-to-b from-emerald-50/50 to-white p-8 rounded-3xl border border-emerald-100 hover:shadow-xl hover:border-emerald-200 transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-lg shadow-emerald-500/20 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-apple-whole"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">THÂN • Dinh dưỡng & Thể chất</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Cung cấp nguồn năng lượng thuần khiết qua chế độ ăn lành mạnh, vận động nhẹ nhàng và giữ gìn sự dẻo dai mỗi ngày.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                                <span>Thực đơn Eat Clean & Thuần chay</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                                <span>Bài tập Stretch & Yoga phục hồi</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                                <span>Duy trì thói quen uống đủ nước</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pillar 2: Tâm -->
+                    <div id="pillar-mind" class="bg-gradient-to-b from-teal-50/50 to-white p-8 rounded-3xl border border-teal-100 hover:shadow-xl hover:border-teal-200 transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-teal-500 text-white flex items-center justify-center text-2xl shadow-lg shadow-teal-500/20 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-spa"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">TÂM • Thiền định & An yên</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Lắng nghe bản thân, giải tỏa những căng thẳng nội tâm nhờ âm thanh thiên nhiên và bài tập hít thở chuẩn khoa học.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-teal-500"></i>
+                                <span>Nhịp thở 4-7-8 xoa dịu thần kinh</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-teal-500"></i>
+                                <span>Âm thanh tự nhiên chữa lành (Ambient)</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-teal-500"></i>
+                                <span>Thực hành quán niệm & quan sát cảm xúc</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pillar 3: Trí -->
+                    <div id="pillar-spirit" class="bg-gradient-to-b from-amber-50/50 to-white p-8 rounded-3xl border border-amber-100 hover:shadow-xl hover:border-amber-200 transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-lg shadow-amber-500/20 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">TRÍ • Thói quen & Tư duy</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Xây dựng góc nhìn tích cực, rèn luyện sự tập trung và ghi nhận những điều biết ơn nhỏ bé trong cuộc sống.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-amber-500"></i>
+                                <span>Nhật ký lòng biết ơn mỗi ngày</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-amber-500"></i>
+                                <span>Đọc sách & tư duy cởi mở</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-amber-500"></i>
+                                <span>Quản lý năng lượng thay vì thời gian</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="py-16 bg-brand-softBg relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-brand-700 text-xs font-bold uppercase tracking-widest bg-brand-100 px-3 py-1 rounded-full">Trải nghiệm tương tác</span>
+                    <h2 class="text-3xl font-bold text-brand-darkGreen mt-3">Góc Công cụ Thư giãn</h2>
+                    <p class="text-gray-600 mt-2">Dành vài phút mỗi ngày để tái tạo năng lượng cho tâm trí bạn</p>
+                </div>
+
+                <!-- Tools Grid -->
+                <div class="grid lg:grid-cols-2 gap-8">
+                    
+                    <!-- TOOL 1: 4-7-8 Breathing Exercise -->
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-sm border border-brand-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-brand-darkGreen flex items-center gap-2">
+                                    <i class="fa-solid fa-wind text-brand-600"></i> Bài tập Hít thở 4-7-8
+                                </h3>
+                                <span class="text-xs bg-brand-100 text-brand-800 px-2.5 py-1 rounded-full font-medium">Giảm Giờ Căng Thẳng</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-6">Hít vào 4s • Giữ thở 7s • Thở ra nhẹ nhàng 8s. Giúp xoa dịu hệ thần kinh ngay lập tức.</p>
+                        </div>
+
+                        <!-- Visual Breathing Circle -->
+                        <div class="py-8 flex flex-col items-center justify-center">
+                            <div id="breath-node" class="w-44 h-44 rounded-full border-4 border-brand-400 bg-brand-100/60 flex flex-col items-center justify-center text-center transition-all duration-1000 shadow-inner relative">
+                                <span id="breath-status" class="text-lg font-bold text-brand-900">Sẵn sàng</span>
+                                <span id="breath-timer" class="text-3xl font-black text-brand-700 mt-1">4-7-8</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-center gap-4 mt-4">
+                            <button id="start-breath-btn" class="px-6 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-medium text-sm transition-all shadow-md">
+                                <i class="fa-solid fa-play mr-1"></i> Bắt đầu
+                            </button>
+                            <button id="stop-breath-btn" class="px-6 py-2.5 rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium text-sm transition-all">
+                                <i class="fa-solid fa-stop mr-1"></i> Dừng
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TOOL 2: Ambient Sound Player -->
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-sm border border-brand-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-brand-darkGreen flex items-center gap-2">
+                                    <i class="fa-solid fa-headphones text-brand-600"></i> Âm Thanh Thiên Nhiên (Ambient)
+                                </h3>
+                                <span class="text-xs bg-teal-100 text-teal-800 px-2.5 py-1 rounded-full font-medium">Web Audio Synthesizer</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-6">Lựa chọn các âm thanh nhẹ nhàng để tập trung công việc hoặc dễ đi vào giấc ngủ.</p>
+                        </div>
+
+                        <div class="space-y-4 my-2">
+                            <!-- Rain Sound -->
+                            <div class="flex items-center justify-between p-3 rounded-2xl bg-white/70 border border-brand-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-cloud-showers-heavy"></i>
+                                    </div>
+                                    <span class="font-medium text-sm text-gray-800">Tiếng Mưa rơi</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <input type="range" id="volume-rain" min="0" max="1" step="0.1" value="0.5" class="w-20 accent-brand-600">
+                                    <button onclick="toggleAmbientSound('rain')" id="btn-rain" class="w-9 h-9 rounded-full bg-brand-100 hover:bg-brand-200 text-brand-800 flex items-center justify-center transition-colors">
+                                        <i class="fa-solid fa-play text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Ocean Waves -->
+                            <div class="flex items-center justify-between p-3 rounded-2xl bg-white/70 border border-brand-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-water"></i>
+                                    </div>
+                                    <span class="font-medium text-sm text-gray-800">Sóng Biển rào rạt</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <input type="range" id="volume-waves" min="0" max="1" step="0.1" value="0.5" class="w-20 accent-brand-600">
+                                    <button onclick="toggleAmbientSound('waves')" id="btn-waves" class="w-9 h-9 rounded-full bg-brand-100 hover:bg-brand-200 text-brand-800 flex items-center justify-center transition-colors">
+                                        <i class="fa-solid fa-play text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Forest & Birds -->
+                            <div class="flex items-center justify-between p-3 rounded-2xl bg-white/70 border border-brand-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-tree"></i>
+                                    </div>
+                                    <span class="font-medium text-sm text-gray-800">Tiếng Rừng cây & Tần số Thiền</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <input type="range" id="volume-zen" min="0" max="1" step="0.1" value="0.5" class="w-20 accent-brand-600">
+                                    <button onclick="toggleAmbientSound('zen')" id="btn-zen" class="w-9 h-9 rounded-full bg-brand-100 hover:bg-brand-200 text-brand-800 flex items-center justify-center transition-colors">
+                                        <i class="fa-solid fa-play text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-400 text-center mt-2">*Âm thanh được tổng hợp sinh động qua Web Audio API không tốn dung lượng</p>
+                    </div>
+
+                    <!-- TOOL 3: Gratitude & Mood Journal -->
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-sm border border-brand-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-brand-darkGreen flex items-center gap-2">
+                                <i class="fa-solid fa-book-open text-brand-600"></i> Nhật ký Cảm xúc & Biết ơn
+                            </h3>
+                            <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-medium">Lưu trữ riêng tư</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Hôm nay tâm trạng bạn thế nào? Hãy ghi lại 3 điều nhỏ bé khiến bạn mỉm cười.</p>
+
+                        <!-- Mood Picker -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Cảm xúc hiện tại</label>
+                            <div class="flex gap-3 justify-between">
+                                <button onclick="selectMood('😃 Vui vẻ')" class="mood-btn flex-1 py-2 rounded-xl bg-white border border-gray-200 text-xl hover:border-brand-500 transition-all">😃</button>
+                                <button onclick="selectMood('😌 Bình yên')" class="mood-btn flex-1 py-2 rounded-xl bg-white border border-gray-200 text-xl hover:border-brand-500 transition-all">😌</button>
+                                <button onclick="selectMood('🥺 Mệt mỏi')" class="mood-btn flex-1 py-2 rounded-xl bg-white border border-gray-200 text-xl hover:border-brand-500 transition-all">🥺</button>
+                                <button onclick="selectMood('😰 Lo âu')" class="mood-btn flex-1 py-2 rounded-xl bg-white border border-gray-200 text-xl hover:border-brand-500 transition-all">😰</button>
+                                <button onclick="selectMood('⚡ Năng lượng')" class="mood-btn flex-1 py-2 rounded-xl bg-white border border-gray-200 text-xl hover:border-brand-500 transition-all">⚡</button>
+                            </div>
+                        </div>
+
+                        <!-- Gratitude Input -->
+                        <div class="space-y-2 mb-4">
+                            <input type="text" id="gratitude-1" placeholder="1. Điều thứ nhất bạn thấy biết ơn..." class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-500">
+                            <input type="text" id="gratitude-2" placeholder="2. Điều thứ hai..." class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-500">
+                        </div>
+
+                        <button onclick="saveJournal()" class="w-full py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white text-sm font-medium transition-all shadow-md mb-4">
+                            <i class="fa-solid fa-floppy-disk mr-1"></i> Lưu nhật ký hôm nay
+                        </button>
+
+                        <!-- History Display -->
+                        <div class="border-t border-brand-100 pt-3">
+                            <h4 class="text-xs font-semibold uppercase text-gray-500 mb-2">Nhật ký vừa lưu</h4>
+                            <div id="journal-history" class="max-h-32 overflow-y-auto space-y-2 text-xs text-gray-600">
+                                <p class="italic text-gray-400">Chưa có bản ghi nào được lưu trong máy.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TOOL 4: Daily Hydration Tracker -->
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-sm border border-brand-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-brand-darkGreen flex items-center gap-2">
+                                    <i class="fa-solid fa-glass-water text-blue-500"></i> Theo dõi lượng Nước uống
+                                </h3>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2.5 py-1 rounded-full font-medium">Chăm sóc Cơ Thể</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-6">Mục tiêu trung bình: 2,000 ml / ngày. Đừng quên nạp nước để làn da tươi trẻ và tinh thần minh mẫn!</p>
+                        </div>
+
+                        <div class="text-center my-4">
+                            <div class="text-4xl font-black text-brand-800 mb-1">
+                                <span id="water-current">0</span> <span class="text-lg font-normal text-gray-500">/ <span id="water-goal">2000</span> ml</span>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div class="w-full h-4 bg-gray-200 rounded-full overflow-hidden my-4 shadow-inner">
+                                <div id="water-bar" class="h-full bg-gradient-to-r from-blue-400 to-teal-500 transition-all duration-500 w-0"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3">
+                            <button onclick="addWater(250)" class="py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold border border-blue-200 transition-colors">
+                                +250 ml (1 Ly)
+                            </button>
+                            <button onclick="addWater(500)" class="py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold border border-blue-200 transition-colors">
+                                +500 ml (1 Chai)
+                            </button>
+                            <button onclick="resetWater()" class="py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 text-xs font-semibold transition-colors">
+                                Dat lai
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12">
+                    <div>
+                        <span class="text-brand-700 text-xs font-bold uppercase tracking-widest bg-brand-100 px-3 py-1 rounded-full">Góc Đọc & Suy Ngẫm</span>
+                        <h2 class="text-2xl font-bold text-brand-darkGreen mt-3">Bài viết Truyền cảm hứng</h2>
+                    </div>
+                    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/suc-khoe.html" class="text-brand-700 font-semibold text-sm hover:underline mt-2 sm:mt-0 flex items-center gap-1">
+                        Xem tất cả bài viết <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <article class="bg-brand-cream border border-brand-100 rounded-3xl overflow-hidden hover:shadow-lg transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden bg-emerald-100 relative">
+                                <img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/cac-loai-chim.webp" 
+                                     alt="Yoga & Breathe" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                     onerror="this.src='https://placehold.co/600x400/22c55e/ffffff?text=Yoga+Mental+Health'">
+                                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-900 text-xs font-bold px-3 py-1 rounded-full">Thiền Định</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-gray-400">5 phút đọc • 12/05/2026</span>
+                                <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-brand-700 transition-colors">
+                                    10 phút Thiền buổi sáng thay đổi hoàn toàn Tâm Trí bạn
+                                </h3>
+                                <p class="text-gray-600 text-sm mt-2 line-clamp-3">
+                                    Thói quen tĩnh lặng trước khi bắt đầu ngày mới giúp bộ não giảm lượng cortisol và gia tăng khả năng tập trung suốt cả ngày.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <span class="text-xs font-bold text-brand-700 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/bat-dau-ngay-moi-bang-10-phut-thien-dinh.html">Đọc tiếp <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="bg-brand-cream border border-brand-100 rounded-3xl overflow-hidden hover:shadow-lg transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden bg-teal-100 relative">
+                                <img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/cac-loai-chim.webp" 
+                                     alt="Healthy Food" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                     onerror="this.src='https://placehold.co/600x400/14b8a6/ffffff?text=Eat+Clean+Healthy'">
+                                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-900 text-xs font-bold px-3 py-1 rounded-full">Dinh Dưỡng</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-gray-400">7 phút đọc • 10/05/2026</span>
+                                <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-brand-700 transition-colors">
+                                    Nghệ thuật ăn trong chánh niệm (Mindful Eating)
+                                </h3>
+                                <p class="text-gray-600 text-sm mt-2 line-clamp-3">
+                                    Học cách cảm nhận hương vị tự nhiên của thực phẩm, biết ơn từng bữa ăn và nuôi dưỡng cơ thể bằng sự trân trọng.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <span class="text-xs font-bold text-brand-700 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                               <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/nghe-thuat-an-trong-chanh-niem-mindful-eating.html"> Đọc tiếp <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="bg-brand-cream border border-brand-100 rounded-3xl overflow-hidden hover:shadow-lg transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden bg-amber-100 relative">
+                                <img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/cac-loai-chim.webp" 
+                                     alt="Nature Calm" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                     onerror="this.src='https://placehold.co/600x400/f59e0b/ffffff?text=Inner+Peace'">
+                                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-900 text-xs font-bold px-3 py-1 rounded-full">Lối Sống</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-gray-400">4 phút đọc • 08/05/2026</span>
+                                <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-brand-700 transition-colors">
+                                    Chữa lành bằng thiên nhiên: Shinrin-yoku
+                                </h3>
+                                <p class="text-gray-600 text-sm mt-2 line-clamp-3">
+                                    Phương pháp "tắm rừng" của Nhật Bản giúp giảm mức độ lo âu, cải thiện hệ miễn dịch và tái tạo cảm hứng sống.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <span class="text-xs font-bold text-brand-700 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                               <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tong-hop/shinrin-yoku-tam-rung-la-phuong-phap-chua-lanh-tu-nhien.html"> Đọc tiếp <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                            </span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-gradient-to-r from-brand-800 to-brand-900 text-white relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 text-center relative z-10 space-y-6">
+                <div class="w-16 h-16 rounded-3xl bg-white/10 mx-auto flex items-center justify-center text-3xl text-brand-300 backdrop-blur-sm">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h2 class="text-3xl font-bold">Nhận tin bức thư Bình An hàng tuần</h2>
+                <p class="text-brand-100 text-sm max-w-xl mx-auto">
+                    Đăng ký để nhận những lời chúc nhẹ nhàng, bài viết sức khỏe chuẩn khoa học và các bài tập thở miễn phí qua email của bạn.
+                </p>
+                <form id="newsletter-form" onsubmit="handleNewsletter(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                    <input type="email" required placeholder="Nhập địa chỉ email của bạn..." class="px-5 py-3.5 rounded-2xl text-gray-900 bg-white text-sm focus:outline-none flex-grow">
+                    <button type="submit" class="px-6 py-3.5 rounded-2xl bg-brand-400 hover:bg-brand-300 text-brand-900 font-bold text-sm transition-colors shadow-lg">
+                        Gửi Cho Tôi
+                    </button>
+                </form>
+                <p id="newsletter-msg" class="text-xs text-brand-200 hidden">Cảm ơn bạn! Bức thư bình an đầu tiên sẽ sớm tới hòm thư của bạn.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-darkGreen text-gray-300 pt-16 pb-8 border-t border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
+                <!-- Brand Info -->
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white tracking-wider">AN NHIÊN</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Nền tảng đồng hành cùng bạn trên hành trình chăm sóc Thân - Tâm - Trí để đạt tới trạng thái hạnh phúc trọn vẹn.
+                    </p>
+                </div>
+
+                <!-- Fast Links -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Điều hướng</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="../index.html" class="hover:text-brand-300 transition-colors">Trang chủ</a></li>
+                        <li><a href="#pillar-body" class="hover:text-brand-300 transition-colors">Thân</a></li>
+                        <li><a href="#pillar-mind" class="hover:text-brand-300 transition-colors">Tâm</a></li>
+                        <li><a href="#pillar-spirit" class="hover:text-brand-300 transition-colors">Trí</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tools Links -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Công cụ</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#tools" class="hover:text-brand-300 transition-colors">Tập thở 4-7-8</a></li>
+                        <li><a href="#tools" class="hover:text-brand-300 transition-colors">Nhạc nền Ambient</a></li>
+                        <li><a href="#tools" class="hover:text-brand-300 transition-colors">Nhật ký Lòng biết ơn</a></li>
+                        <li><a href="#tools" class="hover:text-brand-300 transition-colors">Đếm lượng Nước uống</a></li>
+                    </ul>
+                </div>
+
+                <!-- Connect & Social -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Kết nối bình an</h4>
+                    <div class="flex gap-3 mb-4">
+                        <a href="#" class="w-9 h-9 rounded-xl bg-gray-800 hover:bg-brand-600 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-facebook-f text-xs"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-gray-800 hover:bg-brand-600 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram text-xs"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-gray-800 hover:bg-brand-600 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-youtube text-xs"></i>
+                        </a>
+                    </div>
+                    <p class="text-xs text-gray-400 italic">"Chúc bạn một ngày trọn vẹn niềm vui và an yên nội tâm."</p>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center text-xs text-gray-500">
+                <p>&copy; 2026 AN NHIÊN Wellness Platform. Tất cả quyền được bảo lưu. Thiết kế cho sức khỏe và hạnh phúc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 2. Dynamic Rotating Quotes
+        const quotes = [
+            "\"Hạnh phúc không phải là điểm đến, mà là hành trình trân trọng từng phút giây hiện tại.\"",
+            "\"Mỗi hơi thở vào mang lại sự bình an, mỗi hơi thở ra xua tan những mệt mỏi.\"",
+            "\"Cơ thể bạn là ngôi đền duy nhất bạn phải sống trong đó. Hãy chăm sóc nó thật tốt.\"",
+            "\"Sự tĩnh lặng trong tâm trí là nguồn cội của sức mạnh thật sự.\""
+        ];
+        let quoteIdx = 0;
+        const quoteEl = document.getElementById('quote-text');
+        
+        setInterval(() => {
+            quoteEl.style.opacity = '0';
+            setTimeout(() => {
+                quoteIdx = (quoteIdx + 1) % quotes.length;
+                quoteEl.textContent = quotes[quoteIdx];
+                quoteEl.style.opacity = '1';
+            }, 500);
+        }, 6000);
+
+        // 3. Interactive Breathing Exercise (4-7-8)
+        let breathInterval = null;
+        let isBreathing = false;
+        const breathNode = document.getElementById('breath-node');
+        const breathStatus = document.getElementById('breath-status');
+        const breathTimer = document.getElementById('breath-timer');
+
+        document.getElementById('start-breath-btn').addEventListener('click', startBreathing);
+        document.getElementById('stop-breath-btn').addEventListener('click', stopBreathing);
+
+        function startBreathing() {
+            if (isBreathing) return;
+            isBreathing = true;
+            runBreathingCycle();
+        }
+
+        function stopBreathing() {
+            isBreathing = false;
+            clearTimeout(breathInterval);
+            breathNode.className = "w-44 h-44 rounded-full border-4 border-brand-400 bg-brand-100/60 flex flex-col items-center justify-center text-center transition-all duration-1000 shadow-inner relative breath-exhale";
+            breathStatus.textContent = "Sẵn sàng";
+            breathTimer.textContent = "4-7-8";
+        }
+
+        function runBreathingCycle() {
+            if (!isBreathing) return;
+
+            // Phase 1: Inhale (4s)
+            breathStatus.textContent = "Hít vào...";
+            breathNode.className = "w-44 h-44 rounded-full border-4 flex flex-col items-center justify-center text-center transition-all duration-[4000ms] shadow-inner relative breath-inhale";
+            let count = 4;
+            breathTimer.textContent = count;
+
+            let timer1 = setInterval(() => {
+                count--;
+                if (count > 0) breathTimer.textContent = count;
+                else clearInterval(timer1);
+            }, 1000);
+
+            // Phase 2: Hold (7s)
+            breathInterval = setTimeout(() => {
+                if (!isBreathing) return;
+                breathStatus.textContent = "Giữ thở...";
+                breathNode.className = "w-44 h-44 rounded-full border-4 flex flex-col items-center justify-center text-center transition-all duration-[7000ms] shadow-inner relative breath-hold";
+                let countHold = 7;
+                breathTimer.textContent = countHold;
+
+                let timer2 = setInterval(() => {
+                    countHold--;
+                    if (countHold > 0) breathTimer.textContent = countHold;
+                    else clearInterval(timer2);
+                }, 1000);
+
+                // Phase 3: Exhale (8s)
+                breathInterval = setTimeout(() => {
+                    if (!isBreathing) return;
+                    breathStatus.textContent = "Thở ra...";
+                    breathNode.className = "w-44 h-44 rounded-full border-4 flex flex-col items-center justify-center text-center transition-all duration-[8000ms] shadow-inner relative breath-exhale";
+                    let countEx = 8;
+                    breathTimer.textContent = countEx;
+
+                    let timer3 = setInterval(() => {
+                        countEx--;
+                        if (countEx > 0) breathTimer.textContent = countEx;
+                        else clearInterval(timer3);
+                    }, 1000);
+
+                    // Repeat Cycle after 8s
+                    breathInterval = setTimeout(() => {
+                        if (isBreathing) runBreathingCycle();
+                    }, 8000);
+
+                }, 7000);
+
+            }, 4000);
+        }
+
+        // 4. Web Audio API Synthetic Ambient Sound Generator
+        let audioCtx = null;
+        let activeNodes = { rain: null, waves: null, zen: null };
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function toggleAmbientSound(type) {
+            initAudioContext();
+            const btn = document.getElementById(`btn-${type}`);
+
+            if (activeNodes[type]) {
+                // Stop sound
+                activeNodes[type].stop();
+                activeNodes[type] = null;
+                btn.innerHTML = '<i class="fa-solid fa-play text-xs"></i>';
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('bg-brand-100', 'text-brand-800');
+            } else {
+                // Start Sound
+                let node = null;
+                const volume = parseFloat(document.getElementById(`volume-${type}`).value);
+
+                if (type === 'rain') {
+                    node = createWhiteNoiseNode(volume);
+                } else if (type === 'waves') {
+                    node = createPinkNoiseNode(volume);
+                } else if (type === 'zen') {
+                    node = createSineBowlNode(volume);
+                }
+
+                if (node) {
+                    activeNodes[type] = node;
+                    btn.innerHTML = '<i class="fa-solid fa-pause text-xs"></i>';
+                    btn.classList.remove('bg-brand-100', 'text-brand-800');
+                    btn.classList.add('bg-brand-600', 'text-white');
+                }
+            }
+        }
+
+        // White Noise for Rain
+        function createWhiteNoiseNode(vol) {
+            const bufferSize = audioCtx.sampleRate * 2;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const output = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+            const whiteNoise = audioCtx.createBufferSource();
+            whiteNoise.buffer = buffer;
+            whiteNoise.loop = true;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(800, audioCtx.currentTime);
+
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.setValueAtTime(vol * 0.15, audioCtx.currentTime);
+
+            whiteNoise.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            whiteNoise.start();
+
+            return {
+                stop: () => whiteNoise.stop(),
+                gain: gainNode
+            };
+        }
+
+        // Pink Noise / Ocean Modulation
+        function createPinkNoiseNode(vol) {
+            const bufferSize = audioCtx.sampleRate * 2;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const output = buffer.getChannelData(0);
+            let b0=0, b1=0, b2=0, b3=0, b4=0, b5=0, b6=0;
+            for (let i = 0; i < bufferSize; i++) {
+                let white = Math.random() * 2 - 1;
+                b0 = 0.99886 * b0 + white * 0.0555179;
+                b1 = 0.99332 * b1 + white * 0.0750759;
+                b2 = 0.96900 * b2 + white * 0.1538520;
+                b3 = 0.86650 * b3 + white * 0.3104856;
+                b4 = 0.55000 * b4 + white * 0.5329522;
+                b5 = -0.7616 * b5 - white * 0.0168980;
+                output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+                output[i] *= 0.11;
+                b6 = white * 0.115926;
+            }
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+            noise.loop = true;
+
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.setValueAtTime(vol * 0.2, audioCtx.currentTime);
+
+            // Volume LFO for ocean wave feel
+            const lfo = audioCtx.createOscillator();
+            lfo.frequency.value = 0.1; // Slow waves
+            const lfoGain = audioCtx.createGain();
+            lfoGain.gain.value = 0.1;
+            lfo.connect(gainNode.gain);
+            lfo.start();
+
+            noise.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            noise.start();
+
+            return {
+                stop: () => { noise.stop(); lfo.stop(); }
+            };
+        }
+
+        // Tibetan Bowl / Zen Sine Wave
+        function createSineBowlNode(vol) {
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(432, audioCtx.currentTime); // 432Hz Healing Frequency
+
+            gainNode.gain.setValueAtTime(vol * 0.1, audioCtx.currentTime);
+
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            osc.start();
+
+            return {
+                stop: () => osc.stop()
+            };
+        }
+
+        // Volume Change Listeners
+        document.getElementById('volume-rain').addEventListener('input', (e) => {
+            if (activeNodes.rain && activeNodes.rain.gain) activeNodes.rain.gain.gain.value = e.target.value * 0.15;
+        });
+
+        // 5. Gratitude & Mood Journal (Local Storage)
+        let selectedMoodStr = '😌 Bình yên';
+
+        function selectMood(mood) {
+            selectedMoodStr = mood;
+            const buttons = document.querySelectorAll('.mood-btn');
+            buttons.forEach(btn => btn.classList.remove('border-brand-600', 'bg-brand-50'));
+            event.target.classList.add('border-brand-600', 'bg-brand-50');
+        }
+
+        function saveJournal() {
+            const g1 = document.getElementById('gratitude-1').value.trim();
+            const g2 = document.getElementById('gratitude-2').value.trim();
+
+            if (!g1 && !g2) {
+                alert('Vui lòng nhập ít nhất 1 điều biết ơn hôm nay bạn nhé!');
+                return;
+            }
+
+            const entry = {
+                date: new Date().toLocaleDateString('vi-VN'),
+                mood: selectedMoodStr,
+                items: [g1, g2].filter(Boolean)
+            };
+
+            let journals = JSON.parse(localStorage.getItem('annhien_journals') || '[]');
+            journals.unshift(entry);
+            localStorage.setItem('annhien_journals', JSON.stringify(journals));
+
+            // Reset inputs & update list
+            document.getElementById('gratitude-1').value = '';
+            document.getElementById('gratitude-2').value = '';
+            loadJournalHistory();
+        }
+
+        function loadJournalHistory() {
+            const container = document.getElementById('journal-history');
+            let journals = JSON.parse(localStorage.getItem('annhien_journals') || '[]');
+
+            if (journals.length === 0) {
+                container.innerHTML = `<p class="italic text-gray-400">Chưa có bản ghi nào được lưu trong máy.</p>`;
+                return;
+            }
+
+            container.innerHTML = journals.slice(0, 3).map(j => `
+                <div class="p-2.5 rounded-xl bg-white border border-brand-100 shadow-2xs">
+                    <div class="flex justify-between items-center text-[11px] font-bold text-brand-800 mb-1">
+                        <span>${j.date}</span>
+                        <span>${j.mood}</span>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-600 space-y-0.5">
+                        ${j.items.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        // Initial Load
+        loadJournalHistory();
+
+        // 6. Water Hydration Tracker
+        let currentWater = parseInt(localStorage.getItem('annhien_water') || '0');
+        const goalWater = 2000;
+
+        function updateWaterUI() {
+            document.getElementById('water-current').textContent = currentWater;
+            const pct = Math.min(100, Math.round((currentWater / goalWater) * 100));
+            document.getElementById('water-bar').style.width = `${pct}%`;
+        }
+
+        function addWater(amount) {
+            currentWater += amount;
+            localStorage.setItem('annhien_water', currentWater);
+            updateWaterUI();
+        }
+
+        function resetWater() {
+            currentWater = 0;
+            localStorage.setItem('annhien_water', 0);
+            updateWaterUI();
+        }
+
+        updateWaterUI();
+
+        // 7. Newsletter Handler
+        function handleNewsletter(e) {
+            e.preventDefault();
+            document.getElementById('newsletter-msg').classList.remove('hidden');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
