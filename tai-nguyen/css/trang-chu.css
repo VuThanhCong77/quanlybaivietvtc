@@ -275,6 +275,13 @@ Không ảnh hưởng CSS .btn cũ
 ========================================================= */
 
 @media (max-width:768px){
+   
+   body.trang-chu-body {
+
+        background-size: auto 100vh;
+
+        background-position: center top;
+   }
 
     .thanh-tien-ich{
         justify-content:flex-start;
