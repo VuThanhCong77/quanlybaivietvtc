@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>An Nhiên - Sức Khỏe & Hạnh Phúc</title>
+    <title>An Nhiên - Sức khỏe & Hạnh phúc</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -124,6 +124,7 @@
                 <a href="#pillar-mind" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Tâm</a>
                 <a href="#pillar-spirit" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Trí</a>
                 <a href="#tools" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Công cụ</a>
+                <a href="#chisohanhphuc" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Hạnh phúc</a>
                 <a href="#blog" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Góc chia sẻ</a>
             </nav>
 
@@ -147,7 +148,8 @@
             <a href="#pillar-body" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Thân</a>
             <a href="#pillar-mind" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Tâm</a>
             <a href="#pillar-spirit" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Trí</a>
-            <a href="#tools" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Công cụ tương tác</a>
+            <a href="#tools" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Công cụ</a>
+            <a href="#chisohanhphuc" class="px-3 py-2 rounded-xl hover:text-brand-700 hover:bg-brand-50 transition-colors">Hạnh phúc</a>
             <a href="#blog" class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700">Góc chia sẻ</a>
             <a href="#tools" class="block text-center mt-4 w-full px-5 py-2.5 rounded-xl bg-brand-700 text-white font-medium shadow-md">
                 Bắt đầu trải nghiệm
@@ -763,7 +765,7 @@
                 <div>
                     <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Điều hướng</h4>
                     <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="../index.html" class="hover:text-brand-300 transition-colors">Trang chủ</a></li>
+                        <li><a href="#home" class="hover:text-brand-300 transition-colors">Về đầu trang ^</a></li>
                         <li><a href="#pillar-body" class="hover:text-brand-300 transition-colors">Thân</a></li>
                         <li><a href="#pillar-mind" class="hover:text-brand-300 transition-colors">Tâm</a></li>
                         <li><a href="#pillar-spirit" class="hover:text-brand-300 transition-colors">Trí</a></li>
@@ -1137,10 +1139,20 @@
 
         // 7. Newsletter Handler
         function handleNewsletter(e) {
-            e.preventDefault();
-            document.getElementById('newsletter-msg').classList.remove('hidden');
-            e.target.reset();
-        }
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+
+    // Gửi email về Server/API của bạn
+    fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => {
+        document.getElementById('newsletter-msg').classList.remove('hidden');
+        e.target.reset();
+    });
+    }
     </script>
 </body>
 </html>
