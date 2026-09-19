@@ -1151,7 +1151,7 @@ section.am-nhac iframe {
     .hero-slider,
     .hero-slides {
         width: 100% !important;
-        height: 260px !important; /* Đặt chiều cao khung cố định cho di động */
+        height: 220px !important; /* Đặt chiều cao khung cố định cho di động */
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
         position: relative;
