@@ -544,6 +544,113 @@ window.closeImg = closeImg;
    7. KHU VUC: TIEN ICH DONG HO & THONG KE VIEWS / ONLINE
    ========================================================== */
 
+// --- THUẬT TOÁN HỒ NGỌC ĐỨC CHUYỂN DƯƠNG LỊCH SANG ÂM LỊCH (GMT+7) ---
+function convertSolarToLunar(dd, mm, yyyy) {
+    const timeZone = 7;
+    const INT = (d) => Math.floor(d);
+
+    function jdFromDate(d, m, y) {
+        let a = INT((14 - m) / 12);
+        let y1 = y + 4800 - a;
+        let m1 = m + 12 * a - 3;
+        return d + INT((153 * m1 + 2) / 5) + 365 * y1 + INT(y1 / 4) - INT(y1 / 100) + INT(y1 / 400) - 32045;
+    }
+
+    function getNewMoonDay(k, timeZone) {
+        let T = k / 1236.85;
+        let T2 = T * T, T3 = T2 * T, T4 = T3 * T;
+        let dr = Math.PI / 180;
+        let Jd1 = 2415020.75933 + 29.53058868 * k + 0.0001178 * T2 - 0.000000155 * T3;
+        Jd1 = Jd1 + 0.00033 * Math.sin((166.56 + 132.87 * T - 0.00917 * T2) * dr);
+
+        let M = 359.2242 + 29.10535608 * k - 0.0000333 * T2 - 0.00000347 * T3;
+        let Mpr = 306.0253 + 385.81691806 * k + 0.0107306 * T2 + 0.00001236 * T3;
+        let F = 21.2964 + 390.67050646 * k - 0.0016528 * T2 - 0.00000239 * T3;
+        let C1 = (0.1734 - 0.000393 * T) * Math.sin(M * dr) + 0.0021 * Math.sin(2 * M * dr);
+        C1 = C1 - 0.4068 * Math.sin(Mpr * dr) + 0.0161 * Math.sin(2 * Mpr * dr);
+        C1 = C1 - 0.0004 * Math.sin(3 * Mpr * dr) + 0.0104 * Math.sin(2 * F * dr);
+        C1 = C1 - 0.0051 * Math.sin((M + Mpr) * dr) - 0.0074 * Math.sin((M - Mpr) * dr);
+        C1 = C1 + 0.0004 * Math.sin((2 * F + M) * dr) - 0.0004 * Math.sin((2 * F - M) * dr);
+        C1 = C1 - 0.0006 * Math.sin((2 * F - Mpr) * dr) + 0.0100 * Math.sin((2 * F + Mpr) * dr);
+
+        let JdNew = Jd1 + C1;
+        return INT(JdNew + 0.5 + timeZone / 24);
+    }
+
+    function getSunLongitude(jdn, timeZone) {
+        let T = (jdn - 2451545.0 + 0.5 - timeZone / 24) / 36525;
+        let L0 = 280.46645 + 36000.76983 * T + 0.0003032 * T * T;
+        let M = 357.52910 + 35999.05030 * T - 0.0001559 * T * T - 0.00000048 * T * T * T;
+        let dr = Math.PI / 180;
+        let C = (1.914600 - 0.004817 * T - 0.000014 * T * T) * Math.sin(M * dr);
+        C = C + (0.019993 - 0.000101 * T) * Math.sin(2 * M * dr) + 0.000289 * Math.sin(3 * M * dr);
+        let L = L0 + C;
+        L = L - 360 * INT(L / 360);
+        return INT(L / 30);
+    }
+
+    function getLunarMonth11(yy, timeZone) {
+        let off = jdFromDate(31, 12, yy) - 2415021;
+        let k = INT(off / 29.53058868);
+        let nm = getNewMoonDay(k, timeZone);
+        let sunLong = getSunLongitude(nm, timeZone);
+        if (sunLong >= 9) {
+            nm = getNewMoonDay(k - 1, timeZone);
+        }
+        return nm;
+    }
+
+    let dayNumber = jdFromDate(dd, mm, yyyy);
+    let k = INT((dayNumber - 2415021) / 29.53058868);
+    let monthStart = getNewMoonDay(k, timeZone);
+    if (monthStart > dayNumber) {
+        monthStart = getNewMoonDay(k - 1, timeZone);
+    }
+    let a11 = getLunarMonth11(yyyy, timeZone);
+    let b11 = a11;
+
+    let lunarYear;
+    if (a11 >= monthStart) {
+        lunarYear = yyyy;
+        a11 = getLunarMonth11(yyyy - 1, timeZone);
+    } else {
+        lunarYear = yyyy + 1;
+        b11 = getLunarMonth11(yyyy + 1, timeZone);
+    }
+
+    let lunarDay = dayNumber - monthStart + 1;
+    let diff = INT((monthStart - a11) / 29);
+    let lunarMonth = diff + 11;
+
+    let leapMonthDiff = INT((b11 - a11) / 29);
+    if (leapMonthDiff > 12) {
+        let leapOff = 0;
+        for (let i = 0; i <= diff; i++) {
+            let nm1 = getNewMoonDay(INT((a11 - 2415021) / 29.53058868) + i, timeZone);
+            let nm2 = getNewMoonDay(INT((a11 - 2415021) / 29.53058868) + i + 1, timeZone);
+            let sl1 = getSunLongitude(nm1, timeZone);
+            let sl2 = getSunLongitude(nm2, timeZone);
+            if (sl1 === sl2) {
+                leapOff = i;
+                break;
+            }
+        }
+        if (leapOff > 0) {
+            if (diff >= leapOff) lunarMonth = diff + 10;
+        }
+    }
+
+    if (lunarMonth > 12) lunarMonth -= 12;
+    if (lunarMonth >= 11 && diff < 4) lunarYear = yyyy - 1;
+
+    return {
+        day: String(lunarDay).padStart(2, "0"),
+        month: String(lunarMonth).padStart(2, "0"),
+        year: lunarYear
+    };
+}
+
+// --- HÀM CẬP NHẬT GIỜ ---
 function capNhatNgayGio() {
     const now = new Date();
     const gio = String(now.getHours()).padStart(2, "0");
@@ -554,13 +661,18 @@ function capNhatNgayGio() {
     const nam = now.getFullYear();
     const danhSachThu = ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"];
 
+    // Lấy Ngày/Tháng/Năm Âm lịch chuẩn Việt Nam
+    const amLich = convertSolarToLunar(now.getDate(), now.getMonth() + 1, nam);
+
     const gioEl = document.getElementById("gioHienTai");
     const ngayEl = document.getElementById("ngayHienTai");
     const thuEl = document.getElementById("thuHienTai");
+    const amLichEl = document.getElementById("amLichHienTai");
 
     if (gioEl) gioEl.innerHTML = `${gio}:${phut}:${giay}`;
     if (ngayEl) ngayEl.innerHTML = `${ngay}-${thang}-${nam}`;
     if (thuEl) thuEl.innerHTML = danhSachThu[now.getDay()];
+    if (amLichEl) amLichEl.innerHTML = `${amLich.day}-${amLich.month}-${amLich.year}`;
 }
 
 // Thống kê lượt xem bài viết
