@@ -101,35 +101,50 @@ textarea:focus-visible {
   border-bottom: 1px solid #eee;
 }
 
+/* Thanh chứa các nút tương tác cuối bài */
 .cong-cu-cuoi {
-  justify-content: flex-end; /* Căn phải cho các nút tương tác cuối bài */
+  display: flex;
+  align-items: stretch; /* Ép các phần tử con có cùng chiều cao */
+  justify-content: flex-end; /* Hoặc center tùy bạn muốn căn phải hay giữa */
+  gap: 12px;
+  margin: 20px 0;
 }
 
-/* Styling nút bấm */
-.btn-tool, .btn-action {
+/* Kiểu dáng chung cho các nút hành động */
+.btn-tool,.btn-action {
   display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background-color: #f0f2f5;
-  color: #050505;
+  align-items: center;      /* Căn giữa biểu tượng và chữ theo chiều dọc */
+  justify-content: center;   /* Căn giữa nội dung theo chiều ngang */
+  box-sizing: border-box;   /* Tính padding vào tổng chiều cao */
+  height: 40px;             /* Cố định chiều cao chung cho cả 2 nút */
+  padding: 0 18px;          /* Padding trái/phải đồng đều */
   border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 20px;      /* Dạng bo tròn pill-style */
+  background-color: #83b0f3;
+  color: #050505;
   font-weight: 600;
+  font-size: 14px;
+  line-height: 1;           /* Tránh lệch chiều cao do font-line-height */
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
-.btn-tool:hover, .btn-action:hover {
+.btn-action:hover {
   background-color: #e4e6eb;
 }
 
+/* Thẻ hiển thị số lượt thích bên trong nút */
 .badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(0, 0, 0, 0.08);
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 10px;
-  font-size: 0.85em;
-  margin-left: 4px;
+  font-size: 12px;
+  margin-left: 6px;
+  height: 20px;             /* Cố định chiều cao cho badge để không làm biến dạng nút */
+  line-height: 1;
 }
 
 /* =========================================================
