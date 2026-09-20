@@ -172,6 +172,27 @@ textarea:focus-visible {
 }
 
 /* =========================================================
+   5. CÔNG CỤ BÀI VIẾT
+========================================================= */
+
+.cong-cu-bai-viet button {
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--mau-nhan);
+    color: #ffffff;
+    font-weight: 600;
+    transition: var(--chuyen-dong);
+}
+
+.cong-cu-bai-viet button:hover {
+    background: var(--mau-nhan-dam);
+    transform: translateY(-2px);
+    box-shadow: var(--bong-vua);
+}
+
+/* =========================================================
    6. NỘI DUNG BÀI VIẾT
 ========================================================= */
 
