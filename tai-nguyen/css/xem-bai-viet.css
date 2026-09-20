@@ -63,7 +63,7 @@ textarea:focus-visible {
 
 .header-bai-viet h1 {
     margin-bottom: 16px;
-    color: var(--mau-chinh-dam);
+    color: #222123;
     font-size: clamp(1.8rem, 4vw, 2.6rem);
     line-height: 1.25;
 }
@@ -76,20 +76,60 @@ textarea:focus-visible {
     line-height: 1.7;
 }
 
-/* Thông tin bài viết */
-
+/* Meta bài viết */
 .meta-bai-viet {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    color: var(--mau-chu-phu);
-    font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 10px;
+}
+.meta-bai-viet .dot {
+  color: #ccc;
 }
 
-.meta-bai-viet span {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+/* Thanh công cụ bài viết */
+.cong-cu-bai-viet {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.cong-cu-cuoi {
+  justify-content: flex-end; /* Căn phải cho các nút tương tác cuối bài */
+}
+
+/* Styling nút bấm */
+.btn-tool, .btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f0f2f5;
+  color: #050505;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-tool:hover, .btn-action:hover {
+  background-color: #e4e6eb;
+}
+
+.badge-count {
+  background: rgba(0, 0, 0, 0.08);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.85em;
+  margin-left: 4px;
 }
 
 /* =========================================================
@@ -114,34 +154,6 @@ textarea:focus-visible {
     font-size: 0.875rem;
     font-style: italic;
     text-align: center;
-}
-
-/* =========================================================
-   5. CÔNG CỤ BÀI VIẾT
-========================================================= */
-
-.cong-cu-bai-viet {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.cong-cu-bai-viet button {
-    min-height: 42px;
-    padding: 10px 16px;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    background: var(--mau-nhan);
-    color: #ffffff;
-    font-weight: 600;
-    transition: var(--chuyen-dong);
-}
-
-.cong-cu-bai-viet button:hover {
-    background: var(--mau-nhan-dam);
-    transform: translateY(-2px);
-    box-shadow: var(--bong-vua);
 }
 
 /* =========================================================
