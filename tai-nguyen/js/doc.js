@@ -1,97 +1,96 @@
 /* =========================================================
-ĐỌC BÀI VIẾT
+ĐỌC BÀI VIẾT (Tối ưu cho cả PC và Mobile/iOS)
 ========================================================= */
 
 let dangDoc = false;
 
-let speech = null;
+const btnDoc = document.getElementById("btnDoc");
 
-const btnDoc =
-document.getElementById(
-"btnDoc"
-);
+if (btnDoc) {
 
-if(btnDoc){
+    btnDoc.addEventListener("click", () => {
 
-    btnDoc.addEventListener(
-    "click",
-    () => {
-
-        if(dangDoc){
+        // 1. Nếu đang đọc -> Dừng đọc
+        if (dangDoc) {
 
             window.speechSynthesis.cancel();
 
             dangDoc = false;
 
-            btnDoc.innerHTML =
-            "🔊";
+            btnDoc.innerHTML = "🔊";
 
             return;
 
         }
 
-        const noiDung =
+        // 2. Lấy nội dung cần đọc
+        const noiDung = document.getElementById("readingContent")?.innerText;
 
-        document
-        .getElementById(
-        "readingContent"
-        )
-        ?.innerText;
+        if (!noiDung) {
 
-        if(!noiDung){
-
-            alert(
-            "Không tìm thấy nội dung bài viết."
-            );
+            alert("Không tìm thấy nội dung bài viết.");
 
             return;
 
         }
 
-        speech =
-        new SpeechSynthesisUtterance(
-        noiDung
-        );
+        // 3. Đảm bảo xóa bỏ tất cả tác vụ đọc cũ
+        window.speechSynthesis.cancel();
 
-        speech.lang =
-        "vi-VN";
+        const speech = new SpeechSynthesisUtterance(noiDung);
 
-        speech.rate =
-        1;
+        speech.lang = "vi-VN";
 
-        speech.pitch =
-        1;
+        speech.rate = 1;
 
-        speech.volume =
-        1;
+        speech.pitch = 1;
 
-        speech.onstart =
-        () => {
+        speech.volume = 1;
+
+        speech.onstart = () => {
 
             dangDoc = true;
 
-            btnDoc.innerHTML =
-            "⏹";
+            btnDoc.innerHTML = "⏹";
 
         };
 
-        speech.onend =
-        () => {
+        speech.onend = () => {
 
             dangDoc = false;
 
-            btnDoc.innerHTML =
-            "🔊";
+            btnDoc.innerHTML = "🔊";
 
         };
 
-        window
-        .speechSynthesis
-        .speak(
-        speech
-        );
+        speech.onerror = () => {
 
-    }
-    );
+            dangDoc = false;
+
+            btnDoc.innerHTML = "🔊";
+
+        };
+
+        // 4. Kích hoạt resume để tránh lỗi bị "khóa" âm thanh trên trình duyệt di động (iOS Safari/Android Chrome)
+        if (window.speechSynthesis.paused) {
+
+            window.speechSynthesis.resume();
+
+        }
+
+        window.speechSynthesis.speak(speech);
+
+    });
 
 }
+
+// Reset trạng thái nếu người dùng chuyển trang hoặc ẩn trình duyệt
+window.addEventListener("beforeunload", () => {
+
+    if (window.speechSynthesis) {
+
+        window.speechSynthesis.cancel();
+
+    }
+
+});
