@@ -24,7 +24,7 @@ if(btnDoc){
             dangDoc = false;
 
             btnDoc.innerHTML =
-            "🔊 Đọc bài";
+            "🔊";
 
             return;
 
@@ -71,7 +71,7 @@ if(btnDoc){
             dangDoc = true;
 
             btnDoc.innerHTML =
-            "⏹ Dừng đọc";
+            "⏹";
 
         };
 
@@ -81,7 +81,7 @@ if(btnDoc){
             dangDoc = false;
 
             btnDoc.innerHTML =
-            "🔊 Đọc bài";
+            "🔊";
 
         };
 
