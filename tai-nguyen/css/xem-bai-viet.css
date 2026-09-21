@@ -196,27 +196,28 @@ textarea:focus-visible {
    6. NỘI DUNG BÀI VIẾT
 ========================================================= */
 
+
 .noi-dung-bai-viet {
     color: var(--mau-chu);
     font-size: 1.1rem;
-    line-height: 1.85;
+    line-height: 1.1;
 }
 
 .noi-dung-bai-viet p {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     color: var(--mau-chu);
 }
 
 .noi-dung-bai-viet h2,
 .noi-dung-bai-viet h3,
 .noi-dung-bai-viet h4 {
-    margin: 30px 0 14px;
+    margin: 20px 0 12px;
     color: var(--mau-chinh);
-    line-height: 1.4;
+    line-height: 1.2;
 }
 
 .noi-dung-bai-viet h2 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 }
 
 .noi-dung-bai-viet h3 {
@@ -225,7 +226,7 @@ textarea:focus-visible {
 
 .noi-dung-bai-viet ul,
 .noi-dung-bai-viet ol {
-    margin: 0 0 22px 24px;
+    margin: 0 0 20px 20px;
 }
 
 .noi-dung-bai-viet li {
@@ -245,8 +246,8 @@ textarea:focus-visible {
 /* Trích dẫn chỉ áp dụng bên trong nội dung bài */
 
 .noi-dung-bai-viet blockquote {
-    margin: 26px 0;
-    padding: 18px 22px;
+    margin: 20px 0;
+    padding: 16px 20px;
     border-left: 5px solid var(--mau-nhan);
     border-radius: 0 var(--bo-goc) var(--bo-goc) 0;
     background: var(--mau-nen-phu);
@@ -257,12 +258,12 @@ textarea:focus-visible {
     table {
         width: 100%;
         border-collapse: collapse;
-        margin: 20px 0;
+        margin: 16px 0;
         overflow: hidden;
     }
     th, td {
         border: 1px solid #d7dfe1;
-        padding: 11px 12px;
+        padding: 10px 10px;
         text-align: left;
     }
     th {
@@ -273,8 +274,8 @@ textarea:focus-visible {
     .highlight {
         background: #fff8e8;
         border-left: 4px solid #d39e00;
-        padding: 15px 18px;
-        margin: 20px 0;
+        padding: 12px 15px;
+        margin: 12px 0;
     }
 
 /* =========================================================
