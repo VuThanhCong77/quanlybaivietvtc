@@ -1,5 +1,20 @@
 [
   {
+    "id": "lich-kham-suc-khoe-toan-dan-tai-to-dan-pho-luu-ky",
+    "title": "LỊCH KHÁM SỨC KHỎE TOÀN DÂN TẠI TỔ DÂN PHỐ LƯU KỲ",
+    "desc": "Chủ động khám sức khỏe – Phát hiện sớm bệnh tật – Quản lý sức khỏe chủ động Thực hiện công tác chăm sóc, bảo vệ và nâng cao sức khỏe Nhân dân, khám sức khỏe toàn dân tại Tổ dân phố Lưu Kỳ, phường Lưu Kiếm được tổ chức nhằm giúp người dân chủ động kiểm tra sức khỏe, phát hiện sớm các yếu tố nguy cơ và bệnh lý, từ đó có biện pháp theo dõi, điều trị và chăm sóc sức khỏe phù hợp.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/lich-kham-suc-khoe-luu-ky.webp",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc/lich-kham-suc-khoe-toan-dan-tai-to-dan-pho-luu-ky.html",
+    "date": "24-09-2026",
+    "scheduledTime": "",
+    "category": [
+      "Tin tức",
+      "Lưu Kỳ"
+    ],
+    "featured": true,
+    "views": 0
+  },
+  {
     "id": "nghi-dinh-3202026nd-cp-ngay-1382026-cua-chinh-phu-co-nhieu-diem-moi-dang-chu-y",
     "title": "Nghị định 320/2026/NĐ-CP ngày 13/8/2026 của Chính phủ có nhiều điểm mới đáng chú ý",
     "desc": "Nghị định 320/2026/NĐ-CP ngày 13/8/2026 của Chính phủ sửa đổi, bổ sung một số điều của Nghị định 69/2024/NĐ-CP về định danh và xác thực điện tử. Nghị định có hiệu lực từ ngày 28/9/2026. Đây là văn bản có nhiều điểm mới đáng chú ý đối với người dân, doanh nghiệp và đặc biệt là cơ quan giải quyết thủ tục hành chính. ",
@@ -8,7 +23,9 @@
     "date": "22-09-2026",
     "scheduledTime": "",
     "category": [
-      "Tin tức", "Hành chính công", "Lưu Kỳ",
+      "Tin tức",
+      "Hành chính công",
+      "Lưu Kỳ",
       "Công nghệ"
     ],
     "featured": true,
