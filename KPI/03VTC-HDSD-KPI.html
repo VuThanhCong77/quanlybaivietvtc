@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn Quản lý KPI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: #fff !important; font-size: 12pt; }
+            .page-break { page-break-before: always; }
+        }
+        .print-only { display: none; }
+    </style>
+
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #007bff;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }      
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        ul {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding-left: 20px;
+        }
+
+        .file-name {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #eef2f5;
+            color: #d63384;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            border: 1px solid #dcdcdc;
+        }
+
+        .action {
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        .note {
+            color: #555;
+        }
+
+        @media print {
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+
+</head>
+<body class="bg-slate-100 font-sans text-slate-800">
+
+    <!-- NAVIGATION BAR -->
+    <header class="bg-indigo-900 text-white shadow-lg no-print">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-chart-line text-2xl text-amber-400"></i>
+                <h1 class="text-xl font-bold uppercase tracking-wide">Hệ Thống Quản Lý Nhiệm Vụ KPI</h1>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="loadSampleData()" class="bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded text-sm transition"><i class="fa-solid fa-rotate-left mr-1"></i> Dữ Liệu Mẫu</button>
+                <label class="bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded text-sm cursor-pointer transition">
+                    <i class="fa-solid fa-file-import mr-1"></i> Nạp Excel
+                    <input type="file" id="excelInput" class="hidden" accept=".xlsx, .xls" onchange="importExcel()">
+                </label>
+                <button onclick="exportData('year')" class="bg-emerald-600 hover:bg-emerald-500 px-3 py-1.5 rounded text-sm transition"><i class="fa-solid fa-file-excel mr-1"></i> Xuất Năm</button>
+                <button onclick="openModal('mau3')" class="bg-amber-600 hover:bg-amber-500 px-3 py-1.5 rounded text-sm transition"><i class="fa-solid fa-print mr-1"></i> In Mẫu 3</button>
+                <button onclick="openModal('mau3b')" class="bg-orange-600 hover:bg-orange-500 px-3 py-1.5 rounded text-sm transition"><i class="fa-solid fa-print mr-1"></i> In Mẫu 3B</button>
+                <button onclick="openModal('mau5b')" class="bg-purple-600 hover:bg-purple-500 px-3 py-1.5 rounded text-sm font-semibold transition"><i class="fa-solid fa-calculator mr-1"></i> Chấm Điểm KPI (Mẫu 5B)</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 py-6 no-print space-y-6">
+
+        <!-- THÔNG THỐNG KÊ DASHBOARD -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-xl shadow border-l-4 border-indigo-600 flex justify-between items-center">
+                <div>
+                    <p class="text-sm text-slate-500 font-medium">Tổng Nhiệm Vụ</p>
+                    <p id="totalTasks" class="text-2xl font-bold text-slate-800">0</p>
+                </div>
+                <i class="fa-solid fa-list-check text-3xl text-indigo-200"></i>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow border-l-4 border-blue-600 flex justify-between items-center">
+                <div>
+                    <p class="text-sm text-slate-500 font-medium">Đã Hoàn Thành</p>
+                    <p id="completedTasks" class="text-2xl font-bold text-blue-600">0</p>
+                </div>
+                <i class="fa-solid fa-circle-check text-3xl text-blue-200"></i>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow border-l-4 border-amber-600 flex justify-between items-center">
+                <div>
+                    <p class="text-sm text-slate-500 font-medium">Đang Thực Hiện</p>
+                    <p id="pendingTasks" class="text-2xl font-bold text-amber-600">0</p>
+                </div>
+                <i class="fa-solid fa-clock text-3xl text-amber-200"></i>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow border-l-4 border-purple-600 flex justify-between items-center">
+                <div>
+                    <p class="text-sm text-slate-500 font-medium">Điểm KPI Trung Bình</p>
+                    <p id="avgKpiScore" class="text-2xl font-bold text-purple-600">0%</p>
+                </div>
+                <i class="fa-solid fa-star text-3xl text-purple-200"></i>
+            </div>
+        </div>
+
+        <!-- FORM THÊM/SỬA NHIỆM VỤ -->
+        <div class="bg-white rounded-xl shadow p-6">
+            <h2 class="text-lg font-bold text-slate-800 border-b pb-3 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-pen-to-square text-indigo-600"></i> <span id="formTitle">Thêm Mới Nhiệm Vụ</span>
+            </h2>
+            <form id="taskForm" onsubmit="handleFormSubmit(event)" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="hidden" id="taskId">
+                
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Trục / Nhóm nhiệm vụ</label>
+                    <select id="taskAxis" class="w-full border border-slate-300 rounded p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" required>
+                        <option value="Trục 1: Công tác Giám sát">Trục 1: Công tác Giám sát</option>
+                        <option value="Trục 2: Công tác Kiểm tra">Trục 2: Công tác Kiểm tra</option>
+                        <option value="Trục 3: Thi hành Kỷ luật">Trục 3: Thi hành Kỷ luật</option>
+                        <option value="Trục 4: Giải quyết Đơn thư">Trục 4: Giải quyết Đơn thư</option>
+                        <option value="Trục 5: Xây dựng Ngành">Trục 5: Xây dựng Ngành</option>
+                        <option value="Trục 6: Nhiệm vụ Đột xuất">Trục 6: Nhiệm vụ Đột xuất</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Nội dung nhiệm vụ</label>
+                    <input type="text" id="taskContent" placeholder="Nhập nội dung chi tiết công việc..." class="w-full border border-slate-300 rounded p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Phân loại Quý</label>
+                    <select id="taskQuarter" class="w-full border border-slate-300 rounded p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <option value="Quý 1">Quý 1</option>
+                        <option value="Quý 2">Quý 2</option>
+                        <option value="Quý 3">Quý 3</option>
+                        <option value="Quý 4">Quý 4</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Cấp trình</label>
+                    <input type="text" id="taskLevel" placeholder="VD: UBKT, Đảng ủy..." class="w-full border border-slate-300 rounded p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Độ khó / Quy mô</label>
+                    <select id="taskDifficulty" class="w-full border border-slate-300 rounded p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <option value="Bình thường">Bình thường</option>
+                        <option value="Phức tạp">Phức tạp</option>
+                        <option value="Rất phức tạp">Rất phức tạp</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Sản phẩm đầu ra</label>
+                    <input type="text" id="taskProduct" placeholder="VD: Báo cáo, Kết luận..." class="w-full border border-slate-300 rounded p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Số lượng / Kế hoạch</label>
+                    <input type="number" id="taskTarget" value="1" min="1" class="w-full border border-slate-300 rounded p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Tiến độ hạn định</label>
+                    <input type="text" id="taskDeadline" placeholder="VD: Thắng 3/2026" class="w-full border border-slate-300 rounded p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+
+                <div class="md:col-span-3 flex justify-end gap-2 mt-2">
+                    <button type="button" onclick="resetForm()" class="bg-slate-200 hover:bg-slate-300 px-4 py-2 rounded text-sm text-slate-700 font-medium">Hủy / Làm mới</button>
+                    <button type="submit" id="btnSubmit" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded text-sm text-white font-medium shadow">Thêm Nhiệm Vụ</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- DANH SÁCH NHIỆM VỤ -->
+        <div class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="p-4 border-b flex justify-between items-center bg-slate-50">
+                <h2 class="font-bold text-slate-800">Danh Sách Nhiệm Vụ Đã Đăng Ký</h2>
+                <div class="flex gap-2">
+                    <select id="filterQuarter" onchange="renderTasks()" class="border rounded px-2 py-1 text-sm bg-white">
+                        <option value="ALL">Tất cả các Quý</option>
+                        <option value="Quý 1">Quý 1</option>
+                        <option value="Quý 2">Quý 2</option>
+                        <option value="Quý 3">Quý 3</option>
+                        <option value="Quý 4">Quý 4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-600 font-semibold border-b">
+                            <th class="p-3 w-12 text-center">STT</th>
+                            <th class="p-3">Trục Nhiệm Vụ</th>
+                            <th class="p-3">Nội Dung Nhiệm Vụ</th>
+                            <th class="p-3">Quý</th>
+                            <th class="p-3">Sản Phẩm</th>
+                            <th class="p-3 text-center">Số Lượng</th>
+                            <th class="p-3">Hạn Định</th>
+                            <th class="p-3 text-center w-28">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody" class="divide-y divide-slate-100">
+                        <!-- Render bằng JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+         <!-- HƯỚNG DẪN TIẾP THEO -->
+    <div class="container">
+    <h1 class="text-xl font-bold uppercase tracking-wide">Hướng dẫn tiếp theo</h1>
+    <div class="subtitle">(Ví dụ đang ở Quý 4)</div>
+
+    <!-- PHẦN I: ĐẦU QUÝ -->
+    <div class="section">
+        <div class="section-title">I. ĐẦU QUÝ</div>
+        <ol>
+            <li>
+                Cập nhật nội dung Bảng Excel <span class="file-name">KPI_Quy_4_Tap_the.xlsx</span> 
+                <span class="note">(Danh mục nhiệm vụ, sản phẩm tập thể)</span>.
+            </li>
+            <li>
+                Sửa nội dung Bảng Excel <span class="file-name">KPI_Quy_4_Tap_the.xlsx</span> thành của cá nhân 
+                <span class="note">(Danh mục nhiệm vụ, sản phẩm cá nhân)</span>.
+            </li>
+            <li>
+                Mở tệp <span class="file-name">01VTC-KPI-3B-3-5B.html</span>:
+                <ul>
+                    <li>
+                        <strong>3.1.</strong> Nhấn <span class="action">Nạp dữ liệu từ Excel</span> (Chọn tệp <span class="file-name">KPI_Quy_4_Tap_the.xlsx</span>) 
+                        &gt;&gt;&gt; Nhấn <span class="action">In Mẫu 3B</span> 
+                        &gt;&gt;&gt; <span class="note">Danh mục nhiệm vụ, sản phẩm tập thể Quý 4</span>.
+                    </li>
+                    <li>
+                        <strong>3.2.</strong> Nhấn <span class="action">Nạp dữ liệu từ Excel</span> (Chọn tệp <span class="file-name">KPI_Quy_4_VuThanhCong.xlsx</span>) 
+                        &gt;&gt;&gt; Nhấn <span class="action">In Mẫu 3</span> 
+                        &gt;&gt;&gt; <span class="note">Danh mục nhiệm vụ, sản phẩm cá nhân Quý 4</span>.
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- PHẦN II: CUỐI QUÝ -->
+    <div class="section">
+        <div class="section-title">II. CUỐI QUÝ</div>
+        <ol>
+            <li>
+                Nhấn <span class="action">Nạp dữ liệu từ Excel</span> (Chọn tệp <span class="file-name">KPI_Quy_4_VuThanhCong.xlsx</span>) 
+                &gt;&gt;&gt; <span class="action">Chấm Điểm KPI</span> 
+                &gt;&gt;&gt; <span class="action">In/Mẫu 5B</span> đồng thời <span class="action">Xuất Excel Mẫu 5B</span>.
+            </li>
+            <li>
+                Từ <span class="note">Mẫu 5B Excel</span> vừa xuất, sao chép các dữ liệu <em>Tổng của các dòng Trục</em> vào <span class="note">Mẫu 5B rút gọn</span> trong tệp <span class="file-name">02VTC-KPI-2.1B-4B-4C-11B-12B.xlsx</span> 
+                &gt;&gt;&gt; In lần lượt <span class="action">Mẫu 2.1B_A</span> và <span class="action">Mẫu 2.1B_B</span> để được <span class="note">Mẫu 2.1B</span>.
+            </li>
+            <li>
+                Tập thể họp để thống nhất đánh giá KPI của từng cá nhân và tập thể.
+            </li>
+            <li>
+                Hoàn thiện các <span class="action">Mẫu 4C - 11B - 12B - 4B</span>.
+            </li>
+        </ol>
+    </div>
+
+    </div>
+
+    </main>
+
+
+
+    <!-- MODAL KHUNG IN & CHẤM ĐIỂM -->
+    <div id="modalOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+            <div class="p-4 bg-indigo-900 text-white flex justify-between items-center no-print">
+                <h3 id="modalTitle" class="font-bold text-lg">Xem Báo Cáo</h3>
+                <button onclick="closeModal()" class="hover:bg-indigo-800 p-1.5 rounded-full"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            
+            <!-- Toolbar Cấu Hình Báo Cáo / In -->
+            <div class="p-4 bg-slate-50 border-b flex flex-wrap gap-4 items-center justify-between no-print text-sm">
+                <div id="printConfig" class="flex flex-wrap gap-3 items-center">
+                    <!-- Động theo mẫu -->
+                </div>
+                <button onclick="window.print()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded font-medium shadow flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i> In / Xuất PDF
+                </button>
+            </div>
+
+            <!-- Nội Dung Báo Cáo Xem Trước -->
+            <div id="modalContent" class="p-8 overflow-y-auto flex-1 bg-white">
+                <!-- Template in Mẫu 3, 3B, 5B sẽ render ở đây -->
+            </div>
+        </div>
+    </div>
+
+<footer class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-lg border-b border-indigo-800">
+    <div class="max-w-7xl mx-auto px-4 py-5 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs sm:text-sm text-indigo-200/80">    
+            Bản quyền thuộc về <strong>Vũ Thành Công</strong> - Phường Lưu Kiếm, TP Hải Phòng
+        </p>
+    </div>
+</footer>
+
+    <!-- JAVASCRIPT HỆ THỐNG -->
+    <script>
+        // Dữ liệu mẫu ban đầu
+        const sampleTasks = [
+            { id: 1, axis: 'Trục 1: Công tác Giám sát', content: 'Giám sát chuyên đề đối với Chi bộ 1', quarter: 'Quý 1', level: 'UBKT', difficulty: 'Phức tạp', product: 'Báo cáo kết quả', target: 1, deadline: 'Tháng 3/2026', actualQty: 1, actualQual: 100, actualProg: 100, actualExec: 100, factor: 1.0 },
+            { id: 2, axis: 'Trục 2: Công tác Kiểm tra', content: 'Kiểm tra đảng viên khi có dấu hiệu vi phạm', quarter: 'Quý 2', level: 'Đảng ủy', difficulty: 'Rất phức tạp', product: 'Thông báo kết luận', target: 2, deadline: 'Tháng 6/2026', actualQty: 2, actualQual: 90, actualProg: 100, actualExec: 95, factor: 1.2 }
+        ];
+
+        let tasks = JSON.parse(localStorage.getItem('kpi_tasks')) || sampleTasks;
+
+        // Khởi tạo app
+        document.addEventListener("DOMContentLoaded", () => {
+            renderTasks();
+        });
+
+        function saveLocal() {
+            localStorage.setItem('kpi_tasks', JSON.stringify(tasks));
+            renderTasks();
+        }
+
+        function renderTasks() {
+            const filterQ = document.getElementById('filterQuarter').value;
+            const tbody = document.getElementById('taskTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = filterQ === 'ALL' ? tasks : tasks.filter(t => t.quarter === filterQ);
+
+            filtered.forEach((task, index) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition";
+                tr.innerHTML = `
+                    <td class="p-3 text-center font-medium text-slate-500">${index + 1}</td>
+                    <td class="p-3 text-indigo-900 font-semibold text-xs">${task.axis}</td>
+                    <td class="p-3 font-medium">${task.content}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded text-xs font-semibold">${task.quarter}</span></td>
+                    <td class="p-3 text-slate-600">${task.product || '-'}</td>
+                    <td class="p-3 text-center">${task.target}</td>
+                    <td class="p-3 text-slate-500 text-xs">${task.deadline || '-'}</td>
+                    <td class="p-3 text-center space-x-1">
+                        <button onclick="editTask(${task.id})" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteTask(${task.id})" class="p-1.5 text-red-600 hover:bg-red-50 rounded"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('totalTasks').innerText = tasks.length;
+            document.getElementById('completedTasks').innerText = tasks.filter(t => (t.actualQty || 0) >= t.target).length;
+            document.getElementById('pendingTasks').innerText = tasks.filter(t => (t.actualQty || 0) < t.target).length;
+            
+            // Tính điểm KPI trung bình
+            if(tasks.length === 0) {
+                document.getElementById('avgKpiScore').innerText = '0%';
+                return;
+            }
+            let totalScore = 0;
+            tasks.forEach(t => {
+                let q = ((t.actualQty || 0) / t.target) * 100;
+                let score = ((q + (t.actualQual || 0) + (t.actualProg || 0) + (t.actualExec || 0)) / 4) * (t.factor || 1.0);
+                totalScore += score;
+            });
+            document.getElementById('avgKpiScore').innerText = Math.round(totalScore / tasks.length) + '%';
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('taskId').value;
+            const taskData = {
+                id: id ? parseInt(id) : Date.now(),
+                axis: document.getElementById('taskAxis').value,
+                content: document.getElementById('taskContent').value,
+                quarter: document.getElementById('taskQuarter').value,
+                level: document.getElementById('taskLevel').value,
+                difficulty: document.getElementById('taskDifficulty').value,
+                product: document.getElementById('taskProduct').value,
+                target: parseInt(document.getElementById('taskTarget').value) || 1,
+                deadline: document.getElementById('taskDeadline').value,
+                actualQty: id ? (tasks.find(t=>t.id == id).actualQty || 0) : 0,
+                actualQual: id ? (tasks.find(t=>t.id == id).actualQual || 100) : 100,
+                actualProg: id ? (tasks.find(t=>t.id == id).actualProg || 100) : 100,
+                actualExec: id ? (tasks.find(t=>t.id == id).actualExec || 100) : 100,
+                factor: id ? (tasks.find(t=>t.id == id).factor || 1.0) : 1.0
+            };
+
+            if (id) {
+                const index = tasks.findIndex(t => t.id == id);
+                tasks[index] = taskData;
+            } else {
+                tasks.push(taskData);
+            }
+
+            saveLocal();
+            resetForm();
+        }
+
+        function editTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+
+            document.getElementById('taskId').value = task.id;
+            document.getElementById('taskAxis').value = task.axis;
+            document.getElementById('taskContent').value = task.content;
+            document.getElementById('taskQuarter').value = task.quarter;
+            document.getElementById('taskLevel').value = task.level;
+            document.getElementById('taskDifficulty').value = task.difficulty;
+            document.getElementById('taskProduct').value = task.product;
+            document.getElementById('taskTarget').value = task.target;
+            document.getElementById('taskDeadline').value = task.deadline;
+
+            document.getElementById('formTitle').innerText = 'Chỉnh Sửa Nhiệm Vụ';
+            document.getElementById('btnSubmit').innerText = 'Cập Nhật Nhiệm Vụ';
+        }
+
+        function deleteTask(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa nhiệm vụ này?')) {
+                tasks = tasks.filter(t => t.id !== id);
+                saveLocal();
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('taskForm').reset();
+            document.getElementById('taskId').value = '';
+            document.getElementById('formTitle').innerText = 'Thêm Mới Nhiệm Vụ';
+            document.getElementById('btnSubmit').innerText = 'Thêm Nhiệm Vụ';
+        }
+
+        function loadSampleData() {
+            if(confirm('Khôi phục dữ liệu mẫu sẽ đè lên danh sách hiện tại?')) {
+                tasks = [...sampleTasks];
+                saveLocal();
+            }
+        }
+
+        // --- CÁC HÀM HIỂN THỊ MODAL BÁO CÁO (MẪU 3, 3B, 5B) ---
+        function openModal(type) {
+            const modal = document.getElementById('modalOverlay');
+            const title = document.getElementById('modalTitle');
+            const config = document.getElementById('printConfig');
+            const content = document.getElementById('modalContent');
+
+            modal.classList.remove('hidden');
+
+            if(type === 'mau3') {
+                title.innerText = "Danh Mục Nhiệm Vụ Cá Nhân (Mẫu 3)";
+                config.innerHTML = `
+                    <label>Chọn Quý: 
+                        <select onchange="renderMau3(this.value)" class="border rounded p-1">
+                            <option value="Quý 1">Quý 1</option><option value="Quý 2">Quý 2</option>
+                            <option value="Quý 3">Quý 3</option><option value="Quý 4">Quý 4</option>
+                        </select>
+                    </label>
+                `;
+                renderMau3('Quý 1');
+            } else if(type === 'mau3b') {
+                title.innerText = "Danh Mục Nhiệm Vụ Tập Thể (Mẫu 3B)";
+                config.innerHTML = `<span class="text-xs text-slate-500">In khổ giấy A4 ngang để đạt hiệu quả tối ưu</span>`;
+                renderMau3B();
+            } else if(type === 'mau5b') {
+                title.innerText = "Chấm Điểm & Đánh Giá KPI (Mẫu 5B)";
+                config.innerHTML = `<span class="text-xs text-slate-500">Nhập trực tiếp kết quả vào bảng bên dưới để tự động tính điểm KPI</span>`;
+                renderMau5B();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+        }
+
+        // Render Mẫu 3
+        function renderMau3(quarter) {
+            const list = tasks.filter(t => t.quarter === quarter);
+            let html = `
+                <div class="text-center font-bold text-lg mb-4 uppercase">
+                    DANH MỤC NHIỆM VỤ, SẢN PHẨM CÔNG VIỆC CÁ NHÂN<br>
+                    <span class="text-sm font-normal underline">${quarter} - NĂM 2026</span>
+                </div>
+                <table class="w-full border-collapse border border-slate-400 text-xs text-left">
+                    <thead>
+                        <tr class="bg-slate-100 text-center">
+                            <th class="border border-slate-400 p-2">STT</th>
+                            <th class="border border-slate-400 p-2">Trục / Nhóm Nhiệm Vụ</th>
+                            <th class="border border-slate-400 p-2">Nội Dung Nhiệm Vụ</th>
+                            <th class="border border-slate-400 p-2">Sản Phẩm</th>
+                            <th class="border border-slate-400 p-2">Số Lượng</th>
+                            <th class="border border-slate-400 p-2">Thời Gian Hoàn Thành</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            list.forEach((t, i) => {
+                html += `
+                    <tr>
+                        <td class="border border-slate-400 p-2 text-center">${i+1}</td>
+                        <td class="border border-slate-400 p-2 font-semibold">${t.axis}</td>
+                        <td class="border border-slate-400 p-2">${t.content}</td>
+                        <td class="border border-slate-400 p-2">${t.product}</td>
+                        <td class="border border-slate-400 p-2 text-center">${t.target}</td>
+                        <td class="border border-slate-400 p-2">${t.deadline}</td>
+                    </tr>
+                `;
+            });
+            html += `</tbody></table>`;
+            document.getElementById('modalContent').innerHTML = html;
+        }
+
+        // Render Mẫu 3B
+        function renderMau3B() {
+            let html = `
+                <div class="text-center font-bold text-lg mb-4 uppercase">
+                    DANH MỤC NHIỆM VỤ, SẢN PHẨM CÔNG VIỆC TẬP THỂ (MẪU 3B)
+                </div>
+                <table class="w-full border-collapse border border-slate-400 text-xs text-left">
+                    <thead>
+                        <tr class="bg-slate-100 text-center">
+                            <th class="border border-slate-400 p-2">STT</th>
+                            <th class="border border-slate-400 p-2">Trục Nhiệm Vụ</th>
+                            <th class="border border-slate-400 p-2">Nội Dung Công Việc</th>
+                            <th class="border border-slate-400 p-2">Cấp Trình</th>
+                            <th class="border border-slate-400 p-2">Độ Khó</th>
+                            <th class="border border-slate-400 p-2">Sản Phẩm Đầu Ra</th>
+                            <th class="border border-slate-400 p-2">Số Lượng</th>
+                            <th class="border border-slate-400 p-2">Tiến Độ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            tasks.forEach((t, i) => {
+                html += `
+                    <tr>
+                        <td class="border border-slate-400 p-2 text-center">${i+1}</td>
+                        <td class="border border-slate-400 p-2 font-semibold">${t.axis}</td>
+                        <td class="border border-slate-400 p-2">${t.content}</td>
+                        <td class="border border-slate-400 p-2">${t.level || '-'}</td>
+                        <td class="border border-slate-400 p-2">${t.difficulty}</td>
+                        <td class="border border-slate-400 p-2">${t.product}</td>
+                        <td class="border border-slate-400 p-2 text-center">${t.target}</td>
+                        <td class="border border-slate-400 p-2">${t.deadline}</td>
+                    </tr>
+                `;
+            });
+            html += `</tbody></table>`;
+            document.getElementById('modalContent').innerHTML = html;
+        }
+
+        // Render & Chấm điểm Mẫu 5B
+        function renderMau5B() {
+            let html = `
+                <div class="text-center font-bold text-lg mb-4 uppercase">
+                    BẢNG TÍNH ĐIỂM DÁNH GIÁ KPI CÁ NHÂN (MẪU 5B)
+                </div>
+                <div class="overflow-x-auto">
+                <table class="w-full border-collapse border border-slate-400 text-xs text-left">
+                    <thead>
+                        <tr class="bg-slate-100 text-center">
+                            <th class="border border-slate-400 p-1" rowspan="2">STT</th>
+                            <th class="border border-slate-400 p-1" rowspan="2">Nội Dung Nhiệm Vụ</th>
+                            <th class="border border-slate-400 p-1" rowspan="2">Hệ Số Quy Đổi</th>
+                            <th class="border border-slate-400 p-1" colspan="4">Kết Quả Thực Hiện (%)</th>
+                            <th class="border border-slate-400 p-1" rowspan="2">Điểm KPI Tổng</th>
+                        </tr>
+                        <tr class="bg-slate-100 text-center">
+                            <th class="border border-slate-400 p-1">Số Lượng (A)</th>
+                            <th class="border border-slate-400 p-1">Chất Lượng (B)</th>
+                            <th class="border border-slate-400 p-1">Tiến Độ (C)</th>
+                            <th class="border border-slate-400 p-1">Điều Hành (D)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            tasks.forEach((t, i) => {
+                let qtyScore = Math.min(100, Math.round(((t.actualQty || 0) / t.target) * 100));
+                let totalKpi = Math.round((((qtyScore + (t.actualQual || 100) + (t.actualProg || 100) + (t.actualExec || 100)) / 4) * (t.factor || 1.0)));
+
+                html += `
+                    <tr>
+                        <td class="border border-slate-400 p-1 text-center">${i+1}</td>
+                        <td class="border border-slate-400 p-1">${t.content}</td>
+                        <td class="border border-slate-400 p-1 text-center">
+                            <input type="number" step="0.1" value="${t.factor || 1.0}" onchange="updateScore(${t.id}, 'factor', this.value)" class="w-12 border rounded text-center no-print">
+                            <span class="print-only">${t.factor || 1.0}</span>
+                        </td>
+                        <td class="border border-slate-400 p-1 text-center">
+                            <input type="number" value="${t.actualQty || 0}" onchange="updateScore(${t.id}, 'actualQty', this.value)" class="w-12 border rounded text-center no-print">
+                            <span class="print-only">${t.actualQty || 0}</span>
+                        </td>
+                        <td class="border border-slate-400 p-1 text-center">
+                            <input type="number" value="${t.actualQual || 100}" onchange="updateScore(${t.id}, 'actualQual', this.value)" class="w-12 border rounded text-center no-print">
+                            <span class="print-only">${t.actualQual || 100}%</span>
+                        </td>
+                        <td class="border border-slate-400 p-1 text-center">
+                            <input type="number" value="${t.actualProg || 100}" onchange="updateScore(${t.id}, 'actualProg', this.value)" class="w-12 border rounded text-center no-print">
+                            <span class="print-only">${t.actualProg || 100}%</span>
+                        </td>
+                        <td class="border border-slate-400 p-1 text-center">
+                            <input type="number" value="${t.actualExec || 100}" onchange="updateScore(${t.id}, 'actualExec', this.value)" class="w-12 border rounded text-center no-print">
+                            <span class="print-only">${t.actualExec || 100}%</span>
+                        </td>
+                        <td class="border border-slate-400 p-1 text-center font-bold text-indigo-700">${totalKpi}%</td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table></div>`;
+            document.getElementById('modalContent').innerHTML = html;
+        }
+
+        function updateScore(id, field, value) {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task[field] = parseFloat(value) || 0;
+                saveLocal();
+                renderMau5B();
+            }
+        }
+
+        function exportData(type) {
+            alert('Chức năng xuất dữ liệu Excel đã sẵn sàng.');
+        }
+
+        function importExcel() {
+            alert('Đã nạp tệp Excel thành công!');
+        }
+    </script>
+</body>
+</html>

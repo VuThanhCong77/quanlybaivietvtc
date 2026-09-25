@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biểu đồ tiến độ KPI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN for Interactive Progress Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ExcelJS & FileSaver for Excel Processing -->
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }     
+        
+        @media print {
+            body > * { display: none !important; }
+            body > #printModal:not(.hidden) {
+                display: block !important;
+                position: relative !important;
+                width: 100% !important;
+                height: auto !important;
+                background: white !important;
+                overflow: visible !important;
+            }
+            .no-print { display: none !important; }
+            .print-table {
+                width: 100% !important;
+                table-layout: fixed !important;
+                border-collapse: collapse !important;
+            }
+            .print-table thead { display: table-header-group !important; }
+            .print-table tr { page-break-inside: avoid !important; break-inside: avoid !important; }
+            .print-table th, .print-table td {
+                word-wrap: break-word !important;
+                padding: 4px 6px !important;
+                font-size: 10px !important;
+            }
+            @page { size: A4 landscape; margin: 10mm; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col">
+
+<!-- HEADER -->
+<header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-lg border-b border-indigo-800">
+    <div class="max-w-7xl mx-auto px-4 py-5 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center space-x-3">
+            <div class="p-3 bg-indigo-600/30 rounded-xl border border-indigo-400/30 backdrop-blur-sm">
+                <i class="fa-solid fa-chart-pie text-2xl text-indigo-300"></i>
+            </div>
+            <div>
+                <h1 class="text-xl sm:text-2xl font-bold tracking-tight">BIỂU ĐỒ TIẾN ĐỘ KPI</h1>
+                <p class="text-xs sm:text-sm text-indigo-200/80">Giám sát chỉ tiêu • Cập nhật tiến độ trực tiếp • Phân tích trực quan</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                <span class="w-2 h-2 mr-2 rounded-full bg-emerald-400 animate-pulse"></span><a href="01VTC-KPI-3B-3-5B.html" target="_blank" rel="noopener noreferrer"> UBKT Đảng ủy phường Lưu Kiếm</a> 
+            </span>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full space-y-6">
+
+    <!-- TOOLBAR BAR -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-3">
+            <input type="file" id="excelFileInput" accept=".xlsx" class="hidden" onchange="importFromExcel(event)">
+            <button onclick="document.getElementById('excelFileInput').click()" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-xl shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-file-import mr-2"></i> Nạp File Excel KPI
+            </button>
+            <button onclick="loadSampleData()" class="inline-flex items-center px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition-colors">
+                <i class="fa-solid fa-rotate-left mr-2 text-slate-500"></i> Dữ Liệu Mẫu
+            </button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+            <button onclick="openPrintModal()" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-print mr-2"></i> In Báo Cáo Tiến Độ
+            </button>
+            <button onclick="exportToExcel()" class="inline-flex items-center px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold rounded-xl shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-file-excel mr-2 text-emerald-300"></i> Xuất Excel Tiến Độ
+            </button>
+        </div>
+    </div>
+
+    <!-- KHU VỰC THỐNG KÊ & BIỂU ĐỒ TIẾN ĐỘ (THAY THẾ HOÀN TOÀN FORM SỬA CHỮA) -->
+    <div class="space-y-4">
+        <!-- 4 Thẻ KPI Tóm Tắt -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center space-x-3">
+                <div class="p-3 bg-sky-50 text-sky-600 rounded-xl border border-sky-100">
+                    <i class="fa-solid fa-list-check text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-500 font-semibold block">Tổng Số Nhiệm Vụ</span>
+                    <span id="statTotalTasks" class="text-xl font-black text-slate-800">0</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center space-x-3">
+                <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl border border-indigo-100">
+                    <i class="fa-solid fa-chart-line text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-500 font-semibold block">Tiến Độ Trung Bình</span>
+                    <span id="statAvgProgress" class="text-xl font-black text-indigo-700">0%</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center space-x-3">
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-xl border border-emerald-100">
+                    <i class="fa-solid fa-circle-check text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-500 font-semibold block">Đã Hoàn Thành (100%)</span>
+                    <span id="statCompleted" class="text-xl font-black text-emerald-600">0</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center space-x-3">
+                <div class="p-3 bg-amber-50 text-amber-600 rounded-xl border border-amber-100">
+                    <i class="fa-solid fa-spinner text-xl animate-spin"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-500 font-semibold block">Đang Thực Hiện</span>
+                    <span id="statInProgress" class="text-xl font-black text-amber-600">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biểu đồ Trực quan hóa Progress Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <!-- Doughnut Chart: Phân bổ % Mức độ hoàn thành -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie text-indigo-600"></i> Phân Bổ Mức Hoàn Thành
+                    </h3>
+                    <span class="text-[11px] text-slate-400 font-medium">Cập nhật tức thì</span>
+                </div>
+                <div class="relative flex-grow flex items-center justify-center min-h-[220px]">
+                    <canvas id="progressDoughnutChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Bar Chart: Tiến độ trung bình theo từng Trục Nhiệm vụ -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2 flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-simple text-indigo-600"></i> Tiến Độ Trung Bình Theo Trục (%)
+                    </h3>
+                    <span class="text-[11px] text-slate-400 font-medium">So sánh 6 Trục</span>
+                </div>
+                <div class="relative flex-grow flex items-center justify-center min-h-[220px]">
+                    <canvas id="trucBarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BẢNG DANH SÁCH NHIỆM VỤ - CHO PHÉP SỬA TRỰC TIẾP CỘT GHI CHÚ -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-5 space-y-4">
+        
+        <!-- Filter Bar -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div class="flex items-center gap-3">
+                <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-table-list text-indigo-600"></i> Danh Sách Tiến Độ Nhiệm Vụ
+                </h3>
+                <span id="totalBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 border border-indigo-200">
+                    0 nhiệm vụ
+                </span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+                    <i class="fa-solid fa-filter text-slate-400 text-xs"></i>
+                    <span class="text-xs font-semibold text-slate-600">Lọc Quý:</span>
+                    <select id="filterQuy" onchange="applyFilters()" class="bg-transparent text-xs font-bold text-indigo-900 outline-none cursor-pointer">
+                        <option value="ALL" selected>Tất cả các Quý</option>
+                        <option value="Quý 1">Quý 1</option>
+                        <option value="Quý 2">Quý 2</option>
+                        <option value="Quý 3">Quý 3</option>
+                        <option value="Quý 4">Quý 4</option>
+                    </select>
+                </div>
+
+                <div class="relative min-w-[220px]">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Tìm nội dung, cấp trình..." class="w-full bg-slate-50 border border-slate-200 text-xs rounded-xl pl-8 pr-3 py-1.5 outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Responsive Container -->
+        <div class="overflow-x-auto custom-scrollbar border border-slate-200/80 rounded-xl">
+            <table class="w-full text-left text-sm border-collapse min-w-[1050px]">
+                <thead>
+                    <tr class="bg-slate-800 text-white text-xs uppercase tracking-wider">
+                        <th class="py-3 px-3 text-center w-12 border-b border-slate-700">STT</th>
+                        <th class="py-3 px-3 text-center border-b border-slate-700 w-20">Quý</th>
+                        <th class="py-3 px-4 border-b border-slate-700 min-w-[260px]">Nội Dung Nhiệm Vụ</th>
+                        <th class="py-3 px-3 border-b border-slate-700 w-28">Cấp Trình</th>
+                        <th class="py-3 px-3 border-b border-slate-700 w-32">Mức Độ Khó</th>
+                        <th class="py-3 px-3 border-b border-slate-700 w-24">Sản Phẩm</th>
+                        <th class="py-3 px-3 text-center border-b border-slate-700 w-16">SL</th>
+                        <th class="py-3 px-3 border-b border-slate-700 w-24">Thời Gian</th>
+                        <th class="py-3 px-4 border-b border-slate-700 w-64 text-center bg-indigo-900 text-amber-300 font-bold">
+                            Ghi Chú (Tiến Độ) <i class="fa-solid fa-pen-to-square ml-1"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="taskTableBody" class="divide-y divide-slate-100 bg-white">
+                    <!-- Dynamic Rows Rendered Here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 text-xs text-slate-500 font-medium">
+            <div>
+                Tổng số lượng chỉ tiêu / sản phẩm: <span id="totalProductsCount" class="font-bold text-indigo-700 text-sm">0</span>
+            </div>
+            <div class="italic text-[11px] text-slate-400">
+                * Mọi sự thay đổi ở Cột Ghi chú sẽ ngay lập tức tự động cập nhật lên Biểu đồ phía trên.
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- PRINT REPORT MODAL -->
+<div id="printModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden overflow-y-auto p-4 sm:p-6 flex justify-center items-start">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-6xl my-auto overflow-hidden flex flex-col">
+        <div class="no-print bg-slate-900 text-white px-6 py-4 flex justify-between items-center border-b border-slate-700">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-file-invoice text-indigo-400 text-xl"></i>
+                <div>
+                    <h3 class="font-bold text-base">Xem & In Báo Cáo Tiến Độ Thực Hiện KPI</h3>
+                    <p class="text-xs text-slate-400">Định dạng A4 Khổ Ngang - Chuẩn hành chính</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="window.print()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl flex items-center">
+                    <i class="fa-solid fa-print mr-2"></i> In Báo Cáo
+                </button>
+                <button onclick="closePrintModal()" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-bold rounded-xl">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Printable Document Section -->
+        <div class="p-8 bg-white text-black font-['Times_New_Roman',serif] text-sm overflow-y-auto">
+            <div class="text-center my-3 space-y-1">
+                <h2 class="font-bold uppercase text-base tracking-wide">BẢNG THEO DÕI TIẾN ĐỘ THỰC HIỆN KPI</h2>
+                <p class="italic text-xs">Người theo dõi: Vũ Thành Công | Báo cáo & Giám sát tiến độ công việc</p>
+            </div>
+
+            <div class="my-4 overflow-x-auto">
+                <table class="w-full border-collapse border border-black text-xs print-table" style="table-layout: fixed;">
+                    <thead>
+                        <tr class="bg-slate-100 font-bold text-center">
+                            <th class="border border-black p-1.5 w-[4%]">STT</th>
+                            <th class="border border-black p-1.5 w-[6%]">Quý</th>
+                            <th class="border border-black p-1.5 w-[32%]">Nội Dung Nhiệm Vụ</th>
+                            <th class="border border-black p-1.5 w-[12%]">Cấp Trình</th>
+                            <th class="border border-black p-1.5 w-[12%]">Mức Độ Khó</th>
+                            <th class="border border-black p-1.5 w-[10%]">Sản Phẩm</th>
+                            <th class="border border-black p-1.5 w-[5%]">SL</th>
+                            <th class="border border-black p-1.5 w-[8%]">Tiến Độ</th>
+                            <th class="border border-black p-1.5 w-[11%]">Ghi Chú</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previewTableBody">
+                        <!-- JS Rendered -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-lg border-b border-indigo-800">
+    <div class="max-w-7xl mx-auto px-4 py-5 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs sm:text-sm text-indigo-200/80">    
+            Bản quyền thuộc về <strong>Vũ Thành Công</strong> - Phường Lưu Kiếm, TP Hải Phòng
+        </p>
+    </div>
+</footer>
+
+<script>
+    let tasks = [];
+    let doughnutChart = null;
+    let barChart = null;
+
+    // Các mức tiến độ cố định chuẩn
+    const progressOptions = [
+        "0%",
+        "25%",
+        "50%",
+        "75%",
+        "85%",
+        "95%",
+        "100%"
+    ];
+
+    // Dữ liệu mẫu khởi tạo theo đúng file nguồn KPI_Quý_1.xlsx
+    const defaultSampleTasks = [
+        {
+            quy: "Quý 1",
+            truc: "Trục (1): THỰC HIỆN MỤC TIÊU PHÁT TRIỂN KINH TẾ - XÃ HỘI VÀ NHIỆM VỤ CHÍNH TRỊ ĐƯỢC GIAO",
+            noidung: "Tham mưu xây dựng Chương trình hành động thực hiện Nghị quyết Đại hội Đảng bộ",
+            captrinh: "Đảng ủy",
+            dokho: "Cực kỳ khó - Phức tạp",
+            sanpham: "Chương trình hành động",
+            soluong: 1,
+            tiendo: "Tháng 3",            
+            ghichu: "1"
+        },
+        {
+            quy: "Quý 2",
+            truc: "Trục (2): HOÀN THIỆN THỂ CHẾ, ĐẨY MẠNH PHÂN CẤP, PHÂN QUYỀN GẮN VỚI KIỂM TRA, GIÁM SÁT",
+            noidung: "Kiểm tra chuyên đề công tác quản lý đất đai và đầu tư công",
+            captrinh: "Ban thường vụ Đảng ủy",
+            dokho: "Thường xuyên",
+            sanpham: "Kết luận",
+            soluong: 1,
+            tiendo: "Tháng 5",            
+            ghichu: "0.95"
+        },
+        {
+            quy: "Quý 3",
+            truc: "Trục (3): THÚC ĐẨY PHÁT TRIỂN KHOA HỌC, CÔNG NGHỆ, ĐỔI MỚI SÁNG TẠO VÀ CHUYỂN ĐỔI SỐ",
+            noidung: "Số hóa dữ liệu hồ sơ kiểm tra, giám sát giai đoạn 2020-2025",
+            captrinh: "UBKT Đảng ủy",
+            dokho: "Khó - Không phức tạp",
+            sanpham: "Hệ thống CSDL",
+            soluong: 1,
+            tiendo: "Tháng 11",            
+            ghichu: "0.75"
+        },
+        {
+            quy: "Quý 4",
+            truc: "Trục (6): CỦNG CỐ QUỐC PHÒNG, AN NINH, GIỮ VỮNG ỔN ĐỊNH CHÍNH TRỊ - XÃ HỘI",
+            noidung: "Tham mưu báo cáo tháng định kỳ Đảng ủy phường việc lãnh đạo, chỉ đạo...",
+            captrinh: "Ban thường vụ Đảng ủy",
+            dokho: "Thường xuyên",
+            sanpham: "Báo cáo",
+            soluong: 3,
+            tiendo: "Hàng tháng",
+            ghichu: "0.85"
+        }
+    ];
+
+    function saveData() {
+        localStorage.setItem('vtc_kpi_progress_only_tasks', JSON.stringify(tasks));
+    }
+
+    function loadData() {
+        const stored = localStorage.getItem('vtc_kpi_progress_only_tasks');
+        if (stored) {
+            tasks = JSON.parse(stored);
+        } else {
+            tasks = [...defaultSampleTasks];
+            saveData();
+        }
+    }
+
+    // Chuyển chuỗi Ghi chú ("50% - Đang...") hoặc số thập phân (0.5) về con số % thực (50)
+    function parsePercent(val) {
+        if (val === null || val === undefined) return 0;
+        if (typeof val === 'number') {
+            return val <= 1 ? Math.round(val * 100) : val;
+        }
+        const str = String(val).trim();
+        const match = str.match(/(\d+)%/);
+        if (match) return parseInt(match[1]);
+        const num = parseFloat(str);
+        if (!isNaN(num)) return num <= 1 ? Math.round(num * 100) : num;
+        return 0;
+    }
+
+    // Chuẩn hóa chuỗi ghi chú hiển thị
+    function normalizeNoteString(val) {
+        const pct = parsePercent(val);
+        if (pct >= 100) return "100%";
+        if (pct >= 95) return "95%";
+        if (pct >= 85) return "85%";
+        if (pct >= 75) return "75%";
+        if (pct >= 50) return "50%";
+        if (pct >= 25) return "25%";
+        return "0%";
+    }
+
+    // HÀM SỬA TRỰC TIẾP CỘT GHI CHÚ
+    function updateTaskProgressDirectly(actualIndex, newNoteVal) {
+        if (tasks[actualIndex]) {
+            tasks[actualIndex].ghichu = newNoteVal;
+            saveData();
+            
+            // Cập nhật lại Biểu đồ & Thẻ thống kê thời gian thực
+            updateDashboardCharts();
+            // Cập nhật lại thanh progress bar nhỏ trong bảng
+            const progressBar = document.getElementById(`pbar-${actualIndex}`);
+            if (progressBar) {
+                const pct = parsePercent(newNoteVal);
+                progressBar.style.width = `${pct}%`;
+                progressBar.className = `h-1.5 rounded-full transition-all duration-300 ${getProgressColorClass(pct)}`;
+            }
+        }
+    }
+
+    function getProgressColorClass(pct) {
+        if (pct >= 100) return "bg-emerald-500";
+        if (pct >= 85) return "bg-sky-500";
+        if (pct >= 75) return "bg-indigo-500";
+        if (pct >= 50) return "bg-amber-500";
+        if (pct >= 25) return "bg-orange-500";
+        return "bg-rose-500";
+    }
+
+    // LỌC DỮ LIỆU
+    function applyFilters() {
+        const selectedQuy = document.getElementById('filterQuy').value;
+        const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+
+        const filtered = tasks.filter(t => {
+            const matchesQuy = (selectedQuy === 'ALL' || t.quy === selectedQuy);
+            const matchesSearch = !searchTerm ||
+                (t.noidung && t.noidung.toLowerCase().includes(searchTerm)) ||
+                (t.truc && t.truc.toLowerCase().includes(searchTerm)) ||
+                (t.captrinh && t.captrinh.toLowerCase().includes(searchTerm));
+            return matchesQuy && matchesSearch;
+        });
+
+        renderTable(filtered);
+        updateDashboardCharts(filtered);
+    }
+
+    // RENDER BẢNG
+    function renderTable(taskList) {
+        const tbody = document.getElementById('taskTableBody');
+        const totalBadge = document.getElementById('totalBadge');
+        const totalProductsCount = document.getElementById('totalProductsCount');
+
+        tbody.innerHTML = '';
+        totalBadge.innerText = `${taskList.length} nhiệm vụ`;
+
+        const totalQty = taskList.reduce((sum, t) => sum + (parseInt(t.soluong) || 0), 0);
+        totalProductsCount.innerText = totalQty;
+
+        if (taskList.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="9" class="py-8 text-center text-slate-400 italic">Không có nhiệm vụ nào phù hợp.</td></tr>`;
+            return;
+        }
+
+        let stt = 1;
+        taskList.forEach((t) => {
+            const actualIndex = tasks.indexOf(t);
+            const currentNote = normalizeNoteString(t.ghichu);
+            const currentPct = parsePercent(currentNote);
+
+            const tr = document.createElement('tr');
+            tr.className = "hover:bg-slate-50/80 transition-colors";
+
+            // Options HTML cho Select Dropdown
+            let optionsHtml = '';
+            progressOptions.forEach(opt => {
+                const selected = (opt === currentNote) ? 'selected' : '';
+                optionsHtml += `<option value="${opt}" ${selected}>${opt}</option>`;
+            });
+
+            tr.innerHTML = `
+                <td class="py-3 px-3 text-center text-slate-500 text-xs font-medium">${stt++}</td>
+                <td class="py-3 px-3 text-center">
+                    <span class="inline-block px-2 py-0.5 text-[11px] font-bold rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                        ${escapeHtml(t.quy)}
+                    </span>
+                </td>
+                <td class="py-3 px-4">
+                    <div class="font-semibold text-slate-800 text-xs sm:text-sm">${escapeHtml(t.noidung)}</div>
+                    <div class="text-[11px] text-indigo-700 font-medium mt-0.5 line-clamp-1" title="${escapeHtml(t.truc)}">${escapeHtml(t.truc)}</div>
+                </td>
+                <td class="py-3 px-3 text-xs text-slate-600">${escapeHtml(t.captrinh || '-')}</td>
+                <td class="py-3 px-3 text-xs text-slate-600">${escapeHtml(t.dokho || '-')}</td>
+                <td class="py-3 px-3 text-xs font-medium text-slate-700">${escapeHtml(t.sanpham || '-')}</td>
+                <td class="py-3 px-3 text-center text-xs font-bold text-indigo-700">${t.soluong || 0}</td>
+                <td class="py-3 px-3 text-xs text-slate-600">${escapeHtml(t.tiendo || '-')}</td>
+                
+                <!-- CỘT GHI CHÚ SỬA TRỰC TIẾP -->
+                <td class="py-2 px-3 bg-amber-50/40 border-l border-amber-200/60">
+                    <div class="space-y-1.5">
+                        <select onchange="updateTaskProgressDirectly(${actualIndex}, this.value)" class="w-full bg-white border border-amber-300 hover:border-amber-500 text-slate-900 font-bold text-xs rounded-lg p-1.5 focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer shadow-sm transition-all">
+                            ${optionsHtml}
+                        </select>
+                        <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                            <div id="pbar-${actualIndex}" class="h-1.5 rounded-full transition-all duration-300 ${getProgressColorClass(currentPct)}" style="width: ${currentPct}%"></div>
+                        </div>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // CẬP NHẬT TỰ ĐỘNG CÁC BIỂU ĐỒ & CHỈ SỐ KPI
+    function updateDashboardCharts(targetList = null) {
+        const list = targetList || getCurrentlyFilteredTasks();
+
+        const total = list.length;
+        let sumPct = 0;
+        let completed = 0;
+        let inProgress = 0;
+
+        // Đếm phân bổ mức % cho Doughnut Chart
+        const pctCounts = { "0%": 0, "25%": 0, "50%": 0, "75%": 0, "85%": 0, "95%": 0, "100%": 0 };
+        
+        // Tiến độ trung bình theo Trục cho Bar Chart
+        const trucSums = {};
+        const trucCounts = {};
+
+        list.forEach(t => {
+            const pct = parsePercent(t.ghichu);
+            sumPct += pct;
+
+            if (pct >= 100) completed++;
+            else inProgress++;
+
+            if (pct >= 100) pctCounts["100%"]++;
+            else if (pct >= 95) pctCounts["95%"]++;
+            else if (pct >= 85) pctCounts["85%"]++;
+            else if (pct >= 75) pctCounts["75%"]++;
+            else if (pct >= 50) pctCounts["50%"]++;
+            else if (pct >= 25) pctCounts["25%"]++;
+            else pctCounts["0%"]++;
+
+            // Trục name rút gọn (Trục 1, Trục 2,...)
+            let trucShortName = "Khác";
+            if (t.truc) {
+                const match = t.truc.match(/Trục\s*\(\d+\)|Trục\s*\d+/i);
+                trucShortName = match ? match[0] : t.truc.substring(0, 10);
+            }
+            trucSums[trucShortName] = (trucSums[trucShortName] || 0) + pct;
+            trucCounts[trucShortName] = (trucCounts[trucShortName] || 0) + 1;
+        });
+
+        const avgPct = total > 0 ? Math.round(sumPct / total) : 0;
+
+        // Render Cards
+        document.getElementById('statTotalTasks').innerText = total;
+        document.getElementById('statAvgProgress').innerText = `${avgPct}%`;
+        document.getElementById('statCompleted').innerText = completed;
+        document.getElementById('statInProgress').innerText = inProgress;
+
+        // Render Doughnut Chart
+        renderDoughnutChart(pctCounts);
+
+        // Render Bar Chart
+        renderBarChart(trucSums, trucCounts);
+    }
+
+    function getCurrentlyFilteredTasks() {
+        const selectedQuy = document.getElementById('filterQuy').value;
+        const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+        return tasks.filter(t => {
+            const matchesQuy = (selectedQuy === 'ALL' || t.quy === selectedQuy);
+            const matchesSearch = !searchTerm ||
+                (t.noidung && t.noidung.toLowerCase().includes(searchTerm)) ||
+                (t.truc && t.truc.toLowerCase().includes(searchTerm));
+            return matchesQuy && matchesSearch;
+        });
+    }
+
+    function renderDoughnutChart(counts) {
+        const ctx = document.getElementById('progressDoughnutChart').getContext('2d');
+        if (doughnutChart) doughnutChart.destroy();
+
+        doughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['0% (Chưa làm)', '25%', '50%', '75%', '85%', '95%', '100% (Xong)'],
+                datasets: [{
+                    data: [
+                        counts["0%"], counts["25%"], counts["50%"], 
+                        counts["75%"], counts["85%"], counts["95%"], counts["100%"]
+                    ],
+                    backgroundColor: [
+                        '#ef4444', '#f97316', '#f59e0b', 
+                        '#6366f1', '#0284c7', '#06b6d4', '#10b981'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { font: { size: 10, family: 'Inter' }, boxWidth: 12 }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+    }
+
+    function renderBarChart(trucSums, trucCounts) {
+        const ctx = document.getElementById('trucBarChart').getContext('2d');
+        if (barChart) barChart.destroy();
+
+        const labels = Object.keys(trucSums);
+        const dataValues = labels.map(lbl => {
+            const cnt = trucCounts[lbl] || 1;
+            return Math.round(trucSums[lbl] / cnt);
+        });
+
+        barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels.length > 0 ? labels : ['Chưa có dữ liệu'],
+                datasets: [{
+                    label: 'Tiến độ TB (%)',
+                    data: dataValues.length > 0 ? dataValues : [0],
+                    backgroundColor: 'rgba(79, 70, 229, 0.85)',
+                    borderColor: '#4338ca',
+                    borderWidth: 1,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { callback: value => value + '%' }
+                    },
+                    x: {
+                        ticks: { font: { size: 10 } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
+
+    function loadSampleData() {
+        if (confirm('Khôi phục dữ liệu mẫu ban đầu từ file Excel KPI?')) {
+            tasks = [...defaultSampleTasks];
+            saveData();
+            applyFilters();
+        }
+    }
+
+    // NẠP TỪ EXCEL VÀ QUY ĐỔI GIÁ TRỊ TỪ FILE NGUỒN KPI_Quý_1.xlsx
+    async function importFromExcel(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        try {
+            const workbook = new ExcelJS.Workbook();
+            await workbook.xlsx.load(file);
+            const sheet = workbook.getWorksheet(1);
+
+            let importedTasks = [];
+            let currentTruc = "Trục (1): THỰC HIỆN MỤC TIÊU PHÁT TRIỂN KINH TẾ - XÃ HỘI VÀ NHIỆM VỤ CHÍNH TRỊ ĐƯỢC GIAO";
+
+            sheet.eachRow((row, rowNumber) => {
+                if (rowNumber <= 3) return; // Bỏ qua Header
+
+                const cellB = row.getCell(2).text ? row.getCell(2).text.trim() : '';
+
+                if (cellB.startsWith("Trục")) {
+                    currentTruc = cellB;
+                    return;
+                }
+
+                if (cellB && cellB.toLowerCase() !== 'total' && cellB.toLowerCase() !== 'tổng cộng') {
+                    const rawVal = row.getCell(8).value; // Cột Ghi chú là cột 8
+                    const noteStr = normalizeNoteString(rawVal);
+
+                    importedTasks.push({
+                        quy: row.getCell(9).text ? row.getCell(9).text.trim() : 'Quý 3',
+                        truc: currentTruc,
+                        noidung: cellB,
+                        captrinh: row.getCell(3).text ? row.getCell(3).text.trim() : '',
+                        dokho: row.getCell(4).text ? row.getCell(4).text.trim() : 'Thường xuyên',
+                        sanpham: row.getCell(5).text ? row.getCell(5).text.trim() : 'Báo cáo',
+                        soluong: parseInt(row.getCell(6).value) || 0,
+                        tiendo: row.getCell(7).text ? row.getCell(7).text.trim() : '',
+                        ghichu: noteStr
+                    });
+                }
+            });
+
+            if (importedTasks.length > 0) {
+                tasks = importedTasks;
+                saveData();
+                applyFilters();
+                alert(`✅ Nạp thành công ${importedTasks.length} nhiệm vụ từ Excel!`);
+            } else {
+                alert("⚠️ Không tìm thấy dữ liệu nhiệm vụ hợp lệ.");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("❌ Lỗi khi nạp file Excel!");
+        } finally {
+            e.target.value = '';
+        }
+    }
+
+    // XUẤT FILE EXCEL
+    async function exportToExcel() {
+        const workbook = new ExcelJS.Workbook();
+        const sheet = workbook.addWorksheet('Tiến Độ KPI');
+
+        sheet.mergeCells('A1:I1');
+        sheet.getCell('A1').value = 'BẢNG THEO DÕI TIẾN ĐỘ THỰC HIỆN KPI';
+        sheet.getCell('A1').font = { name: 'Times New Roman', size: 14, bold: true, color: { argb: '002060' } };
+        sheet.getCell('A1').alignment = { horizontal: 'center' };
+
+        sheet.addRow([]);
+
+        const headers = ["STT", "Quý", "Nội Dung Nhiệm Vụ", "Cấp Trình", "Mức Độ Khó", "Sản Phẩm", "Số Lượng", "Tiến Độ", "Ghi Chú (Tiến độ)"];
+        const headerRow = sheet.addRow(headers);
+
+        headerRow.eachCell(cell => {
+            cell.font = { name: 'Times New Roman', size: 11, bold: true, color: { argb: 'FFFFFF' } };
+            cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: '1F4E78' } };
+            cell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
+            cell.border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+        });
+
+        let stt = 1;
+        let totalQty = 0;
+
+        tasks.forEach(t => {
+            totalQty += (parseInt(t.soluong) || 0);
+            const row = sheet.addRow([
+                stt++, t.quy, t.noidung, t.captrinh, t.dokho, t.sanpham, t.soluong, t.tiendo, t.ghichu
+            ]);
+
+            row.eachCell((cell, colNum) => {
+                cell.font = { name: 'Times New Roman', size: 11 };
+                cell.border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+                cell.alignment = (colNum === 3) ? { horizontal: 'left', vertical: 'middle' } : { horizontal: 'center', vertical: 'middle' };
+            });
+        });
+
+        // Total Row
+        const totalRow = sheet.addRow(['', '', 'TỔNG CỘNG SỐ LƯỢNG SẢN PHẨM', '', '', '', totalQty, '', '']);
+        totalRow.eachCell(cell => {
+            cell.font = { name: 'Times New Roman', size: 11, bold: true };
+            cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'D9E1F2' } };
+            cell.border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+        });
+
+        sheet.columns = [
+            { width: 6 }, { width: 10 }, { width: 42 }, { width: 18 },
+            { width: 25 }, { width: 15 }, { width: 10 }, { width: 14 }, { width: 30 }
+        ];
+
+        const buffer = await workbook.xlsx.writeBuffer();
+        saveAs(new Blob([buffer]), 'THEO_DOI_TIEN_DO_KPI.xlsx');
+    }
+
+    function openPrintModal() {
+        const tbody = document.getElementById('previewTableBody');
+        tbody.innerHTML = '';
+
+        let stt = 1;
+        tasks.forEach(t => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="border border-black p-1 text-center">${stt++}</td>
+                <td class="border border-black p-1 text-center font-bold">${escapeHtml(t.quy)}</td>
+                <td class="border border-black p-1 text-left">${escapeHtml(t.noidung)}</td>
+                <td class="border border-black p-1 text-center">${escapeHtml(t.captrinh)}</td>
+                <td class="border border-black p-1 text-center">${escapeHtml(t.dokho)}</td>
+                <td class="border border-black p-1 text-center">${escapeHtml(t.sanpham)}</td>
+                <td class="border border-black p-1 text-center font-bold">${t.soluong}</td>
+                <td class="border border-black p-1 text-center">${escapeHtml(t.tiendo)}</td>
+                <td class="border border-black p-1 text-center font-bold">${escapeHtml(t.ghichu)}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        document.getElementById('printModal').classList.remove('hidden');
+    }
+
+    function closePrintModal() {
+        document.getElementById('printModal').classList.add('hidden');
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    window.onload = function() {
+        loadData();
+        applyFilters();
+    };
+</script>
+</body>
+</html>
