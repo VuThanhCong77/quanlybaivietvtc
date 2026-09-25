@@ -48,15 +48,14 @@
 MAIN CSS
 ===================================================== -->
 
-<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/to-dan-pho-luu-ky.css">
-    
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/to-dan-pho-luu-ky.css">    
 <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/tim-kiem.css">
 <script  defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/tim-kiem-chung.js"></script>
 <script  defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
 
 </head>
 
-<body class="luu-ky">
+<body>
 
     <div class="mai" id="trang-chu">
 
@@ -529,6 +528,21 @@ MAIN CSS
             </div>
         </section>
 
+                 <!-- KHU VỰC XEM TÀI LIỆU -->
+     <section>
+    <div class="btn-group">
+        <button class="active" onclick="viewPDF('https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Luu Ky Ha Long tren can.pdf', this)">Lưu Kỳ, Hạ Long trên cạn</button>
+    
+        <button>
+            <a role="menuitem"
+                href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/doc_pdf_truc_tiep.html"
+                style="text-decoration: none;">
+                 📕 Tiếp tục >>
+            </a>
+        </button>      
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+     </section>
    
     <footer>
         <div class="container">
@@ -824,5 +838,26 @@ async function updateViews(){
 updateViews();
 </script>
     
+    <script>
+        // Đường dẫn file PDF ban đầu
+        const defaultPDF = 'https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Luu Ky Ha Long tren can.pdf';
+
+        function getGoogleViewerUrl(url) {
+            return 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true';
+        }
+
+        function viewPDF(fileUrl, btn) {
+            document.getElementById('pdf-frame').src = getGoogleViewerUrl(fileUrl);
+            
+            if (btn) {
+                document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+        }
+
+        // Tải file đầu tiên khi vào trang
+        viewPDF(defaultPDF);
+    </script>
+
 </body>
 </html>
