@@ -818,3 +818,18 @@ document.addEventListener("DOMContentLoaded", () => {
         taiBaiVietMoiNhat();
     }
 });
+
+/* ==========================================================
+   10. KHU VUC: DONG LIEN KET NGOAI
+   ========================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const list = document.getElementById("danh-sach-lienket");
+    if (list) {
+        list.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                toggleLienKet();
+            });
+        });
+    }
+});
