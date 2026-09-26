@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Lý & Tải Văn Bản</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { max-width: 650px; margin: 20px auto; padding: 20px; background: #f4f6f8; }
+        .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; color: #333; font-size: 20px; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        button { width: 100%; background: #007bff; color: #fff; border: none; padding: 10px; font-size: 16px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0056b3; }
+        #status { margin-top: 15px; padding: 10px; border-radius: 4px; font-size: 14px; display: none; text-align: center; white-space: pre-line; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .loading { background: #fff3cd; color: #856404; }
+        .note { font-size: 12px; color: #666; margin-top: 3px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>TẢI VĂN BẢN VÀO KHO TÀI LIỆU</h2>
+    
+    <div class="form-group">
+        <label>GitHub Personal Token (*)</label>
+        <input type="password" id="githubToken" placeholder="Dán mã ghp_... vào đây">
+    </div>
+
+    <div class="form-group">
+        <label>Thư mục lưu trữ PDF (*)</label>
+        <select id="docFolder" onchange="toggleCustomFolder(this)">
+            <option value="kho-tai-lieu/01-van-phong-dang">kho-tai-lieu/01-van-phong-dang</option>
+            <option value="kho-tai-lieu/02-xay-dung-dang">kho-tai-lieu/02-xay-dung-dang</option>
+            <option value="kho-tai-lieu/03-kiem-tra-dang">kho-tai-lieu/03-kiem-tra-dang</option>
+            <option value="kho-tai-lieu/04-van-phong-chinh-quyen">kho-tai-lieu/04-van-phong-chinh-quyen</option>
+            <option value="kho-tai-lieu/05-kinh-te">kho-tai-lieu/05-kinh-te</option>
+            <option value="kho-tai-lieu/06-xay-dung">kho-tai-lieu/06-xay-dung</option>
+            <option value="kho-tai-lieu/07-tai-nguyen-moi-truong">kho-tai-lieu/07-tai-nguyen-moi-truong</option>
+            <option value="kho-tai-lieu/08-nong-nghiep">kho-tai-lieu/08-nong-nghiep</option>
+            <option value="kho-tai-lieu/09-noi-vu">kho-tai-lieu/09-noi-vu</option>
+            <option value="kho-tai-lieu/10-van-hoa">kho-tai-lieu/10-van-hoa</option>
+            <option value="kho-tai-lieu/11-giao-duc">kho-tai-lieu/11-giao-duc</option>
+            <option value="kho-tai-lieu/12-y-te">kho-tai-lieu/12-y-te</option>
+            <option value="kho-tai-lieu/13-an-ninh-quoc-phong">kho-tai-lieu/13-an-ninh-quoc-phong</option>
+            <option value="kho-tai-lieu/14-mat-tran-doan-the">kho-tai-lieu/14-mat-tran-doan-the</option>
+            <option value="kho-tai-lieu/15-to-dan-pho">kho-tai-lieu/15-to-dan-pho</option>
+            <option value="custom">-- Tự nhập thư mục khác --</option>
+        </select>
+        <input type="text" id="customFolderInput" placeholder="Ví dụ: kho-tai-lieu/07-tai-lieu-khac" style="display:none; margin-top: 8px;">
+    </div>
+
+    <div class="form-group">
+        <label>Tên hiển thị danh mục (*)</label>
+        <input type="text" id="docCategory" placeholder="Ví dụ: Kiểm tra, giám sát hoặc Văn phòng đảng">
+    </div>
+
+    <div class="form-group">
+        <label>Tên văn bản / Tiêu đề (*)</label>
+        <input type="text" id="docTitle" placeholder="Ví dụ: Quy định 207 về những điều đảng viên không được làm">
+    </div>
+
+    <div class="form-group">
+        <label>Số hiệu văn bản</label>
+        <input type="text" id="docNumber" placeholder="Ví dụ: 207-QĐ/TW">
+    </div>
+
+    <div class="form-group">
+        <label>Năm ban hành</label>
+        <input type="text" id="docDate" placeholder="Ví dụ: 06/08/2026 hoặc 2026">
+    </div>
+
+    <div class="form-group">
+        <label>Từ khóa tìm kiếm (cách nhau bởi dấu phẩy)</label>
+        <input type="text" id="docKeywords" placeholder="Ví dụ: qd207, dang vien, ktgs">
+    </div>
+
+    <div class="form-group">
+        <label>Chọn file PDF (*)</label>
+        <input type="file" id="pdfFile" accept="application/pdf">
+        <div class="note">Tên file trên GitHub sẽ tự đổi thành viết thường không dấu (Ví dụ: quy-dinh-207.pdf).</div>
+    </div>
+
+    <button id="uploadBtn" onclick="handleUpload()">TẢI LÊN KHO DỮ LIỆU</button>
+    <div id="status"></div>
+</div>
+
+<script>
+const REPO_OWNER = "vuthanhcong77";
+const REPO_NAME = "quanlybaivietvtc";
+const JSON_FILE_PATH = "kho-tai-lieu/van-ban-pdf.json"; // Đã cập nhật đúng đường dẫn
+
+document.addEventListener("DOMContentLoaded", () => {
+    const savedToken = localStorage.getItem("gh_token");
+    if(savedToken) document.getElementById("githubToken").value = savedToken;
+});
+
+function toggleCustomFolder(selectElem) {
+    const customInput = document.getElementById("customFolderInput");
+    if (selectElem.value === "custom") {
+        customInput.style.display = "block";
+    } else {
+        customInput.style.display = "none";
+    }
+}
+
+function showStatus(msg, type) {
+    const statusDiv = document.getElementById("status");
+    statusDiv.className = type;
+    statusDiv.innerText = msg;
+    statusDiv.style.display = "block";
+}
+
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
+    });
+}
+
+function utf8ToBase64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+}
+function base64ToUtf8(str) {
+    return decodeURIComponent(escape(atob(str)));
+}
+
+async function handleUpload() {
+    const token = document.getElementById("githubToken").value.trim();
+    const title = document.getElementById("docTitle").value.trim();
+    const category = document.getElementById("docCategory").value.trim();
+    const folderSelect = document.getElementById("docFolder").value;
+    const customFolder = document.getElementById("customFolderInput").value.trim();
+    const number = document.getElementById("docNumber").value.trim();
+    const date = document.getElementById("docDate").value.trim();
+    const keywordsStr = document.getElementById("docKeywords").value.trim();
+    const fileInput = document.getElementById("pdfFile");
+
+    let targetFolder = folderSelect === "custom" ? customFolder : folderSelect;
+    targetFolder = targetFolder.replace(/^\/+|\/+$/g, '');
+
+    if (!token || !title || !category || !targetFolder || !fileInput.files[0]) {
+        alert("Vui lòng điền đủ Token, Thư mục, Danh mục, Tiêu đề và Chọn file PDF!");
+        return;
+    }
+
+    localStorage.setItem("gh_token", token);
+
+    const file = fileInput.files[0];
+    const cleanFileName = file.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9.]/g, "-");
+    
+    const pdfPathInRepo = `${targetFolder}/${cleanFileName}`;
+    const pdfPublicUrl = `https://${REPO_OWNER}.github.io/${REPO_NAME}/${pdfPathInRepo}`;
+
+    const btn = document.getElementById("uploadBtn");
+    btn.disabled = true;
+    showStatus("1/2. Đang tải file PDF vào thư mục: " + pdfPathInRepo + "...", "loading");
+
+    try {
+        const headers = {
+            "Authorization": `token ${token}`,
+            "Content-Type": "application/json"
+        };
+
+        // 1. Tải PDF lên thư mục được chọn
+        const pdfBase64 = await fileToBase64(file);
+        const uploadPdfRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${pdfPathInRepo}`, {
+            method: "PUT",
+            headers: headers,
+            body: JSON.stringify({
+                message: `Upload PDF: ${pdfPathInRepo}`,
+                content: pdfBase64
+            })
+        });
+
+        if(!uploadPdfRes.ok) throw new Error("Lỗi khi tải file PDF lên GitHub. Kiểm tra lại Token hoặc đường dẫn!");
+
+        showStatus("2/2. Đang cập nhật kho-tai-lieu/van-ban-pdf.json...", "loading");
+
+        // 2. Lấy nội dung kho-tai-lieu/van-ban-pdf.json
+        const getJsonRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${JSON_FILE_PATH}`, {
+            headers: headers
+        });
+        
+        if(!getJsonRes.ok) throw new Error("Không tìm thấy file kho-tai-lieu/van-ban-pdf.json trên GitHub!");
+        
+        const jsonData = await getJsonRes.json();
+        const jsonSha = jsonData.sha;
+        const currentContent = JSON.parse(base64ToUtf8(jsonData.content));
+
+        const newIdNumber = currentContent.length + 1;
+        const newId = `pdf-${String(newIdNumber).padStart(3, '0')}`;
+        const keywords = keywordsStr ? keywordsStr.split(',').map(k => k.trim()) : [];
+
+        const newItem = {
+            id: newId,
+            title: title,
+            category: category,
+            number: number,
+            date: date,
+            description: "",
+            keywords: keywords,
+            url: pdfPublicUrl
+        };
+
+        currentContent.push(newItem);
+
+        // Lưu đè lại file kho-tai-lieu/van-ban-pdf.json
+        const updatedJsonBase64 = utf8ToBase64(JSON.stringify(currentContent, null, 2));
+        const updateJsonRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${JSON_FILE_PATH}`, {
+            method: "PUT",
+            headers: headers,
+            body: JSON.stringify({
+                message: `Thêm văn bản mới: ${title}`,
+                content: updatedJsonBase64,
+                sha: jsonSha
+            })
+        });
+
+        if(!updateJsonRes.ok) throw new Error("Lỗi khi cập nhật kho-tai-lieu/van-ban-pdf.json!");
+
+        showStatus(`TẢI LÊN THÀNH CÔNG!\nURL: ${pdfPublicUrl}`, "success");
+        
+        document.getElementById("docTitle").value = "";
+        document.getElementById("docNumber").value = "";
+        document.getElementById("docDate").value = "";
+        document.getElementById("docKeywords").value = "";
+        document.getElementById("pdfFile").value = "";
+
+    } catch (err) {
+        showStatus(`Xảy ra lỗi: ${err.message}`, "error");
+    } finally {
+        btn.disabled = false;
+    }
+}
+</script>
+</body>
+</html>
