@@ -1,6 +1,4 @@
 [
-
- 
   {
     "id": "pdf-001",
     "title": "Nghị quyết 05 về kiểm tra, giám sát",
@@ -8,7 +6,12 @@
     "number": "05-NQ/TW",
     "date": "07/04/2026",
     "description": "đổi mới, nâng cao hiệu lực công tác kiểm tra, giám sát và kỷ luật đảng",
-    "keywords": ["nq05", "ktgs", "kiểm tra", "giám sát"],
+    "keywords": [
+      "nq05",
+      "ktgs",
+      "kiểm tra",
+      "giám sát"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Nq05vekiemtragiamsat2026.pdf"
   },
   {
@@ -18,7 +21,10 @@
     "number": "207-QĐ/TW",
     "date": "26/07/2026",
     "description": "những điều đảng viên không được làm",
-    "keywords": ["qd207", "dang vien khong duoc lam"],
+    "keywords": [
+      "qd207",
+      "dang vien khong duoc lam"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qdtw207.pdf"
   },
   {
@@ -28,7 +34,10 @@
     "number": "02-HD/UBKTTW",
     "date": "28/07/2026",
     "description": "thực hiện quy định về những điều đảng viên không được làm",
-    "keywords": ["hd02", "dang vien khong duoc lam"],
+    "keywords": [
+      "hd02",
+      "dang vien khong duoc lam"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/hdubkttw02-2026.pdf"
   },
   {
@@ -38,7 +47,9 @@
     "number": "89-QĐ/TW",
     "date": "01/12/2022",
     "description": "",
-    "keywords": ["qd89"],
+    "keywords": [
+      "qd89"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-89-2022.pdf"
   },
   {
@@ -48,7 +59,9 @@
     "number": "354-QĐ/UBKTTW",
     "date": "22/12/2021",
     "description": "",
-    "keywords": ["qd354"],
+    "keywords": [
+      "qd354"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-354-2021.pdf"
   },
   {
@@ -58,7 +71,9 @@
     "number": "331-QĐ/TW",
     "date": "16/06/2025",
     "description": "",
-    "keywords": ["qd331"],
+    "keywords": [
+      "qd331"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd-331-2025.pdf"
   },
   {
@@ -68,7 +83,9 @@
     "number": "02-HD/UBKTĐU",
     "date": "28/08/2026",
     "description": "quy trình thực hiện kiểm tra, giám sát tại các chi bộ",
-    "keywords": ["hd quy trinh ktgs"],
+    "keywords": [
+      "hd quy trinh ktgs"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/hd-quy-trinh-ktgs2026.pdf"
   },
   {
@@ -78,7 +95,10 @@
     "number": "212-QĐ/TW",
     "date": "17/08/2026",
     "description": "kỷ luật tổ chức đảng, đảng viên vi phạm",
-    "keywords": ["qd212", "ky luat dang"],
+    "keywords": [
+      "qd212",
+      "ky luat dang"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qudtw212.pdf"
   },
   {
@@ -88,7 +108,10 @@
     "number": "208-QĐ/TW",
     "date": "26/07/2026",
     "description": "",
-    "keywords": ["qd208", "dieu le dang"],
+    "keywords": [
+      "qd208",
+      "dieu le dang"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qdtw208.pdf"
   },
   {
@@ -98,7 +121,10 @@
     "number": "02-HD/TW",
     "date": "07/08/2026",
     "description": "",
-    "keywords": ["hd02", "dieu le dang"],
+    "keywords": [
+      "hd02",
+      "dieu le dang"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/hd02-2026-thi-hanh-dieu-le-dang.pdf"
   },
   {
@@ -108,7 +134,10 @@
     "number": "80-NQ/TW",
     "date": "07/01/2026",
     "description": "phát triển văn hóa Việt Nam",
-    "keywords": ["nq80", "van hoa"],
+    "keywords": [
+      "nq80",
+      "van hoa"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/nqtw80vanhoa.pdf"
   },
   {
@@ -118,7 +147,9 @@
     "number": "19-QĐ/TW",
     "date": "08/04/2026",
     "description": "",
-    "keywords": ["qd19"],
+    "keywords": [
+      "qd19"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/qd19cttt.pdf"
   },
   {
@@ -128,7 +159,9 @@
     "number": "05-NQ/TU",
     "date": "14/01/2026",
     "description": "xây dựng và triển khai thực hiện một số mô hình Chủ nghĩa xã hội gắn với con người Xã hội chủ nghĩa tại thành phố Hải Phòng giai đoạn 2026 - 2030 và những năm tiếp theo",
-    "keywords": ["xhcn"],
+    "keywords": [
+      "xhcn"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/xhcnhp.pdf"
   },
   {
@@ -138,7 +171,10 @@
     "number": "08-NQ/TW",
     "date": "29/01/2026",
     "description": "về chuyển đổi xanh thành phố Hải Phòng giai đoạn 2026 - 2030, tầm nhìn đến năm 2050",
-    "keywords": ["nq08", "chuyen doi xanh"],
+    "keywords": [
+      "nq08",
+      "chuyen doi xanh"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/nq08chuyendoixanh.pdf"
   },
   {
@@ -148,7 +184,10 @@
     "number": "08-NQ/ĐH",
     "date": "13/08/2025",
     "description": "Xây dựng phường Lưu Kiếm giai đoạn 2025 - 2030",
-    "keywords": ["luu kiem", "dai hoi dang bo"],
+    "keywords": [
+      "luu kiem",
+      "dai hoi dang bo"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Nq Dai hoi Dang bo phuong lan 1.pdf"
   },
   {
@@ -158,7 +197,10 @@
     "number": "05-CTr/ĐU",
     "date": "07/10/2025",
     "description": "Xây dựng phường Lưu Kiếm giai đoạn 2025 - 2030",
-    "keywords": ["luu kiem", "chuong trinh hanh dong"],
+    "keywords": [
+      "luu kiem",
+      "chuong trinh hanh dong"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Ct hanh cong thuc hien Nq Dh Dang bo phuong lan 1.pdf"
   },
   {
@@ -168,7 +210,10 @@
     "number": "533-CV/BTCTW",
     "date": "08/04/2026",
     "description": "",
-    "keywords": ["cap xa", "chuc danh"],
+    "keywords": [
+      "cap xa",
+      "chuc danh"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/533pl2.pdf"
   },
   {
@@ -178,7 +223,10 @@
     "number": "",
     "date": "",
     "description": "",
-    "keywords": ["mac lenin", "triet hoc"],
+    "keywords": [
+      "mac lenin",
+      "triet hoc"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/triethocmaclenin.pdf"
   },
   {
@@ -188,7 +236,9 @@
     "number": "",
     "date": "",
     "description": "Rèn luyện trí nhớ",
-    "keywords": ["tri nho"],
+    "keywords": [
+      "tri nho"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Bi-mat-cua-mot-tri-nho-sieu-pham.pdf"
   },
   {
@@ -198,7 +248,10 @@
     "number": "91-2010/CXB/10-57/HP",
     "date": "2010",
     "description": "Sự phát triển của vùng đất ven sông Đá Bạc từ năm 1965 - 2009",
-    "keywords": ["luu ky", "lich su"],
+    "keywords": [
+      "luu ky",
+      "lich su"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Lich su Luu Ky_A5.pdf"
   },
   {
@@ -208,7 +261,10 @@
     "number": "",
     "date": "2026",
     "description": "Vũ Thành Công viết về vùng đất Lưu Kỳ",
-    "keywords": ["luu ky", "ha long tren can"],
+    "keywords": [
+      "luu ky",
+      "ha long tren can"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Luu Ky Ha Long tren can.pdf"
   },
   {
@@ -228,7 +284,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 1"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 1"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 1.pdf"
   },
   {
@@ -238,7 +297,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 2"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 2"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 2.pdf"
   },
   {
@@ -248,7 +310,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 3"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 3"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 3.pdf"
   },
   {
@@ -258,7 +323,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 4"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 4"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 4.pdf"
   },
   {
@@ -268,7 +336,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 5"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 5"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 5.pdf"
   },
   {
@@ -278,7 +349,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 6"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 6"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 6.pdf"
   },
   {
@@ -288,7 +362,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 7"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 7"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 7.pdf"
   },
   {
@@ -298,7 +375,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 8"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 8"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 8.pdf"
   },
   {
@@ -308,7 +388,10 @@
     "number": "",
     "date": "2016",
     "description": "",
-    "keywords": ["bac si tot nhat", "tap 9"],
+    "keywords": [
+      "bac si tot nhat",
+      "tap 9"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/BSTNLCM tap 9.pdf"
   },
   {
@@ -318,7 +401,22 @@
     "number": "",
     "date": "",
     "description": "",
-    "keywords": ["enzyme"],
+    "keywords": [
+      "enzyme"
+    ],
     "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/pdf/Nhanto_Enzyme.pdf"
+  },
+  {
+    "id": "pdf-033",
+    "title": "Quy định số 21 về công tác kiểm tra, giám sát và kỷ luật của đảng",
+    "category": "Kiểm tra, giám sát",
+    "number": "21-QĐ/TW",
+    "date": "11/04/2026",
+    "description": "",
+    "keywords": [
+      "qd21",
+      "ktgs"
+    ],
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/kho-tai-lieu/03-kiem-tra-dang/quy--inh-21-q-.tw.pdf"
   }
 ]
