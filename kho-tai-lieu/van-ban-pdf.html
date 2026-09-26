@@ -181,6 +181,13 @@ button.secondary{background:#fff;color:var(--primary)}
                 <div class="viewer-actions">
                     <button id="btnOpen" class="secondary">↗ Mở PDF</button>
                 </div>
+
+                <!-- Đặt nút này ở thanh công cụ phía trên khung iframe xem PDF -->
+                <div class="pdf-toolbar">
+                    <button onclick="shareCurrentDocument()" class="btn-share">
+                        🔗 Chia sẻ
+                    </button>
+                </div>
             </div>
 
             <iframe id="pdf-frame" title="Trình đọc văn bản PDF"></iframe>
@@ -345,6 +352,72 @@ document.addEventListener("DOMContentLoaded",async()=>{
         "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html");
     await loadData();
 });
+
+
+// Nút chia sẻ
+function shareCurrentDocument() {
+    // 1. Sửa biến currentDoc -> currentDocument
+    if (!currentDocument || !currentDocument.url) {
+        alert("Vui lòng chọn văn bản cần chia sẻ!");
+        return;
+    }
+
+    const shareUrl = currentDocument.url;
+    const shareTitle = currentDocument.title || "Tài liệu";
+
+    // 2. Thử dùng Web Share API (Ưu tiên cho Điện thoại / Máy tính bảng)
+    if (navigator.share) {
+        navigator.share({
+            title: shareTitle,
+            text: `Văn bản: ${shareTitle}`,
+            url: shareUrl
+        }).catch(err => {
+            // Nếu người dùng bấm Hủy chia sẻ thì không báo lỗi
+            if (err.name !== 'AbortError') {
+                copyToClipboardFallback(shareUrl);
+            }
+        });
+        return;
+    }
+
+    // 3. Nếu trên Máy tính: Tự động Sao chép liên kết
+    copyToClipboardFallback(shareUrl);
+}
+
+// Hàm hỗ trợ sao chép an toàn cho mọi trình duyệt
+function copyToClipboardFallback(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Đã sao chép đường dẫn văn bản!\nBạn có thể dán (Ctrl+V) để gửi qua Zalo, Facebook...");
+        }).catch(() => {
+            promptCopyManual(text);
+        });
+    } else {
+        promptCopyManual(text);
+    }
+}
+
+function promptCopyManual(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";  // Tránh cuộn trang
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            alert("Đã sao chép đường dẫn văn bản!");
+        } else {
+            prompt("Hãy nhấn Ctrl+C (hoặc giữ vào ô) để sao chép liên kết:", text);
+        }
+    } catch (err) {
+        prompt("Hãy nhấn Ctrl+C (hoặc giữ vào ô) để sao chép liên kết:", text);
+    }
+    document.body.removeChild(textArea);
+}
+
 </script>
 
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
