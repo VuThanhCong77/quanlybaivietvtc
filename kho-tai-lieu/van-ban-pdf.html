@@ -145,7 +145,6 @@ button.secondary{background:#fff;color:var(--primary)}
     .search-row{grid-template-columns:1fr}
     .viewer-head{align-items:flex-start;flex-direction:column}
     .viewer-actions{width:100%}
-    .viewer-actions button{flex:1}
     #pdf-frame{height:70vh;min-height:420px}
 }
 </style>
@@ -180,14 +179,8 @@ button.secondary{background:#fff;color:var(--primary)}
                 <div id="viewerTitle" class="viewer-title">Chưa chọn văn bản</div>
                 <div class="viewer-actions">
                     <button id="btnOpen" class="secondary">↗ Mở PDF</button>
-                </div>
-
-                <!-- Đặt nút này ở thanh công cụ phía trên khung iframe xem PDF -->
-                <div class="pdf-toolbar">
-                    <button onclick="shareCurrentDocument()" class="btn-share">
-                        🔗 Chia sẻ
-                    </button>
-                </div>
+                    <button onclick="shareCurrentDocument()" class="btn-share">🔗 Chia sẻ</button>
+                </div>              
             </div>
 
             <iframe id="pdf-frame" title="Trình đọc văn bản PDF"></iframe>
