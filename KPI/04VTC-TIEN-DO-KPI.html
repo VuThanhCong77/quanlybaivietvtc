@@ -19,7 +19,12 @@
         .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }     
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }    
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #3e6fe0);
+            color: #fff;
+        } 
         
         @media print {
             body > * { display: none !important; }
@@ -47,11 +52,18 @@
             @page { size: A4 landscape; margin: 10mm; }
         }
     </style>
+
+    <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
+    <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
+    <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col">
 
 <!-- HEADER -->
-<header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-lg border-b border-indigo-800">
+ <header id="menu"></header>
+
+<div class="header">
     <div class="max-w-7xl mx-auto px-4 py-5 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex items-center space-x-3">
             <div class="p-3 bg-indigo-600/30 rounded-xl border border-indigo-400/30 backdrop-blur-sm">
@@ -68,7 +80,7 @@
             </span>
         </div>
     </div>
-</header>
+</div>
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full space-y-6">
 

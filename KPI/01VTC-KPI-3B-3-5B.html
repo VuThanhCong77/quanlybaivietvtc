@@ -27,6 +27,10 @@
                 text-align: right;
         }
 
+        .header {
+            background: linear-gradient(135deg, #2563eb, #3e6fe0);
+            color: #fff;
+        }
     
     /* Thiết lập cho Bảng in Mẫu 3B và 5B */
   @media print {
@@ -122,10 +126,17 @@
     </style>
     <!-- Dynamic Style for Print Orientation -->
     <style id="dynamicPrintStyle"></style>
+
+    <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
+    <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
+    <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col">
 
-<header class="bg-gradient-to-r from-slate-900 via-sky-900 to-slate-900 text-white shadow-lg border-b border-sky-700">
+<header id="menu"></header>
+
+<div class="header">
     <div class="max-w-7xl mx-auto px-4 py-5 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex items-center space-x-3">
             <div class="p-3 bg-sky-600/30 rounded-xl border border-sky-400/30 backdrop-blur-sm">
@@ -144,7 +155,7 @@
             </span>
         </div>
     </div>
-</header>
+</div>
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full space-y-6">
 
