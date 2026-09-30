@@ -922,37 +922,70 @@
     // Default sample data for initial launch or reset
     const defaultSampleTasks = [
         {
+            quy: "Quý 1",
             truc: "Trục (1): THỰC HIỆN MỤC TIÊU PHÁT TRIỂN KINH TẾ - XÃ HỘI VÀ NHIỆM VỤ CHÍNH TRỊ ĐƯỢC GIAO",
             noidung: "Tham mưu xây dựng Chương trình hành động thực hiện Nghị quyết Đại hội Đảng bộ",
             captrinh: "Đảng ủy",
             dokho: "Cực kỳ khó - Phức tạp",
             sanpham: "Chương trình hành động",
             soluong: 1,
-            tiendo: "Tháng 3",
-            quy: "Quý 1",
+            tiendo: "Tháng 3",            
             ghichu: "1"
         },
         {
+            quy: "Quý 2",
             truc: "Trục (2): HOÀN THIỆN THỂ CHẾ, ĐẨY MẠNH PHÂN CẤP, PHÂN QUYỀN GẮN VỚI KIỂM TRA, GIÁM SÁT",
             noidung: "Kiểm tra chuyên đề công tác quản lý đất đai và đầu tư công",
             captrinh: "Ban thường vụ Đảng ủy",
             dokho: "Thường xuyên",
             sanpham: "Kết luận",
             soluong: 1,
-            tiendo: "Tháng 5",
-            quy: "Quý 2",
-            ghichu: "Đang tiến hành"
+            tiendo: "Tháng 5",            
+            ghichu: "0.95"
         },
         {
+            quy: "Quý 3",
             truc: "Trục (3): THÚC ĐẨY PHÁT TRIỂN KHOA HỌC, CÔNG NGHỆ, ĐỔI MỚI SÁNG TẠO VÀ CHUYỂN ĐỔI SỐ",
             noidung: "Số hóa dữ liệu hồ sơ kiểm tra, giám sát giai đoạn 2020-2025",
             captrinh: "UBKT Đảng ủy",
             dokho: "Khó - Không phức tạp",
             sanpham: "Hệ thống CSDL",
             soluong: 1,
-            tiendo: "Tháng 11",
-            quy: "Quý 3",
+            tiendo: "Tháng 11",            
             ghichu: "0.75"
+        },
+        {
+            quy: "Quý 4",
+            truc: "Trục (4): XÂY DỰNG ĐẢNG VÀ HỆ THỐNG CHÍNH TRỊ TSVM; GIỮ GÌN ĐOÀN KẾT, THỐNG NHẤT NỘI BỘ; PHÒNG, CHỐNG TNLPTC",
+            noidung: "Báo cáo công tác kiểm tra, giám sát năm 2026",
+            captrinh: "UBKT Đảng ủy",
+            dokho: "Thường xuyên",
+            sanpham: "Báo cáo",
+            soluong: 1,
+            tiendo: "Tháng 11",            
+            ghichu: "0.85"
+        },
+        {
+            quy: "Quý 3",
+            truc: "Trục (5): PHÁT TRIỂN VĂN HÓA, CON NGƯỜI, BẢO ĐẢM AN SINH XÃ HỘI, NÂNG CAO ĐỜI SỐNG NHÂN DÂN",
+            noidung: "Quyết định giám sát thực hiện chế độ an sinh xã hội năm 2026",
+            captrinh: "UBKT Đảng ủy",
+            dokho: "Khó - Không phức tạp",
+            sanpham: "Quyết định",
+            soluong: 1,
+            tiendo: "Tháng 9",            
+            ghichu: "0.5"
+        },
+        {
+            quy: "Quý 4",
+            truc: "Trục (6): CỦNG CỐ QUỐC PHÒNG, AN NINH, GIỮ VỮNG ỔN ĐỊNH CHÍNH TRỊ - XÃ HỘI, NÂNG CAO HIỆU QUẢ ĐỐI NGOẠI VÀ HỘI NHẬP QUỐC TẾ",
+            noidung: "Tham mưu báo cáo tháng định kỳ Đảng ủy phường việc lãnh đạo, chỉ đạo",
+            captrinh: "Ban thường vụ Đảng ủy",
+            dokho: "Thường xuyên",
+            sanpham: "Báo cáo",
+            soluong: 3,
+            tiendo: "Hàng tháng",
+            ghichu: "0.85"
         }
     ];
 
@@ -1919,7 +1952,7 @@ function closePrintModal5B() {
         "Trục (2): HOÀN THIỆN THỂ CHẾ, ĐẨY MẠNH PHÂN CẤP, PHÂN QUYỀN GẮN VỚI KIỂM TRA, GIÁM SÁT",
         "Trục (3): THÚC ĐẨY PHÁT TRIỂN KHOA HỌC, CÔNG NGHỆ, ĐỔI MỚI SÁNG TẠO VÀ CHUYỂN ĐỔI SỐ",
         "Trục (4): XÂY DỰNG ĐẢNG VÀ HỆ THỐNG CHÍNH TRỊ TRONG SẠCH, VỮNG MẠNH; GIỮ GÌN ĐOÀN KẾT, THỐNG NHẤT NỘI BỘ; PHÒNG, CHỐNG THAM NHŨNG, LÃNG PHÍ, TIÊU CỰC",
-        "Trục 5: PHÁT TRIỂN VĂN HÓA, CON NGƯỜI, BẢO ĐẢM AN SINH XÃ HỘI, NÂNG CAO ĐỜI SỐNG NHÂN DÂN",
+        "Trục (5): PHÁT TRIỂN VĂN HÓA, CON NGƯỜI, BẢO ĐẢM AN SINH XÃ HỘI, NÂNG CAO ĐỜI SỐNG NHÂN DÂN",
         "Trục (6): CỦNG CỐ QUỐC PHÒNG, AN NINH, GIỮ VỮNG ỔN ĐỊNH CHÍNH TRỊ - XÃ HỘI, NÂNG CAO HIỆU QUẢ ĐỐI NGOẠI VÀ HỘI NHẬP QUỐC TẾ"
     ];
 
