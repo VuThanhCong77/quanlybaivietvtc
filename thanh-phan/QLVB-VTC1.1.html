@@ -12,9 +12,9 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--text)}
-header{background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;padding:22px 5%}
-header h1{margin:0 0 6px;font-size:26px}
-header p{margin:0;opacity:.9}
+.header{background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;padding:20px 5%}
+.header h1{text-align:center; margin:0 0 6px; font-size:20px}
+.header p{text-align:center; margin:0;opacity:.9}
 .container{max-width:1450px;margin:22px auto;padding:0 18px}
 .toolbar,.panel{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .toolbar{padding:14px;display:grid;grid-template-columns:1fr auto auto;gap:10px;margin-bottom:18px}
@@ -45,19 +45,21 @@ button{border:0;border-radius:8px;padding:10px 14px;cursor:pointer;font-weight:6
 .file-item{border:1px solid var(--border);border-radius:9px;padding:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}
 .file-main b{display:block}.file-main small{color:var(--muted)}
 .actions{display:flex;gap:7px}
-footer{text-align:center;color:#77838e;padding:25px}
+footer{margin: 6px auto 0; max-width:1420px; background:linear-gradient(135deg,var(--primary2),var(--primary)); text-align:center;color:#fff;padding:16px}
 @media(max-width:900px){
  .toolbar{grid-template-columns:1fr}
  .layout{grid-template-columns:1fr}
 }
 </style>
+
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+<script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
+
 </head>
 <body>
 
-<header>
-  <h1>📁 QUẢN LÝ HỒ SƠ ĐIỆN TỬ</h1>
-  <p><b>Chỉ Xem / Mở trực tiếp được Tệp pdf - ảnh - html...</b></p>
-</header>
+<header id="menu"></header>
 
 <div class="container">
   <div class="toolbar">
@@ -76,6 +78,10 @@ footer{text-align:center;color:#77838e;padding:25px}
     </aside>
 
     <main class="panel">
+<div class="header">
+  <h1>📁 QUẢN LÝ HỒ SƠ ĐIỆN TỬ</h1>
+  <p><b>Chỉ Xem / Mở trực tiếp được Tệp pdf - ảnh - html...</b></p>
+</div>
       <div id="content" class="content">
         <div class="empty">Chọn một thư mục hoặc tệp tin trên cây bên trái để xem nội dung.</div>
       </div>
