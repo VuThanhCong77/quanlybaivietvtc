@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quản lý Hồ sơ Điện tử</title>
+<style>
+:root{
+  --primary:#087fba;--primary2:#005b87;--bg:#f4f7fa;--card:#fff;
+  --text:#203040;--muted:#6b7785;--border:#dce4eb;--danger:#c62828;
+  --shadow:0 8px 25px rgba(20,50,70,.08)
+}
+*{box-sizing:border-box}
+body.qlvb-body{
+      background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.36),
+            rgba(255, 255, 255, 0.54)
+        ),
+        url("https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bia/anh-nen.webp");
+    /*
+       Ảnh luôn phủ hết chiều ngang
+    */
+    background-size: 100% auto;
+
+    /*
+       Nền cố định khi cuộn trang
+    */
+    background-attachment: fixed;
+
+    background-position:
+        center top;
+
+    background-color: #eaf8ff;
+  
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text)
+}
+.header{background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;padding:20px 5%}
+.header h1{text-align:center; margin:0 0 6px; font-size:20px}
+.header p{text-align:center; margin:0;opacity:.9}
+.container{max-width:1450px;margin:22px auto;padding:0 18px}
+.toolbar,.panel{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.toolbar{padding:14px;display:grid;grid-template-columns:1fr auto auto;gap:10px;margin-bottom:18px}
+input,select,textarea,button{font:inherit}
+input,select,textarea{width:100%;border:1px solid #cfd9e2;border-radius:8px;padding:10px 11px;background:#fff}
+button{border:0;border-radius:8px;padding:10px 14px;cursor:pointer;font-weight:600}
+.btn{background:var(--primary);color:#fff}.btn:hover{background:var(--primary2)}
+.btn-light{background:#edf4f8;color:#14536d}.btn-danger{background:#fee;color:var(--danger)}
+.layout{display:grid;grid-template-columns:380px 1fr;gap:18px}
+.panel{overflow:hidden}
+.panel-head{padding:15px 17px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.panel-head h2{font-size:17px;margin:0}
+.tree{padding:12px;min-height:500px;max-height:75vh;overflow-y:auto}
+.node{margin:4px 0}
+.node-title{display:flex;align-items:center;gap:7px;padding:8px;border-radius:8px;cursor:pointer;user-select:none}
+.node-title:hover{background:#edf6fa}
+.node-title.active{background:#dff2fb;color:#005b87;font-weight:700}
+.children{margin-left:18px;border-left:1px dashed #cbd7df;padding-left:6px;display:none}
+.children.open{display:block}
+.badge{margin-left:auto;background:#edf1f4;border-radius:20px;padding:2px 7px;font-size:12px;color:#617080}
+.empty{padding:35px;text-align:center;color:var(--muted)}
+.content{padding:18px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat{padding:14px;background:#f7fafc;border:1px solid var(--border);border-radius:10px}
+.stat b{display:block;font-size:20px;color:var(--primary2);margin-top:4px}
+.section{margin-bottom:20px}.section h3{font-size:16px;margin:0 0 10px}
+.file-list{display:flex;flex-direction:column;gap:8px}
+.file-item{border:1px solid var(--border);border-radius:9px;padding:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.file-main b{display:block}.file-main small{color:var(--muted)}
+.actions{display:flex;gap:7px}
+footer{margin: 6px auto 0; max-width:1420px; background:linear-gradient(135deg,var(--primary2),var(--primary)); text-align:center;color:#fff;padding:16px}
+@media(max-width:900px){
+ .toolbar{grid-template-columns:1fr}
+ .layout{grid-template-columns:1fr}
+}
+</style>
+
+<link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+<script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
+
+</head>
+<body class="qlvb-body">
+
+<header id="menu"></header>
+
+<div class="container">
+  <div class="toolbar">
+    <input id="search" placeholder="🔎 Tìm nhanh thư mục, tên tệp tin trên máy tính...">
+    <button class="btn" onclick="selectRootFolder()">📂 Chọn thư mục gốc trên máy tính</button>
+
+  </div>
+
+  <div class="layout">
+    <aside class="panel">
+      <div class="panel-head">
+        <h2>🌳 Cây thư mục máy tính</h2>        
+        <span id="rootFolderName" style="font-size:12px;color:var(--muted)">Chưa chọn thư mục</span>
+      </div>
+      <div id="tree" class="tree"><div class="empty">Bấm "📂 Chọn thư mục gốc" để bắt đầu kết nối dữ liệu máy tính.</div></div>
+    </aside>
+
+    <main class="panel">
+<div class="header">
+  <h1>📁 QUẢN LÝ HỒ SƠ ĐIỆN TỬ</h1>
+  <p><b>Chỉ Xem / Mở trực tiếp được Tệp pdf - ảnh - html...</b></p>
+</div>
+      <div id="content" class="content">
+        <div class="empty">Chọn một thư mục hoặc tệp tin trên cây bên trái để xem nội dung.</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer>
+  Ứng dụng sử dụng File System Access API • Dữ liệu đọc trực tiếp từ ổ cứng, không cần tải lên máy chủ.<br>
+  <b>Nhiệm kỳ / Đơn vị / Vụ việc / Tệp</b>
+
+</footer>
+
+<script>
+let rootHandle = null;
+let fileTreeData = null;
+let selectedPath = '';
+
+// Check trình duyệt có hỗ trợ File System Access API không
+if (!('showDirectoryPicker' in window)) {
+  alert('Trình duyệt của bạn không hỗ trợ File System Access API. Vui lòng sử dụng Google Chrome hoặc Microsoft Edge mới nhất.');
+}
+
+// 1. CHỌN THƯ MỤC GỐC TỪ MÁY TÍNH
+async function selectRootFolder() {
+  try {
+    rootHandle = await window.showDirectoryPicker();
+    document.getElementById('rootFolderName').textContent = '📁 ' + rootHandle.name;
+    
+    // Đọc toàn bộ cây thư mục đệ quy
+    fileTreeData = await readDirectoryRecursive(rootHandle, rootHandle.name);
+    
+    renderTree();
+  } catch (err) {
+    if (err.name !== 'AbortError') {
+      alert('Không thể mở thư mục: ' + err.message);
+    }
+  }
+}
+
+// 2. ĐỌC TẤT CẢ THƯ MỤC & TỆP CON ĐỆ QUY
+async function readDirectoryRecursive(dirHandle, path) {
+  const node = {
+    name: dirHandle.name,
+    kind: 'directory',
+    path: path,
+    handle: dirHandle,
+    children: [],
+    fileCount: 0
+  };
+
+  for await (const entry of dirHandle.values()) {
+    const childPath = path + '/' + entry.name;
+    if (entry.kind === 'directory') {
+      const childDir = await readDirectoryRecursive(entry, childPath);
+      node.children.push(childDir);
+      node.fileCount += childDir.fileCount;
+    } else if (entry.kind === 'file') {
+      node.children.push({
+        name: entry.name,
+        kind: 'file',
+        path: childPath,
+        handle: entry
+      });
+      node.fileCount++;
+    }
+  }
+
+  // Sắp xếp thư mục lên trước, tệp tin xuống sau
+  node.children.sort((a, b) => {
+    if (a.kind === b.kind) return a.name.localeCompare(b.name);
+    return a.kind === 'directory' ? -1 : 1;
+  });
+
+  return node;
+}
+
+// 3. HIỂN THỊ CÂY THƯ MỤC TRÊN GIAO DIỆN
+function renderTree() {
+  if (!fileTreeData) return;
+  const filterText = document.getElementById('search').value.toLowerCase().trim();
+  const treeContainer = document.getElementById('tree');
+  
+  // Vẫn vẽ cây thư mục bên trái
+  treeContainer.innerHTML = buildTreeHTML(fileTreeData, filterText, true);
+
+  // NẾU CÓ TỪ KHÓA TÌM KIẾM: Hiển thị ngay kết quả tìm tệp ở khung bên phải
+  if (filterText !== '') {
+    showSearchResults(filterText);
+  }
+}
+
+// Hàm mới: Gom tất cả tệp tìm thấy và hiển thị rõ thư mục chứa
+function showSearchResults(filter) {
+  const matchedFiles = [];
+  
+  function collectFiles(node) {
+    if (node.kind === 'file' && node.name.toLowerCase().includes(filter)) {
+      matchedFiles.push(node);
+    } else if (node.children) {
+      node.children.forEach(collectFiles);
+    }
+  }
+  
+  collectFiles(fileTreeData);
+
+  document.getElementById('content').innerHTML = `
+    <div class="section">
+      <div style="color:var(--muted);font-size:13px">Kết quả tìm kiếm toàn bộ hệ thống</div>
+      <h2 style="margin:4px 0 0">🔍 Từ khóa: "${esc(filter)}"</h2>
+      <small style="color:var(--muted)">Tìm thấy ${matchedFiles.length} tệp phù hợp</small>
+    </div>
+
+    <div class="section">
+      <div class="file-list">
+        ${matchedFiles.length ? matchedFiles.map(f => {
+          // Tách lấy đường dẫn thư mục mẹ
+          const parentFolder = f.path.substring(0, f.path.lastIndexOf('/'));
+          return `
+            <div class="file-item">
+              <div class="file-main">
+                <b>📄 ${esc(f.name)}</b>
+                <small style="color: #005b87; font-weight: bold;">📁 Thư mục chứa: ${esc(parentFolder)}</small><br>
+                <small style="color:var(--muted)">Đường dẫn đầy đủ: ${esc(f.path)}</small>
+              </div>
+              <div class="actions">
+                <button class="btn" onclick="openRealFile('${esc(f.path)}')">↗ Xem / Mở tệp</button>
+              </div>
+            </div>
+          `;
+        }).join('') : '<div class="empty">Không tìm thấy tệp tin nào khớp với từ khóa.</div>'}
+      </div>
+    </div>
+  `;
+}
+
+function buildTreeHTML(node, filter, isRoot = false) {
+  if (node.kind === 'file') return '';
+
+  const hasMatchingChildren = filter ? checkFilterMatch(node, filter) : true;
+  if (filter && !hasMatchingChildren) return '';
+
+  let html = `<div class="node">`;
+  html += `
+    <div class="node-title ${selectedPath === node.path ? 'active' : ''}" onclick="toggleFolder(event, '${esc(node.path)}')">
+      <span>📁 ${esc(node.name)}</span>
+      <span class="badge">${node.fileCount} tệp</span>
+    </div>
+  `;
+
+  const isOpen = filter || isRoot;
+  html += `<div class="children ${isOpen ? 'open' : ''}" id="dir-${cssId(node.path)}">`;
+  
+  for (const child of node.children) {
+    if (child.kind === 'directory') {
+      html += buildTreeHTML(child, filter);
+    }
+  }
+  html += `</div></div>`;
+  return html;
+}
+
+function toggleFolder(event, path) {
+  event.stopPropagation();
+  selectedPath = path;
+  
+  // Đổi trạng thái ẩn/hiện thư mục con
+  const childDiv = document.getElementById('dir-' + cssId(path));
+  if (childDiv) {
+    childDiv.classList.toggle('open');
+  }
+
+  // Cập nhật giao diện Active
+  document.querySelectorAll('.node-title').forEach(el => el.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  // Hiển thị chi tiết thư mục được chọn
+  const node = findNodeByPath(fileTreeData, path);
+  if (node) showDirectoryContent(node);
+}
+
+function checkFilterMatch(node, filter) {
+  if (node.name.toLowerCase().includes(filter)) return true;
+  if (node.children) {
+    return node.children.some(child => checkFilterMatch(child, filter));
+  }
+  return false;
+}
+
+// 4. HIỂN THỊ NỘI DUNG VÀ TỆP TIN CỦA THƯ MỤC
+function showDirectoryContent(node) {
+  const files = node.children.filter(c => c.kind === 'file');
+  const subDirs = node.children.filter(c => c.kind === 'directory');
+
+  // Tạo hiển thị đường dẫn dạng phân cấp đẹp mắt
+  const pathParts = node.path.split('/');
+  const breadcrumb = pathParts.join(' ❯ ');
+
+  document.getElementById('content').innerHTML = `
+    <div class="section">
+      <div style="color:var(--primary2);font-size:13px;font-weight:bold;margin-bottom:4px">
+        📍 Vị trí: ${esc(breadcrumb)}
+      </div>
+      <h2 style="margin:4px 0 0">📂 ${esc(node.name)}</h2>
+      <small style="color:var(--muted)">Đường dẫn hệ thống: ${esc(node.path)}</small>
+    </div>
+
+    <div class="summary">
+      <div class="stat">Thư mục con<b>${subDirs.length}</b></div>
+      <div class="stat">Tổng số tệp tin<b>${files.length}</b></div>
+      <div class="stat">Loại kết nối<b style="font-size:15px;color:green">● Trực tiếp Ổ cứng</b></div>
+    </div>
+
+    <div class="section">
+      <h3>Danh sách tệp tin trong thư mục này</h3>
+      <div class="file-list">
+        ${files.length ? files.map(f => `
+          <div class="file-item">
+            <div class="file-main">
+              <b>📄 ${esc(f.name)}</b>
+              <small>Đường dẫn tệp: ${esc(f.path)}</small>
+            </div>
+            <div class="actions">
+              <button class="btn" onclick="openRealFile('${esc(f.path)}')">↗ Xem / Mở tệp</button>
+            </div>
+          </div>
+        `).join('') : '<div class="empty">Thư mục này chưa có tệp tin nào.</div>'}
+      </div>
+    </div>
+  `;
+}
+
+// 5. ĐỌC VÀ MỞ TỆP THẬT TỪ Ổ CỨNG TRÊN TRÌNH DUYỆT
+async function openRealFile(path) {
+  const node = findNodeByPath(fileTreeData, path);
+  if (!node || !node.handle) {
+    alert('Không tìm thấy tệp tin!');
+    return;
+  }
+
+  try {
+    // Lấy đối tượng File thực tế từ máy tính
+    const file = await node.handle.getFile();
+    
+    // Tạo đường dẫn tạm (Blob URL) để xem trực tiếp trên trình duyệt
+    const fileURL = URL.createObjectURL(file);
+    window.open(fileURL, '_blank');
+  } catch (err) {
+    alert('Không thể đọc tệp từ ổ đĩa: ' + err.message);
+  }
+}
+
+// HÀM BỔ TRỢ HỆ THỐNG
+function findNodeByPath(root, path) {
+  if (root.path === path) return root;
+  if (root.children) {
+    for (const child of root.children) {
+      const found = findNodeByPath(child, path);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+function esc(s){ return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
+function cssId(str){ return str.replace(/[^a-zA-Z0-9-_]/g, '_'); }
+
+document.getElementById('search').addEventListener('input', renderTree);
+</script>
+
+</body>
+</html>
