@@ -11,7 +11,7 @@
   --shadow:0 8px 25px rgba(20,50,70,.08)
 }
 *{box-sizing:border-box}
-body{
+body.qlvb-body{
       background-image:
         linear-gradient(
             rgba(255, 255, 255, 0.36),
@@ -82,7 +82,7 @@ footer{margin: 6px auto 0; max-width:1420px; background:linear-gradient(135deg,v
 <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
 
 </head>
-<body>
+<body class="qlvb-body">
 
 <header id="menu"></header>
 
@@ -189,7 +189,58 @@ function renderTree() {
   if (!fileTreeData) return;
   const filterText = document.getElementById('search').value.toLowerCase().trim();
   const treeContainer = document.getElementById('tree');
+  
+  // Vẫn vẽ cây thư mục bên trái
   treeContainer.innerHTML = buildTreeHTML(fileTreeData, filterText, true);
+
+  // NẾU CÓ TỪ KHÓA TÌM KIẾM: Hiển thị ngay kết quả tìm tệp ở khung bên phải
+  if (filterText !== '') {
+    showSearchResults(filterText);
+  }
+}
+
+// Hàm mới: Gom tất cả tệp tìm thấy và hiển thị rõ thư mục chứa
+function showSearchResults(filter) {
+  const matchedFiles = [];
+  
+  function collectFiles(node) {
+    if (node.kind === 'file' && node.name.toLowerCase().includes(filter)) {
+      matchedFiles.push(node);
+    } else if (node.children) {
+      node.children.forEach(collectFiles);
+    }
+  }
+  
+  collectFiles(fileTreeData);
+
+  document.getElementById('content').innerHTML = `
+    <div class="section">
+      <div style="color:var(--muted);font-size:13px">Kết quả tìm kiếm toàn bộ hệ thống</div>
+      <h2 style="margin:4px 0 0">🔍 Từ khóa: "${esc(filter)}"</h2>
+      <small style="color:var(--muted)">Tìm thấy ${matchedFiles.length} tệp phù hợp</small>
+    </div>
+
+    <div class="section">
+      <div class="file-list">
+        ${matchedFiles.length ? matchedFiles.map(f => {
+          // Tách lấy đường dẫn thư mục mẹ
+          const parentFolder = f.path.substring(0, f.path.lastIndexOf('/'));
+          return `
+            <div class="file-item">
+              <div class="file-main">
+                <b>📄 ${esc(f.name)}</b>
+                <small style="color: #005b87; font-weight: bold;">📁 Thư mục chứa: ${esc(parentFolder)}</small><br>
+                <small style="color:var(--muted)">Đường dẫn đầy đủ: ${esc(f.path)}</small>
+              </div>
+              <div class="actions">
+                <button class="btn" onclick="openRealFile('${esc(f.path)}')">↗ Xem / Mở tệp</button>
+              </div>
+            </div>
+          `;
+        }).join('') : '<div class="empty">Không tìm thấy tệp tin nào khớp với từ khóa.</div>'}
+      </div>
+    </div>
+  `;
 }
 
 function buildTreeHTML(node, filter, isRoot = false) {
@@ -250,11 +301,17 @@ function showDirectoryContent(node) {
   const files = node.children.filter(c => c.kind === 'file');
   const subDirs = node.children.filter(c => c.kind === 'directory');
 
+  // Tạo hiển thị đường dẫn dạng phân cấp đẹp mắt
+  const pathParts = node.path.split('/');
+  const breadcrumb = pathParts.join(' ❯ ');
+
   document.getElementById('content').innerHTML = `
     <div class="section">
-      <div style="color:var(--muted);font-size:13px">Thư mục máy tính</div>
+      <div style="color:var(--primary2);font-size:13px;font-weight:bold;margin-bottom:4px">
+        📍 Vị trí: ${esc(breadcrumb)}
+      </div>
       <h2 style="margin:4px 0 0">📂 ${esc(node.name)}</h2>
-      <small style="color:var(--muted)">Đường dẫn tương đối: ${esc(node.path)}</small>
+      <small style="color:var(--muted)">Đường dẫn hệ thống: ${esc(node.path)}</small>
     </div>
 
     <div class="summary">
@@ -264,7 +321,7 @@ function showDirectoryContent(node) {
     </div>
 
     <div class="section">
-      <h3>Danh sách tệp tin thực tế trong thư mục</h3>
+      <h3>Danh sách tệp tin trong thư mục này</h3>
       <div class="file-list">
         ${files.length ? files.map(f => `
           <div class="file-item">
