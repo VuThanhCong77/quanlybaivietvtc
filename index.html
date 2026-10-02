@@ -894,33 +894,6 @@ VIDEO
     </div>
 
 </section>
-
-<!-- =====================================================
-DANH SÁCH TỔ DÂN PHỐ
-===================================================== -->
-
-    <section class="tdp-section">
-        <h2 class="tdp-title">Tổ dân phố phường Lưu Kiếm</h2>
-        <div class="tdp-grid">
-            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/to-dan-pho-luu-ky.html" class="tdp-card">1. Lưu Kỳ</a>
-            <a href="#" class="tdp-card">2. Liên Khê</a>
-            <a href="#" class="tdp-card">3. Thiểm Khê</a>
-            <a href="#" class="tdp-card">4. Mai Động</a>
-            <a href="#" class="tdp-card">5. Thụ Khê</a>
-            <a href="#" class="tdp-card">6. Phúc Liệt</a>
-            <a href="#" class="tdp-card">7. Phúc Nam</a>
-            <a href="#" class="tdp-card">8. Trúc Động</a>
-            <a href="#" class="tdp-card">9. Mỹ Liệt</a>
-            <a href="#" class="tdp-card">10. Trại Kênh</a>
-            <a href="#" class="tdp-card">11. Kênh Giang</a>
-            <a href="#" class="tdp-card">12. Mỹ Giang</a>
-            <a href="#" class="tdp-card">13. Trà Sơn</a>
-            <a href="#" class="tdp-card">14. Trúc Sơn</a>
-            <a href="#" class="tdp-card">15. Đông Sơn</a>
-            <a href="#" class="tdp-card">16. Thiên Đông</a>
-           
-        </div>
-    </section>
 	
 <!-- =====================================================
 LIÊN HỆ NHANH
@@ -1126,6 +1099,147 @@ Facebook
         <i class="fa-solid fa-clipboard-list"></i>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-bdJC13AYmDhd9MVQimJrgkgnh4rpJPMSm2sH8X-9Xr80QA/viewform?usp=publish-editor">Góp ý</a>
     </button>
+</div>
+
+<!-- =====================================================
+     BỘ TIỆN ÍCH NỔI VŨ THÀNH CÔNG
+     ===================================================== -->
+
+<div class="vtc-floating-tools">
+
+    <!-- Nút chính -->
+    <button
+        class="vtc-tools-main"
+        id="vtcToolsMain"
+        type="button"
+        aria-label="Mở tiện ích"
+        aria-expanded="false"
+        title="Tiện ích">
+
+        🧰
+
+    </button>
+
+
+    <!-- 8 tiện ích -->
+    <div class="vtc-tools-menu" id="vtcToolsMenu">
+
+        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/lich-cong-tac.html"
+           class="vtc-tool"
+           title="Lịch công tác">
+
+            <span>📅</span>
+            <small>Lịch</small>
+
+        </a>
+
+
+        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/quan-tri/soan-bai-viet.html"
+           class="vtc-tool"
+           title="Soạn bài viết">
+
+            <span>📝</span>
+            <small>Soạn bài</small>
+
+        </a>
+
+
+        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/kho-tai-lieu/van-ban-pdf.html"
+           class="vtc-tool"
+           title="Tra cứu văn bản">
+
+            <span>📚</span>
+            <small>Tài liệu</small>
+
+        </a>
+
+
+        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/QLVB-VTC1.1.html"
+           class="vtc-tool"
+           title="Quản lý hồ sơ">
+
+            <span>🗂️</span>
+            <small>Hồ sơ</small>
+
+        </a>
+
+        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/doc-Word.html"
+           class="vtc-tool"
+           title="Đọc văn bản Word">
+
+            <span>🎙️</span>
+            <small>Đọc Word</small>
+
+        </a>
+        
+        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/podcast/Podcast.html"
+           class="vtc-tool"
+           title=" Podcast">
+
+            <span>🎙️</span>
+            <small> Podcast</small>
+
+        </a>      
+
+        <button
+            class="vtc-tool"
+            type="button"
+            data-vtc-action="qr">
+
+            <span>📱</span>
+            <small>QR Code</small>
+
+        </button>
+
+
+        <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/KPI/01VTC-KPI-3B-3-5B.html"
+           class="vtc-tool"
+           title="KPI">
+
+            <span>🎯</span>
+            <small>KPI</small>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- Hộp QR -->
+<div
+    class="vtc-qr-modal"
+    id="vtcQrModal"
+    aria-hidden="true">
+
+    <div class="vtc-qr-box">
+
+        <button
+            class="vtc-qr-close"
+            type="button"
+            aria-label="Đóng">
+
+            ×
+
+        </button>
+
+        <h3>📱 Mã QR</h3>
+
+        <div id="vtcQrCode"></div>
+
+        <p>Quét mã để mở trang này</p>
+
+        <button
+            class="vtc-copy-url"
+            id="vtcCopyUrl"
+            type="button">
+
+            Sao chép liên kết
+
+        </button>
+
+    </div>
+
 </div>
 
 </body>
