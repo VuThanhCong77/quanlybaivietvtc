@@ -1377,8 +1377,8 @@ section.am-nhac iframe {
 
     position: fixed;
 
-    right: 12px;
-    bottom: 80px;
+    right: 60px;
+    bottom: 20px;
 
     z-index: 99990;
 
@@ -1732,8 +1732,8 @@ section.am-nhac iframe {
 
     .vtc-floating-tools {
 
-        right: 12px;
-        bottom: 80px;
+        right: 60px;
+        bottom: 20px;
     }
 
 
