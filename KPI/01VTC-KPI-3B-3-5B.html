@@ -151,6 +151,193 @@
     <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
     <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
 
+<style>
+
+/* =========================================================
+   BỘ TIỆN ÍCH KPI - CHỈ DÙNG TRÊN TRANG KPI
+   ========================================================= */
+.kpi-tools {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    font-family: 'Inter', sans-serif;
+}
+
+.kpi-tools-toggle {
+    width: 58px;
+    height: 58px;
+    border: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    font-size: 23px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, .28);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.kpi-tools-toggle:hover {
+    transform: scale(1.07);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, .34);
+}
+
+.kpi-tools-toggle:active {
+    transform: scale(.95);
+}
+
+.kpi-tools-panel {
+    position: absolute;
+    right: 0;
+    bottom: 70px;
+    width: 292px;
+    padding: 14px;
+    background: rgba(255,255,255,.98);
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,23,42,.20);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(.96);
+    transform-origin: bottom right;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+
+.kpi-tools.open .kpi-tools-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.kpi-tools-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 4px 11px;
+    margin-bottom: 7px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.kpi-tools-title strong {
+    color: #0f172a;
+    font-size: 15px;
+}
+
+.kpi-tools-title span {
+    color: #64748b;
+    font-size: 11px;
+}
+
+.kpi-tool-btn {
+    width: 100%;
+    border: 0;
+    background: #f8fafc;
+    color: #334155;
+    border-radius: 12px;
+    padding: 10px 11px;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+
+.kpi-tool-btn:hover {
+    background: #eff6ff;
+    color: #1d4ed8;
+    transform: translateX(-2px);
+}
+
+.kpi-tool-icon {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    background: #e0f2fe;
+}
+
+.kpi-tool-import .kpi-tool-icon { background: #fef3c7; }
+.kpi-tool-sample .kpi-tool-icon { background: #f1f5f9; }
+.kpi-tool-print .kpi-tool-icon { background: #e0e7ff; }
+.kpi-tool-user .kpi-tool-icon { background: #dbeafe; }
+.kpi-tool-score .kpi-tool-icon { background: #ede9fe; }
+.kpi-tool-export .kpi-tool-icon { background: #dcfce7; }
+
+.kpi-export-box {
+    margin-top: 5px;
+    padding: 7px;
+    background: #f8fafc;
+    border-radius: 12px;
+    display: flex;
+    gap: 6px;
+}
+
+.kpi-export-box select {
+    min-width: 0;
+    flex: 1;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    border-radius: 8px;
+    padding: 7px 8px;
+    color: #475569;
+    font-size: 12px;
+    outline: none;
+}
+
+.kpi-export-box button {
+    border: 0;
+    border-radius: 8px;
+    padding: 7px 10px;
+    background: #0284c7;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.kpi-export-box button:hover {
+    background: #0369a1;
+}
+
+#kpiExcelFileInput {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .kpi-tools {
+        right: 13px;
+        bottom: 13px;
+    }
+
+    .kpi-tools-toggle {
+        width: 54px;
+        height: 54px;
+        font-size: 21px;
+    }
+
+    .kpi-tools-panel {
+        width: min(292px, calc(100vw - 26px));
+        bottom: 65px;
+    }
+
+    .kpi-tool-btn {
+        padding: 9px 10px;
+    }
+}
+
+</style>
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col">
 
@@ -176,53 +363,7 @@
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full space-y-6">
 
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-5">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            <!-- Left: Import & Reset Controls -->
-            <div class="flex flex-wrap items-center gap-3">
-                <input type="file" id="excelFileInput" accept=".xlsx" class="hidden" onchange="importFromExcel(event)">
-                <button onclick="document.getElementById('excelFileInput').click()" class="inline-flex items-center px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-xl shadow-sm transition-all duration-200 active:scale-95">
-                    <i class="fa-solid fa-file-import mr-2"></i> Nạp Dữ Liệu Từ Excel
-                </button>
-                <button onclick="loadSampleData()" class="inline-flex items-center px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-xl transition-colors">
-                    <i class="fa-solid fa-rotate-left mr-2 text-slate-500"></i> Dữ Liệu Mẫu
-                </button>
-            </div>
-
-            <!-- Right: Export Controls -->
-            <div class="flex flex-wrap items-center gap-3 border-t lg:border-t-0 pt-3 lg:pt-0 border-slate-100">
-                <button onclick="openPrintModal()" class="inline-flex items-center px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-all duration-200 active:scale-95">
-                    <i class="fa-solid fa-print mr-2"></i> In Mẫu 3B
-                </button>
-
-                <button onclick="openPrintModal3()" class="inline-flex items-center px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-all duration-200 active:scale-95">
-                    <i class="fa-solid fa-user-check mr-2"></i> In Mẫu 3
-                </button>
-
-                <!-- Bổ sung nút bấm Mẫu 5B -->
-                <button onclick="openModal5B()" class="inline-flex items-center px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-all duration-200 active:scale-95">
-                    <i class="fa-solid fa-calculator mr-2"></i> Chấm Điểm KPI
-                </button>
-
-                <button onclick="exportToExcel('ALL')" class="inline-flex items-center px-4 py-2.5 bg-sky-800 hover:bg-sky-900 text-white text-sm font-semibold rounded-xl shadow-sm transition-all duration-200 active:scale-95">
-                    <i class="fa-solid fa-file-excel mr-2 text-emerald-400"></i> Xuất Năm
-                </button>
-                
-                <div class="inline-flex items-center bg-slate-50 border border-slate-200 rounded-xl p-1">
-                    <select id="exportQuySelect" class="bg-transparent text-sm font-medium text-slate-700 py-1.5 px-3 outline-none cursor-pointer">
-                        <option value="Quý 1">Quý 1</option>
-                        <option value="Quý 2">Quý 2</option>
-                        <option value="Quý 3">Quý 3</option>
-                        <option value="Quý 4">Quý 4</option>
-                    </select>
-                    <button onclick="exportSelectedQuy()" class="inline-flex items-center px-3.5 py-1.5 bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
-                        <i class="fa-solid fa-download mr-1.5"></i> Xuất Quý
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-5 lg:p-6 transition-all duration-300" id="formCard">
         <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
             <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2" id="formHeaderTitle">
@@ -2260,6 +2401,165 @@ function closeAllModals() {
     };
 
     
+</script>
+
+
+<!-- =========================================================
+     BỘ TIỆN ÍCH KPI
+     ========================================================= -->
+<div class="kpi-tools" id="kpiTools">
+
+    <div class="kpi-tools-panel" id="kpiToolsPanel">
+
+        <div class="kpi-tools-title">
+            <strong>🧰 Tiện ích KPI</strong>
+            <span>Công cụ nhanh</span>
+        </div>
+
+        <input type="file" id="kpiExcelFileInput" accept=".xlsx">
+
+        <button type="button" class="kpi-tool-btn kpi-tool-import" id="kpiImportBtn">
+            <span class="kpi-tool-icon">📥</span>
+            <span>Nạp dữ liệu từ Excel</span>
+        </button>
+
+        <button type="button" class="kpi-tool-btn kpi-tool-sample" id="kpiSampleBtn">
+            <span class="kpi-tool-icon">🔄</span>
+            <span>Dữ liệu mẫu</span>
+        </button>
+
+        <button type="button" class="kpi-tool-btn kpi-tool-print" id="kpiPrint3BBtn">
+            <span class="kpi-tool-icon">🖨️</span>
+            <span>In Mẫu 3B</span>
+        </button>
+
+        <button type="button" class="kpi-tool-btn kpi-tool-user" id="kpiPrint3Btn">
+            <span class="kpi-tool-icon">👤</span>
+            <span>In Mẫu 3</span>
+        </button>
+
+        <button type="button" class="kpi-tool-btn kpi-tool-score" id="kpiScoreBtn">
+            <span class="kpi-tool-icon">🧮</span>
+            <span>Chấm điểm KPI – Mẫu 5B</span>
+        </button>
+
+        <div class="kpi-export-box">
+            <select id="kpiExportQuySelect" aria-label="Chọn quý để xuất">
+                <option value="Quý 1">Quý 1</option>
+                <option value="Quý 2">Quý 2</option>
+                <option value="Quý 3">Quý 3</option>
+                <option value="Quý 4">Quý 4</option>
+            </select>
+            <button type="button" id="kpiExportQuyBtn">📊 Xuất quý</button>
+        </div>
+
+        <button type="button" class="kpi-tool-btn kpi-tool-export" id="kpiExportAllBtn">
+            <span class="kpi-tool-icon">📊</span>
+            <span>Xuất dữ liệu cả năm</span>
+        </button>
+
+    </div>
+
+    <button type="button"
+            class="kpi-tools-toggle"
+            id="kpiToolsToggle"
+            aria-label="Mở tiện ích KPI"
+            title="Tiện ích KPI">
+        🧰
+    </button>
+
+</div>
+
+
+<script>
+/* =========================================================
+   ĐIỀU KHIỂN BỘ TIỆN ÍCH KPI
+   Không thay đổi các hàm nghiệp vụ hiện có.
+   ========================================================= */
+(function () {
+    function initKpiTools() {
+        const tools = document.getElementById('kpiTools');
+        const toggle = document.getElementById('kpiToolsToggle');
+        const panel = document.getElementById('kpiToolsPanel');
+
+        if (!tools || !toggle || !panel) return;
+
+        toggle.addEventListener('click', function (event) {
+            event.stopPropagation();
+            tools.classList.toggle('open');
+        });
+
+        panel.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        document.addEventListener('click', function () {
+            tools.classList.remove('open');
+        });
+
+        document.getElementById('kpiImportBtn').addEventListener('click', function () {
+            const input = document.getElementById('kpiExcelFileInput');
+            input.value = '';
+            input.click();
+        });
+
+        document.getElementById('kpiExcelFileInput').addEventListener('change', function (event) {
+            if (typeof window.importFromExcel === 'function') {
+                window.importFromExcel(event);
+            }
+        });
+
+        document.getElementById('kpiSampleBtn').addEventListener('click', function () {
+            if (typeof window.loadSampleData === 'function') {
+                window.loadSampleData();
+            }
+        });
+
+        document.getElementById('kpiPrint3BBtn').addEventListener('click', function () {
+            if (typeof window.openPrintModal === 'function') {
+                window.openPrintModal();
+            }
+        });
+
+        document.getElementById('kpiPrint3Btn').addEventListener('click', function () {
+            if (typeof window.openPrintModal3 === 'function') {
+                window.openPrintModal3();
+            }
+        });
+
+        document.getElementById('kpiScoreBtn').addEventListener('click', function () {
+            if (typeof window.openModal5B === 'function') {
+                window.openModal5B();
+            }
+        });
+
+        document.getElementById('kpiExportAllBtn').addEventListener('click', function () {
+            if (typeof window.exportToExcel === 'function') {
+                window.exportToExcel('ALL');
+            }
+        });
+
+        document.getElementById('kpiExportQuyBtn').addEventListener('click', function () {
+            const select = document.getElementById('kpiExportQuySelect');
+
+            // Đồng bộ với select xuất quý hiện có trong logic cũ nếu hàm dùng nó.
+            const oldSelect = document.getElementById('exportQuySelect');
+            if (oldSelect) {
+                oldSelect.value = select.value;
+            }
+
+            if (typeof window.exportSelectedQuy === 'function') {
+                window.exportSelectedQuy();
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initKpiTools);
+    } else {
+        initKpiTools();
+    }
+})();
 </script>
 
 </body>
