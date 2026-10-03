@@ -52,7 +52,7 @@ NÚT ĐIỀU HƯỚNG
 
 #nut-len-dau{
 
-    bottom:25px;
+    bottom:18px;
 
 }
 
@@ -74,5 +74,11 @@ RESPONSIVE MOBILE
         right:14px;
 
     }
+    
+    #nut-len-dau{
+
+    bottom:18px;
+
+   }
 
 }
