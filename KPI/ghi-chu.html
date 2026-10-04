@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trình chỉnh sửa File .TXT Online</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+        <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
+    <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
+    <script defer src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
+
+    <style>
+        /* Custom scrollbar for editor */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.4);
+            border-radius: 4px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col font-sans transition-colors duration-200">
+
+    <header id="menu"></header>
+
+<div class="header">
+    <div class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Action buttons header -->
+            <div class="flex items-center space-x-2">
+                <button id="themeToggleBtn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition" title="Đổi giao diện Sáng/Tối">
+                    <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline text-lg text-amber-400"></i>
+                </button>
+                <a href="#dropArea" onclick="document.getElementById('fileInput').click()" class="hidden sm:inline-flex items-center px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg transition">
+                    <i class="fa-solid fa-folder-open mr-2"></i> Mở File
+                </a>
+                <button onclick="downloadFile()" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition active:scale-95">
+                    <i class="fa-solid fa-download mr-2"></i> Tải File
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+
+        <!-- File Upload / Drag & Drop Zone -->
+        <div id="dropArea" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 bg-white dark:bg-slate-800/50 rounded-xl p-6 text-center cursor-pointer transition-all group relative">
+            <input type="file" id="fileInput" accept=".txt,text/plain" class="hidden">
+            <div class="flex flex-col items-center justify-center space-y-2">
+                <div class="w-12 h-12 rounded-full bg-brand-50 dark:bg-slate-700 text-brand-500 dark:text-brand-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                        Nhấp để chọn file hoặc kéo thả file <span class="text-brand-500 dark:text-brand-400 font-mono">.txt</span> vào đây
+                    </p>
+                    <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Hỗ trợ định dạng mã hóa UTF-8, ANSI và văn bản thuần túy</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Meta & Toolbar Header -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <!-- File Info & Name Change -->
+            <div class="flex items-center space-x-3 w-full md:w-auto">
+                <i class="fa-regular fa-file-code text-slate-400 text-xl"></i>
+                <div class="flex-1">
+                    <label for="fileNameInput" class="block text-xs font-medium text-slate-400 mb-0.5">Tên file xuất ra</label>
+                    <div class="flex items-center">
+                        <input type="text" id="fileNameInput" value="van-ban-moi.txt" class="font-medium bg-transparent border-b border-transparent hover:border-slate-300 focus:border-brand-500 focus:outline-none text-slate-800 dark:text-slate-100 text-sm px-0 py-0.5 w-48 sm:w-64 transition">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toolbar Quick Tools -->
+            <div class="flex flex-wrap items-center gap-2 border-t md:border-t-0 pt-3 md:pt-0 border-slate-200 dark:border-slate-700">
+                <button onclick="toggleFindReplaceModal()" class="px-3 py-1.5 text-xs font-medium bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-lg transition inline-flex items-center">
+                    <i class="fa-solid fa-magnifying-glass mr-1.5 text-slate-400"></i> Tìm & Thay thế
+                </button>
+                <div class="relative inline-block text-left" id="formatDropdown">
+                    <button onclick="toggleDropdown('formatMenu')" class="px-3 py-1.5 text-xs font-medium bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-lg transition inline-flex items-center">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-1.5 text-amber-500"></i> Công cụ định dạng <i class="fa-solid fa-chevron-down ml-1.5 text-[10px]"></i>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="formatMenu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-1 z-20">
+                        <button onclick="applyFormat('uppercase')" class="w-full text-left px-4 py-2 text-xs text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">CHỮ IN HOA</button>
+                        <button onclick="applyFormat('lowercase')" class="w-full text-left px-4 py-2 text-xs text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">chữ in thường</button>
+                        <button onclick="applyFormat('capitalize')" class="w-full text-left px-4 py-2 text-xs text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Viết Hoa Đầu Từ</button>
+                        <div class="border-t border-slate-100 dark:border-slate-700 my-1"></div>
+                        <button onclick="applyFormat('trimSpaces')" class="w-full text-left px-4 py-2 text-xs text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Xóa khoảng trắng thừa</button>
+                        <button onclick="applyFormat('removeEmptyLines')" class="w-full text-left px-4 py-2 text-xs text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Xóa dòng trống</button>
+                    </div>
+                </div>
+                <button onclick="clearContent()" class="px-3 py-1.5 text-xs font-medium bg-red-50 dark:bg-red-950/30 hover:bg-red-100 dark:hover:bg-red-900/40 text-red-600 dark:text-red-400 rounded-lg transition inline-flex items-center">
+                    <i class="fa-solid fa-trash-can mr-1.5"></i> Xóa tất cả
+                </button>
+            </div>
+        </div>
+
+        <!-- Editor Box Area -->
+        <div class="flex-1 flex flex-col bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden min-h-[400px]">
+            <!-- Editor Textarea -->
+            <div class="relative flex-1 flex flex-col">
+                <textarea id="editor" spellcheck="false" placeholder="Nhập nội dung văn bản của bạn tại đây hoặc mở file .txt..." class="w-full flex-1 p-4 font-mono text-sm sm:text-base bg-transparent text-slate-800 dark:text-slate-100 focus:outline-none resize-none leading-relaxed"></textarea>
+            </div>
+
+            <!-- Editor Status Bar -->
+            <div class="bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 px-4 py-2.5 flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-2">
+                <div class="flex items-center space-x-4">
+                    <span><i class="fa-solid fa-font mr-1 text-slate-400"></i> Ký tự: <strong id="charCount" class="text-slate-700 dark:text-slate-200 font-mono">0</strong></span>
+                    <span><i class="fa-solid fa-align-left mr-1 text-slate-400"></i> Từ: <strong id="wordCount" class="text-slate-700 dark:text-slate-200 font-mono">0</strong></span>
+                    <span><i class="fa-solid fa-list-ol mr-1 text-slate-400"></i> Dòng: <strong id="lineCount" class="text-slate-700 dark:text-slate-200 font-mono">1</strong></span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span><i class="fa-solid fa-hard-drive mr-1 text-slate-400"></i> Dung lượng: <strong id="byteSize" class="text-slate-700 dark:text-slate-200 font-mono">0 B</strong></span>
+                    <span id="saveStatus" class="text-emerald-500 dark:text-emerald-400 hidden"><i class="fa-solid fa-check mr-1"></i> Đã sẵn sàng</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Find and Replace Modal -->
+    <div id="findReplaceModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full max-w-md p-6 relative animate-in fade-in zoom-in-95 duration-150">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center">
+                    <i class="fa-solid fa-magnifying-glass text-brand-500 mr-2"></i> Tìm kiếm & Thay thế
+                </h3>
+                <button onclick="toggleFindReplaceModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Cụm từ tìm kiếm</label>
+                    <input type="text" id="findInput" placeholder="Nhập từ cần tìm..." class="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-800 dark:text-slate-100">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Thay thế bằng</label>
+                    <input type="text" id="replaceInput" placeholder="Nhập từ thay thế..." class="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-800 dark:text-slate-100">
+                </div>
+
+                <div class="flex items-center space-x-4 text-xs">
+                    <label class="flex items-center cursor-pointer text-slate-600 dark:text-slate-300">
+                        <input type="checkbox" id="matchCase" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500 mr-1.5"> Phân biệt hoa/thường
+                    </label>
+                </div>
+
+                <!-- Replace Modal Action Buttons -->
+                <div class="flex items-center justify-end space-x-2 pt-2">
+                    <button onclick="executeReplace(false)" class="px-3 py-2 text-xs font-medium bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-lg transition">
+                        Thay thế lần lượt
+                    </button>
+                    <button onclick="executeReplace(true)" class="px-3 py-2 text-xs font-medium bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition shadow-sm">
+                        Thay thế tất cả
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <script>
+        // Element Selectors
+        const editor = document.getElementById('editor');
+        const fileInput = document.getElementById('fileInput');
+        const dropArea = document.getElementById('dropArea');
+        const fileNameInput = document.getElementById('fileNameInput');
+        
+        const charCountEl = document.getElementById('charCount');
+        const wordCountEl = document.getElementById('wordCount');
+        const lineCountEl = document.getElementById('lineCount');
+        const byteSizeEl = document.getElementById('byteSize');
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+        // Dark Mode Toggle
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Update Editor Statistics
+        function updateStats() {
+            const text = editor.value;
+            const chars = text.length;
+            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const lines = text === '' ? 1 : text.split('\n').length;
+            const bytes = new Blob([text]).size;
+
+            charCountEl.textContent = chars.toLocaleString();
+            wordCountEl.textContent = words.toLocaleString();
+            lineCountEl.textContent = lines.toLocaleString();
+            byteSizeEl.textContent = formatBytes(bytes);
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        editor.addEventListener('input', updateStats);
+
+        // Read File Contents
+        function handleFile(file) {
+            if (!file) return;
+
+            if (!file.type.includes('text') && !file.name.endsWith('.txt')) {
+                showToast('Chỉ hỗ trợ file văn bản (.txt)!', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                editor.value = e.target.result;
+                fileNameInput.value = file.name;
+                updateStats();
+                showToast(`Đã mở file "${file.name}" thành công!`, 'success');
+            };
+            reader.onerror = function () {
+                showToast('Lỗi khi đọc file!', 'error');
+            };
+            reader.readAsText(file);
+        }
+
+        // File Input Event
+        fileInput.addEventListener('change', (e) => {
+            handleFile(e.target.files[0]);
+        });
+
+        // Drag and Drop Events
+        dropArea.addEventListener('click', () => fileInput.click());
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropArea.classList.add('border-brand-500', 'bg-brand-50/50', 'dark:bg-slate-700/50');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropArea.classList.remove('border-brand-500', 'bg-brand-50/50', 'dark:bg-slate-700/50');
+            }, false);
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        // Format Operations
+        function applyFormat(type) {
+            let text = editor.value;
+            if (!text) return;
+
+            switch (type) {
+                case 'uppercase':
+                    editor.value = text.toUpperCase();
+                    break;
+                case 'lowercase':
+                    editor.value = text.toLowerCase();
+                    break;
+                case 'capitalize':
+                    editor.value = text.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+                    break;
+                case 'trimSpaces':
+                    editor.value = text.split('\n').map(line => line.trim().replace(/\s+/g, ' ')).join('\n');
+                    break;
+                case 'removeEmptyLines':
+                    editor.value = text.split('\n').filter(line => line.trim() !== '').join('\n');
+                    break;
+            }
+            updateStats();
+            toggleDropdown('formatMenu');
+            showToast('Đã áp dụng định dạng thành công!', 'info');
+        }
+
+        function clearContent() {
+            if (editor.value.trim() === '') return;
+            if (confirm('Bạn có chắc chắn muốn xóa toàn bộ nội dung trong trình biên tập?')) {
+                editor.value = '';
+                updateStats();
+                showToast('Đã xóa toàn bộ nội dung', 'info');
+            }
+        }
+
+        // Download File
+        function downloadFile() {
+            const content = editor.value;
+            let fileName = fileNameInput.value.trim();
+
+            if (!fileName) fileName = 'van-ban-moi.txt';
+            if (!fileName.endsWith('.txt')) fileName += '.txt';
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            URL.revokeObjectURL(link.href);
+            showToast(`Đã xuất file "${fileName}" thành công!`, 'success');
+        }
+
+        // Find & Replace Modal Controls
+        function toggleFindReplaceModal() {
+            const modal = document.getElementById('findReplaceModal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('findInput').focus();
+            }
+        }
+
+        function executeReplace(replaceAll = false) {
+            const findText = document.getElementById('findInput').value;
+            const replaceText = document.getElementById('replaceInput').value;
+            const matchCase = document.getElementById('matchCase').checked;
+
+            if (!findText) {
+                showToast('Vui lòng nhập từ cần tìm!', 'error');
+                return;
+            }
+
+            const text = editor.value;
+            const flags = matchCase ? 'g' : 'gi';
+            const regex = new RegExp(escapeRegExp(findText), flags);
+
+            if (!regex.test(text)) {
+                showToast('Không tìm thấy từ cần thay thế!', 'info');
+                return;
+            }
+
+            if (replaceAll) {
+                const count = (text.match(regex) || []).length;
+                editor.value = text.replace(regex, replaceText);
+                showToast(`Đã thay thế ${count} cụm từ!`, 'success');
+            } else {
+                editor.value = text.replace(new RegExp(escapeRegExp(findText), matchCase ? '' : 'i'), replaceText);
+                showToast('Đã thay thế 1 vị trí!', 'success');
+            }
+
+            updateStats();
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Dropdown toggler
+        function toggleDropdown(id) {
+            const menu = document.getElementById(id);
+            menu.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (e) => {
+            const dropdown = document.getElementById('formatDropdown');
+            if (dropdown && !dropdown.contains(e.target)) {
+                document.getElementById('formatMenu').classList.add('hidden');
+            }
+        });
+
+        // Toast Messages
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            let bgClass = 'bg-slate-800 text-white';
+            let icon = 'fa-circle-info';
+
+            if (type === 'success') {
+                bgClass = 'bg-emerald-600 text-white';
+                icon = 'fa-circle-check';
+            } else if (type === 'error') {
+                bgClass = 'bg-rose-600 text-white';
+                icon = 'fa-triangle-exclamation';
+            }
+
+            toast.className = `flex items-center space-x-2 px-4 py-3 rounded-lg shadow-lg ${bgClass} text-xs font-medium transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto`;
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl + S or Cmd + S to download
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                downloadFile();
+            }
+            // Ctrl + F or Cmd + F to Find & Replace
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                toggleFindReplaceModal();
+            }
+        });
+
+        // Initialize Stats
+        updateStats();
+    </script>
+</body>
+</html>
