@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TXT Editor Compact Pro</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for editor */
+        textarea::-webkit-scrollbar, #lineNumbers::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        textarea::-webkit-scrollbar-track, #lineNumbers::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        textarea::-webkit-scrollbar-thumb, #lineNumbers::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.3);
+            border-radius: 3px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.6);
+        }
+
+        /* Tooltip styling */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 3px 8px;
+            background-color: #0f172a;
+            color: #fff;
+            font-size: 11px;
+            white-space: nowrap;
+            border-radius: 4px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 50;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .dark [data-tooltip]:before {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        [data-tooltip]:hover:before {
+            opacity: 1;
+            transform: translateX(-50%) translateY(2px);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 h-full flex flex-col font-sans transition-colors duration-200 overflow-hidden" id="appBody">
+
+    <!-- Compact Main Header -->
+    <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700/80 px-3 py-1.5 flex items-center justify-between shrink-0 select-none z-20">
+        <!-- Left: Logo & File Info -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+            <div class="flex items-center space-x-2">
+            <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/index.html" class="menu-item-single">
+                <span class="p-1.5 bg-brand-600 text-white rounded-md text-xs font-bold leading-none shadow-sm">
+                    <i class="fa-solid fa-file-pen text-sm"></i>
+                </span>
+            </a>
+                <span class="text-xs font-bold tracking-tight text-slate-800 dark:text-slate-200 hidden md:inline">TXT Edit</span>
+            </div>
+
+            <div class="h-4 w-px bg-slate-200 dark:bg-slate-700"></div>
+
+            <!-- Compact File Name Input -->
+            <div class="flex items-center space-x-1">
+                <i class="fa-regular fa-file text-slate-400 text-xs"></i>
+                <input type="text" id="fileNameInput" value="van-ban-moi.txt" class="bg-transparent text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/50 focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-500 rounded px-1.5 py-0.5 w-36 sm:w-52 transition">
+            </div>
+        </div>
+
+        <!-- Right: Actions Toolbar -->
+        <div class="flex items-center space-x-1 sm:space-x-1.5">
+            <input type="file" id="fileInput" accept=".txt,text/plain" class="hidden">
+            
+            <button onclick="document.getElementById('fileInput').click()" data-tooltip="Mở File (.txt)" class="p-1.5 text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition text-xs flex items-center space-x-1">
+                <i class="fa-solid fa-folder-open text-sm"></i>
+                <span class="hidden sm:inline font-medium">Mở</span>
+            </button>
+
+            <button onclick="downloadFile()" data-tooltip="Tải xuống (Ctrl+S)" class="px-2 py-1 bg-brand-600 hover:bg-brand-700 text-white rounded-md transition text-xs font-medium flex items-center space-x-1.5 shadow-sm active:scale-95">
+                <i class="fa-solid fa-download"></i>
+                <span class="hidden sm:inline">Lưu File</span>
+            </button>
+
+            <div class="h-4 w-px bg-slate-200 dark:bg-slate-700 mx-0.5"></div>
+
+            <button id="themeToggleBtn" data-tooltip="Chuyển chế độ Sáng/Tối" class="p-1.5 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition">
+                <i class="fa-solid fa-moon dark:hidden text-xs"></i>
+                <i class="fa-solid fa-sun hidden dark:inline text-xs text-amber-400"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sub-Toolbar (Formatting & Find Toggle Bar) -->
+    <div class="bg-slate-50 dark:bg-slate-800/90 border-b border-slate-200 dark:border-slate-700 px-3 py-1 flex items-center justify-between shrink-0 text-xs gap-2 select-none z-10">
+        <!-- Quick Editing Tools -->
+        <div class="flex items-center space-x-1 overflow-x-auto no-scrollbar">
+            <button onclick="toggleFindBar()" id="findBarBtn" data-tooltip="Tìm & Thay thế (Ctrl+F)" class="px-2 py-1 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded flex items-center space-x-1 transition">
+                <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                <span class="hidden md:inline">Tìm kiếm</span>
+            </button>
+
+            <div class="h-3 w-px bg-slate-300 dark:bg-slate-700"></div>
+
+            <!-- Case formatting -->
+            <button onclick="applyFormat('uppercase')" data-tooltip="Chuyển IN HOA" class="px-1.5 py-1 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded font-mono text-[11px] font-bold">AA</button>
+            <button onclick="applyFormat('lowercase')" data-tooltip="Chuyển in thường" class="px-1.5 py-1 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded font-mono text-[11px]">aa</button>
+            <button onclick="applyFormat('capitalize')" data-tooltip="Viết Hoa Đầu Từ" class="px-1.5 py-1 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded font-mono text-[11px]">Aa</button>
+
+            <div class="h-3 w-px bg-slate-300 dark:bg-slate-700"></div>
+
+            <!-- Text cleanup -->
+            <button onclick="applyFormat('trimSpaces')" data-tooltip="Xóa khoảng trắng thừa" class="px-2 py-1 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded flex items-center space-x-1">
+                <i class="fa-solid fa-broom text-amber-500"></i>
+                <span class="hidden lg:inline">Xóa khoảng trắng</span>
+            </button>
+            <button onclick="applyFormat('removeEmptyLines')" data-tooltip="Xóa dòng trống" class="px-2 py-1 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded flex items-center space-x-1">
+                <i class="fa-solid fa-align-center text-brand-500"></i>
+                <span class="hidden lg:inline">Xóa dòng trống</span>
+            </button>
+        </div>
+
+        <!-- Right Side Quick Controls -->
+        <div class="flex items-center space-x-1 shrink-0">
+            <button onclick="clearContent()" data-tooltip="Xóa toàn bộ văn bản" class="px-2 py-1 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded transition flex items-center space-x-1">
+                <i class="fa-solid fa-trash-can"></i>
+                <span class="hidden sm:inline">Xóa tất cả</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Inline Sleek Find & Replace Bar (Hidden by default) -->
+    <div id="findReplaceBar" class="hidden bg-slate-200/80 dark:bg-slate-900/90 border-b border-slate-300 dark:border-slate-700 p-2 text-xs flex-wrap items-center gap-2 transition-all shrink-0">
+        <div class="flex items-center space-x-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2 py-1 focus-within:ring-1 focus-within:ring-brand-500">
+            <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+            <input type="text" id="findInput" placeholder="Tìm..." class="bg-transparent focus:outline-none w-28 sm:w-40 text-slate-800 dark:text-slate-100">
+        </div>
+
+        <div class="flex items-center space-x-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2 py-1 focus-within:ring-1 focus-within:ring-brand-500">
+            <i class="fa-solid fa-arrow-right-arrow-left text-slate-400"></i>
+            <input type="text" id="replaceInput" placeholder="Thay thế bằng..." class="bg-transparent focus:outline-none w-28 sm:w-40 text-slate-800 dark:text-slate-100">
+        </div>
+
+        <label class="flex items-center space-x-1 cursor-pointer select-none text-slate-600 dark:text-slate-400">
+            <input type="checkbox" id="matchCase" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+            <span>A/a</span>
+        </label>
+
+        <div class="flex items-center space-x-1">
+            <button onclick="executeReplace(false)" class="px-2 py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded font-medium">Thay thế</button>
+            <button onclick="executeReplace(true)" class="px-2 py-1 bg-brand-600 hover:bg-brand-700 text-white rounded font-medium shadow-sm">Tất cả</button>
+            <button onclick="toggleFindBar()" class="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 ml-1">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Editor Container (Maximizing Space with Line Numbers) -->
+    <div class="flex-1 flex relative bg-white dark:bg-slate-900 overflow-hidden">
+        <!-- Line Numbers Column -->
+        <div id="lineNumbers" class="w-10 sm:w-12 bg-slate-50 dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-600 py-3 font-mono text-xs text-right pr-2 select-none overflow-hidden shrink-0">
+            1
+        </div>
+
+        <!-- Textarea Editor -->
+        <textarea id="editor" spellcheck="false" placeholder="Nhập văn bản hoặc kéo thả file .txt vào đây để chỉnh sửa..." class="w-full h-full p-3 font-mono text-xs sm:text-sm bg-transparent text-slate-800 dark:text-slate-100 focus:outline-none resize-none leading-relaxed overflow-y-scroll"></textarea>
+
+        <!-- Drop Overlay indicator -->
+        <div id="dropOverlay" class="absolute inset-0 bg-brand-500/10 dark:bg-brand-500/20 border-2 border-dashed border-brand-500 backdrop-blur-xs flex flex-col items-center justify-center text-brand-600 dark:text-brand-400 hidden pointer-events-none z-30">
+            <i class="fa-solid fa-cloud-arrow-up text-4xl mb-2 animate-bounce"></i>
+            <span class="font-semibold text-sm">Thả file .txt vào đây để tải</span>
+        </div>
+    </div>
+
+    <!-- Minimalist Footer Status Bar -->
+    <footer class="bg-slate-50 dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700/80 px-3 py-1 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 select-none shrink-0 font-mono">
+        <div class="flex items-center space-x-3">
+            <span>Dòng: <strong id="lineCount" class="text-slate-700 dark:text-slate-200">1</strong></span>
+            <span>Từ: <strong id="wordCount" class="text-slate-700 dark:text-slate-200">0</strong></span>
+            <span>Ký tự: <strong id="charCount" class="text-slate-700 dark:text-slate-200">0</strong></span>
+        </div>
+        <div class="flex items-center space-x-3">
+            <span>Dung lượng: <strong id="byteSize" class="text-slate-700 dark:text-slate-200">0 B</strong></span>
+            <span class="hidden sm:inline text-slate-400 dark:text-slate-500">UTF-8</span>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed bottom-8 right-4 z-50 flex flex-col gap-1.5 pointer-events-none"></div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const editor = document.getElementById('editor');
+        const lineNumbers = document.getElementById('lineNumbers');
+        const fileInput = document.getElementById('fileInput');
+        const fileNameInput = document.getElementById('fileNameInput');
+        const dropOverlay = document.getElementById('dropOverlay');
+        const findReplaceBar = document.getElementById('findReplaceBar');
+        
+        const charCountEl = document.getElementById('charCount');
+        const wordCountEl = document.getElementById('wordCount');
+        const lineCountEl = document.getElementById('lineCount');
+        const byteSizeEl = document.getElementById('byteSize');
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+        // Dark Mode Logic
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Update Line Numbers & Stats
+        function updateEditor() {
+            const text = editor.value;
+            const lines = text === '' ? 1 : text.split('\n').length;
+            
+            // Sync line numbers
+            let lineNumHTML = '';
+            for (let i = 1; i <= lines; i++) {
+                lineNumHTML += i + '<br>';
+            }
+            lineNumbers.innerHTML = lineNumHTML;
+
+            // Stats calculation
+            const chars = text.length;
+            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const bytes = new Blob([text]).size;
+
+            charCountEl.textContent = chars.toLocaleString();
+            wordCountEl.textContent = words.toLocaleString();
+            lineCountEl.textContent = lines.toLocaleString();
+            byteSizeEl.textContent = formatBytes(bytes);
+        }
+
+        // Synchronize Scroll between Textarea and Line Numbers
+        editor.addEventListener('scroll', () => {
+            lineNumbers.scrollTop = editor.scrollTop;
+        });
+
+        editor.addEventListener('input', updateEditor);
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // File Handler
+        function handleFile(file) {
+            if (!file) return;
+
+            if (!file.type.includes('text') && !file.name.endsWith('.txt')) {
+                showToast('Chỉ hỗ trợ mở file văn bản (.txt)', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                editor.value = e.target.result;
+                fileNameInput.value = file.name;
+                updateEditor();
+                showToast(`Đã mở "${file.name}"`, 'success');
+            };
+            reader.onerror = function () {
+                showToast('Không thể đọc file!', 'error');
+            };
+            reader.readAsText(file);
+        }
+
+        fileInput.addEventListener('change', (e) => {
+            handleFile(e.target.files[0]);
+        });
+
+        // Drag & Drop Handling for Window
+        window.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropOverlay.classList.remove('hidden');
+        });
+
+        window.addEventListener('dragleave', (e) => {
+            if (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) {
+                dropOverlay.classList.add('hidden');
+            }
+        });
+
+        window.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropOverlay.classList.add('hidden');
+            if (e.dataTransfer.files.length > 0) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        // Formatting Functions
+        function applyFormat(type) {
+            let text = editor.value;
+            if (!text) return;
+
+            switch (type) {
+                case 'uppercase':
+                    editor.value = text.toUpperCase();
+                    break;
+                case 'lowercase':
+                    editor.value = text.toLowerCase();
+                    break;
+                case 'capitalize':
+                    editor.value = text.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+                    break;
+                case 'trimSpaces':
+                    editor.value = text.split('\n').map(line => line.trim().replace(/\s+/g, ' ')).join('\n');
+                    break;
+                case 'removeEmptyLines':
+                    editor.value = text.split('\n').filter(line => line.trim() !== '').join('\n');
+                    break;
+            }
+            updateEditor();
+            showToast('Đã định dạng xong', 'info');
+        }
+
+        function clearContent() {
+            if (editor.value.trim() === '') return;
+            if (confirm('Xóa toàn bộ nội dung?')) {
+                editor.value = '';
+                updateEditor();
+                showToast('Đã xóa dữ liệu', 'info');
+            }
+        }
+
+        // Export File
+        function downloadFile() {
+            const content = editor.value;
+            let fileName = fileNameInput.value.trim();
+
+            if (!fileName) fileName = 'van-ban-moi.txt';
+            if (!fileName.endsWith('.txt')) fileName += '.txt';
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+            
+            showToast(`Đã xuất file "${fileName}"`, 'success');
+        }
+
+        // Toggle Find & Replace Bar
+        function toggleFindBar() {
+            findReplaceBar.classList.toggle('hidden');
+            if (!findReplaceBar.classList.contains('hidden')) {
+                document.getElementById('findInput').focus();
+            }
+        }
+
+        function executeReplace(replaceAll = false) {
+            const findText = document.getElementById('findInput').value;
+            const replaceText = document.getElementById('replaceInput').value;
+            const matchCase = document.getElementById('matchCase').checked;
+
+            if (!findText) {
+                showToast('Chưa nhập từ tìm kiếm', 'error');
+                return;
+            }
+
+            const text = editor.value;
+            const flags = matchCase ? 'g' : 'gi';
+            const regex = new RegExp(escapeRegExp(findText), flags);
+
+            if (!regex.test(text)) {
+                showToast('Không tìm thấy từ này', 'info');
+                return;
+            }
+
+            if (replaceAll) {
+                const count = (text.match(regex) || []).length;
+                editor.value = text.replace(regex, replaceText);
+                showToast(`Đã thay thế ${count} vị trí`, 'success');
+            } else {
+                editor.value = text.replace(new RegExp(escapeRegExp(findText), matchCase ? '' : 'i'), replaceText);
+                showToast('Đã thay thế 1 vị trí', 'success');
+            }
+
+            updateEditor();
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Toast Messages
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            let bgClass = 'bg-slate-800 text-white';
+            if (type === 'success') bgClass = 'bg-emerald-600 text-white';
+            if (type === 'error') bgClass = 'bg-rose-600 text-white';
+
+            toast.className = `px-3 py-1.5 rounded shadow-md ${bgClass} text-xs font-medium transition-all duration-200 transform translate-y-2 opacity-0 pointer-events-auto flex items-center space-x-1.5`;
+            toast.innerHTML = `<span>${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 200);
+            }, 2500);
+        }
+
+        // Shortcuts
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                downloadFile();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                toggleFindBar();
+            }
+        });
+
+        // Initialize Editor Line Numbers
+        updateEditor();
+    </script>
+</body>
+</html>
