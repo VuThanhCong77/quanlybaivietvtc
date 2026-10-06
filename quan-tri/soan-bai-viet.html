@@ -270,7 +270,8 @@ button.btn-secondary { background: #6c757d; }
 
         <div id="editor-content" contenteditable="true">
             <p>Nội dung</p>
-            <p><em>Cảm ơn quý vị đã quan tâm và đọc bài viết này!</em></p>
+            <div class="text-center">------</div>
+            <div class="text-center"><em>Cảm ơn quý vị đã quan tâm và đọc bài viết này!</em></div>
         </div>
         <textarea id="content-raw" style="display:none;" class="long-text"></textarea>
 
@@ -303,11 +304,14 @@ button.btn-secondary { background: #6c757d; }
         <label>📅 Ngày viết</label>
         <input id="date" type="text">
 
+        <label>✍️ Tác giả</label>
+        <input id="author" type="text" value="Vũ Thành Công" placeholder="Nhập tên tác giả...">
+
         <label for="scheduledTime">⏰ Lịch đăng tự động (Nếu có)</label>
         <input type="datetime-local" id="scheduledTime">
 
         <label>🖼 Đường dẫn Ảnh bìa</label>
-        <input id="image" value="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/luu-kiem-mnt.webp">
+        <input id="image" value="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/anh-nen.webp">
         <div id="image-preview" style="margin-top:10px; text-align:center;">
             <img id="img-preview-tag" src="" style="max-width:100%; max-height:150px; border-radius:6px; display:none;">
         </div>
@@ -435,6 +439,7 @@ function taoHTML(){
     const title = document.getElementById("title").value;
     const desc = document.getElementById("desc").value;
     const date = document.getElementById("date").value;
+    const author = document.getElementById("author").value.trim() || "Vũ Thành Công";
     const category = document.getElementById("category").value;
     const image = document.getElementById("image").value;
     const content = getNoiDungBaiViet();
@@ -447,7 +452,7 @@ function taoHTML(){
 <title>${title} | Vũ Thành Công</title>
 <meta name="description" content="${desc}">
 <meta name="keywords" content="${title}, ${category}, Vũ Thành Công, Hải Phòng, Lưu Kiếm">
-<meta name="author" content="Vũ Thành Công">
+<meta name="author" content="${author}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0a7f99">
 <link rel="canonical" href="${PAGE}">
@@ -463,7 +468,7 @@ function taoHTML(){
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="${title}">
-<meta property="article:author" content="Vũ Thành Công">
+<meta property="article:author" content="${author}">
 <meta property="article:published_time" content="${date}">
 <meta property="article:section" content="${category}">
 
@@ -482,7 +487,7 @@ function taoHTML(){
   "image":"${imageUrl(image)}",
   "datePublished":"${date}",
   "dateModified":"${date}",
-  "author":{"@type":"Person","name":"Vũ Thành Công"},
+  "author":{"@type":"Person","name":"${author}"},
   "publisher":{
     "@type":"Organization",
     "name":"Vũ Thành Công",
@@ -516,8 +521,8 @@ function taoHTML(){
 
 <!-- HEADER BÀI VIẾT -->
 <header class="header-bai-viet">
-  <h1>${title}</h1>
-  <div class="meta-bai-viet">
+   <h1>${title}</h1>
+   <div class="meta-bai-viet">   
     <span>📅 ${date}</span>
     <span class="dot">•</span>
     <span>👁️ <span id="viewCount">0</span></span>  
@@ -541,12 +546,12 @@ function taoHTML(){
 </section>
 
 <section class="tac-gia">
-<img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/hoasen.webp" alt="Tác giả">
-<div>
-<h3>Vũ Thành Công</h3>
-<p>Chia sẻ về cuộc sống, gia đình, quê hương, và những trải nghiệm.</p>
-</div>
-</section>
+ <img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/hoasen.webp" alt="Tác giả">
+ <div>
+ <h3>✍️ ${author}</h3>
+ <p><em>Chia sẻ về cuộc sống, gia đình, quê hương, và những trải nghiệm.</em></p>
+ </div>
+ </section>
 
 <section class="bai-viet-lien-quan-2">
 <h2 class="related-title"><i class="fas fa-book-open"></i> Có thể quý vị quan tâm</h2>
@@ -612,6 +617,7 @@ function taoJsonMetadata(){
         image: document.getElementById("image").value,
         url: `${BASE}/bai-viet/${folder}/${postId}.html`,
         date: document.getElementById("date").value,
+        author: document.getElementById("author").value.trim() || "Vũ Thành Công",
         scheduledTime: document.getElementById("scheduledTime").value,
         category: document.getElementById("category").value.split(",").map(i => i.trim()),
         featured: true,
@@ -660,6 +666,7 @@ function importBaiViet(e) {
                 document.getElementById("desc").value = data.desc || "";
                 document.getElementById("image").value = data.image || "";
                 document.getElementById("date").value = data.date || "";
+                document.getElementById("author").value = data.author || "Vũ Thành Công";
                 document.getElementById("scheduledTime").value = data.scheduledTime || "";
                 if(data.category) document.getElementById("category").value = data.category.join(", ");
                 capNhatAnhXemTruoc();
@@ -671,6 +678,13 @@ function importBaiViet(e) {
 
             document.getElementById("title").value = doc.querySelector("h1") ? doc.querySelector("h1").innerText : "";
             document.getElementById("desc").value = doc.querySelector(".quote-text") ? doc.querySelector(".quote-text").innerText : "";
+
+            const tacGiaH3 = doc.querySelector(".tac-gia h3");
+            const metaAuthor = doc.querySelector('meta[name="author"]');
+            document.getElementById("author").value =
+                (tacGiaH3 ? tacGiaH3.innerText.trim() : "") ||
+                (metaAuthor ? metaAuthor.getAttribute("content") : "") ||
+                "Vũ Thành Công";
             
             const articleContent = doc.querySelector("#readingContent");
             if (articleContent) {
