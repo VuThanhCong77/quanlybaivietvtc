@@ -63,7 +63,7 @@ textarea:focus-visible {
 
 .header-bai-viet h1 {
     margin-bottom: 16px;
-    color: #222123;
+    color: #4c0692;
     font-size: clamp(1.4rem, 2vw, 1.8rem);
     line-height: 1.25;
 }
@@ -83,7 +83,7 @@ textarea:focus-visible {
   align-items: center;
   gap: 8px;
   font-size: 0.9rem;
-  color: #666;
+  color: #838181;
   margin-top: 10px;
   padding-bottom: 8px;
   border-bottom: 2px solid #0099DA; 
