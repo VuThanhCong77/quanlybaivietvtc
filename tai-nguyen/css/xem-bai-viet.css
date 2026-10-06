@@ -64,7 +64,7 @@ textarea:focus-visible {
 .header-bai-viet h1 {
     margin-bottom: 16px;
     color: #222123;
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-size: clamp(1.2rem, 4vw, 2.6rem);
     line-height: 1.25;
 }
 
@@ -219,11 +219,11 @@ textarea:focus-visible {
 }
 
 .noi-dung-bai-viet h2 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .noi-dung-bai-viet h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .noi-dung-bai-viet ul,
@@ -696,7 +696,7 @@ textarea:focus-visible {
     }
 
     .header-bai-viet h1 {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
     }
 
     .mo-ta-bai-viet {
