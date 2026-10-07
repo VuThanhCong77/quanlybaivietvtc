@@ -52,7 +52,7 @@ textarea:focus-visible {
 ========================================================= */
 
 .trang-bai-viet {
-    width: min(900px, calc(100% - 32px));
+    width: min(1200px, calc(100% - 32px));
     margin: 0 auto;
     padding: 40px 0 60px;
 }
