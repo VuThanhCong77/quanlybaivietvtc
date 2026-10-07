@@ -46,6 +46,10 @@ html += `
 Chính trị
 </a>
 
+<a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/doi-song.html">
+Đời sống
+</a>
+
 <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/van-hoa.html">
 Văn hóa
 </a>
