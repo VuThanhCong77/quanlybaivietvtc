@@ -295,6 +295,9 @@ button.btn-secondary { background: #6c757d; }
             <option value="tin-tuc">Tin tức</option>
             <option value="tong-hop">Tổng hợp</option>
             <option value="chuyen-mon">Chuyên môn</option>
+            <option value="suc-khoe">Sức khỏe</option>
+            <option value="tri-tue">Trí tuệ</option>
+            <option value="hanh-phuc">Hạnh phúc</option>
             <option value="hoi-ky">Hồi ký</option>
         </select>
 
@@ -430,8 +433,13 @@ function imageUrl(path){
 function taoHTML(){
     const folder = document.getElementById("folder").value;
     const folderName = {
-        "tin-tuc":"Tin tức", "tong-hop":"Tổng hợp",
-        "chuyen-mon":"Chuyên môn", "hoi-ky":"Hồi ký"
+        "tin-tuc":"Tin tức", 
+        "tong-hop":"Tổng hợp",
+        "chuyen-mon":"Chuyên môn",
+        "suc-khoe":"Sức khỏe", 
+        "tri-tue":"Trí tuệ",  
+        "hanh-phuc":"Hạnh phúc", 
+        "hoi-ky":"Hồi ký"
     }[folder] || "Tin tức";
 
     const postId = document.getElementById("postId").value || "bai-viet-moi";
