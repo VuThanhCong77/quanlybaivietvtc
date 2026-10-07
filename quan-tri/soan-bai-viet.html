@@ -426,7 +426,7 @@ function imageUrl(path){
     return BASE + "/" + path.replace(/^(\.\.\/)+/,"");
 }
 
-// Tạo cấu trúc mã HTML hoàn chỉnh
+// Tạo cấu trúc mã HTML hoàn chỉnh (Xuất chuẩn khớp 100% file mẫu)
 function taoHTML(){
     const folder = document.getElementById("folder").value;
     const folderName = {
@@ -443,6 +443,9 @@ function taoHTML(){
     const category = document.getElementById("category").value;
     const image = document.getElementById("image").value;
     const content = getNoiDungBaiViet();
+
+    // Biến tạo thẻ đóng script an toàn không gây lỗi trình soạn thảo
+    const closeScript = '</' + 'script>';
 
     generatedHtmlContent = `<!DOCTYPE html>
 <html lang="vi">
@@ -496,7 +499,7 @@ function taoHTML(){
   "mainEntityOfPage":{"@id":"${PAGE}"},
   "inLanguage":"vi"
 }
-<\/script>
+${closeScript}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -507,6 +510,122 @@ function taoHTML(){
 <link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon32.ico">
 <link rel="icon" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/icons/icon192.ico">
 <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/main.css">
+
+<style>
+/* ĐẢM BẢO CHIA 2 CỘT SONG SONG TRÊN MÁY TÍNH */
+main.trang-bai-viet {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 15px !important;
+    display: block !important;
+}
+
+.bai-viet-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 320px !important;
+    gap: 30px !important;
+    align-items: start !important;
+    margin-top: 20px !important;
+    width: 100% !important;
+}
+
+.bai-viet-main {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+.bai-viet-sidebar {
+    width: 320px !important;
+    position: sticky !important;
+    top: 20px !important;
+}
+
+.widget-bai-viet {
+    background: #fff !important;
+    border-radius: 12px !important;
+    padding: 18px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06) !important;
+    border: 1px solid #eef2f7 !important;
+}
+
+.widget-title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 8px !important;
+    border-bottom: 2px solid #0d6efd !important;
+    color: #0d6efd !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.danh-sach-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+.item-sidebar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: all 0.2s ease !important;
+    padding: 6px !important;
+    border-radius: 8px !important;
+}
+
+.item-sidebar:hover {
+    background-color: #f8f9fa !important;
+    transform: translateX(4px) !important;
+}
+
+.item-sidebar img {
+    width: 70px !important;
+    height: 52px !important;
+    object-fit: cover !important;
+    border-radius: 6px !important;
+    flex-shrink: 0 !important;
+    background: #eef2f7 !important;
+}
+
+.item-sidebar .info-sidebar {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+.item-sidebar h4 {
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+    color: #222 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    font-weight: 600 !important;
+}
+
+.item-sidebar .date-sidebar {
+    font-size: 11px !important;
+    color: #777 !important;
+    margin-top: 4px !important;
+    display: block !important;
+}
+
+/* CHUYỂN THÀNH 1 CỘT TRÊN ĐIỆN THOẠI */
+@media (max-width: 992px) {
+    .bai-viet-layout { 
+        grid-template-columns: 1fr !important; 
+    }
+    .bai-viet-sidebar { 
+        width: 100% !important; 
+        position: static !important; 
+    }
+}
+</style>
 </head>
 
 <body data-post-id="${postId}" data-page="chi-tiet">
@@ -519,39 +638,55 @@ function taoHTML(){
 <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/danh-sach-bai-viet.html">${folderName}</a>
 </nav>
 
-<!-- HEADER BÀI VIẾT -->
-<header class="header-bai-viet">
-   <h1>${title}</h1>
-   <div class="meta-bai-viet">   
-    <span>📅 ${date}</span>
-    <span class="dot">•</span>
-    <span>👁️ <span id="viewCount">0</span></span>  
-    <button id="btnDoc" class="btn-tool"><i class="fas fa-volume-up"></i></button>
-    <div id="subscribe-container"></div>
+<!-- KHUNG LAYOUT CHIA 2 CỘT -->
+<div class="bai-viet-layout">
+  
+  <!-- CỘT TRÁI: BÀI VIẾT CHÍNH -->
+  <div class="bai-viet-main">
+    <header class="header-bai-viet">
+       <h1>${title}</h1>
+       <div class="meta-bai-viet">   
+        <span>📅 ${date}</span>
+        <span class="dot">•</span>
+        <span>👁️ <span id="viewCount">0</span></span>  
+        <button id="btnDoc" class="btn-tool"><i class="fas fa-volume-up"></i></button>
+        <div id="subscribe-container"></div>
+      </div>
+    </header>
+
+    <article class="noi-dung-bai-viet" id="readingContent">
+      ${content}
+    </article>
+
+    <section class="cong-cu-bai-viet cong-cu-cuoi">
+      <button id="likeBtn" class="btn-action">
+        👍 <span id="likeCount" class="badge-count">0</span>
+      </button>
+      <button id="btnShare" class="btn-action">
+        🔗 Chia sẻ
+      </button>
+    </section>
+
+    <section class="tac-gia">
+     <img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/hoasen.webp" alt="Tác giả">
+     <div>
+     <h3>✍️ ${author}</h3>
+     <p><em>Chia sẻ về cuộc sống, gia đình, quê hương, và những trải nghiệm.</em></p>
+     </div>
+    </section>
   </div>
-</header>
 
-<article class="noi-dung-bai-viet" id="readingContent">
-  ${content}
-</article>
+  <!-- CỘT PHẢI: SIDEBAR 8 BÀI VIẾT MỚI NHẤT -->
+  <aside class="bai-viet-sidebar">
+    <div class="widget-bai-viet">
+      <h3 class="widget-title"><i class="fas fa-newspaper"></i> Bài viết mới nhất</h3>
+      <div id="sidebar-bai-viet-moi" class="danh-sach-sidebar">
+        <p style="font-size:12px; color:#888;">Đang tải bài viết...</p>
+      </div>
+    </div>
+  </aside>
 
-<!-- THANH TƯƠNG TÁC BÀI VIẾT (Đặt cuối nội dung) -->
-<section class="cong-cu-bai-viet cong-cu-cuoi">
-  <button id="likeBtn" class="btn-action">
-    👍 <span id="likeCount" class="badge-count">0</span>
-  </button>
-  <button id="btnShare" class="btn-action">
-    🔗 Chia sẻ
-  </button>
-</section>
-
-<section class="tac-gia">
- <img loading="lazy" src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/hoasen.webp" alt="Tác giả">
- <div>
- <h3>✍️ ${author}</h3>
- <p><em>Chia sẻ về cuộc sống, gia đình, quê hương, và những trải nghiệm.</em></p>
- </div>
- </section>
+</div>
 
 <section class="bai-viet-lien-quan-2">
 <h2 class="related-title"><i class="fas fa-book-open"></i> Có thể quý vị quan tâm</h2>
@@ -573,33 +708,96 @@ function taoHTML(){
 <button id="nut-tro-ve" class="nut-dieu-huong" onclick="history.back()">←</button>
 <button id="nut-len-dau" class="nut-dieu-huong" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
 
-<script src="${BASE}/tai-nguyen/js/menu.js"><\/script>
-<script src="${BASE}/tai-nguyen/js/doc.js"><\/script>
-<script src="${BASE}/tai-nguyen/js/co-chu.js"><\/script>
-<script src="${BASE}/tai-nguyen/js/xem-bai-viet.js"><\/script>
-<script src="${BASE}/tai-nguyen/js/chia-se.js"><\/script>
-<script src="${BASE}/tai-nguyen/js/gop-y.js"><\/script>
-<script src="${BASE}/tai-nguyen/js/thich.js"><\/script>
-<script src="${BASE}/tai-nguyen/js/bai-viet-lien-quan.js"><\/script>
-<script src="${BASE}/tai-nguyen/js/main.js"><\/script>
-<script type="module" src="${BASE}/firebase-config.js"><\/script>
-<script type="module" src="${BASE}/notification.js"><\/script>
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js">${closeScript}
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/doc.js">${closeScript}
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/co-chu.js">${closeScript}
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/xem-bai-viet.js">${closeScript}
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/chia-se.js">${closeScript}
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/gop-y.js">${closeScript}
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/thich.js">${closeScript}
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/bai-viet-lien-quan.js">${closeScript}
+<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js">${closeScript}
+<script type="module" src="https://vuthanhcong77.github.io/quanlybaivietvtc/firebase-config.js">${closeScript}
+<script type="module" src="https://vuthanhcong77.github.io/quanlybaivietvtc/notification.js">${closeScript}
 
 <script>
 fetch("https://vuthanhcong77.github.io/quanlybaivietvtc/subscribe.html")
-.then(r=>r.text()).then(html=>{ document.getElementById("subscribe-container").innerHTML = html; });
+.then(r=>r.text()).then(html=>{ 
+    const container = document.getElementById("subscribe-container");
+    if(container) container.innerHTML = html; 
+}).catch(e=>console.log(e));
 
 async function loadComponent(id, file){
     try{
         const response = await fetch(file);
         if(!response.ok) throw new Error("Lỗi tải component: " + file);
-        document.getElementById(id).innerHTML = await response.text();
+        const el = document.getElementById(id);
+        if(el) el.innerHTML = await response.text();
     }catch(e){ console.log(e); }
 }
-document.addEventListener("DOMContentLoaded", ()=>{
+
+async function taiBaiVietMoiNhatSidebar() {
+    const container = document.getElementById("sidebar-bai-viet-moi");
+    if (!container) return;
+
+    try {
+        const jsonUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json?t=" + Date.now();
+        const response = await fetch(jsonUrl);
+        if(!response.ok) throw new Error("Lỗi HTTP: " + response.status);
+        
+        const danhSach = await response.json();
+
+        const parseDate = (str) => {
+            if (!str) return 0;
+            if (str.includes("-")) {
+                const parts = str.trim().split("-");
+                if (parts[0].length === 4) return new Date(str).getTime(); 
+                return new Date(parts.reverse().join("-")).getTime(); 
+            }
+            return new Date(str).getTime();
+        };
+
+        const baiVietMoiNhat = [...danhSach]
+            .sort((a, b) => parseDate(b.date) - parseDate(a.date))
+            .slice(0, 8);
+
+        if(baiVietMoiNhat.length === 0) {
+            container.innerHTML = '<p style="font-size:12px; color:#888;">Chưa có bài viết mới.</p>';
+            return;
+        }
+
+        container.innerHTML = baiVietMoiNhat.map(baiViet => {
+            let fullUrl = baiViet.url || "#";
+            if (!fullUrl.startsWith("http")) {
+                fullUrl = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + fullUrl.replace(/^\\//, "");
+            }
+            
+            let fullImg = baiViet.image || "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/anh-nen.webp";
+            if (!fullImg.startsWith("http")) {
+                fullImg = "https://vuthanhcong77.github.io/quanlybaivietvtc/" + fullImg.replace(/^\\//, "");
+            }
+
+            return \`
+                <a href="\${fullUrl}" class="item-sidebar" title="\${baiViet.title.replace(/"/g, '&quot;')}">
+                    <img src="\${fullImg}" alt="\${baiViet.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="this.src='https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/anh-nen.webp'">
+                    <div class="info-sidebar">
+                        <h4>\${baiViet.title}</h4>
+                        <span class="date-sidebar">📅 \${baiViet.date}</span>
+                    </div>
+                </a>
+            \`;
+        }).join("");
+    } catch (error) {
+        console.error("Lỗi tải bài viết mới nhất cho Sidebar:", error);
+        container.innerHTML = '<p style="font-size:12px; color:#c92a2a;">Không thể tải danh sách bài viết.</p>';
+    }
+}
+
+window.addEventListener("load", () => {
     loadComponent("menu", "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html");
+    taiBaiVietMoiNhatSidebar();
 });
-<\/script>
+${closeScript}
 <\/body>
 <\/html>`;
 
