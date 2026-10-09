@@ -865,7 +865,6 @@ Không ảnh hưởng CSS .btn cũ
     padding: 12px;
     border: 1px solid var(--mau-vien);
     border-radius: var(--bo-goc-nho);
-    background: var(--mau-the);
     color: var(--mau-chinh);
     text-decoration: none;
     transition: var(--chuyen-dong);
