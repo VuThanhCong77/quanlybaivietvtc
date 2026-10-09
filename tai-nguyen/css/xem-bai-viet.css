@@ -313,7 +313,9 @@ textarea:focus-visible {
 ========================================================= */
 
 .gop-y {
-    margin-top: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
     padding: 26px;
     border: 1px solid var(--mau-vien);
     border-radius: var(--bo-goc);
