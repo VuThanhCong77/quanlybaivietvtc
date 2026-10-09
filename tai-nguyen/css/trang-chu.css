@@ -77,12 +77,7 @@ button:focus-visible {
 
     /* Màu nền */
     background: rgba(243, 243, 216, 0.747);
-
-    /* Khung và hiệu ứng */
-    border: 1px solid rgba(210, 205, 170, 0.6);
-    border-radius: 8px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-}
+ }
 
 main {
     width: min(1200px, calc(100% - 32px));
