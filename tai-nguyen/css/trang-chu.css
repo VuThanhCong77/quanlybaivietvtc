@@ -17,8 +17,8 @@ body.trang-chu-body {
 
     background-image:
         linear-gradient(
-            rgba(255, 255, 255, 0.36),
-            rgba(255, 255, 255, 0.54)
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0)
         ),
         url("https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bia/anh-nen.webp");
 
@@ -67,6 +67,22 @@ button:focus-visible {
 /* =========================================================
    3. BỐ CỤC CHUNG
 ========================================================= */
+
+.khuon-trang-chu {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px;
+    box-sizing: border-box;
+
+    /* Màu nền */
+    background: rgba(243, 243, 216, 0.747);
+
+    /* Khung và hiệu ứng */
+    border: 1px solid rgba(210, 205, 170, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
 
 main {
     width: min(1200px, calc(100% - 32px));
@@ -136,7 +152,7 @@ section {
     border: 1px solid #eedc9700;
     border-radius: var(--bo-goc-nho);
     background: #ebec9c00;
-    color: #FFFFFF;
+    color: #eb0e0e;
     font-size: 1.4rem;
 }
 
