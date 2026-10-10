@@ -1,0 +1,195 @@
+/* =====================================================
+     BỘ TIỆN ÍCH NỔI VŨ THÀNH CÔNG
+     ===================================================== */
+
+.vtc-floating-tools {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9998;
+    font-family: inherit;
+}
+
+.vtc-tools-main {
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0099DA, #006fa8);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 111, 168, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vtc-tools-main:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(0, 111, 168, 0.45);
+}
+
+.vtc-tools-menu {
+    position: absolute;
+    right: 0;
+    bottom: 68px;
+    width: 230px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    background: rgba(255, 255, 255, .97);
+    border: 1px solid rgba(0, 153, 218, .15);
+    border-radius: 17px;
+    box-shadow: 0 10px 35px rgba(0, 60, 100, .18);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(.92);
+    transform-origin: bottom right;
+    transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+}
+
+.vtc-floating-tools.open .vtc-tools-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.vtc-tool {
+    min-width: 0;
+    height: 67px;
+    padding: 5px 2px;
+    border: 0;
+    border-radius: 11px;
+    background: #f5fbfe;
+    color: #24566b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .18s ease, transform .18s ease, color .18s ease;
+}
+
+.vtc-tool span {
+    font-size: 21px;
+    line-height: 1;
+}
+
+.vtc-tool small {
+    font-size: 10px;
+    line-height: 1.1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.vtc-tool:hover {
+    background: #e2f5fc;
+    color: #0075a8;
+    transform: translateY(-2px);
+}
+
+.vtc-tool:focus-visible {
+    outline: 3px solid rgba(0, 153, 218, .25);
+    outline-offset: 2px;
+}
+
+.vtc-qr-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .45);
+}
+
+.vtc-qr-modal.active {
+    display: flex;
+}
+
+.vtc-qr-box {
+    position: relative;
+    width: min(350px, 100%);
+    padding: 25px;
+    text-align: center;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .25);
+}
+
+.vtc-qr-box h3 {
+    margin: 0 0 18px;
+    color: #006fa8;
+}
+
+#vtcQrCode {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#vtcQrCode img {
+    width: 220px;
+    height: 220px;
+    max-width: 100%;
+}
+
+.vtc-qr-box p {
+    margin: 12px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.vtc-qr-close {
+    position: absolute;
+    top: 7px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    background: transparent;
+    color: #777;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.vtc-copy-url {
+    padding: 9px 17px;
+    border: 0;
+    border-radius: 8px;
+    background: #0099DA;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .vtc-floating-tools {
+        right: 15px;
+        bottom: 15px;
+    }
+    .vtc-tools-main {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+    }
+    .vtc-tools-menu {
+        right: 0;
+        bottom: 58px;
+        width: 210px;
+        padding: 10px;
+        gap: 7px;
+        border-radius: 15px;
+    }
+    .vtc-tool {
+        height: 62px;
+    }
+}
