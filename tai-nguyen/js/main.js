@@ -113,3 +113,28 @@ document.addEventListener(
     "DOMContentLoaded",
     napThanhTimKiem
 );
+
+/* =====================================================
+   TỰ ĐỘNG NẠP BỘ TIỆN ÍCH VTC
+   ===================================================== */
+
+(function () {
+    "use strict";
+
+    // Không nạp trùng script
+    if (document.querySelector("#vtc-tien-ich-script")) {
+        return;
+    }
+
+    const script = document.createElement("script");
+
+    script.id = "vtc-tien-ich-script";
+
+    script.src =
+        "https://vuthanhcong77.github.io/quanlybaivietvtc/" +
+        "tien-ich-vtc/tien-ich.js";
+
+    script.defer = true;
+
+    document.head.appendChild(script);
+})();
