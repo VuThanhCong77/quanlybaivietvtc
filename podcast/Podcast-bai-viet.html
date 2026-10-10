@@ -185,12 +185,12 @@
 
         utterance.onend = () => {
             currentSentenceIndex++;
-            // Tạo khoảng dừng nghỉ nhẹ (100ms) giữa 2 câu để giọng đọc tự nhiên hơn
+            // Tạo khoảng dừng nghỉ nhẹ (60ms) giữa 2 câu để giọng đọc tự nhiên hơn
             setTimeout(() => {
                 if (isSpeaking && !isPaused) {
                     playCurrentSentence();
                 }
-            }, 100);
+            }, 60);
         };
 
         utterance.onerror = (e) => {
