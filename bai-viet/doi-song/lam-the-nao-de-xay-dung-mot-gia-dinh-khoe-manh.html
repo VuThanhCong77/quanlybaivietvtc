@@ -689,6 +689,228 @@ window.addEventListener("load", () => {
     loadComponent("menu", "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html");
     taiBaiVietMoiNhatSidebar();
 });
+
+  /* =====================================================
+   11. BỘ TIỆN ÍCH NỔI VŨ THÀNH CÔNG
+   ===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const box =
+        document.querySelector(".vtc-floating-tools");
+
+    const main =
+        document.getElementById("vtcToolsMain");
+
+    if (!box || !main) return;
+
+
+    /* =================================================
+       MỞ / ĐÓNG
+       ================================================= */
+
+    main.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        const opened =
+            box.classList.toggle("open");
+
+        main.setAttribute(
+            "aria-expanded",
+            opened ? "true" : "false"
+        );
+
+    });
+
+
+    /* =================================================
+       CLICK BÊN NGOÀI → ĐÓNG
+       ================================================= */
+
+    document.addEventListener("click", function (event) {
+
+        if (!box.contains(event.target)) {
+
+            box.classList.remove("open");
+
+            main.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+
+    });
+
+
+   
+    /* =================================================
+       QR CODE
+       ================================================= */
+
+    const qrButton =
+        document.querySelector(
+            '[data-vtc-action="qr"]'
+        );
+
+    if (qrButton) {
+
+        qrButton.addEventListener(
+            "click",
+            function () {
+
+                vtcOpenQR();
+
+            }
+        );
+
+    }
+
+});
+
+
+
+/* =====================================================
+   QR CODE
+   ===================================================== */
+
+function vtcOpenQR() {
+
+    const modal =
+        document.getElementById(
+            "vtcQrModal"
+        );
+
+    const qr =
+        document.getElementById(
+            "vtcQrCode"
+        );
+
+
+    if (!modal || !qr) return;
+
+
+    const url =
+        window.location.href;
+
+
+    qr.innerHTML = "";
+
+
+    const img =
+        document.createElement("img");
+
+
+    img.src =
+        "https://api.qrserver.com/v1/create-qr-code/" +
+        "?size=220x220&data=" +
+        encodeURIComponent(url);
+
+
+    img.alt =
+        "Mã QR của trang";
+
+
+    qr.appendChild(img);
+
+
+    modal.classList.add("active");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+}
+
+
+/* =====================================================
+   ĐÓNG QR
+   ===================================================== */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const modal =
+            document.getElementById(
+                "vtcQrModal"
+            );
+
+
+        if (!modal) return;
+
+
+        if (
+            event.target === modal ||
+            event.target.closest(
+                ".vtc-qr-close"
+            )
+        ) {
+
+            modal.classList.remove(
+                "active"
+            );
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+        }
+
+    }
+);
+
+
+/* =====================================================
+   SAO CHÉP LINK
+   ===================================================== */
+
+document.addEventListener(
+    "click",
+    async function (event) {
+
+        const button =
+            event.target.closest(
+                "#vtcCopyUrl"
+            );
+
+
+        if (!button) return;
+
+
+        try {
+
+            await navigator.clipboard.writeText(
+                window.location.href
+            );
+
+
+            const oldText =
+                button.textContent;
+
+
+            button.textContent =
+                "✓ Đã sao chép";
+
+
+            setTimeout(function () {
+
+                button.textContent =
+                    oldText;
+
+            }, 1800);
+
+
+        } catch (error) {
+
+            alert(
+                "Không thể sao chép liên kết."
+            );
+
+        }
+
+    }
+);
 </script>
 
     <!-- 8 tiện ích -->
