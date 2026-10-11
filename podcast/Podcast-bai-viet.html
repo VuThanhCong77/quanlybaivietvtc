@@ -5,10 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Podcast | Vũ Thành Công</title>
 
-    <!-- Liên kết các file CSS giữ nguyên từ file mẫu -->
+    <!-- Liên kết file CSS chính của bạn -->
     <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/podcast.css">
     <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/dieu-huong.css">
    
+    <style>
+        /* THIẾT KẾ KHUNG CHỌN DANH MỤC THẢ XUỐNG GỌN GÀNG */
+        .category-select-wrapper {
+            max-width: 400px;
+            margin: 10px auto 25px auto;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .category-select-wrapper label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .category-dropdown {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            background-color: #ffffff;
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .category-dropdown:hover, .category-dropdown:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+        }
+    </style>
 </head>
 
 <body>
@@ -16,10 +53,20 @@
 <section class="podcast">
     <h1>🎙 Nghe bài viết</h1>
 
+    <!-- MENU THẢ XUỐNG LỌC CHỦ ĐỀ -->
+    <div class="category-select-wrapper">
+        <label for="categorySelect">📂 Lọc theo chủ đề:</label>
+        <select id="categorySelect" class="category-dropdown" onchange="filterByCategory(this.value)">
+            <!-- Các tùy chọn danh mục sẽ được sinh tự động tại đây -->
+        </select>
+    </div>
+
+    <!-- KHUNG CHỨA DANH SÁCH BÀI VIẾT -->
     <div id="podcast-list">
         <p style="text-align: center; color: #666;">Đang tải danh sách bài viết...</p>
     </div>
 
+    <!-- THANH TRÌNH PHÁT CỐ ĐỊNH -->
     <div id="podcastPlayer" class="podcast-player">
         <div class="podcast-info">
             <div id="podcastStatus" class="podcast-status">
@@ -49,20 +96,20 @@
 <!-- NÚT LÊN ĐẦU TRANG -->
 <button id="nut-len-dau" class="nut-dieu-huong" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Lên đầu trang">↑</button>
 
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/podcast-bai-viet.js"></script>
-
 <script>
     let articles = [];
+    let filteredArticles = [];
     let currentIndex = -1;
     let synth = window.speechSynthesis;
+    let currentCategory = 'Tất cả';
     
-    // Quản lý đọc theo danh sách câu
     let sentenceQueue = [];
     let currentSentenceIndex = 0;
     let isSpeaking = false;
     let isPaused = false;
 
     const podcastListEl = document.getElementById('podcast-list');
+    const categorySelectEl = document.getElementById('categorySelect');
     const podcastTitleEl = document.getElementById('podcastTitle');
     const podcastChapterEl = document.getElementById('podcastChapter');
     const podcastStatusEl = document.getElementById('podcastStatus');
@@ -72,46 +119,106 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
 
-    // Tải danh sách bài viết từ bai-viet.json
+    // Tải dữ liệu từ tệp JSON
     async function loadArticles() {
         try {
             const response = await fetch('https://vuthanhcong77.github.io/quanlybaivietvtc/du-lieu/bai-viet.json');
             if (!response.ok) throw new Error('Không thể tải tệp bai-viet.json');
             articles = await response.json();
-            renderPodcastList();
+            filteredArticles = articles;
+            
+            buildCategoryDropdown(); // Tạo danh sách xổ xuống
+            renderPodcastList();     // Hiển thị danh sách ban đầu
         } catch (error) {
             console.error(error);
-            podcastListEl.innerHTML = `<p style="color:red; text-align:center;">Lỗi tải dữ liệu từ bai-viet.json. Vui lòng kiểm tra vị trí tệp!</p>`;
+            podcastListEl.innerHTML = `<p style="color:red; text-align:center;">Lỗi tải dữ liệu. Vui lòng kiểm tra lại đường dẫn!</p>`;
         }
     }
 
+    // Tự động quét các chủ đề để đưa vào thẻ <select>
+    function buildCategoryDropdown() {
+        let categoriesSet = new Set();
+        articles.forEach(item => {
+            if (Array.isArray(item.category)) {
+                item.category.forEach(cat => categoriesSet.add(cat.trim()));
+            } else if (typeof item.category === 'string' && item.category.trim() !== '') {
+                categoriesSet.add(item.category.trim());
+            }
+        });
+
+        categorySelectEl.innerHTML = '';
+
+        // Tùy chọn "Tất cả"
+        const allOption = document.createElement('option');
+        allOption.value = 'Tất cả';
+        allOption.innerText = '✨ Tất cả chủ đề';
+        categorySelectEl.appendChild(allOption);
+
+        // Các tùy chọn theo từng chủ đề
+        categoriesSet.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat;
+            option.innerText = cat;
+            categorySelectEl.appendChild(option);
+        });
+    }
+
+    // Xử lý khi chọn danh mục từ menu xổ xuống
+    function filterByCategory(category) {
+        currentCategory = category;
+
+        if (category === 'Tất cả') {
+            filteredArticles = articles;
+        } else {
+            filteredArticles = articles.filter(item => {
+                if (Array.isArray(item.category)) {
+                    return item.category.map(c => c.trim()).includes(category);
+                } else if (typeof item.category === 'string') {
+                    return item.category.trim() === category;
+                }
+                return false;
+            });
+        }
+
+        renderPodcastList();
+    }
+
+    // Hiển thị danh sách bài viết theo CSS card sẵn có
     function renderPodcastList() {
         podcastListEl.innerHTML = '';
-        articles.forEach((item, index) => {
+
+        if (filteredArticles.length === 0) {
+            podcastListEl.innerHTML = `<p style="text-align: center; color: #666; padding: 20px;">Không có bài viết nào thuộc chủ đề này.</p>`;
+            return;
+        }
+
+        filteredArticles.forEach((item) => {
             const card = document.createElement('div');
-            card.className = `podcast-item ${index === currentIndex ? 'active' : ''}`;
-            card.onclick = () => selectAndPlayArticle(index);
+            card.className = `podcast-card ${item === articles[currentIndex] ? 'active' : ''}`;
 
             const categoryText = Array.isArray(item.category) ? item.category.join(' • ') : (item.category || 'Tổng hợp');
 
             card.innerHTML = `
-                <img src="${item.image || 'https://via.placeholder.com/80'}" alt="${item.title}" class="podcast-thumb" onerror="this.src='https://via.placeholder.com/80'">
-                <div class="podcast-meta">
+                <img src="${item.image || 'https://via.placeholder.com/220x140'}" alt="${item.title}" class="podcast-thumb" onerror="this.src='https://via.placeholder.com/220x140'">
+                <div class="podcast-content">
+                    <span class="podcast-category">${categoryText}</span>
                     <h3>${item.title}</h3>
                     <p>${item.desc || ''}</p>
-                    <div class="podcast-info-tag">📂 ${categoryText} | 📅 ${item.date || ''}</div>
+                    <div class="podcast-actions">
+                        <button onclick="selectAndPlayArticle(${articles.indexOf(item)})">▶ Nghe bài viết</button>
+                        <a href="${item.url}" target="_blank">Đọc bài viết</a>
+                    </div>
                 </div>
             `;
             podcastListEl.appendChild(card);
         });
     }
 
-    // Tải nội dung file HTML thực tế từ URL
     async function fetchArticleContent(url) {
         try {
             podcastStatusEl.innerText = "⏳ Đang tải nội dung...";
             const res = await fetch(url);
-            if (!res.ok) throw new Error("Không thể fetch URL bài viết");
+            if (!res.ok) throw new Error("Không thể fetch URL");
             const htmlText = await res.text();
             
             const parser = new DOMParser();
@@ -121,17 +228,13 @@
             removeSelectors.forEach(s => doc.querySelectorAll(s).forEach(el => el.remove()));
 
             const contentEl = doc.querySelector('article') || doc.querySelector('.content') || doc.querySelector('main') || doc.body;
-            
-            // Lấy văn bản giữ lại ký tự xuống dòng
-            let text = contentEl.innerText || contentEl.textContent || "";
-            return text;
+            return contentEl.innerText || contentEl.textContent || "";
         } catch (e) {
-            console.warn("Dùng thông tin Mô tả dự phòng:", e);
+            console.warn("Dùng mô tả dự phòng:", e);
             return null;
         }
     }
 
-    // Chọn bài viết và xử lý ngắt câu
     async function selectAndPlayArticle(index) {
         if (index < 0 || index >= articles.length) return;
         
@@ -149,8 +252,6 @@
             rawText = `${item.title}.\n${item.desc || ''}`;
         }
 
-        // TÁCH VĂN BẢN THÀNH CÁC CÂU DỰA TRÊN DẤU CÂU (. ! ? \n)
-        // Việc phân tách này giúp tạo khoảng dừng/nghỉ rõ ràng giữa các câu & các đoạn xuống dòng
         sentenceQueue = rawText
             .split(/(?<=[.!?;\n])\s+/)
             .map(s => s.trim())
@@ -160,7 +261,6 @@
         playCurrentSentence();
     }
 
-    // Đọc từng câu trong danh sách
     function playCurrentSentence() {
         if (currentSentenceIndex >= sentenceQueue.length) {
             isSpeaking = false;
@@ -170,12 +270,11 @@
         }
 
         const sentenceText = sentenceQueue[currentSentenceIndex];
-
-        synth.cancel(); // Xóa hàng đợi cũ
+        synth.cancel();
 
         const utterance = new SpeechSynthesisUtterance(sentenceText);
         utterance.lang = 'vi-VN';
-        utterance.rate = 0.95; // Tốc độ đọc vừa phải để nghe tự nhiên
+        utterance.rate = 0.95;
 
         utterance.onstart = () => {
             isSpeaking = true;
@@ -185,7 +284,6 @@
 
         utterance.onend = () => {
             currentSentenceIndex++;
-            // Tạo khoảng dừng nghỉ nhẹ (60ms) giữa 2 câu để giọng đọc tự nhiên hơn
             setTimeout(() => {
                 if (isSpeaking && !isPaused) {
                     playCurrentSentence();
@@ -193,8 +291,7 @@
             }, 60);
         };
 
-        utterance.onerror = (e) => {
-            console.error("Lỗi đọc:", e);
+        utterance.onerror = () => {
             currentSentenceIndex++;
             if (isSpeaking && !isPaused) {
                 playCurrentSentence();
@@ -204,10 +301,10 @@
         synth.speak(utterance);
     }
 
-    // Điều khiển nút bấm
     playBtn.onclick = () => {
         if (currentIndex === -1 && articles.length > 0) {
-            selectAndPlayArticle(0);
+            const firstItem = filteredArticles[0] || articles[0];
+            selectAndPlayArticle(articles.indexOf(firstItem));
             return;
         }
         if (isPaused) {
@@ -235,14 +332,16 @@
     };
 
     prevBtn.onclick = () => {
-        if (currentIndex > 0) {
-            selectAndPlayArticle(currentIndex - 1);
+        const currentFilteredIndex = filteredArticles.findIndex(item => item === articles[currentIndex]);
+        if (currentFilteredIndex > 0) {
+            selectAndPlayArticle(articles.indexOf(filteredArticles[currentFilteredIndex - 1]));
         }
     };
 
     nextBtn.onclick = () => {
-        if (currentIndex < articles.length - 1) {
-            selectAndPlayArticle(currentIndex + 1);
+        const currentFilteredIndex = filteredArticles.findIndex(item => item === articles[currentIndex]);
+        if (currentFilteredIndex !== -1 && currentFilteredIndex < filteredArticles.length - 1) {
+            selectAndPlayArticle(articles.indexOf(filteredArticles[currentFilteredIndex + 1]));
         }
     };
 
