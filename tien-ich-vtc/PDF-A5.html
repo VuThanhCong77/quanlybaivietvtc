@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#087fb5">
+<title>Đọc PDF dạng sách lật | Vũ Thành Công</title>
+<style>
+:root{--blue:#087fb5;--blue2:#006b9c;--ink:#19313d;--paper:#fff;--bg:#eef5f8;--line:#d5e3e9}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:linear-gradient(120deg,#006b9c,#079ed0);color:#fff;padding:20px 16px;text-align:center}
+header h1{font-size:clamp(21px,3vw,30px);margin:0 0 7px}
+header p{margin:0;opacity:.95;font-size:14px}
+main{max-width:1200px;margin:18px auto;padding:0 14px 30px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;box-shadow:0 5px 18px #163b4d0c}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button,.file-label{border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:#fff;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+button:hover,.file-label:hover{background:var(--blue2)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.secondary{background:#e8f3f8;color:#075d80;border:1px solid #c7e1ed}
+.secondary:hover{background:#d9edf6}
+input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+#fileName{font-size:13px;color:#48616d;overflow-wrap:anywhere}
+.hint{font-size:13px;line-height:1.6;color:#58717c;margin:12px 0 0}
+#status{font-size:14px;color:#075d80;font-weight:700;margin-top:10px;min-height:18px}
+.reader{margin-top:16px;background:#dce8ee;border:1px solid #c9dbe3;border-radius:14px;padding:14px;min-height:400px}
+#bookWrap{width:100%;display:flex;justify-content:center;align-items:center;min-height:320px;overflow:hidden}
+#book{margin:auto}
+#book .page{background:#fff;overflow:hidden}
+#book .page canvas{display:block;width:100%;height:100%;object-fit:contain}
+#empty{max-width:560px;margin:65px auto;text-align:center;color:#58717c;padding:20px}
+#empty .icon{font-size:54px;margin-bottom:12px}
+.controls{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:13px}
+#pageInfo{min-width:110px;text-align:center;font-size:13px;font-weight:700}
+.reader-note{text-align:center;color:#5b737e;font-size:12px;margin:10px 0 0}
+footer{text-align:center;font-size:12px;color:#67808b;padding:0 15px 24px}
+@media(max-width:600px){
+ header{padding:17px 12px}
+ main{margin-top:12px;padding:0 9px 22px}
+ .panel{padding:12px}
+ .toolbar button,.toolbar .file-label{flex:1}
+ .reader{padding:5px;min-height:300px}
+ #bookWrap{min-height:280px}
+ .controls button{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>📖 ĐỌC PDF DẠNG SÁCH LẬT</h1>
+  <p>Đọc tài liệu điện tử PDF A5 chữ 14 — Vũ Thành Công</p>
+</header>
+<main>
+  <section class="panel">
+    <div class="toolbar">
+      <label class="file-label" for="pdfFile">📂 Chọn</label>
+      <input id="pdfFile" type="file" accept="application/pdf,.pdf">
+      <button id="openUrlBtn" class="secondary" type="button">🔗 Dán</button>
+      <button id="resetBtn" class="secondary" type="button" disabled>↻ Đóng</button>
+    </div>
+    <div id="fileName" style="margin-top:10px">Chưa chọn tài liệu.</div>
+    <div id="urlBox" style="display:none;margin-top:12px">
+      <label for="pdfUrl" style="display:block;font-size:13px;font-weight:700;margin-bottom:6px">Đường dẫn trực tiếp đến tệp PDF</label>
+      <div class="toolbar">
+        <input id="pdfUrl" type="url" placeholder="https://ten-mien.vn/tai-lieu.pdf" style="flex:1;min-width:220px;padding:11px;border:1px solid #bfd4dd;border-radius:8px">
+        <button id="loadUrlBtn" type="button">Mở 📚</button>
+      </div>
+      <p class="hint">Lưu ý: đường dẫn phải trỏ trực tiếp đến tệp PDF và máy chủ cần cho phép truy cập chéo (CORS).</p>
+    </div>
+    <div id="status" role="status" aria-live="polite">Chọn một tệp PDF để bắt đầu đọc.</div>
+  </section>
+
+  <section class="reader" aria-label="Khung đọc sách lật">
+    <div id="empty">
+      <div class="icon">📚</div>
+      <h2 style="font-size:20px">Sẵn sàng mở tài liệu</h2>
+      <p>Chọn một tệp PDF để xem</p>
+    </div>
+    <div id="bookWrap" style="display:none"><div id="book"></div></div>
+    <div class="controls">
+      <button id="firstBtn" disabled title="Trang đầu">⏮</button>
+      <button id="prevBtn" disabled>◀</button>
+      <span id="pageInfo">Trang — / —</span>
+      <button id="nextBtn" disabled>▶</button>
+      <button id="lastBtn" disabled title="Trang cuối">⏭</button>
+      <button id="fullscreenBtn" class="secondary" disabled>⛶</button>
+    </div>
+  </section>
+</main>
+<footer>Tiện ích đọc PDF dạng sách lật.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script>
+(() => {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const fileInput = $("pdfFile"), bookEl = $("book");
+  let pageFlip = null, currentPdf = null, renderToken = 0, objectUrl = null;
+
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  }
+
+  function setStatus(msg) { $("status").textContent = msg; }
+  function setControls(enabled) {
+    ["firstBtn","prevBtn","nextBtn","lastBtn","fullscreenBtn","resetBtn"].forEach(id => $(id).disabled = !enabled);
+  }
+  function updatePageInfo() {
+    if (!pageFlip) { $("pageInfo").textContent = "Trang — / —"; return; }
+    $("pageInfo").textContent = `Trang ${pageFlip.getCurrentPageIndex()+1} / ${pageFlip.getPageCount()}`;
+  }
+
+  // Hàm dọn dẹp toàn bộ tài liệu và bộ nhớ cũ một cách triệt để
+  function clearBook() {
+    renderToken++;
+    if (pageFlip) {
+      try { pageFlip.destroy(); } catch (_) {}
+      pageFlip = null;
+    }
+    bookEl.innerHTML = "";
+    $("bookWrap").style.display = "none";
+    $("empty").style.display = "block";
+    setControls(false);
+    updatePageInfo();
+    
+    if (currentPdf && typeof currentPdf.destroy === "function") {
+      try { currentPdf.destroy(); } catch (_) {}
+    }
+    currentPdf = null;
+
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      objectUrl = null;
+    }
+    $("fileName").textContent = "Chưa chọn tài liệu.";
+    fileInput.value = "";
+    setStatus("Đã đóng tài liệu. Chọn một tệp PDF khác để tiếp tục.");
+  }
+
+  async function loadPdf(source, label) {
+    const PageFlipClass = window.PageFlip || (window.St && window.St.PageFlip);
+    if (!window.pdfjsLib || !PageFlipClass) {
+      setStatus("Lỗi: Không tải được thư viện xử lý. Kiểm tra kết nối mạng.");
+      return;
+    }
+
+    // Đảm bảo dọn dẹp sạch sẽ tài liệu cũ trước khi nạp tệp mới
+    renderToken++;
+    const token = renderToken;
+    if (pageFlip) {
+      try { pageFlip.destroy(); } catch (_) {}
+      pageFlip = null;
+    }
+    bookEl.innerHTML = "";
+    if (currentPdf && typeof currentPdf.destroy === "function") {
+      try { currentPdf.destroy(); } catch (_) {}
+    }
+    currentPdf = null;
+
+    $("empty").style.display = "none";
+    $("bookWrap").style.display = "flex";
+    setControls(false);
+    $("fileName").textContent = label;
+    setStatus("Đang tải và xử lý trang PDF...");
+
+    try {
+      const loadingTask = pdfjsLib.getDocument(source);
+      currentPdf = await loadingTask.promise;
+      if (token !== renderToken) return;
+      const pdf = currentPdf;
+      const pages = [];
+
+      for (let n = 1; n <= pdf.numPages; n++) {
+        if (token !== renderToken) return;
+        setStatus(`Đang xử lý trang ${n}/${pdf.numPages}...`);
+        const page = await pdf.getPage(n);
+        const viewport = page.getViewport({scale: 1.5});
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d", {alpha: false});
+        canvas.width = Math.ceil(viewport.width);
+        canvas.height = Math.ceil(viewport.height);
+        await page.render({canvasContext: ctx, viewport}).promise;
+        
+        const holder = document.createElement("div");
+        holder.className = "page";
+        holder.appendChild(canvas);
+        pages.push(holder);
+      }
+      if (token !== renderToken) return;
+
+      const first = pages[0].querySelector("canvas");
+      const ratio = first.height / first.width;
+      const availableWidth = Math.min(500, Math.floor((window.innerWidth - 40) / 2));
+      const pageWidth = Math.max(220, availableWidth);
+      const pageHeight = Math.floor(pageWidth * ratio);
+
+      pages.forEach(p => bookEl.appendChild(p));
+
+      pageFlip = new PageFlipClass(bookEl, {
+        width: pageWidth,
+        height: pageHeight,
+        size: "stretch",
+        minWidth: 200,
+        maxWidth: 600,
+        minHeight: 300,
+        maxHeight: 800,
+        showCover: true,
+        usePortrait: true,
+        drawShadow: true,
+        mobileScrollSupport: true
+      });
+
+      pageFlip.loadFromHTML(pages);
+      pageFlip.on("flip", updatePageInfo);
+      setControls(true);
+      updatePageInfo();
+      setStatus(`Đã mở thành công ${pdf.numPages} trang.`);
+    } catch (err) {
+      console.error(err);
+      if (token !== renderToken) return;
+      $("bookWrap").style.display = "none";
+      $("empty").style.display = "block";
+      setStatus("Không thể đọc tệp PDF này. Tệp có thể bị lỗi hoặc mã hóa.");
+      setControls(false);
+    }
+  }
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files && fileInput.files[0];
+    if (!file) return;
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    objectUrl = URL.createObjectURL(file);
+    loadPdf(objectUrl, file.name);
+  });
+
+  $("openUrlBtn").addEventListener("click", () => {
+    $("urlBox").style.display = $("urlBox").style.display === "none" ? "block" : "none";
+  });
+
+  $("loadUrlBtn").addEventListener("click", () => {
+    const url = $("pdfUrl").value.trim();
+    if (url) loadPdf(url, "Tài liệu trực tuyến");
+  });
+
+  $("firstBtn").addEventListener("click", () => pageFlip && pageFlip.flip(0));
+  $("prevBtn").addEventListener("click", () => pageFlip && pageFlip.flipPrev());
+  $("nextBtn",).addEventListener("click", () => pageFlip && pageFlip.flipNext());
+  $("lastBtn").addEventListener("click", () => pageFlip && pageFlip.flip(pageFlip.getPageCount()-1));
+  
+  // Gắn sự kiện chuẩn cho nút đóng/hủy tài liệu
+  $("resetBtn").addEventListener("click", clearBook);
+
+  $("fullscreenBtn").addEventListener("click", async () => {
+    try {
+      if (!document.fullscreenElement) await $("bookWrap").requestFullscreen();
+      else await document.exitFullscreen();
+    } catch (_) {}
+  });
+})();
+</script>
+</body>
+</html>
