@@ -49,7 +49,12 @@ body{
     justify-content:space-between;
 }
 
-.play-btn{
+.btn-group{
+    display:flex;
+    gap:10px;
+}
+
+.play-btn, .pause-btn{
     width:50px;
     height:50px;
     border-radius:50%;
@@ -59,6 +64,20 @@ body{
     font-size:20px;
     cursor:pointer;
     flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.pause-btn{
+    background:#ffc107;
+    color:#000;
+}
+
+.pause-btn:disabled{
+    background:#ccc;
+    cursor:not-allowed;
+    color:#666;
 }
 
 .select-group{
@@ -120,7 +139,10 @@ progress{
     <div id="content">Tải file Word để hiển thị nội dung...</div>
 
     <div class="controls">
-        <button class="play-btn" onclick="toggleSpeech()" id="playBtn">▶</button>
+        <div class="btn-group">
+            <button class="play-btn" onclick="toggleSpeech()" id="playBtn" title="Phát/Dừng">▶</button>
+            <button class="pause-btn" onclick="pauseSpeech()" id="pauseBtn" disabled title="Tạm dừng/Tiếp tục">⏸</button>
+        </div>
 
         <div class="select-group">
             <select id="voiceSelect"></select>
@@ -147,7 +169,7 @@ let speech;
 let isPaused = false;
 let isSpeaking = false;
 let progressInterval;
-let startTime;
+let elapsedTime = 0;
 
 const fileInput = document.getElementById("fileInput");
 const contentDiv = document.getElementById("content");
@@ -155,6 +177,7 @@ const voiceSelect = document.getElementById("voiceSelect");
 const progressBar = document.getElementById("progressBar");
 const timeDisplay = document.getElementById("timeDisplay");
 const playBtn = document.getElementById("playBtn");
+const pauseBtn = document.getElementById("pauseBtn");
 
 fileInput.addEventListener("change", function(e){
     const file = e.target.files[0];
@@ -200,7 +223,6 @@ function loadVoices(){
             maleGroup.appendChild(option);
         }
         else{
-            // Nếu không xác định được → mặc định nhóm Nam
             maleGroup.appendChild(option);
         }
     });
@@ -224,27 +246,21 @@ function toggleSpeech(){
     if(!text) return alert("Chưa có nội dung.");
 
     if(isSpeaking){
-        speechSynthesis.cancel();
         stopSpeech();
         return;
     }
 
     const rateValue = parseFloat(document.getElementById("rate").value);
 
-// Tính tổng số từ
-totalWords = text.split(/\s+/).length;
+    // Tính tổng số từ
+    totalWords = text.split(/\s+/).length;
 
-// tốc độ đọc trung bình ~180 từ/phút ở rate = 1
-let wordsPerMinuteBase = 180;
+    // Tốc độ đọc trung bình ~180 từ/phút ở rate = 1
+    let wordsPerMinuteBase = 180;
+    let adjustedWPM = wordsPerMinuteBase * rateValue;
+    totalDuration = Math.ceil((totalWords / adjustedWPM) * 60);
 
-// điều chỉnh theo rate
-let adjustedWPM = wordsPerMinuteBase * rateValue;
-
-// tính tổng thời gian (giây)
-totalDuration = Math.ceil((totalWords / adjustedWPM) * 60);
-
-// cập nhật max cho progress
-progressBar.max = totalDuration;
+    progressBar.max = totalDuration;
 
     const selectedVoice = speechSynthesis.getVoices()
         .find(v => v.name === voiceSelect.value);
@@ -265,19 +281,40 @@ progressBar.max = totalDuration;
         if(selectedVoice) speech.voice = selectedVoice;
 
         speech.onend = function(){
-            index++;
-            speakChunk();
+            if(isSpeaking && !isPaused){
+                index++;
+                speakChunk();
+            }
         };
 
         speechSynthesis.speak(speech);
     }
 
     isSpeaking = true;
+    isPaused = false;
+    elapsedTime = 0;
     playBtn.innerText = "⏹";
-    startTime = Date.now();
-    startProgress();
+    pauseBtn.disabled = false;
+    pauseBtn.innerText = "⏸";
 
+    startProgress();
     speakChunk();
+}
+
+function pauseSpeech(){
+    if(!isSpeaking) return;
+
+    if(isPaused){
+        // Tiếp tục đọc
+        speechSynthesis.resume();
+        isPaused = false;
+        pauseBtn.innerText = "⏸";
+    } else {
+        // Tạm dừng
+        speechSynthesis.pause();
+        isPaused = true;
+        pauseBtn.innerText = "▶";
+    }
 }
 
 function stopSpeech(){
@@ -286,23 +323,28 @@ function stopSpeech(){
     progressBar.value = 0;
     timeDisplay.innerText = "00:00";
     isSpeaking = false;
+    isPaused = false;
+    elapsedTime = 0;
     playBtn.innerText = "▶";
+    pauseBtn.innerText = "⏸";
+    pauseBtn.disabled = true;
 }
 
 function startProgress(){
+    clearInterval(progressInterval);
     progressInterval = setInterval(()=>{
-        if(!isPaused){
-            let elapsed = Math.floor((Date.now()-startTime)/1000);
+        if(!isPaused && isSpeaking){
+            elapsedTime++;
 
-            if(elapsed >= totalDuration){
+            if(elapsedTime >= totalDuration){
                 stopSpeech();
                 return;
             }
 
             timeDisplay.innerText = 
-                formatTime(elapsed) + " / " + formatTime(totalDuration);
+                formatTime(elapsedTime) + " / " + formatTime(totalDuration);
 
-            progressBar.value = elapsed;
+            progressBar.value = elapsedTime;
         }
     },1000);
 }
@@ -317,46 +359,25 @@ function formatTime(sec){
 <script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
     
 <script>
-
 async function loadComponent(id, file){
-
     try{
-
         const response = await fetch(file);
-
         if(!response.ok){
-
-            throw new Error(
-                "Lỗi tải component: " + file
-            );
-
+            throw new Error("Lỗi tải component: " + file);
         }
-
         const html = await response.text();
-
-        document.getElementById(id)
-        .innerHTML = html;
-
+        document.getElementById(id).innerHTML = html;
     }catch(error){
-
         console.log(error);
-
     }
-
 }
 
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
+document.addEventListener("DOMContentLoaded", ()=>{
     loadComponent(
         "menu",
         "https://vuthanhcong77.github.io/quanlybaivietvtc/thanh-phan/menu.html"
     );
-
-  }
-);
-
+});
 </script>
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
 </body>
