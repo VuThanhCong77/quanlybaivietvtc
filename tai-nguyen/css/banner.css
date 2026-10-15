@@ -63,15 +63,6 @@
     border-radius: 0 0 12px 12px;
 }
 
-/* Điện thoại */
-@media (max-width: 768px) {
-    .hero-caption {
-        padding: 10px 12px;
-        font-size: 12px;
-        line-height: 1.1;
-    }
-}
-
 
 /* =========================================
    FIX HERO MOBILE: KHÔNG CẮT TIÊU ĐỀ
@@ -118,13 +109,13 @@
     overflow-wrap: anywhere;
     box-sizing: border-box;
     flex: 0 0 auto;
-    line-height: 1.5;
+    line-height: 1.2;
 }
 
 @media (max-width: 768px) {
     .hero-caption {
         padding: 10px 12px !important;
         font-size: 12px !important;
-        line-height: 1.1 !important;
+        line-height: 1.2 !important;
     }
 }
