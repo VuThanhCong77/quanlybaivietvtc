@@ -56,7 +56,6 @@
     background: #007fb5;
 
     font-size: 14px;
-    font-weight: 500;
     line-height: 1.2;
     text-align: center;
 
@@ -69,7 +68,7 @@
     .hero-caption {
         padding: 10px 12px;
         font-size: 12px;
-        line-height: 1.2;
+        line-height: 1.1;
     }
 }
 
@@ -125,7 +124,7 @@
 @media (max-width: 768px) {
     .hero-caption {
         padding: 10px 12px !important;
-        font-size: 15px !important;
-        line-height: 1.5 !important;
+        font-size: 12px !important;
+        line-height: 1.1 !important;
     }
 }
