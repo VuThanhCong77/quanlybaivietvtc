@@ -39,6 +39,7 @@ h1 {
     color: var(--primary-color);
     font-size: 20px;
     font-weight: 700;
+    padding: 12px 12px;
 }
 
 .top-bar {
@@ -209,7 +210,7 @@ button.btn-secondary { background: #6c757d; }
 @media(max-width: 992px){
     .main-layout { grid-template-columns: 1fr; }
     h1 {
-    font-size: 16px;
+    font-size: 18px;
     }
 }
 </style>
@@ -242,13 +243,13 @@ button.btn-secondary { background: #6c757d; }
 <div class="main-layout">
     <!-- CỘT TRÁI: NỘI DUNG CHÍNH -->
     <div class="main-box">
-        <label>Tiêu đề bài viết</label>
+        <label>Tiêu đề bài viết (9 - 11 từ)</label>
         <input id="title" placeholder="Nhập tiêu đề bài viết...">
 
         <label>Tên tệp URL (Slug)</label>
         <input id="postId" placeholder="tu-dong-tao-slug">
 
-        <label>Tóm tắt / Mô tả bài viết</label>
+        <label>Tóm tắt / Mô tả bài viết (190 - 210 từ)</label>
         <textarea id="desc" rows="3" placeholder="Viết mô tả ngắn gọn thu hút người đọc..."></textarea>
 
         <label>
@@ -273,6 +274,7 @@ button.btn-secondary { background: #6c757d; }
 
         <div id="editor-content" contenteditable="true">
             <p>Nội dung</p>
+            <br>
             <div class="text-center">------</div>
             <div class="text-center"><em>Cảm ơn quý vị quan tâm bài viết.<br> Chúc quý vị Tâm an- Thân lành!</em></div>
         </div>
