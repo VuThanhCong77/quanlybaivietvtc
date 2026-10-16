@@ -1,6 +1,5 @@
 /* =====================================================
-   CHẾ ĐỘ TỐI / SÁNG - WEBSITE VŨ THÀNH CÔNG
-   Áp dụng cho toàn bộ các trang (Trang chủ & Bài viết)
+   CHẾ ĐỘ TỐI / SÁNG - HỖ TRỢ TOÀN DIỆN DESKTOP & MOBILE
 ===================================================== */
 
 (function () {
@@ -10,7 +9,6 @@
     const CHE_DO_SANG = "light";
     const CHE_DO_TOI = "dark";
 
-    // Đọc lựa chọn đã lưu (mặc định sáng)
     function docCheDoDaLuu() {
         try {
             const cheDo = localStorage.getItem(KHOA_LUU);
@@ -23,7 +21,6 @@
         return CHE_DO_SANG;
     }
 
-    // Áp dụng chế độ giao diện
     function apDungCheDo(cheDo, ghiNho = true) {
         const laToi = cheDo === CHE_DO_TOI;
 
@@ -31,7 +28,7 @@
         document.documentElement.dataset.theme = laToi ? CHE_DO_TOI : CHE_DO_SANG;
         document.documentElement.style.colorScheme = laToi ? CHE_DO_TOI : CHE_DO_SANG;
 
-        // Cập nhật giao diện tất cả các nút Tối / Sáng trên trang
+        // Cập nhật tất cả các nút (cả trên máy tính lẫn điện thoại)
         const danhSachNut = document.querySelectorAll("#nut-toi-sang, #nut-toi-sang-mobile");
 
         danhSachNut.forEach(nut => {
@@ -40,10 +37,7 @@
                     ? '<span aria-hidden="true">☀️</span><span>Sáng</span>'
                     : '<span aria-hidden="true">🌙</span><span>Tối</span>';
 
-                nut.setAttribute(
-                    "aria-label",
-                    laToi ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối"
-                );
+                nut.setAttribute("aria-label", laToi ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối");
                 nut.setAttribute("aria-pressed", String(laToi));
                 nut.title = laToi ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối";
             }
@@ -58,11 +52,9 @@
         }
     }
 
-    // Gắn sự kiện click cho các nút
-    function ganNutToiSang() {
+    function ganSuKienChoNut() {
         const danhSachNut = document.querySelectorAll("#nut-toi-sang, #nut-toi-sang-mobile");
-        if (danhSachNut.length === 0) return false;
-
+        
         danhSachNut.forEach(nut => {
             if (nut.dataset.daKhoiTao === "true") return;
 
@@ -71,30 +63,24 @@
                 const dangToi = document.body.dataset.theme === CHE_DO_TOI;
                 apDungCheDo(dangToi ? CHE_DO_SANG : CHE_DO_TOI);
             });
-
+            
             nut.style.display = "inline-flex";
         });
-
-        apDungCheDo(docCheDoDaLuu());
-        return true;
     }
 
-    // Khởi tạo ngay lập tức để hạn chế nhấp nháy giao diện
-    apDungCheDo(docCheDoDaLuu(), false);
+    // Khởi tạo trạng thái ngay lập tức khi load trang
+    const cheDoHienTai = docCheDoDaLuu();
+    apDungCheDo(cheDoHienTai, false);
 
-    if (ganNutToiSang()) return;
-
-    // Theo dõi menu nạp bất đồng bộ
-    const boTheoDoi = new MutationObserver(function () {
-        if (ganNutToiSang()) {
-            boTheoDoi.disconnect();
-        }
+    // Theo dõi liên tục DOM để bắt sự kiện ngay khi menu di động được nạp xong qua fetch
+    const observer = new MutationObserver(() => {
+        ganSuKienChoNut();
     });
 
-    boTheoDoi.observe(
-        document.getElementById("mainMenu") || document.getElementById("menu") || document.body,
-        { childList: true, subtree: true }
-    );
+    observer.observe(document.body, { childList: true, subtree: true });
 
-    window.addEventListener("load", ganNutToiSang, { once: true });
+    window.addEventListener("DOMContentLoaded", () => {
+        apDungCheDo(docCheDoDaLuu(), false);
+        ganSuKienChoNut();
+    });
 })();
