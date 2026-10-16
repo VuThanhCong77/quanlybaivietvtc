@@ -1,6 +1,6 @@
 /* =====================================================
    CHẾ ĐỘ TỐI / SÁNG - WEBSITE VŨ THÀNH CÔNG
-   Chỉ áp dụng cho index.html
+   Áp dụng cho toàn bộ các trang (Trang chủ & Bài viết)
 ===================================================== */
 
 (function () {
@@ -10,15 +10,7 @@
     const CHE_DO_SANG = "light";
     const CHE_DO_TOI = "dark";
 
-    // Chỉ chạy trên trang chủ
-    if (
-        document.body.dataset.page !== "home" ||
-        document.body.dataset.postId !== "index"
-    ) {
-        return;
-    }
-
-    // Đọc lựa chọn đã lưu
+    // Đọc lựa chọn đã lưu (mặc định sáng)
     function docCheDoDaLuu() {
         try {
             const cheDo = localStorage.getItem(KHOA_LUU);
@@ -31,7 +23,7 @@
         return CHE_DO_SANG;
     }
 
-    // Áp dụng chế độ giao diện cho tất cả các nút (Desktop & Mobile)
+    // Áp dụng chế độ giao diện
     function apDungCheDo(cheDo, ghiNho = true) {
         const laToi = cheDo === CHE_DO_TOI;
 
@@ -39,7 +31,7 @@
         document.documentElement.dataset.theme = laToi ? CHE_DO_TOI : CHE_DO_SANG;
         document.documentElement.style.colorScheme = laToi ? CHE_DO_TOI : CHE_DO_SANG;
 
-        // Cập nhật tất cả các nút có mặt trên trang (Desktop và Mobile)
+        // Cập nhật giao diện tất cả các nút Tối / Sáng trên trang
         const danhSachNut = document.querySelectorAll("#nut-toi-sang, #nut-toi-sang-mobile");
 
         danhSachNut.forEach(nut => {
@@ -66,12 +58,10 @@
         }
     }
 
-    // Gắn sự kiện cho các nút
+    // Gắn sự kiện click cho các nút
     function ganNutToiSang() {
         const danhSachNut = document.querySelectorAll("#nut-toi-sang, #nut-toi-sang-mobile");
         if (danhSachNut.length === 0) return false;
-
-        let daKhoiTaoTatCa = true;
 
         danhSachNut.forEach(nut => {
             if (nut.dataset.daKhoiTao === "true") return;
@@ -89,11 +79,12 @@
         return true;
     }
 
-    // Khởi tạo ngay lập tức
+    // Khởi tạo ngay lập tức để hạn chế nhấp nháy giao diện
     apDungCheDo(docCheDoDaLuu(), false);
 
     if (ganNutToiSang()) return;
 
+    // Theo dõi menu nạp bất đồng bộ
     const boTheoDoi = new MutationObserver(function () {
         if (ganNutToiSang()) {
             boTheoDoi.disconnect();
@@ -101,7 +92,7 @@
     });
 
     boTheoDoi.observe(
-        document.getElementById("menu") || document.body,
+        document.getElementById("mainMenu") || document.getElementById("menu") || document.body,
         { childList: true, subtree: true }
     );
 
