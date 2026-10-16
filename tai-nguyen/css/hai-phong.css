@@ -20,11 +20,6 @@
     padding: 45px;
     overflow: hidden;
     border-radius: 24px;
-    background: linear-gradient(
-        135deg,
-        #ffffff 0%,
-        #eef5fb 100%
-    );
     border: 1px solid #dce7f0;
     box-shadow: 0 15px 40px rgba(24, 71, 112, 0.12);
 }

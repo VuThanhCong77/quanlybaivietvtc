@@ -1395,7 +1395,7 @@ body[data-page="home"] .nut-toi-sang {
     border-radius: 22px;
 
     background: #ffffff;
-    color: #006fa8;
+    color: #044e73;
 
     font: inherit;
     font-size: 14px;
@@ -1468,4 +1468,268 @@ body[data-page="home"][data-theme="dark"] .nut-toi-sang:hover {
     body[data-page="home"] .nut-toi-sang {
         transition: none;
     }
+}
+
+/* =====================================================
+CHẾ ĐỘ TỐI - CHỈ ÁP DỤNG CHO TRANG CHỦ
+===================================================== */
+
+html[data-theme="dark"] body[data-page="home"] {
+    color: #eeeeee;
+}
+
+/* Tiêu đề và nội dung chữ */
+html[data-theme="dark"] body[data-page="home"] h1,
+html[data-theme="dark"] body[data-page="home"] h2,
+html[data-theme="dark"] body[data-page="home"] h3,
+html[data-theme="dark"] body[data-page="home"] h4,
+html[data-theme="dark"] body[data-page="home"] p,
+html[data-theme="dark"] body[data-page="home"] li,
+html[data-theme="dark"] body[data-page="home"] label,
+html[data-theme="dark"] body[data-page="home"] small {
+    color: #eeeeee;
+}
+
+/* Thông tin phụ */
+html[data-theme="dark"] body[data-page="home"] .meta-bai-viet,
+html[data-theme="dark"] body[data-page="home"] .ngay-dang,
+html[data-theme="dark"] body[data-page="home"] .luot-xem {
+    color: #c5cbd3;
+}
+
+/* Khung nội dung */
+html[data-theme="dark"] body[data-page="home"] .khuon-trang-chu,
+html[data-theme="dark"] body[data-page="home"] .bai-viet-item,
+html[data-theme="dark"] body[data-page="home"] .the-bai-viet {
+    background-color: rgba(25, 35, 45, 0.92);
+    color: #eeeeee;
+}
+
+/* Liên kết */
+html[data-theme="dark"] body[data-page="home"] a {
+    color: #0846f0;
+}
+
+/* Ô nhập liệu */
+html[data-theme="dark"] body[data-page="home"] input,
+html[data-theme="dark"] body[data-page="home"] textarea,
+html[data-theme="dark"] body[data-page="home"] select {
+    background-color: #263442;
+    color: #ffffff;
+    border-color: #596b7b;
+}
+
+html[data-theme="dark"] body[data-page="home"] input::placeholder,
+html[data-theme="dark"] body[data-page="home"] textarea::placeholder {
+    color: #c0c8d0;
+}
+
+/* =====================================================
+   MỞ RỘNG CHẾ ĐỘ TỐI - TRANG CHỦ
+===================================================== */
+html[data-theme="dark"] body.trang-chu-body {
+    background-color: #0d1b2a;
+}
+
+html[data-theme="dark"] .khuon-trang-chu {
+    background: rgba(15, 23, 42, 0.88);
+    color: #eeeeee;
+}
+
+html[data-theme="dark"] .the-kham-pha,
+html[data-theme="dark"] .card-bai-viet,
+html[data-theme="dark"] .the-du-an,
+html[data-theme="dark"] .tv-card,
+html[data-theme="dark"] .o-chuyen-muc,
+html[data-theme="dark"] .chinh-quyen,
+html[data-theme="dark"] .thanh-tien-ich,
+html[data-theme="dark"] .bai-viet {
+    background-color: #1b263b;
+    border-color: #415a77;
+    color: #eeeeee;
+}
+
+html[data-theme="dark"] .thanh-tien-ich #likeBtn {
+    background-color: #1b263b;
+    color: #ffffff;
+    border-right-color: #415a77;
+}
+
+html[data-theme="dark"] .thanh-tien-ich #likeCount {
+    background-color: #0d1b2a;
+    color: #4ade80;
+    border-right-color: #415a77;
+}
+
+html[data-theme="dark"] .chan-trang {
+    background: linear-gradient(rgba(13, 27, 42, 0.9), rgba(13, 27, 42, 0.9)), url("https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh-bia/cac-loai-chim.webp") center / cover;
+    color: #eeeeee;
+}
+
+html[data-theme="dark"] .ban-quyen {
+    border-top-color: #415a77;
+    color: #042759;
+}
+
+/* =====================================================
+   MÀU CHỮ TIN TỨC MỚI NHẤT TRONG CHẾ ĐỘ TỐI
+===================================================== */
+html[data-theme="dark"] #latest-news-box .news-title {
+    color: #e2e8f0 !important; /* Đổi màu chữ sang trắng sáng */
+    border-bottom-color: #415a77 !important; /* Đổi màu đường gạch chân */
+}
+
+html[data-theme="dark"] #latest-news-box .news-title:hover {
+    color: #38bdf8 !important; /* Màu chữ khi di chuột vào (hover) */
+}
+
+html[data-theme="dark"] .hero-side h2 {
+    color: #ffffff !important; /* Đảm bảo tiêu đề 📰 TIN TỨC MỚI NHẤT hiển thị rõ */
+    border-bottom-color: #38bdf8 !important;
+}
+
+/* =====================================================
+   ẨN NÚT TỐI/SÁNG MOBILE TRÊN MÁY TÍNH (DESKTOP)
+===================================================== */
+.mobile-toi-sang {
+    display: none; /* Mặc định ẩn trên mọi màn hình máy tính */
+}
+
+/* Chỉ hiển thị khi màn hình là di động (<= 768px) */
+@media (max-width: 768px) {
+    .mobile-toi-sang {
+        display: flex;
+        justify-content: center;
+        padding: 12px 8px;
+        margin-top: 10px;
+        border-top: 1px solid rgba(128, 128, 128, 0.25);
+    }
+}
+
+/* =====================================================
+   TỐI ƯU HIỂN THỊ KHU VỰC TRÍCH DẪN (QUOTE-BOX)
+===================================================== */
+
+/* Chế độ Sáng (Light mode) */
+.quote-box {
+    background: var(--mau-the, #ffffff);
+    color: var(--mau-chu, #333333);
+}
+
+.quote-box .quote-text {
+    color: #1e293b; /* Màu chữ đậm, rõ nét trên nền sáng */
+    margin-bottom: 12px;
+}
+
+.quote-box .quote-text:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Chế độ Tối (Dark mode) */
+html[data-theme="dark"] .quote-box {
+    background-color: #1b263b !important; /* Màu nền tối dịu mắt */
+    border-left-color: #38bdf8 !important; /* Đổi màu đường viền nhấn cho nổi bật */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .quote-box .quote-text {
+    color: #f1f5f9 !important; /* Đổi màu chữ thành trắng sáng rõ ràng */
+}
+
+html[data-theme="dark"] .quote-box .quote-icon {
+    color: rgba(56, 189, 248, 0.15) !important; /* Biểu tượng ngoặc kép mờ phía sau */
+}
+
+/* =====================================================
+   TỐI ƯU CHẾ ĐỘ TỐI - SECTION HẢI PHÒNG VĂN MINH HẠNH PHÚC
+===================================================== */
+
+/* Chế độ Sáng (Mặc định) */
+.quote-box-hp {
+    background-color: var(--mau-the, #1a0101);
+    border: 1px solid var(--mau-vien, #e2e8f0);
+}
+
+.quote-content-hp h2 {
+    color: var(--mau-chinh, #0a7f99);
+}
+
+.quote-text-hp {
+    color: #05056c;
+    font-weight: 600;
+}
+
+.quote-summary-hp {
+    color: #475569;
+}
+
+.section-label {
+  
+    color: #2f0565;
+    font-weight: 700;
+}
+
+/* Chế độ Tối (Dark mode) */
+html[data-theme="dark"] .quote-box-hp {
+    background-color: #1b263b !important;
+    border-color: #415a77 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .quote-content-hp h2 {
+    color: #38bdf8 !important; /* Đổi tiêu đề sang màu xanh sáng nổi bật */
+}
+
+html[data-theme="dark"] .quote-text-hp {
+    color: #f8fafc !important; /* Chữ nhấn mạnh đổi sang trắng sáng */
+}
+
+html[data-theme="dark"] .quote-summary-hp {
+    color: #cbd5e1 !important; /* Chữ tóm tắt đổi sang màu xám sáng dễ đọc */
+}
+
+html[data-theme="dark"] .quote-icon-hp {
+    color: rgba(56, 189, 248, 0.15) !important;
+}
+
+html[data-theme="dark"] .section-label {
+    color: #f0f9ff !important; /* Nhãn "CHUYỂN MỤC ĐẶC BIỆT" tương phản rõ ràng */
+}
+
+html[data-theme="dark"] .hp-feature-button {
+    background-color: #0284c7 !important;
+    color: #ffffff !important;
+    border: 1px solid #38bdf8 !important;
+}
+
+html[data-theme="dark"] .hp-feature-button:hover {
+    background-color: #0369a1 !important;
+    color: #ffffff !important;
+}
+
+/* --- TÙY CHỈNH MÀU CHỮ KHU VỰC BÀI VIẾT NỔI BẬT & CHUYÊN MỤC --- */
+
+/* Tiêu đề chính và tiêu đề chuyên mục */
+.bai-viet-noi-bat h2,
+.khung-phu h3 {
+    color: #03216b; /* Màu chữ đậm, rõ nét (có thể đổi thành #111 hoặc màu bạn thích) */
+}
+
+/* Màu chữ cho các mục trong danh sách chuyên mục (.quick-item) */
+.luoi-1 .quick-item {
+    color: #ffffff; /* Màu chữ bình thường cho các link */
+    font-weight: 500; /* Làm chữ đậm hơn một chút cho dễ đọc */
+    text-decoration: none; /* Bỏ gạch chân mặc định nếu muốn */
+}
+
+/* Màu chữ khi di chuột vào (hover) */
+.luoi-1 .quick-item:hover {
+    color: #0066cc; /* Đổi màu khi rê chuột vào để sinh động hơn */
+}
+
+/* Nút "Xem thêm" / "50 bài viết nổi bật" */
+.xem-them .btn {
+    color: #ffffff; /* Chữ màu trắng */
+    background-color: #a4e00d; /* Màu nền nút (đỏ/cam nổi bật) */
+    font-weight: bold;
 }
