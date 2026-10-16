@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trình xem văn bản Word</title>
+<style>
+:root{--blue:#087db8;--blue-dark:#075d8a;--bg:#eef3f8;--line:#d7e0e8;--text:#243447}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(120deg,#087db8,#075d8a);color:#fff;padding:18px 20px}
+header h1{font-size:22px;margin:0 0 6px}
+header p{margin:0;font-size:13px;opacity:.92}
+.toolbar{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;box-shadow:0 2px 7px #17334a0d}
+button,.file-label{border:0;border-radius:7px;padding:10px 13px;background:var(--blue);color:#fff;font-weight:600;cursor:pointer;font-size:14px}
+button:hover,.file-label:hover{background:var(--blue-dark)}
+button.secondary{background:#e8f1f7;color:#174a68;border:1px solid #c9dce9}
+button.secondary:hover{background:#d8eaf5}
+#fileInput{display:none}
+#fileName{font-size:13px;color:#526579;min-width:140px;flex:1}
+.searchbox{display:flex;gap:6px;align-items:center}
+input[type=search]{width:min(260px,48vw);padding:9px 10px;border:1px solid #c7d3df;border-radius:7px;font-size:14px}
+#searchStatus{font-size:12px;color:#526579;min-width:64px}
+#zoomLabel{font-size:13px;min-width:44px;text-align:center}
+main{max-width:1100px;margin:22px auto;padding:0 14px 50px}
+.notice{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px;font-size:14px;line-height:1.6}
+#status{font-size:13px;color:#53677a;margin:0 0 12px}
+#document{background:#fff;border:1px solid var(--line);border-radius:8px;min-height:350px;padding:clamp(20px,5vw,65px);box-shadow:0 5px 22px #18344a0a;overflow-wrap:anywhere}
+#document.empty{display:flex;align-items:center;justify-content:center;text-align:center;color:#718096;line-height:1.8}
+.doc-content{font-size:16px;line-height:1.75;overflow-wrap:anywhere}
+.doc-content p{margin:0 0 12px}
+.doc-content h1,.doc-content h2,.doc-content h3{line-height:1.35;color:#20384c}
+.doc-content table{border-collapse:collapse;width:100%;margin:14px 0}
+.doc-content td,.doc-content th{border:1px solid #8998a7;padding:6px 8px;vertical-align:top}
+.doc-content img{max-width:100%;height:auto}
+.doc-content ul,.doc-content ol{padding-left:28px}
+mark.search-hit{background:#ffeb73;color:#17212b;padding:0 1px;border-radius:2px}
+mark.search-hit.current{background:#ff9e42;outline:2px solid #e47b16}
+footer{text-align:center;font-size:12px;color:#718096;padding:0 15px 25px}
+@media(max-width:620px){header h1{font-size:19px}.toolbar{gap:7px;padding:9px}.toolbar button,.file-label{padding:9px 10px;font-size:13px}#fileName{flex-basis:100%;order:2}.searchbox{width:100%;order:3}.searchbox input[type=search]{flex:1;width:100%}#document{padding:18px}.doc-content{font-size:15px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Trình xem văn bản Word</h1>
+  <p>Mở và đọc tệp DOCX trực tiếp trên trình duyệt</p>
+</header>
+
+<div class="toolbar" role="toolbar" aria-label="Công cụ xem văn bản">
+  <label class="file-label" for="fileInput">📂 Chọn tệp Word</label>
+  <input id="fileInput" type="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+  <span id="fileName">Chưa chọn tệp</span>
+  <div class="searchbox">
+    <input id="searchInput" type="search" placeholder="Tìm từ khóa..." aria-label="Tìm từ khóa" disabled>
+    <button id="prevHit" class="secondary" disabled title="Kết quả trước">◀</button>
+    <button id="nextHit" class="secondary" disabled title="Kết quả tiếp">▶</button>
+    <span id="searchStatus"></span>
+  </div>
+  <button id="zoomOut" class="secondary" disabled title="Thu nhỏ">A−</button>
+  <span id="zoomLabel">100%</span>
+  <button id="zoomIn" class="secondary" disabled title="Phóng to">A+</button>
+  <button id="resetZoom" class="secondary" disabled>Đặt lại cỡ chữ</button>
+</div>
+
+<main>
+  <div id="status">Chọn một tệp .docx từ máy tính để bắt đầu.</div>
+  <div id="document" class="empty">
+    <div>
+      <div style="font-size:44px">📄</div>
+      <strong>Chưa có văn bản để xem</strong><br>
+      Nhấn “Chọn tệp Word” và chọn tệp có đuôi .docx.<br>
+      <small>Tệp được xử lý trong trình duyệt, không gửi lên máy chủ.</small>
+    </div>
+  </div>
+</main>
+<footer>Trình xem DOCX độc lập · Tệp .doc đời cũ chưa được hỗ trợ trực tiếp</footer>
+
+<!-- Mammoth.js converts DOCX to HTML in the browser. Internet is required to load this library. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
+<script>
+(() => {
+  const fileInput = document.getElementById('fileInput');
+  const fileName = document.getElementById('fileName');
+  const status = document.getElementById('status');
+  const doc = document.getElementById('document');
+  const searchInput = document.getElementById('searchInput');
+  const prevHit = document.getElementById('prevHit');
+  const nextHit = document.getElementById('nextHit');
+  const searchStatus = document.getElementById('searchStatus');
+  const zoomOut = document.getElementById('zoomOut');
+  const zoomIn = document.getElementById('zoomIn');
+  const resetZoom = document.getElementById('resetZoom');
+
+  let originalHtml = '';
+  let zoom = 100;
+  let hits = [];
+  let activeHit = -1;
+
+  function setControls(enabled) {
+    [searchInput, prevHit, nextHit, zoomOut, zoomIn, resetZoom].forEach(el => el.disabled = !enabled);
+  }
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function clearSearch() {
+    doc.innerHTML = originalHtml;
+    hits = [];
+    activeHit = -1;
+    searchStatus.textContent = '';
+    prevHit.disabled = nextHit.disabled = !originalHtml;
+  }
+
+  function runSearch() {
+    if (!originalHtml) return;
+    const term = searchInput.value.trim();
+    doc.innerHTML = originalHtml;
+    hits = [];
+    activeHit = -1;
+    if (!term) {
+      searchStatus.textContent = '';
+      return;
+    }
+
+    const walker = document.createTreeWalker(doc, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const parent = node.parentElement;
+        if (parent && ['SCRIPT','STYLE','MARK'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    const regex = new RegExp(escapeRegExp(term), 'gi');
+
+    nodes.forEach(node => {
+      const text = node.nodeValue;
+      regex.lastIndex = 0;
+      if (!regex.test(text)) return;
+      regex.lastIndex = 0;
+      const fragment = document.createDocumentFragment();
+      let last = 0, match;
+      while ((match = regex.exec(text)) !== null) {
+        fragment.appendChild(document.createTextNode(text.slice(last, match.index)));
+        const mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        mark.textContent = match[0];
+        fragment.appendChild(mark);
+        hits.push(mark);
+        last = match.index + match[0].length;
+        if (match[0].length === 0) regex.lastIndex++;
+      }
+      fragment.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(fragment, node);
+    });
+
+    prevHit.disabled = nextHit.disabled = hits.length === 0;
+    if (hits.length) {
+      activeHit = 0;
+      showActiveHit();
+      searchStatus.textContent = `1/${hits.length}`;
+    } else {
+      searchStatus.textContent = 'Không thấy';
+    }
+  }
+
+  function showActiveHit() {
+    hits.forEach((hit, i) => hit.classList.toggle('current', i === activeHit));
+    if (hits[activeHit]) {
+      hits[activeHit].scrollIntoView({behavior:'smooth', block:'center'});
+      searchStatus.textContent = `${activeHit + 1}/${hits.length}`;
+    }
+  }
+
+  function moveHit(direction) {
+    if (!hits.length) return;
+    activeHit = (activeHit + direction + hits.length) % hits.length;
+    showActiveHit();
+  }
+
+  function applyZoom() {
+    doc.querySelectorAll('.doc-content').forEach(el => el.style.fontSize = `${16 * zoom / 100}px`);
+    zoomLabel.textContent = `${zoom}%`;
+  }
+
+  fileInput.addEventListener('change', async () => {
+    const file = fileInput.files && fileInput.files[0];
+    if (!file) return;
+    fileName.textContent = file.name;
+    status.textContent = 'Đang đọc tệp Word…';
+    doc.className = '';
+    doc.innerHTML = '';
+    searchInput.value = '';
+    searchInput.disabled = true;
+    setControls(false);
+
+    if (!/\.docx$/i.test(file.name)) {
+      status.textContent = 'Định dạng chưa được hỗ trợ. Vui lòng chọn tệp .docx; tệp .doc đời cũ cần chuyển đổi trước.';
+      doc.className = 'empty';
+      doc.textContent = 'Không thể mở định dạng này.';
+      originalHtml = '';
+      fileName.textContent = file.name;
+      return;
+    }
+    if (!window.mammoth) {
+      status.textContent = 'Không tải được thư viện đọc DOCX. Hãy kết nối Internet rồi tải lại trang.';
+      doc.className = 'empty';
+      doc.textContent = 'Không tải được thành phần cần thiết để đọc tệp.';
+      return;
+    }
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const result = await mammoth.convertToHtml({arrayBuffer}, {
+        styleMap: [
+          "p[style-name='Title'] => h1:fresh",
+          "p[style-name='Heading 1'] => h1:fresh",
+          "p[style-name='Heading 2'] => h2:fresh",
+          "p[style-name='Heading 3'] => h3:fresh"
+        ]
+      });
+      originalHtml = `<div class="doc-content">${result.value || '<p>(Tệp không có nội dung văn bản có thể hiển thị.)</p>'}</div>`;
+      doc.innerHTML = originalHtml;
+      doc.className = '';
+      zoom = 100;
+      applyZoom();
+      setControls(true);
+      status.textContent = result.messages && result.messages.length
+        ? `Đã mở văn bản. Lưu ý: một số định dạng có thể không được giữ nguyên hoàn toàn.`
+        : 'Đã mở văn bản thành công.';
+      if (result.messages && result.messages.length) {
+        console.info('Thông tin chuyển đổi DOCX:', result.messages);
+      }
+    } catch (error) {
+      console.error(error);
+      originalHtml = '';
+      doc.className = 'empty';
+      doc.textContent = 'Không đọc được tệp. Tệp có thể bị hỏng hoặc không đúng định dạng DOCX.';
+      status.textContent = 'Có lỗi khi mở tệp Word.';
+    }
+  });
+
+  searchInput.addEventListener('input', runSearch);
+  prevHit.addEventListener('click', () => moveHit(-1));
+  nextHit.addEventListener('click', () => moveHit(1));
+  zoomOut.addEventListener('click', () => { zoom = Math.max(60, zoom - 10); applyZoom(); });
+  zoomIn.addEventListener('click', () => { zoom = Math.min(200, zoom + 10); applyZoom(); });
+  resetZoom.addEventListener('click', () => { zoom = 100; applyZoom(); });
+})();
+</script>
+</body>
+</html>
