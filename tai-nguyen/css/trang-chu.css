@@ -1524,3 +1524,14 @@ body[data-page="home"] {
     }
 }
 
+
+/* Căn nút Tối/Sáng trong danh sách menu */
+.menu-toi-sang {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
