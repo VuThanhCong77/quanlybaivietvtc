@@ -1377,161 +1377,95 @@ section.am-nhac iframe {
     text-align: left;
 }
 
-
 /* =====================================================
-   NÚT TỐI / SÁNG - CHỈ TRANG CHỦ
+   NÚT TỐI / SÁNG - WEBSITE VŨ THÀNH CÔNG
+   Chỉ hiển thị trên trang chủ
 ===================================================== */
 
-#nut-toi-sang {
-    display: none;
+body[data-page="home"] .nut-toi-sang {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 8px 13px;
-    margin: 4px 8px;
+
+    padding: 8px 12px;
+    margin: 4px;
+
     border: 1px solid rgba(255, 255, 255, 0.45);
     border-radius: 22px;
+
     background: #ffffff;
     color: #006fa8;
+
     font: inherit;
     font-size: 14px;
     font-weight: 600;
+
     line-height: 1.3;
     white-space: nowrap;
+
     cursor: pointer;
-    transition: background-color 0.2s ease,
-                color 0.2s ease,
-                border-color 0.2s ease;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
-#nut-toi-sang:hover {
+body[data-page="home"] .nut-toi-sang:hover {
     background: #e6f5fc;
     color: #005580;
 }
 
-#nut-toi-sang:focus-visible {
+body[data-page="home"] .nut-toi-sang:focus-visible {
     outline: 3px solid #ffd166;
     outline-offset: 3px;
 }
 
-/* =====================================================
-   MÀU NỀN VÀ CHỮ - CHẾ ĐỘ TỐI
-   Chỉ áp dụng cho index.html
-===================================================== */
-
-body[data-page="home"][data-theme="dark"] {
-    background-color: #111b26;
-    color: #e5edf5;
+/* Căn nút trong menu máy tính */
+body[data-page="home"] .menu-desktop > .nut-toi-sang {
+    flex-shrink: 0;
+    align-self: center;
 }
 
-/* Các khu vực nền thường gặp */
-body[data-page="home"][data-theme="dark"] main,
-body[data-page="home"][data-theme="dark"] section,
-body[data-page="home"][data-theme="dark"] article,
-body[data-page="home"][data-theme="dark"] .khuon-trang-chu,
-body[data-page="home"][data-theme="dark"] .noi-dung,
-body[data-page="home"][data-theme="dark"] .noi-dung-chinh {
-    background-color: #111b26;
-    color: #e5edf5;
+/* Căn nút trong menu điện thoại */
+body[data-page="home"] .mobile-toi-sang {
+    display: flex;
+    justify-content: center;
+
+    padding: 12px 8px;
+    margin-top: 10px;
+
+    border-top: 1px solid rgba(128, 128, 128, 0.25);
 }
 
-/* Tiêu đề và nội dung văn bản */
-body[data-page="home"][data-theme="dark"] h1,
-body[data-page="home"][data-theme="dark"] h2,
-body[data-page="home"][data-theme="dark"] h3,
-body[data-page="home"][data-theme="dark"] h4,
-body[data-page="home"][data-theme="dark"] p,
-body[data-page="home"][data-theme="dark"] li,
-body[data-page="home"][data-theme="dark"] label {
-    color: #e5edf5;
+body[data-page="home"] .mobile-toi-sang .nut-toi-sang {
+    width: 100%;
+    max-width: 220px;
+    padding: 11px 16px;
 }
 
-/* Liên kết */
-body[data-page="home"][data-theme="dark"] main a {
-    color: #76c9ff;
-}
-
-body[data-page="home"][data-theme="dark"] main a:hover {
-    color: #b2e1ff;
-}
-
-/* Thẻ bài viết và khung nội dung */
-body[data-page="home"][data-theme="dark"] .bai-viet,
-body[data-page="home"][data-theme="dark"] .the-bai-viet,
-body[data-page="home"][data-theme="dark"] .bai-viet-item,
-body[data-page="home"][data-theme="dark"] .post-card,
-body[data-page="home"][data-theme="dark"] .khoi-noi-dung,
-body[data-page="home"][data-theme="dark"] .khoi-thich,
-body[data-page="home"][data-theme="dark"] .gop-y,
-body[data-page="home"][data-theme="dark"] .lien-he-nhanh {
-    background-color: #1b2937;
-    color: #e5edf5;
-    border-color: #35495c;
-}
-
-/* Ô nhập liệu */
-body[data-page="home"][data-theme="dark"] input,
-body[data-page="home"][data-theme="dark"] textarea,
-body[data-page="home"][data-theme="dark"] select {
-    background-color: #1b2937;
-    color: #e5edf5;
-    border-color: #526578;
-}
-
-body[data-page="home"][data-theme="dark"] input::placeholder,
-body[data-page="home"][data-theme="dark"] textarea::placeholder {
-    color: #a8b7c7;
-}
-
-/* Chân trang */
-body[data-page="home"][data-theme="dark"] .chan-trang {
-    background-color: #0c141d;
-    color: #e5edf5;
-}
-
-/* Nút vẫn giữ màu xanh biển thương hiệu */
-body[data-page="home"][data-theme="dark"] #nut-toi-sang {
-    background-color: #173b55;
+/* Màu nút khi bật chế độ tối */
+body[data-page="home"][data-theme="dark"] .nut-toi-sang {
+    background: #173b55;
     color: #ffffff;
     border-color: #52718a;
 }
 
-body[data-page="home"][data-theme="dark"] #nut-toi-sang:hover {
-    background-color: #245779;
-}
-
-/* Chuyển màu nhẹ nhàng, không tác động đến bố cục */
-body[data-page="home"] {
-    transition: background-color 0.2s ease, color 0.2s ease;
+body[data-page="home"][data-theme="dark"] .nut-toi-sang:hover {
+    background: #245779;
 }
 
 /* Điện thoại */
 @media (max-width: 768px) {
-    #nut-toi-sang {
+    body[data-page="home"] .menu-desktop > .nut-toi-sang {
         padding: 7px 10px;
-        margin: 4px;
         font-size: 13px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    body[data-page="home"] {
-        transition: none;
-    }
-
-    #nut-toi-sang {
+    body[data-page="home"] .nut-toi-sang {
         transition: none;
     }
 }
-
-
-/* Căn nút Tối/Sáng trong danh sách menu */
-.menu-toi-sang {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
