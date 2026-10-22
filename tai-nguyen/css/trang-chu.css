@@ -1797,18 +1797,6 @@ html[data-theme="dark"] .hp-feature-button:hover {
     color: #555;
 }
 
-/* Máy tính bảng: 2 banner mỗi lượt */
-@media (min-width: 601px) and (max-width: 1024px) {
-    .banner-lien-ket-track {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-    }
-
-    .banner-lien-ket-controls {
-        display: flex;
-    }
-}
-
 /* Điện thoại: 2 banner mỗi lượt */
 @media (max-width: 600px) {
     .banner-lien-ket {
