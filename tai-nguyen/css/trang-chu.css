@@ -13,7 +13,8 @@ body {
 */
 
 body.trang-chu-body {
-    margin: 0;
+    margin:auto;
+    max-width: 1200px;
 
     background-image:
         linear-gradient(
@@ -146,7 +147,7 @@ section {
     border: 1px solid #eedc9700;
     border-radius: var(--bo-goc-nho);
     background: #ebec9c00;
-    color: #eb0e0e;
+    color: #ffffff;
     font-size: 1.4rem;
 }
 
@@ -1036,7 +1037,7 @@ Không ảnh hưởng CSS .btn cũ
 .thoi-gian {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     gap: 6px;
     margin: 10px 0;
     color: var(--mau-chu-nhat);
