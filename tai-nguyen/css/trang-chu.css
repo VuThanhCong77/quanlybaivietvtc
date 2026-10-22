@@ -1734,3 +1734,94 @@ html[data-theme="dark"] .hp-feature-button:hover {
     background-color: #a4e00d; /* Màu nền nút (đỏ/cam nổi bật) */
     font-weight: bold;
 }
+
+
+/* ==================================================
+   BỘ BANNER LIÊN KẾT
+================================================== */
+
+.banner-lien-ket {
+    width: 100%;
+    max-width: 1500px;
+    margin: 10px auto;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.banner-lien-ket-track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    transition: transform 0.4s ease;
+}
+
+.banner-lien-ket-item {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.banner-lien-ket-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+    border: 0;
+}
+
+/* Nút chuyển nhóm: ẩn trên máy tính */
+.banner-lien-ket-controls {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-top: 12px;
+}
+
+.banner-lien-ket-controls button {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: #0099DA;
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.banner-page {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Máy tính bảng: 2 banner mỗi lượt */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .banner-lien-ket-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .banner-lien-ket-controls {
+        display: flex;
+    }
+}
+
+/* Điện thoại: 2 banner mỗi lượt */
+@media (max-width: 600px) {
+    .banner-lien-ket {
+        padding: 0 8px;
+    }
+
+    .banner-lien-ket-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .banner-lien-ket-controls {
+        display: flex;
+    }
+}
+
