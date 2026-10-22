@@ -1798,7 +1798,7 @@ html[data-theme="dark"] .hp-feature-button:hover {
 }
 
 /* Điện thoại: 2 banner mỗi lượt */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .banner-lien-ket {
         padding: 0 8px;
     }
