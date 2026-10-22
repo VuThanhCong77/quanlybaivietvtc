@@ -833,3 +833,80 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+/* ==================================================
+   CHUYỂN NHÓM BANNER TRÊN TABLET VÀ ĐIỆN THOẠI
+================================================== */
+(function () {
+    function initBannerLienKet() {
+        const section = document.querySelector('.banner-lien-ket');
+        if (!section || section.dataset.initialized) return;
+
+        section.dataset.initialized = 'true';
+
+        const track = section.querySelector('.banner-lien-ket-track');
+        const items = Array.from(
+            section.querySelectorAll('.banner-lien-ket-item')
+        );
+        const prev = section.querySelector('.banner-prev');
+        const next = section.querySelector('.banner-next');
+        const page = section.querySelector('.banner-page');
+
+        if (!track || items.length === 0) return;
+
+        let currentPage = 0;
+        let startX = 0;
+
+        function mobileMode() {
+            return window.matchMedia('(max-width: 1024px)').matches;
+        }
+
+        function update() {
+            const isMobile = mobileMode();
+            const perPage = isMobile ? 2 : 4;
+            const totalPages = Math.ceil(items.length / perPage);
+
+            currentPage = Math.min(currentPage, totalPages - 1);
+
+            items.forEach((item, index) => {
+                item.style.display = !isMobile ||
+                    Math.floor(index / perPage) === currentPage
+                    ? 'block' : 'none';
+            });
+
+            if (page) {
+                page.textContent = (currentPage + 1) + ' / ' + totalPages;
+            }
+        }
+
+        function move(step) {
+            const totalPages = Math.ceil(items.length / 2);
+            currentPage = (currentPage + step + totalPages) % totalPages;
+            update();
+        }
+
+        if (prev) prev.addEventListener('click', () => move(-1));
+        if (next) next.addEventListener('click', () => move(1));
+
+        track.addEventListener('touchstart', function (event) {
+            startX = event.touches[0].clientX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function (event) {
+            const distance = event.changedTouches[0].clientX - startX;
+            if (Math.abs(distance) > 50 && mobileMode()) {
+                move(distance < 0 ? 1 : -1);
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', update);
+        update();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBannerLienKet);
+    } else {
+        initBannerLienKet();
+    }
+})();
