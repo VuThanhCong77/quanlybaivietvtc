@@ -605,7 +605,7 @@ Không ảnh hưởng CSS .btn cũ
     flex-direction: column;
     justify-content: flex-end;
     padding: 18px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    background: linear-gradient(to top, rgba(238, 106, 106, 0), transparent);
     color: #fff;
 }
 
