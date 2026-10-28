@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phương Pháp Học Ngược - Nghiệp Vụ Kiểm Tra Đảng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        party: {
+                            red: '#C8102E',
+                            darkred: '#8B0000',
+                            gold: '#D4AF37',
+                            goldhover: '#B59226',
+                            navy: '#0F172A',
+                            navylight: '#1E293B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Be Vietnam Pro', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF099 0%, #D4AF37 50%, #997A15 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border {
+            border-image: linear-gradient(to right, #D4AF37, #FFF099, #D4AF37) 1;
+        }
+
+        .step-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
+            .step-card { break-inside: avoid; border: 1px solid #ccc !important; shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-party-red selection:text-white">
+
+    <!-- Header Trang trọng & Chính luận -->
+    <header class="relative bg-gradient-to-r from-party-darkred via-party-red to-red-900 text-white shadow-xl border-b-4 border-party-gold no-print">
+        <div class="absolute inset-0 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+            <!-- Top Controls -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-party-gold/20 border border-party-gold flex items-center justify-center text-party-gold font-bold text-xl shadow-inner">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest text-party-gold font-semibold">Học để Làm việc</span>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <button id="themeToggle" onclick="toggleTheme()" class="p-2.5 rounded-lg bg-black/20 hover:bg-black/40 text-party-gold border border-party-gold/30 transition-all text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:inline text-yellow-300"></i>
+                        <span class="hidden sm:inline text-xs font-medium">Giao diện</span>
+                    </button>
+                    <button onclick="window.print()" class="p-2.5 rounded-lg bg-party-gold hover:bg-party-goldhover text-party-navy font-semibold transition-all text-sm flex items-center gap-2 shadow-md">
+                        <i class="fa-solid fa-print"></i>
+                        <span class="hidden sm:inline text-xs uppercase tracking-wider">In tài liệu</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <div class="text-center max-w-3xl mx-auto my-4">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight uppercase leading-tight">
+                    PHƯƠNG PHÁP HỌC NGƯỢC <br class="hidden sm:block"/>
+                    <span class="gold-gradient-text drop-shadow-sm">NGHIỆP VỤ KIỂM TRA ĐẢNG</span>
+                </h1>
+                <p class="mt-3 text-red-100 text-sm sm:text-base font-normal max-w-2xl mx-auto leading-relaxed">
+                    Lộ trình tư duy hiện đại: Nhận diện vi phạm thực tiễn &rarr; Xác định thẩm quyền &rarr; Vận dụng quy trình &rarr; Lập hồ sơ báo cáo &rarr; Quán triệt định hướng chiến lược.
+                </p>
+            </div>
+
+            <!-- Progress Dashboard Bar -->
+            <div class="mt-8 bg-black/30 backdrop-blur-md rounded-xl p-4 border border-white/10 max-w-4xl mx-auto">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mb-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-party-gold"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-200">Tiến độ hoàn thành lộ trình:</span>
+                    </div>
+                    <span id="progressText" class="text-sm font-bold text-party-gold font-mono">0/5 Bước (0%)</span>
+                </div>
+                <div class="w-full bg-slate-700/60 rounded-full h-3 overflow-hidden p-0.5 border border-white/10">
+                    <div id="progressBar" class="bg-gradient-to-r from-yellow-500 to-party-gold h-full rounded-full transition-all duration-500 w-0"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+
+        <!-- Banner khi In -->
+        <div class="hidden print-only mb-6 text-center border-b-2 border-black pb-4">
+            <h1 class="text-xl font-bold uppercase">TÀI LIỆU PHƯƠNG PHÁP HỌC NGƯỢC NGHIỆP VỤ KIỂM TRA ĐẢNG</h1>
+            <p class="text-xs text-gray-600">Thứ tự chuẩn hóa 5 bước nghiên cứu tài liệu nghiệp vụ</p>
+        </div>
+
+        <!-- Section Title & Filter/Reset Controls -->
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-party-red"></i> 
+                    CÁC BƯỚC THỰC HIỆN THEO THỨ TỰ CHUẨN
+                </h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Yêu cầu học đúng thứ tự từ Bước 1 đến Bước 5 để đạt hiệu quả nghiệp vụ tốt nhất</p>
+            </div>
+            <button onclick="resetProgress()" class="text-xs text-slate-500 hover:text-party-red dark:text-slate-400 dark:hover:text-red-400 flex items-center gap-1.5 transition-colors no-print">
+                <i class="fa-solid fa-rotate-right"></i> Đặt lại tiến độ
+            </button>
+        </div>
+
+        <!-- Timeline / Steps Grid -->
+        <div class="space-y-6 relative">
+            
+            <!-- STEP 1 -->
+            <div id="step-card-1" class="step-card bg-white dark:bg-slate-800 rounded-xl shadow-md border-l-4 border-party-red border-y border-r border-slate-200 dark:border-slate-700 p-5 sm:p-6 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-red-100 dark:bg-red-950/60 text-party-red dark:text-red-400 font-bold flex items-center justify-center text-xl shadow-sm border border-red-200 dark:border-red-900">
+                            1
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="bg-red-100 dark:bg-red-900/50 text-party-red dark:text-red-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-red-200 dark:border-red-800">
+                                    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/muc-luc-quy-dinh-so-212-qdtw-ngay-1782026.html">Quy định 212-QĐ/TW</a>
+                                </span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Chủ đề: Nhận diện vi phạm & Căn cứ đối chiếu</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">
+                                Học để nhận diện hành vi vi phạm, xác định nội dung cần xem xét và căn cứ đối chiếu.
+                            </h3>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 self-end md:self-center shrink-0 no-print">
+                        <button onclick="toggleModal(1)" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-info text-party-gold"></i> Chi tiết
+                        </button>
+                        <label class="cursor-pointer flex items-center gap-2 bg-slate-50 dark:bg-slate-900 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-party-red transition-all">
+                            <input type="checkbox" onchange="toggleStep(1)" id="check-1" class="w-4 h-4 text-party-red rounded focus:ring-party-red border-slate-300">
+                            <span class="text-xs font-medium text-slate-700 dark:text-slate-300 select-none">Đã hoàn thành</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Accordion Quick Note -->
+                <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-magnifying-glass text-party-red mr-1"></i> Trọng tâm nghiệp vụ:
+                        </span>
+                        <span>Rà soát hành vi thực tế so với các quy định cấm, dấu hiệu vi phạm của tổ chức đảng/đảng viên.</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-bullseye text-party-gold mr-1"></i> Kết quả cần đạt:
+                        </span>
+                        <span>Xác định đúng hành vi, nội dung và điều khoản đối chiếu pháp lý/quy định Đảng.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div id="step-card-2" class="step-card bg-white dark:bg-slate-800 rounded-xl shadow-md border-l-4 border-party-red border-y border-r border-slate-200 dark:border-slate-700 p-5 sm:p-6 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-red-100 dark:bg-red-950/60 text-party-red dark:text-red-400 font-bold flex items-center justify-center text-xl shadow-sm border border-red-200 dark:border-red-900">
+                            2
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="bg-red-100 dark:bg-red-900/50 text-party-red dark:text-red-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-red-200 dark:border-red-800">
+                                    <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/muc-luc-quy-dinh-so-225-qdtw-ngay-14102026.html">Quy định 225-QĐ/TW</a>
+                                </span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Chủ đề: Thẩm quyền, nguyên tắc & Trình tự</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">
+                                Học để xác định thẩm quyền, nguyên tắc, trình tự kiểm tra, giám sát và thi hành kỷ luật.
+                            </h3>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 self-end md:self-center shrink-0 no-print">
+                        <button onclick="toggleModal(2)" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-info text-party-gold"></i> Chi tiết
+                        </button>
+                        <label class="cursor-pointer flex items-center gap-2 bg-slate-50 dark:bg-slate-900 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-party-red transition-all">
+                            <input type="checkbox" onchange="toggleStep(2)" id="check-2" class="w-4 h-4 text-party-red rounded focus:ring-party-red border-slate-300">
+                            <span class="text-xs font-medium text-slate-700 dark:text-slate-300 select-none">Đã hoàn thành</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-gavel text-party-red mr-1"></i> Trọng tâm nghiệp vụ:
+                        </span>
+                        <span>Phân định chính xác cấp có thẩm quyền giải quyết, thi hành kỷ luật và nguyên tắc thực hiện.</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-shield-halved text-party-gold mr-1"></i> Kết quả cần đạt:
+                        </span>
+                        <span>Tránh vi phạm thẩm quyền, bỏ sót bước thủ tục hoặc vi phạm nguyên tắc sinh hoạt Đảng.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div id="step-card-3" class="step-card bg-white dark:bg-slate-800 rounded-xl shadow-md border-l-4 border-party-red border-y border-r border-slate-200 dark:border-slate-700 p-5 sm:p-6 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-red-100 dark:bg-red-950/60 text-party-red dark:text-red-400 font-bold flex items-center justify-center text-xl shadow-sm border border-red-200 dark:border-red-900">
+                            3
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="bg-red-100 dark:bg-red-900/50 text-party-red dark:text-red-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-red-200 dark:border-red-800">
+                                    QĐ 89-QĐ/TW & QĐ 354-QĐ/UBKTTW <a href="https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/HDkiemtragiamsatchibo.html">& Quy trình ở chi bộ</a>
+                                </span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Chủ đề: Quy trình nghiệp vụ & Trách nhiệm thực hiện</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">
+                                Học để xác định đúng quy trình nghiệp vụ, các bước thực hiện và trách nhiệm liên quan.
+                            </h3>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 self-end md:self-center shrink-0 no-print">
+                        <button onclick="toggleModal(3)" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-info text-party-gold"></i> Chi tiết
+                        </button>
+                        <label class="cursor-pointer flex items-center gap-2 bg-slate-50 dark:bg-slate-900 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-party-red transition-all">
+                            <input type="checkbox" onchange="toggleStep(3)" id="check-3" class="w-4 h-4 text-party-red rounded focus:ring-party-red border-slate-300">
+                            <span class="text-xs font-medium text-slate-700 dark:text-slate-300 select-none">Đã hoàn thành</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-diagram-project text-party-red mr-1"></i> Trọng tâm nghiệp vụ:
+                        </span>
+                        <span>Chuẩn hóa từng bước triển khai cuộc kiểm tra/giám sát từ chuẩn bị, tiến hành đến kết thúc.</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-user-check text-party-gold mr-1"></i> Kết quả cần đạt:
+                        </span>
+                        <span>Nắm vững mốc thời gian, trách nhiệm Trưởng đoàn, thành viên đoàn và đối tượng kiểm tra.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div id="step-card-4" class="step-card bg-white dark:bg-slate-800 rounded-xl shadow-md border-l-4 border-party-red border-y border-r border-slate-200 dark:border-slate-700 p-5 sm:p-6 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-red-100 dark:bg-red-950/60 text-party-red dark:text-red-400 font-bold flex items-center justify-center text-xl shadow-sm border border-red-200 dark:border-red-900">
+                            4
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="bg-red-100 dark:bg-red-900/50 text-party-red dark:text-red-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-red-200 dark:border-red-800">
+                                    Mẫu biểu & Báo cáo
+                                </span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Chủ đề: Thực hành Hồ sơ - Báo cáo & Sản phẩm nghiệp vụ</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">
+                                Thực hành lập hồ sơ, báo cáo và hoàn thiện sản phẩm nghiệp vụ.
+                            </h3>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 self-end md:self-center shrink-0 no-print">
+                        <button onclick="toggleModal(4)" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-info text-party-gold"></i> Chi tiết
+                        </button>
+                        <label class="cursor-pointer flex items-center gap-2 bg-slate-50 dark:bg-slate-900 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-party-red transition-all">
+                            <input type="checkbox" onchange="toggleStep(4)" id="check-4" class="w-4 h-4 text-party-red rounded focus:ring-party-red border-slate-300">
+                            <span class="text-xs font-medium text-slate-700 dark:text-slate-300 select-none">Đã hoàn thành</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-file-pen text-party-red mr-1"></i> Trọng tâm nghiệp vụ:
+                        </span>
+                        <span>Soạn thảo biên bản, báo cáo kết quả kiểm tra, quyết định thi hành kỷ luật chuẩn văn phong Đảng.</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-folder-closed text-party-gold mr-1"></i> Kết quả cần đạt:
+                        </span>
+                        <span>Hoàn thiện bộ hồ sơ nghiệp vụ đầy đủ thể thức, lập thể và khả năng lưu trữ chặt chẽ.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div id="step-card-5" class="step-card bg-white dark:bg-slate-800 rounded-xl shadow-md border-l-4 border-party-red border-y border-r border-slate-200 dark:border-slate-700 p-5 sm:p-6 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-red-100 dark:bg-red-950/60 text-party-red dark:text-red-400 font-bold flex items-center justify-center text-xl shadow-sm border border-red-200 dark:border-red-900">
+                            5
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="bg-red-100 dark:bg-red-900/50 text-party-red dark:text-red-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-red-200 dark:border-red-800">
+                                    Nghị quyết 05-NQ/TW
+                                </span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Chủ đề: Định hướng chiến lược & Vận dụng thực tiễn</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">
+                                Nghiên cứu định hướng, chủ trương và liên hệ với việc vận dụng nghiệp vụ.
+                            </h3>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 self-end md:self-center shrink-0 no-print">
+                        <button onclick="toggleModal(5)" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-info text-party-gold"></i> Chi tiết
+                        </button>
+                        <label class="cursor-pointer flex items-center gap-2 bg-slate-50 dark:bg-slate-900 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-party-red transition-all">
+                            <input type="checkbox" onchange="toggleStep(5)" id="check-5" class="w-4 h-4 text-party-red rounded focus:ring-party-red border-slate-300">
+                            <span class="text-xs font-medium text-slate-700 dark:text-slate-300 select-none">Đã hoàn thành</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-compass text-party-red mr-1"></i> Trọng tâm nghiệp vụ:
+                        </span>
+                        <span>Nắm vững quan điểm chỉ đạo, phương hướng nâng cao hiệu lực, hiệu quả công tác kiểm tra.</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">
+                            <i class="fa-solid fa-lightbulb text-party-gold mr-1"></i> Kết quả cần đạt:
+                        </span>
+                        <span>Nâng cao tư duy lý luận, chủ động phòng ngừa vi phạm và vận dụng sáng tạo vào thực tiễn địa phương/đơn vị.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Note Section -->
+        <div class="mt-10 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent p-5 rounded-xl border border-amber-500/20 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+            <h4 class="font-bold text-slate-900 dark:text-slate-200 flex items-center gap-2 mb-1.5">
+                <i class="fa-solid fa-triangle-exclamation text-amber-500"></i> NGUYÊN TẮC HỌC TẬP CẦN NẮM VỮNG:
+            </h4>
+            <p>Phương pháp "Học ngược" giúp Cán bộ Kiểm tra đi từ **căn cứ pháp lý nhận diện sai phạm thực tế**, sau đó mới nâng dần lên tư duy quy trình và bản chất chiến lược. <strong>Tuyệt đối không đảo thứ tự 5 bước trên</strong> để tránh tình trạng thuộc lý luận suông nhưng không áp dụng được vào xử lý vụ việc cụ thể.</p>
+        </div>
+    </main>
+
+    <!-- Modal Detail View -->
+    <div id="detailModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 no-print">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div id="modalContent">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs no-print">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="font-medium text-slate-300 mb-1">HỆ THỐNG HỖ TRỢ HỌC TẬP NGHIỆP VỤ KIỂM TRA ĐẢNG</p>
+            <p class="text-slate-500">Ứng dụng phương pháp tự học và tự rèn luyện dành cho Cán bộ Kiểm tra các cấp</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script>
+        const detailsData = {
+            1: {
+                title: "Bước 1: Quy định 212-QĐ/TW",
+                subtitle: "Nhận diện vi phạm & Căn cứ đối chiếu",
+                content: "Ở bước này, Cán bộ Kiểm tra tập trung vào việc soi chiếu hành vi thực tế của đối tượng với các điều khoản cấm hoặc dấu hiệu vi phạm. Việc nắm chắc Quy định 212 giúp định khung chính xác bản chất sai phạm ngay từ đầu.",
+                checkpoints: [
+                    "Đối chiếu hành vi thực tế với điều khoản quy định.",
+                    "Xác định đúng các tình tiết tăng nặng/giảm nhẹ.",
+                    "Lập danh mục căn cứ pháp lý làm cơ sở làm việc."
+                ]
+            },
+            2: {
+                title: "Bước 2: Quy định 225-QĐ/TW",
+                subtitle: "Thẩm quyền, nguyên tắc & Trình tự kiểm tra",
+                content: "Xác định rõ ràng thẩm quyền của từng cấp ủy, tổ chức đảng và ủy ban kiểm tra các cấp. Nắm vững nguyên tắc thi hành kỷ luật để đảm bảo tính dân chủ, khách quan và đúng pháp lý.",
+                checkpoints: [
+                    "Kiểm tra cấp thẩm quyền ban hành quyết định.",
+                    "Đảm bảo tuân thủ nguyên tắc bỏ phiếu, biểu quyết.",
+                    "Rà soát trình tự từ tiếp nhận thông tin đến kết luận."
+                ]
+            },
+            3: {
+                title: "Bước 3: Quy định 89-QĐ/TW & Quyết định 354-QĐ/UBKTTW",
+                subtitle: "Quy trình nghiệp vụ & Trách nhiệm thực hiện",
+                content: "Nghiên cứu kỹ lưỡng các bước trong quy trình kiểm tra khi có dấu hiệu vi phạm, giải quyết tố cáo, khiếu nại... Rõ trách nhiệm của Trưởng đoàn, Phó đoàn và từng thành viên.",
+                checkpoints: [
+                    "Thực hiện đầy đủ các bước trong 3 giai đoạn (Chuẩn bị, Tiến hành, Kết thúc).",
+                    "Phân công nhiệm vụ cụ thể cho từng thành viên Đoàn.",
+                    "Đảm bảo thời hạn thẩm tra, xác minh theo đúng quy định."
+                ]
+            },
+            4: {
+                title: "Bước 4: Hướng dẫn về mẫu biểu báo cáo",
+                subtitle: "Thực hành Hồ sơ - Báo cáo & Sản phẩm nghiệp vụ",
+                content: "Trực tiếp thực hành soạn thảo các văn bản nghiệp vụ: Kế hoạch, Biên bản làm việc, Báo cáo kết quả thẩm tra xác minh, Quyết định thi hành kỷ luật. Đây là sản phẩm trực tiếp của quá trình kiểm tra.",
+                checkpoints: [
+                    "Sử dụng đúng mẫu biểu do Ủy ban Kiểm tra Trung ương ban hành.",
+                    "Đảm bảo văn phong chính luận, chuẩn xác, căn cứ rõ ràng.",
+                    "Sắp xếp và lưu trữ hồ sơ theo đúng thể thức lưu trữ Đảng."
+                ]
+            },
+            5: {
+                title: "Bước 5: Nghị quyết 05-NQ/TW",
+                subtitle: "Định hướng chiến lược & Vận dụng thực tiễn",
+                content: "Nâng tầm tư duy nghiệp vụ bằng việc thấu hiểu tinh thần, quan điểm chỉ đạo của Đảng về công tác kiểm tra, giám sát trong tình hình mới. Liên hệ thực tiễn để tham mưu, phòng ngừa sai phạm.",
+                checkpoints: [
+                    "Nắm vững quan điểm 'không có vùng cấm, không có ngoại lệ'.",
+                    "Liên hệ với đặc thù công tác tại chi bộ, đảng bộ công tác.",
+                    "Đề xuất giải pháp chủ động phòng ngừa vi phạm từ sớm, từ xa."
+                ]
+            }
+        };
+
+        let completedSteps = JSON.parse(localStorage.getItem('party_study_progress')) || [];
+
+        function updateProgressUI() {
+            const total = 5;
+            const count = completedSteps.length;
+            const percent = Math.round((count / total) * 100);
+
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('progressText').innerText = `${count}/${total} Bước (${percent}%)`;
+
+            for (let i = 1; i <= total; i++) {
+                const card = document.getElementById(`step-card-${i}`);
+                const checkbox = document.getElementById(`check-${i}`);
+                if (completedSteps.includes(i)) {
+                    checkbox.checked = true;
+                    card.classList.add('bg-red-50/40', 'dark:bg-slate-800/60');
+                } else {
+                    checkbox.checked = false;
+                    card.classList.remove('bg-red-50/40', 'dark:bg-slate-800/60');
+                }
+            }
+        }
+
+        function toggleStep(stepIndex) {
+            if (completedSteps.includes(stepIndex)) {
+                completedSteps = completedSteps.filter(item => item !== stepIndex);
+            } else {
+                completedSteps.push(stepIndex);
+            }
+            localStorage.setItem('party_study_progress', JSON.stringify(completedSteps));
+            updateProgressUI();
+        }
+
+        function resetProgress() {
+            if (confirm("Bạn có chắc chắn muốn đặt lại toàn bộ tiến độ học tập?")) {
+                completedSteps = [];
+                localStorage.removeItem('party_study_progress');
+                updateProgressUI();
+            }
+        }
+
+        function toggleModal(stepIndex) {
+            const data = detailsData[stepIndex];
+            const modal = document.getElementById('detailModal');
+            const content = document.getElementById('modalContent');
+
+            let checkpointsHTML = data.checkpoints.map(item => 
+                `<li class="flex items-start gap-2 mb-2"><i class="fa-solid fa-check text-party-gold mt-1"></i> <span>${item}</span></li>`
+            ).join('');
+
+            content.innerHTML = `
+                <div class="flex items-center gap-2 text-xs font-bold text-party-red uppercase tracking-wider mb-1">
+                    <i class="fa-solid fa-bookmark"></i> Hướng dẫn chi tiết
+                </div>
+                <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">${data.title}</h3>
+                <p class="text-xs font-semibold text-party-gold mb-3">${data.subtitle}</p>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">${data.content}</p>
+                <div class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase mb-2">Thẻ nhớ kiểm tra nhanh (Quick-Check):</h4>
+                    <ul class="text-xs text-slate-600 dark:text-slate-300">${checkpointsHTML}</ul>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize Theme & Progress on Load
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            updateProgressUI();
+        }
+    </script>
+</body>
+</html>
