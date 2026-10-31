@@ -1,5 +1,20 @@
 [
   {
+    "id": "7-buoc-don-rac-trong-dau",
+    "title": "7 bước dọn rác trong đầu",
+    "desc": "Hướng dẫn thực hành để tâm trí nhẹ nhàng hơn, suy nghĩ sáng suốt hơn và không bị những chuyện vụn vặt chi phối.",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/vu-cong-01.webp",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tri-tue/7-buoc-don-rac-trong-dau.html",
+    "date": "28-10-2026",
+    "author": "Vũ Thành Công",
+    "scheduledTime": "",
+    "category": [
+      "Trí tuệ"
+    ],
+    "featured": true,
+    "views": 108
+  },
+  {
     "id": "muc-luc-quy-dinh-so-225-qdtw-ngay-14102026",
     "title": "Mục lục Quy định số 225-QĐ/TW ngày 14/10/2026",
     "desc": "Quy định số 225-QĐ/TW của Ban Chấp hành Trung ương Đảng về công tác kiểm tra, giám sát và kỷ luật của Đảng có hiệu lực từ ngày 14/10/2026, thay thế Quy định số 21-QĐ/TW ngày 11/4/2026. Văn bản gồm 7 chương, 35 điều.",
@@ -12,7 +27,7 @@
       "Kiểm tra"
     ],
     "featured": true,
-    "views": 0
+    "views": 108
   },
   {
     "id": "muc-luc-quy-dinh-so-212-qdtw-ngay-1782026",
@@ -27,7 +42,7 @@
       "Kiểm tra"
     ],
     "featured": true,
-    "views": 0
+    "views": 108
   },
   {
     "id": "cong-bo-quyet-dinh-ve-cong-tac-can-bo",
