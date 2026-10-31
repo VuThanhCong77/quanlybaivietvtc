@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hướng dẫn 7 bước dọn dẹp tâm trí và kế hoạch thực hành trong 7 ngày.">
+  <title>7 bước dọn dẹp rác trong đầu</title>
+  <style>
+    :root {
+      --blue: #0099DA;
+      --blue-dark: #0879a8;
+      --ink: #20313d;
+      --muted: #5e707b;
+      --line: #dce8ee;
+      --soft: #f1f8fb;
+      --green: #16865d;
+      --max: 980px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #f5f8fa;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.72;
+    }
+    .topbar {
+      height: 6px;
+      background: linear-gradient(90deg, var(--blue-dark), #36b9d9);
+    }
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 32px auto;
+      background: #fff;
+      border: 1px solid #e5edf1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 38px rgba(30, 70, 90, .07);
+    }
+    header {
+      padding: 52px 7% 42px;
+      color: white;
+      background: linear-gradient(135deg, #0879a8, #0099da 62%, #39b6c9);
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .9;
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.35rem);
+      line-height: 1.16;
+      letter-spacing: -.035em;
+    }
+    .subtitle {
+      max-width: 720px;
+      margin: 18px 0 0;
+      font-size: 1.08rem;
+      opacity: .96;
+    }
+    main { padding: 38px 7% 54px; }
+    h2 {
+      margin: 42px 0 18px;
+      color: #0879a8;
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      line-height: 1.3;
+    }
+    h3 {
+      margin: 0 0 9px;
+      color: #174b63;
+      font-size: 1.18rem;
+    }
+    p { margin: 10px 0; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 6px 0; }
+    .intro {
+      padding: 20px 22px;
+      background: var(--soft);
+      border-left: 4px solid var(--blue);
+      border-radius: 8px;
+      font-size: 1.04rem;
+    }
+    .step {
+      margin: 22px 0;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-right: 8px;
+      border-radius: 50%;
+      color: white;
+      background: var(--blue);
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    .note {
+      margin: 14px 0 4px;
+      padding: 13px 16px;
+      border-radius: 8px;
+      background: #f2f8f4;
+      border-left: 3px solid var(--green);
+    }
+    .two-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 18px 0;
+    }
+    .column-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fbfdfe;
+    }
+    .column-card h3 { font-size: 1.05rem; }
+    .column-card ul { margin-bottom: 0; }
+    table {
+      width: 100%;
+      margin: 16px 0;
+      border-collapse: collapse;
+      font-size: .96rem;
+    }
+    th, td {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { color: #174b63; background: #edf7fb; }
+    .practice {
+      margin-top: 20px;
+      padding: 22px;
+      border-radius: 12px;
+      background: #f5f9fb;
+      border: 1px solid var(--line);
+    }
+    .practice-intro { color: var(--muted); margin-top: -5px; }
+    .progress-wrap {
+      height: 9px;
+      margin: 12px 0 18px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #dce8ee;
+    }
+    .progress {
+      width: 0%;
+      height: 100%;
+      background: var(--green);
+      transition: width .2s ease;
+    }
+    .day {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 12px;
+      padding: 13px 0;
+      border-top: 1px solid var(--line);
+    }
+    .day input { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--green); }
+    .day strong { display: block; }
+    .day span { display: block; color: var(--muted); font-size: .94rem; }
+    .progress-label { color: var(--muted); font-size: .9rem; }
+    .quote {
+      margin: 24px 0 8px;
+      padding: 24px 26px;
+      border-radius: 12px;
+      color: #164c64;
+      background: #eaf6fb;
+      font-size: 1.22rem;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+    .closing { color: var(--muted); font-size: .95rem; }
+    footer {
+      padding: 20px 7%;
+      color: #607681;
+      background: #f5f9fb;
+      border-top: 1px solid var(--line);
+      font-size: .88rem;
+      text-align: center;
+    }
+    .print-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 17px;
+      border: 0;
+      border-radius: 7px;
+      color: white;
+      background: var(--blue-dark);
+      font-size: .95rem;
+      cursor: pointer;
+    }
+    .print-button:hover { background: #075f84; }
+    @media (max-width: 650px) {
+      .page { width: 100%; margin: 0; border: 0; border-radius: 0; }
+      header { padding: 38px 22px 32px; }
+      main { padding: 28px 22px 40px; }
+      .two-columns { grid-template-columns: 1fr; }
+      .step { padding: 18px; }
+      table { font-size: .88rem; }
+      th, td { padding: 9px; }
+    }
+    @media print {
+      body { background: white; }
+      .page { width: 100%; margin: 0; border: 0; box-shadow: none; }
+      header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .print-button { display: none; }
+      .step, .column-card, .practice, .quote { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar"></div>
+  <div class="page">
+    <header>
+      <p class="eyebrow">Sống tích cực · Sống tỉnh thức</p>
+      <h1>7 bước dọn dẹp rác trong đầu</h1>
+      <p class="subtitle">Hướng dẫn thực hành để tâm trí nhẹ nhàng hơn, suy nghĩ sáng suốt hơn và không bị những chuyện vụn vặt chi phối.</p>
+    </header>
+
+    <main>
+      <p class="intro">
+        Muốn loại bỏ “rác trong đầu”, chúng ta cần học cách dọn dẹp tâm trí mỗi ngày, giống như việc dọn dẹp nhà cửa. Không phải cố gắng xóa bỏ mọi suy nghĩ tiêu cực, mà là biết suy nghĩ nào cần giữ lại, suy nghĩ nào cần điều chỉnh và suy nghĩ nào nên buông bỏ.
+      </p>
+
+      <h2>1. Bảy bước dọn dẹp rác trong đầu</h2>
+
+      <section class="step">
+        <h3><span class="step-number">1</span>Dừng tiếp nhận những thông tin không cần thiết</h3>
+        <p>Đầu óc chúng ta mỗi ngày phải tiếp nhận rất nhiều thông tin: tin tức, mạng xã hội, chuyện người khác, tranh luận, thị phi, quảng cáo...</p>
+        <p><strong>Cách thực hiện:</strong></p>
+        <ul>
+          <li>Không mở điện thoại ngay khi vừa thức dậy.</li>
+          <li>Hạn chế đọc những tin tức giật gân, gây tức giận, lo lắng.</li>
+          <li>Bỏ theo dõi những trang thường xuyên đăng nội dung độc hại.</li>
+          <li>Không tham gia những cuộc tranh luận không mang lại giá trị.</li>
+          <li>Chỉ dành thời gian cho những thông tin phục vụ công việc và cuộc sống.</li>
+        </ul>
+        <div class="note"><strong>Nguyên tắc:</strong> Không phải thông tin nào xuất hiện trước mắt cũng cần đưa vào đầu.</div>
+      </section>
+
+      <section class="step">
+        <h3><span class="step-number">2</span>Loại bỏ suy nghĩ tiêu cực bằng cách kiểm chứng</h3>
+        <p>Khi xuất hiện một suy nghĩ khiến mình lo lắng, bực tức hoặc khó chịu, đừng vội tin nó. Hãy tự hỏi: Điều mình đang nghĩ có chắc chắn đúng không? Có bằng chứng nào chứng minh điều đó? Mình có đang suy diễn quá mức không? Có cách nhìn nào khác khách quan hơn không?</p>
+        <table>
+          <thead><tr><th>Suy nghĩ tiêu cực</th><th>Cách suy nghĩ thay thế</th></tr></thead>
+          <tbody>
+            <tr><td>Người khác không tôn trọng mình.</td><td>Chưa chắc, cần nhìn nhận sự việc khách quan.</td></tr>
+            <tr><td>Mình không thể làm được.</td><td>Mình chưa làm được, nhưng có thể học hỏi.</td></tr>
+            <tr><td>Người kia thành công hơn mình.</td><td>Mỗi người có một hành trình riêng.</td></tr>
+            <tr><td>Chuyện này chắc chắn sẽ thất bại.</td><td>Hãy xác định rủi ro và tìm phương án giải quyết.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="step">
+        <h3><span class="step-number">3</span>Học cách buông bỏ những chuyện không thuộc quyền kiểm soát</h3>
+        <p>Hãy phân biệt điều mình có thể chủ động thay đổi và điều mình không thể kiểm soát hoàn toàn.</p>
+        <div class="two-columns">
+          <div class="column-card">
+            <h3>Những điều có thể kiểm soát</h3>
+            <ul>
+              <li>Thái độ và hành động của bản thân.</li>
+              <li>Cách làm việc và cách ứng xử.</li>
+              <li>Việc học tập, rèn luyện.</li>
+              <li>Cách sử dụng thời gian.</li>
+              <li>Cách phản ứng trước khó khăn.</li>
+            </ul>
+          </div>
+          <div class="column-card">
+            <h3>Những điều không thể kiểm soát hoàn toàn</h3>
+            <ul>
+              <li>Người khác nghĩ gì về mình.</li>
+              <li>Người khác nói gì sau lưng mình.</li>
+              <li>Những chuyện đã xảy ra trong quá khứ.</li>
+              <li>Sự thành công hay thất bại của người khác.</li>
+              <li>Những biến động bất ngờ của cuộc sống.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="note">Hãy dành năng lượng cho nhóm thứ nhất, chấp nhận giới hạn của nhóm thứ hai.</div>
+      </section>
+
+      <section class="step">
+        <h3><span class="step-number">4</span>Dọn dẹp cảm xúc tồn đọng</h3>
+        <p>Nhiều khi thứ khiến đầu óc mệt mỏi không phải là công việc, mà là những cảm xúc chưa được giải tỏa: một lời nói khó nghe, một sự bất công, một lần bị hiểu lầm, một chuyện không vừa ý...</p>
+        <p><strong>Cách thực hiện:</strong></p>
+        <ol>
+          <li>Dừng lại, không phản ứng ngay.</li>
+          <li>Gọi tên cảm xúc: tức giận, thất vọng, buồn bực hay lo lắng.</li>
+          <li>Tìm hiểu nguyên nhân thực sự.</li>
+          <li>Nếu có thể giải quyết, hãy giải quyết bằng thái độ bình tĩnh.</li>
+          <li>Nếu không thể thay đổi, hãy tập chấp nhận và chuyển sự chú ý sang việc có ích.</li>
+        </ol>
+        <div class="note">Buông bỏ không có nghĩa là dung túng cho cái sai hoặc quên đi trách nhiệm bảo vệ quyền lợi chính đáng của mình.</div>
+      </section>
+
+      <section class="step">
+        <h3><span class="step-number">5</span>Hạn chế so sánh và phán xét người khác</h3>
+        <p>Thấy người khác giàu có thì chạnh lòng; thấy người khác được khen thì không vui; thấy người khác mắc sai lầm thì vội phán xét; thấy người khác có điều kiện tốt hơn thì cảm thấy bản thân thiệt thòi.</p>
+        <p>Hãy thay đổi bằng ba nguyên tắc:</p>
+        <ul>
+          <li>So sánh bản thân hôm nay với chính mình ngày hôm qua.</li>
+          <li>Học hỏi thành công của người khác thay vì đố kỵ.</li>
+          <li>Nhìn nhận người khác công bằng, không vội kết luận khi chưa hiểu rõ sự việc.</li>
+        </ul>
+      </section>
+
+      <section class="step">
+        <h3><span class="step-number">6</span>Đưa những điều tốt đẹp vào tâm trí</h3>
+        <p>Muốn dọn sạch rác thì không thể chỉ loại bỏ cái xấu, mà phải thay thế bằng những điều tốt đẹp.</p>
+        <ul>
+          <li>Đọc sách mỗi ngày 15–20 phút.</li>
+          <li>Đi bộ hoặc vận động thể chất.</li>
+          <li>Trò chuyện với những người tích cực.</li>
+          <li>Dành thời gian cho gia đình.</li>
+          <li>Học một kiến thức mới.</li>
+          <li>Viết ra những điều tốt đẹp đã xảy ra trong ngày.</li>
+        </ul>
+      </section>
+
+      <section class="step">
+        <h3><span class="step-number">7</span>Thực hành 10 phút dọn dẹp tâm trí trước khi ngủ</h3>
+        <p>Mỗi tối, hãy dành 10 phút để tự trả lời năm câu hỏi:</p>
+        <ol>
+          <li>Hôm nay điều gì khiến mình vui?</li>
+          <li>Điều gì khiến mình khó chịu?</li>
+          <li>Có suy nghĩ nào không cần thiết mà mình đang giữ trong đầu?</li>
+          <li>Việc gì cần giải quyết, việc gì nên buông bỏ?</li>
+          <li>Ngày mai mình sẽ làm điều gì tốt hơn?</li>
+        </ol>
+        <p>Không cần viết dài, chỉ cần thành thật với chính mình.</p>
+      </section>
+
+      <h2>2. Kế hoạch 7 ngày thực hành dọn rác trong đầu</h2>
+      <p>Hãy thực hiện từng việc nhỏ, không cần cầu toàn. Có thể đánh dấu trực tiếp vào từng ngày để theo dõi tiến độ.</p>
+
+      <section class="practice">
+        <h3>Bảng theo dõi 7 ngày</h3>
+        <p class="practice-intro">Đánh dấu khi bạn đã hoàn thành việc thực hành trong ngày.</p>
+        <div class="progress-label" id="progressLabel" aria-live="polite">Đã hoàn thành: 0/7 ngày</div>
+        <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+
+        <label class="day"><input type="checkbox"><span><strong>Ngày 1: Dọn rác thông tin</strong>Giảm thời gian mạng xã hội, bỏ theo dõi nội dung độc hại.</span></label>
+        <label class="day"><input type="checkbox"><span><strong>Ngày 2: Dọn rác suy nghĩ</strong>Nhận diện và kiểm chứng 3 suy nghĩ tiêu cực.</span></label>
+        <label class="day"><input type="checkbox"><span><strong>Ngày 3: Dọn rác cảm xúc</strong>Viết ra điều khiến mình bực bội và tìm cách giải quyết.</span></label>
+        <label class="day"><input type="checkbox"><span><strong>Ngày 4: Học cách buông bỏ</strong>Chọn một việc ngoài khả năng kiểm soát để ngừng bận tâm quá mức.</span></label>
+        <label class="day"><input type="checkbox"><span><strong>Ngày 5: Ngừng so sánh</strong>Ghi nhận 3 điều bản thân đã làm tốt.</span></label>
+        <label class="day"><input type="checkbox"><span><strong>Ngày 6: Nuôi dưỡng điều tích cực</strong>Đọc sách, vận động và trò chuyện với người thân.</span></label>
+        <label class="day"><input type="checkbox"><span><strong>Ngày 7: Tổng vệ sinh tâm trí</strong>Nhìn lại 6 ngày và xác định thói quen muốn duy trì.</span></label>
+        <button class="print-button" type="button" onclick="window.print()">In / Lưu thành PDF</button>
+      </section>
+
+      <h2>3. Một điều quan trọng cần nhớ</h2>
+      <p>Đừng đặt mục tiêu trở thành người không bao giờ có suy nghĩ tiêu cực. Điều đó không thực tế. Mục tiêu đúng đắn là:</p>
+      <ul>
+        <li>Có suy nghĩ nhưng không để suy nghĩ điều khiển mình.</li>
+        <li>Có cảm xúc nhưng không để cảm xúc lấn át lý trí.</li>
+        <li>Biết chuyện nhưng không ôm đồm mọi chuyện.</li>
+        <li>Biết người khác sai nhưng không nuôi dưỡng thù hận.</li>
+        <li>Biết cuộc sống còn nhiều bất công nhưng vẫn giữ được sự tử tế và nguyên tắc.</li>
+      </ul>
+
+      <blockquote class="quote">
+        “Đầu óc không phải là chiếc thùng để chứa mọi thông tin; trái tim không phải là nơi lưu giữ mọi tổn thương; và cuộc đời không đủ dài để chúng ta lãng phí thời gian vào những điều không xứng đáng.”
+      </blockquote>
+      <p class="closing">Hãy bắt đầu từ một việc nhỏ mỗi ngày. Khi biết chọn lọc thông tin, điều chỉnh suy nghĩ và chăm sóc cảm xúc, chúng ta có thể dần trở nên bình tĩnh hơn, tập trung hơn và ít bị những chuyện vụn vặt chi phối hơn.</p>
+    </main>
+    <footer>Chăm sóc tâm trí mỗi ngày · Sống khỏe mạnh – Trí tuệ – Hạnh phúc</footer>
+  </div>
+
+  <script>
+    const checks = [...document.querySelectorAll('.day input[type="checkbox"]')];
+    const progress = document.getElementById('progress');
+    const label = document.getElementById('progressLabel');
+    function updateProgress() {
+      const count = checks.filter(item => item.checked).length;
+      progress.style.width = `${count / checks.length * 100}%`;
+      label.textContent = `Đã hoàn thành: ${count}/7 ngày`;
+    }
+    checks.forEach(item => item.addEventListener('change', updateProgress));
+    updateProgress();
+  </script>
+</body>
+</html>
