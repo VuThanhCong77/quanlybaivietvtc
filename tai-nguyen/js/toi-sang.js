@@ -34,8 +34,8 @@
         danhSachNut.forEach(nut => {
             if (nut) {
                 nut.innerHTML = laToi
-                    ? '<span aria-hidden="true">☀️</span><span>Sáng</span>'
-                    : '<span aria-hidden="true">🌙</span><span>Tối</span>';
+                    ? '<span aria-hidden="true">☀️</span><span>S</span>'
+                    : '<span aria-hidden="true">🌙</span><span>T</span>';
 
                 nut.setAttribute("aria-label", laToi ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối");
                 nut.setAttribute("aria-pressed", String(laToi));
