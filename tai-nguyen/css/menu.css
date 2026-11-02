@@ -69,6 +69,16 @@ LOGO
     border-radius: 50%;
 }
 
+.logo-text {
+    display: flex;
+    flex-direction: column; /* Ép chữ xếp theo chiều dọc */
+}
+
+.logo-text em {
+    display: block;
+    font-style: italic;
+    font-size: 0.85em; /* Tùy chỉnh kích thước dòng dưới */
+}
 
 /* =========================================================
 MENU DESKTOP MỘT TẦNG
