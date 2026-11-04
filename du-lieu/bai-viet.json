@@ -1,5 +1,19 @@
 [
   {
+  "id": "huong-dan-nhap-bieu-vtvl",
+  "title": "Hướng dẫn nhập biểu ví trí việc làm",
+  "desc": "Rà soát nhiệm vụ, hoàn thiện vị trí việc làm, xác định nhu cầu nhân lực và xây dựng phương án biên chế giai đoạn 2027-2031",
+  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/vtvl.webp",
+  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/HD-nhap-bieu-VTVL.html",
+  "date": "04-11-2026",
+  "scheduledTime": "",
+  "category": [
+    "Xây dựng Đảng"
+  ],
+  "featured": true,
+  "views": 68
+},
+  {
     "id": "chuc-mung-ngay-hoi-dai-doan-ket-toan-dan-toc-to-dan-pho-phuc-nam-phuong-luu-kiem",
     "title": "CHÚC MỪNG NGÀY HỘI ĐẠI ĐOÀN KẾT TOÀN DÂN TỘC TỔ DÂN PHỐ PHÚC NAM – PHƯỜNG LƯU KIẾM",
     "desc": "Nhân dịp Tổ dân phố Phúc Nam tổ chức Ngày hội Đại đoàn kết toàn dân tộc, xin gửi tới cấp ủy chi bộ, Ban công tác Mặt trận, các đoàn thể cùng toàn thể cán bộ, đảng viên và Nhân dân trong Tổ dân phố lời chúc mừng nồng nhiệt và những tình cảm trân trọng nhất.",
@@ -14,7 +28,7 @@
       "Đại đoàn kết"
     ],
     "featured": true,
-    "views": 0
+    "views": 36
   },
   {
     "id": "mot-khu-dan-cu-dang-song-bat-dau-tu-nhung-dieu-rat-gan",
@@ -31,7 +45,7 @@
       "Lưu Kỳ"
     ],
     "featured": true,
-    "views": 0
+    "views": 36
   },
   {
     "id": "7-buoc-don-dep-rac-trong-dau",
