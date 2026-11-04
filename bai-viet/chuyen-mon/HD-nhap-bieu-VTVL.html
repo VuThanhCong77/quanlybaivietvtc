@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn chuẩn nhập dữ liệu Bộ biểu VTVL</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #0076d6;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --border-color: #e2e8f0;
+            --header-bg: #ebf8ff;
+            --warning-bg: #fffaf0;
+            --warning-border: #dd6b20;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h3 {
+            margin: 5px 0;
+            color: #4a5568;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin: 15px 0 10px 0;
+        }
+
+        .header .subtitle {
+            font-style: italic;
+            color: #718096;
+            margin-bottom: 15px;
+        }
+
+        .meta-info {
+            background-color: var(--header-bg);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 12px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+        }
+
+        p, li {
+            font-size: 0.98rem;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #edf2f7;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge-input {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+        }
+
+        .badge-calc {
+            background-color: #edf2f7;
+            color: #4a5568;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            body {
+                padding: 5px;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h3>BAN TỔ CHỨC TRUNG ƯƠNG</h3>
+        <h3>TỔ CÔNG TÁC XÂY DỰNG VỊ TRÍ VIỆC LÀM, BIÊN CHẾ 2027–2031</h3>
+        <h1>HƯỚNG DẪN CHUẨN NHẬP DỮ LIỆU BỘ BIỂU VỊ TRÍ VIỆC LÀM</h1>
+        <div class="subtitle">Thứ tự nhập các bảng, chuẩn dữ liệu từng cột và cách xử lý cảnh báo để công thức tự động chạy đúng</div>
+        <div class="meta-info">
+            Áp dụng cho file: Bo bieu VTVL (bản 30.000 dòng). Kỳ số liệu: 01/10/2025 – 30/9/2026.
+        </div>
+    </div>
+
+    <h2>I. NGUYÊN TẮC CHUNG</h2>
+    <ul>
+        <li>Chỉ nhập vào các ô đã mở khóa (cột “Nhập”). Các cột “Tự tính” (nền xám trong hướng dẫn này) chứa công thức, không gõ đè. Nếu lỡ xóa công thức, sao chép lại công thức từ dòng 3 xuống dòng bị lỗi.</li>
+        <li>Nhập liên tục từ dòng 3, không để dòng trống xen giữa, không chèn hoặc xóa dòng. Muốn bỏ một bản ghi thì xóa nội dung các ô nhập của dòng đó, không xóa cả dòng. Mỗi biểu chứa tối đa 30.000 dòng (dòng 3 đến dòng 30.002; riêng CHIA_VUNG_CAP_XA từ dòng 4 đến dòng 30.003).</li>
+        <li>Mã (mã nhiệm vụ, mã công việc, mã VTVL, mã nguồn lực, mã sản phẩm) là khóa liên kết giữa các biểu. Phải gõ giống hệt nhau ở mọi biểu: cùng chữ hoa/thường, không thừa dấu cách đầu/cuối, không đổi quy ước giữa chừng. Một mã sai sẽ làm cột tự tra ở biểu sau để trống hoặc báo thiếu.</li>
+        <li>Mã chính của từng biểu không được trùng: Mã nhiệm vụ (A1), Mã công việc (A2), Mã VTVL (C1), Mã nguồn lực (D1), Mã sản phẩm (DM_SAN_PHAM). Các biểu này có kiểm tra trùng ngay khi nhập.</li>
+        <li>Cột số chỉ nhập số thuần túy (không gõ chữ, không gõ đơn vị như “giờ”, “người”, “phút” vào ô). Số lượng sản phẩm, phút, giờ không âm. Số người tính theo người, không tính theo giờ hay phần trăm.</li>
+        <li>Cột chọn trạng thái phải gõ hoặc chọn đúng từng chữ như danh sách ở Phần IV, kể cả dấu tiếng Việt. Viết khác, viết tắt hay thêm dấu câu thì công thức coi là chưa hợp lệ.</li>
+        <li>Cột “Nguồn/căn cứ/giải trình” không được để trống ở các cột bắt buộc. Cột này là điều kiện để công thức xác nhận dòng “ĐẠT”. Ghi cụ thể loại văn bản, số, ngày, cơ quan hoặc sổ theo dõi, phiếu đo.</li>
+        <li>Dữ liệu là số liệu thật của đơn vị. Không ước đoán, không điền cho đủ. Chưa có dữ liệu thì để trống và xử lý theo cảnh báo của biểu, không tự suy luận số liệu.</li>
+        <li>Sau khi nhập mỗi biểu, đọc cột cảnh báo/kiểm tra (đã liệt kê ở Phần V) và xử lý đến khi hiện “ĐẠT” trước khi sang biểu tiếp theo.</li>
+    </ul>
+
+    <h2>II. THỨ TỰ NHẬP CÁC BẢNG</h2>
+    <p>Các biểu liên kết với nhau theo chuỗi: VTVL (C1) → Công việc (A2) → Khối lượng (B1) → Tác động (B2) → Nhu cầu (C3) → Dự báo → Phương án (D2). Biểu nào được tra cứu thì phải nhập trước. Đề nghị nhập theo thứ tự sau:</p>
+    
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 8%;">Bước</th>
+                    <th style="width: 27%;">Biểu</th>
+                    <th style="width: 35%;">Vì sao nhập ở bước này</th>
+                    <th style="width: 30%;">Điều kiện chuyển sang bước sau</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>12. CHIA_VUNG_CAP_XA (chỉ đơn vị cấp xã)</td>
+                    <td>Xác định vùng của từng xã, phường, đặc khu để phân loại theo 4 vùng.</td>
+                    <td>Mỗi xã có đúng một vùng thuộc 4 tên chuẩn.</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>11. DM_SAN_PHAM (nếu đơn vị có định mức sản phẩm)</td>
+                    <td>Là danh mục tra cứu phút chuẩn cho B1 (cột L).</td>
+                    <td>Sản phẩm dùng phút chuẩn phải ở trạng thái “Đã xác nhận” và có phút chuẩn &gt; 0.</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>6. C1_VTVL</td>
+                    <td>Là danh mục VTVL và quỹ giờ. A2, B1, B2, C3, D1, D2 đều tra mã VTVL từ biểu này.</td>
+                    <td>Cột K (Kiểm tra quỹ giờ PP2) hiện “ĐẠT”.</td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td>1. A1_NhiemVu</td>
+                    <td>Danh mục nhiệm vụ để A2 gắn công việc vào nhiệm vụ.</td>
+                    <td>Mã nhiệm vụ không trùng.</td>
+                </tr>
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td>2. A2_CongViec</td>
+                    <td>Gắn mỗi công việc với nhiệm vụ và với VTVL. Cột C (Mã VTVL) là cầu nối để B1, B2 tự tra VTVL.</td>
+                    <td>Mọi mã VTVL ở cột C đã có ở C1.</td>
+                </tr>
+                <tr>
+                    <td><strong>6</strong></td>
+                    <td>3. B1_KhoiLuong</td>
+                    <td>Khối lượng và thời gian của từng công việc.</td>
+                    <td>Cột R (Cảnh báo dữ liệu) hiện “ĐẠT” ở mọi dòng.</td>
+                </tr>
+                <tr>
+                    <td><strong>7</strong></td>
+                    <td>4. B2_CT_TacDong (rồi xem 5. B2_ThayDoi)</td>
+                    <td>Ghi từng công đoạn có tác động (số hóa, thuê dịch vụ, cải tiến…). Biểu 5 tự tổng hợp theo công việc, không nhập.</td>
+                    <td>Cột P (Kiểm tra) hiện “ĐẠT” hoặc “THAM KHẢO – KHÔNG TÍNH” theo đúng ý định.</td>
+                </tr>
+                <tr>
+                    <td><strong>8</strong></td>
+                    <td>7. C2_NangLuc</td>
+                    <td>Mô tả năng lực theo VTVL (không có công thức phụ thuộc, nhập bổ sung bất kỳ lúc nào sau bước 3).</td>
+                    <td>Mã VTVL đã có ở C1.</td>
+                </tr>
+                <tr>
+                    <td><strong>9</strong></td>
+                    <td>9. D1_NhanLuc</td>
+                    <td>Nguồn lực hiện có theo từng người/nguồn, dùng để đối chiếu với nhu cầu.</td>
+                    <td>Cột J hiện “Đạt”.</td>
+                </tr>
+                <tr>
+                    <td><strong>10</strong></td>
+                    <td>8. C3_NhuCau</td>
+                    <td>Tổng hợp nhu cầu từ B1 và B2, rồi kết luận số người cần bố trí.</td>
+                    <td>Cột M hiện “ĐẠT” và cột L là “Đã kiểm chứng”.</td>
+                </tr>
+                <tr>
+                    <td><strong>11</strong></td>
+                    <td>DU_BAO_5_NAM</td>
+                    <td>Dự báo biến động từng năm 2027–2031 so với kết luận ở C3.</td>
+                    <td>Cột I hiện “ĐẠT”.</td>
+                </tr>
+                <tr>
+                    <td><strong>12</strong></td>
+                    <td>10. D2_PhuongAn</td>
+                    <td>Phương án bố trí từng năm, chỉ chạy khi C3 và dự báo năm tương ứng đã ĐẠT.</td>
+                    <td>Cột J hiện đúng giai đoạn: đang xây dựng, sẵn sàng thẩm định, đã thẩm định, đã quyết định.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>III. HƯỚNG DẪN TỪNG BẢNG, TỪNG CỘT</h2>
+    <p><em>Chú thích: “Nhập” là ô người dùng điền. “Tự tính” là cột công thức (nền xám), không gõ đè. Các ví dụ là số liệu giả định để minh họa.</em></p>
+
+    <h3>1. Biểu A1_NhiemVu</h3>
+    <p>Danh mục nhiệm vụ của đơn vị. Không có công thức phụ thuộc; A2 dùng Mã nhiệm vụ để gắn công việc.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã nhiệm vụ</td><td><span class="badge badge-input">Nhập</span></td><td>Duy nhất trong biểu. Đặt theo một quy ước thống nhất của đơn vị. Không để trống.</td><td>VD-NV-01</td></tr>
+                <tr><td>B</td><td>Tên nhiệm vụ</td><td><span class="badge badge-input">Nhập</span></td><td>Ghi đúng tên nhiệm vụ theo văn bản giao.</td><td>Tham mưu thẩm định dự thảo văn bản</td></tr>
+                <tr><td>C</td><td>Cơ quan</td><td><span class="badge badge-input">Nhập</span></td><td>Tên cơ quan, đơn vị thực hiện nhiệm vụ.</td><td>Vụ Pháp chế, Bộ X</td></tr>
+                <tr><td>D</td><td>Căn cứ</td><td><span class="badge badge-input">Nhập</span></td><td>Điều, khoản, tên văn bản giao nhiệm vụ.</td><td>Điều … Quyết định quy định chức năng, nhiệm vụ</td></tr>
+                <tr><td>E</td><td>Kỳ</td><td><span class="badge badge-input">Nhập</span></td><td>Kỳ số liệu của bản ghi. Dùng một cách ghi duy nhất cho toàn file.</td><td>01/10/2025–30/9/2026</td></tr>
+                <tr><td>F</td><td>Trạng thái</td><td><span class="badge badge-input">Nhập</span></td><td>Tình trạng nhiệm vụ trong kỳ (ví dụ: Tiếp tục thực hiện, Mới tiếp nhận). Ghi thống nhất.</td><td>Tiếp tục thực hiện</td></tr>
+                <tr><td>G</td><td>Nguồn</td><td><span class="badge badge-input">Nhập</span></td><td>Văn bản hoặc hồ sơ làm căn cứ ghi nhận nhiệm vụ.</td><td>Quyết định giao nhiệm vụ VD-QĐ-01</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>2. Biểu A2_CongViec</h3>
+    <p>Mỗi công việc thuộc một nhiệm vụ và gắn với một VTVL. Cột C quyết định việc B1 và B2 tự tra được VTVL hay không.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã công việc</td><td><span class="badge badge-input">Nhập</span></td><td>Duy nhất trong biểu. Là khóa để B1 và B2_CT gọi công việc. Không để trống.</td><td>VD-CV-01</td></tr>
+                <tr><td>B</td><td>Mã nhiệm vụ</td><td><span class="badge badge-input">Nhập</span></td><td>Trùng đúng mã đã có ở A1.</td><td>VD-NV-01</td></tr>
+                <tr><td>C</td><td>Mã VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Trùng đúng mã đã có ở C1 (cột A). B1, B2, C3 dùng cột này để tra VTVL. Mỗi công việc chỉ gắn một VTVL.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>D</td><td>Tên công việc</td><td><span class="badge badge-input">Nhập</span></td><td>Mô tả công việc cụ thể.</td><td>Thẩm định, đối chiếu và hoàn thiện hồ sơ</td></tr>
+                <tr><td>E</td><td>Sản phẩm</td><td><span class="badge badge-input">Nhập</span></td><td>Tên sản phẩm đầu ra của công việc.</td><td>Hồ sơ thẩm định</td></tr>
+                <tr><td>F</td><td>Đơn vị tính</td><td><span class="badge badge-input">Nhập</span></td><td>Đơn vị đếm sản phẩm. Phải cùng đơn vị với Số SP/năm ở B1.</td><td>Hồ sơ</td></tr>
+                <tr><td>G</td><td>Chất lượng</td><td><span class="badge badge-input">Nhập</span></td><td>Yêu cầu chất lượng sản phẩm.</td><td>Đúng thẩm quyền, đúng hạn</td></tr>
+                <tr><td>H</td><td>Căn cứ (nguồn)</td><td><span class="badge badge-input">Nhập</span></td><td>Quy trình hoặc văn bản làm căn cứ.</td><td>Quy trình nội bộ VD-QT-01</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>3. Biểu B1_KhoiLuong</h3>
+    <p>Khối lượng sản phẩm và thời gian cho từng công việc. Cột R quyết định dòng có được tính vào C3 hay không (chỉ dòng “ĐẠT” được cộng vào giờ).</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã công việc</td><td><span class="badge badge-input">Nhập</span></td><td>Trùng đúng mã có ở A2. Mỗi công việc một dòng. Nếu không tìm thấy ở A2 thì cột B trống và cột R báo “THIẾU MÃ VTVL”.</td><td>VD-CV-01</td></tr>
+                <tr><td>B</td><td>Mã VTVL</td><td><span class="badge badge-calc">Tự tính</span></td><td>Tự tra từ A2 theo Mã công việc.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>C</td><td>Số SP/năm</td><td><span class="badge badge-input">Nhập</span></td><td>Số sản phẩm trong kỳ, nhập số ≥ 0. Có thể để trống chỉ khi chỉ ghi giờ bổ sung ở cột E (khi đó phải có nội dung cột I).</td><td>6000</td></tr>
+                <tr><td>D</td><td>Trung bình phút/SP (đo thực tế)</td><td><span class="badge badge-input">Nhập</span></td><td>Số phút trung bình cho một sản phẩm theo đo thực tế, số &gt; 0. Dùng khi không có phút chuẩn đã xác nhận.</td><td>30</td></tr>
+                <tr><td>E</td><td>Giờ bổ sung (công việc liên quan)</td><td><span class="badge badge-input">Nhập</span></td><td>Giờ của công việc liên quan chưa nằm trong giờ sản phẩm, số ≥ 0. Có giờ bổ sung thì nên ghi rõ ở cột I.</td><td>120</td></tr>
+                <tr><td>F</td><td>Giờ SP (tính)</td><td><span class="badge badge-calc">Tự tính</span></td><td>= Số SP × phút dùng để tính (cột P) ÷ 60. Chỉ có giá trị khi cột R là “ĐẠT”.</td><td>3.000</td></tr>
+                <tr><td>G</td><td>Giờ tổng (tính)</td><td><span class="badge badge-calc">Tự tính</span></td><td>= Giờ SP + Giờ bổ sung. Đây là số được cộng sang C3 (cột C).</td><td>3.000</td></tr>
+                <tr><td>H</td><td>Nguồn SL</td><td><span class="badge badge-input">Nhập</span></td><td>Nguồn của số lượng sản phẩm. Bắt buộc; để trống thì báo “THIẾU NGUỒN SẢN LƯỢNG/CÔNG VIỆC”.</td><td>Sổ theo dõi hồ sơ năm 2026</td></tr>
+                <tr><td>I</td><td>Nguồn thời gian</td><td><span class="badge badge-input">Nhập</span></td><td>Phiếu đo hoặc văn bản định mức làm căn cứ thời gian. Bắt buộc khi chọn “Có định mức”, và khi không dùng phút chuẩn đã xác nhận.</td><td>Phiếu đo thời gian VD-TG-01 ngày 10/9/2026</td></tr>
+                <tr><td>J</td><td>Trạng thái căn cứ thời gian</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn đúng một trong hai: “Kiểm đếm, ước lượng thực tế” hoặc “Có định mức”. Để trống báo “CHƯA CHỌN TRẠNG THÁI”.</td><td>Kiểm đếm, ước lượng thực tế</td></tr>
+                <tr><td>K</td><td>Kỳ</td><td><span class="badge badge-input">Nhập</span></td><td>Kỳ số liệu của sản lượng và thời gian. Bắt buộc.</td><td>01/10/2025–30/9/2026</td></tr>
+                <tr><td>L</td><td>Mã SP trong danh mục</td><td><span class="badge badge-input">Nhập</span></td><td>Có thể để trống. Nếu điền, phải đúng mã ở DM_SAN_PHAM thì các cột M, N, O mới tự tra.</td><td>VD-SP-02</td></tr>
+                <tr><td>M</td><td>Nhóm (tự tra)</td><td><span class="badge badge-calc">Tự tính</span></td><td>Tự tra nhóm I–VI từ DM_SAN_PHAM theo cột L.</td><td>II</td></tr>
+                <tr><td>N</td><td>Phút/SP chuẩn (tự tra)</td><td><span class="badge badge-calc">Tự tính</span></td><td>Tự tra phút chuẩn từ DM_SAN_PHAM.</td><td>30</td></tr>
+                <tr><td>O</td><td>Xác nhận chuẩn (tự tra)</td><td><span class="badge badge-calc">Tự tính</span></td><td>Tự tra trạng thái của sản phẩm trong DM_SAN_PHAM.</td><td>Đã xác nhận</td></tr>
+                <tr><td>P</td><td>Phút/SP dùng để tính</td><td><span class="badge badge-calc">Tự tính</span></td><td>Ưu tiên phút chuẩn (cột N) khi sản phẩm “Đã xác nhận” và cột S để trống. Nếu không thì lấy cột D (khi có căn cứ ở cột J, I).</td><td>30</td></tr>
+                <tr><td>Q</td><td>Nguồn thời gian dùng tính</td><td><span class="badge badge-calc">Tự tính</span></td><td>Tự ghi nguồn tương ứng với phút đã dùng.</td><td>Định mức danh mục: …</td></tr>
+                <tr><td>R</td><td>Cảnh báo dữ liệu</td><td><span class="badge badge-calc">Tự tính</span></td><td>“ĐẠT” hoặc tên lỗi cần sửa (xem Phần V).</td><td>ĐẠT</td></tr>
+                <tr><td>S</td><td>Giải trình khác chuẩn</td><td><span class="badge badge-input">Nhập</span></td><td>Chỉ điền khi đơn vị muốn dùng phút đo thực tế khác phút chuẩn đã xác nhận. Phải bắt đầu bằng cụm “Đã xác nhận:” (có dấu hai chấm), tiếp theo là nội dung giải trình và cơ quan xác nhận. Điền sai cú pháp thì báo “CHỜ XÁC NHẬN KHÁC CHUẨN”.</td><td>Đã xác nhận: đặc thù địa bàn, theo công văn số … của …</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <ul>
+        <li><strong>Muốn dùng phút chuẩn:</strong> điền cột L, để cột S trống. Cột D có thể bỏ trống hoặc vẫn ghi số đo để đối chiếu.</li>
+        <li><strong>Muốn dùng số đo thực tế:</strong> để cột L trống (hoặc không có phút chuẩn), điền cột D, I, J.</li>
+    </ul>
+
+    <h3>4. Biểu B2_CT_TacDong</h3>
+    <p>Mỗi dòng là một công đoạn có tác động làm giảm hoặc tăng giờ. Cột P chỉ “ĐẠT” khi đủ căn cứ. Biểu 5 (B2_ThayDoi) tự tổng hợp theo công việc từ biểu này.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã công việc</td><td><span class="badge badge-input">Nhập</span></td><td>Trùng đúng mã ở A2. Một công việc có nhiều dòng (mỗi dòng một công đoạn).</td><td>VD-CV-01</td></tr>
+                <tr><td>B</td><td>Mã VTVL</td><td><span class="badge badge-calc">Tự tính</span></td><td>Tự tra từ A2.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>C</td><td>Loại tác động</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn đúng một trong sáu loại: Số hóa; Cải tiến quy trình; Thuê dịch vụ/đặt hàng; Tự chủ; Xã hội hóa; Công việc mới phát sinh. Loại khác bị báo “LOẠI TÁC ĐỘNG KHÔNG HỢP LỆ”.</td><td>Số hóa</td></tr>
+                <tr><td>D</td><td>Công đoạn</td><td><span class="badge badge-input">Nhập</span></td><td>Tên công đoạn chịu tác động, bắt buộc. Không được trùng giữa các dòng cùng công việc và cùng kỳ (sẽ báo “TRÙNG CÔNG ĐOẠN”).</td><td>Đối chiếu thông tin hồ sơ trên hệ thống</td></tr>
+                <tr><td>E</td><td>SP áp dụng</td><td><span class="badge badge-input">Nhập</span></td><td>Số sản phẩm chịu tác động, số &gt; 0. Không vượt tổng Số SP/năm của công việc đó ở B1, vượt thì báo “SẢN PHẨM ÁP DỤNG VƯỢT B1”.</td><td>6000</td></tr>
+                <tr><td>F</td><td>Phút trước</td><td><span class="badge badge-input">Nhập</span></td><td>Phút/SP của công đoạn trước thay đổi.</td><td>30</td></tr>
+                <tr><td>G</td><td>Phút sau</td><td><span class="badge badge-input">Nhập</span></td><td>Phút/SP của công đoạn sau thay đổi. Nếu Phút sau lớn hơn Phút trước (thời gian tăng) thì bắt buộc ghi Giờ việc mới ở cột I.</td><td>25</td></tr>
+                <tr><td>H</td><td>Giờ giảm trực tiếp</td><td><span class="badge badge-calc">Tự tính</span></td><td>= SP áp dụng × (Phút trước − Phút sau) ÷ 60. Để trống khi E, F, G chưa đủ số hoặc Phút trước nhỏ hơn Phút sau.</td><td>500</td></tr>
+                <tr><td>I</td><td>Giờ việc mới</td><td><span class="badge badge-input">Nhập</span></td><td>Giờ phát sinh thêm do thay đổi (giám sát, vận hành, công việc mới). Số ≥ 0. Với dòng “Công việc mới phát sinh” có thể chỉ điền cột này, bỏ trống E, F, G.</td><td>200</td></tr>
+                <tr><td>J</td><td>Nguồn/bằng chứng</td><td><span class="badge badge-input">Nhập</span></td><td>Biên bản nghiệm thu, hợp đồng, log, kết quả theo dõi. Bắt buộc.</td><td>Biên bản nghiệm thu hệ thống + log</td></tr>
+                <tr><td>K</td><td>Kỳ</td><td><span class="badge badge-input">Nhập</span></td><td>Kỳ phát sinh/đo tác động. Bắt buộc.</td><td>01/10/2025–30/9/2026</td></tr>
+                <tr><td>L</td><td>Cơ sở B1</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn đúng một trong hai: “Trước thay đổi, có điều chỉnh” (giờ giảm sẽ được trừ) hoặc “Đã đo sau thay đổi (không trừ)” (giờ giảm tính bằng 0). Bắt buộc.</td><td>Trước thay đổi, có điều chỉnh</td></tr>
+                <tr><td>M</td><td>Trạng thái</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn một trong ba: “Đã kiểm chứng”; “Chưa kiểm chứng”; “Ước lượng tham khảo”. Chỉ “Đã kiểm chứng” mới được tính. “Ước lượng tham khảo” hiện “THAM KHẢO – KHÔNG TÍNH”.</td><td>Đã kiểm chứng</td></tr>
+                <tr><td>N</td><td>Giờ giảm hợp lệ</td><td><span class="badge badge-calc">Tự tính</span></td><td>Bằng cột H khi dòng ĐẠT và cột L là “Trước thay đổi, có điều chỉnh”; ngược lại bằng 0.</td><td>500</td></tr>
+                <tr><td>O</td><td>Giờ tăng hợp lệ</td><td><span class="badge badge-calc">Tự tính</span></td><td>Bằng cột I khi dòng ĐẠT; ngược lại bằng 0.</td><td>200</td></tr>
+                <tr><td>P</td><td>Kiểm tra</td><td><span class="badge badge-calc">Tự tính</span></td><td>“ĐẠT” hoặc tên lỗi cần sửa (xem Phần V).</td><td>ĐẠT</td></tr>
+                <tr><td>Q</td><td>Kinh phí trước</td><td><span class="badge badge-input">Nhập</span></td><td>Thông tin tham khảo, không tham gia công thức kiểm tra. Nếu điền thì dùng thống nhất một đơn vị tiền tệ cho cả cột.</td><td>(để trống nếu không có)</td></tr>
+                <tr><td>R</td><td>Kinh phí sau</td><td><span class="badge badge-input">Nhập</span></td><td>Thông tin tham khảo, cùng đơn vị với cột Q.</td><td>(để trống nếu không có)</td></tr>
+                <tr><td>S</td><td>Đối chiếu trùng/phạm vi (cán bộ xác nhận)</td><td><span class="badge badge-input">Nhập</span></td><td>Chỉ gõ đúng cụm “Đã đối chiếu” sau khi cán bộ đã soát trùng công đoạn và phạm vi. Để trống hoặc gõ khác thì báo “CHỜ SOÁT TRÙNG”.</td><td>Đã đối chiếu</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><em>Tổng Giờ giảm trực tiếp của một công việc không được vượt Giờ tổng của công việc đó ở B1, vượt thì báo “GIỜ GIẢM VƯỢT GIỜ B1”.</em></p>
+
+    <h3>5. Biểu B2_ThayDoi (không nhập)</h3>
+    <p>Toàn bộ biểu là công thức. Mỗi công việc xuất hiện một lần, lấy từ B2_CT_TacDong: giờ giảm do số hóa và cải tiến quy trình (C), giờ giảm do thuê dịch vụ, tự chủ, xã hội hóa (D), giờ việc mới (E), giờ tác động ròng = E − C − D (F), trạng thái và số dòng chi tiết. Cột I báo “ĐẠT” khi mọi dòng chi tiết của công việc đều ĐẠT. Chỉ sửa dữ liệu ở biểu 4, không sửa ở biểu này.</p>
+
+    <h3>6. Biểu C1_VTVL</h3>
+    <p>Danh mục vị trí việc làm và quỹ giờ. Là nguồn tra cứu của hầu hết các biểu khác.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Duy nhất trong biểu. Là khóa tra cứu của A2, C2, C3, D1, D2, DU_BAO_5_NAM. Không để trống.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>B</td><td>Tên VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Tên vị trí việc làm theo danh mục được phê duyệt.</td><td>Chuyên viên thẩm định văn bản</td></tr>
+                <tr><td>C</td><td>Loại nhân lực</td><td><span class="badge badge-input">Nhập</span></td><td>Công chức; Viên chức; Hợp đồng lao động… Ghi thống nhất, cùng cách ghi với D1.</td><td>Công chức</td></tr>
+                <tr><td>D</td><td>Quyết định</td><td><span class="badge badge-input">Nhập</span></td><td>Quyết định phê duyệt danh mục VTVL (số, ngày, cơ quan).</td><td>Quyết định số … ngày …</td></tr>
+                <tr><td>E</td><td>Giờ chuẩn PP2</td><td><span class="badge badge-calc">Tự tính</span></td><td>Chế độ “Phổ biến (40 giờ/tuần)” và cột H trống: lấy quỹ giờ chung (1.904 giờ/người/năm, tham số ở DM_THAM_SO). Có cột H hoặc chế độ “Đặc thù”: lấy H khi đủ điều kiện (H &gt; 0, F có nội dung, I là “Đã kiểm chứng”), thiếu thì để trống.</td><td>1.904</td></tr>
+                <tr><td>F</td><td>Căn cứ xác định quỹ giờ</td><td><span class="badge badge-input">Nhập</span></td><td>Văn bản làm căn cứ. Bắt buộc khi dùng giờ đặc thù ở cột H.</td><td>Mức tham chiếu chung 1.904 giờ/người/năm</td></tr>
+                <tr><td>G</td><td>Trạng thái</td><td><span class="badge badge-input">Nhập</span></td><td>Tình trạng VTVL (ví dụ: Tiếp tục sử dụng, Cần cập nhật). Ghi thống nhất.</td><td>Tiếp tục sử dụng</td></tr>
+                <tr><td>H</td><td>Giờ riêng được xác nhận</td><td><span class="badge badge-input">Nhập</span></td><td>Chỉ điền khi VTVL có quỹ giờ riêng khác quỹ giờ chung. Số &gt; 0. VTVL dùng quỹ giờ chung thì để trống.</td><td>1100</td></tr>
+                <tr><td>I</td><td>Xác nhận giờ riêng</td><td><span class="badge badge-input">Nhập</span></td><td>Gõ đúng “Đã kiểm chứng” khi giờ riêng ở cột H đã được cấp có thẩm quyền xác nhận. Chưa xác nhận thì cột E để trống.</td><td>Đã kiểm chứng</td></tr>
+                <tr><td>J</td><td>Chế độ làm việc</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn đúng một trong hai: “Phổ biến (40 giờ/tuần)” hoặc “Đặc thù”. Bắt buộc.</td><td>Phổ biến (40 giờ/tuần)</td></tr>
+                <tr><td>K</td><td>Kiểm tra quỹ giờ PP2</td><td><span class="badge badge-calc">Tự tính</span></td><td>“ĐẠT” hoặc tên lỗi (xem Phần V). C3 chỉ tính PP2 khi cột này là “ĐẠT”.</td><td>ĐẠT</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>7. Biểu C2_NangLuc</h3>
+    <p>Mô tả năng lực theo VTVL. Chưa có công thức nào phụ thuộc biểu này; nhập để lưu hồ sơ.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Trùng đúng mã ở C1.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>B</td><td>Trách nhiệm</td><td><span class="badge badge-input">Nhập</span></td><td>Trách nhiệm chính của vị trí.</td><td>Chịu trách nhiệm tham mưu hồ sơ thẩm định</td></tr>
+                <tr><td>C</td><td>Năng lực chung</td><td><span class="badge badge-input">Nhập</span></td><td>Các năng lực chung theo khung năng lực.</td><td>Phối hợp; xử lý thông tin</td></tr>
+                <tr><td>D</td><td>Chuyên môn</td><td><span class="badge badge-input">Nhập</span></td><td>Yêu cầu kiến thức, kỹ năng chuyên môn.</td><td>Pháp luật chuyên ngành</td></tr>
+                <tr><td>E</td><td>Lãnh đạo</td><td><span class="badge badge-input">Nhập</span></td><td>Năng lực lãnh đạo, quản lý; ghi “Không áp dụng” nếu không có.</td><td>Không áp dụng</td></tr>
+                <tr><td>F</td><td>Căn cứ</td><td><span class="badge badge-input">Nhập</span></td><td>Văn bản làm căn cứ.</td><td>Khung năng lực VTVL của đơn vị</td></tr>
+                <tr><td>G</td><td>Nguồn bản mô tả</td><td><span class="badge badge-input">Nhập</span></td><td>Hồ sơ hoặc bản mô tả VTVL gốc.</td><td>Bản mô tả VTVL VD-MT-01</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>8. Biểu C3_NhuCau</h3>
+    <p>Tổng hợp nhu cầu của từng VTVL. Mỗi VTVL một dòng. Giờ B1 và B2 tự lấy từ các biểu trước; người dùng chọn phương pháp và kết luận số người.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Duy nhất trong biểu, phải có ở C1. Không có ở C1 báo “MÃ VTVL CHƯA CÓ Ở C1”.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>B</td><td>Phương pháp</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn đúng một trong: PP1; PP2; PP3; PP1+PP2; PP1+PP3; PP2+PP3. Viết hoa, không dấu cách.</td><td>PP2</td></tr>
+                <tr><td>C</td><td>Giờ B1</td><td><span class="badge badge-calc">Tự tính</span></td><td>Tổng Giờ tổng của các dòng B1 có cột R là “ĐẠT” theo mã VTVL.</td><td>3.000</td></tr>
+                <tr><td>D</td><td>Giờ tác động B2</td><td><span class="badge badge-calc">Tự tính</span></td><td>Tổng giờ tác động ròng từ biểu 5 theo mã VTVL.</td><td>−300</td></tr>
+                <tr><td>E</td><td>Giờ ròng</td><td><span class="badge badge-calc">Tự tính</span></td><td>= Giờ B1 + Giờ tác động B2.</td><td>2.700</td></tr>
+                <tr><td>F</td><td>Giờ PP2 (từ C1)</td><td><span class="badge badge-calc">Tự tính</span></td><td>Quỹ giờ của VTVL lấy từ C1 cột E.</td><td>1.904</td></tr>
+                <tr><td>G</td><td>Người quy đổi PP2</td><td><span class="badge badge-calc">Tự tính</span></td><td>= Giờ ròng ÷ Giờ PP2. Chỉ có khi phương pháp có PP2. Đây là số quy đổi, chưa phải số người cần bố trí.</td><td>1,42</td></tr>
+                <tr><td>H</td><td>Người PP1</td><td><span class="badge badge-input">Nhập</span></td><td>Số người theo PP1. Bắt buộc khi phương pháp có PP1.</td><td>3</td></tr>
+                <tr><td>I</td><td>Người PP3 (ước lượng, cần giải trình)</td><td><span class="badge badge-input">Nhập</span></td><td>Số người theo PP3. Bắt buộc khi phương pháp có PP3; phải giải trình ở cột K.</td><td>2</td></tr>
+                <tr><td>J</td><td>Người cần bố trí</td><td><span class="badge badge-input">Nhập</span></td><td>Kết luận số người cần bố trí do cán bộ nghiệp vụ chốt (số nguyên, không âm). Không phải số tự tính từ cột G.</td><td>2</td></tr>
+                <tr><td>K</td><td>Nguồn/giải trình</td><td><span class="badge badge-input">Nhập</span></td><td>Căn cứ, cách làm tròn, lý do kết luận. Bắt buộc.</td><td>B1, B2 dòng VD-CV-01; quỹ giờ theo C1</td></tr>
+                <tr><td>L</td><td>Trạng thái</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn một trong bốn: Tính thử; Chưa đủ dữ liệu; Đã kiểm chứng; Không áp dụng. Chỉ “Đã kiểm chứng” mới chuyển sang dự báo và D2.</td><td>Đã kiểm chứng</td></tr>
+                <tr><td>M</td><td>Cảnh báo</td><td><span class="badge badge-calc">Tự tính</span></td><td>“ĐẠT” hoặc tên lỗi (xem Phần V).</td><td>ĐẠT</td></tr>
+                <tr><td>N</td><td>Số dòng B1 chưa đạt</td><td><span class="badge badge-calc">Tự tính</span></td><td>Số dòng B1 của VTVL chưa có R là “ĐẠT”. Phải bằng 0 với PP2.</td><td>0</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><em>Với PP2, cột M chỉ “ĐẠT” khi: C1 cột K là “ĐẠT”; mọi dòng B1 của VTVL đều “ĐẠT”; mọi dòng B2 (trừ dòng ước lượng tham khảo) đều “ĐẠT”; cột J, K đã điền; cột L là “Đã kiểm chứng”.</em></p>
+
+    <h3>9. Biểu D1_NhanLuc</h3>
+    <p>Nguồn lực hiện có, mỗi dòng một người hoặc một nguồn lực. Dùng để đối chiếu với nhu cầu ở C3.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã nguồn lực</td><td><span class="badge badge-input">Nhập</span></td><td>Duy nhất trong biểu. Trùng mã thì báo “TRÙNG MÃ NGUỒN LỰC”.</td><td>VD-NL-01</td></tr>
+                <tr><td>B</td><td>Mã VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Trùng đúng mã ở C1.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>C</td><td>Loại nhân lực</td><td><span class="badge badge-input">Nhập</span></td><td>Cùng cách ghi với C1.</td><td>Công chức</td></tr>
+                <tr><td>D</td><td>Giờ quy đổi/năm (tự lấy)</td><td><span class="badge badge-calc">Tự tính</span></td><td>Lấy cột K nếu có số; không thì lấy quỹ giờ của VTVL ở C1 cột E.</td><td>1.904</td></tr>
+                <tr><td>E</td><td>Giờ dành cho VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Số giờ trong năm người này làm cho VTVL, số ≥ 0.</td><td>952</td></tr>
+                <tr><td>F</td><td>Giờ việc khác</td><td><span class="badge badge-input">Nhập</span></td><td>Số giờ trong năm làm việc khác ngoài VTVL, số ≥ 0. Giờ VTVL + giờ việc khác không được vượt giờ quy đổi/năm.</td><td>952</td></tr>
+                <tr><td>G</td><td>Nơi tính BC</td><td><span class="badge badge-input">Nhập</span></td><td>Đơn vị tính biên chế/báo cáo. Bắt buộc, trống thì báo “THIẾU NƠI TÍNH BIÊN CHẾ”.</td><td>Vụ Pháp chế, Bộ X</td></tr>
+                <tr><td>H</td><td>Nguồn</td><td><span class="badge badge-input">Nhập</span></td><td>Nguồn dữ liệu và thời điểm chốt. Bắt buộc.</td><td>Hệ thống quản lý cán bộ chốt 30/9/2026</td></tr>
+                <tr><td>I</td><td>Trạng thái</td><td><span class="badge badge-input">Nhập</span></td><td>Gõ đúng “Đã kiểm chứng” khi số liệu đã được xác nhận. Khác thì cột J báo “Chưa đủ căn cứ”.</td><td>Đã kiểm chứng</td></tr>
+                <tr><td>J</td><td>Cảnh báo</td><td><span class="badge badge-calc">Tự tính</span></td><td>Kết quả: Đạt; Chưa đủ căn cứ; Vượt quỹ giờ; TRÙNG MÃ NGUỒN LỰC; THIẾU NƠI TÍNH BIÊN CHẾ.</td><td>Đạt</td></tr>
+                <tr><td>K</td><td>Giờ riêng theo chế độ</td><td><span class="badge badge-input">Nhập</span></td><td>Chỉ điền khi người này có quỹ giờ riêng khác quỹ giờ của VTVL (số &gt; 0). Có số thì cột D lấy số này.</td><td>(để trống nếu không có)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>10. Biểu DU_BAO_5_NAM</h3>
+    <p>Dự báo biến động nhu cầu từng năm 2027–2031 so với kết luận ở C3. Mỗi cặp (Mã VTVL, Năm) một dòng.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Trùng đúng mã ở C3.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>B</td><td>Năm</td><td><span class="badge badge-input">Nhập</span></td><td>Số nguyên từ 2027 đến 2031. Ngoài khoảng này báo “NĂM KHÔNG HỢP LỆ”. Cặp (Mã VTVL, Năm) không được trùng.</td><td>2027</td></tr>
+                <tr><td>C</td><td>Biến động so C3 (+/− người)</td><td><span class="badge badge-input">Nhập</span></td><td>Số người tăng (+) hoặc giảm (−) so với kết luận C3. Không đổi thì bắt buộc nhập 0, không để trống.</td><td>−1; 0; 1</td></tr>
+                <tr><td>D</td><td>Nội dung thay đổi / xác nhận không đổi</td><td><span class="badge badge-input">Nhập</span></td><td>Giải thích nguyên nhân biến động hoặc xác nhận không đổi. Bắt buộc.</td><td>Số hóa mở rộng, giảm 01 người</td></tr>
+                <tr><td>E</td><td>Căn cứ nguồn và thời điểm</td><td><span class="badge badge-input">Nhập</span></td><td>Văn bản, kế hoạch, ngày chốt. Bắt buộc.</td><td>Kế hoạch công tác 2027, ngày 01/10/2026</td></tr>
+                <tr><td>F</td><td>Trạng thái xác nhận</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn một trong hai: “Chưa kiểm chứng”; “Đã kiểm chứng”.</td><td>Đã kiểm chứng</td></tr>
+                <tr><td>G</td><td>Người C3 năm cơ sở</td><td><span class="badge badge-calc">Tự tính</span></td><td>Lấy từ C3 cột J, chỉ khi C3 là “Đã kiểm chứng” và cột M là “ĐẠT”.</td><td>2</td></tr>
+                <tr><td>H</td><td>Người cần bố trí trong năm</td><td><span class="badge badge-calc">Tự tính</span></td><td>= Người C3 + Biến động. Chỉ có khi cột I là “ĐẠT”.</td><td>1</td></tr>
+                <tr><td>I</td><td>Kiểm tra, đối chiếu</td><td><span class="badge badge-calc">Tự tính</span></td><td>“ĐẠT” hoặc tên lỗi (xem Phần V).</td><td>ĐẠT</td></tr>
+                <tr><td>J</td><td>Ghi chú đầu mối</td><td><span class="badge badge-input">Nhập</span></td><td>Đầu mối liên hệ, ghi chú thêm.</td><td>Cán bộ tổng hợp của đơn vị</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>11. Biểu D2_PhuongAn</h3>
+    <p>Phương án bố trí từng năm. Chỉ chạy khi C3 của VTVL đã “Đã kiểm chứng” và “ĐẠT”, đồng thời có dự báo “ĐẠT” cho đúng năm.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã VTVL</td><td><span class="badge badge-input">Nhập</span></td><td>Trùng đúng mã ở C3.</td><td>VD-VTVL-01</td></tr>
+                <tr><td>B</td><td>Năm</td><td><span class="badge badge-input">Nhập</span></td><td>Số nguyên 2027 đến 2031. Cặp (Mã VTVL, Năm) không trùng.</td><td>2027</td></tr>
+                <tr><td>C</td><td>Số người cần bố trí trong năm phương án</td><td><span class="badge badge-calc">Tự tính</span></td><td>Lấy từ cột H của DU_BAO_5_NAM cho cùng mã và năm. Trống nghĩa là chưa có dự báo ĐẠT.</td><td>1</td></tr>
+                <tr><td>D</td><td>Số người có thể bố trí (cùng đơn vị tính)</td><td><span class="badge badge-input">Nhập</span></td><td>Số người, không tính theo giờ, số ≥ 0, cùng đơn vị tính với cột C.</td><td>2</td></tr>
+                <tr><td>E</td><td>Biên chế được giao theo đúng cấp</td><td><span class="badge badge-input">Nhập</span></td><td>Số biên chế được giao theo đúng cấp có thẩm quyền, số ≥ 0. Khác với số người cần bố trí.</td><td>2</td></tr>
+                <tr><td>F</td><td>Điều chuyển/bố trí lại</td><td><span class="badge badge-input">Nhập</span></td><td>Mô tả phương án điều chuyển, bố trí lại; ghi “Không phát sinh” nếu không có.</td><td>Điều chuyển 01 người từ đơn vị lân cận</td></tr>
+                <tr><td>G</td><td>Đề nghị điều chỉnh</td><td><span class="badge badge-input">Nhập</span></td><td>Số người đề nghị tăng (+) hoặc giảm (−); không có thì nhập 0.</td><td>−1</td></tr>
+                <tr><td>H</td><td>Nguồn/giải trình</td><td><span class="badge badge-input">Nhập</span></td><td>Giải trình phương án. Bắt buộc, trống thì báo “THIẾU GIẢI TRÌNH”.</td><td>C3 kết luận 02 người; dự báo −1; D1 hiện có 02 người</td></tr>
+                <tr><td>I</td><td>Trạng thái</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn đúng một trong bốn: Đang xây dựng; Đã hoàn thành ở đơn vị; Đã thẩm định; Đã được quyết định.</td><td>Đã hoàn thành ở đơn vị</td></tr>
+                <tr><td>J</td><td>Cảnh báo</td><td><span class="badge badge-calc">Tự tính</span></td><td>Giai đoạn hoặc lỗi: ĐANG XÂY DỰNG; SẴN SÀNG THẨM ĐỊNH; ĐÃ THẨM ĐỊNH; ĐÃ QUYẾT ĐỊNH hoặc tên lỗi (xem Phần V).</td><td>SẴN SÀNG THẨM ĐỊNH</td></tr>
+                <tr><td>K</td><td>PP2: người quy đổi (tham khảo)</td><td><span class="badge badge-calc">Tự tính</span></td><td>Lấy từ C3 cột G.</td><td>1,42</td></tr>
+                <tr><td>L</td><td>Người cần bố trí C3 năm cơ sở (tham khảo)</td><td><span class="badge badge-calc">Tự tính</span></td><td>Lấy từ C3 cột J.</td><td>2</td></tr>
+                <tr><td>M</td><td>Kiểm soát cơ sở đối chiếu</td><td><span class="badge badge-calc">Tự tính</span></td><td>So sánh với năm cơ sở: “ĐỐI CHIẾU XONG” hoặc “THAY ĐỔI SO VỚI NĂM CƠ SỞ – CÓ DỰ BÁO”.</td><td>ĐỐI CHIẾU XONG</td></tr>
+                <tr><td>N</td><td>Văn bản thẩm định/quyết định (số, ngày, cơ quan)</td><td><span class="badge badge-input">Nhập</span></td><td>Bắt buộc khi trạng thái là “Đã thẩm định” hoặc “Đã được quyết định”; trống thì cột J báo “THIẾU VĂN BẢN THẨM ĐỊNH/QUYẾT ĐỊNH”.</td><td>Văn bản số … ngày … của …</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>12. Biểu DM_SAN_PHAM</h3>
+    <p>Danh mục sản phẩm chuẩn dùng để tra phút chuẩn cho B1 (cột L). Nhập trước B1 nếu đơn vị có phút chuẩn được xác nhận.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>Mã sản phẩm chuẩn</td><td><span class="badge badge-input">Nhập</span></td><td>Duy nhất trong biểu. B1 cột L phải trùng đúng mã này.</td><td>VD-SP-02</td></tr>
+                <tr><td>B</td><td>Tên/loại sản phẩm</td><td><span class="badge badge-input">Nhập</span></td><td>Tên sản phẩm theo văn bản xác nhận.</td><td>Hồ sơ đăng ký hộ tịch</td></tr>
+                <tr><td>C</td><td>Khối/ngành/lĩnh vực</td><td><span class="badge badge-input">Nhập</span></td><td>Phạm vi khối, ngành, lĩnh vực áp dụng.</td><td>Tư pháp – hộ tịch cấp xã</td></tr>
+                <tr><td>D</td><td>Nhóm I–VI (nếu áp dụng)</td><td><span class="badge badge-input">Nhập</span></td><td>Ghi nhóm theo danh mục 06 nhóm (I đến VI) hoặc “Không phân nhóm”.</td><td>II</td></tr>
+                <tr><td>E</td><td>Phút/SP chuẩn</td><td><span class="badge badge-input">Nhập</span></td><td>Số phút chuẩn, số &gt; 0. Sản phẩm không lập phút chuẩn thì để trống.</td><td>30</td></tr>
+                <tr><td>F</td><td>Văn bản/nguồn xác nhận</td><td><span class="badge badge-input">Nhập</span></td><td>Văn bản xác nhận phút chuẩn (số, ngày, cơ quan).</td><td>Quyết định công bố thời gian chuẩn số …</td></tr>
+                <tr><td>G</td><td>Trạng thái</td><td><span class="badge badge-input">Nhập</span></td><td>Gõ đúng “Đã xác nhận” khi phút chuẩn đã được cấp có thẩm quyền xác nhận; chưa xác nhận thì ghi “Đang kiểm chứng” hoặc “Không áp dụng”. B1 chỉ dùng phút chuẩn khi là “Đã xác nhận”.</td><td>Đã xác nhận</td></tr>
+                <tr><td>H</td><td>Cơ quan xác nhận</td><td><span class="badge badge-input">Nhập</span></td><td>Cơ quan ban hành, xác nhận.</td><td>Cơ quan quản lý ngành</td></tr>
+                <tr><td>I</td><td>Ngày hiệu lực</td><td><span class="badge badge-input">Nhập</span></td><td>Ngày bắt đầu áp dụng, theo dạng ngày/tháng/năm.</td><td>01/01/2026</td></tr>
+                <tr><td>J</td><td>Phạm vi áp dụng/ghi chú</td><td><span class="badge badge-input">Nhập</span></td><td>Phạm vi áp dụng, ngoại lệ.</td><td>Áp dụng cho UBND cấp xã</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>13. Biểu CHIA_VUNG_CAP_XA</h3>
+    <p>Chỉ dùng cho đơn vị có cấp xã. Nhập từ dòng 4.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cột</th><th>Tên cột</th><th>Loại</th><th>Chuẩn nhập để công thức chạy đúng</th><th>Ví dụ (giả định)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>A</td><td>STT</td><td><span class="badge badge-input">Nhập</span></td><td>Số thứ tự.</td><td>1</td></tr>
+                <tr><td>B</td><td>Tên xã, phường, đặc khu</td><td><span class="badge badge-input">Nhập</span></td><td>Tên đầy đủ, không viết tắt.</td><td>Phường A</td></tr>
+                <tr><td>C</td><td>Vùng</td><td><span class="badge badge-input">Nhập</span></td><td>Chọn đúng một trong 4 tên ở danh sách F4:F7: Vùng Đô thị đặc biệt; Vùng Đô thị; Vùng Đồng bằng; Vùng Miền núi. Không gõ tên khác.</td><td>Vùng Đô thị</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><em>Không sửa danh sách 4 vùng ở cột F; các ô này đang khóa.</em></p>
+
+    <h2>IV. GIÁ TRỊ CHUẨN PHẢI GÕ ĐÚNG TỪNG CHỮ</h2>
+    <p>Các ô dưới đây được công thức so sánh trực tiếp với chữ, nên gõ khác (thiếu dấu, thừa dấu cách, viết tắt) sẽ bị coi là không hợp lệ.</p>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Biểu – cột</th>
+                    <th style="width: 25%;">Tên cột</th>
+                    <th style="width: 50%;">Giá trị hợp lệ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>B1 – cột J</td><td>Trạng thái căn cứ thời gian</td><td>Kiểm đếm, ước lượng thực tế | Có định mức</td></tr>
+                <tr><td>B1 – cột S</td><td>Giải trình khác chuẩn</td><td>Bắt đầu bằng đúng cụm: <code>Đã xác nhận:</code> (có dấu hai chấm)</td></tr>
+                <tr><td>B2_CT – cột C</td><td>Loại tác động</td><td>Số hóa | Cải tiến quy trình | Thuê dịch vụ/đặt hàng | Tự chủ | Xã hội hóa | Công việc mới phát sinh</td></tr>
+                <tr><td>B2_CT – cột L</td><td>Cơ sở B1</td><td>Trước thay đổi, có điều chỉnh | Đã đo sau thay đổi (không trừ)</td></tr>
+                <tr><td>B2_CT – cột M</td><td>Trạng thái</td><td>Đã kiểm chứng | Chưa kiểm chứng | Ước lượng tham khảo</td></tr>
+                <tr><td>B2_CT – cột S</td><td>Đối chiếu trùng/phạm vi</td><td>Đã đối chiếu</td></tr>
+                <tr><td>C1 – cột I</td><td>Xác nhận giờ riêng</td><td>Đã kiểm chứng</td></tr>
+                <tr><td>C1 – cột J</td><td>Chế độ làm việc</td><td>Phổ biến (40 giờ/tuần) | Đặc thù</td></tr>
+                <tr><td>C3 – cột B</td><td>Phương pháp</td><td>PP1 | PP2 | PP3 | PP1+PP2 | PP1+PP3 | PP2+PP3</td></tr>
+                <tr><td>C3 – cột L</td><td>Trạng thái</td><td>Tính thử | Chưa đủ dữ liệu | Đã kiểm chứng | Không áp dụng</td></tr>
+                <tr><td>D1 – cột I</td><td>Trạng thái</td><td>Đã kiểm chứng (các giá trị khác bị coi là chưa đủ căn cứ)</td></tr>
+                <tr><td>DU_BAO_5_NAM – cột F</td><td>Trạng thái xác nhận</td><td>Chưa kiểm chứng | Đã kiểm chứng</td></tr>
+                <tr><td>D2 – cột I</td><td>Trạng thái</td><td>Đang xây dựng | Đã hoàn thành ở đơn vị | Đã thẩm định | Đã được quyết định</td></tr>
+                <tr><td>DM_SAN_PHAM – cột G</td><td>Trạng thái</td><td>Đã xác nhận (để B1 dùng phút chuẩn); các giá trị khác như Đang kiểm chứng, Không áp dụng</td></tr>
+                <tr><td>CHIA_VUNG_CAP_XA – cột C</td><td>Vùng</td><td>Vùng Đô thị đặc biệt | Vùng Đô thị | Vùng Đồng bằng | Vùng Miền núi</td></tr>
+                <tr><td>DU_BAO_5_NAM, D2 – cột B</td><td>Năm</td><td>Số nguyên 2027, 2028, 2029, 2030, 2031</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>V. CẢNH BÁO CỦA CÔNG THỨC VÀ CÁCH XỬ LÝ</h2>
+    
+    <h3>B1 – cột R (Cảnh báo dữ liệu)</h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr><th style="width: 35%;">Cảnh báo hiện ra</th><th style="width: 65%;">Nguyên nhân và cách xử lý</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>THIẾU MÃ VTVL</td><td>Mã công việc cột A chưa có ở A2 hoặc ở A2 chưa điền Mã VTVL. Bổ sung ở A2 hoặc sửa mã cho khớp.</td></tr>
+                <tr><td>THIẾU NGUỒN SẢN LƯỢNG/CÔNG VIỆC</td><td>Cột H trống. Điền nguồn của số lượng.</td></tr>
+                <tr><td>THIẾU KỲ</td><td>Cột K trống. Điền kỳ số liệu.</td></tr>
+                <tr><td>THIẾU SẢN LƯỢNG</td><td>Cột C trống. Điền Số SP/năm (hoặc chỉ ghi Giờ bổ sung ở cột E kèm nguồn ở cột I).</td></tr>
+                <tr><td>CHƯA CHỌN TRẠNG THÁI</td><td>Cột J trống. Chọn một trong hai trạng thái chuẩn.</td></tr>
+                <tr><td>CHỜ XÁC NHẬN KHÁC CHUẨN</td><td>Cột S có nội dung nhưng không bắt đầu bằng “Đã xác nhận:”. Sửa cú pháp hoặc xóa cột S để dùng phút chuẩn.</td></tr>
+                <tr><td>THIẾU NGUỒN THỜI GIAN</td><td>Cột I trống và không dùng phút chuẩn đã xác nhận. Điền phiếu đo hoặc văn bản định mức.</td></tr>
+                <tr><td>THIẾU THỜI GIAN</td><td>Cột D trống hoặc bằng 0 và không có phút chuẩn đã xác nhận. Điền phút trung bình trên mỗi sản phẩm.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>B2_CT – cột P (Kiểm tra)</h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr><th style="width: 35%;">Cảnh báo hiện ra</th><th style="width: 65%;">Nguyên nhân và cách xử lý</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>THAM KHẢO – KHÔNG TÍNH</td><td>Cột M là “Ước lượng tham khảo”. Dòng này không tham gia tính. Chuyển sang “Đã kiểm chứng” sau khi có bằng chứng.</td></tr>
+                <tr><td>CHƯA ĐỦ CĂN CỨ</td><td>Thiếu một trong các cột B, D, J, K, L, hoặc cột M chưa là “Đã kiểm chứng”. Bổ sung.</td></tr>
+                <tr><td>LOẠI TÁC ĐỘNG KHÔNG HỢP LỆ</td><td>Cột C gõ khác sáu loại chuẩn.</td></tr>
+                <tr><td>CHỜ SOÁT TRÙNG</td><td>Cột S chưa là “Đã đối chiếu”. Cán bộ soát trùng rồi mới điền.</td></tr>
+                <tr><td>TRÙNG CÔNG ĐOẠN</td><td>Cùng công việc, cùng công đoạn, cùng kỳ xuất hiện từ 2 dòng. Gộp hoặc đổi tên công đoạn cho đúng.</td></tr>
+                <tr><td>THIẾU GIỜ TÁC ĐỘNG</td><td>Cả cột H và cột I đều trống. Điền SP áp dụng, phút trước, phút sau hoặc giờ việc mới.</td></tr>
+                <tr><td>THIẾU SẢN PHẨM ÁP DỤNG</td><td>Có giờ giảm nhưng cột E trống hoặc ≤ 0.</td></tr>
+                <tr><td>SẢN PHẨM ÁP DỤNG VƯỢT B1</td><td>Cột E lớn hơn tổng Số SP/năm của công việc ở B1. Sửa cho không vượt.</td></tr>
+                <tr><td>THỜI GIAN TĂNG CHƯA GHI GIỜ MỚI</td><td>Phút sau lớn hơn phút trước nhưng cột I trống hoặc ≤ 0. Ghi Giờ việc mới.</td></tr>
+                <tr><td>GIỜ GIẢM VƯỢT GIỜ B1</td><td>Tổng giờ giảm của công việc lớn hơn Giờ tổng ở B1. Rà lại số liệu.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>C1 – cột K (Kiểm tra quỹ giờ PP2)</h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr><th style="width: 35%;">Cảnh báo hiện ra</th><th style="width: 65%;">Nguyên nhân và cách xử lý</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>CHƯA CHỌN CHẾ ĐỘ LÀM VIỆC</td><td>Cột J trống. Chọn chế độ.</td></tr>
+                <tr><td>CHẾ ĐỘ KHÔNG HỢP LỆ</td><td>Cột J gõ khác hai giá trị chuẩn.</td></tr>
+                <tr><td>THIẾU GIỜ ĐẶC THÙ</td><td>Chế độ “Đặc thù” nhưng thiếu cột H, F hoặc cột I chưa “Đã kiểm chứng”.</td></tr>
+                <tr><td>GIỜ CHƯA XÁC NHẬN</td><td>Có cột H nhưng thiếu căn cứ F hoặc xác nhận I.</td></tr>
+                <tr><td>THIẾU MẪU SỐ</td><td>Không xác định được quỹ giờ. Kiểm tra cột H, I, J.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>C3 – cột M (Cảnh báo)</h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr><th style="width: 35%;">Cảnh báo hiện ra</th><th style="width: 65%;">Nguyên nhân và cách xử lý</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>PHƯƠNG PHÁP KHÔNG HỢP LỆ / CHƯA CHỌN PHƯƠNG PHÁP</td><td>Cột B gõ khác sáu giá trị chuẩn hoặc trống.</td></tr>
+                <tr><td>MÃ VTVL CHƯA CÓ Ở C1 / TRÙNG MÃ VTVL / TRÙNG MÃ VTVL Ở C1</td><td>Sửa mã cho khớp C1, mỗi mã một dòng.</td></tr>
+                <tr><td>PP2: C1 CHƯA ĐỦ CĂN CỨ</td><td>C1 cột K của VTVL chưa “ĐẠT”. Xử lý ở C1 trước.</td></tr>
+                <tr><td>PP2: THIẾU GIỜ B1 HOẶC QUỸ GIỜ</td><td>Chưa có dòng B1 “ĐẠT” hoặc chưa có quỹ giờ ở C1.</td></tr>
+                <tr><td>PP2: CÒN DÒNG B1 CHƯA ĐẠT</td><td>Cột N lớn hơn 0. Sửa các dòng B1 chưa “ĐẠT”.</td></tr>
+                <tr><td>PP2: B2 CHƯA ĐỦ CĂN CỨ</td><td>Còn dòng B2 của VTVL chưa “ĐẠT”. Sửa ở biểu 4 (trừ dòng ước lượng tham khảo).</td></tr>
+                <tr><td>GIỜ RÒNG ÂM – KIỂM TRA B2</td><td>Giờ giảm lớn hơn giờ B1. Rà lại biểu 4.</td></tr>
+                <tr><td>PP1: THIẾU SỐ NGƯỜI / PP3: THIẾU SỐ NGƯỜI</td><td>Điền cột H (PP1) hoặc cột I (PP3).</td></tr>
+                <tr><td>THIẾU NGUỒN/GIẢI TRÌNH</td><td>Điền cột K.</td></tr>
+                <tr><td>CHƯA KẾT LUẬN NGƯỜI CẦN BỐ TRÍ</td><td>Điền cột J.</td></tr>
+                <tr><td>CHỜ XÁC NHẬN NGHIỆP VỤ</td><td>Cột L chưa là “Đã kiểm chứng”. Chỉ chuyển trạng thái sau khi cán bộ nghiệp vụ xác nhận.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>D1 – cột J (Cảnh báo)</h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr><th style="width: 35%;">Cảnh báo hiện ra</th><th style="width: 65%;">Nguyên nhân và cách xử lý</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>TRÙNG MÃ NGUỒN LỰC</td><td>Mã cột A xuất hiện từ 2 lần. Đổi mã.</td></tr>
+                <tr><td>THIẾU NƠI TÍNH BIÊN CHẾ</td><td>Cột G trống.</td></tr>
+                <tr><td>Chưa đủ căn cứ</td><td>Thiếu cột D, E, F, H hoặc cột I chưa “Đã kiểm chứng”.</td></tr>
+                <tr><td>Vượt quỹ giờ</td><td>Giờ cho VTVL cộng giờ việc khác lớn hơn giờ quy đổi/năm. Sửa cột E, F hoặc K.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>DU_BAO_5_NAM – cột I và D2 – cột J, M</h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr><th style="width: 35%;">Cảnh báo hiện ra</th><th style="width: 65%;">Nguyên nhân và cách xử lý</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>NĂM KHÔNG HỢP LỆ</td><td>Năm không phải số nguyên từ 2027 đến 2031.</td></tr>
+                <tr><td>TRÙNG MÃ VTVL – NĂM</td><td>Cặp mã VTVL và năm xuất hiện từ 2 dòng.</td></tr>
+                <tr><td>C3 CHƯA ĐƯỢC XÁC NHẬN</td><td>C3 của VTVL chưa “Đã kiểm chứng” và “ĐẠT”. Hoàn thiện C3 trước.</td></tr>
+                <tr><td>THIẾU BIẾN ĐỘNG (NHẬP 0 NẾU KHÔNG ĐỔI)</td><td>Cột C trống. Nhập 0 nếu không đổi.</td></tr>
+                <tr><td>NHU CẦU ÂM</td><td>Người C3 cộng biến động nhỏ hơn 0. Rà lại biến động.</td></tr>
+                <tr><td>THIẾU GIẢI TRÌNH/NGUỒN</td><td>Cột D hoặc E trống.</td></tr>
+                <tr><td>CHƯA KIỂM CHỨNG DỰ BÁO</td><td>Cột F là “Chưa kiểm chứng”.</td></tr>
+                <tr><td>D2: CHƯA CÓ DỰ BÁO NĂM ĐÃ KIỂM CHỨNG</td><td>Chưa có dòng DU_BAO_5_NAM “ĐẠT” cho đúng mã và năm. Hoàn thiện dự báo.</td></tr>
+                <tr><td>D2: THIẾU PHƯƠNG ÁN</td><td>Thiếu cột D, G hoặc H.</td></tr>
+                <tr><td>D2: CHƯA ĐỦ CĂN CỨ</td><td>Thiếu giải trình; số người cùng đơn vị tính; số người âm. Sửa theo từng cột.</td></tr>
+                <tr><td>D2: THIẾU VĂN BẢN THẨM ĐỊNH/QUYẾT ĐỊNH</td><td>Trạng thái đã thẩm định hoặc đã quyết định nhưng cột N trống.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>VI. LỖI THƯỜNG GẶP VÀ CÁCH PHÒNG TRÁNH</h2>
+    <ul>
+        <li><strong>Sai mã giữa các biểu:</strong> thừa dấu cách, khác chữ hoa/thường, khác ký tự gạch. Sao chép mã từ biểu gốc thay vì gõ lại.</li>
+        <li><strong>Gõ số kèm chữ:</strong> (ví dụ “30 phút”, “2 người”) hoặc gõ số dạng văn bản. Ô phải là số thuần túy thì công thức mới cộng được.</li>
+        <li><strong>Gõ trạng thái sai chính tả hoặc thiếu dấu:</strong> Chọn từ danh sách hoặc sao chép đúng từ Phần IV.</li>
+        <li><strong>Gõ đè công thức ở cột “Tự tính”:</strong> Nếu lỡ gõ đè, sao chép công thức từ dòng 3 xuống dòng lỗi.</li>
+        <li><strong>Chèn hoặc xóa dòng làm lệch phạm vi công thức:</strong> Muốn bỏ bản ghi thì chỉ xóa nội dung ô nhập.</li>
+        <li><strong>Nhầm lẫn giữa các chỉ số người:</strong> Nhầm giữa số người quy đổi (C3 cột G), số người cần bố trí (C3 cột J), và biên chế được giao (D2 cột E). Đây là ba con số khác nhau, nhập đúng cột.</li>
+        <li><strong>Để trống cột nguồn/giải trình bắt buộc:</strong> làm dòng không đạt và không chuyển sang biểu sau.</li>
+        <li><strong>Nhập B2 cho cùng một công đoạn hai lần:</strong> (trùng công đoạn). Mỗi công đoạn, mỗi kỳ chỉ một dòng.</li>
+        <li><strong>Xử lý khi gặp sự cố công thức:</strong> Khi gặp lỗi không xử lý được theo hướng dẫn này, báo Tổ Công tác để hỗ trợ; không tự sửa công thức hoặc mở khóa bảng ngoài các bước trong sheet <code>HUONG_DAN</code> của file.</li>
+    </ul>
+</div>
+
+</body>
+</html>
