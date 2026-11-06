@@ -1,18 +1,34 @@
 [
   {
-  "id": "huong-dan-nhap-bieu-vtvl",
-  "title": "Hướng dẫn nhập biểu ví trí việc làm",
-  "desc": "Rà soát nhiệm vụ, hoàn thiện vị trí việc làm, xác định nhu cầu nhân lực và xây dựng phương án biên chế giai đoạn 2027-2031",
-  "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/vtvl.webp",
-  "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/HD-nhap-bieu-VTVL.html",
-  "date": "04-11-2026",
-  "scheduledTime": "",
-  "category": [
-    "Xây dựng Đảng"
-  ],
-  "featured": true,
-  "views": 68
-},
+    "id": "luu-ky-soi-noi-giai-bong-chuyen-hoi-va-giao-luu-pickleball",
+    "title": "LƯU KỲ SÔI NỔI GIẢI BÓNG CHUYỀN HƠI VÀ GIAO LƯU PICKLEBALL",
+    "desc": "Trong không khí vui tươi, phấn khởi hướng tới kỷ niệm 96 năm Ngày truyền thống Mặt trận Tổ quốc Việt Nam (18/11/1930 – 18/11/2026), từ ngày 04 đến ngày 06/11/2026, Tổ dân phố Lưu Kỳ, phường Lưu Kiếm đã tổ chức Giải bóng chuyền hơi và giao lưu Pickleball lần thứ nhất",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/thethao2026luuky1.webp",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/tin-tuc/luu-ky-soi-noi-giai-bong-chuyen-hoi-va-giao-luu-pickleball.html",
+    "date": "06-11-2026",
+    "author": "Vũ Thành Công",
+    "scheduledTime": "",
+    "category": [
+      "Tin tức",
+      "Lưu Kỳ"
+    ],
+    "featured": true,
+    "views": 0
+  },
+  {
+    "id": "huong-dan-nhap-bieu-vtvl",
+    "title": "Hướng dẫn nhập biểu ví trí việc làm",
+    "desc": "Rà soát nhiệm vụ, hoàn thiện vị trí việc làm, xác định nhu cầu nhân lực và xây dựng phương án biên chế giai đoạn 2027-2031",
+    "image": "https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/anh/vtvl.webp",
+    "url": "https://vuthanhcong77.github.io/quanlybaivietvtc/bai-viet/chuyen-mon/HD-nhap-bieu-VTVL.html",
+    "date": "04-11-2026",
+    "scheduledTime": "",
+    "category": [
+      "Xây dựng Đảng"
+    ],
+    "featured": true,
+    "views": 68
+  },
   {
     "id": "chuc-mung-ngay-hoi-dai-doan-ket-toan-dan-toc-to-dan-pho-phuc-nam-phuong-luu-kiem",
     "title": "CHÚC MỪNG NGÀY HỘI ĐẠI ĐOÀN KẾT TOÀN DÂN TỘC TỔ DÂN PHỐ PHÚC NAM – PHƯỜNG LƯU KIẾM",
