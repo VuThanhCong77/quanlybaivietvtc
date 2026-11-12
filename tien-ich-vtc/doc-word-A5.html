@@ -319,6 +319,51 @@
       color: #444;
     }
   }
+
+  @media (max-width: 640px) {
+  /* Thu gọn thanh công cụ, ẩn tên tệp dài và mô tả phụ */
+  header p { display: none; }
+  #filename { display: none; } /* Ẩn tên tệp trên di động để tiết kiệm chỗ ngang */
+  
+  .toolbar {
+    padding: 6px 8px;
+    gap: 4px;
+    justify-content: space-between;
+  }
+
+  /* Thu nhỏ kích thước nút bấm trên màn hình cảm ứng vừa đủ chạm */
+  button, .file-label {
+    padding: 6px 9px;
+    font-size: 12.5px;
+  }
+
+  /* Ẩn bớt nhóm đổi theme nhanh hoặc gom vào menu thu gọn nếu cần */
+  .btn-group:has([data-theme]) {
+    display: none; /* Hoặc ẩn các nút phụ không quá cấp bách */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ẩn 2 nút mũi tên trái/phải bên ngoài lề trang trên máy tính bảng và điện thoại */
+  .arrow {
+    display: none !important;
+  }
+
+  #reader-wrap {
+    padding: 10px 4px 16px;
+    gap: 0;
+  }
+
+  #page {
+    /* Mở rộng tối đa chiều rộng khổ A5 khớp với màn hình di động */
+    width: 100%;
+    max-width: 100%;
+    height: calc(100vh - 120px);
+    border-radius: 0; /* Bỏ bo góc để tận dụng từng pixel viền */
+    border-left: none;
+    border-right: none;
+  }
+}
 </style>
    <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
    <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/dieu-huong.css">
@@ -328,7 +373,9 @@
 
 <header id="menu"></header>
 
+
 <div class="toolbar">
+
   <label class="file-label" title="Mở tệp Microsoft Word (.docx)">
     📄 Mở tệp
     <input id="file" type="file" accept=".docx">
@@ -357,6 +404,8 @@
   <button id="print-btn" class="secondary" disabled title="In hoặc lưu thành PDF khổ A5">🖨️</button>
   <span id="filename">Chưa chọn tệp</span>
  </div>
+
+ <button id="toggle-toolbar" class="secondary" title="Thu gọn/Mở rộng thanh công cụ">📐 Ẩn</button>
 
 <div id="reader-wrap">
   <button class="arrow" id="left" disabled aria-label="Trang trước">❮</button>
@@ -684,6 +733,19 @@
     resizeTimer = setTimeout(() => repaginate(true), 220);
   });
 })();
+
+const toggleBtn = document.getElementById('toggle-toolbar');
+const toolbar = document.querySelector('.toolbar');
+let toolbarVisible = true;
+
+if (toggleBtn) {
+  toggleBtn.onclick = () => {
+    toolbarVisible = !toolbarVisible;
+    toolbar.style.display = toolbarVisible ? 'flex' : 'none';
+    toggleBtn.textContent = toolbarVisible ? '📐 Ẩn thanh công cụ' : '📐 Hiện thanh công cụ';
+    repaginate(true); // Cân lại kích thước trang đọc sau khi không gian thay đổi
+  };
+}
 </script>
 
 <script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
