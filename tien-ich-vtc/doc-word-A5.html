@@ -373,39 +373,7 @@
 
 <header id="menu"></header>
 
-
-<div class="toolbar">
-
-  <label class="file-label" title="Mở tệp Microsoft Word (.docx)">
-    📄 Mở tệp
-    <input id="file" type="file" accept=".docx">
-  </label>
-
-  <div class="btn-group">
-    <button id="reset" class="secondary" disabled title="Về trang đầu (Home)">⏮</button>
-    <button id="prev" class="secondary" disabled title="Trang trước (←)">❮</button>
-    <span class="page-jump">
-      Trang <input id="page-input" type="number" min="1" value="1" disabled aria-label="Số trang"> / <span id="total-pages">0</span>
-    </span>
-    <button id="next" class="secondary" disabled title="Trang sau (→)">❯</button>
-  </div>
-
-  <div class="btn-group" title="Cỡ chữ">
-    <button id="font-dec" class="secondary" disabled>A-</button>
-    <button id="font-inc" class="secondary" disabled>A+</button>
-  </div>
-
-  <div class="btn-group" title="Giao diện đọc">
-    <button class="secondary active" data-theme="light">S</button>
-    <button class="secondary" data-theme="sepia">G</button>
-    <button class="secondary" data-theme="dark">T</button>
-  </div>
-
-  <button id="print-btn" class="secondary" disabled title="In hoặc lưu thành PDF khổ A5">🖨️</button>
-  <span id="filename">Chưa chọn tệp</span>
- </div>
-
- <button id="toggle-toolbar" class="secondary" title="Thu gọn/Mở rộng thanh công cụ">📐 Ẩn</button>
+<button id="toggle-toolbar" class="secondary" title="Thu gọn/Mở rộng thanh công cụ">📐 Ẩn</button>
 
 <div id="reader-wrap">
   <button class="arrow" id="left" disabled aria-label="Trang trước">❮</button>
@@ -424,6 +392,40 @@
 
 <div id="status">Hỗ trợ định dạng .docx. Dữ liệu được xử lý cục bộ 100%, không tải lên máy chủ.</div>
 <div id="print-container"></div>
+
+
+<div class="toolbar">
+
+  <label class="file-label" title="Mở tệp Microsoft Word (.docx)">
+    📄 Mở tệp
+    <input id="file" type="file" accept=".docx">
+  </label>
+
+  <div class="btn-group" title="Giao diện đọc">
+    <button class="secondary active" data-theme="light">S</button>
+    <button class="secondary" data-theme="sepia">G</button>
+    <button class="secondary" data-theme="dark">T</button>
+  </div>
+
+  <button id="print-btn" class="secondary" disabled title="In hoặc lưu thành PDF khổ A5">🖨️</button>
+
+    <div class="btn-group" title="Cỡ chữ">
+    <button id="font-dec" class="secondary" disabled>A-</button>
+    <button id="font-inc" class="secondary" disabled>A+</button>
+  </div>
+
+  <div class="btn-group">
+    <button id="reset" class="secondary" disabled title="Về trang đầu (Home)">⏮</button>
+    <button id="prev" class="secondary" disabled title="Trang trước (←)">❮</button>
+    <span class="page-jump">
+      Trang <input id="page-input" type="number" min="1" value="1" disabled aria-label="Số trang"> / <span id="total-pages">0</span>
+    </span>
+    <button id="next" class="secondary" disabled title="Trang sau (→)">❯</button>
+  </div>
+
+  <span id="filename">Chưa chọn tệp</span>
+
+   </div>
 
 <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
 <script>
