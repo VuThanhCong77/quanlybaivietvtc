@@ -219,8 +219,8 @@
     padding: 0;
     justify-content: center;
     flex: 0 0 auto;
-    box-shadow: 0 4px 12px rgb(226, 18, 4);
-    background: #ecdd0a;
+    box-shadow: 0 4px 12px rgba(226, 19, 4, 0);
+    background: #ecdd0a50;
     border: none;
     cursor: pointer;
     user-select: none;
@@ -886,7 +886,7 @@
     }
   });
 
-  // Tự ẩn hoặc thu gọn thanh công cụ khi không dùng (5s)
+  // Tự ẩn hoặc thu gọn thanh công cụ khi không dùng (8s)
   let toolbar = document.querySelector('.toolbar');
   let hideTimeout;
   function showToolbar() {
@@ -896,7 +896,7 @@
     hideTimeout = setTimeout(() => {
       toolbar.style.opacity = '0.15';
       toolbar.style.pointerEvents = 'none';
-    }, 5000);
+    }, 8000);
   }
   document.body.addEventListener('mousemove', showToolbar);
   document.body.addEventListener('touchstart', showToolbar);
