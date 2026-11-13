@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Trình đọc văn bản Word – Khổ A5</title>
 <style>
   :root {
@@ -32,7 +32,9 @@
     --muted: #9aa5b1;
   }
 
-  * { box-sizing: border-box; }
+  * {
+    box-sizing: border-box;
+  }
 
   body {
     margin: 0;
@@ -40,62 +42,114 @@
     color: var(--ink);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     transition: background 0.25s, color 0.25s;
-    user-select: none;
-  }
-
-  header {
-    background: linear-gradient(120deg, var(--blue2), var(--blue));
-    color: #fff;
-    padding: 14px 20px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  }
-  header h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: 0.4px; }
-  header p { margin: 0; font-size: 12.5px; opacity: 0.9; }
-
-  .toolbar {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    -webkit-tap-highlight-color: transparent;
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+  }
+
+  /* Thu gọn thanh công cụ thành 1 hàng, kích thước tối thiểu, ưu tiên icon và tooltip */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 10px 14px;
+    gap: 6px;
+    padding: 6px 8px;
     background: var(--toolbar-bg);
     border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    user-select: none;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .toolbar::-webkit-scrollbar {
+    height: 6px;
+  }
+  .toolbar::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--blue);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  body.theme-dark .brand {
+    color: #58b8e6;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+    flex: 1 1 auto;
+    overflow-x: auto;
   }
 
   .btn-group {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    background: rgba(0,0,0,0.04);
-    padding: 3px;
-    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.045);
+    padding: 1px 4px;
+    border-radius: 6px;
+    flex-shrink: 0;
   }
-  body.theme-dark .btn-group { background: rgba(255,255,255,0.06); }
+  body.theme-dark .btn-group {
+    background: rgba(255, 255, 255, 0.07);
+  }
 
-  button, .file-label {
+  button,
+  .file-label {
     border: 0;
     border-radius: 6px;
-    padding: 8px 12px;
+    padding: 5px 8px;
     background: var(--blue);
     color: #fff;
-    font-size: 13.5px;
+    font-size: 12px;
     font-weight: 500;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
+    gap: 4px;
     transition: background 0.15s, transform 0.1s;
+    min-width: 32px;
+    min-height: 32px;
+    line-height: 1;
   }
-  button:hover:not(:disabled), .file-label:hover { background: var(--blue2); }
-  button:active:not(:disabled) { transform: scale(0.97); }
-  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  button:hover:not(:disabled),
+  .file-label:hover {
+    background: var(--blue2);
+  }
+  button:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+  button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 
   button.secondary {
     background: transparent;
     color: var(--ink);
-    padding: 6px 10px;
+    padding: 4px 7px;
+    min-width: 28px;
+    min-height: 28px;
   }
   button.secondary:hover:not(:disabled) {
     background: rgba(8, 126, 174, 0.12);
@@ -106,70 +160,104 @@
     color: #fff;
   }
 
-  .file-label input { display: none; }
+  .file-label input {
+    display: none;
+  }
 
   .page-jump {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--muted);
-    padding: 0 6px;
+    padding: 0 4px;
+    flex-shrink: 0;
   }
   .page-jump input {
-    width: 48px;
-    padding: 5px 4px;
+    width: 40px;
+    padding: 3px 4px;
     text-align: center;
     border: 1px solid var(--border);
     border-radius: 5px;
     background: var(--paper);
     color: var(--ink);
-    font-size: 13px;
+    font-size: 12px;
   }
 
   #filename {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--muted);
-    max-width: 200px;
+    max-width: 140px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex-shrink: 0;
   }
 
+  /* Vùng đọc chiếm gần toàn bộ viewport, giảm khoảng trống, viền, bóng */
   #reader-wrap {
-    min-height: calc(100vh - 145px);
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 18px;
-    padding: 20px 12px 28px;
+    gap: 8px;
+    padding: 8px 4px 8px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
   }
 
+  /* Nút chuyển trang dạng phủ ở hai mép vùng đọc, không chiếm chiều ngang */
   .arrow {
-    width: 44px;
-    height: 44px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 22px;
     padding: 0;
     justify-content: center;
     flex: 0 0 auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: var(--paper);
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    z-index: 15;
+  }
+  .arrow:hover:not(:disabled) {
+    opacity: 1;
+  }
+  .arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  #left {
+    left: 4px;
+  }
+  #right {
+    right: 4px;
   }
 
+  /* Trang A5 tự động co giãn lớn nhất theo chiều rộng và chiều cao, giữ tỷ lệ 148:210 */
   #page {
-    width: 148mm;
-    height: 210mm;
-    max-width: calc(100vw - 104px);
-    max-height: calc((100vh - 185px) * 1.414);
-    min-height: 440px;
+    width: 100%;
+    max-width: calc(100vh * 0.704); /* 148/210 = 0.704 */
+    max-height: 100vh;
+    aspect-ratio: 148 / 210;
     background: var(--paper);
-    box-shadow: 0 10px 30px rgba(20, 35, 45, 0.18);
-    border: 1px solid rgba(0,0,0,0.12);
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-    padding: 13mm 11mm 15mm;
+    padding: 10mm 8mm 12mm;
     overflow: hidden;
     position: relative;
     transition: background 0.25s, border-color 0.25s;
+    display: flex;
+    flex-direction: column;
   }
 
   #page.drag-over {
@@ -177,16 +265,19 @@
     outline-offset: -6px;
   }
 
-  /* Vùng nội dung chính của trang A5 */
   .a5-body {
-    height: 100%;
-    overflow: hidden;
+    flex: 1 1 auto;
+    overflow-y: auto;
     font-family: "Times New Roman", Times, serif;
     font-size: var(--font-size);
     line-height: 1.5;
     overflow-wrap: break-word;
     word-wrap: break-word;
     user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    padding-right: 4px;
   }
 
   .a5-body p {
@@ -201,22 +292,36 @@
     text-indent: 0;
   }
 
-  .a5-body h1, .a5-body h2, .a5-body h3, .a5-body h4 {
+  .a5-body h1,
+  .a5-body h2,
+  .a5-body h3,
+  .a5-body h4 {
     font-family: "Times New Roman", Times, serif;
     line-height: 1.28;
     text-align: center;
     margin: 6pt 0 10pt;
     page-break-after: avoid;
   }
-  .a5-body h1 { font-size: 1.35em; text-transform: uppercase; }
-  .a5-body h2 { font-size: 1.2em; }
-  .a5-body h3 { font-size: 1.08em; }
+  .a5-body h1 {
+    font-size: 1.35em;
+    text-transform: uppercase;
+  }
+  .a5-body h2 {
+    font-size: 1.2em;
+  }
+  .a5-body h3 {
+    font-size: 1.08em;
+  }
 
-  .a5-body ul, .a5-body ol {
+  .a5-body ul,
+  .a5-body ol {
     margin: 0 0 8pt;
     padding-left: 1.6em;
   }
-  .a5-body li { margin-bottom: 4pt; text-align: justify; }
+  .a5-body li {
+    margin-bottom: 4pt;
+    text-align: justify;
+  }
 
   .a5-body img {
     max-width: 100%;
@@ -233,7 +338,8 @@
     font-size: 0.85em;
     margin: 6pt 0 10pt;
   }
-  .a5-body td, .a5-body th {
+  .a5-body td,
+  .a5-body th {
     border: 1px solid #777;
     padding: 4px 6px;
     vertical-align: top;
@@ -248,13 +354,17 @@
     color: var(--muted);
     font: 11.5px "Times New Roman", serif;
     letter-spacing: 0.5px;
+    user-select: none;
+    pointer-events: none;
   }
 
   #status {
     text-align: center;
     color: var(--muted);
-    font-size: 12.5px;
-    margin: -10px 12px 18px;
+    font-size: 12px;
+    padding: 4px 12px 8px;
+    user-select: none;
+    flex-shrink: 0;
   }
 
   #empty {
@@ -267,34 +377,107 @@
     color: var(--muted);
     padding: 20px;
     font-family: system-ui, sans-serif;
+    user-select: none;
   }
-  #empty .big { font-size: 48px; margin-bottom: 12px; }
-  #empty strong { font-size: 16px; color: var(--ink); margin-bottom: 8px; }
-  #empty p { text-align: center !important; text-indent: 0 !important; font-size: 13.5px; line-height: 1.5; max-width: 340px; }
+  #empty .big {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+  #empty strong {
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  #empty p {
+    text-align: center !important;
+    text-indent: 0 !important;
+    font-size: 13.5px;
+    line-height: 1.5;
+    max-width: 340px;
+  }
 
-  #print-container { display: none; }
+  #print-container {
+    display: none;
+  }
+
+  /* Nút toàn màn hình */
+  #fullscreen-btn {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  #fullscreen-btn:hover {
+    background: var(--blue2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .toolbar {
+      justify-content: flex-start;
+      padding: 6px 6px;
+    }
+    .brand {
+      display: none;
+    }
+    #filename {
+      max-width: 100px;
+    }
+  }
 
   @media (max-width: 640px) {
-    header h1 { font-size: 17px; }
-    header p { display: none; }
-    #reader-wrap { gap: 6px; padding: 12px 4px 20px; }
-    .arrow { width: 34px; height: 34px; font-size: 17px; }
-    #page {
-      width: calc(100vw - 84px);
-      height: calc((100vw - 84px) * 1.414);
-      min-height: 400px;
-      max-height: none;
-      padding: 9mm 7mm 12mm;
+    #reader-wrap {
+      gap: 4px;
+      padding: 6px 2px 6px;
     }
-    :root { --font-size: 11.5pt; }
+    .arrow {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+    }
+    #page {
+      max-width: 100vw;
+      max-height: 100vh;
+      aspect-ratio: 148 / 210;
+      padding: 8mm 6mm 10mm;
+    }
+    :root {
+      --font-size: 11.5pt;
+    }
   }
 
-  /* Chế độ in chuẩn khổ A5 toàn bộ các trang */
   @media print {
-    @page { size: A5 portrait; margin: 0; }
-    body { background: #fff !important; color: #000 !important; }
-    header, .toolbar, #reader-wrap, #status { display: none !important; }
-    #print-container { display: block !important; }
+    @page {
+      size: A5 portrait;
+      margin: 0;
+    }
+    body {
+      background: #fff !important;
+      color: #000 !important;
+    }
+    .toolbar,
+    #reader-wrap,
+    #status,
+    #fullscreen-btn {
+      display: none !important;
+    }
+    #print-container {
+      display: block !important;
+    }
     .print-page {
       width: 148mm;
       height: 210mm;
@@ -319,115 +502,67 @@
       color: #444;
     }
   }
-
-  @media (max-width: 640px) {
-  /* Thu gọn thanh công cụ, ẩn tên tệp dài và mô tả phụ */
-  header p { display: none; }
-  #filename { display: none; } /* Ẩn tên tệp trên di động để tiết kiệm chỗ ngang */
-  
-  .toolbar {
-    padding: 6px 8px;
-    gap: 4px;
-    justify-content: space-between;
-  }
-
-  /* Thu nhỏ kích thước nút bấm trên màn hình cảm ứng vừa đủ chạm */
-  button, .file-label {
-    padding: 6px 9px;
-    font-size: 12.5px;
-  }
-
-  /* Ẩn bớt nhóm đổi theme nhanh hoặc gom vào menu thu gọn nếu cần */
-  .btn-group:has([data-theme]) {
-    display: none; /* Hoặc ẩn các nút phụ không quá cấp bách */
-  }
-}
-
-@media (max-width: 768px) {
-  /* Ẩn 2 nút mũi tên trái/phải bên ngoài lề trang trên máy tính bảng và điện thoại */
-  .arrow {
-    display: none !important;
-  }
-
-  #reader-wrap {
-    padding: 10px 4px 16px;
-    gap: 0;
-  }
-
-  #page {
-    /* Mở rộng tối đa chiều rộng khổ A5 khớp với màn hình di động */
-    width: 100%;
-    max-width: 100%;
-    height: calc(100vh - 120px);
-    border-radius: 0; /* Bỏ bo góc để tận dụng từng pixel viền */
-    border-left: none;
-    border-right: none;
-  }
-}
 </style>
-   <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/menu.css">
-   <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/css/dieu-huong.css">
-   <link rel="stylesheet" href="https://vuthanhcong77.github.io/quanlybaivietvtc/tien-ich-vtc/tien-ich.css">
 </head>
 <body>
 
-<header id="menu"></header>
+<div class="toolbar" role="toolbar" aria-label="Thanh công cụ điều khiển">
+  <div class="brand" title="Trình đọc văn bản Word khổ A5" aria-hidden="true">📖</div>
 
-<button id="toggle-toolbar" class="secondary" title="Thu gọn/Mở rộng thanh công cụ">📐 Ẩn</button>
+  <div class="controls">
+    <label class="file-label" title="Mở tệp Microsoft Word (.docx)" tabindex="0" role="button" aria-label="Mở tệp Word">
+      📄
+      <input id="file" type="file" accept=".docx" aria-describedby="filename" />
+    </label>
+
+    <div class="btn-group" title="Cỡ chữ" role="group" aria-label="Điều chỉnh cỡ chữ">
+      <button id="font-dec" class="secondary" disabled aria-label="Giảm cỡ chữ" title="Giảm cỡ chữ">A-</button>
+      <button id="font-inc" class="secondary" disabled aria-label="Tăng cỡ chữ" title="Tăng cỡ chữ">A+</button>
+    </div>
+
+    <div class="btn-group" title="Giao diện đọc" role="group" aria-label="Chọn giao diện đọc">
+      <button class="secondary active" data-theme="light" aria-pressed="true" title="Giao diện sáng">S</button>
+      <button class="secondary" data-theme="sepia" aria-pressed="false" title="Giao diện giấy cũ">G</button>
+      <button class="secondary" data-theme="dark" aria-pressed="false" title="Giao diện tối">T</button>
+    </div>
+
+    <button id="print-btn" class="secondary" disabled title="In hoặc lưu thành PDF khổ A5" aria-label="In hoặc lưu PDF">🖨️</button>
+
+    <button id="reset" class="secondary" disabled title="Về trang đầu (Home)" aria-label="Trang đầu">⏮</button>
+    <button id="prev" class="secondary" disabled title="Trang trước (←)" aria-label="Trang trước">❮</button>
+
+    <span class="page-jump" aria-label="Đi đến trang">
+      <input id="page-input" type="number" min="1" value="1" disabled aria-label="Số trang hiện tại" />
+      / <span id="total-pages" aria-live="polite" aria-atomic="true">0</span>
+    </span>
+
+    <button id="next" class="secondary" disabled title="Trang sau (→)" aria-label="Trang sau">❯</button>
+  </div>
+
+  <span id="filename" aria-live="polite" aria-atomic="true">Chưa chọn tệp</span>
+</div>
 
 <div id="reader-wrap">
-  <button class="arrow" id="left" disabled aria-label="Trang trước">❮</button>
-  <section id="page" aria-live="polite">
-    <div id="page-content" class="a5-body">
-      <div id="empty">
-        <div class="big">📖</div>
+  <button class="arrow" id="left" disabled aria-label="Trang trước" title="Trang trước">❮</button>
+  <section id="page" aria-live="polite" aria-atomic="true" aria-label="Vùng đọc nội dung trang A5">
+    <div id="page-content" class="a5-body" tabindex="0">
+      <div id="empty" aria-hidden="false">
+        <div class="big" aria-hidden="true">📖</div>
         <strong>Chọn hoặc kéo thả tệp Word (.docx) vào đây</strong>
         <p>Văn bản sẽ được tự động ngắt trang theo tỷ lệ khổ giấy A5 (148 × 210 mm). Dùng phím ← →, nút mũi tên hoặc vuốt màn hình để lật trang.</p>
       </div>
     </div>
-    <div id="page-number"></div>
+    <div id="page-number" aria-hidden="true"></div>
   </section>
-  <button class="arrow" id="right" disabled aria-label="Trang sau">❯</button>
+  <button class="arrow" id="right" disabled aria-label="Trang sau" title="Trang sau">❯</button>
 </div>
 
-<div id="status">Hỗ trợ định dạng .docx. Dữ liệu được xử lý cục bộ 100%, không tải lên máy chủ.</div>
-<div id="print-container"></div>
+<button id="fullscreen-btn" title="Chuyển sang toàn màn hình" aria-label="Toàn màn hình" aria-pressed="false">⛶</button>
 
+<div id="status" role="status" aria-live="polite" aria-atomic="true">Hỗ trợ định dạng .docx • Xử lý trực tiếp trên trình duyệt</div>
+<div id="print-container" aria-hidden="true"></div>
 
-<div class="toolbar">
-
-  <label class="file-label" title="Mở tệp Microsoft Word (.docx)">
-    📄 Mở tệp
-    <input id="file" type="file" accept=".docx">
-  </label>
-
-  <div class="btn-group" title="Giao diện đọc">
-    <button class="secondary active" data-theme="light">S</button>
-    <button class="secondary" data-theme="sepia">G</button>
-    <button class="secondary" data-theme="dark">T</button>
-  </div>
-
-  <button id="print-btn" class="secondary" disabled title="In hoặc lưu thành PDF khổ A5">🖨️</button>
-
-    <div class="btn-group" title="Cỡ chữ">
-    <button id="font-dec" class="secondary" disabled>A-</button>
-    <button id="font-inc" class="secondary" disabled>A+</button>
-  </div>
-
-  <div class="btn-group">
-    <button id="reset" class="secondary" disabled title="Về trang đầu (Home)">⏮</button>
-    <button id="prev" class="secondary" disabled title="Trang trước (←)">❮</button>
-    <span class="page-jump">
-      Trang <input id="page-input" type="number" min="1" value="1" disabled aria-label="Số trang"> / <span id="total-pages">0</span>
-    </span>
-    <button id="next" class="secondary" disabled title="Trang sau (→)">❯</button>
-  </div>
-
-  <span id="filename">Chưa chọn tệp</span>
-
-   </div>
-
-<script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+<script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
 <script>
 (() => {
   const fileInput = document.getElementById('file');
@@ -439,6 +574,7 @@
   const statusEl = document.getElementById('status');
   const filenameEl = document.getElementById('filename');
   const printContainer = document.getElementById('print-container');
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
 
   const navButtons = ['prev', 'next', 'reset', 'left', 'right'].map(id => document.getElementById(id));
   const toolButtons = ['font-dec', 'font-inc', 'print-btn'].map(id => document.getElementById(id));
@@ -488,7 +624,6 @@
     saveProgress();
   }
 
-  // Tạo bộ đo ẩn có kích thước và thuộc tính CSS khớp tuyệt đối với vùng nội dung trang A5
   function createProbe() {
     const rect = content.getBoundingClientRect();
     const cs = getComputedStyle(content);
@@ -510,7 +645,6 @@
     return probe;
   }
 
-  // Chia nhỏ một đoạn văn <p> nếu bản thân đoạn văn đó cao hơn 1 trang A5
   function splitOversizedParagraph(pNode, probe, maxH) {
     const words = pNode.textContent.split(/(\s+)/);
     const parts = [];
@@ -547,7 +681,6 @@
     const source = document.createElement('div');
     source.innerHTML = html;
 
-    // Loại bỏ các đoạn trống thừa từ Word
     source.querySelectorAll('p').forEach(p => {
       if (!p.textContent.trim() && !p.querySelector('img, table')) p.remove();
     });
@@ -568,7 +701,6 @@
       n.nodeType === 1 || (n.nodeType === 3 && n.textContent.trim())
     );
 
-    // Tiền xử lý các đoạn văn quá dài vượt 1 trang
     const queue = [];
     for (const node of rawNodes) {
       if (node.nodeType === 3) {
@@ -647,10 +779,8 @@
     }
   }
 
-  // Sự kiện chọn tệp
   fileInput.addEventListener('change', e => processFile(e.target.files[0]));
 
-  // Sự kiện kéo thả tệp vào khung đọc
   ['dragenter', 'dragover'].forEach(evt => {
     pageBox.addEventListener(evt, e => {
       e.preventDefault();
@@ -668,7 +798,6 @@
     if (file) processFile(file);
   });
 
-  // Điều hướng trang
   const go = delta => showPage(current + delta);
   document.getElementById('prev').onclick = () => go(-1);
   document.getElementById('left').onclick = () => go(-1);
@@ -681,7 +810,6 @@
     if (Number.isFinite(val)) showPage(val - 1);
   });
 
-  // Phím tắt
   document.addEventListener('keydown', e => {
     if (document.activeElement === pageInput) return;
     if (e.key === 'ArrowLeft') go(-1);
@@ -690,7 +818,6 @@
     if (e.key === 'End' && pages.length) showPage(pages.length - 1);
   });
 
-  // Vuốt trên màn hình cảm ứng
   let touchStartX = 0;
   pageBox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
   pageBox.addEventListener('touchend', e => {
@@ -698,7 +825,6 @@
     if (Math.abs(diff) > 45) go(diff < 0 ? 1 : -1);
   }, { passive: true });
 
-  // Tăng/giảm cỡ chữ
   function updateFontSize(delta) {
     fontSizePt = Math.max(9.5, Math.min(18, +(fontSizePt + delta).toFixed(1)));
     document.documentElement.style.setProperty('--font-size', fontSizePt + 'pt');
@@ -707,16 +833,18 @@
   document.getElementById('font-dec').onclick = () => updateFontSize(-0.5);
   document.getElementById('font-inc').onclick = () => updateFontSize(0.5);
 
-  // Đổi giao diện Sáng / Giấy / Tối
   document.querySelectorAll('[data-theme]').forEach(btn => {
     btn.onclick = () => {
-      document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[data-theme]').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       document.body.className = btn.dataset.theme === 'light' ? '' : 'theme-' + btn.dataset.theme;
     };
   });
 
-  // In toàn bộ các trang A5
   document.getElementById('print-btn').onclick = () => {
     if (!pages.length) return;
     printContainer.innerHTML = pages.map((html, idx) => `
@@ -728,31 +856,53 @@
     window.print();
   };
 
-  // Tự động chia lại trang khi thay đổi kích thước cửa sổ
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => repaginate(true), 220);
   });
-})();
 
-const toggleBtn = document.getElementById('toggle-toolbar');
-const toolbar = document.querySelector('.toolbar');
-let toolbarVisible = true;
-
-if (toggleBtn) {
-  toggleBtn.onclick = () => {
-    toolbarVisible = !toolbarVisible;
-    toolbar.style.display = toolbarVisible ? 'flex' : 'none';
-    toggleBtn.textContent = toolbarVisible ? '📐 Ẩn thanh công cụ' : '📐 Hiện thanh công cụ';
-    repaginate(true); // Cân lại kích thước trang đọc sau khi không gian thay đổi
+  // Toàn màn hình toggle
+  fullscreenBtn.onclick = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        fullscreenBtn.setAttribute('aria-pressed', 'true');
+        fullscreenBtn.title = 'Thoát toàn màn hình';
+      }).catch(() => {});
+    } else {
+      document.exitFullscreen().then(() => {
+        fullscreenBtn.setAttribute('aria-pressed', 'false');
+        fullscreenBtn.title = 'Chuyển sang toàn màn hình';
+      }).catch(() => {});
+    }
   };
-}
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      fullscreenBtn.setAttribute('aria-pressed', 'false');
+      fullscreenBtn.title = 'Chuyển sang toàn màn hình';
+    } else {
+      fullscreenBtn.setAttribute('aria-pressed', 'true');
+      fullscreenBtn.title = 'Thoát toàn màn hình';
+    }
+  });
+
+  // Tự ẩn hoặc thu gọn thanh công cụ khi không dùng (5s)
+  let toolbar = document.querySelector('.toolbar');
+  let hideTimeout;
+  function showToolbar() {
+    toolbar.style.opacity = '1';
+    toolbar.style.pointerEvents = 'auto';
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      toolbar.style.opacity = '0.15';
+      toolbar.style.pointerEvents = 'none';
+    }, 5000);
+  }
+  document.body.addEventListener('mousemove', showToolbar);
+  document.body.addEventListener('touchstart', showToolbar);
+  showToolbar();
+
+})();
 </script>
-
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/main.js"></script>
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/toi-sang.js"></script>
-<script src="https://vuthanhcong77.github.io/quanlybaivietvtc/tai-nguyen/js/menu.js"></script>
-
 </body>
 </html>
