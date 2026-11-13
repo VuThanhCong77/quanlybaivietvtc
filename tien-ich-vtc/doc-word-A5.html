@@ -506,6 +506,21 @@
 </head>
 <body>
 
+  <div id="reader-wrap">
+  <button class="arrow" id="left" disabled aria-label="Trang trước" title="Trang trước">❮</button>
+  <section id="page" aria-live="polite" aria-atomic="true" aria-label="Vùng đọc nội dung trang A5">
+    <div id="page-content" class="a5-body" tabindex="0">
+      <div id="empty" aria-hidden="false">
+        <div class="big" aria-hidden="true">📖</div>
+        <strong>Chọn hoặc kéo thả tệp Word (.docx) vào đây</strong>
+        <p>Văn bản sẽ được tự động ngắt trang theo tỷ lệ khổ giấy A5 (148 × 210 mm). Dùng phím ← →, nút mũi tên hoặc vuốt màn hình để lật trang.</p>
+      </div>
+    </div>
+    <div id="page-number" aria-hidden="true"></div>
+  </section>
+  <button class="arrow" id="right" disabled aria-label="Trang sau" title="Trang sau">❯</button>
+</div>
+
 <div class="toolbar" role="toolbar" aria-label="Thanh công cụ điều khiển">
   <div class="brand" title="Trình đọc văn bản Word khổ A5" aria-hidden="true">📖</div>
 
@@ -542,20 +557,7 @@
   <span id="filename" aria-live="polite" aria-atomic="true">Chưa chọn tệp</span>
 </div>
 
-<div id="reader-wrap">
-  <button class="arrow" id="left" disabled aria-label="Trang trước" title="Trang trước">❮</button>
-  <section id="page" aria-live="polite" aria-atomic="true" aria-label="Vùng đọc nội dung trang A5">
-    <div id="page-content" class="a5-body" tabindex="0">
-      <div id="empty" aria-hidden="false">
-        <div class="big" aria-hidden="true">📖</div>
-        <strong>Chọn hoặc kéo thả tệp Word (.docx) vào đây</strong>
-        <p>Văn bản sẽ được tự động ngắt trang theo tỷ lệ khổ giấy A5 (148 × 210 mm). Dùng phím ← →, nút mũi tên hoặc vuốt màn hình để lật trang.</p>
-      </div>
-    </div>
-    <div id="page-number" aria-hidden="true"></div>
-  </section>
-  <button class="arrow" id="right" disabled aria-label="Trang sau" title="Trang sau">❯</button>
-</div>
+
 
 <button id="fullscreen-btn" title="Chuyển sang toàn màn hình" aria-label="Toàn màn hình" aria-pressed="false">⛶</button>
 
@@ -576,7 +578,9 @@
   const printContainer = document.getElementById('print-container');
   const fullscreenBtn = document.getElementById('fullscreen-btn');
 
-  const navButtons = ['prev', 'next', 'reset', 'left', 'right'].map(id => document.getElementById(id));
+  // Tất cả nút điều hướng cần đồng bộ trạng thái
+  const navButtonIds = ['prev', 'next', 'reset', 'left', 'right'];
+  const navButtons = navButtonIds.map(id => document.getElementById(id));
   const toolButtons = ['font-dec', 'font-inc', 'print-btn'].map(id => document.getElementById(id));
 
   let rawHtml = '';
@@ -585,9 +589,32 @@
   let current = 0;
   let fontSizePt = window.innerWidth <= 640 ? 11.5 : 13.5;
 
+  // Hàm bật/tắt trạng thái disabled cho tất cả nút điều hướng và công cụ
   function setControlsEnabled(enabled) {
-    [...navButtons, ...toolButtons].forEach(btn => btn.disabled = !enabled);
+    navButtons.forEach(btn => btn.disabled = !enabled);
+    toolButtons.forEach(btn => btn.disabled = !enabled);
     pageInput.disabled = !enabled;
+  }
+
+  // Hàm cập nhật trạng thái disabled cho nút điều hướng đồng bộ trên tất cả nút cùng chức năng
+  function updateNavButtonsState() {
+    const atStart = current === 0;
+    const atEnd = current === pages.length - 1;
+
+    // Đồng bộ trạng thái disabled cho nút Prev và Left
+    ['prev', 'left'].forEach(id => {
+      const btn = document.getElementById(id);
+      btn.disabled = atStart;
+    });
+
+    // Đồng bộ trạng thái disabled cho nút Next và Right
+    ['next', 'right'].forEach(id => {
+      const btn = document.getElementById(id);
+      btn.disabled = atEnd;
+    });
+
+    // Nút Reset (về đầu) disabled khi đang ở trang đầu
+    document.getElementById('reset').disabled = atStart;
   }
 
   function saveProgress() {
@@ -615,11 +642,7 @@
     pageInput.max = pages.length;
     totalPagesEl.textContent = pages.length;
 
-    const atStart = current === 0;
-    const atEnd = current === pages.length - 1;
-    document.getElementById('prev').disabled = document.getElementById('left').disabled = atStart;
-    document.getElementById('reset').disabled = atStart;
-    document.getElementById('next').disabled = document.getElementById('right').disabled = atEnd;
+    updateNavButtonsState();
 
     saveProgress();
   }
@@ -798,7 +821,10 @@
     if (file) processFile(file);
   });
 
+  // Hàm chuyển trang với delta, cập nhật đồng bộ nút
   const go = delta => showPage(current + delta);
+
+  // Gán sự kiện cho tất cả nút điều hướng, đảm bảo đồng bộ
   document.getElementById('prev').onclick = () => go(-1);
   document.getElementById('left').onclick = () => go(-1);
   document.getElementById('next').onclick = () => go(1);
