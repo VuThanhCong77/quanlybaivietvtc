@@ -67,6 +67,8 @@
     user-select: none;
     flex-wrap: nowrap;
     overflow-x: auto;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   .toolbar::-webkit-scrollbar {
@@ -252,7 +254,7 @@
     box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-    padding: 10mm 8mm 12mm;
+    padding: 16mm 8mm 12mm;
     overflow: hidden;
     position: relative;
     transition: background 0.25s, border-color 0.25s;
@@ -453,7 +455,7 @@
       max-width: 100vw;
       max-height: 100vh;
       aspect-ratio: 148 / 210;
-      padding: 8mm 6mm 10mm;
+      padding: 10mm 6mm 10mm;
     }
     :root {
       --font-size: 11.5pt;
@@ -507,7 +509,6 @@
 <body>
 
   <div id="reader-wrap">
-  <button class="arrow" id="left" disabled aria-label="Trang trước" title="Trang trước">❮</button>
   <section id="page" aria-live="polite" aria-atomic="true" aria-label="Vùng đọc nội dung trang A5">
     <div id="page-content" class="a5-body" tabindex="0">
       <div id="empty" aria-hidden="false">
@@ -518,8 +519,7 @@
     </div>
     <div id="page-number" aria-hidden="true"></div>
   </section>
-  <button class="arrow" id="right" disabled aria-label="Trang sau" title="Trang sau">❯</button>
-</div>
+  </div>
 
 <div class="toolbar" role="toolbar" aria-label="Thanh công cụ điều khiển">
   <div class="brand" title="Trình đọc văn bản Word khổ A5" aria-hidden="true">📖</div>
@@ -579,7 +579,7 @@
   const fullscreenBtn = document.getElementById('fullscreen-btn');
 
   // Tất cả nút điều hướng cần đồng bộ trạng thái
-  const navButtonIds = ['prev', 'next', 'reset', 'left', 'right'];
+  const navButtonIds = ['prev', 'next', 'reset'];
   const navButtons = navButtonIds.map(id => document.getElementById(id));
   const toolButtons = ['font-dec', 'font-inc', 'print-btn'].map(id => document.getElementById(id));
 
@@ -601,17 +601,11 @@
     const atStart = current === 0;
     const atEnd = current === pages.length - 1;
 
-    // Đồng bộ trạng thái disabled cho nút Prev và Left
-    ['prev', 'left'].forEach(id => {
-      const btn = document.getElementById(id);
-      btn.disabled = atStart;
-    });
+    // Đồng bộ trạng thái disabled cho nút Prev
+    document.getElementById('prev').disabled = atStart;
 
-    // Đồng bộ trạng thái disabled cho nút Next và Right
-    ['next', 'right'].forEach(id => {
-      const btn = document.getElementById(id);
-      btn.disabled = atEnd;
-    });
+    // Đồng bộ trạng thái disabled cho nút Next
+    document.getElementById('next').disabled = atEnd;
 
     // Nút Reset (về đầu) disabled khi đang ở trang đầu
     document.getElementById('reset').disabled = atStart;
@@ -824,11 +818,9 @@
   // Hàm chuyển trang với delta, cập nhật đồng bộ nút
   const go = delta => showPage(current + delta);
 
-  // Gán sự kiện cho tất cả nút điều hướng, đảm bảo đồng bộ
+  // Gán sự kiện cho các nút điều hướng còn lại, đảm bảo đồng bộ
   document.getElementById('prev').onclick = () => go(-1);
-  document.getElementById('left').onclick = () => go(-1);
   document.getElementById('next').onclick = () => go(1);
-  document.getElementById('right').onclick = () => go(1);
   document.getElementById('reset').onclick = () => showPage(0);
 
   pageInput.addEventListener('change', () => {
@@ -912,22 +904,9 @@
     }
   });
 
-  // Tự ẩn hoặc thu gọn thanh công cụ khi không dùng (8s)
-  let toolbar = document.querySelector('.toolbar');
-  let hideTimeout;
-  function showToolbar() {
-    toolbar.style.opacity = '1';
-    toolbar.style.pointerEvents = 'auto';
-    clearTimeout(hideTimeout);
-    hideTimeout = setTimeout(() => {
-      toolbar.style.opacity = '0.15';
-      toolbar.style.pointerEvents = 'none';
-    }, 8000);
-  }
-  document.body.addEventListener('mousemove', showToolbar);
-  document.body.addEventListener('touchstart', showToolbar);
-  showToolbar();
-
+  // Loại bỏ logic tự ẩn hoặc thu gọn thanh công cụ khi không dùng
+  // Đảm bảo thanh công cụ luôn hiển thị và tương tác được
+  // Do đó, không cần sự kiện mousemove hoặc touchstart để showToolbar
 })();
 </script>
 </body>
